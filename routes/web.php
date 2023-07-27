@@ -57,6 +57,22 @@ Route::group(['prefix' => 'backend','as' => 'admin_'], function() {
         Route::get('page-delete/{id}', [App\Http\Controllers\Backend\PageController::class, 'destroy'])->name('page-delete');
         Route::post('page-datatable', [App\Http\Controllers\Backend\PageController::class, 'pagesDatatable'])->name('page-datatable');
 
+        Route::get('car-brand',[App\Http\Controllers\Backend\CarBrandController::class, 'index'])->name('car-brand')->middleware('XSS');
+        Route::post('ajax-edit-brand-html',[App\Http\Controllers\Backend\CarBrandController::class, 'ajaxEditCarBrandHtml'])->name('ajax-edit-brand-html')->middleware('XSS');
+        Route::post('car-brand-datatable', [App\Http\Controllers\Backend\CarBrandController::class, 'carbrandsDatatable'])->name('car-brand-datatable')->middleware('XSS');
+        Route::post('car-brand-store',[App\Http\Controllers\Backend\CarBrandController::class, 'store'])->name('car-brand-store')->middleware('XSS');
+        Route::post('car-brand-update/{id}',[App\Http\Controllers\Backend\CarBrandController::class, 'update'])->name('car-brand-update')->middleware('XSS');
+        Route::get('car-brand-delete/{id}', [App\Http\Controllers\Backend\CarBrandController::class, 'destroy'])->name('car-brand-delete')->middleware('XSS');
+        Route::post('change-car-brand-status', [App\Http\Controllers\Backend\CarBrandController::class, 'changeCarBrandStatus'])->name('change-car-brand-status')->middleware('XSS');
+
+        Route::get('car-model',[App\Http\Controllers\Backend\CarModelController::class, 'index'])->name('car-model')->middleware('XSS');
+        Route::post('ajax-edit-model-html',[App\Http\Controllers\Backend\CarModelController::class, 'ajaxEditModelHtml'])->name('ajax-edit-model-html')->middleware('XSS');
+        Route::post('car-model-datatable', [App\Http\Controllers\Backend\CarModelController::class, 'carmodelsDatatable'])->name('car-model-datatable')->middleware('XSS');
+        Route::post('car-model-store',[App\Http\Controllers\Backend\CarModelController::class, 'store'])->name('car-model-store')->middleware('XSS');
+        Route::post('car-model-update/{id}',[App\Http\Controllers\Backend\CarModelController::class, 'update'])->name('car-model-update')->middleware('XSS');
+        Route::get('car-model-delete/{id}', [App\Http\Controllers\Backend\CarModelController::class, 'destroy'])->name('car-model-delete')->middleware('XSS');
+        Route::post('change-car-model-status', [App\Http\Controllers\Backend\CarModelController::class, 'changeCarModelStatus'])->name('change-car-model-status')->middleware('XSS');
+        
         Route::get('smtp', [App\Http\Controllers\Backend\SMTPController::class, 'index'])->name('smtp')->middleware('XSS');
         Route::post('smtp_update', [App\Http\Controllers\Backend\SMTPController::class, 'update'])->name('smtp_update')->middleware('XSS');
     });

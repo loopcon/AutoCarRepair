@@ -35,6 +35,16 @@
                     <li class="sidebar-item {{ (request()->is('backend/page*')) ? 'active' : '' }}"><a class="sidebar-link" href="{{ route('admin_pages')}}">{{ __('Page')}}</a></li>
                 </ul> 
             </li>
+
+            <li class="sidebar-item {{ (request()->is('backend/car-brand*') || request()->is('backend/car-model*'))? 'active' : '' }}">
+                <a data-bs-target="#sidebar_car_settings" data-bs-toggle="collapse" class="sidebar-link collapsed">
+                    <i class="align-middle" data-feather="command"></i> <span class="align-middle">{{ __('Basic')}}</span>
+                </a>
+                <ul id="sidebar_car_settings" class="sidebar-dropdown list-unstyled collapse {{ request()->is('backend/car-brand*') || request()->is('backend/car-model*') ? 'show' : '' }}" data-parent="#sidebar">
+                    <li class="sidebar-item {{ (request()->is('backend/car-brand*')) ? 'active' : '' }}"><a class="sidebar-link" href="{{ route('admin_car-brand')}}">{{ __('Car Brands')}}</a></li>
+                    <li class="sidebar-item {{ (request()->is('backend/car-model*')) ? 'active' : '' }}"><a class="sidebar-link" href="{{ route('admin_car-model')}}">{{ __('Car Models')}}</a></li>
+                </ul> 
+            </li>
         </ul>
     </div>
 </nav>
