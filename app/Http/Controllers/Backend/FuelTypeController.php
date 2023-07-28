@@ -68,8 +68,7 @@ class FuelTypeController extends MainController
             'title' => [
                 'required',
             ],
-        ]
-        );
+        ]);
         $slug = $request->title != '' ? slugify($request->title) : NULL;
 
         $fueltype = new FuelType();
@@ -147,7 +146,8 @@ class FuelTypeController extends MainController
         }
     }
 
-    public function changeFuelTypeStatus(request $request){
+    public function changeFuelTypeStatus(request $request)
+    {
         if($request->ajax()){
             $id = Crypt::decrypt($request->id);
             $message = $request->status == Constant::ACTIVE ? 'Fuel Type Activated Successfully!' : 'Fuel Type Inactivated Successfully!';
