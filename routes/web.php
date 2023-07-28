@@ -99,6 +99,14 @@ Route::group(['prefix' => 'backend','as' => 'admin_'], function() {
         Route::post('shop-category-update/{id}',[App\Http\Controllers\Backend\ShopCategoryController::class, 'update'])->name('shop-category-update')->middleware('XSS');
         Route::get('shop-category-delete/{id}', [App\Http\Controllers\Backend\ShopCategoryController::class, 'destroy'])->name('shop-category-delete')->middleware('XSS');
         Route::post('change-shop-category-status', [App\Http\Controllers\Backend\ShopCategoryController::class, 'changeShopCategoryStatus'])->name('change-shop-category-status')->middleware('XSS');
+
+        Route::get('faq',[App\Http\Controllers\Backend\FaqController::class, 'index'])->name('faq')->middleware('XSS');
+        Route::get('faq-create',[App\Http\Controllers\Backend\FaqController::class, 'create'])->name('faq-create');
+        Route::post('faq-store',[App\Http\Controllers\Backend\FaqController::class, 'store'])->name('faq-store');
+        Route::get('faq-edit/{id}',[App\Http\Controllers\Backend\FaqController::class, 'edit'])->name('faq-edit');
+        Route::post('faq-update/{id}',[App\Http\Controllers\Backend\FaqController::class, 'update'])->name('faq-update');
+        Route::get('faq-delete/{id}', [App\Http\Controllers\Backend\FaqController::class, 'destroy'])->name('faq-delete');
+        Route::post('faq-datatable', [App\Http\Controllers\Backend\FaqController::class, 'faqDatatable'])->name('faq-datatable');
     });
 });
 Route::group(['as' => 'front_', 'middleware' => 'XSS'], function() {

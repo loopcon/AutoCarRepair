@@ -33,6 +33,7 @@
                 </a>
                 <ul id="sidebar_pages" class="sidebar-dropdown list-unstyled collapse {{ (request()->is('backend/page*') || request()->is('backend/faq*'))  ? 'show' : '' }}" data-parent="#sidebar">
                     <li class="sidebar-item {{ (request()->is('backend/page*')) ? 'active' : '' }}"><a class="sidebar-link" href="{{ route('admin_pages')}}">{{ __('Page')}}</a></li>
+                    <li class="sidebar-item {{ (request()->is('backend/faq*')) ? 'active' : '' }}"><a class="sidebar-link" href="{{ route('admin_faq')}}">{{ __('FAQ')}}</a></li>
                 </ul> 
             </li>
 
@@ -57,10 +58,10 @@
             </li>
 
             <li class="sidebar-item {{ (request()->is('backend/shop-category*'))? 'active' : '' }}">
-                <a data-bs-target="#sidebar_car_settings" data-bs-toggle="collapse" class="sidebar-link collapsed">
+                <a data-bs-target="#sidebar_product_details" data-bs-toggle="collapse" class="sidebar-link collapsed">
                     <i class="align-middle" data-feather="command"></i> <span class="align-middle">{{ __('Product Details')}}</span>
                 </a>
-                <ul id="sidebar_car_settings" class="sidebar-dropdown list-unstyled collapse {{ request()->is('backend/shop-category*') ? 'show' : '' }}" data-parent="#sidebar">
+                <ul id="sidebar_product_details" class="sidebar-dropdown list-unstyled collapse {{ request()->is('backend/shop-category*') ? 'show' : '' }}" data-parent="#sidebar">
                     <li class="sidebar-item {{ (request()->is('backend/shop-category*')) ? 'active' : '' }}"><a class="sidebar-link" href="{{ route('admin_shop-category')}}">{{ __('Shop Category')}}</a></li>
                 </ul> 
             </li>

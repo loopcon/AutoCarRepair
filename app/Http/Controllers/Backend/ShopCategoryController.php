@@ -34,7 +34,7 @@ class ShopCategoryController extends MainController
                 'name' => [
                     'required',
                     Rule::unique('shop_categories')->where(function ($query) use($request) {
-                        return $query->where([['is_archive', Constant::NOT_ARCHIVE],['id','=',$request->id]]);
+                        return $query->where([['is_archive', Constant::NOT_ARCHIVE]]);
                     }),
                 ],
             ]
@@ -46,6 +46,10 @@ class ShopCategoryController extends MainController
         $fields = array('name','id');
         foreach($fields as $field){
             $shopcategory->$field = isset($request->$field) && $request->$field ? $request->$field : NULL;
+        }
+        if($request->hasFile('image')) {
+            $newName = fileUpload($request, 'image', 'uploads/shopCategory');
+            $shopcategory->image = $newName;
         }
         $shopcategory->slug = $slug;
         $shopcategory->created_by = Auth::guard('admin')->user()->id;
@@ -97,6 +101,14 @@ class ShopCategoryController extends MainController
         foreach($fields as $field){
             $shopcategory->$field = isset($request->$field) && $request->$field ? $request->$field : NULL;
         }
+        if($request->hasFile('image')) {
+            $old_image = $shopcategory->image;
+            if($old_image){
+                removeFile('uploads/shopCategory/'.$old_image);
+            }
+            $newName = fileUpload($request, 'image', 'uploads/shopCategory');
+            $shopcategory->image = $newName;
+        }
         $shopcategory->slug = $slug;
         $shopcategory->updated_by = Auth::guard('admin')->user()->id;
         $shopcategory->save();
@@ -136,13 +148,17 @@ class ShopCategoryController extends MainController
     public function shopcategoriesDatatable(request $request)
     {
         if($request->ajax()){
-            $query = ShopCategory::select('id', 'name', 'status')->where('is_archive', '=', Constant::NOT_ARCHIVE)->orderBy('id', 'DESC');
+            $query = ShopCategory::select('id', 'name','image', 'status')->where('is_archive', '=', Constant::NOT_ARCHIVE)->orderBy('id', 'DESC');
             $list = $query->get();
 
             return DataTables::of($list)
                 ->addColumn('name', function ($row) {
                     $html = $row->name;
                     return $html;
+                })
+                ->addColumn('image', function ($row) {
+                    $image = $row->image ? "<img src='".url('uploads/shopCategory/'.$row->image)."' width='80px' height='80px'>" : '';
+                    return $image;
                 })
                 ->addColumn('status', function ($row) {
                     $html = $row->status == Constant::ACTIVE ? '<span class="badge bg-success">Active</span>' : '<span class="badge bg-danger">Inactive</span>';
@@ -162,7 +178,7 @@ class ShopCategoryController extends MainController
                     $html .= "</span>";
                     return $html;
                 })
-                ->rawColumns(['id','name','action','status'])
+                ->rawColumns(['id','name','image','action','status'])
                 ->make(true);
         } else {
             return redirect('backend/dashboard');

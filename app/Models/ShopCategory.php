@@ -10,5 +10,5 @@ class ShopCategory extends Model
     use HasFactory;
 
     protected $table = 'shop_categories';
-    protected $fillable = ['id','slug', 'name', 'is_archive', 'status', 'created_by', 'updated_by'];
+    protected $fillable = ['id','slug', 'name', 'is_archive', 'status', 'created_by','created_at', 'updated_by','updated_at'];
 }

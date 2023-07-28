@@ -73,3 +73,5 @@ ALTER TABLE `shop_categories`
 ALTER TABLE `shop_categories`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
+
+ALTER TABLE `shop_categories` ADD `image` TEXT NULL AFTER `name`;
