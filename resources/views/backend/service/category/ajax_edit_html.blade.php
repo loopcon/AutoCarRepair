@@ -9,7 +9,7 @@
     <h5 class="modal-title">{{ isset($record->id) ? __('Edit') : __('Add')}}</h5>
     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 </div>
-<form method="POST" action="@if(isset($record->id)){{ route('admin_service-category-update-update', array('id' => Crypt::encrypt($record->id))) }}@else{{route('admin_service-category-store')}}@endif" id="page-form" enctype="multipart/form-data" data-parsley-validate="">
+<form method="POST" action="@if(isset($record->id)){{ route('admin_service-category-update', array('id' => Crypt::encrypt($record->id))) }}@else{{route('admin_service-category-store')}}@endif" id="page-form" enctype="multipart/form-data" data-parsley-validate="">
     {{ csrf_field() }}
     <div class="modal-body m-3" id="form-detail">
         <input type="hidden" name="id" id="id" value="{{ isset($record->id) ? Crypt::encrypt($record->id) : '' }}">
@@ -25,7 +25,7 @@
                     @if(isset($record->image))
                         @if($record->image !='')
                             @php($required = '')
-                            <img class='previewImage img-fluid' id="uploadPreview0" src="{{url('public/uploads/carbrand/'.$record->image)}}"  alt=''>
+                            <img class='previewImage img-fluid' id="uploadPreview0" src="{{url('public/uploads/service/category/'.$record->image)}}"  alt=''>
                         @else
                             @php($required = 'required')
                             <img class='img-fluid' id="uploadPreview0" src="{{url('public/no.jpg')}}"  alt=''>

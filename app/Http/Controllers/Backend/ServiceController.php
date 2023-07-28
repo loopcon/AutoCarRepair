@@ -33,7 +33,7 @@ class ServiceController extends MainController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function serviceCategoryStore(Request $request)
     {
         $this->validate($request, [
             'title' => [
@@ -138,7 +138,7 @@ class ServiceController extends MainController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function serviceCategoryDestroy($id)
     {
         $id = Crypt::decrypt($id);
 //        $constraint_array = array(
@@ -167,7 +167,7 @@ class ServiceController extends MainController
 
             return DataTables::of($list)
                 ->addColumn('image', function ($row) {
-                    $image = $row->image ? "<img src='".url('uploads/carbrand/'.$row->image)."' width='80px' height='80px'>" : '';
+                    $image = $row->image ? "<img src='".url('uploads/service/category/'.$row->image)."' width='80px' height='80px'>" : '';
                     return $image;
                 })
                 ->addColumn('status', function ($row) {
