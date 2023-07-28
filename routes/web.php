@@ -81,6 +81,14 @@ Route::group(['prefix' => 'backend','as' => 'admin_'], function() {
         Route::get('fuel-type-delete/{id}', [App\Http\Controllers\Backend\FuelTypeController::class, 'destroy'])->name('fuel-type-delete')->middleware('XSS');
         Route::post('change-fuel-type-status', [App\Http\Controllers\Backend\FuelTypeController::class, 'changeFuelTypeStatus'])->name('change-fuel-type-status')->middleware('XSS');
 
+        Route::get('service-category',[App\Http\Controllers\Backend\ServiceController::class, 'serviceCategoryList'])->name('service-category')->middleware('XSS');
+        Route::post('ajax-edit-service-category-html',[App\Http\Controllers\Backend\ServiceController::class, 'ajaxEditServiceCategoryHtml'])->name('ajax-edit-service-category-html')->middleware('XSS');
+        Route::post('service-category-datatable', [App\Http\Controllers\Backend\ServiceController::class, 'serviceCategoryDatatable'])->name('service-category-datatable')->middleware('XSS');
+        Route::post('service-category-store',[App\Http\Controllers\Backend\ServiceController::class, 'serviceCategoryStore'])->name('service-category-store')->middleware('XSS');
+        Route::post('service-category-update/{id}',[App\Http\Controllers\Backend\ServiceController::class, 'serviceCategoryUpdate'])->name('service-category-update')->middleware('XSS');
+        Route::get('service-category-delete/{id}', [App\Http\Controllers\Backend\ServiceController::class, 'serviceCategoryDestroy'])->name('service-category-delete')->middleware('XSS');
+        Route::post('change-service-category-status', [App\Http\Controllers\Backend\ServiceController::class, 'changeServiceCategoryStatus'])->name('change-service-category-status')->middleware('XSS');
+
         Route::get('smtp', [App\Http\Controllers\Backend\SMTPController::class, 'index'])->name('smtp')->middleware('XSS');
         Route::post('smtp_update', [App\Http\Controllers\Backend\SMTPController::class, 'update'])->name('smtp_update')->middleware('XSS');
     });

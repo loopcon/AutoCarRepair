@@ -106,7 +106,7 @@
                 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
                 swal({
                     title: "",
-                    text: "Are you sure? "+message+" this carmaker!",
+                    text: "Are you sure? "+message+" this car brnd!",
                     type: "warning",
                     showCancelButton: true,
                     confirmButtonClass: "btn-danger",
@@ -142,7 +142,7 @@
                 var href = $(this).data('href');
                 swal({
                     title: "",
-                    text: "{{__('Are you sure? Delete this car maker!')}}",
+                    text: "{{__('Are you sure? Delete this car brand!')}}",
                     type: "warning",
                     showCancelButton: true,
                     confirmButtonClass: "btn-danger",
