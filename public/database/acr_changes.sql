@@ -20,3 +20,27 @@ ALTER TABLE `fuel_type`
 
 ALTER TABLE `fuel_type`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+-- khushali : 28-07-2023 12:33 PM
+--
+-- Table structure for table `service_categories`
+--
+
+CREATE TABLE `service_categories` (
+  `id` int(11) NOT NULL,
+  `slug` int(11) DEFAULT NULL,
+  `title` int(11) DEFAULT NULL,
+  `image` int(11) DEFAULT NULL,
+  `is_archive` tinyint(1) DEFAULT 1 COMMENT '1=No;0=Yes',
+  `status` tinyint(1) DEFAULT 0 COMMENT '0="InActive";1="Active"',
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `created_by` int(11) DEFAULT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `updated_by` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+ALTER TABLE `service_categories`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `service_categories`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
