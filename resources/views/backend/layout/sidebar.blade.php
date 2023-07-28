@@ -55,6 +55,15 @@
                     <li class="sidebar-item {{ (request()->is('backend/service-category*')) ? 'active' : '' }}"><a class="sidebar-link" href="{{ route('admin_service-category')}}">{{ __('Category')}}</a></li>
                 </ul> 
             </li>
+
+            <li class="sidebar-item {{ (request()->is('backend/shop-category*'))? 'active' : '' }}">
+                <a data-bs-target="#sidebar_car_settings" data-bs-toggle="collapse" class="sidebar-link collapsed">
+                    <i class="align-middle" data-feather="command"></i> <span class="align-middle">{{ __('Product Details')}}</span>
+                </a>
+                <ul id="sidebar_car_settings" class="sidebar-dropdown list-unstyled collapse {{ request()->is('backend/shop-category*') ? 'show' : '' }}" data-parent="#sidebar">
+                    <li class="sidebar-item {{ (request()->is('backend/shop-category*')) ? 'active' : '' }}"><a class="sidebar-link" href="{{ route('admin_shop-category')}}">{{ __('Shop Category')}}</a></li>
+                </ul> 
+            </li>
         </ul>
     </div>
 </nav>

@@ -91,6 +91,14 @@ Route::group(['prefix' => 'backend','as' => 'admin_'], function() {
 
         Route::get('smtp', [App\Http\Controllers\Backend\SMTPController::class, 'index'])->name('smtp')->middleware('XSS');
         Route::post('smtp_update', [App\Http\Controllers\Backend\SMTPController::class, 'update'])->name('smtp_update')->middleware('XSS');
+
+        Route::get('shop-category',[App\Http\Controllers\Backend\ShopCategoryController::class, 'index'])->name('shop-category')->middleware('XSS');
+        Route::post('ajax-edit-shopcategory-html',[App\Http\Controllers\Backend\ShopCategoryController::class, 'ajaxEditShopCategoryHtml'])->name('ajax-edit-shopcategory-html')->middleware('XSS');
+        Route::post('shop-category-datatable', [App\Http\Controllers\Backend\ShopCategoryController::class, 'shopcategoriesDatatable'])->name('shop-category-datatable')->middleware('XSS');
+        Route::post('shop-category-store',[App\Http\Controllers\Backend\ShopCategoryController::class, 'store'])->name('shop-category-store')->middleware('XSS');
+        Route::post('shop-category-update/{id}',[App\Http\Controllers\Backend\ShopCategoryController::class, 'update'])->name('shop-category-update')->middleware('XSS');
+        Route::get('shop-category-delete/{id}', [App\Http\Controllers\Backend\ShopCategoryController::class, 'destroy'])->name('shop-category-delete')->middleware('XSS');
+        Route::post('change-shop-category-status', [App\Http\Controllers\Backend\ShopCategoryController::class, 'changeShopCategoryStatus'])->name('change-shop-category-status')->middleware('XSS');
     });
 });
 Route::group(['as' => 'front_', 'middleware' => 'XSS'], function() {
