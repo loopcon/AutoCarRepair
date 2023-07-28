@@ -26,6 +26,8 @@ class CarModelController extends MainController
     {
         $return_data = array();       
         $return_data['site_title'] = trans('Car Model');
+        $carbrand = CarBrand::select('id','title')->where([['is_archive', Constant::NOT_ARCHIVE],['status', Constant::ACTIVE]])->orderby('id')->get();
+        $return_data['carbrand'] = $carbrand;
         return view('backend.carmodel.list', array_merge($this->data, $return_data));
     }
 
@@ -76,7 +78,7 @@ class CarModelController extends MainController
         if($request->ajax()){
             $id = $request->id;
             $id = $id ? Crypt::decrypt($id) : NULL;
-            $brand  = CarBrand::select('id','title')->where([['is_archive', Constant::NOT_ARCHIVE],['status', Constant::ACTIVE]])->orderby('id','asc')->get(); 
+            $brand  = CarBrand::select('id','title')->where([['is_archive', Constant::NOT_ARCHIVE],['status', Constant::ACTIVE]])->orderby('id')->get(); 
             $record = $id ? CarModel::find($id) : NULL;
             $html = view('backend.carmodel.ajax_edit_html', array('record' => $record, 'brand' => $brand))->render();
             $return = array();
@@ -157,8 +159,15 @@ class CarModelController extends MainController
     {
         if($request->ajax()){
             $query = CarModel::with('brandDetail')->select('id', 'carbrand_id', 'title', 'status')->where('is_archive', '=', Constant::NOT_ARCHIVE)->orderBy('id', 'DESC');
+
+            if($request->carBrand!='all') {
+                if($request->carBrand!='') {
+                    $query->whereHas('brandDetail', function($q) use ($request) {
+                        $q->where([['carbrand_id', '=', $request->carBrand]]);
+                    });
+                }
+            }
             $list = $query->get();
-            
             return DataTables::of($list)
                 ->addColumn('maker', function ($row) {
                     $maker = isset($row->brandDetail->title) ? $row->brandDetail->title : '';
