@@ -67,6 +67,9 @@ class FuelTypeController extends MainController
         $this->validate($request, [
             'title' => [
                 'required',
+                Rule::unique('fuel_type')->where(function ($query) use($request) {
+                    return $query->where('is_archive', Constant::NOT_ARCHIVE);
+                }),
             ],
         ]);
         $slug = $request->title != '' ? slugify($request->title) : NULL;
@@ -109,6 +112,9 @@ class FuelTypeController extends MainController
         $this->validate($request, [
             'title' => [
                 'required',
+                Rule::unique('fuel_type')->where(function ($query) use($request) {
+                    return $query->where('is_archive', Constant::NOT_ARCHIVE);
+                }),
             ],
         ]);
 
