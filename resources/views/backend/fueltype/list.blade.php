@@ -140,7 +140,7 @@
                 var href = $(this).data('href');
                 swal({
                     title: "",
-                    text: "{{__('Are you sure? Delete this car maker!')}}",
+                    text: "{{__('Are you sure? Delete this Fuel Type!')}}",
                     type: "warning",
                     showCancelButton: true,
                     confirmButtonClass: "btn-danger",
