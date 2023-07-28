@@ -23,11 +23,10 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <table id="carmaker" class="table table-striped" style="width:100%">
+                        <table id="fueltype" class="table table-striped" style="width:100%">
                             <thead>
                                 <tr>
                                     <th>{{__('Id')}}</th>
-                                    <th>{{__('Image')}}</th>
                                     <th>{{__('Title')}}</th> 
                                     <th>{{__('Status')}}</th>
                                     <th>{{__('Action')}}</th>
@@ -54,7 +53,7 @@
     <script src="{{ asset('plugins/parsley/parsley.js') }}"></script>
     <script>
         $(document).ready(function() {
-            var carmakers = $("#carmaker").DataTable({
+            var fueltype = $("#fueltype").DataTable({
                 "order": [], //Initial no order.
                 "aaSorting": [],
                 processing: true,
@@ -63,13 +62,12 @@
                 "lengthMenu": [[50, 100, 200, 400], [50, 100, 200, 400]],
                 "columns": [
                     {data: 'id', name: 'id'},
-                    {data: 'image', name: 'image'},
                     {data: 'title', name: 'title'},
                     {data: 'status', name: 'status'},
                     {data: 'action', name: 'action', orderable: false, searchable: false},
                 ],
                 "ajax" : {
-                    url : "{{ route('admin_car-brand-datatable') }}",
+                    url : "{{ route('admin_fuel-type-datatable') }}",
                     type : "POST",
                     data : function(d) {
                         d._token = "{{ csrf_token() }}"
@@ -106,7 +104,7 @@
                 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
                 swal({
                     title: "",
-                    text: "Are you sure? "+message+" this carmaker!",
+                    text: "Are you sure? "+message+" this fueltype",
                     type: "warning",
                     showCancelButton: true,
                     confirmButtonClass: "btn-danger",
@@ -116,7 +114,7 @@
                 },
                 function(){
                     $.ajax({
-                        url : '{{ route('admin_change-car-brand-status') }}',
+                        url : '{{ route('admin_change-fuel-type-status') }}',
                         method : 'post',
                         data : {_token: CSRF_TOKEN, id : id, status : status},
                         success : function(result){
@@ -132,7 +130,7 @@
                                     y: 'top'
                                 }
                             });
-                            carmakers.ajax.reload();
+                            fueltype.ajax.reload();
                         }
                     });
                 });
@@ -159,7 +157,7 @@
         function ajaxForm(id = ''){
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             $.ajax({
-                url : '{{ route('admin_ajax-edit-brand-html') }}',
+                url : '{{ route('admin_ajax-edit-fuel-html') }}',
                 method : 'post',
                 data : {_token: CSRF_TOKEN, id:id},
                 success : function(result){

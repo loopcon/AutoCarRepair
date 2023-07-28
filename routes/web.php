@@ -72,7 +72,15 @@ Route::group(['prefix' => 'backend','as' => 'admin_'], function() {
         Route::post('car-model-update/{id}',[App\Http\Controllers\Backend\CarModelController::class, 'update'])->name('car-model-update')->middleware('XSS');
         Route::get('car-model-delete/{id}', [App\Http\Controllers\Backend\CarModelController::class, 'destroy'])->name('car-model-delete')->middleware('XSS');
         Route::post('change-car-model-status', [App\Http\Controllers\Backend\CarModelController::class, 'changeCarModelStatus'])->name('change-car-model-status')->middleware('XSS');
-        
+
+        Route::get('fuel-type',[App\Http\Controllers\Backend\FuelTypeController::class, 'index'])->name('fuel-type')->middleware('XSS');
+        Route::post('ajax-edit-fuel-html',[App\Http\Controllers\Backend\FuelTypeController::class, 'ajaxEditFuelHtml'])->name('ajax-edit-fuel-html')->middleware('XSS');
+        Route::post('fuel-type-datatable', [App\Http\Controllers\Backend\FuelTypeController::class, 'fueltypeDatatable'])->name('fuel-type-datatable')->middleware('XSS');
+        Route::post('fuel-type-store',[App\Http\Controllers\Backend\FuelTypeController::class, 'store'])->name('fuel-type-store')->middleware('XSS');
+        Route::post('fuel-type-update/{id}',[App\Http\Controllers\Backend\FuelTypeController::class, 'update'])->name('fuel-type-update')->middleware('XSS');
+        Route::get('fuel-type-delete/{id}', [App\Http\Controllers\Backend\FuelTypeController::class, 'destroy'])->name('fuel-type-delete')->middleware('XSS');
+        Route::post('change-fuel-type-status', [App\Http\Controllers\Backend\FuelTypeController::class, 'changeFuelTypeStatus'])->name('change-fuel-type-status')->middleware('XSS');
+
         Route::get('smtp', [App\Http\Controllers\Backend\SMTPController::class, 'index'])->name('smtp')->middleware('XSS');
         Route::post('smtp_update', [App\Http\Controllers\Backend\SMTPController::class, 'update'])->name('smtp_update')->middleware('XSS');
     });

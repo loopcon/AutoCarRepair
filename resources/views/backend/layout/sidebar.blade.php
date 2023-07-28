@@ -36,13 +36,14 @@
                 </ul> 
             </li>
 
-            <li class="sidebar-item {{ (request()->is('backend/car-brand*') || request()->is('backend/car-model*'))? 'active' : '' }}">
+            <li class="sidebar-item {{ (request()->is('backend/car-brand*') || request()->is('backend/car-model*') || request()->is('backend/fuel-type*'))? 'active' : '' }}">
                 <a data-bs-target="#sidebar_car_settings" data-bs-toggle="collapse" class="sidebar-link collapsed">
                     <i class="align-middle" data-feather="command"></i> <span class="align-middle">{{ __('Basic')}}</span>
                 </a>
-                <ul id="sidebar_car_settings" class="sidebar-dropdown list-unstyled collapse {{ request()->is('backend/car-brand*') || request()->is('backend/car-model*') ? 'show' : '' }}" data-parent="#sidebar">
+                <ul id="sidebar_car_settings" class="sidebar-dropdown list-unstyled collapse {{ request()->is('backend/car-brand*') || request()->is('backend/car-model*') || request()->is('backend/fuel-type*') ? 'show' : '' }}" data-parent="#sidebar">
                     <li class="sidebar-item {{ (request()->is('backend/car-brand*')) ? 'active' : '' }}"><a class="sidebar-link" href="{{ route('admin_car-brand')}}">{{ __('Car Brands')}}</a></li>
                     <li class="sidebar-item {{ (request()->is('backend/car-model*')) ? 'active' : '' }}"><a class="sidebar-link" href="{{ route('admin_car-model')}}">{{ __('Car Models')}}</a></li>
+                    <li class="sidebar-item {{ (request()->is('backend/fuel-type*')) ? 'active' : '' }}"><a class="sidebar-link" href="{{ route('admin_fuel-type')}}">{{ __('Fuel Type')}}</a></li>
                 </ul> 
             </li>
         </ul>
