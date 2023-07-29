@@ -62,7 +62,9 @@
                     <i class="align-middle" data-feather="command"></i> <span class="align-middle">{{ __('Product Details')}}</span>
                 </a>
                 <ul id="sidebar_product_details" class="sidebar-dropdown list-unstyled collapse {{ request()->is('backend/shop-category*') ? 'show' : '' }}" data-parent="#sidebar">
+                <ul id="sidebar_product_details" class="sidebar-dropdown list-unstyled collapse {{ request()->is('backend/shop-category*') || request()->is('backend/products*') ? 'show' : '' }}" data-parent="#sidebar">
                     <li class="sidebar-item {{ (request()->is('backend/shop-category*')) ? 'active' : '' }}"><a class="sidebar-link" href="{{ route('admin_shop-category')}}">{{ __('Shop Category')}}</a></li>
+                    <li class="sidebar-item {{ (request()->is('backend/products*')) ? 'active' : '' }}"><a class="sidebar-link" href="{{ route('admin_products')}}">{{ __('Products')}}</a></li>
                 </ul> 
             </li>
         </ul>

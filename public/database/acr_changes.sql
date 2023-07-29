@@ -75,3 +75,35 @@ ALTER TABLE `shop_categories`
 COMMIT;
 
 ALTER TABLE `shop_categories` ADD `image` TEXT NULL AFTER `name`;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+-- Disha : 28-07-2023 04:24 PM
+
+--
+-- Table structure for table `products`
+--
+
+CREATE TABLE `products` (
+  `id` int(11) NOT NULL,
+  `slug` text DEFAULT NULL,
+  `shop_category_id` int(11) DEFAULT NULL COMMENT '`id` of `shop_categories`',
+  `name` text DEFAULT NULL,
+  `sku` varchar(255) DEFAULT NULL,
+  `description` text DEFAULT NULL,
+  `specification` text DEFAULT NULL,
+  `price` decimal(15,2) DEFAULT NULL,
+  `amazon_link` text DEFAULT NULL,
+  `flipcart_link` text DEFAULT NULL,
+  `is_archive` tinyint(1) DEFAULT 1 COMMENT '0=Yes;1=No	',
+  `status` tinyint(1) DEFAULT 1 COMMENT '0="In Active";1="Active"	',
+  `created_by` int(11) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_by` int(11) DEFAULT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+ALTER TABLE `products`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `products`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;

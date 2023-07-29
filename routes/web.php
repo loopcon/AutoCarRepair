@@ -89,6 +89,15 @@ Route::group(['prefix' => 'backend','as' => 'admin_'], function() {
         Route::get('service-category-delete/{id}', [App\Http\Controllers\Backend\ServiceController::class, 'serviceCategoryDestroy'])->name('service-category-delete')->middleware('XSS');
         Route::post('change-service-category-status', [App\Http\Controllers\Backend\ServiceController::class, 'changeServiceCategoryStatus'])->name('change-service-category-status')->middleware('XSS');
 
+        Route::get('products',[App\Http\Controllers\Backend\ProductController::class, 'index'])->name('products');
+        Route::get('product-create',[App\Http\Controllers\Backend\ProductController::class, 'create'])->name('product-create');
+        Route::post('product-store',[App\Http\Controllers\Backend\ProductController::class, 'store'])->name('product-store');
+        Route::get('product-edit/{id}',[App\Http\Controllers\Backend\ProductController::class, 'edit'])->name('product-edit');
+        Route::post('product-update/{id}',[App\Http\Controllers\Backend\ProductController::class, 'update'])->name('product-update');
+        Route::get('product-delete/{id}', [App\Http\Controllers\Backend\ProductController::class, 'destroy'])->name('product-delete');
+        Route::post('product-datatable', [App\Http\Controllers\Backend\ProductController::class, 'productsDatatable'])->name('product-datatable');
+        Route::post('change-product-status', [App\Http\Controllers\Backend\ProductController::class, 'changeProductStatus'])->name('change-product-status')->middleware('XSS');
+
         Route::get('smtp', [App\Http\Controllers\Backend\SMTPController::class, 'index'])->name('smtp')->middleware('XSS');
         Route::post('smtp_update', [App\Http\Controllers\Backend\SMTPController::class, 'update'])->name('smtp_update')->middleware('XSS');
 
