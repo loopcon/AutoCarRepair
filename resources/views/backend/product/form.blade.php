@@ -119,17 +119,17 @@
                 filebrowserImageUploadUrl : '<?php echo url("public/plugins/kcfinder/upload.php?opener=ckeditor&type=images") ?>',
                 filebrowserFlashUploadUrl : '<?php echo url("public/plugins/kcfinder/upload.php?opener=ckeditor&type=flash") ?>',
             });
-            CKEDITOR.on('instanceReady', function () {
-                $('#description').attr('required', '');
-                $.each(CKEDITOR.instances, function (instance) {
-                    CKEDITOR.instances[instance].on("change", function (e) {
-                        for (instance in CKEDITOR.instances) {
-                            CKEDITOR.instances[instance].updateElement();
-                            //$('form').parsley().validate();
-                        }
-                    });
-                });
-            });
+            // CKEDITOR.on('instanceReady', function () {
+            //     $('#description').attr('required', '');
+            //     $.each(CKEDITOR.instances, function (instance) {
+            //         CKEDITOR.instances[instance].on("change", function (e) {
+            //             for (instance in CKEDITOR.instances) {
+            //                 CKEDITOR.instances[instance].updateElement();
+            //                 //$('form').parsley().validate();
+            //             }
+            //         });
+            //     });
+            // });
         });
     </script>
 @endsection
