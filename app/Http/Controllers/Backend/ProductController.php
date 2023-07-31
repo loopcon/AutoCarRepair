@@ -79,14 +79,6 @@ class ProductController extends MainController
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
     public function edit($id)
@@ -106,20 +98,19 @@ class ProductController extends MainController
      */
     public function update(Request $request,  $id)
     {
-            $id = Crypt::decrypt($id);
-            $this->validate($request, [
-                'name' => ['required'],
-                'price' => ['required'],
-                'sku' => ['required',
-                    Rule::unique('products')->where(function ($query) use($request, $id) {
-                        return $query->where([['is_archive', Constant::NOT_ARCHIVE]]);
-                    }),
-                ],
-            ],[
-                'required'  => trans('The :attribute field is required.')
-            ]
-        );
-        $slug = $request->name != '' || $request->name != '' ?  slugify($request->name.'-'.$request->sku) : NULL;
+        $id = Crypt::decrypt($id);
+        $this->validate($request, [
+            'name' => ['required'],
+            'price' => ['required'],
+            'sku' => ['required',
+                Rule::unique('products')->where(function ($query) use($request, $id) {
+                    return $query->where([['is_archive', Constant::NOT_ARCHIVE]]);
+                }),
+            ],
+        ],[
+            'required'  => trans('The :attribute field is required.')
+        ]);
+        $slug = $request->name != '' || $request->sku != '' ?  slugify($request->name.'-'.$request->sku) : NULL;
 
         $product = Product::where('id', $id)->update([
             'slug' => $slug,
@@ -150,7 +141,7 @@ class ProductController extends MainController
         $product = Product::where('id',$id)->update([
             'is_archive' =>'0',
             'updated_by' => Auth::guard('admin')->user()->id,
-            ]);
+        ]);
         if($product){
             return redirect()->back()->with('success', trans('Product Deleted Successfully!'));
         } else {
