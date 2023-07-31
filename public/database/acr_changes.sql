@@ -131,3 +131,47 @@ ALTER TABLE `faq`
 
 ALTER TABLE `faq`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+-- Disha : 31-07-2023 04:30 PM
+--
+-- Table structure for table `product_images`
+--
+
+CREATE TABLE `product_images` (
+  `product_id` int(11) NOT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `alt_text` char(100) DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `is_primary` enum('yes','no') DEFAULT NULL COMMENT '1=Yes,0=No',
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+ALTER TABLE `product_images`
+  ADD PRIMARY KEY (`product_id`);
+
+ALTER TABLE `product_images`
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT;
+
+-- Disha : 31-07-2023 04:50 PM
+--
+-- Table structure for table `content`
+--
+
+CREATE TABLE `content` (
+  `id` int(11) NOT NULL,
+  `section1_title1` varchar(255) DEFAULT NULL,
+  `section1_title2` varchar(255) DEFAULT NULL,
+  `section1_image` varchar(255) DEFAULT NULL,
+  `section1_description` text DEFAULT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_by` int(11) DEFAULT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+ALTER TABLE `content`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `content`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+

@@ -68,5 +68,14 @@
                 </ul> 
             </li>
         </ul>
+
+        <li class="sidebar-item">
+                <a data-bs-target="#sidebar_content" data-bs-toggle="collapse" class="sidebar-link collapsed">
+                    <i class="align-middle" data-feather="command"></i> <span class="align-middle">{{ __('Home Page Settings')}}</span>
+                </a>
+                <ul id="sidebar_content" class="sidebar-dropdown list-unstyled collapse {{ request()->is('backend/service-category*') ? 'show' : '' }}" data-parent="#sidebar">
+                    <li class="sidebar-item {{ (request()->is('backend/service-category*')) ? 'active' : '' }}"><a class="sidebar-link" href="{{ route('admin_service-category')}}">{{ __('Content')}}</a></li>
+                </ul> 
+            </li>
     </div>
 </nav>
