@@ -131,3 +131,63 @@ ALTER TABLE `faq`
 
 ALTER TABLE `faq`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+
+--Nirali : 31-07-2023 04:03 PM
+
+-- Table structure for table `enquires`
+--
+
+CREATE TABLE `enquires` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `phone` int(10) DEFAULT NULL,
+  `service` varchar(255) DEFAULT NULL,
+  `message` varchar(255) DEFAULT NULL,
+  `is_archive` tinyint(1) DEFAULT 1 COMMENT '0=Yes,1=No',
+  `created_by` int(11) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_by` int(11) DEFAULT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+ALTER TABLE `enquires`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `enquires`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `enquires` CHANGE `phone` `phone` BIGINT(10) NULL DEFAULT NULL;
+
+
+-- Nirali : 31-07-2023 05:55 PM
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `firstname` varchar(255) DEFAULT NULL,
+  `lastname` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `phone` bigint(10) DEFAULT NULL,
+  `image` text DEFAULT NULL,
+  `address` text DEFAULT NULL,
+  `city` varchar(100) DEFAULT NULL,
+  `state` varchar(100) DEFAULT NULL,
+  `country` varchar(100) DEFAULT NULL,
+  `zipcode` bigint(11) DEFAULT NULL,
+  `status` tinyint(1) DEFAULT 0 COMMENT '0="InActive";1="Active"	',
+  `is_archive` tinyint(1) DEFAULT 1 COMMENT '0=Yes,1=No',
+  `created_by` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_by` int(11) DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;

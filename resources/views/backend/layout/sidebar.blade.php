@@ -61,12 +61,21 @@
                 <a data-bs-target="#sidebar_product_details" data-bs-toggle="collapse" class="sidebar-link collapsed">
                     <i class="align-middle" data-feather="command"></i> <span class="align-middle">{{ __('Product Details')}}</span>
                 </a>
-                <ul id="sidebar_product_details" class="sidebar-dropdown list-unstyled collapse {{ request()->is('backend/shop-category*') ? 'show' : '' }}" data-parent="#sidebar">
                 <ul id="sidebar_product_details" class="sidebar-dropdown list-unstyled collapse {{ request()->is('backend/shop-category*') || request()->is('backend/products*') ? 'show' : '' }}" data-parent="#sidebar">
                     <li class="sidebar-item {{ (request()->is('backend/shop-category*')) ? 'active' : '' }}"><a class="sidebar-link" href="{{ route('admin_shop-category')}}">{{ __('Shop Category')}}</a></li>
                     <li class="sidebar-item {{ (request()->is('backend/products*')) ? 'active' : '' }}"><a class="sidebar-link" href="{{ route('admin_products')}}">{{ __('Products')}}</a></li>
                 </ul> 
             </li>
+
+            <li class="sidebar-item {{ (request()->is('backend/enquiry')) ? 'active' : '' }}">
+                <a href="{{route('admin_enquiry')}}" class="sidebar-link">
+                    <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">{{ __('Enquires') }}</span>
+                    <!--<span class="badge badge-sidebar-primary">5</span>-->
+                </a>
+            </li>
+            <!-- <li class="sidebar-item {{(request()->is('backend/user')) ? 'active' : ''}}">
+                
+            </li> -->
         </ul>
     </div>
 </nav>

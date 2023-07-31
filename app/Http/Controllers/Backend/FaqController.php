@@ -122,7 +122,7 @@ class FaqController extends MainController
             'updated_by' => Auth::guard('admin')->user()->id,
         ]);
         if($faq) {
-            return redirect('backend/faq')->with('success', trans('Page Deleted Successfully!'));
+            return redirect('backend/faq')->with('success', trans('Faq Deleted Successfully!'));
         } else {
             return redirect()->back()->with('error', trans('Something went wrong, please try again later!'));
         }
@@ -146,7 +146,11 @@ class FaqController extends MainController
                     $html .= "</span>";
                     return $html;
                 })
-                ->rawColumns(['action'])
+                ->addColumn('description', function ($row) {
+                    $html = $row->description;
+                    return $html;
+                })
+                ->rawColumns(['action','description'])
                 ->make(true);
         } else {
             return redirect('backend/dashboard');
