@@ -98,8 +98,8 @@ Route::group(['prefix' => 'backend','as' => 'admin_'], function() {
         Route::post('product-datatable', [App\Http\Controllers\Backend\ProductController::class, 'productsDatatable'])->name('product-datatable');
         Route::post('change-product-status', [App\Http\Controllers\Backend\ProductController::class, 'changeProductStatus'])->name('change-product-status')->middleware('XSS');
 
-        Route::get('content', [\App\Http\Controllers\Backend\ContentController::class, 'index'])->name('content');
-        Route::post('content-update', [\App\Http\Controllers\Backend\ContentController::class, 'update'])->name('content-update');
+        Route::get('content', [\App\Http\Controllers\Backend\HomePageSettingController::class, 'index'])->name('content');
+        Route::post('content-update', [\App\Http\Controllers\Backend\HomePageSettingController::class, 'update'])->name('content-update');
 
         Route::get('smtp', [App\Http\Controllers\Backend\SMTPController::class, 'index'])->name('smtp')->middleware('XSS');
         Route::post('smtp_update', [App\Http\Controllers\Backend\SMTPController::class, 'update'])->name('smtp_update')->middleware('XSS');

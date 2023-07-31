@@ -175,3 +175,6 @@ ALTER TABLE `content`
 ALTER TABLE `content`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
+-- Disha : 31-07-2023 05:12 PM
+
+RENAME TABLE `acr`.`content` TO `acr`.`home_page_setting`;
