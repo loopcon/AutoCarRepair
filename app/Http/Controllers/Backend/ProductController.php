@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\ProductImage;
 use App\Models\ShopCategory;
 use Auth;
 use Session;
@@ -72,6 +73,24 @@ class ProductController extends MainController
             'created_by' => Auth::guard('admin')->user()->id,
         ]);
         if($product){
+            if(isset($request->product_image) && !empty($request->product_image)) {
+                foreach($request->product_image as $product_image) {
+
+                   if($request->hasFile($product_image['image'])) {
+                        $newImage = fileUpload($request, $product_image['image'], 'uploads/product');
+                        $product->image = $newImage;
+                    }
+
+                    $is_primary = (isset($product_image['is_primary']) && $product_image['is_primary']=='on') ? 'yes' : 'no';
+                    $product_img = ProductImage::create([
+                        // 'image' => $newImage,
+                        'alt_text' => $product_image['alt_text'],
+                        'is_primary' => $is_primary,
+                        'title' => $product_image['title'],
+                    ]);
+                    $product_img->save();
+                }
+            }
             return redirect('backend/products')->with('success', trans('Product Added Successfully!'));
         } else {
             return redirect()->back()->with('error', trans('Something went wrong, please try again later!'));
