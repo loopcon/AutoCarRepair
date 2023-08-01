@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shoping Inner</title>
+    <link rel="icon"  href="img/favicon.ico">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <script src="js/jquery.min.js"></script>
+
+</head>
+<body>
+<!-- topbar html start  -->
+<div class="container">
+    <div class="row top-navbar-main">
+        <div class="col-12 col-md-6">
+            <img src="img/acr-logo.png" class="acr-logo" alt="">
+        </div>
+        <div class="col-12 col-md-6">
+            <div class="topbar-email-call">
+                <div class="top-email-main">
+                    <div class="email-main">
+                        <img src="img/top-email.png" alt="">
+                    </div>
+                    <div class="top-email-text">
+                        <p >Mail</p>
+                        <a href="#">info@autocarrepair.in</a>
+                    </div>
+                </div>
+                <div class="top-call-main">
+                    <div class="call-img-main">
+                        <img src="img/top-call.png" alt="">
+                    </div>
+                    <div class="top-call-text">
+                        <p>Call US</p>
+                        <a href="#">9810446692</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- topbar end  -->
+<!-- navbar start  -->
+<div class="navbar-bg">
+    <div class="container">
+        <div class="acr-navbar-section">
+            <div>
+                <ul class="acr-navbar-main">
+                    <li><a class="acr-active" href="#">Home</a></li>
+                    <li><a href="#">Car Service</a></li>
+                    <li><a href="#">Service Center</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Shopping</a></li>
+                </ul>
+            </div>
+            <div class="search-main-section">
+                <div class="search-icon-main">
+                    <img data-bs-toggle="modal" data-bs-target="#searchbarModal"  src="img/navbar-search-icon.png" alt="">
+                </div>
+                <div class="modal fade" id="searchbarModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog searchbar-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" placeholder="Search" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                              </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <a class="navbar-appointment-btn" href="#" data-bs-toggle="modal" data-bs-target="#appointmentModal" >Appointment Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- mobile menu start  -->
+<div class="mobile-menu-main">    
+    <div class="container">
+        <div class="mobile-menu-sectiondata">
+            <div class="mo-logo">
+                <img src="img/acr-logo.png" class="acr-logo" alt="">
+            </div>
+            <div class="mo-appointmentbtn">
+                <div class="mo-search-main-section">
+                    <div class="search-icon-main">
+                        <img data-bs-toggle="modal" data-bs-target="#mosearchbarModal"  src="img/navbar-search-icon.png" alt="">
+                    </div>
+                    <div class="modal fade" id="mosearchbarModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog mosearchbar-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" placeholder="Search" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                  </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    <div>
+                        <a class="navbar-appointment-btn" href="#" data-bs-toggle="modal" data-bs-target="#appointmentModal" >Appointment Now</a>
+                    </div>
+                </div>
+            </div>
+            <div class="toggle-btnmobile">
+                <div class="toggle-btn">
+                    <button class="btn-toggle-item"><i class="fa-solid fa-bars"></i></button>
+                </div>
+                <div class="mobile-toggle-data">
+                    <ul class="mo-acr-navbar-main">
+                        <li><a class="acr-active" href="#">Home</a></li>
+                        <li><a href="#">Car Service</a></li>
+                        <li><a href="#">Service Center</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Shopping</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- mobile menu end  -->
+<!-- Appointment modal -->  
+<div class="modal fade" id="appointmentModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog appointment-dialog">
+        <div class="modal-content ">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="appointment-contet-modal">
+                    <h1>Experience The Best Car Service In Delhi</h1>
+                    <div class="appointment-car-service">
+                        <p>Get instant quotes for four car service  </p>
+                        <select class="form-select" aria-label="Default select example">
+                            <option selected>Open this select menu</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button"  class="check-price-btn" data-bs-toggle="modal" data-bs-target="#appointmentselectModal">Check Price For Free </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Appointment modal -->
+<!-- Appointment select modal -->  
+<div class="modal fade" id="appointmentselectModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog appointmentselect-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <h1>Select Brand</h1>
+                    <div class="input-group">
+                        <input type="text" class="form-control search-brand-input" placeholder="Search Brand"  aria-label="Amount (to the nearest dollar)">
+                        <div class="search-icon">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </div>
+                        </div>
+                    <div class="row ">
+                        <div class="col-4 brand-logo-center">
+                            <a href="" data-bs-toggle="modal" data-bs-target="#appointmentsearchModal"><img src="img/Maruti-Suzuki-Logo.png" class="img-fluid" alt=""></a>
+                        </div>
+                        <div class="col-4 brand-logo-center">
+                            <a href="#"><img src="img/mahindra-new.png" class="img-fluid" alt=""></a>
+                        </div>
+                        <div class="col-4 brand-logo-center">
+                            <a href="#"><img src="img/toyota-logos.png" class="img-fluid" alt=""></a>
+                        </div>
+                        <div class="col-4 brand-logo-center">
+                            <a href="#"><img src="img/hyundai-logo.png" class="img-fluid" alt=""></a>
+                        </div>
+                        <div class="col-4 brand-logo-center">
+                            <a href="#"><img src="img/Tata-Group-logo.png" class="img-fluid" alt=""></a>
+                        </div>
+                        <div class="col-4 brand-logo-center">
+                            <a href="#"><img src="img/Volkswagen-logo.png" class="img-fluid" alt=""></a>
+                        </div>
+                        <div class="col-4 brand-logo-center">
+                            <a href="#"><img src="img/mercedes-benz.png" class="img-fluid" alt=""></a>
+                        </div>
+                        <div class="col-4 brand-logo-center">
+                            <a href="#"><img src="img/bmw-logo.png" class="img-fluid" alt=""></a>
+                        </div>
+                        <div class="col-4 brand-logo-center">
+                            <a href="#"><img src="img/Volvo-logo.png" class="img-fluid" alt=""></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Appointment select modal -->
+<!-- Appointment search modal -->
+<div class="modal fade" id="appointmentsearchModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog appointmentsearch-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <h1>Select Modal</h1>
+                    <div class="input-group">
+                        <input type="text" class="form-control search-brand-input" placeholder="Search Modal"  aria-label="Amount (to the nearest dollar)">
+                        <div class="search-icon">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </div>
+                    </div>
+                    <div class="row   search-modal-box">
+                        <div class="col-4 brand-logo-center">
+                            <a href="#"  data-bs-toggle="modal" data-bs-target="#appointmentfuelModal"><img src="img/rits.png" class="img-fluid" alt="">
+                                <p class="select-modal-name">Ritz</p>
+                            </a>
+                        </div>
+                        <div class="col-4 brand-logo-center">
+                            <a href="#"><img src="img/swift-old.png" class="img-fluid" alt="">
+                                <p class="select-modal-name">Swift</p>
+                            </a>
+                        </div>
+                        <div class="col-4 brand-logo-center">
+                            <a href="#"><img src="img/swift-old.png" class="img-fluid" alt="">
+                                <p class="select-modal-name">Swift</p>
+                            </a>
+                        </div>
+                        <div class="col-4 brand-logo-center">
+                            <a href="#"><img src="img/wagonr.png" class="img-fluid" alt="">
+                                <p class="select-modal-name">Wagon R</p>
+                            </a>
+                        </div>
+                        <div class="col-4 brand-logo-center">
+                            <a href="#"><img src="img/baleno.png" class="img-fluid" alt="">
+                                <p class="select-modal-name">Baleno</p>
+                            </a>
+                            
+                        </div>
+                        <div class="col-4 brand-logo-center">
+                            <a href="#"><img src="img/rits.png" class="img-fluid" alt="">
+                                <p class="select-modal-name">Ritz</p>
+                            </a>
+                        </div>
+                        <div class="col-4 brand-logo-center">
+                            <a href="#"><img src="img/baleno.png" class="img-fluid" alt="">
+                                <p class="select-modal-name">Baleno</p>
+                            </a>
+                        </div>
+                        <div class="col-4 brand-logo-center">
+                            <a href="#"><img src="img/swift.png" class="img-fluid" alt="">
+                                <p class="select-modal-name">Swift</p>
+                            </a>
+                        </div>
+                        <div class="col-4 brand-logo-center">
+                            <a href="#"><img src="img/wagonr.png" class="img-fluid" alt="">
+                                <p class="select-modal-name">wagon R</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer"> </div>
+        </div>
+    </div>
+</div>
+<!-- Appointment search modal -->
+<!-- Appointment fuel modal -->
+<div class="modal fade" id="appointmentfuelModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog appointmentfuel-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div>
+                <h1>Select Fuel Type </h1>
+                <div class="input-group">
+                    <input type="text" class="form-control search-brand-input" placeholder="Search Fuel"  aria-label="Amount (to the nearest dollar)">
+                    <div class="search-icon">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                </div>
+                <div class="row  search-modal-box">
+                    <div class="col-4 brand-logo-center">
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#appointmentnumberModal" ><img src="img/PETROL.png" class="img-fluid" alt="">
+                            <p class="select-modal-name">Petrol</p>
+                        </a>
+                    </div>
+                    <div class="col-4 brand-logo-center">
+                        <a href="#"><img src="img/CNG.png" class="img-fluid" alt="">
+                            <p class="select-modal-name">CNG</p>
+                        </a>
+                    </div>
+                    <div class="col-4 brand-logo-center">
+                        <a href="#"><img src="img/DIESEL.png" class="img-fluid" alt="">
+                            <p class="select-modal-name">Diesel</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer"> </div>
+    </div>
+</div>
+</div>
+<!-- Appointment fuel modal -->
+<!-- Appointment Number modal -->
+<div class="modal fade" id="appointmentnumberModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog appointmentnumber-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <h1>Select Fuel Type </h1>
+                    <div class="row  search-modal-box">
+                        <div class="col-4 brand-logo-center">
+                           <a href="#"><img src="img/Maruti-Suzuki-Logo.png" class="img-fluid" alt="">
+                           </a>
+                        </div>
+                        <div class="col-4 brand-logo-center">
+                            <a href="#"><img src="img/swift.png" class="img-fluid" alt="">
+                                <p class="select-modal-name">Swift</p>
+                            </a>
+                        </div>
+                        <div class="col-4 brand-logo-center">
+                            <a href="#"><img src="img/DIESEL.png" class="img-fluid" alt="">
+                                <p class="select-modal-name">Diesel</p>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" class="form-control"   id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Phone Number">
+                      </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a class="check-price-btn-main" href="#"><button type="button"  class="check-price-btn" >Check Price For Free </button></a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Appointment Number modal -->
+<!-- navbar end  -->
+
+<!-- product-inner page start  -->
+<div class="shoping-breadcrum-bg">
+    <div class="container">
+        <ul class="shoping-breadcrum-main">
+            <li><a href="#">Shopping </a></li>
+            <li><i class="fa-solid fa-chevron-right"></i></li>
+            <li>AMP-4 4 Channel MOSEFET Car Amplifier</li>
+        </ul>
+    </div>
+</div>
+
+<div class="container">
+    <div class="shopping-innerbg">
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <div id="sync1" class="owl-carousel owl-theme">
+                    <div class="item">
+                        <img src="img/shop-inner-img.png" class="img-fluid" alt="">
+                    </div>
+                    <div class="item">
+                        <img src="img/shop-inner-img.png" class="img-fluid" alt="">
+                    </div>
+                    <div class="item">
+                        <img src="img/shop-inner-img.png" class="img-fluid" alt="">
+                    </div>
+                    <div class="item">
+                        <img src="img/shop-inner-img.png" class="img-fluid" alt="">
+                    </div>
+                </div>
+                <div id="sync2" class="owl-carousel owl-theme">
+                    <div class="item">
+                        <img src="img/shop-inner-img.png" class="img-fluid" alt="">
+                    </div>
+                    <div class="item">
+                        <img src="img/shop-inner-img.png" class="img-fluid" alt="">
+                    </div>
+                    <div class="item">
+                        <img src="img/shop-inner-img.png" class="img-fluid" alt="">
+                    </div>
+                    <div class="item">
+                        <img src="img/shop-inner-img.png" class="img-fluid" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="product-content-main">
+                    <h2>AP-102-2GB / 16GB 10 Inch Android Player With T3L Processor</h2>
+                    <div class="share-image">
+                        <p>Share</p>
+                        <img src="img/shop-whatsapp.png"  alt="">
+                        <img src="img/shop-instagram.png" alt="">
+                        <img src="img/shop-facebook.png" alt="">
+                        <img src="img/shop-twitter.png" alt="">
+                    </div>
+                    <a class="write-text" href="#">Write A Review </a>
+                    <div class="shop-inner-prise">
+                        <div class="shopinner-prise-text"><p>₹4,168</p></div>
+                        <div class="quantity-sec-main">
+                            <p>Quantity</p>
+                            <select class="form-select" aria-label="Default select example">
+                                <option selected>1</option>
+                                <option value="1">2</option>
+                                <option value="2">3</option>
+                                <option value="3">4</option>
+                              </select>
+                        </div>
+                    </div>
+                    <div>
+                        <button class="addtocard-shopinner">Add To Cart</button>
+                        <button class="buyfrom-shopinner">Buy from Store</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="description-main">
+            <ul id="tabs">
+                <li class="description-btn active"> Description</li>
+                <li class="specification-btn">Specification</li>
+            </ul>
+            <ul id="tab">
+                <li class="active">
+                    <p>myTVS is India's Largest and Most Trusted brand of auto accessories from TVS Group. The brand provides innovative, high quality products with assured warranty of up to 2 years. myTVS has a pan-India distribution, retailing and service network</p>
+                </li>
+                <li>
+                    <ul class="specification-tab-text">
+                        <li>1.Channel Configuration: 4 Channel  </li>
+                        <li>2.High Pass Filter: 120Hz - 3KHz</li>
+                        <li>3.Low Pass Filter: 40Hz - 150Hz</li>
+                        <li>4.Bass Boost: 0-6 - 12Db</li>
+                        <li>5.Frequency Response: 10KHz - 20KHz</li>
+                        <li>6.Sensitivity: 0.2V - 6V</li>
+                        <li>7.Fuse: 25A x 2</li>
+                        <li>8.Signal to Noise Ratio: >92Db</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- product-inner page end -->
+<!-- footer start  -->
+<div class="footer-bg-main">
+    <div class="footer-widthset">  
+        <div class="row m-0">
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="footer-img-main">
+                    <img src="img/acr-logo.png"  alt="">
+                    <p>Lorem ipsum dolor sit amet, consec tetur adipiscing elit. Ut elit tellus.</p>
+                </div>
+                
+            </div>
+            <div class="col-12 col-sm-6 col-lg-4">
+                <div class="row m-0">
+                    <div class="col-2">
+                        <img src="img/footer-location.png" class="img-fluid" alt="">
+                    </div>
+                    <div class="col-10 footer-address">
+                        <p>Unit-1 Plot, 29 & 30, near Kargil Shaheed Sukhbir Singh Yadav Marg, Info Technology Park, Sector 34, Gurugram, Haryana 122001</p>
+                    </div>
+                </div>
+                <div class="row m-0 footer-email-main">
+                    <div class="col-2">
+                        <img src="img/footer-email.png" class="img-fluid" alt="">
+                    </div>
+                    <div class="col-10 footer-email">
+                        <p>Email US:</p>
+                        <a href="#">Info@autocarrepair.in</a>
+                    </div>
+                </div>
+                <div class="row m-0 footer-call-main">
+                    <div class="col-2">
+                        <img src="img/footer-call.png" class="img-fluid" alt="">
+                    </div>
+                    <div class="col-10 footer-call">
+                        <p>Call:</p>
+                        <a href="#"> 9810446692 </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-2">
+                <ul class="fot-about-main">
+                    <li><a class="fot-about-main-header" href="#">About Us </a></li>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Blogs</a></li>
+                    <li><a href="#">Contact US</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="col-10 col-sm-4 col-lg-2">
+                <ul class="fot-ourservice-main">
+                    <li><a class="fot-ourservice-heading" href="#">Our Services</a></li>
+                    <li><a href="#">Periodic services</a></li>
+                    <li><a href="#">Dent Repair</a></li>
+                    <li><a href="#">Car AC Minor Service</a></li>
+                    <li><a href="#">Car AC Major Service</a></li>
+                    <li><a href="#">Full Body Paint</a></li>
+                    <li><a href="#">Wheel Alignment</a></li>
+                </ul>
+            </div>
+            <div class="col-2 col-sm-2 col-lg-1 footer-msgimg-main">
+                <img src="img/footer-msg.png" class="img-fluid" alt="">
+            </div>  
+        </div>
+    </div>
+</div>
+<!-- footer end  -->
+<!-- footer down start -->
+    <div class="footet-down-bg">
+        <div class="footet-down-main">
+            <div class="row m-0">
+                <div class="col-12 col-sm-6  col-md-4 main-soical-icon">
+                    <p>Follow Us:  </p>
+                    <div>
+                        <i class="fa-brands fa-facebook-f"></i>
+                        <i class="fa-brands fa-twitter"></i>
+                        <i class="fa-brands fa-linkedin-in"></i>
+                        <i class="fa-brands fa-instagram"></i>
+                        <i class="fa-brands fa-youtube"></i>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-md-5 copy-right-text-main">
+                    <p>© 2022 - myTVS ACR - All rights reserved</p>
+                </div>
+                <div class="col-12 col-sm-6 col-md-3 back-top-main">
+                    <p>Back to Top </p>
+                    <img src="img/back-top.png" class="img-fluid" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- footer down end -->
+
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="js/all.min.js"></script>
+<script src="/js/owl.carousel.min.js"></script>
+<script src="/js/"></script>
+
+<script>    
+    $(document).ready(function(){
+        $('.fliter-main ul li a svg').click(function(){
+            $('.fliter-item1').toggle();
+        })
+
+        var sync1 = $("#sync1");
+        var sync2 = $("#sync2");
+        var slidesPerPage = 3; //globaly define number of elements per page
+        var syncedSecondary = true;
+
+        sync1.owlCarousel({
+            items: 1,
+            slideSpeed: 2000,
+            nav: true,
+            autoplay: true, 
+            dots: false,
+            loop: true,
+            responsiveRefreshRate: 200,
+            navText: ['<svg width="100%" height="100%" viewBox="0 0 11 20"><path style="fill:none;stroke-width: 1px;stroke: #000;" d="M9.554,1.001l-8.607,8.607l8.607,8.606"/></svg>', '<svg width="100%" height="100%" viewBox="0 0 11 20" version="1.1"><path style="fill:none;stroke-width: 1px;stroke: #000;" d="M1.054,18.214l8.606,-8.606l-8.606,-8.607"/></svg>'],
+        }).on('changed.owl.carousel', syncPosition);
+
+        sync2
+            .on('initialized.owl.carousel', function() {
+                sync2.find(".owl-item").eq(0).addClass("current");
+            })
+            .owlCarousel({
+                items: slidesPerPage,
+                dots: false,
+                nav: true,
+                smartSpeed: 200,
+                slideSpeed: 500,
+                slideBy: slidesPerPage, //alternatively you can slide by 1, this way the active slide will stick to the first item in the second carousel
+                responsiveRefreshRate: 100
+            }).on('changed.owl.carousel', syncPosition2);
+
+            function syncPosition(el) {
+                //if you set loop to false, you have to restore this next line
+                //var current = el.item.index;
+
+                //if you disable loop you have to comment this block
+                var count = el.item.count - 1;
+                var current = Math.round(el.item.index - (el.item.count / 2) - .5);
+
+                if (current < 0) {
+                    current = count;
+                }
+                if (current > count) {
+                    current = 0;
+                }
+
+                //end block
+
+                sync2
+                    .find(".owl-item")
+                    .removeClass("current")
+                    .eq(current)
+                    .addClass("current");
+                var onscreen = sync2.find('.owl-item.active').length - 1;
+                var start = sync2.find('.owl-item.active').first().index();
+                var end = sync2.find('.owl-item.active').last().index();
+
+                if (current > end) {
+                    sync2.data('owl.carousel').to(current, 100, true);
+                }
+                if (current < start) {
+                    sync2.data('owl.carousel').to(current - onscreen, 100, true);
+                }
+            }
+
+            function syncPosition2(el) {
+                if (syncedSecondary) {
+                    var number = el.item.index;
+                    sync1.data('owl.carousel').to(number, 100, true);
+                }
+            }
+
+            sync2.on("click", ".owl-item", function(e) {
+                e.preventDefault();
+                var number = $(this).index();
+                sync1.data('owl.carousel').to(number, 300, true);
+            });
+
+            $("ul#tabs li").click(function(e){
+                if (!$(this).hasClass("active")) {
+                    var tabNum = $(this).index();
+                    var nthChild = tabNum+1;
+                    $("ul#tabs li.active").removeClass("active");
+                    $(this).addClass("active");
+                    $("ul#tab li.active").removeClass("active");
+                    $("ul#tab li:nth-child("+nthChild+")").addClass("active");
+                }
+            });
+    });
+</script>
+</body>
+</html>

@@ -32,6 +32,8 @@ function fileUpload($request, $file, $path){
     $file_ext = $request->$file->getClientOriginalExtension();
     $fileInfo = pathinfo($imageName);
     $filename = str_replace(' ', '', $fileInfo['filename']);
+    $filename = str_replace('(', '', $filename);
+    $filename = str_replace(')', '', $filename);
     $newname = $filename.time() . "." . $file_ext;
     $destinationPath1 = public_path($path);
     $request->file($file)->move($destinationPath1, $newname);

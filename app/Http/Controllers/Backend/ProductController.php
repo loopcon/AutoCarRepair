@@ -13,6 +13,7 @@ use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Crypt;
 use App\Constant;
 use DataTables;
+use File;
 
 class ProductController extends MainController
 {
@@ -59,36 +60,28 @@ class ProductController extends MainController
         );
         $slug = $request->name != '' || $request->name != '' ?  slugify($request->name.'-'.$request->sku) : NULL;
 
-        $product = Product::create([
-            'slug' => $slug,
-            'name' => $request->name,
-            'sku' => $request->sku,
-            'shop_category_id' => $request->shop_category_id,
-            'description' => $request->description,
-            'specification' => $request->specification,
-            'price' => $request->price,
-            'amazon_link' => $request->amazon_link,
-            'flipcart_link' => $request->flipcart_link,
-            'is_archive' => Constant::NOT_ARCHIVE,
-            'created_by' => Auth::guard('admin')->user()->id,
-        ]);
+        $product = new Product();
+        $fields = array('name', 'sku', 'shop_category_id', 'description', 'specification', 'price', 'amazon_link', 'flipcart_link');
+        foreach($fields as $field){
+            $product->$field = isset($request->$field) && $request->$field != '' ? $request->$field : NULL;
+        }
+        $product->slug = $slug;
+        $product->created_by = Auth::guard('admin')->user()->id;
+        $product->save();
         if($product){
-            if(isset($request->product_image) && !empty($request->product_image)) {
-                foreach($request->product_image as $product_image) {
-
-                   if($request->hasFile($product_image['image'])) {
-                        $newImage = fileUpload($request, $product_image['image'], 'uploads/product');
-                        $product->image = $newImage;
+            $total_images = isset($request->last_id) && $request->last_id ? $request->last_id : NULL;
+            $is_primary = isset($request->is_primary) ? isset($request->is_primary) : NULL;
+            if($total_images){
+                for($i = 0; $i < $total_images; $i++){
+                    $name = 'image'.$i;
+                    if($request->hasFile($name)) {
+                        $newName = fileUpload($request, $name, 'uploads/product/'.$product->id);
+                        $product_img = new ProductImage();
+                        $product_img->image = $newName;
+                        $product_img->is_primary = $is_primary == $i ? '1' : 0;
+                        $product_img->product_id = $product->id;
+                        $product_img->save();
                     }
-
-                    $is_primary = (isset($product_image['is_primary']) && $product_image['is_primary']=='on') ? 'yes' : 'no';
-                    $product_img = ProductImage::create([
-                        // 'image' => $newImage,
-                        'alt_text' => $product_image['alt_text'],
-                        'is_primary' => $is_primary,
-                        'title' => $product_image['title'],
-                    ]);
-                    $product_img->save();
                 }
             }
             return redirect('backend/products')->with('success', trans('Product Added Successfully!'));
@@ -105,7 +98,7 @@ class ProductController extends MainController
         $id = Crypt::decrypt($id);
         $return_data = array();
         $return_data['site_title'] = trans('Product Edit');
-        $products = Product::find($id);
+        $products = Product::with('images')->find($id);
         $return_data['record'] = $products;
         $shop_category = ShopCategory::select('id','name')->where('is_archive', '=', Constant::NOT_ARCHIVE)->get();
         $return_data['shop_category'] = $shop_category;
@@ -123,7 +116,7 @@ class ProductController extends MainController
             'price' => ['required'],
             'sku' => ['required',
                 Rule::unique('products')->where(function ($query) use($request, $id) {
-                    return $query->where([['is_archive', Constant::NOT_ARCHIVE]]);
+                    return $query->where([['is_archive', Constant::NOT_ARCHIVE], ['id' , '!=', $id]]);
                 }),
             ],
         ],[
@@ -145,12 +138,47 @@ class ProductController extends MainController
             'updated_by' => Auth::guard('admin')->user()->id,
         ]);
         if($product){
+            $total_images = isset($request->last_id) && $request->last_id ? $request->last_id : NULL;
+            $is_primary = isset($request->is_primary) ? isset($request->is_primary) : NULL;
+            if($total_images){
+                for($i = 0; $i < $total_images; $i++){
+                    $name = 'image'.$i;
+                    $pid = 'pid'.$i;
+                    if($request->hasFile($name)) {
+                        $newName = fileUpload($request, $name, 'uploads/product/'.$id);
+                        if($request->$pid){
+                            $product_img = ProductImage::find($request->$pid);
+                            $old_image = $product_img->image;
+                            if($old_image){
+                                removeFile('uploads/product/'.$id.'/'.$old_image);
+                            }
+                        } else {
+                            $product_img = new ProductImage();
+                        }
+                        $product_img->image = $newName;
+                        $product_img->is_primary = $is_primary == $i ? '1' : 0;
+                        $product_img->product_id = $id;
+                        $product_img->save();
+                    }
+                }
+            }
             return redirect('backend/products')->with('success', trans('Product Updated Successfully!'));
         } else {
             return redirect()->back()->with('error', trans('Something went wrong, please try again later!'));
         }
     }
 
+    public function imageDelete(request $request){
+        if($request->ajax()){
+            $image_info = ProductImage::find($request->id);
+            $image = isset($image_info->image) && $image_info->image ? $image_info->image : NULL;
+            $product_id = isset($image_info->product_id) && $image_info->product_id ? $image_info->product_id : NULL;
+            if($image){
+                removeFile('uploads/product/'.$product_id.'/'.$image);
+            }
+            ProductImage::where('id', $request->id)->delete();
+        }
+    }
     /**
      * Remove the specified resource from storage.
      */
@@ -228,6 +256,17 @@ class ProductController extends MainController
             $message = $request->status == Constant::ACTIVE ? 'Product Activated Successfully!' : 'Product Inactivated Successfully!';
             Product::where([['id', $id]])->update(array('status' => $request->status, 'updated_by' => Auth::guard('admin')->user()->id)); 
             echo json_encode(array('message' => $message));
+            exit;
+        } else {
+            return redirect('backend/dashboard');
+        }
+    }
+
+    public function imageAjaxHtml(request $request)
+    {
+        if($request->ajax()){
+            $html = view('backend.product.ajax_html',array('i' => $request->id))->render();
+            echo json_encode(array('html' => $html));
             exit;
         } else {
             return redirect('backend/dashboard');

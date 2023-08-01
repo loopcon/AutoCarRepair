@@ -301,7 +301,19 @@ ALTER TABLE `package_specification`
 ALTER TABLE `package_specification`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
+
 -- Nirali : 01-08-2023 07:06 PM
 ALTER TABLE `home_page_setting` ADD `meta_title` VARCHAR(255) NULL AFTER `section1_description`;
 ALTER TABLE `home_page_setting` ADD `meta_keywords` TEXT NULL AFTER `meta_title`;
 ALTER TABLE `home_page_setting` ADD `meta_description` TEXT NULL AFTER `meta_keywords`;
+
+-- Khushali : 01-08-2023 1:51 PM
+ALTER TABLE `shop_categories` CHANGE `status` `status` TINYINT(1) NOT NULL DEFAULT '1' COMMENT '0=\"InActive\";1=\"Active\"';
+
+ALTER TABLE `product_images` CHANGE `product_id` `id` INT(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `product_images` ADD `product_id` INT NULL COMMENT '`id` of `products`' AFTER `id`;
+ALTER TABLE `product_images`
+  DROP `alt_text`,
+  DROP `title`;
+ALTER TABLE `product_images` CHANGE `is_primary` `is_primary` TINYINT(1) NULL DEFAULT NULL COMMENT '1=Yes,0=No';
+
