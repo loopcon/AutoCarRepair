@@ -165,10 +165,7 @@ class ServiceController extends MainController
 //        );
 //        $is_delete = checkDeleteConstrainnt($constraint_array, $id);
 //        if($is_delete) {
-            $scategory = ServiceCategory::where('id', $id)->update([
-                'is_archive' => '0',
-                'updated_by' => Auth::guard('admin')->user()->id,
-            ]);
+            $scategory = ServiceCategory::where('id', $id)->delete();
             if($scategory) {
                 return redirect()->back()->with('success', trans('Service Category Deleted Successfully!'));
             } else {
@@ -404,10 +401,12 @@ class ServiceController extends MainController
     public function scheduledPackageDestroy($id)
     {
         $id = Crypt::decrypt($id);
-        $page = ScheduledPackage::where('id', $id)->update([
-            'is_archive' => Constant::NOT_ARCHIVE,
-            'updated_by' => Auth::guard('admin')->user()->id,
-        ]);
+        $service_img = ScheduledPackage::where('id', $id)->first();
+        $old_image = $service_img->image_other;
+            if($old_image){
+                removeFile('uploads/service/package/'.$old_image);
+            }
+        $page = ScheduledPackage::where('id', $id)->delete();
         if($page) {
             return redirect('backend/pages')->with('success', trans('Scheduled Package Deleted Successfully!'));
         } else {

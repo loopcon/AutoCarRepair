@@ -143,10 +143,7 @@ class PageController extends MainController
     public function destroy($id)
     {
         $id = Crypt::decrypt($id);
-        $page = Page::where('id', $id)->update([
-            'is_archive' => Constant::NOT_ARCHIVE,
-            'updated_by' => Auth::guard('admin')->user()->id,
-        ]);
+        $page = Page::where('id', $id)->delete();
         if($page) {
             return redirect('backend/pages')->with('success', trans('Page Deleted Successfully!'));
         } else {

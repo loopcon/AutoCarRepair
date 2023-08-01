@@ -131,10 +131,7 @@ class ShopCategoryController extends MainController
 //        );
 //        $is_delete = checkDeleteConstrainnt($constraint_array, $id);
 //        if($is_delete) {
-            $shopcategory = ShopCategory::where('id', $id)->update([
-                'is_archive' => '0',
-                'updated_by' => Auth::guard('admin')->user()->id,
-            ]);
+            $shopcategory = ShopCategory::where('id', $id)->delete();
             if($shopcategory) {
                 return redirect()->back()->with('success', trans('Shop Category Deleted Successfully!'));
             } else {

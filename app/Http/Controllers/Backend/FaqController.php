@@ -117,10 +117,7 @@ class FaqController extends MainController
     public function destroy(string $id)
     {
         $id = Crypt::decrypt($id);
-        $faq = Faq::where('id', $id)->update([
-            'is_archive' => Constant::NOT_ARCHIVE,
-            'updated_by' => Auth::guard('admin')->user()->id,
-        ]);
+        $faq = Faq::where('id', $id)->delete();
         if($faq) {
             return redirect('backend/faq')->with('success', trans('Faq Deleted Successfully!'));
         } else {

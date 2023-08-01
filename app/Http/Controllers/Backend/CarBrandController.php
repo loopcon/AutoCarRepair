@@ -139,26 +139,29 @@ class CarBrandController extends MainController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request,$id)
     {
-        $id = Crypt::decrypt($id);
-//        $constraint_array = array(
-//            array('table' => 'model', 'column' => 'carbrand_id')
-//        );
-//        $is_delete = checkDeleteConstrainnt($constraint_array, $id);
-//        if($is_delete) {
-            $carbrand = CarBrand::where('id', $id)->update([
-                'is_archive' => '0',
-                'updated_by' => Auth::guard('admin')->user()->id,
-            ]);
+    $id = Crypt::decrypt($id);
+       $constraint_array = array(
+           array('table' => 'model', 'column' => 'carbrand_id')
+       );
+       $is_delete = checkDeleteConstrainnt($constraint_array, $id);
+       if($is_delete) {
+            $image = CarBrand::where('id', $id)->first();
+            $old_image = $image->image;
+            if($old_image){
+                removeFile('uploads/carbrand/'.$old_image);
+            }
+
+            $carbrand = CarBrand::where('id', $id)->delete();
             if($carbrand) {
                 return redirect()->back()->with('success', trans('Car Brand Deleted Successfully!'));
             } else {
                 return redirect()->back()->with('error', trans('Something went wrong, please try again later!'));
             }
-//        } else {
-//            return redirect()->back()->with('error', trans('You can not delete this car brand! Somewhere this car brand information is added in system!'));
-//        }
+       } else {
+           return redirect()->back()->with('error', trans('You can not delete this car brand! Somewhere this car brand information is added in system!'));
+       }
     }
     public function carbrandsDatatable(request $request)
     {

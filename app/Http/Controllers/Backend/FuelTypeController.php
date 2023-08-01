@@ -141,10 +141,7 @@ class FuelTypeController extends MainController
     public function destroy(string $id)
     {
         $id = Crypt::decrypt($id);
-        $fueltype = FuelType::where('id',$id)->update([
-            'is_archive' =>'0',
-            'updated_by' => Auth::guard('admin')->user()->id,
-            ]);
+        $fueltype = FuelType::where('id',$id)->delete();
         if($fueltype){
             return redirect()->back()->with('success', trans('Fuel Type Deleted Successfully!'));
         } else {
