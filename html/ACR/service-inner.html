@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service-inner</title>
+    <link rel="icon"  href="img/favicon.ico">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <script src="js/jquery.min.js"></script>
+
+</head>
+<body>
+<!-- topbar html start  -->
+<div class="container">
+    <div class="row top-navbar-main">
+        <div class="col-12 col-md-6">
+            <img src="img/acr-logo.png" class="acr-logo" alt="">
+        </div>
+        <div class="col-12 col-md-6">
+            <div class="topbar-email-call">
+                <div class="top-email-main">
+                    <div class="email-main">
+                        <img src="img/top-email.png" alt="">
+                    </div>
+                    <div class="top-email-text">
+                        <p >Mail</p>
+                        <a href="#">info@autocarrepair.in</a>
+                    </div>
+                </div>
+                <div class="top-call-main">
+                    <div class="call-img-main">
+                        <img src="img/top-call.png" alt="">
+                    </div>
+                    <div class="top-call-text">
+                        <p>Call US</p>
+                        <a href="#">9810446692</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- topbar end  -->
+<!-- navbar start  -->
+<div class="navbar-bg">
+    <div class="container">
+        <div class="acr-navbar-section">
+            <div>
+                <ul class="acr-navbar-main">
+                    <li><a class="acr-active" href="#">Home</a></li>
+                    <li><a href="#">Car Service</a></li>
+                    <li><a href="#">Service Center</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Shopping</a></li>
+                </ul>
+            </div>
+            <div class="search-main-section">
+                <div class="search-icon-main">
+                    <img data-bs-toggle="modal" data-bs-target="#searchbarModal"  src="img/navbar-search-icon.png" alt="">
+                </div>
+                <div class="modal fade" id="searchbarModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog searchbar-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" placeholder="Search" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                              </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <a class="navbar-appointment-btn" href="#" data-bs-toggle="modal" data-bs-target="#appointmentModal" >Appointment Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- mobile menu start  -->
+<div class="mobile-menu-main">    
+    <div class="container">
+        <div class="mobile-menu-sectiondata">
+            <div class="mo-logo">
+                <img src="img/acr-logo.png" class="acr-logo" alt="">
+            </div>
+            <div class="mo-appointmentbtn">
+                <div class="mo-search-main-section">
+                    <div class="search-icon-main">
+                        <img data-bs-toggle="modal" data-bs-target="#mosearchbarModal"  src="img/navbar-search-icon.png" alt="">
+                    </div>
+                    <div class="modal fade" id="mosearchbarModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog mosearchbar-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" placeholder="Search" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                  </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    <div>
+                        <a class="navbar-appointment-btn" href="#" data-bs-toggle="modal" data-bs-target="#appointmentModal" >Appointment Now</a>
+                    </div>
+                </div>
+            </div>
+            <div class="toggle-btnmobile">
+                <div class="toggle-btn">
+                    <button class="btn-toggle-item"><i class="fa-solid fa-bars"></i></button>
+                </div>
+                <div class="mobile-toggle-data">
+                    <ul class="mo-acr-navbar-main">
+                        <li><a class="acr-active" href="#">Home</a></li>
+                        <li><a href="#">Car Service</a></li>
+                        <li><a href="#">Service Center</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Shopping</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- mobile menu end  -->
+<!-- Appointment modal -->  
+<div class="modal fade" id="appointmentModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog appointment-dialog">
+        <div class="modal-content ">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="appointment-contet-modal">
+                    <h1>Experience The Best Car Service In Delhi</h1>
+                    <div class="appointment-car-service">
+                        <p>Get instant quotes for four car service  </p>
+                        <select class="form-select" aria-label="Default select example">
+                            <option selected>Open this select menu</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button"  class="check-price-btn" data-bs-toggle="modal" data-bs-target="#appointmentselectModal">Check Price For Free </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Appointment modal -->
+<!-- Appointment select modal -->  
+<div class="modal fade" id="appointmentselectModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog appointmentselect-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <h1>Select Brand</h1>
+                    <div class="input-group">
+                        <input type="text" class="form-control search-brand-input" placeholder="Search Brand"  aria-label="Amount (to the nearest dollar)">
+                        <div class="search-icon">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </div>
+                        </div>
+                    <div class="row ">
+                        <div class="col-4 brand-logo-center">
+                            <a href="" data-bs-toggle="modal" data-bs-target="#appointmentsearchModal"><img src="img/Maruti-Suzuki-Logo.png" class="img-fluid" alt=""></a>
+                        </div>
+                        <div class="col-4 brand-logo-center">
+                            <a href="#"><img src="img/mahindra-new.png" class="img-fluid" alt=""></a>
+                        </div>
+                        <div class="col-4 brand-logo-center">
+                            <a href="#"><img src="img/toyota-logos.png" class="img-fluid" alt=""></a>
+                        </div>
+                        <div class="col-4 brand-logo-center">
+                            <a href="#"><img src="img/hyundai-logo.png" class="img-fluid" alt=""></a>
+                        </div>
+                        <div class="col-4 brand-logo-center">
+                            <a href="#"><img src="img/Tata-Group-logo.png" class="img-fluid" alt=""></a>
+                        </div>
+                        <div class="col-4 brand-logo-center">
+                            <a href="#"><img src="img/Volkswagen-logo.png" class="img-fluid" alt=""></a>
+                        </div>
+                        <div class="col-4 brand-logo-center">
+                            <a href="#"><img src="img/mercedes-benz.png" class="img-fluid" alt=""></a>
+                        </div>
+                        <div class="col-4 brand-logo-center">
+                            <a href="#"><img src="img/bmw-logo.png" class="img-fluid" alt=""></a>
+                        </div>
+                        <div class="col-4 brand-logo-center">
+                            <a href="#"><img src="img/Volvo-logo.png" class="img-fluid" alt=""></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Appointment select modal -->
+<!-- Appointment search modal -->
+<div class="modal fade" id="appointmentsearchModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog appointmentsearch-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <h1>Select Modal</h1>
+                    <div class="input-group">
+                        <input type="text" class="form-control search-brand-input" placeholder="Search Modal"  aria-label="Amount (to the nearest dollar)">
+                        <div class="search-icon">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </div>
+                    </div>
+                    <div class="row   search-modal-box">
+                        <div class="col-4 brand-logo-center">
+                            <a href="#"  data-bs-toggle="modal" data-bs-target="#appointmentfuelModal"><img src="img/rits.png" class="img-fluid" alt="">
+                                <p class="select-modal-name">Ritz</p>
+                            </a>
+                        </div>
+                        <div class="col-4 brand-logo-center">
+                            <a href="#"><img src="img/swift-old.png" class="img-fluid" alt="">
+                                <p class="select-modal-name">Swift</p>
+                            </a>
+                        </div>
+                        <div class="col-4 brand-logo-center">
+                            <a href="#"><img src="img/swift-old.png" class="img-fluid" alt="">
+                                <p class="select-modal-name">Swift</p>
+                            </a>
+                        </div>
+                        <div class="col-4 brand-logo-center">
+                            <a href="#"><img src="img/wagonr.png" class="img-fluid" alt="">
+                                <p class="select-modal-name">Wagon R</p>
+                            </a>
+                        </div>
+                        <div class="col-4 brand-logo-center">
+                            <a href="#"><img src="img/baleno.png" class="img-fluid" alt="">
+                                <p class="select-modal-name">Baleno</p>
+                            </a>
+                            
+                        </div>
+                        <div class="col-4 brand-logo-center">
+                            <a href="#"><img src="img/rits.png" class="img-fluid" alt="">
+                                <p class="select-modal-name">Ritz</p>
+                            </a>
+                        </div>
+                        <div class="col-4 brand-logo-center">
+                            <a href="#"><img src="img/baleno.png" class="img-fluid" alt="">
+                                <p class="select-modal-name">Baleno</p>
+                            </a>
+                        </div>
+                        <div class="col-4 brand-logo-center">
+                            <a href="#"><img src="img/swift.png" class="img-fluid" alt="">
+                                <p class="select-modal-name">Swift</p>
+                            </a>
+                        </div>
+                        <div class="col-4 brand-logo-center">
+                            <a href="#"><img src="img/wagonr.png" class="img-fluid" alt="">
+                                <p class="select-modal-name">wagon R</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer"> </div>
+        </div>
+    </div>
+</div>
+<!-- Appointment search modal -->
+<!-- Appointment fuel modal -->
+<div class="modal fade" id="appointmentfuelModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog appointmentfuel-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div>
+                <h1>Select Fuel Type </h1>
+                <div class="input-group">
+                    <input type="text" class="form-control search-brand-input" placeholder="Search Fuel"  aria-label="Amount (to the nearest dollar)">
+                    <div class="search-icon">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                </div>
+                <div class="row  search-modal-box">
+                    <div class="col-4 brand-logo-center">
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#appointmentnumberModal" ><img src="img/PETROL.png" class="img-fluid" alt="">
+                            <p class="select-modal-name">Petrol</p>
+                        </a>
+                    </div>
+                    <div class="col-4 brand-logo-center">
+                        <a href="#"><img src="img/CNG.png" class="img-fluid" alt="">
+                            <p class="select-modal-name">CNG</p>
+                        </a>
+                    </div>
+                    <div class="col-4 brand-logo-center">
+                        <a href="#"><img src="img/DIESEL.png" class="img-fluid" alt="">
+                            <p class="select-modal-name">Diesel</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer"> </div>
+    </div>
+</div>
+</div>
+<!-- Appointment fuel modal -->
+<!-- Appointment Number modal -->
+<div class="modal fade" id="appointmentnumberModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog appointmentnumber-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <h1>Select Fuel Type </h1>
+                    <div class="row  search-modal-box">
+                        <div class="col-4 brand-logo-center">
+                           <a href="#"><img src="img/Maruti-Suzuki-Logo.png" class="img-fluid" alt="">
+                           </a>
+                        </div>
+                        <div class="col-4 brand-logo-center">
+                            <a href="#"><img src="img/swift.png" class="img-fluid" alt="">
+                                <p class="select-modal-name">Swift</p>
+                            </a>
+                        </div>
+                        <div class="col-4 brand-logo-center">
+                            <a href="#"><img src="img/DIESEL.png" class="img-fluid" alt="">
+                                <p class="select-modal-name">Diesel</p>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" class="form-control"   id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Phone Number">
+                      </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a class="check-price-btn-main" href="#"><button type="button"  class="check-price-btn" >Check Price For Free </button></a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Appointment Number modal -->
+<!-- navbar end  -->
+
+<!-- service inner page start  -->
+<div class="service-inner-tophead">
+    <img src="img/service-inner-bg.png" class="ser-inner-banner img-fluid" alt="">
+    <div class="service-inner-tophead-text">
+        <h2>FULL BODY PAINTING</h2>
+        <ul class="ser-inner-breadcum">
+            <li><a href="#">Home</a></li>
+            <li><i class="fa-solid fa-angles-right"></i></li>
+            <li><a href="#">Car Service</a></li>
+            <li><i class="fa-solid fa-angles-right"></i></li>
+            <li>Full Body Painting</li>
+        </ul>
+    </div>
+</div>
+
+<div class="service-innersection-mian">
+    <div class="container">
+        <div class="service-inner-mainbg">
+            <div class="row">
+                <div class="col-12 col-md-4">
+                    <img src="img/inner-palish-service.png" class="img-fluid" alt="">
+                </div>
+                <div class="col-12 col-md-8">
+                    <div class="row">
+                        <div class="service-inner-basic-heading">
+                            <h2>Basic Service</h2>
+                        </div>
+                        <div class="col-12 col-sm-6 basic-service-text-main">
+                            <ul>
+                                <li>100 kms or 1 Month Warranty</li>
+                            </ul>
+                            <p><i class="fa-solid fa-circle-check"></i> Wiper Fluid Replacement </p>
+                            <p><i class="fa-solid fa-circle-check"></i>Car Wash</p>
+                            <p><i class="fa-solid fa-circle-check"></i>Engine Oil Replacement</p>
+                        </div>
+                        <div class="col-12 col-sm-6 basic-service-text-main">
+                            <ul>
+                                <li>Every 5000kms or 3 Months</li>
+                            </ul>
+                            <p><i class="fa-solid fa-circle-check"></i>Battery Water Top Up</p>
+                            <p><i class="fa-solid fa-circle-check"></i>Interrior Vacuuming (Carpet & Seats)</p>
+                            <a href="#">View All</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="payment-main" >
+                <div class="packeage-prise"> <p>₹ 2799</p>  </div>
+                <div> <button class="ser-inner-addtocart"> Add to Cart</button></div>
+            </div>
+        </div>
+        <div class="service-inner-mainbg">
+            <div class="row">
+                <div class="col-12 col-md-4">
+                    <img src="img/inner-palish-service.png" class="img-fluid" alt="">
+                </div>
+                <div class="col-12 col-md-8">
+                    <div class="row">
+                        <div class="service-inner-basic-heading">
+                            <h2>Standard Service</h2>
+                        </div>
+                        <div class="col-12 col-sm-6 basic-service-text-main">
+                            <ul>
+                                <li>100 kms or 1 Month Warranty</li>
+                            </ul>
+                            <p><i class="fa-solid fa-circle-check"></i> Wiper Fluid Replacement </p>
+                            <p><i class="fa-solid fa-circle-check"></i>Car Wash</p>
+                            <p><i class="fa-solid fa-circle-check"></i>Engine Oil Replacement</p>
+                        </div>
+                        <div class="col-12 col-sm-6 basic-service-text-main">
+                            <ul>
+                                <li>Every 5000kms or 3 Months</li>
+                            </ul>
+                            <p><i class="fa-solid fa-circle-check"></i>Battery Water Top Up</p>
+                            <p><i class="fa-solid fa-circle-check"></i>Interrior Vacuuming (Carpet & Seats)</p>
+                            <a href="#">View All</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="payment-main" >
+                <div class="packeage-prise"> <p>₹ 3199</p>  </div>
+                <div> <button class="ser-inner-addtocart"> Add to Cart</button></div>
+            </div>
+        </div>
+        <div class="service-inner-mainbg">
+            <div class="row">
+                <div class="col-12 col-md-4">
+                    <img src="img/inner-palish-service.png" class="img-fluid" alt="">
+                </div>
+                <div class="col-12 col-md-8">
+                    <div class="row">
+                        <div class="service-inner-basic-heading">
+                            <h2>Comprehensive Service</h2>
+                        </div>
+                        <div class="col-12 col-sm-6 basic-service-text-main">
+                            <ul>
+                                <li>100 kms or 1 Month Warranty</li>
+                            </ul>
+                            <p><i class="fa-solid fa-circle-check"></i> Wiper Fluid Replacement </p>
+                            <p><i class="fa-solid fa-circle-check"></i>Car Wash</p>
+                            <p><i class="fa-solid fa-circle-check"></i>Engine Oil Replacement</p>
+                        </div>
+                        <div class="col-12 col-sm-6 basic-service-text-main">
+                            <ul>
+                                <li>Every 5000kms or 3 Months</li>
+                            </ul>
+                            <p><i class="fa-solid fa-circle-check"></i>Battery Water Top Up</p>
+                            <p><i class="fa-solid fa-circle-check"></i>Interrior Vacuuming (Carpet & Seats)</p>
+                            <a href="#">View All</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="payment-main" >
+                <div class="packeage-prise"> <p>₹ 5199</p>  </div>
+                <div> <button class="ser-inner-addtocart"> Add to Cart</button></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- service inner page end -->
+<!-- footer start  -->
+<div class="footer-bg-main">
+    <div class="footer-widthset">  
+        <div class="row m-0">
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="footer-img-main">
+                    <img src="img/acr-logo.png"  alt="">
+                    <p>Lorem ipsum dolor sit amet, consec tetur adipiscing elit. Ut elit tellus.</p>
+                </div>
+                
+            </div>
+            <div class="col-12 col-sm-6 col-lg-4">
+                <div class="row m-0">
+                    <div class="col-2">
+                        <img src="img/footer-location.png" class="img-fluid" alt="">
+                    </div>
+                    <div class="col-10 footer-address">
+                        <p>Unit-1 Plot, 29 & 30, near Kargil Shaheed Sukhbir Singh Yadav Marg, Info Technology Park, Sector 34, Gurugram, Haryana 122001</p>
+                    </div>
+                </div>
+                <div class="row m-0 footer-email-main">
+                    <div class="col-2">
+                        <img src="img/footer-email.png" class="img-fluid" alt="">
+                    </div>
+                    <div class="col-10 footer-email">
+                        <p>Email US:</p>
+                        <a href="#">Info@autocarrepair.in</a>
+                    </div>
+                </div>
+                <div class="row m-0 footer-call-main">
+                    <div class="col-2">
+                        <img src="img/footer-call.png" class="img-fluid" alt="">
+                    </div>
+                    <div class="col-10 footer-call">
+                        <p>Call:</p>
+                        <a href="#"> 9810446692 </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-2">
+                <ul class="fot-about-main">
+                    <li><a class="fot-about-main-header" href="#">About Us </a></li>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Blogs</a></li>
+                    <li><a href="#">Contact US</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="col-10 col-sm-4 col-lg-2">
+                <ul class="fot-ourservice-main">
+                    <li><a class="fot-ourservice-heading" href="#">Our Services</a></li>
+                    <li><a href="#">Periodic services</a></li>
+                    <li><a href="#">Dent Repair</a></li>
+                    <li><a href="#">Car AC Minor Service</a></li>
+                    <li><a href="#">Car AC Major Service</a></li>
+                    <li><a href="#">Full Body Paint</a></li>
+                    <li><a href="#">Wheel Alignment</a></li>
+                </ul>
+            </div>
+            <div class="col-2 col-sm-2 col-lg-1 footer-msgimg-main">
+                <img src="img/footer-msg.png" class="img-fluid" alt="">
+            </div>  
+        </div>
+    </div>
+</div>
+<!-- footer end  -->
+<!-- footer down start -->
+    <div class="footet-down-bg">
+        <div class="footet-down-main">
+            <div class="row m-0">
+                <div class="col-12 col-sm-6  col-md-4 main-soical-icon">
+                    <p>Follow Us:  </p>
+                    <div>
+                        <i class="fa-brands fa-facebook-f"></i>
+                        <i class="fa-brands fa-twitter"></i>
+                        <i class="fa-brands fa-linkedin-in"></i>
+                        <i class="fa-brands fa-instagram"></i>
+                        <i class="fa-brands fa-youtube"></i>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-md-5 copy-right-text-main">
+                    <p>© 2022 - myTVS ACR - All rights reserved</p>
+                </div>
+                <div class="col-12 col-sm-6 col-md-3 back-top-main">
+                    <p>Back to Top </p>
+                    <img src="img/back-top.png" class="img-fluid" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- footer down end -->
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="js/all.min.js"></script>
+<script src="/js/owl.carousel.min.js"></script>
+    <script>
+        $('.btn-toggle-item').click(function(){
+            $('.mobile-toggle-data').toggle();
+        });
+    </script>
+</body>
+</html>

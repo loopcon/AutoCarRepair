@@ -98,19 +98,21 @@ Route::group(['prefix' => 'backend','as' => 'admin_'], function() {
         Route::get('product-delete/{id}', [App\Http\Controllers\Backend\ProductController::class, 'destroy'])->name('product-delete');
         Route::post('product-datatable', [App\Http\Controllers\Backend\ProductController::class, 'productsDatatable'])->name('product-datatable');
         Route::post('change-product-status', [App\Http\Controllers\Backend\ProductController::class, 'changeProductStatus'])->name('change-product-status')->middleware('XSS');
+        Route::post('product-image-ajax-html', [\App\Http\Controllers\Backend\ProductController::class, 'imageAjaxHtml'])->name('product-image-ajax-html');
+        Route::post('product-image-delete', [\App\Http\Controllers\Backend\ProductController::class, 'imageDelete'])->name('product-image-delete');
 
         Route::get('home-page-content', [\App\Http\Controllers\Backend\HomePageSettingController::class, 'index'])->name('home-page-content');
         Route::post('home-page-content-update', [\App\Http\Controllers\Backend\HomePageSettingController::class, 'update'])->name('home-page-content-update');
 
-        Route::get('scheduled-package',[App\Http\Controllers\Backend\ServiceController::class, 'scheduledPackageList'])->name('scheduled-package');
-        Route::get('scheduled-package-create',[App\Http\Controllers\Backend\ServiceController::class, 'scheduledPackageCreate'])->name('scheduled-package-create');
-        Route::post('scheduled-package-store',[App\Http\Controllers\Backend\ServiceController::class, 'scheduledPackageStore'])->name('scheduled-package-store');
-        Route::get('scheduled-package-edit/{id}',[App\Http\Controllers\Backend\ServiceController::class, 'scheduledPackageEdit'])->name('scheduled-package-edit');
-        Route::post('scheduled-package-update/{id}',[App\Http\Controllers\Backend\ServiceController::class, 'scheduledPackageUpdate'])->name('scheduled-package-update');
-        Route::get('scheduled-package-delete/{id}', [App\Http\Controllers\Backend\ServiceController::class, 'scheduledPackageDestroy'])->name('scheduled-package-delete');
-        Route::post('scheduled-package-datatable', [App\Http\Controllers\Backend\ServiceController::class, 'scheduledPackageDatatable'])->name('scheduled-package-datatable');
-        Route::post('specification-delete', [App\Http\Controllers\Backend\ServiceController::class, 'specificationDelete'])->name('specification-delete');
-        Route::post('get-model-from-brand', [App\Http\Controllers\Backend\ServiceController::class, 'getModelFromBrand'])->name('get-model-from-brand');
+        Route::get('scheduled-package',[App\Http\Controllers\Backend\ServiceController::class, 'scheduledPackageList'])->name('scheduled-package')->middleware('XSS');
+        Route::get('scheduled-package-create',[App\Http\Controllers\Backend\ServiceController::class, 'scheduledPackageCreate'])->name('scheduled-package-create')->middleware('XSS');
+        Route::post('scheduled-package-store',[App\Http\Controllers\Backend\ServiceController::class, 'scheduledPackageStore'])->name('scheduled-package-store')->middleware('XSS');
+        Route::get('scheduled-package-edit/{id}',[App\Http\Controllers\Backend\ServiceController::class, 'scheduledPackageEdit'])->name('scheduled-package-edit')->middleware('XSS');
+        Route::post('scheduled-package-update/{id}',[App\Http\Controllers\Backend\ServiceController::class, 'scheduledPackageUpdate'])->name('scheduled-package-update')->middleware('XSS');
+        Route::get('scheduled-package-delete/{id}', [App\Http\Controllers\Backend\ServiceController::class, 'scheduledPackageDestroy'])->name('scheduled-package-delete')->middleware('XSS');
+        Route::post('scheduled-package-datatable', [App\Http\Controllers\Backend\ServiceController::class, 'scheduledPackageDatatable'])->name('scheduled-package-datatable')->middleware('XSS');
+        Route::post('specification-delete', [App\Http\Controllers\Backend\ServiceController::class, 'specificationDelete'])->name('specification-delete')->middleware('XSS');
+        Route::post('get-model-from-brand', [App\Http\Controllers\Backend\ServiceController::class, 'getModelFromBrand'])->name('get-model-from-brand')->middleware('XSS');
 
         Route::get('smtp', [App\Http\Controllers\Backend\SMTPController::class, 'index'])->name('smtp')->middleware('XSS');
         Route::post('smtp_update', [App\Http\Controllers\Backend\SMTPController::class, 'update'])->name('smtp_update')->middleware('XSS');
