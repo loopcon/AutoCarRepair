@@ -77,9 +77,7 @@
             <!-- <li class="sidebar-item {{(request()->is('backend/user')) ? 'active' : ''}}">
                 
             </li> -->
-        </ul>
-
-        <li class="sidebar-item">
+            <li class="sidebar-item">
                 <a data-bs-target="#sidebar_content" data-bs-toggle="collapse" class="sidebar-link collapsed">
                     <i class="align-middle" data-feather="command"></i> <span class="align-middle">{{ __('Home Page Settings')}}</span>
                 </a>
@@ -87,5 +85,6 @@
                     <li class="sidebar-item {{ (request()->is('backend/content*')) ? 'active' : '' }}"><a class="sidebar-link" href="{{ route('admin_content')}}">{{ __('Content')}}</a></li>
                 </ul> 
             </li>
+        </ul>
     </div>
 </nav>
