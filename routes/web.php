@@ -99,8 +99,8 @@ Route::group(['prefix' => 'backend','as' => 'admin_'], function() {
         Route::post('product-datatable', [App\Http\Controllers\Backend\ProductController::class, 'productsDatatable'])->name('product-datatable');
         Route::post('change-product-status', [App\Http\Controllers\Backend\ProductController::class, 'changeProductStatus'])->name('change-product-status')->middleware('XSS');
 
-        Route::get('content', [\App\Http\Controllers\Backend\HomePageSettingController::class, 'index'])->name('content');
-        Route::post('content-update', [\App\Http\Controllers\Backend\HomePageSettingController::class, 'update'])->name('content-update');
+        Route::get('home-page-content', [\App\Http\Controllers\Backend\HomePageSettingController::class, 'index'])->name('home-page-content');
+        Route::post('home-page-content-update', [\App\Http\Controllers\Backend\HomePageSettingController::class, 'update'])->name('home-page-content-update');
 
         Route::get('scheduled-package',[App\Http\Controllers\Backend\ServiceController::class, 'scheduledPackageList'])->name('scheduled-package');
         Route::get('scheduled-package-create',[App\Http\Controllers\Backend\ServiceController::class, 'scheduledPackageCreate'])->name('scheduled-package-create');

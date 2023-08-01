@@ -15,7 +15,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <form method="POST" action="{{route('admin_content-update')}}" id="faq-form" enctype="multipart/form-data" data-parsley-validate="">
+                        <form method="POST" action="{{route('admin_home-page-content-update')}}" id="faq-form" enctype="multipart/form-data" data-parsley-validate="">
                             <input type="hidden" name="id" value="{{ isset($record->id) ? Crypt::encrypt($record->id) : '' }}">
                             {{ csrf_field() }}
                             <div class="row">

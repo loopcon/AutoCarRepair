@@ -15,7 +15,7 @@ class HomePageSettingController extends MainController
     public function index()
     {
         $return_data = array();       
-        $return_data['site_title'] = trans('Content');
+        $return_data['site_title'] = trans('Home Page Content');
         $return_data['record'] = HomePageSetting::find(1);
         return view('backend.homepagesetting.index', array_merge($this->data, $return_data));
     }
@@ -37,7 +37,7 @@ class HomePageSettingController extends MainController
         $content->updated_by = Auth::guard('admin')->user()->id;
         $content->save();
         if($content) {
-            return redirect('backend/content')->with('success', trans('Content Updated Successfully!'));
+            return redirect('backend/home-page-content')->with('success', trans('Content Updated Successfully!'));
         } else {
             return redirect()->back()->with('error', trans('Something went wrong, please try again later!'));
         }

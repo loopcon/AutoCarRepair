@@ -81,8 +81,8 @@
                 <a data-bs-target="#sidebar_content" data-bs-toggle="collapse" class="sidebar-link collapsed">
                     <i class="align-middle" data-feather="command"></i> <span class="align-middle">{{ __('Home Page Settings')}}</span>
                 </a>
-                <ul id="sidebar_content" class="sidebar-dropdown list-unstyled collapse {{ request()->is('backend/content*') ? 'show' : '' }}" data-parent="#sidebar">
-                    <li class="sidebar-item {{ (request()->is('backend/content*')) ? 'active' : '' }}"><a class="sidebar-link" href="{{ route('admin_content')}}">{{ __('Content')}}</a></li>
+                <ul id="sidebar_content" class="sidebar-dropdown list-unstyled collapse {{ request()->is('backend/home-page-content*') ? 'show' : '' }}" data-parent="#sidebar">
+                    <li class="sidebar-item {{ (request()->is('backend/home-page-content*')) ? 'active' : '' }}"><a class="sidebar-link" href="{{ route('admin_home-page-content')}}">{{ __('Content')}}</a></li>
                 </ul> 
             </li>
         </ul>
