@@ -52,8 +52,9 @@
                 <a data-bs-target="#sidebar_category" data-bs-toggle="collapse" class="sidebar-link collapsed">
                     <i class="align-middle" data-feather="command"></i> <span class="align-middle">{{ __('Services')}}</span>
                 </a>
-                <ul id="sidebar_category" class="sidebar-dropdown list-unstyled collapse {{ request()->is('backend/service-category*') ? 'show' : '' }}" data-parent="#sidebar">
+                <ul id="sidebar_category" class="sidebar-dropdown list-unstyled collapse {{ request()->is('backend/service-category*') || request()->is('backend/scheduled-package*') ? 'show' : '' }}" data-parent="#sidebar">
                     <li class="sidebar-item {{ (request()->is('backend/service-category*')) ? 'active' : '' }}"><a class="sidebar-link" href="{{ route('admin_service-category')}}">{{ __('Category')}}</a></li>
+                    <li class="sidebar-item {{ (request()->is('backend/scheduled-package*')) ? 'active' : '' }}"><a class="sidebar-link" href="{{ route('admin_scheduled-package')}}">{{ __('Scheduled Package')}}</a></li>
                 </ul> 
             </li>
 
@@ -76,7 +77,6 @@
             <!-- <li class="sidebar-item {{(request()->is('backend/user')) ? 'active' : ''}}">
                 
             </li> -->
-
             <li class="sidebar-item">
                 <a data-bs-target="#sidebar_content" data-bs-toggle="collapse" class="sidebar-link collapsed">
                     <i class="align-middle" data-feather="command"></i> <span class="align-middle">{{ __('Home Page Settings')}}</span>
@@ -85,5 +85,6 @@
                     <li class="sidebar-item {{ (request()->is('backend/content*')) ? 'active' : '' }}"><a class="sidebar-link" href="{{ route('admin_content')}}">{{ __('Content')}}</a></li>
                 </ul> 
             </li>
+        </ul>
     </div>
 </nav>

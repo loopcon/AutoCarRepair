@@ -71,11 +71,9 @@ ALTER TABLE `shop_categories`
   ADD PRIMARY KEY (`id`);
 
 ALTER TABLE `shop_categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-COMMIT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `shop_categories` ADD `image` TEXT NULL AFTER `name`;
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 -- Disha : 28-07-2023 04:24 PM
 
@@ -246,5 +244,58 @@ RENAME TABLE `acr`.`content` TO `acr`.`home_page_setting`;
 ALTER TABLE `service_categories` ADD `image_1` VARCHAR(255) NULL DEFAULT NULL AFTER `image`;
 ALTER TABLE `service_categories` ADD `description` TEXT NULL DEFAULT NULL AFTER `image_1`;
 
+-- Khushali : 29-07-2023 11:21 AM
+ALTER TABLE `service_categories` CHANGE `status` `status` TINYINT(1) NULL DEFAULT '1' COMMENT '0=\"InActive\";1=\"Active\"';
 
+ALTER TABLE `fuel_type` CHANGE `status` `status` TINYINT(1) NULL DEFAULT '1' COMMENT '0=\"In Active\";1=\"Active\" ';
 
+-- Khushali : 01-08-2023 12:24 AM
+--
+-- Table structure for table `sceduled_packages`
+--
+
+CREATE TABLE `sceduled_packages` (
+  `id` int(11) NOT NULL,
+  `sc_id` int(11) DEFAULT NULL COMMENT '`id` of `service_categories`',
+  `brand_id` int(11) DEFAULT NULL COMMENT '`id` of `car_brands`',
+  `model_id` int(11) DEFAULT NULL COMMENT '`id` of `model`',
+  `fuel_type_id` int(11) DEFAULT NULL COMMENT '`id` of `fuel_type`',
+  `slug` text DEFAULT NULL,
+  `title` text DEFAULT NULL,
+  `image` text DEFAULT NULL,
+  `image_other` text DEFAULT NULL,
+  `warrenty_info` text DEFAULT NULL,
+  `recommended_info` text DEFAULT NULL,
+  `time_takes` int(11) DEFAULT NULL,
+  `price` decimal(15,2) DEFAULT NULL,
+  `is_archive` tinyint(1) DEFAULT 1 COMMENT '1=No;0=Yes	',
+  `status` tinyint(1) DEFAULT 1 COMMENT '0="InActive";1="Active"',
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `created_by` int(11) DEFAULT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `updated_by` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+ALTER TABLE `sceduled_packages`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `sceduled_packages`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Table structure for table `package_specification`
+--
+
+CREATE TABLE `package_specification` (
+  `id` int(11) NOT NULL,
+  `sp_id` int(11) DEFAULT NULL COMMENT '`id` of `scheduled_packages`',
+  `specification` text DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+ALTER TABLE `package_specification`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `package_specification`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
