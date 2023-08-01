@@ -157,10 +157,7 @@ class ProductController extends MainController
     public function destroy(string $id)
     {
         $id = Crypt::decrypt($id);
-        $product = Product::where('id',$id)->update([
-            'is_archive' =>'0',
-            'updated_by' => Auth::guard('admin')->user()->id,
-        ]);
+        $product = Product::where('id',$id)->delete();
         if($product){
             return redirect()->back()->with('success', trans('Product Deleted Successfully!'));
         } else {

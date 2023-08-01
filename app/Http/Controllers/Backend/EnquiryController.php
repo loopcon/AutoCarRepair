@@ -95,10 +95,7 @@ class EnquiryController extends MainController
     public function destroy(string $id)
     {
          $id = Crypt::decrypt($id);
-        $enquiry = Enquiry::where('id', $id)->update([
-            'is_archive' => Constant::ARCHIVE,
-            'updated_by' => Auth::guard('admin')->user()->id,
-        ]);
+        $enquiry = Enquiry::where('id', $id)->delete();
         if($enquiry) {
             return redirect('backend/enquiry')->with('success', trans('Enquiry Deleted Successfully!'));
         } else {

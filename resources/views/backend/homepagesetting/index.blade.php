@@ -36,6 +36,7 @@
                                     <label for="section1_image">{{__('Section 1 Image')}}</label>
                                     <div class="profile-icon">
                                         @php($i = 0)
+                                        @php($required = 'required')
                                         @if(isset($record->section1_image))
                                             @if($record->section1_image !='')
                                                 @php($required = '')

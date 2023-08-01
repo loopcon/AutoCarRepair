@@ -135,25 +135,22 @@ class CarModelController extends MainController
     public function destroy($id)
     {
         $id = Crypt::decrypt($id);
-//        $constraint_array = array(
-//            array('table' => 'car_details', 'column' => 'model_id'),
-//            array('table' => 'variant', 'column' => 'carmodel_id'),
-//            array('table' => 'sell_details', 'column' => 'model_id')
-//        );
-//        $is_delete = checkDeleteConstrainnt($constraint_array, $id);
-//        if($is_delete) {
-            $carmodel = CarModel::where('id', $id)->update([
-                'is_archive' => '0',
-                'updated_by' => Auth::guard('admin')->user()->id,
-            ]);
+       $constraint_array = array(
+           array('table' => 'car_details', 'column' => 'model_id'),
+        //    array('table' => 'variant', 'column' => 'carmodel_id'),
+        //    array('table' => 'sell_details', 'column' => 'model_id')
+       );
+       $is_delete = checkDeleteConstrainnt($constraint_array, $id);
+       if($is_delete) {
+            $carmodel = CarModel::where('id', $id)->delete();
             if($carmodel) {
                 return redirect()->back()->with('success', trans('Car Model Deleted Successfully!'));
             } else {
                 return redirect()->back()->with('error', trans('Something went wrong, please try again later!'));
             }
-//        } else {
-//            return redirect()->back()->with('error', trans('You can not delete this car model! Somewhere this car model information is added in system!'));
-//        }
+       } else {
+           return redirect()->back()->with('error', trans('You can not delete this car model! Somewhere this car model information is added in system!'));
+       }
     }
     public function carmodelsDatatable(request $request)
     {
