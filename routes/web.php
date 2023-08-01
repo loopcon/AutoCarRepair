@@ -134,6 +134,10 @@ Route::group(['prefix' => 'backend','as' => 'admin_'], function() {
         Route::get('enquiry',[App\Http\Controllers\Backend\EnquiryController::class, 'index'])->name('enquiry')->middleware('XSS');
         Route::post('enquiry-datatable', [App\Http\Controllers\Backend\EnquiryController::class, 'enquiryDatatable'])->name('enquiry-datatable');
         Route::get('enquiry-delete/{id}', [App\Http\Controllers\Backend\EnquiryController::class, 'destroy'])->name('enquiry-delete');
+
+        Route::get('user',[App\Http\Controllers\Backend\UserController::class, 'index'])->name('user')->middleware('XSS');
+        Route::post('user-datatable', [App\Http\Controllers\Backend\UserController::class, 'userDatatable'])->name('user-datatable');
+        Route::get('user-delete/{id}', [App\Http\Controllers\Backend\UserController::class, 'destroy'])->name('user-delete');
     });
 });
 Route::group(['as' => 'front_', 'middleware' => 'XSS'], function() {
