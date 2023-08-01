@@ -34,6 +34,9 @@ class HomePageSettingController extends MainController
         $content->section1_title1 = $request->section1_title1;
         $content->section1_title2 = $request->section1_title2;
         $content->section1_description = $request->section1_description;
+        $content->meta_title = $request->meta_title;
+        $content->meta_keywords = $request->meta_keywords;
+        $content->meta_description = $request->meta_description;
         $content->updated_by = Auth::guard('admin')->user()->id;
         $content->save();
         if($content) {

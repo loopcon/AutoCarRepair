@@ -58,6 +58,30 @@
                                     <textarea class="form-control" id="section1_description" name="section1_description" placeholder="{{__('Section1 Description')}}">{{ isset($record->section1_description) ? $record->section1_description : old('section1_description') }}</textarea>
                                     @if ($errors->has('section1_description')) <div class="text-danger">{{ $errors->first('section1_description') }}</div>@endif
                                 </div>
+
+                                <div class="mt-3  col-md-12">
+                                    <h6>SEO Details</h6>
+                                    <hr/>
+                                </div>
+                                <div class="row">
+                                    <div class="mb-3 col-md-4">
+                                        <label class="form-label" for="meta_title">{{__('Meta Title')}}</label>
+                                        <input type="text" class="form-control" id="meta_title" name="meta_title" placeholder="{{__('Meta Title')}}" value="{{ isset($record->meta_title) ? $record->meta_title : old('meta_title') }}">
+                                        @if ($errors->has('meta_title')) <div class="text-danger">{{ $errors->first('meta_title') }}</div>@endif
+                                    </div>
+                                    
+                                    <div class="mb-3 col-md-4">
+                                        <label class="form-label" for="meta_keywords">{{__('Meta Keyword')}}</label>
+                                        <textarea class="form-control" id="meta_keywords" name="meta_keywords" placeholder="{{__('Meta Keyword')}}">{{ isset($record->meta_keywords) ? $record->meta_keywords : old('meta_keywords') }}</textarea>
+                                        @if ($errors->has('meta_keywords')) <div class="text-danger">{{ $errors->first('meta_keywords') }}</div>@endif
+                                    </div>
+
+                                    <div class="mb-3 col-md-4">
+                                        <label class="form-label" for="meta_description">{{__('Meta Description')}}</label>
+                                        <textarea class="form-control" id="meta_description" name="meta_description" placeholder="{{__('Meta Description')}}">{{ isset($record->meta_description) ? $record->meta_description : old('meta_description') }}</textarea>
+                                        @if ($errors->has('meta_description')) <div class="text-danger">{{ $errors->first('meta_description') }}</div>@endif
+                                    </div>
+                                </div>
                             </div>
                             <button type="submit" class="btn btn-primary mt-2">{{__('Submit')}}</button>
                         </form>

@@ -239,6 +239,7 @@ ALTER TABLE `content`
 
 RENAME TABLE `acr`.`content` TO `acr`.`home_page_setting`;
 
+
 -- Disha : 01-08-2023 11:03 PM
 
 ALTER TABLE `service_categories` ADD `image_1` VARCHAR(255) NULL DEFAULT NULL AFTER `image`;
@@ -299,3 +300,8 @@ ALTER TABLE `package_specification`
 
 ALTER TABLE `package_specification`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+-- Nirali : 01-08-2023 07:06 PM
+ALTER TABLE `home_page_setting` ADD `meta_title` VARCHAR(255) NULL AFTER `section1_description`;
+ALTER TABLE `home_page_setting` ADD `meta_keywords` TEXT NULL AFTER `meta_title`;
+ALTER TABLE `home_page_setting` ADD `meta_description` TEXT NULL AFTER `meta_keywords`;
