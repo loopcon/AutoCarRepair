@@ -241,3 +241,10 @@ ALTER TABLE `content`
 
 RENAME TABLE `acr`.`content` TO `acr`.`home_page_setting`;
 
+-- Disha : 01-08-2023 11:03 PM
+
+ALTER TABLE `service_categories` ADD `image_1` VARCHAR(255) NULL DEFAULT NULL AFTER `image`;
+ALTER TABLE `service_categories` ADD `description` TEXT NULL DEFAULT NULL AFTER `image_1`;
+
+
+

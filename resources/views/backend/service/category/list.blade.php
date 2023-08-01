@@ -18,7 +18,7 @@
                     <div class="card-header">
                         <div class="form-row">
                             <div class="col-md-12 text-end">
-                                <div class="col-md-12 text-end"><a href="javascript:void(0)" class="btn btn-success ajax-form" id=""><i class="align-middle" data-feather="plus"></i>{{__('Add')}}</a></div>
+                                <div class="col-md-12 text-end"><a href="{{route('admin_service-category-create')}}" class="btn btn-success ajax-form" id=""><i class="align-middle" data-feather="plus"></i>{{__('Add')}}</a></div>
                             </div>
                         </div>
                     </div>
@@ -156,19 +156,6 @@
             });
         });
 
-        function ajaxForm(id = ''){
-            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-            $.ajax({
-                url : '{{ route('admin_ajax-edit-service-category-html') }}',
-                method : 'post',
-                data : {_token: CSRF_TOKEN, id:id},
-                success : function(result){
-                    var result = $.parseJSON(result);
-                    $('#form-detail').html(result.html);
-                    $('#form_modal').modal('show');
-                    $('form').parsley();
-                }
-            });
-        }
+        // 
     </script>
 @endsection

@@ -27,6 +27,13 @@ class ServiceController extends MainController
         return view('backend.service.category.list', array_merge($this->data, $return_data));
     }
 
+    public function serviceCategorycreate()
+    {
+        $return_data = array();
+        $return_data['site_title'] = trans('Service Category Create');
+        return view('backend.service.category.form',array_merge($this->data,$return_data));
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -47,7 +54,7 @@ class ServiceController extends MainController
         $slug = $request->title != '' ? slugify($request->title) : NULL;
 
         $scstegory = new ServiceCategory();
-        $fields = array('title');
+        $fields = array('title','description');
         foreach($fields as $field){
             $scstegory->$field = isset($request->$field) && $request->$field ? $request->$field : NULL;
         }
@@ -55,11 +62,15 @@ class ServiceController extends MainController
             $newName = fileUpload($request, 'image', 'uploads/service/category');
             $scstegory->image = $newName;
         }
+        if($request->hasFile('image_1')) {
+            $newName = fileUpload($request, 'image_1', 'uploads/service/category');
+            $scstegory->image_1 = $newName;
+        }
         $scstegory->slug = $slug;
         $scstegory->created_by = Auth::guard('admin')->user()->id;
         $scstegory->save();
         if($scstegory){
-            return redirect()->back()->with('success', trans('Service Category Added Successfully!'));
+            return redirect('backend/service-category')->with('success', trans('Service Category Added Successfully!'));
         } else {
             return redirect()->back()->with('error', trans('Something went wrong, please try again later!'));
         }
@@ -71,19 +82,14 @@ class ServiceController extends MainController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function ajaxEditServiceCategoryHtml(request $request)
+    public function serviceCategoryedit($id)
     {
-        if($request->ajax()){
-            $id = $request->id;
-            $id = $id ? Crypt::decrypt($id) : NULL;
-            $record = $id ? ServiceCategory::find($id) : NULL;
-            $html = view('backend.service.category.ajax_edit_html', array('record' => $record))->render();
-            $return = array();
-            $return['html'] = $html;
-            echo json_encode($return);
-        } else {
-            return redirect('backend/dashboard');
-        }
+        $id = Crypt::decrypt($id);
+        $return_data = array();
+        $return_data['site_title'] = trans('Service Category Edit');
+        $service_category = ServiceCategory::find($id);
+        $return_data['record'] = $service_category;
+        return view('backend.service.category.form',array_merge($this->data,$return_data));
     }
 
     /**
@@ -109,7 +115,7 @@ class ServiceController extends MainController
         $slug = $request->title != '' ? slugify($request->title) : NULL;
 
         $scategory = ServiceCategory::find($id);
-        $fields = array('title');
+        $fields = array('title','description');
         foreach($fields as $field){
             $scategory->$field = isset($request->$field) && $request->$field ? $request->$field : NULL;
         }
@@ -121,12 +127,20 @@ class ServiceController extends MainController
             $newName = fileUpload($request, 'image', 'uploads/service/category');
             $scategory->image = $newName;
         }
+        if($request->hasFile('image_1')) {
+            $old_image = $scategory->image_1;
+            if($old_image){
+                removeFile('uploads/service/category/'.$old_image);
+            }
+            $newName = fileUpload($request, 'image_1', 'uploads/service/category');
+            $scategory->image_1 = $newName;
+        }
         $scategory->slug = $slug;
         $scategory->updated_by = Auth::guard('admin')->user()->id;
         $scategory->save();
 
         if($scategory) {
-            return redirect()->back()->with('success', trans('Service Category Updated Successfully!'));
+            return redirect('backend/service-category')->with('success', trans('Service Category Updated Successfully!'));
         } else {
             return redirect()->back()->with('error', trans('Something went wrong, please try again later!'));
         }
@@ -178,7 +192,7 @@ class ServiceController extends MainController
                     $html = "";
                     $id = Crypt::encrypt($row->id);
                     $html .= "<span class='text-nowrap'>";
-                    $html .= "<a href='javascript:void(0);' rel='tooltip' title='".trans('Edit')."' data-id='".$id."' class='btn btn-info btn-sm ajax-form'><i class='fas fa-pencil-alt'></i></a>&nbsp";
+                    $html .= "<a href='".route('admin_service-category-edit',array($id))."' rel='tooltip' title='".trans('Edit')."' data-id='".$id."' class='btn btn-info btn-sm ajax-form'><i class='fas fa-pencil-alt'></i></a>&nbsp";
                     $html .= "<a href='javascript:void(0);' data-href='".route('admin_service-category-delete',array($id))."' rel='tooltip' title='".trans('Delete')."' class='btn btn-danger btn-sm delete'><i class='fa fa-trash-alt'></i></a>&nbsp";
                     if($row->status == Constant::ACTIVE) {
                         $html .= "<a href='javascript:void(0);' class='btn btn-warning btn-sm status' data-status='".Constant::INACTIVE."' data-id='".$id."' rel='tooltip' title='Inactive'><i class='far fa-fw fa-window-close'></i></a>&nbsp";
