@@ -11,4 +11,5 @@ class PackageSpecification extends Model
 
     protected $table = 'package_specification';
     protected $fillable = ['sp_id', 'specification', 'created_at', 'updated_at'];
+
 }

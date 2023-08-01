@@ -181,7 +181,7 @@ class ServiceController extends MainController
     public function serviceCategoryDatatable(request $request)
     {
         if($request->ajax()){
-            $query = ServiceCategory::select('id', 'title', 'image', 'description' , 'status')->where('is_archive', '=', Constant::NOT_ARCHIVE)->orderBy('id', 'DESC');
+            $query = ServiceCategory::select('id', 'title', 'image', 'description', 'status')->where('is_archive', '=', Constant::NOT_ARCHIVE)->orderBy('id', 'DESC');
             $list = $query->get();
 
             return DataTables::of($list)
@@ -230,6 +230,10 @@ class ServiceController extends MainController
     {
         $return_data = array();       
         $return_data['site_title'] = trans('Scheduled Packages');
+        $return_data['brands'] = CarBrand::select('id', 'title')->where([['is_archive', Constant::NOT_ARCHIVE], ['status', Constant::ACTIVE]])->get();
+        $return_data['models'] = CarModel::select('id', 'title')->where([['is_archive', Constant::NOT_ARCHIVE], ['status', Constant::ACTIVE]])->get();
+        $return_data['fuel_type'] = FuelType::select('id', 'title')->where([['is_archive', Constant::NOT_ARCHIVE], ['status', Constant::ACTIVE]])->get();
+        $return_data['categories'] = ServiceCategory::select('id', 'title')->where([['is_archive', Constant::NOT_ARCHIVE], ['status', Constant::ACTIVE]])->get();
         return view('backend.service.package.list', array_merge($this->data, $return_data));
     }
 
@@ -414,6 +418,36 @@ class ServiceController extends MainController
     {
         if($request->ajax()){
             $query = ScheduledPackage::with('categoryDetail', 'brandDetail', 'modelDetail', 'fuelTypeDetail')->select('id', 'sc_id', 'brand_id', 'model_id', 'fuel_type_id', 'title', 'image', 'warrenty_info', 'recommended_info', 'time_takes', 'price')->where('is_archive', '=', Constant::NOT_ARCHIVE)->orderBy('id', 'DESC');
+
+            if($request->serviceCategory!='all') {
+                if($request->serviceCategory!='') {
+                    $query->whereHas('categoryDetail', function($q) use ($request) {
+                        $q->where([['sc_id', '=', $request->serviceCategory]]);
+                    });
+                }
+            }
+            if($request->brand!='all') {
+                if($request->brand!='') {
+                    $query->whereHas('brandDetail', function($q) use ($request) {
+                        $q->where([['brand_id', '=', $request->brand]]);
+                    });
+                }
+            }
+            if($request->carModel!='all') {
+                if($request->carModel!='') {
+                    $query->whereHas('modelDetail', function($q) use ($request) {
+                        $q->where([['model_id', '=', $request->carModel]]);
+                    });
+                }
+            }
+            if($request->fuelType!='all') {
+                if($request->fuelType!='') {
+                    $query->whereHas('fuelTypeDetail', function($q) use ($request) {
+                        $q->where([['fuel_type_id', '=', $request->fuelType]]);
+                    });
+                }
+            }
+
             $list = $query->get();
 
             return DataTables::of($list)
