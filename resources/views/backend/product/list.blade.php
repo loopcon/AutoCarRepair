@@ -41,6 +41,7 @@
                                     <th>{{__('Name')}}</th>
                                     <th>{{__('Sku')}}</th>
                                     <th>{{__('Price')}}</th>
+                                    <th>{{__('Status')}}</th>
                                     <th>{{__('Action')}}</th>
                                 </tr>
                             </thead>
@@ -72,6 +73,7 @@ $(document).ready(function() {
             {data: 'name', name: 'name'},
             {data: 'sku', name: 'sku'},
             {data: 'price', name: 'price'},
+            {data: 'status', name: 'status'},
             {data: 'action', name: 'action', orderable: false, searchable: false},
         ],
         "ajax" : {
