@@ -31,11 +31,11 @@
                                 </div>
 
                                 <div class="mb-3 col-md-6">
-                                    <label class="form-label" for="description">{{__('Description')}}<span class="text-danger">*</span></label>
+                                    <label class="form-label" for="description">{{__('Description')}}</label>
                                     <textarea class="form-control" id="description" name="description" placeholder="{{__('Description')}}" >{{ isset($record->description) ? $record->description : old('description') }}</textarea>
                                 </div>
 
-                                <div class="mb-3 col-md-12">
+                                <div class="mb-3 col-md-6">
                                     <label class="form-label" for="image">{{__('Image')}}<span class="text-danger">*</span></label>
                                     <div class="profile-icon">
                                         @if(isset($record->image))
@@ -57,8 +57,8 @@
                                     <p class="image_errortext">For Best resolution please upload 92*59 size and in WebP file format.</p>
                                 </div>
 
-                                <div class="mb-3 col-md-12">
-                                    <label class="form-label" for="image_1">{{__('Image')}}<span class="text-danger">*</span></label>
+                                <div class="mb-3 col-md-6">
+                                    <label class="form-label" for="image_1">{{__('Image')}}</label>
                                     <div class="profile-icon">
                                         @if(isset($record->image_1))
                                             @if($record->image_1 !='')
@@ -74,7 +74,7 @@
                                         @endif
                                     </div>
                                     <div class="m-b-10">
-                                        <input type="file" id="uploadImage0" accept="image/x-png, image/gif, image/jpeg" class="btn btn-warning btn-block btn-sm"  name="image_1"  onChange="this.parentNode.nextSibling.value = this.value; PreviewImage(0);" >
+                                        <input type="file" id="uploadImage0" accept="image/x-png, image/gif, image/jpeg" class="btn btn-warning btn-block btn-sm"  name="image_1" >
                                     </div> 
                                 </div>
                             </div>
@@ -89,4 +89,8 @@
 </main>
 
 <meta name="csrf-token" content="{{ csrf_token() }}" />
+@endsection
+@section('javascript')
+    <script src="{{ asset('plugins/parsley/parsley.js') }}"></script>
+    <script src="{{asset('public/plugins/ckeditor/ckeditor.js')}}"  type="text/javascript"></script>
 @endsection

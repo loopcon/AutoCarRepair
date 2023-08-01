@@ -32,8 +32,8 @@
                                     @if ($errors->has('name')) <div class="text-danger">{{ $errors->first('name') }}</div>@endif
                                 </div>
 
-                                <div class="mt-2 col-12">
-                                    <label for="section1_image">{{__('Section 1 Image')}} <span class="text-danger">*</span></label>
+                                <div class="mt-2 col-6">
+                                    <label for="section1_image">{{__('Section 1 Image')}}</label>
                                     <div class="profile-icon">
                                         @php($i = 0)
                                         @if(isset($record->section1_image))
@@ -46,14 +46,14 @@
                                             @endif
                                         @endif
                                         <div class="m-b-10">
-                                            <input type="file" id="uploadImage{{$i}}" accept="image/x-png, image/gif, image/jpeg" class="btn btn-warning btn-block btn-sm"  name="section1_image" {{$required}} data-parsley-required-message="{{ __("This value is required.")}}" onChange="this.parentNode.nextSibling.value = this.value; PreviewImage({{$i}});" >
+                                            <input type="file" id="uploadImage{{$i}}" accept="image/x-png, image/gif, image/jpeg" class="btn btn-warning btn-block btn-sm"  name="section1_image" {{$required}} data-parsley-required-message="{{ __("This value is required.")}}">
                                             @if ($errors->has('section1_image')) <div class="errors_msg">{{ $errors->first('section1_image') }}</div>@endif
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="mt-2 col-md-12">
-                                    <label class="form-label" for="section1_description">{{__('Section1 Description')}}<span class="text-danger">*</span></label>
+                                <div class="mt-2 col-md-6">
+                                    <label class="form-label" for="section1_description">{{__('Section1 Description')}}</label>
                                     <textarea class="form-control" id="section1_description" name="section1_description" placeholder="{{__('Section1 Description')}}">{{ isset($record->section1_description) ? $record->section1_description : old('section1_description') }}</textarea>
                                     @if ($errors->has('section1_description')) <div class="text-danger">{{ $errors->first('section1_description') }}</div>@endif
                                 </div>
@@ -72,29 +72,4 @@
 @section('javascript')
     <script src="{{ asset('plugins/parsley/parsley.js') }}"></script>
     <script src="{{asset('public/plugins/ckeditor/ckeditor.js')}}"  type="text/javascript"></script>
-    <script>
-        $(document).ready(function(){
-            CKEDITOR.replace('description', {
-                height:1000,
-                removePlugins : 'resize',
-                filebrowserBrowseUrl : '<?php echo url("public/plugins/kcfinder/browse.php?opener=ckeditor&type=files") ?>',
-                filebrowserImageBrowseUrl : '<?php echo url("public/plugins/kcfinder/browse.php?opener=ckeditor&type=images") ?>',
-                filebrowserFlashBrowseUrl : '<?php echo url("public/plugins/kcfinder/browse.php?opener=ckeditor&type=flash") ?>',
-                filebrowserUploadUrl : '<?php echo url("public/plugins/kcfinder/upload.php?opener=ckeditor&type=files") ?>',
-                filebrowserImageUploadUrl : '<?php echo url("public/plugins/kcfinder/upload.php?opener=ckeditor&type=images") ?>',
-                filebrowserFlashUploadUrl : '<?php echo url("public/plugins/kcfinder/upload.php?opener=ckeditor&type=flash") ?>',
-            });
-            CKEDITOR.on('instanceReady', function () {
-                $('#description').attr('required', '');
-                $.each(CKEDITOR.instances, function (instance) {
-                    CKEDITOR.instances[instance].on("change", function (e) {
-                        for (instance in CKEDITOR.instances) {
-                            CKEDITOR.instances[instance].updateElement();
-                            //$('form').parsley().validate();
-                        }
-                    });
-                });
-            });
-        });
-    </script>
 @endsection
