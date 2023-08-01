@@ -29,6 +29,7 @@
                                     <th>{{__('Id')}}</th>
                                     <th>{{__('Image')}}</th>
                                     <th>{{__('Title')}}</th> 
+                                    <th>{{__('Description')}}</th> 
                                     <th>{{__('Status')}}</th>
                                     <th>{{__('Action')}}</th>
                                 </tr>
@@ -65,6 +66,7 @@
                     {data: 'id', name: 'id'},
                     {data: 'image', name: 'image'},
                     {data: 'title', name: 'title'},
+                    {data: 'description', name: 'description'},
                     {data: 'status', name: 'status'},
                     {data: 'action', name: 'action', orderable: false, searchable: false},
                 ],
