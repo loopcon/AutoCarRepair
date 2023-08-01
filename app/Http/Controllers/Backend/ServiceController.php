@@ -5,6 +5,11 @@ namespace App\Http\Controllers\Backend;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\ServiceCategory;
+use App\Models\ScheduledPackage;
+use App\Models\PackageSpecification;
+use App\Models\CarModel;
+use App\Models\CarBrand;
+use App\Models\FuelType;
 use Auth;
 use Session;
 use Illuminate\Validation\Rule;
@@ -181,7 +186,7 @@ class ServiceController extends MainController
 
             return DataTables::of($list)
                 ->addColumn('image', function ($row) {
-                    $image = $row->image ? "<img src='".url('uploads/service/category/'.$row->image)."' width='80px' height='80px'>" : '';
+                    $image = $row->image ? "<img src='".url('public/uploads/service/category/'.$row->image)."' width='80px' height='80px'>" : '';
                     return $image;
                 })
                 ->addColumn('status', function ($row) {
@@ -216,6 +221,257 @@ class ServiceController extends MainController
             ServiceCategory::where([['id', $id]])->update(array('status' => $request->status, 'updated_by' => Auth::guard('admin')->user()->id)); 
             echo json_encode(array('message' => $message));
             exit;
+        } else {
+            return redirect('backend/dashboard');
+        }
+    }
+
+    public function scheduledPackageList()
+    {
+        $return_data = array();       
+        $return_data['site_title'] = trans('Scheduled Packages');
+        return view('backend.service.package.list', array_merge($this->data, $return_data));
+    }
+
+    public function scheduledPackageCreate()
+    {
+        $return_data = array();
+        $return_data['brands'] = CarBrand::select('id', 'title')->where([['is_archive', Constant::NOT_ARCHIVE], ['status', Constant::ACTIVE]])->get();
+        $return_data['fuel_type'] = FuelType::select('id', 'title')->where([['is_archive', Constant::NOT_ARCHIVE], ['status', Constant::ACTIVE]])->get();
+        $return_data['site_title'] = trans('Scheduled Package Create');
+        $return_data['categories'] = ServiceCategory::select('id', 'title')->where([['is_archive', Constant::NOT_ARCHIVE], ['status', Constant::ACTIVE]])->get();
+        return view('backend.service.package.form',array_merge($this->data,$return_data));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function scheduledPackageStore(Request $request)
+    {
+         $this->validate($request, [
+                'title' => ['required'],
+                'sc_id' => ['required'],
+                'time_takes' => ['required'],
+                'brand_id' => ['required'],
+                'model_id' => ['required'],
+                'fuel_type_id' => ['required'],
+                'price' => ['required'],
+            ]
+        );
+        $slug = $request->title != '' ? slugify($request->title) : NULL;
+
+        $spackage = new ScheduledPackage();
+        $fields = array('sc_id', 'brand_id', 'model_id', 'fuel_type_id', 'title', 'price', 'warrenty_info', 'recommended_info', 'time_takes');
+        foreach($fields as $field){
+            $spackage->$field = isset($request->$field) && $request->$field != '' ? $request->$field : NULL;
+        }
+        if($request->hasFile('image')) {
+            $newName = fileUpload($request, 'image', 'uploads/service/package');
+            $spackage->image = $newName;
+        }
+        if($request->hasFile('image_other')) {
+            $newName = fileUpload($request, 'image_other', 'uploads/service/package');
+            $spackage->image_other = $newName;
+        }
+        $spackage->slug = $slug;
+        $spackage->created_by = Auth::guard('admin')->user()->id;
+        $spackage->save();
+
+        if($spackage){
+            $sp_id = $spackage->id;
+            $specification = isset($request->specification) ? $request->specification : array();
+            if($specification){
+                foreach($specification as $sk => $sv){
+                    if($sv){
+                        $spec = new PackageSpecification();
+                        $spec->sp_id = $sp_id;
+                        $spec->specification = $sv;
+                        $spec->save();
+                    }
+                }
+            }
+            return redirect('backend/scheduled-package')->with('success', trans('Scheduled Package Added Successfully!'));
+        } else {
+            return redirect()->back()->with('error', trans('Something went wrong, please try again later!'));
+        }
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function scheduledPackageEdit($id)
+    {
+        $id = Crypt::decrypt($id);
+        $return_data = array();
+        $packages = ScheduledPackage::find($id);
+        $return_data['record'] = $packages;
+        $return_data['site_title'] = trans('Scheduled Package Edit');
+        $return_data['categories'] = ServiceCategory::select('id', 'title')->where([['is_archive', Constant::NOT_ARCHIVE], ['status', Constant::ACTIVE]])->get();
+        $return_data['specifications'] = PackageSpecification::select('id', 'specification')->where([['sp_id', $id]])->get();
+        $return_data['brands'] = CarBrand::select('id', 'title')->where([['is_archive', Constant::NOT_ARCHIVE], ['status', Constant::ACTIVE]])->get();
+        $return_data['fuel_type'] = FuelType::select('id', 'title')->where([['is_archive', Constant::NOT_ARCHIVE], ['status', Constant::ACTIVE]])->get();
+        return view('backend.service.package.form', array_merge($this->data, $return_data));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function scheduledPackageUpdate(Request $request, $id)
+    {
+
+        $id = Crypt::decrypt($id);
+        $this->validate($request, [
+                'title' => ['required'],
+                'sc_id' => ['required'],
+                'time_takes' => ['required'],
+                'brand_id' => ['required'],
+                'model_id' => ['required'],
+                'fuel_type_id' => ['required'],
+                'price' => ['required'],
+            ]
+        );
+
+        $slug = $request->title != '' ? slugify($request->title) : NULL;
+
+        $spackage = ScheduledPackage::find($id);
+        $fields = array('sc_id', 'brand_id', 'model_id', 'fuel_type_id', 'title', 'price', 'warrenty_info', 'recommended_info', 'time_takes');
+        foreach($fields as $field){
+            $spackage->$field = isset($request->$field) && $request->$field != '' ? $request->$field : NULL;
+        }
+        if($request->hasFile('image')) {
+            $old_image = $spackage->image;
+            if($old_image){
+                removeFile('uploads/service/package/'.$old_image);
+            }
+            $newName = fileUpload($request, 'image', 'uploads/service/package');
+            $spackage->image = $newName;
+        }
+        if($request->hasFile('image_other')) {
+            $old_image = $spackage->image_other;
+            if($old_image){
+                removeFile('uploads/service/package/'.$old_image);
+            }
+            $newName = fileUpload($request, 'image_other', 'uploads/service/package');
+            $spackage->image_other = $newName;
+        }
+        $spackage->slug = $slug;
+        $spackage->updated_by = Auth::guard('admin')->user()->id;
+        $spackage->save();
+        if($spackage) {
+            $sp_id = $spackage->id;
+            $specification = isset($request->specification) ? $request->specification : array();
+            $sid = isset($request->sid) ? $request->sid : array();
+            if($specification){
+                foreach($specification as $sk => $sv){
+                    if($sv){
+                        if(isset($sid[$sk]) && $sid[$sk]){
+                            $spec = PackageSpecification::find($sid[$sk]);
+                        } else {
+                            $spec = new PackageSpecification();
+                        }
+                        $spec->sp_id = $sp_id;
+                        $spec->specification = $sv;
+                        $spec->save();
+                    }
+                }
+            }
+            return redirect('backend/scheduled-package')->with('success', trans('Scheduled Package Updated Successfully!'));
+        } else {
+            return redirect()->back()->with('error', trans('Something went wrong, please try again later!'));
+        }
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function scheduledPackageDestroy($id)
+    {
+        $id = Crypt::decrypt($id);
+        $page = ScheduledPackage::where('id', $id)->update([
+            'is_archive' => Constant::NOT_ARCHIVE,
+            'updated_by' => Auth::guard('admin')->user()->id,
+        ]);
+        if($page) {
+            return redirect('backend/pages')->with('success', trans('Scheduled Package Deleted Successfully!'));
+        } else {
+            return redirect()->back()->with('error', trans('Something went wrong, please try again later!'));
+        }
+    }
+    public function scheduledPackageDatatable(request $request)
+    {
+        if($request->ajax()){
+            $query = ScheduledPackage::with('categoryDetail', 'brandDetail', 'modelDetail', 'fuelTypeDetail')->select('id', 'sc_id', 'brand_id', 'model_id', 'fuel_type_id', 'title', 'image', 'warrenty_info', 'recommended_info', 'time_takes', 'price')->where('is_archive', '=', Constant::NOT_ARCHIVE)->orderBy('id', 'DESC');
+            $list = $query->get();
+
+            return DataTables::of($list)
+                ->addColumn('image', function ($row) {
+                    $image = $row->image ? "<img src='".url('uploads/service/package/'.$row->image)."' width='80px' height='80px'>" : '';
+                    return $image;
+                })
+                ->addColumn('category', function($row){
+                    $category = isset($row->categoryDetail->title) ? $row->categoryDetail->title : NULL;
+                    return $category;
+                })
+                ->addColumn('car_detail', function($row){
+                    $brand = isset($row->brandDetail->title) ? $row->brandDetail->title : NULL;
+                    $model = isset($row->modelDetail->title) ? $row->modelDetail->title : NULL;
+                    $fuel_type = isset($row->fuelTypeDetail->title) ? $row->fuelTypeDetail->title : NULL;
+                    return $brand.' - '.$model.' - '.$fuel_type;
+                })
+                ->addColumn('time_takes', function($row){
+                    $time = isset($row->time_takes) && $row->time_takes ? $row->time_takes.' Hrs' : NULL;
+                    return $time;
+                })
+                ->addColumn('action', function ($row) {
+                    $html = "";
+                    $id = Crypt::encrypt($row->id);
+                    $html .= "<span class='text-nowrap'>";
+                    $html .= "<a href='".route('admin_scheduled-package-edit', array($id))."' rel='tooltip' title='".trans('Edit')."' class='btn btn-info btn-sm'><i class='fas fa-pencil-alt'></i></a>&nbsp";
+                    $html .= "<a href='javascript:void(0);' data-href='".route('admin_scheduled-package-delete',array($id))."' rel='tooltip' title='".trans('Delete')."' class='btn btn-danger btn-sm delete'><i class='fa fa-trash-alt'></i></a>";
+                    $html .= "</span>";
+                    return $html;
+                })
+                ->rawColumns(['image', 'category', 'car_detail', 'time_takes', 'action'])
+                ->make(true);
+        } else {
+            return redirect('backend/dashboard');
+        }
+    }
+
+    public function specificationDelete(request $request){
+        if($request->ajax()){
+            PackageSpecification::where('id', $request->id)->delete();
+        } else {
+            return redirect('backend/dashboard');
+        }
+    }
+
+    public function getModelFromBrand(request $request){
+        if($request->ajax()){
+            $brand_id = $request->brand_id;
+            $models = CarModel::where([['carbrand_id', $brand_id], ['is_archive', '=', Constant::NOT_ARCHIVE], ['status', Constant::ACTIVE]])->get();
+            $return_data = array();
+            $html = '<option value="">--select--</option>';
+            if($models->count()){
+                foreach($models as $value){
+                    $html .= '<option value="'.$value->id.'">'.$value->title.'</option>';
+                }
+            }
+            $return_data['html'] = $html;
+            echo json_encode($return_data);exit;
         } else {
             return redirect('backend/dashboard');
         }

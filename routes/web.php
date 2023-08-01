@@ -102,6 +102,16 @@ Route::group(['prefix' => 'backend','as' => 'admin_'], function() {
         Route::get('content', [\App\Http\Controllers\Backend\HomePageSettingController::class, 'index'])->name('content');
         Route::post('content-update', [\App\Http\Controllers\Backend\HomePageSettingController::class, 'update'])->name('content-update');
 
+        Route::get('scheduled-package',[App\Http\Controllers\Backend\ServiceController::class, 'scheduledPackageList'])->name('scheduled-package');
+        Route::get('scheduled-package-create',[App\Http\Controllers\Backend\ServiceController::class, 'scheduledPackageCreate'])->name('scheduled-package-create');
+        Route::post('scheduled-package-store',[App\Http\Controllers\Backend\ServiceController::class, 'scheduledPackageStore'])->name('scheduled-package-store');
+        Route::get('scheduled-package-edit/{id}',[App\Http\Controllers\Backend\ServiceController::class, 'scheduledPackageEdit'])->name('scheduled-package-edit');
+        Route::post('scheduled-package-update/{id}',[App\Http\Controllers\Backend\ServiceController::class, 'scheduledPackageUpdate'])->name('scheduled-package-update');
+        Route::get('scheduled-package-delete/{id}', [App\Http\Controllers\Backend\ServiceController::class, 'scheduledPackageDestroy'])->name('scheduled-package-delete');
+        Route::post('scheduled-package-datatable', [App\Http\Controllers\Backend\ServiceController::class, 'scheduledPackageDatatable'])->name('scheduled-package-datatable');
+        Route::post('specification-delete', [App\Http\Controllers\Backend\ServiceController::class, 'specificationDelete'])->name('specification-delete');
+        Route::post('get-model-from-brand', [App\Http\Controllers\Backend\ServiceController::class, 'getModelFromBrand'])->name('get-model-from-brand');
+
         Route::get('smtp', [App\Http\Controllers\Backend\SMTPController::class, 'index'])->name('smtp')->middleware('XSS');
         Route::post('smtp_update', [App\Http\Controllers\Backend\SMTPController::class, 'update'])->name('smtp_update')->middleware('XSS');
 
