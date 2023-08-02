@@ -61,7 +61,7 @@ class ProductController extends MainController
         $slug = $request->name != '' || $request->name != '' ?  slugify($request->name.'-'.$request->sku) : NULL;
 
         $product = new Product();
-        $fields = array('name', 'sku', 'shop_category_id', 'description', 'specification', 'price', 'amazon_link', 'flipcart_link');
+        $fields = array('name', 'sku', 'shop_category_id', 'description', 'specification', 'price', 'amazon_link', 'flipcart_link', 'meta_title', 'meta_keywords', 'meta_description');
         foreach($fields as $field){
             $product->$field = isset($request->$field) && $request->$field != '' ? $request->$field : NULL;
         }
@@ -134,6 +134,9 @@ class ProductController extends MainController
             'price' => $request->price,
             'amazon_link' => $request->amazon_link,
             'flipcart_link' => $request->flipcart_link,
+            'meta_title' => $request->meta_title,
+            'meta_keywords' => $request->meta_keywords,
+            'meta_description' => $request->meta_description,
             'is_archive' => Constant::NOT_ARCHIVE,
             'updated_by' => Auth::guard('admin')->user()->id,
         ]);
