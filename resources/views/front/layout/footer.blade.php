@@ -89,60 +89,68 @@
         </div>
     </div>
 <!-- footer down end -->
+<script src="{{ asset('front/js/jquery.min.js') }}"></script>
 <script src="{{ asset('front/js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ asset('front/js/all.min.js') }}"></script>
-<script src="{{ asset('front/js/owl.carousel.min.js') }}"></script>
 <script>
     $(document).ready(function() {
-        $('#offer-carousel').owlCarousel({
-            loop: true,
-            margin: 30,
-            dots: false,
-            nav: true,
-            items: 1,
-        });
-        $('#testiminoal-carousel').owlCarousel({
-            loop: true,
-            margin: 30,
-            dots: true,
-            nav: false,
-            items: 1,
-            autoplay:true,
-            autoplayTimeout:2000,
-            autoplayHoverPause:true
-        });
-        $('#partner-brand-carousel').owlCarousel({
-            loop: true,
-            margin: 30,
-            dots: false,
-            nav: false,
-            items: 4,
-            autoplay:true,
-            autoplayTimeout:2000,
-            autoplayHoverPause:true,
-            responsiveClass: true,
-            responsive: {
-            0: {
-            items: 1
-            },
-            450:{
-            items: 2
-            },
-            600: {
-            items: 3
-            },
-
-            1024: {
-            items: 4
-            }
-        }
-
-        });
+        basic();
+        // notification //
+        <?php if (Session::get('error')) : ?>
+            toastr.error('<?php echo Session::get('error') ?>');
+        <?php endif; ?>
+        <?php if (Session::get('errors')) : ?>
+            toastr.error('<?php echo Session::get('errors')->first() ?>');
+        <?php endif; ?>
+        <?php if (Session::get('success')) : ?>
+            toastr.success('<?php echo Session::get('success') ?>');
+        <?php endif; ?>
+        <?php if (Session::get('warning')) : ?>
+            toastr.warning('<?php echo Session::get('warning') ?>');
+        <?php endif; ?>
 
         $('.btn-toggle-item').click(function(){
             $('.mobile-toggle-data').toggle();
         });
     });
+    function basic(){
+        $("input").attr("autocomplete", "off");
+        $("textarea").attr("autocomplete", "off");
+        $("input[type=password]").attr("autocomplete", "new-password");
+        $(".numeric").bind("keypress", function (e) {
+            var keyCode = e.which ? e.which : e.keyCode;
+            if (!((keyCode >= 48 && keyCode <= 57) || keyCode == 46)) {
+                return false;
+            }
+        });
+        $(".num_only").bind("keypress", function (e) {
+            var keyCode = e.which ? e.which : e.keyCode;
+            if (!((keyCode >= 48 && keyCode <= 57))) {
+                return false;
+            }
+        });
+        $(document).on('keypress', '.alphabetic', function (event) {
+            var regex = new RegExp("^[a-zA-Z ]+$");
+            var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+            if (!regex.test(key)) {
+                event.preventDefault();
+                return false;
+            }
+        });
+    }
+    function PreviewImage(no) 
+    {
+        var oFReader = new FileReader();
+        oFReader.readAsDataURL(document.getElementById("uploadImage"+no).files[0]);
+        oFReader.onload = function (oFREvent) 
+        {
+            document.getElementById("uploadPreview"+no).src = oFREvent.target.result;
+            $('#uploadPreview'+no).removeClass('npPreviewImage');
+            $('#uploadPreview'+no).addClass('previewImage');
+            $('#uploadPreview'+no).css('width', '250px');
+        };
+    }
 </script>
+@yield('javascript')
 </body>
 </html>

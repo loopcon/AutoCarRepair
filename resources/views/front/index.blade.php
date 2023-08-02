@@ -381,3 +381,54 @@
 </div>
 <!-- form section end  -->
 @endsection
+@section('javascript')
+<script src="{{ asset('front/js/owl.carousel.min.js') }}"></script>
+<script>
+    $(document).ready(function(){
+        $('#offer-carousel').owlCarousel({
+            loop: true,
+            margin: 30,
+            dots: false,
+            nav: true,
+            items: 1,
+        });
+        $('#testiminoal-carousel').owlCarousel({
+            loop: true,
+            margin: 30,
+            dots: true,
+            nav: false,
+            items: 1,
+            autoplay:true,
+            autoplayTimeout:2000,
+            autoplayHoverPause:true
+        });
+        $('#partner-brand-carousel').owlCarousel({
+            loop: true,
+            margin: 30,
+            dots: false,
+            nav: false,
+            items: 4,
+            autoplay:true,
+            autoplayTimeout:2000,
+            autoplayHoverPause:true,
+            responsiveClass: true,
+            responsive: {
+            0: {
+            items: 1
+            },
+            450:{
+            items: 2
+            },
+            600: {
+            items: 3
+            },
+
+            1024: {
+            items: 4
+            }
+        }
+
+        });
+    });
+</script>
+@endsection
