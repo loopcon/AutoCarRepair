@@ -1,0 +1,129 @@
+@media (max-width:1199px) {
+    .testimonial-section .testiminoal-img-main-text h4{ font-size: 37px;}
+    .service-inner-tophead h2{text-align: center;}
+    .service-inner-tophead-text{ width: 100%;  }
+    .date-sec-main{ flex-wrap: wrap; justify-content: center;}
+    .date-main{ margin-bottom: 10px;}
+    .address-main{ height: 280px;}
+    .call-main { height: 280px;}
+    .why-choose-section .why-choose-item h5{ font-size: 45px;}
+}
+@media (min-width:991px){ 
+    .mobile-menu-sectiondata{ display: none;}
+}
+@media (max-width:991px) {
+    .navbar-bg{ display: none;}
+    .top-navbar-main{ display: none;}
+    .offeer-section .offer-section-item p { font-size: 20px;}
+    .offeer-section .offer-section-item h4{ font-size: 35px; width: 60%; margin: 25px 0px;}
+    .save-more-section .save-more-img::before{ display: none;}
+    .slider-section-main h2{ font-size: 50px;}
+    .slider-section-main h5{ font-size: 35px;}
+    .why-choose-section .why-choose-item h5{ font-size: 30px;}
+    .service-inner-tophead h2{ font-size: 50px; text-align: center;}
+    .service-inner-tophead-text{ width: 100%;  }
+    .ser-inner-breadcum li a { font-size: 20px;}
+    .ser-inner-breadcum li svg{ font-size: 20px;}
+    .ser-inner-breadcum li { font-size: 20px;}
+    .date-sec-main{ flex-wrap: wrap; justify-content: center;}
+    .date-main{ margin-bottom: 10px;}
+    .service-add-main{ flex-wrap: wrap;}
+    .address-main{ margin-bottom: 15px;}
+    .shopping-innerbg .addtocard-shopinner{ width: 120px; font-size: 15px; margin-right: 5px;}
+    .shopping-innerbg .buyfrom-shopinner{ width: 140px; font-size: 15px;}
+    .contact-section-main .address-main-contact p{ width: 60%;}
+    .footet-down-bg .main-soical-icon svg{ padding: 5px;}
+    .footet-down-bg .copy-right-text-main p{ font-size: 15px;}
+    .shop-center-text{ width: 100%;}
+    .shop-center-text h2{ text-align: center; font-size: 45px; }
+    
+}
+@media (max-width:767px) {
+    .slider-section-main h2{ font-size: 50px; }
+    .slider-section-main h5{ font-size: 32px;}
+    .slider-section-main p { font-size: 14px;}
+    .slider-section-main button{ height: 35px; width: 150px; margin-bottom: 15px;}
+    .offeer-section .offer-section-item p { font-size: 15px;}
+    .offeer-section .offer-section-item h4{ font-size: 28px; width: 60%; margin: 25px 0px;}
+    .save-more-section .save-more-img::before{ display: none;}
+    .service-section .always-service-text p{ width: 80%;}
+    .service-inner-tophead h2{ font-size: 40px; text-align: center;}
+    .service-inner-tophead-text{ width: 100%;  }
+    .ser-inner-breadcum li a { font-size: 18px;}
+    .ser-inner-breadcum li svg{ font-size: 18px;}
+    .ser-inner-breadcum li { font-size: 18px;}
+    .date-sec-main{ flex-wrap: wrap; justify-content: center;}
+    .date-main{ margin-bottom: 10px;}
+    .service-innersection-mian .service-inner-mainbg img{ display: block; margin: auto;}
+    .address-main{ margin-top: 10px;}
+    .call-main { margin-top: 10px;}
+    .shoping-breadcrum-bg .shoping-breadcrum-main{ flex-wrap: wrap; justify-content: start;}
+    .thank-you-sec-main h2{ font-size: 50px;}
+}
+@media (max-width:575px) {
+    .slider-section-main h2{ font-size: 35px; }
+    .slider-section-main h5{ font-size: 25px;}
+    .slider-section-main p { font-size: 14px;}
+    .slider-section-main button{ height: 35px; width: 150px; margin-bottom: 15px;}
+    .service-section .always-service-text p{ width: 90%; font-size: 30px;}
+    .navbar-appointment-btn{ height: 35px; width: 150px; font-size: 0.8rem;}
+    .search-icon-main img{ margin-right: 10px; margin-top: 0px; height: 20px;}
+    .acr-logo{ height: 70px;}
+    .why-choose-section .why-choose-item h4{ font-size: 18px;}
+    .why-choose-section .why-choose-item h5{ font-size: 25px; }
+    .why-choose-main{ margin-top: 20px; margin-bottom: 20px;}
+    .offeer-section .offer-section-item p { font-size: 15px;}
+    .offeer-section .offer-section-item h4{ font-size: 20px; width: 100%; margin: 25px 0px;}
+    .offer-section-main img{ height: 300px; width: auto !important; overflow: hidden; }
+    .testimonial-section .testiminoal-img-main-text h4{ font-size: 32px;}
+    .testimonial-section .test-slider-text{ font-size: 18px;}
+    .save-more-section .save-more-text{ font-size: 30px;}
+    .form-section-bg .request-text-main h2{ font-size: 25px;}
+    .form-section-bg .request-text-main{ width: 100%;}
+    .footer-bg-main .footer-img-main{ border-right: 0px;}
+    .save-more-section .save-more-img::before{ width: 200px; display: none;}
+    .form-section-bg .request-text-main h3::before{ width: 200px;}
+    .ser-inner-banner { height: 250px;  width: auto !important; overflow: hidden; object-fit: cover; }
+    .service-inner-tophead h2{ font-size: 30px; text-align: center;}
+    .ser-inner-breadcum{ flex-wrap: wrap;}
+    .service-inner-tophead-text{ width: 100%;  }
+    .ser-inner-breadcum li a { font-size: 15px;}
+    .ser-inner-breadcum li svg{ font-size: 15px;}
+    .ser-inner-breadcum li { font-size: 15px;}
+    .footet-down-bg .copy-right-text-main p{ font-size: 16px;}
+    .footet-down-bg .back-top-main{ justify-content: center; margin: 10px 0px;}
+    .footet-down-bg .main-soical-icon { justify-content: center;}
+    .date-sec-main{ flex-wrap: wrap; justify-content: center;}
+    .date-main{ margin-bottom: 10px;}
+    .afternoon-slot-btn{ margin-top: 5px;}
+    .evening-slot-btn{ margin-top: 5px;}
+    .service-add-main{ flex-wrap: wrap;}
+    .service-name-text{ margin: 5px 0px;}
+    .address-main{ margin-bottom: 10px; margin-top: 10px;}
+    .shop-center-tophead img{ height: 250px; width: auto !important; object-fit:cover ; }
+    .shop-center-text h2{ font-size: 35px; text-align: center; }
+    .shop-center-text{ width: 100%;}
+    .shop-center-breadcum li a{ font-size: 17px;}
+    .shop-center-breadcum li svg{ font-size: 15px;}
+    .shop-center-breadcum li { font-size: 17px;}
+    .shopping-innerbg .addtocard-shopinner{ width: 100px; font-size: 15px; margin-right: 5px;}
+    .shopping-innerbg .buyfrom-shopinner{ width: 130px; font-size: 15px;}
+    .shopping-innerbg .product-content-main h2 { font-size: 1.3rem;}
+    .description-btn{ height: 35px; font-size: 15px; width: 100px; line-height: 32px;}
+    .specification-btn{ height: 35px; font-size: 15px; width: 100px; line-height: 32px; }
+    .description-main p{ font-size: 16px;}
+    ul.specification-tab-text li{ font-size: 16px;}
+    #tabs{ padding-left: 0px;}
+    #tab{ padding-left: 0px;}
+    .shopping-section .shoping-main-product img{ display: block; margin: auto; }
+    .thank-you-sec-main h2{ font-size: 40px;}
+    .offeer-section .owl-carousel .owl-nav button.owl-prev span{ width: 30px; height: 30px; line-height: 20px;}
+    .offeer-section .owl-carousel .owl-nav button.owl-next span{ width: 30px; height: 30px; line-height: 20px;}
+    .footet-down-bg .copy-right-text-main{ justify-content: center;}
+}
+@media (max-width:450px) {
+    .mobile-menu-sectiondata{  flex-wrap: wrap;justify-content: center; }
+    .btn-toggle-item{ margin-left: 5px; padding: 5px 9px;}
+    .btn-toggle-item svg{ font-size: 20px;}
+    .acr-logo{ height: 60px;}
+}

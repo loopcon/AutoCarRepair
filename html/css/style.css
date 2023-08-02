@@ -99,7 +99,7 @@ body{ font-family: 'Playfair Display', serif; }
 .slider-section-box{ display: flex; align-items: center;}
 /* slider css end  */
 /* service css start  */
-.service-section::before{content: url('../img/service-main-img.png'); width: 100%; height: auto; overflow: hidden; position: absolute;margin-top: -110px;left: 0;z-index: 11;  display: inline-block; }
+.service-section::before{content:  url('/img/service-main-img.png'); width: 100%; height: auto; overflow: hidden; position: absolute;margin-top: -110px;left: 0;z-index: 11;  display: inline-block; }
 .service-section .service-main-btn{ text-decoration: none; text-align: center; background: #F99500; color: #fff; height: 45px; width: 200px; display: block; margin:0 auto; line-height: 45px;} 
 .service-section .always-service-text p{ font-size: 37px; text-align: center; width: 41%; margin: 20px auto; font-weight: bold; padding-bottom: 35px;} 
 .service-section .always-service-text { margin-bottom: 30px; }
@@ -108,12 +108,12 @@ body{ font-family: 'Playfair Display', serif; }
 .service-section .services-cate-item:hover{ width: 100%; transition-duration: 2s;  }
 .service-section .services-cate-item h4 { color: #fff; font-weight: bold; margin-left: 10px; text-align: left; font-size: 20px;}
 .service-section .services-cate-item p { color: #fff;  margin-left: 10px; text-align: left;font-size: 12px; margin-bottom: 10px; }
-.service-section .services-cate-item p::after{ content: url('../img/ser-cat1big.png');   position: absolute; top: 2px; left: 52%; }
-.service-section .services-cate-common1 .services-cate-item p::after{ content: url('../img/serv-cat2big.png');   position: absolute; top: 2px;left: 52%; }
-.service-section .services-cate-common2 .services-cate-item p::after{ content: url('../img/ser-cat-3big.png');   position: absolute; top: 2px;left: 52%; }
-.service-section .services-cate-common3 .services-cate-item p::after{ content: url('../img/brake-2big.png');   position: absolute; top: 2px;left: 52%; }
-.service-section .services-cate-common4 .services-cate-item p::after{ content: url('../img/washing-2big.png');   position: absolute; top: 2px;left: 52%; }
-.service-section .services-cate-common4 .services-cate-item p::after{ content: url('../img/polishing-2.big.png');   position: absolute; top: 2px;left: 52%; } 
+.service-section .services-cate-item p::after{ content: url('/img/ser-cat1big.png');   position: absolute; top: 2px; left: 52%; }
+.service-section .services-cate-common1 .services-cate-item p::after{ content: url('/img/serv-cat2big.png');   position: absolute; top: 2px;left: 52%; }
+.service-section .services-cate-common2 .services-cate-item p::after{ content: url('/img/ser-cat-3big.png');   position: absolute; top: 2px;left: 52%; }
+.service-section .services-cate-common3 .services-cate-item p::after{ content: url('/img/brake-2big.png');   position: absolute; top: 2px;left: 52%; }
+.service-section .services-cate-common4 .services-cate-item p::after{ content: url('/img/washing-2big.png');   position: absolute; top: 2px;left: 52%; }
+.service-section .services-cate-common4 .services-cate-item p::after{ content: url('/img/polishing-2.big.png');   position: absolute; top: 2px;left: 52%; } 
 /* service css end  */
 /* why choose us start */
 .why-choose-section{ padding: 20px 0;}
@@ -164,12 +164,12 @@ body{ font-family: 'Playfair Display', serif; }
 .save-more-section{ background-color: #E56F31;}
 .save-more-section .save-more-text{ color: #fff; font-weight: bold; font-size: 40px;  margin: 45px 10px; }
 .save-more-section .save-more-text p{ margin-bottom: 0px;   }
-.save-more-section .save-more-img::before { content: url('../img/cont-blue-toyota.png'); position: absolute; margin-top: -50px; height: auto;  overflow-x: hidden;  }
+.save-more-section .save-more-img::before { content: url('/img/cont-blue-toyota.png'); position: absolute; margin-top: -50px; height: auto;  overflow-x: hidden;  }
 /* save more css end  */
 /* form  section css start  */
 .form-section-bg{ background-color: #164498; padding-bottom: 30px; }
 .form-section-bg .request-text-main { width: 50%; padding-top: 50px; padding-bottom: 35px;}
-.form-section-bg .request-text-main h3::before{  content: url('../img/Contact-Us-heading.png'); position: absolute; z-index: 0; margin-top: -8px; display: block; height: auto; width: 350px; overflow: hidden;}
+.form-section-bg .request-text-main h3::before{  content: url('/img/Contact-Us-heading.png'); position: absolute; z-index: 0; margin-top: -8px; display: block; height: auto; width: 350px; overflow: hidden;}
 .form-section-bg .request-text-main h2{ color: #E56F31; font-size: 44px; font-weight: bold; } 
 .form-section-bg .request-text-main p{  color: #fff; font-size: 15px;}
 .form-section-bg .form-label{ color: #fff; }

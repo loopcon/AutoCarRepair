@@ -317,3 +317,5 @@ ALTER TABLE `product_images`
   DROP `title`;
 ALTER TABLE `product_images` CHANGE `is_primary` `is_primary` TINYINT(1) NULL DEFAULT NULL COMMENT '1=Yes,0=No';
 
+-- Khushali : 02-08-2023 1:40 AM
+ALTER TABLE `home_page_setting` ADD `footer_description` TEXT NULL AFTER `meta_description`;

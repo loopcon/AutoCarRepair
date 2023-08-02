@@ -59,6 +59,12 @@
                                     @if ($errors->has('section1_description')) <div class="text-danger">{{ $errors->first('section1_description') }}</div>@endif
                                 </div>
 
+                                <div class="mt-2 col-md-6">
+                                    <label class="form-label" for="footer_description">{{__('Footer Description')}}</label>
+                                    <textarea class="form-control" id="footer_description" name="footer_description" placeholder="{{__('Footer Description')}}">{{ isset($record->footer_description) ? $record->footer_description : old('footer_description') }}</textarea>
+                                    @if ($errors->has('footer_description')) <div class="text-danger">{{ $errors->first('footer_description') }}</div>@endif
+                                </div>
+
                                 <div class="mt-3  col-md-12">
                                     <h6>SEO Details</h6>
                                     <hr/>

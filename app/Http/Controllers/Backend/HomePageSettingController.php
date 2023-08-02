@@ -33,6 +33,7 @@ class HomePageSettingController extends MainController
         }
         $content->section1_title1 = $request->section1_title1;
         $content->section1_title2 = $request->section1_title2;
+        $content->footer_description = $request->footer_description;
         $content->section1_description = $request->section1_description;
         $content->meta_title = $request->meta_title;
         $content->meta_keywords = $request->meta_keywords;
