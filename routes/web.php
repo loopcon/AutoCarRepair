@@ -154,4 +154,5 @@ Route::group(['as' => 'front_', 'middleware' => 'XSS'], function() {
     Route::get('reset-password/{token?}', [\App\Http\Controllers\Front\Auth\LoginController::class, 'showResetPasswordForm'])->name('reset-password');
     Route::post('set-new-password', [\App\Http\Controllers\Front\Auth\LoginController::class, 'resetPassword'])->name('set-new-password');
 
+    Route::get('our-services', [App\Http\Controllers\Front\ServiceController::class, 'services'])->name('our-services');
 });

@@ -48,7 +48,7 @@
             </div>
             <div class="col-10 col-sm-4 col-lg-2">
                 <ul class="fot-ourservice-main">
-                    <li><a class="fot-ourservice-heading" href="#">Our Services</a></li>
+                    <li><a class="fot-ourservice-heading" href="{{route('front_our-services')}}">Our Services</a></li>
                     @php($services = getServiceCategory())
                     @if($services->count())
                         @foreach($services as $service)
