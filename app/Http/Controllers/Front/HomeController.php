@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Constant;
 use App\Models\HomePageSetting;
 use App\Models\ServiceCategory;
+use App\Models\Enquiry;
+use Auth;
 use DB;
 
 class HomeController extends MainController
@@ -24,5 +26,32 @@ class HomeController extends MainController
         $return_data['scategories'] = ServiceCategory::select('id', 'slug', 'title', 'image')->where([['is_archive', Constant::NOT_ARCHIVE], ['status', Constant::ACTIVE]])->orderBy('id', 'desc')->get();
 
         return view('front/index',array_merge($this->data,$return_data));
+    }
+    
+    public function appointmentStore(Request $request)
+    {
+        $this->validate($request, [
+                'name' => ['required'],
+                'email' => ['required'],
+                'service' => ['required'],
+                'message' => ['required'],
+            ],[
+                'required'  => trans('The :attribute field is required.')
+            ]
+        );
+        $appointment = Enquiry::create([
+            'name' => $request->name ? strip_tags($request->name) : NULL,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'service' => $request->service,
+            'message' => $request->message,
+            'created_by' => Auth::guard('admin')->user()->id,
+            'updated_by' => NULL,
+        ]);
+        if($appointment){
+            return redirect('/')->with('success', trans('Your Request Sent Successfully!'));
+        } else {
+            return redirect()->back()->with('error', trans('Something went wrong, please try again later!'));
+        }
     }
 }

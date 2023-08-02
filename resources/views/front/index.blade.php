@@ -342,38 +342,45 @@
             <h2>Request an Appointment</h2>     
             <p>After you submit the form, a representative will call you back with the information you’ll need to make an appointment.</p>
         </div>
-        <form>
+        <form method="POST" action="{{route('front_appointment-store')}}" id="appointment-form" enctype="multipart/form-data" data-parsley-validate="">
+        @csrf
             <div class="row m-0">
                 <div class="col-12 col-sm-6">
                     <div class="mb-5">
                         <label for="exampleInputEmail1" class="form-label">YOUR NAME</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Your Name" aria-describedby="nae">
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Enter Your Name" aria-describedby="nae">
+                        @if ($errors->has('name')) <div class="text-warning">{{ $errors->first('name') }}</div>@endif
                     </div>
                     <div class="mb-5">
                         <label for="exampleInputEmail1" class="form-label">YOUR PHONE</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Your Phone Number" aria-describedby="nae">
+                        <input type="text" class="form-control" id="phone" name="phone" placeholder="Enter Your Phone Number" aria-describedby="nae">
                     </div>
                 </div>
                 <div class="col-12 col-sm-6">
                     <div class="mb-5">
                         <label for="exampleInputEmail1" class="form-label">YOUR EMAIL</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter Your Email" aria-describedby="emailHelp">
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Enter Your Email" aria-describedby="emailHelp">
+                        @if ($errors->has('email')) <div class="text-warning">{{ $errors->first('email') }}</div>@endif
                     </div>
                     <div class="mb-5">
                         <label for="exampleInputEmail1" class="form-label">YOUR SERVICE</label>
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected>Open this select menu</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                        <select class="form-select" id="service" name="service" aria-label="Default select example">
+                            <option selected disabled>Open this select menu</option>
+                            @foreach($scategories as $value)
+                                <option value="{{$value->title}}" {{isset($scategories->id) && $scategories->id == $value->id ? 'selected' : (old('id') && old('id') == $value->id ? 'selected' : '')}}>{{$value->title}}</option>
+                            @endforeach
+                            <!-- <option value="2">Two</option>
+                            <option value="3">Three</option> -->
                         </select>
+                        @if ($errors->has('service')) <div class="text-warning">{{ $errors->first('service') }}</div>@endif
                     </div>
                 </div>
             </div>
             
             <div class="form-group mb-3">
                 <label for="exampleFormControlTextarea1" class="form-label">YOUR MESSAGE</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="1"></textarea>
+                <textarea class="form-control" id="message" name="message" rows="1"></textarea>
+                @if ($errors->has('message')) <div class="text-warning">{{ $errors->first('message') }}</div>@endif
               </div>
             <button type="submit" class="form-btn-contant"> Send Message</button>
           </form>
@@ -430,5 +437,11 @@
 
         });
     });
+    // if ( getElementById( 'name' ) == null )
+    // {
+    //     function onFocus() {
+    //         document.getElementById( 'name' ).innerHTML = '<b>' + this.name + ' is focused </b>';
+    //     }
+    // }
 </script>
 @endsection
