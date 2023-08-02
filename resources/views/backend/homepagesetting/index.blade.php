@@ -29,28 +29,29 @@
                                     <label class="form-label" for="section1_title2">{{__('Section 1 Title 2')}}<span class="text-danger">*</span></label>
                                     <input type="text" class="form-control" id="section1_title2" name="section1_title2" placeholder="{{__('Section 1 Title 2')}}" required=""  data-parsley-required-message="{{ __("This value is required.")}}" value="{{ isset($record->section1_title2) ? $record->section1_title2 : old('section1_title2') }}">
 
-                                    @if ($errors->has('name')) <div class="text-danger">{{ $errors->first('name') }}</div>@endif
+                                    @if ($errors->has('section1_title2')) <div class="text-danger">{{ $errors->first('section1_title2') }}</div>@endif
                                 </div>
 
-                                <div class="mt-2 col-6">
-                                    <label for="section1_image">{{__('Section 1 Image')}}</label>
-                                    <div class="profile-icon">
-                                        @php($i = 0)
-                                        @php($required = 'required')
+                                <div class="mt-2 col-md-6">
+                                <label for="section1_image">{{__('Section 1 Image')}}</label>
+                                    <div class="product_image">
+                                    @php($required = 'required')
                                         @if(isset($record->section1_image))
                                             @if($record->section1_image !='')
                                                 @php($required = '')
-                                                <img class='img-responsive previewImage img-fluid' id="uploadPreview{{$i}}" src="{{url('public/uploads/content/'.$record->section1_image)}}"  alt=''>
+                                                <img class='previewImage img-fluid' id="uploadPreview1" src="{{url('public/uploads/content/'.$record->section1_image)}}"  alt=''>
                                             @else
                                                 @php($required = 'required')
-                                                <img class='img-responsive img-fluid' id="uploadPreview{{$i}}" src="{{url('public/no.jpg')}}"  alt=''>
+                                                <img class='img-fluid' id="uploadPreview1" src="{{url('public/no.jpg')}}"  alt=''>
                                             @endif
+                                        @else
+                                            @php($required = 'required')
+                                            <img class='img-fluid' id="uploadPreview1" src="{{url('public/no.jpg')}}"  alt=''>
                                         @endif
-                                        <div class="m-b-10">
-                                            <input type="file" id="uploadImage{{$i}}" accept="image/x-png, image/gif, image/jpeg" class="btn btn-warning btn-block btn-sm"  name="section1_image" {{$required}} data-parsley-required-message="{{ __("This value is required.")}}">
-                                            @if ($errors->has('section1_image')) <div class="errors_msg">{{ $errors->first('section1_image') }}</div>@endif
-                                        </div>
                                     </div>
+                                    <div class="m-b-10">
+                                        <input type="file" id="uploadImage1" accept="image/x-png, image/gif, image/jpeg" class="btn btn-warning btn-block btn-sm"  name="section1_image" onChange="this.parentNode.nextSibling.value = this.value; PreviewImage(1);">
+                                    </div> 
                                 </div>
 
                                 <div class="mt-2 col-md-6">

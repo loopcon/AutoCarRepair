@@ -59,22 +59,22 @@
 
                                 <div class="mb-3 col-md-6">
                                     <label class="form-label" for="image_1">{{__('Image')}}</label>
-                                    <div class="profile-icon">
+                                    <div class="product_image">
                                         @if(isset($record->image_1))
                                             @if($record->image_1 !='')
                                                 @php($required = '')
-                                                <img class='previewImage img-fluid' id="uploadPreview0" src="{{url('public/uploads/service/category/'.$record->image_1)}}"  alt=''>
+                                                <img class='previewImage img-fluid' id="uploadPreview1" src="{{url('public/uploads/service/category/'.$record->image_1)}}"  alt=''>
                                             @else
                                                 @php($required = 'required')
-                                                <img class='img-fluid' id="uploadPreview0" src="{{url('public/no.jpg')}}"  alt=''>
+                                                <img class='img-fluid' id="uploadPreview1" src="{{url('public/no.jpg')}}"  alt=''>
                                             @endif
                                         @else
                                             @php($required = 'required')
-                                            <img class='img-fluid' id="uploadPreview0" src="{{url('public/no.jpg')}}"  alt=''>
+                                            <img class='img-fluid' id="uploadPreview1" src="{{url('public/no.jpg')}}"  alt=''>
                                         @endif
                                     </div>
                                     <div class="m-b-10">
-                                        <input type="file" id="uploadImage0" accept="image/x-png, image/gif, image/jpeg" class="btn btn-warning btn-block btn-sm"  name="image_1" >
+                                        <input type="file" id="uploadImage1" accept="image/x-png, image/gif, image/jpeg" class="btn btn-warning btn-block btn-sm"  name="image_1" onChange="this.parentNode.nextSibling.value = this.value; PreviewImage(1);">
                                     </div> 
                                 </div>
                             </div>
