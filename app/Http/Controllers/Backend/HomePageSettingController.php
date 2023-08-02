@@ -24,7 +24,7 @@ class HomePageSettingController extends MainController
     {
         $content = HomePageSetting::find(1);
         if($request->hasFile('section1_image')) {
-            $old_image = isset($ads->section1_image) ? $ads->section1_image : NULL;
+            $old_image = isset($content->section1_image) ? $content->section1_image : NULL;
             if($old_image){
                 removeFile('uploads/content/'.$old_image);
             }

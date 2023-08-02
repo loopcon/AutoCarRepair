@@ -160,20 +160,25 @@ class ServiceController extends MainController
     public function serviceCategoryDestroy($id)
     {
         $id = Crypt::decrypt($id);
-//        $constraint_array = array(
-//            array('table' => 'model', 'column' => 'carbrand_id')
-//        );
-//        $is_delete = checkDeleteConstrainnt($constraint_array, $id);
-//        if($is_delete) {
+        $constraint_array = array(
+            array('table' => 'model', 'column' => 'carbrand_id')
+        );
+        $is_delete = checkDeleteConstrainnt($constraint_array, $id);
+        if($is_delete) {
+            $scategory = ServiceCategory::where('id', $id)->first();
+            $old_image = $scategory->image;
+            if($old_image){
+                removeFile('uploads/service/category/'.$old_image);
+            }
             $scategory = ServiceCategory::where('id', $id)->delete();
             if($scategory) {
                 return redirect()->back()->with('success', trans('Service Category Deleted Successfully!'));
             } else {
                 return redirect()->back()->with('error', trans('Something went wrong, please try again later!'));
             }
-//        } else {
-//            return redirect()->back()->with('error', trans('You can not delete this car brand! Somewhere this car brand information is added in system!'));
-//        }
+       } else {
+           return redirect()->back()->with('error', trans('You can not delete this car brand! Somewhere this car brand information is added in system!'));
+       }
     }
     public function serviceCategoryDatatable(request $request)
     {
@@ -402,12 +407,18 @@ class ServiceController extends MainController
     {
         $id = Crypt::decrypt($id);
         $service_img = ScheduledPackage::where('id', $id)->first();
-        $old_image = $service_img->image_other;
-            if($old_image){
-                removeFile('uploads/service/package/'.$old_image);
-            }
+        $old_image_other = $service_img->image_other;
+        if($old_image_other){
+            removeFile('uploads/service/package/'.$old_image_other);
+        }
+        $old_image = $service_img->image;
+        if($old_image){
+            removeFile('uploads/service/package/'.$old_image);
+        }
         $page = ScheduledPackage::where('id', $id)->delete();
         if($page) {
+
+            $package_specification = PackageSpecification::where('sp_id', $id)->delete();
             return redirect('backend/pages')->with('success', trans('Scheduled Package Deleted Successfully!'));
         } else {
             return redirect()->back()->with('error', trans('Something went wrong, please try again later!'));

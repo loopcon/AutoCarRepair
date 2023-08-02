@@ -126,20 +126,26 @@ class ShopCategoryController extends MainController
     public function destroy(string $id)
     {
         $id = Crypt::decrypt($id);
-//        $constraint_array = array(
-//            array('table' => 'model', 'column' => 'carbrand_id')
-//        );
-//        $is_delete = checkDeleteConstrainnt($constraint_array, $id);
-//        if($is_delete) {
+       $constraint_array = array(
+           array('table' => 'products', 'column' => 'shop_category_id')
+       );
+       $is_delete = checkDeleteConstrainnt($constraint_array, $id);
+       if($is_delete) {
+            $shopcategory = ShopCategory::where('id', $id)->first();
+            $old_image = $shopcategory->image;
+            if($old_image){
+                removeFile('uploads/shopCategory/'.$old_image);
+            }
+
             $shopcategory = ShopCategory::where('id', $id)->delete();
             if($shopcategory) {
                 return redirect()->back()->with('success', trans('Shop Category Deleted Successfully!'));
             } else {
                 return redirect()->back()->with('error', trans('Something went wrong, please try again later!'));
             }
-//        } else {
-//            return redirect()->back()->with('error', trans('You can not delete this car brand! Somewhere this car brand information is added in system!'));
-//        }
+       } else {
+           return redirect()->back()->with('error', trans('You can not delete this Shop Category! Somewhere this Shop Category information is added in system!'));
+       }
     }
 
     public function shopcategoriesDatatable(request $request)

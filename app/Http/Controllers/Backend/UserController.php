@@ -48,11 +48,7 @@ class UserController extends MainController
 
     public function destroy(string $id)
     {
-         $id = Crypt::decrypt($id);
-        // $user = User::where('id', $id)->update([
-        //     'is_archive' => Constant::ARCHIVE,
-        //     'updated_by' => Auth::guard('admin')->user()->id,
-        // ]);
+        $id = Crypt::decrypt($id);
         $user = User::where('id', $id)->delete();
         if($user) {
             return redirect('backend/user')->with('success', trans('User Deleted Successfully!'));
