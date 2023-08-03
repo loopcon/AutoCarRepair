@@ -94,6 +94,7 @@
             </div>
         </div>
     </div>
+<meta name="csrf-token" content="{{ csrf_token() }}" />
 <!-- footer down end -->
 <script src="{{ asset('front/js/jquery.min.js') }}"></script>
 <script src="{{ asset('front/js/bootstrap.bundle.min.js') }}"></script>
