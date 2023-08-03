@@ -20,7 +20,6 @@
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <div class="box-body">
                                 <div class="row">
-
                                     <div class="mb-3 col-md-4 select-parsley">
                                         <label for="shop_category_id" class="form-label">Shop Category<span class="text-danger">*</span></label>
                                         <select class="form-control select2" name="shop_category_id" id="shop_category_id" required="">
@@ -139,7 +138,6 @@
                                         <input type="hidden" name="total" value="{{$total}}">
                                         <input type="hidden" name="last_id" value="{{$total}}">
                                     </div>
-                                
                                 </div>
                             </div>
                             <div class="box-footer">
