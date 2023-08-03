@@ -427,7 +427,7 @@ class ServiceController extends MainController
     public function scheduledPackageDatatable(request $request)
     {
         if($request->ajax()){
-            $query = ScheduledPackage::with('categoryDetail', 'brandDetail', 'modelDetail', 'fuelTypeDetail')->select('id', 'sc_id', 'brand_id', 'model_id', 'fuel_type_id', 'title', 'image', 'warrenty_info', 'recommended_info', 'time_takes', 'price')->where('is_archive', '=', Constant::NOT_ARCHIVE)->orderBy('id', 'DESC');
+            $query = ScheduledPackage::with('categoryDetail', 'brandDetail', 'modelDetail', 'fuelTypeDetail')->select('id', 'sc_id', 'brand_id', 'model_id', 'fuel_type_id', 'title', 'image', 'warrenty_info', 'recommended_info', 'note', 'time_takes', 'price')->where('is_archive', '=', Constant::NOT_ARCHIVE)->orderBy('id', 'DESC');
 
             if($request->serviceCategory!='all') {
                 if($request->serviceCategory!='') {
