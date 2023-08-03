@@ -78,6 +78,7 @@
                                     <th>{{__('Title')}}</th>
                                     <th>{{__('Category')}}</th>
                                     <th>{{__('Car Detail')}}</th>
+                                    <th>{{__('Note')}}</th>
                                     <th>{{__('Time Takes')}}</th>
                                     <th>{{__('Price')}}</th>
                                     <th>{{__('Action')}}</th>
@@ -114,6 +115,7 @@ $(document).ready(function() {
             {data: 'title', name: 'title'},
             {data: 'category', name: 'category'},
             {data: 'car_detail', name: 'car_detail'},
+            {data: 'note', name: 'note'},
             {data: 'time_takes', name: 'time_takes'},
             {data: 'price', name: 'price'},
             {data: 'action', name: 'action', orderable: false, searchable: false},

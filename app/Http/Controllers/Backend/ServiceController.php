@@ -59,7 +59,7 @@ class ServiceController extends MainController
         $slug = $request->title != '' ? slugify($request->title) : NULL;
 
         $scstegory = new ServiceCategory();
-        $fields = array('title','description');
+        $fields = array('title','description','meta_title','meta_keywords','meta_description');
         foreach($fields as $field){
             $scstegory->$field = isset($request->$field) && $request->$field ? $request->$field : NULL;
         }
@@ -120,7 +120,7 @@ class ServiceController extends MainController
         $slug = $request->title != '' ? slugify($request->title) : NULL;
 
         $scategory = ServiceCategory::find($id);
-        $fields = array('title','description');
+        $fields = array('title','description','meta_title','meta_keywords','meta_description');
         foreach($fields as $field){
             $scategory->$field = isset($request->$field) && $request->$field ? $request->$field : NULL;
         }
@@ -270,7 +270,7 @@ class ServiceController extends MainController
         $slug = $request->title != '' ? slugify($request->title) : NULL;
 
         $spackage = new ScheduledPackage();
-        $fields = array('sc_id', 'brand_id', 'model_id', 'fuel_type_id', 'title', 'price', 'warrenty_info', 'recommended_info', 'time_takes');
+        $fields = array('sc_id', 'brand_id', 'model_id', 'fuel_type_id', 'title', 'price', 'warrenty_info', 'note', 'recommended_info', 'time_takes','meta_title','meta_keywords','meta_description');
         foreach($fields as $field){
             $spackage->$field = isset($request->$field) && $request->$field != '' ? $request->$field : NULL;
         }
@@ -350,7 +350,7 @@ class ServiceController extends MainController
         $slug = $request->title != '' ? slugify($request->title) : NULL;
 
         $spackage = ScheduledPackage::find($id);
-        $fields = array('sc_id', 'brand_id', 'model_id', 'fuel_type_id', 'title', 'price', 'warrenty_info', 'recommended_info', 'time_takes');
+        $fields = array('sc_id', 'brand_id', 'model_id', 'fuel_type_id', 'title', 'price', 'warrenty_info', 'recommended_info', 'note', 'time_takes','meta_title','meta_keywords','meta_description');
         foreach($fields as $field){
             $spackage->$field = isset($request->$field) && $request->$field != '' ? $request->$field : NULL;
         }
@@ -419,7 +419,7 @@ class ServiceController extends MainController
         if($page) {
 
             $package_specification = PackageSpecification::where('sp_id', $id)->delete();
-            return redirect('backend/pages')->with('success', trans('Scheduled Package Deleted Successfully!'));
+            return redirect('backend/scheduled-package')->with('success', trans('Scheduled Package Deleted Successfully!'));
         } else {
             return redirect()->back()->with('error', trans('Something went wrong, please try again later!'));
         }
@@ -427,7 +427,7 @@ class ServiceController extends MainController
     public function scheduledPackageDatatable(request $request)
     {
         if($request->ajax()){
-            $query = ScheduledPackage::with('categoryDetail', 'brandDetail', 'modelDetail', 'fuelTypeDetail')->select('id', 'sc_id', 'brand_id', 'model_id', 'fuel_type_id', 'title', 'image', 'warrenty_info', 'recommended_info', 'time_takes', 'price')->where('is_archive', '=', Constant::NOT_ARCHIVE)->orderBy('id', 'DESC');
+            $query = ScheduledPackage::with('categoryDetail', 'brandDetail', 'modelDetail', 'fuelTypeDetail')->select('id', 'sc_id', 'brand_id', 'model_id', 'fuel_type_id', 'title', 'image', 'warrenty_info', 'recommended_info', 'note', 'time_takes', 'price')->where('is_archive', '=', Constant::NOT_ARCHIVE)->orderBy('id', 'DESC');
 
             if($request->serviceCategory!='all') {
                 if($request->serviceCategory!='') {

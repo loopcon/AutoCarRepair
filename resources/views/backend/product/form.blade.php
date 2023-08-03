@@ -20,7 +20,6 @@
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <div class="box-body">
                                 <div class="row">
-
                                     <div class="mb-3 col-md-4 select-parsley">
                                         <label for="shop_category_id" class="form-label">Shop Category<span class="text-danger">*</span></label>
                                         <select class="form-control select2" name="shop_category_id" id="shop_category_id" required="">
@@ -74,6 +73,29 @@
                                         @if ($errors->has('sku')) <div class="text-danger">{{ $errors->first('sku') }}</div>@endif
                                     </div>
 
+                                    <div class="mt-3  col-md-12">
+                                        <h6>SEO Details</h6>
+                                        <hr/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="mb-3 col-md-4">
+                                        <label class="form-label" for="meta_title">{{__('Meta Title')}}</label>
+                                        <input type="text" class="form-control" id="meta_title" name="meta_title" placeholder="{{__('Meta Title')}}" value="{{ isset($record->meta_title) ? $record->meta_title : old('meta_title') }}">
+                                        @if ($errors->has('meta_title')) <div class="text-danger">{{ $errors->first('meta_title') }}</div>@endif
+                                    </div>
+
+                                    <div class="mb-3 col-md-4">
+                                        <label class="form-label" for="meta_keywords">{{__('Meta Keyword')}}</label>
+                                        <textarea class="form-control" id="meta_keywords" name="meta_keywords" placeholder="{{__('Meta Keyword')}}">{{ isset($record->meta_keywords) ? $record->meta_keywords : old('meta_keywords') }}</textarea>
+                                        @if ($errors->has('meta_keywords')) <div class="text-danger">{{ $errors->first('meta_keywords') }}</div>@endif
+                                    </div>
+
+                                    <div class="mb-3 col-md-4">
+                                        <label class="form-label" for="meta_description">{{__('Meta Description')}}</label>
+                                        <textarea class="form-control" id="meta_description" name="meta_description" placeholder="{{__('Meta Description')}}">{{ isset($record->meta_description) ? $record->meta_description : old('meta_description') }}</textarea>
+                                        @if ($errors->has('meta_description')) <div class="text-danger">{{ $errors->first('meta_description') }}</div>@endif
+                                    </div>
                                 </div>
 
                                 <div class="form-group col-md-12">
@@ -116,7 +138,7 @@
                                         <input type="hidden" name="total" value="{{$total}}">
                                         <input type="hidden" name="last_id" value="{{$total}}">
                                     </div>
-                                
+                                </div>
                             </div>
                             <div class="box-footer">
                                 <button type="submit" class="btn btn-primary">Submit</button>
@@ -138,24 +160,73 @@
     <script>
         $(document).ready(function(){
             $('.select2').select2();
-            CKEDITOR.replaceAll(function (textarea, config) {
-                config.height = '200px';
-                config.toolbarGroups = [
-                        { name: 'document', groups: [ 'mode', 'document', 'doctools' ] },
-                        { name: 'clipboard', groups: [ 'clipboard', 'undo' ] },
-                        { name: 'editing', groups: [ 'find', 'selection', 'spellchecker', 'editing' ] },
-                        { name: 'forms', groups: [ 'forms' ] },
-                        { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
-                        { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi', 'paragraph' ] },
-                        { name: 'links', groups: [ 'links' ] },
-                        { name: 'insert', groups: [ 'insert' ] },
-                        { name: 'styles', groups: [ 'styles' ] },
-                        { name: 'colors', groups: [ 'colors' ] },
-                        { name: 'tools', groups: [ 'tools' ] },
-                        { name: 'others', groups: [ 'others' ] },
-                        { name: 'about', groups: [ 'about' ] }
-                ];
-                config.removeButtons = 'Save,NewPage,Preview,Print,Templates,Cut,Copy,Paste,PasteText,PasteFromWord,Undo,Redo,Find,Replace,SelectAll,Form,Checkbox,Radio,TextField,Textarea,Select,Button,ImageButton,HiddenField,Strike,Subscript,Superscript,CopyFormatting,RemoveFormat,NumberedList,BulletedList,Outdent,Indent,Blockquote,CreateDiv,JustifyLeft,JustifyCenter,JustifyRight,JustifyBlock,BidiLtr,BidiRtl,Language,Link,Unlink,Anchor,Image,Flash,Table,HorizontalRule,Smiley,SpecialChar,PageBreak,Iframe,Maximize,ShowBlocks,About';      
+             // $(document).ready(function(){
+                //     CKEDITOR.replaceAll(function(textarea,config){
+                //     config.height='200px';
+                //     config.toolbarGroups=[
+                //     {name:'document',groups:['mode','document','doctools']},
+                //     {name:'clipboard',groups:['clipboard','undo']},
+                //     {name:'editing',groups:['find','selection','spellchecker','editing']},
+                //     {name:'forms',groups:['forms']},
+                //     {name:'basicstyles',groups:['basicstyles','cleanup']},
+                //     {name:'paragraph',groups:['list','indent','blocks','align','bidi','paragraph']},
+                //     {name:'links',groups:['links']},
+                //     {name:'insert',groups:['insert']},
+                //     {name:'styles',groups:['styles']},
+                //     {name:'colors',groups:['colors']},
+                //     {name:'tools',groups:['tools']},
+                //     {name:'others',groups:['others']},
+                //     {name:'about',groups:['about']}
+                //     ];
+                //     config.removeButtons='Save,NewPage,Preview,Print,Templates,Cut,Copy,Paste,PasteText,PasteFromWord,Undo,Redo,Find,Replace,SelectAll,Form,Checkbox,Radio,TextField,Textarea,Select,Button,ImageButton,HiddenField,Strike,Subscript,Superscript,CopyFormatting,RemoveFormat,NumberedList,BulletedList,Outdent,Indent,Blockquote,CreateDiv,JustifyLeft,JustifyCenter,JustifyRight,JustifyBlock,BidiLtr,BidiRtl,Language,Link,Unlink,Anchor,Image,Flash,Table,HorizontalRule,Smiley,SpecialChar,PageBreak,Iframe,Maximize,ShowBlocks,About';
+                // });
+            // });
+            $(document).ready(function(){
+                CKEDITOR.replace('description', {
+                    height:200,
+                    removePlugins : 'resize',
+                    filebrowserBrowseUrl : '<?php echo url("public/plugins/kcfinder/browse.php?opener=ckeditor&type=files") ?>',
+                    filebrowserImageBrowseUrl : '<?php echo url("public/plugins/kcfinder/browse.php?opener=ckeditor&type=images") ?>',
+                    filebrowserFlashBrowseUrl : '<?php echo url("public/plugins/kcfinder/browse.php?opener=ckeditor&type=flash") ?>',
+                    filebrowserUploadUrl : '<?php echo url("public/plugins/kcfinder/upload.php?opener=ckeditor&type=files") ?>',
+                    filebrowserImageUploadUrl : '<?php echo url("public/plugins/kcfinder/upload.php?opener=ckeditor&type=images") ?>',
+                    filebrowserFlashUploadUrl : '<?php echo url("public/plugins/kcfinder/upload.php?opener=ckeditor&type=flash") ?>',
+                });
+                CKEDITOR.on('instanceReady', function () {
+                    $('#description').attr();
+                    $.each(CKEDITOR.instances, function (instance) {
+                        CKEDITOR.instances[instance].on("change", function (e) {
+                            for (instance in CKEDITOR.instances) {
+                                CKEDITOR.instances[instance].updateElement();
+                                //$('form').parsley().validate();
+                            }
+                        });
+                    });
+                });
+            });
+
+            $(document).ready(function(){
+                CKEDITOR.replace('specification', {
+                    height:200,
+                    removePlugins : 'resize',
+                    filebrowserBrowseUrl : '<?php echo url("public/plugins/kcfinder/browse.php?opener=ckeditor&type=files") ?>',
+                    filebrowserImageBrowseUrl : '<?php echo url("public/plugins/kcfinder/browse.php?opener=ckeditor&type=images") ?>',
+                    filebrowserFlashBrowseUrl : '<?php echo url("public/plugins/kcfinder/browse.php?opener=ckeditor&type=flash") ?>',
+                    filebrowserUploadUrl : '<?php echo url("public/plugins/kcfinder/upload.php?opener=ckeditor&type=files") ?>',
+                    filebrowserImageUploadUrl : '<?php echo url("public/plugins/kcfinder/upload.php?opener=ckeditor&type=images") ?>',
+                    filebrowserFlashUploadUrl : '<?php echo url("public/plugins/kcfinder/upload.php?opener=ckeditor&type=flash") ?>',
+                });
+                CKEDITOR.on('instanceReady', function () {
+                    $('#specification').attr();
+                    $.each(CKEDITOR.instances, function (instance) {
+                        CKEDITOR.instances[instance].on("change", function (e) {
+                            for (instance in CKEDITOR.instances) {
+                                CKEDITOR.instances[instance].updateElement();
+                                //$('form').parsley().validate();
+                            }
+                        });
+                    });
+                });
             });
 
             $("#product-image-add").click(function() {

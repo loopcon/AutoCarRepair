@@ -39,16 +39,22 @@
             </div>
             <div class="col-12 col-sm-6 col-lg-2">
                 <ul class="fot-about-main">
-                    <li><a class="fot-about-main-header" href="#">About Us </a></li>
+                    @php($cmsInfo = getCmsPageName('1'))
+                    @if(isset($cmsInfo->slug) && $cmsInfo->slug)
+                        <li><a class="fot-about-main-header" href="{{url($cmsInfo->slug)}}">{{isset($cmsInfo->name) ? ucwords($cmsInfo->name) : ''}}</a></li>
+                    @endif
                     <li><a href="#">FAQs</a></li>
                     <li><a href="#">Blogs</a></li>
-                    <li><a href="#">Contact US</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="{{url('contact-us')}}">Contact US</a></li>
+                    @php($cmsInfo = getCmsPageName('10'))
+                    @if(isset($cmsInfo->slug) && $cmsInfo->slug)
+                        <li><a href="{{url($cmsInfo->slug)}}">{{isset($cmsInfo->name) ? ucwords($cmsInfo->name) : ''}}</a></li>
+                    @endif
                 </ul>
             </div>
             <div class="col-10 col-sm-4 col-lg-2">
                 <ul class="fot-ourservice-main">
-                    <li><a class="fot-ourservice-heading" href="#">Our Services</a></li>
+                    <li><a class="fot-ourservice-heading" href="{{route('front_our-services')}}">Our Services</a></li>
                     @php($services = getServiceCategory())
                     @if($services->count())
                         @foreach($services as $service)
@@ -88,6 +94,7 @@
             </div>
         </div>
     </div>
+<meta name="csrf-token" content="{{ csrf_token() }}" />
 <!-- footer down end -->
 <script src="{{ asset('front/js/jquery.min.js') }}"></script>
 <script src="{{ asset('front/js/bootstrap.bundle.min.js') }}"></script>

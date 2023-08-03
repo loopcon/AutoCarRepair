@@ -319,3 +319,16 @@ ALTER TABLE `product_images` CHANGE `is_primary` `is_primary` TINYINT(1) NULL DE
 
 -- Khushali : 02-08-2023 1:40 AM
 ALTER TABLE `home_page_setting` ADD `footer_description` TEXT NULL AFTER `meta_description`;
+
+-- Disha : 02-08-2023 3:43 PM
+ALTER TABLE `service_categories` ADD `meta_title` VARCHAR(255) NULL DEFAULT NULL AFTER `description`, ADD `meta_keywords` TEXT NULL DEFAULT NULL AFTER `meta_title`, ADD `meta_description` TEXT NULL DEFAULT NULL AFTER `meta_keywords`;
+
+ALTER TABLE `sceduled_packages` ADD `meta_title` VARCHAR(255) NULL DEFAULT NULL AFTER `price`, ADD `meta_keywords` TEXT NULL DEFAULT NULL AFTER `meta_title`, ADD `meta_description` TEXT NULL DEFAULT NULL AFTER `meta_keywords`;
+
+ALTER TABLE `products` ADD `meta_title` VARCHAR(255) NULL DEFAULT NULL AFTER `flipcart_link`, ADD `meta_keywords` TEXT NULL DEFAULT NULL AFTER `meta_title`, ADD `meta_description` TEXT NULL DEFAULT NULL AFTER `meta_keywords`;
+
+-- Disha : 03-08-2023 9:41 AM
+ALTER TABLE `fuel_type` ADD `image` VARCHAR(255) NULL DEFAULT NULL AFTER `slug`;
+
+ALTER TABLE `sceduled_packages` ADD `note` VARCHAR(255) NULL DEFAULT NULL AFTER `recommended_info`;
+
