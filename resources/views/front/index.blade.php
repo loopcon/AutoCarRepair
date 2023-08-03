@@ -367,7 +367,7 @@
                         <select class="form-select" id="service" name="service" aria-label="Default select example">
                             <option selected disabled>Open this select menu</option>
                             @foreach($scategories as $value)
-                                <option value="{{$value->title}}" {{isset($scategories->id) && $scategories->id == $value->id ? 'selected' : (old('id') && old('id') == $value->id ? 'selected' : '')}}>{{$value->title}}</option>
+                                <option value="{{$value->id}}" {{isset($scategories->id) && $scategories->id == $value->id ? 'selected' : (old('id') && old('id') == $value->id ? 'selected' : '')}}>{{$value->title}}</option>
                             @endforeach
                             <!-- <option value="2">Two</option>
                             <option value="3">Three</option> -->
