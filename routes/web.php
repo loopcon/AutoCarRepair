@@ -155,4 +155,18 @@ Route::group(['as' => 'front_', 'middleware' => 'XSS'], function() {
     Route::post('set-new-password', [\App\Http\Controllers\Front\Auth\LoginController::class, 'resetPassword'])->name('set-new-password');
 
     Route::get('our-services', [App\Http\Controllers\Front\ServiceController::class, 'services'])->name('our-services');
+    Route::get('contact-us', [App\Http\Controllers\Front\ContactController::class, 'index'])->name('contact-us');
+
+    /** cms pages route start **/
+    $pages = Cache::remember('pages', 10, function() { 
+                return DB::table('pages')
+                ->get();
+            });
+            
+    if(!empty($pages)) {
+        foreach ($pages as $page) {
+            Route::get($page->slug, [App\Http\Controllers\Front\CmsPagesController::class, 'index'])->name($page->slug)->middleware('XSS');
+        }
+    }
+    /** cms pages route end **/
 });
