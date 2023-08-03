@@ -270,7 +270,7 @@ class ServiceController extends MainController
         $slug = $request->title != '' ? slugify($request->title) : NULL;
 
         $spackage = new ScheduledPackage();
-        $fields = array('sc_id', 'brand_id', 'model_id', 'fuel_type_id', 'title', 'price', 'warrenty_info', 'recommended_info', 'time_takes','meta_title','meta_keywords','meta_description');
+        $fields = array('sc_id', 'brand_id', 'model_id', 'fuel_type_id', 'title', 'price', 'warrenty_info', 'note', 'recommended_info', 'time_takes','meta_title','meta_keywords','meta_description');
         foreach($fields as $field){
             $spackage->$field = isset($request->$field) && $request->$field != '' ? $request->$field : NULL;
         }
@@ -350,7 +350,7 @@ class ServiceController extends MainController
         $slug = $request->title != '' ? slugify($request->title) : NULL;
 
         $spackage = ScheduledPackage::find($id);
-        $fields = array('sc_id', 'brand_id', 'model_id', 'fuel_type_id', 'title', 'price', 'warrenty_info', 'recommended_info', 'time_takes','meta_title','meta_keywords','meta_description');
+        $fields = array('sc_id', 'brand_id', 'model_id', 'fuel_type_id', 'title', 'price', 'warrenty_info', 'recommended_info', 'note', 'time_takes','meta_title','meta_keywords','meta_description');
         foreach($fields as $field){
             $spackage->$field = isset($request->$field) && $request->$field != '' ? $request->$field : NULL;
         }

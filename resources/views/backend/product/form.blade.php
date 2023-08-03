@@ -75,8 +75,9 @@
                                     </div>
 
                                     <div class="mt-3  col-md-12">
-                                    <h6>SEO Details</h6>
-                                    <hr/>
+                                        <h6>SEO Details</h6>
+                                        <hr/>
+                                    </div>
                                 </div>
                                 <div class="row">
                                     <div class="mb-3 col-md-4">
@@ -84,7 +85,7 @@
                                         <input type="text" class="form-control" id="meta_title" name="meta_title" placeholder="{{__('Meta Title')}}" value="{{ isset($record->meta_title) ? $record->meta_title : old('meta_title') }}">
                                         @if ($errors->has('meta_title')) <div class="text-danger">{{ $errors->first('meta_title') }}</div>@endif
                                     </div>
-                                    
+
                                     <div class="mb-3 col-md-4">
                                         <label class="form-label" for="meta_keywords">{{__('Meta Keyword')}}</label>
                                         <textarea class="form-control" id="meta_keywords" name="meta_keywords" placeholder="{{__('Meta Keyword')}}">{{ isset($record->meta_keywords) ? $record->meta_keywords : old('meta_keywords') }}</textarea>
@@ -96,8 +97,6 @@
                                         <textarea class="form-control" id="meta_description" name="meta_description" placeholder="{{__('Meta Description')}}">{{ isset($record->meta_description) ? $record->meta_description : old('meta_description') }}</textarea>
                                         @if ($errors->has('meta_description')) <div class="text-danger">{{ $errors->first('meta_description') }}</div>@endif
                                     </div>
-                                </div>
-
                                 </div>
 
                                 <div class="form-group col-md-12">
@@ -141,6 +140,7 @@
                                         <input type="hidden" name="last_id" value="{{$total}}">
                                     </div>
                                 
+                                </div>
                             </div>
                             <div class="box-footer">
                                 <button type="submit" class="btn btn-primary">Submit</button>

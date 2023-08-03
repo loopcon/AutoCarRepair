@@ -329,3 +329,6 @@ ALTER TABLE `products` ADD `meta_title` VARCHAR(255) NULL DEFAULT NULL AFTER `fl
 
 -- Disha : 03-08-2023 9:41 AM
 ALTER TABLE `fuel_type` ADD `image` VARCHAR(255) NULL DEFAULT NULL AFTER `slug`;
+
+ALTER TABLE `sceduled_packages` ADD `note` VARCHAR(255) NULL DEFAULT NULL AFTER `recommended_info`;
+

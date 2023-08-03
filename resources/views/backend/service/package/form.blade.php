@@ -94,6 +94,11 @@
                                     @if ($errors->has('recommended_info')) <div class="text-danger">{{ $errors->first('recommended_info') }}</div>@endif
                                 </div>
                                 <div class="mb-3 col-md-4">
+                                    <label class="form-label" for="note">{{__('Note')}}</label>
+                                    <input type="text" class="form-control" id="note" name="note" placeholder="{{__('Note')}}"  value="{{ isset($record->note) ? $record->note : old('note') }}">
+                                    @if ($errors->has('note')) <div class="text-danger">{{ $errors->first('note') }}</div>@endif
+                                </div>
+                                <div class="mb-3 col-md-4">
                                     <label class="form-label" for="image">{{__('Image')}}</label>
                                     <div class="profile-icon">
                                         @php($i = 0)
