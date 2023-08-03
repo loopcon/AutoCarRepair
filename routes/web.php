@@ -157,6 +157,19 @@ Route::group(['as' => 'front_', 'middleware' => 'XSS'], function() {
 
     Route::get('shopping', [App\Http\Controllers\Front\ProductController::class, 'shopping'])->name('shopping');
     Route::post('search-shopping-ajax', [App\Http\Controllers\Front\ProductController::class, 'searchAjax'])->name('search-shopping-ajax');
+    /** product-detail route start **/
+    $products = Cache::remember('products', 10, function() { 
+                return DB::table('products')->select('id', 'slug')
+                ->get();
+            });
+            
+    if(!empty($products)) {
+        foreach ($products as $product) {
+            Route::get('shopping/'.$product->slug, [App\Http\Controllers\Front\ProductController::class, 'detail'])->name('shopping/'.$product->slug)->middleware('XSS');
+        }
+    }
+    /** product detail route end **/
+
     Route::get('our-services', [App\Http\Controllers\Front\ServiceController::class, 'services'])->name('our-services');
     Route::get('contact-us', [App\Http\Controllers\Front\ContactController::class, 'index'])->name('contact-us');
 

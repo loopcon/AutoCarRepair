@@ -121,7 +121,7 @@ function generateRandomString($length = 10) {
 }
 
 function formatNumber($no){
-    $no = number_format($no, 2, '.', '');
+    $no = $no ? number_format($no, 2, '.', '') : 0.00;
     return $no;
 }
 

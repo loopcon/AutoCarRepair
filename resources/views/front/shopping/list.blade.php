@@ -40,7 +40,7 @@
                                     @else
                                         <img src="{{ asset('front/img/no_image.jpg') }}" class="img-fluid" alt="">
                                     @endif
-                                    <h5>{{$product->name}}</h5>
+                                    <h5><a href="{{url('shopping/'.$product->slug)}}">{{$product->name}}</a></h5>
                                     <h5>{{isset($product->shopCategoryDetail->name) ? $product->shopCategoryDetail->name : ''}}</h5>
                                     <div class="shoping-card-prise">
                                         <div class="shoping-card-text"><p>₹{{$product->price}}</p></div>
