@@ -419,7 +419,7 @@ class ServiceController extends MainController
         if($page) {
 
             $package_specification = PackageSpecification::where('sp_id', $id)->delete();
-            return redirect('backend/pages')->with('success', trans('Scheduled Package Deleted Successfully!'));
+            return redirect('backend/scheduled-package')->with('success', trans('Scheduled Package Deleted Successfully!'));
         } else {
             return redirect()->back()->with('error', trans('Something went wrong, please try again later!'));
         }
