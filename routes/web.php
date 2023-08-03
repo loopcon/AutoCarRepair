@@ -133,6 +133,9 @@ Route::group(['prefix' => 'backend','as' => 'admin_'], function() {
         Route::get('faq-delete/{id}', [App\Http\Controllers\Backend\FaqController::class, 'destroy'])->name('faq-delete');
         Route::post('faq-datatable', [App\Http\Controllers\Backend\FaqController::class, 'faqDatatable'])->name('faq-datatable');
 
+        Route::get('service-center-detail', [\App\Http\Controllers\Backend\ServiceCenterDetailController::class, 'index'])->name('service-center-detail');
+        Route::post('service-center-detail-update', [\App\Http\Controllers\Backend\ServiceCenterDetailController::class, 'update'])->name('service-center-detail-update');
+
         Route::get('enquiry',[App\Http\Controllers\Backend\EnquiryController::class, 'index'])->name('enquiry')->middleware('XSS');
         Route::post('enquiry-datatable', [App\Http\Controllers\Backend\EnquiryController::class, 'enquiryDatatable'])->name('enquiry-datatable');
         Route::get('enquiry-delete/{id}', [App\Http\Controllers\Backend\EnquiryController::class, 'destroy'])->name('enquiry-delete');

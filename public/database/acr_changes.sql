@@ -332,3 +332,33 @@ ALTER TABLE `fuel_type` ADD `image` VARCHAR(255) NULL DEFAULT NULL AFTER `slug`;
 
 ALTER TABLE `sceduled_packages` ADD `note` VARCHAR(255) NULL DEFAULT NULL AFTER `recommended_info`;
 
+-- Disha : 03-08-2023 3:51 PM
+--
+-- Table structure for table `service_center_detail`
+--
+CREATE TABLE `service_center_detail` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `address` text DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `phone number` varchar(255) DEFAULT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_by` int(11) NOT NULL,
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+ALTER TABLE `service_center_detail`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `service_center_detail`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `service_center_detail` CHANGE `phone number` `phone_number` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL;
+
+-- Disha : 03-08-2023 4:36 PM
+ALTER TABLE `service_center_detail` CHANGE `created_at` `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, CHANGE `updated_at` `updated_at` TIMESTAMP on update CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;
+ALTER TABLE `service_center_detail` CHANGE `updated_by` `updated_by` INT(11) NULL DEFAULT NULL;
+
+
+
