@@ -26,13 +26,17 @@ class FuelTypeController extends MainController
     public function fueltypeDatatable(request $request)
     {
         if($request->ajax()){
-            $query = FuelType::select('id', 'title','status')->where('is_archive', '=', Constant::NOT_ARCHIVE)->orderBy('id', 'DESC');
+            $query = FuelType::select('id', 'image', 'title','status')->where('is_archive', '=', Constant::NOT_ARCHIVE)->orderBy('id', 'DESC');
             $list = $query->get();
 
             return DataTables::of($list)
                 ->addColumn('title', function ($row) {
                     $html = $row->title;
                     return $html;
+                })
+                ->addColumn('image', function ($row) {
+                    $image = $row->image ? "<img src='".url('uploads/fueltype/'.$row->image)."' width='80px' height='80px'>" : '';
+                    return $image;
                 })
                 ->addColumn('status', function ($row) {
                     $html = $row->status == Constant::ACTIVE ? '<span class="badge bg-success">Active</span>' : '<span class="badge bg-danger">Inactive</span>';
@@ -52,7 +56,7 @@ class FuelTypeController extends MainController
                     $html .= "</span>";
                     return $html;
                 })
-                ->rawColumns(['id','title','status','action'])
+                ->rawColumns(['id','image','title','status','action'])
                 ->make(true);
         } else {
             return redirect('backend/dashboard');
@@ -78,6 +82,14 @@ class FuelTypeController extends MainController
         $fields = array('title');
         foreach($fields as $field){
             $fueltype->$field = isset($request->$field) && $request->$field ? $request->$field : NULL;
+        }
+        if($request->hasFile('image')) {
+            $old_image = $fueltype->image;
+            if($old_image){
+                removeFile('uploads/fueltype/'.$old_image);
+            }
+            $newName = fileUpload($request, 'image', 'uploads/fueltype');
+            $fueltype->image = $newName;
         }
         $fueltype->slug = $slug;
         $fueltype->created_by = Auth::guard('admin')->user()->id;
@@ -125,6 +137,14 @@ class FuelTypeController extends MainController
         foreach($fields as $field){
             $fueltype->$field = isset($request->$field) && $request->$field ? $request->$field : NULL;
         }
+        if($request->hasFile('image')) {
+            $old_image = $fueltype->image;
+            if($old_image){
+                removeFile('uploads/fueltype/'.$old_image);
+            }
+            $newName = fileUpload($request, 'image', 'uploads/fueltype');
+            $fueltype->image = $newName;
+        }
         $fueltype->slug = $slug;
         $fueltype->updated_by = Auth::guard('admin')->user()->id;
         $fueltype->save();
@@ -141,6 +161,11 @@ class FuelTypeController extends MainController
     public function destroy(string $id)
     {
         $id = Crypt::decrypt($id);
+        $fueltype = FuelType::where('id',$id)->first();
+        $old_image = $fueltype->image;
+        if($old_image){
+            removeFile('uploads/fueltype/'.$old_image);
+        }
         $fueltype = FuelType::where('id',$id)->delete();
         if($fueltype){
             return redirect()->back()->with('success', trans('Fuel Type Deleted Successfully!'));

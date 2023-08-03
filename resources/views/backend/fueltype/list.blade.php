@@ -27,7 +27,8 @@
                             <thead>
                                 <tr>
                                     <th>{{__('Id')}}</th>
-                                    <th>{{__('Title')}}</th> 
+                                    <th>{{__('Image')}}</th>
+                                    <th>{{__('Title')}}</th>
                                     <th>{{__('Status')}}</th>
                                     <th>{{__('Action')}}</th>
                                 </tr>
@@ -62,6 +63,7 @@
                 "lengthMenu": [[50, 100, 200, 400], [50, 100, 200, 400]],
                 "columns": [
                     {data: 'id', name: 'id'},
+                    {data: 'image', name: 'image'},
                     {data: 'title', name: 'title'},
                     {data: 'status', name: 'status'},
                     {data: 'action', name: 'action', orderable: false, searchable: false},
