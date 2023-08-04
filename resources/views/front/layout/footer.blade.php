@@ -43,7 +43,7 @@
                     @if(isset($cmsInfo->slug) && $cmsInfo->slug)
                         <li><a class="fot-about-main-header" href="{{url($cmsInfo->slug)}}">{{isset($cmsInfo->name) ? ucwords($cmsInfo->name) : ''}}</a></li>
                     @endif
-                    <li><a href="#">FAQs</a></li>
+                    <li><a href="{{url('faq')}}#">FAQs</a></li>
                     <li><a href="#">Blogs</a></li>
                     <li><a href="{{url('contact-us')}}">Contact US</a></li>
                     @php($cmsInfo = getCmsPageName('10'))

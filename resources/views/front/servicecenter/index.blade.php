@@ -3,11 +3,11 @@
 <div class="shop-center-tophead">
     <img src="{{ asset('front/img/service-inner-bg.png') }}" class="img-fluid" alt="">
     <div class="shop-center-text">
-        <h2>SERVICE CENTER</h2>
+        <h2>{{ strtoupper($site_title) }}</h2>
         <ul class="shop-center-breadcum">
             <li><a href="{{url('/')}}">Home</a></li>
             <li><i class="fa-solid fa-angles-right"></i></li>
-            <li>Service Center</li>
+            <li>{{ $site_title }}</li>
         </ul>
     </div>
 </div>

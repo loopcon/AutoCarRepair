@@ -407,4 +407,17 @@ button { color: #000; outline: none; }
 .mobile-menu-sectiondata{ display: flex; align-items: center; justify-content: space-between;}
 /* mobile menu css end  */
 .car-service-img-main img{ width: 100% !important; }
+/* faq section css start  */
+.faq-section-main{ background: #F2F2F2; padding: 30px;  }
+.faq-section-main .faq-img-main img{ display: block;  margin: auto;}
+.faq-section-main .faq-text-content{ margin-bottom: 10px;}
+.faq-section-main .accordion-button:focus { box-shadow: none ; color: #000; font-weight: bold;}
+.faq-section-main .faq-heading{  font-weight: bold; margin-bottom: 25px;}
+.faq-section-main a.accordion-header { display: block; background-color: #E56F31; color: #fff; padding: 10px 15px; font-size: 20px; cursor: pointer; margin-bottom: 2px; text-decoration: none; text-align: left; font-weight: bold; }
+.faq-section-main a.accordion-header.active-accordion { background-color: #E56F31; }
+.faq-section-main .accordion-content { display: none; position: relative; padding: 10px; border: solid 2px #E56F31; margin-top: -2px; border-top: none; margin-bottom: 2px; text-align: left; font-size: 14px; }
+.faq-section-main a.accordion-header:after { content: '\002b'; color: #fff; font-weight: 800; float: right; margin-left: 10px; font-size: 20px; }
+.faq-section-main a.accordion-header.active-accordion:after { content: '\2212'; }
+.faq-section-main .accordion-text-content { margin-bottom: 0px; font-size: 18px; }
+/* faq section css end  */
 
