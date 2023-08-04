@@ -55,7 +55,7 @@
                 <ul class="acr-navbar-main">
                     <li><a class="@if($page == ''){{'acr-active'}}@endif" href="{{route('front_/')}}">Home</a></li>
                     <li><a class="@if($page == 'our-services'){{'acr-active'}}@endif" href="{{url('our-services')}}">Car Service</a></li>
-                    <li><a href="http://127.0.0.1:5500/shop-center.html">Service Center</a></li>
+                    <li><a  class="@if($page == 'service-center'){{'acr-active'}}@endif" href="{{url('service-center')}}">Service Center</a></li>
                     <li><a href="#">Blog</a></li>
                     <li><a class="@if($page == 'shopping'){{'acr-active'}}@endif" href="{{url('shopping')}}">Shopping</a></li>
                 </ul>
@@ -125,7 +125,7 @@
                     <ul class="mo-acr-navbar-main">
                         <li><a class="@if($page == ''){{'acr-active'}}@endif" href="{{route('front_/')}}">Home</a></li>
                         <li><a class="@if($page == 'our-services'){{'acr-active'}}@endif" href="{{url('our-services')}}">Car Service</a></li>
-                        <li><a href="#">Service Center</a></li>
+                        <li><a class="@if($page == 'service-center'){{'acr-active'}}@endif" href="{{url('service-center')}}">Service Center</a></li>
                         <li><a href="#">Blog</a></li>
                         <li><a class="@if($page == 'shopping'){{'acr-active'}}@endif href="{{url('front-shopping')}}">Shopping</a></li>
                     </ul>
