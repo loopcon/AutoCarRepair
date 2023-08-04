@@ -33,7 +33,7 @@
                                 </div>
 
                                 <div class="mt-2 col-md-6">
-                                <label for="image">{{__('Image')}}</label>
+                                <label for="image">{{__('Image')}}<span class="text-danger">*</span></label>
                                     <div class="image">
                                     @php($required = 'required')
                                         @if(isset($record->image))
@@ -50,13 +50,14 @@
                                         @endif
                                     </div>
                                     <div class="m-b-10">
-                                        <input type="file" id="uploadImage0" accept="image/x-png, image/gif, image/jpeg" class="btn btn-warning btn-block btn-sm"  name="image" onChange="this.parentNode.nextSibling.value = this.value; PreviewImage(0);">
+                                        <input type="file" id="uploadImage0" accept="image/x-png, image/gif, image/jpeg" class="btn btn-warning btn-block btn-sm"  name="image" {{$required}} data-parsley-required-message="{{ __("This value is required.")}}" onChange="this.parentNode.nextSibling.value = this.value; PreviewImage(0);">
+                                        @if ($errors->has('image')) <div class="errors_msg">{{ $errors->first('image') }}</div>@endif
                                     </div> 
                                 </div>
 
                                 <div class="mt-2 col-md-6">
                                     <label class="form-label" for="phone_number">{{__('Phone Number')}}</label>
-                                    <input type="text" class="form-control numeric" id="phone_number" value="{{ isset($record->phone_number) ? $record->phone_number : old('phone_number') }}"name="phone_number" placeholder="{{__('Phone Number')}}">
+                                    <input type="text" class="form-control numeric" id="phone_number" value="{{ isset($record->phone_number) ? $record->phone_number : old('phone_number') }}" required=""  data-parsley-required-message="{{ __("This value is required.")}}" name="phone_number" placeholder="{{__('Phone Number')}}">
                                     @if ($errors->has('phone_number')) <div class="text-danger">{{ $errors->first('phone_number') }}</div>@endif
                                 </div>
                             </div>
