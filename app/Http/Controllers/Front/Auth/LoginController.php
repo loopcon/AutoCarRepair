@@ -73,7 +73,7 @@ class LoginController extends Controller
         $return_data['site_title'] = trans('Forgot Password');
         $setting_list = getSettingDetail();
         $footer_description = isset($footer_detail->footer_desc) ? $footer_detail->footer_desc : NULL;
-        $setting_list['footer_desc'] = $footer_description;
+        $setting_list['footer_description'] = $footer_description;
         $this->data = $setting_list;
         $return_data['settings'] = $this->data;
 
@@ -82,7 +82,7 @@ class LoginController extends Controller
 
     public function sendForgetLink(Request $request)
     {
-        $uData = User::select('id', 'name', 'remember_token', 'is_archive')->where([['email', $request->email]])->first();
+        $uData = User::select('id', 'firstname', 'remember_token', 'is_archive')->where([['email', $request->email]])->first();
         $is_active = isset($uData->is_archive) ? $uData->is_archive : NULL;
 
         if ($is_active == Constant::ARCHIVE) {
@@ -91,7 +91,7 @@ class LoginController extends Controller
                 $token = generateRandomString();
                 User::where([['id', $user_id]])->update(['remember_token' => $token]);
 
-                $uname = isset($uData->name) ? $uData->name : NULL;
+                $uname = isset($uData->firstname) ? $uData->firstname : NULL;
                 $url = route('front_reset-password', array($token));
                 $link = '<a href="' . $url . '" target="_blank">Reset Password</a>';
 
@@ -100,8 +100,8 @@ class LoginController extends Controller
                 $ndata = EmailTemplates::select('template')->where('label', 'forgot_password')->first();
                 $html = isset($ndata->template) ? $ndata->template : NULL;
                 $mailHtml = str_replace($templateStr, $data, $html);
+                print_r($mailHtml);exit;
 //                \Mail::to($request->email)->send(new \App\Mail\CommonMail($mailHtml, 'Forgot Password ' . $this->data['site_name']));
-
                 return redirect()->back()->with('success', trans('Reset link has been sent to your email address.'));
             }
         }
@@ -119,8 +119,8 @@ class LoginController extends Controller
                 if($user_id){
                     $return_data = array();
                     $setting_list = getSettingDetail();
-                    $footer_description = isset($footer_detail->footer_desc) ? $footer_detail->footer_desc : NULL;
-                    $setting_list['footer_desc'] = $footer_description;
+                    $footer_description = isset($footer_detail->footer_description) ? $footer_detail->footer_description : NULL;
+                    $setting_list['footer_description'] = $footer_description;
                     $this->data = $setting_list;
                     $return_data['settings'] = $this->data;
                     $return_data['user_id'] = $user_id;

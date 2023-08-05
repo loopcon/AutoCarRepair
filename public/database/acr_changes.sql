@@ -363,4 +363,6 @@ ALTER TABLE `service_center_detail` CHANGE `updated_by` `updated_by` INT(11) NUL
 -- Disha : 04-08-2023 4:34 PM
 ALTER TABLE `users` ADD `visible_password` VARCHAR(255) NULL DEFAULT NULL AFTER `password`;
 
+-- Disha : 04-08-2023 13:15 PM
+ALTER TABLE `users` ADD `remember_token` VARCHAR(255) NULL DEFAULT NULL AFTER `zipcode`;
 
