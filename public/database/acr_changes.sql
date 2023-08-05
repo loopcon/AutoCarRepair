@@ -360,5 +360,7 @@ ALTER TABLE `service_center_detail` CHANGE `phone number` `phone_number` VARCHAR
 ALTER TABLE `service_center_detail` CHANGE `created_at` `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, CHANGE `updated_at` `updated_at` TIMESTAMP on update CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;
 ALTER TABLE `service_center_detail` CHANGE `updated_by` `updated_by` INT(11) NULL DEFAULT NULL;
 
+-- Disha : 04-08-2023 4:34 PM
+ALTER TABLE `users` ADD `visible_password` VARCHAR(255) NULL DEFAULT NULL AFTER `password`;
 
 
