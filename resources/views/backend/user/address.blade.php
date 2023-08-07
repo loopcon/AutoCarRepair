@@ -24,14 +24,14 @@
                         </div>
                     </div> -->
                     <div class="card-body">
-                        <table id="user" class="table table-striped table-hover" style="width:100%">
+                        <table id="user-address" class="table table-striped table-hover" style="width:100%">
                             <thead>
                                 <tr>
                                     <th>{{__('Id')}}</th>
-                                    <th>{{__('Firstname')}}</th>
-                                    <th>{{__('Lastname')}}</th>
-                                    <th>{{__('Email')}}</th>
-                                    <th>{{__('Phone')}}</th>
+                                    <th>{{__('User')}}</th>
+                                    <th>{{__('Address')}}</th>
+                                    <th>{{__('Zip')}}</th>
+                                    <th>{{__('City')}}</th>
                                     <th>{{__('Action')}}</th>
                                 </tr>
                             </thead>
@@ -49,7 +49,7 @@
 <script src="{{ asset('plugins/select2/js/select2.min.js') }}"></script>
 <script>
 $(document).ready(function() {
-    var page = $("#user").DataTable({
+    var address = $("#user-address").DataTable({
         "order": [], //Initial no order.
         "aaSorting": [],
         processing: true,
@@ -59,13 +59,13 @@ $(document).ready(function() {
         "columns": [
             {data: 'id', name: 'id'},
             {data: 'firstname', name: 'firstname'},
-            {data: 'lastname', name: 'lastname'},
-            {data: 'email', name: 'email'},
-            {data: 'phone', name: 'phone'},
+            {data: 'address', name: 'address'},
+            {data: 'zipcode', name: 'zipcode'},
+            {data: 'city', name: 'city'},
             {data: 'action', name: 'action', orderable: false, searchable: false},
         ],
         "ajax" : {
-            url : "{{ route('admin_user-datatable') }}",
+            url : "{{ route('admin_user-address-datatable') }}",
             type : "POST",
             data : function(d) {
                 d._token = "{{ csrf_token() }}"

@@ -11,4 +11,9 @@ class UserAddress extends Model
 
     protected $table = 'user_addresses';
     protected $fields = ['user_id', 'address', 'zip', 'city'];
+
+    public function userDetail()
+    {
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
 }
