@@ -81,6 +81,12 @@
                     <!--<span class="badge badge-sidebar-primary">5</span>-->
                 </a>
             </li>
+            <li class="sidebar-item {{ (request()->is('backend/order')) ? 'active' : '' }}">
+                <a href="{{route('admin_order')}}" class="sidebar-link">
+                    <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">{{ __('Orders') }}</span>
+                    <!--<span class="badge badge-sidebar-primary">5</span>-->
+                </a>
+            </li>
             <li class="sidebar-item">
                 <a data-bs-target="#sidebar_content" data-bs-toggle="collapse" class="sidebar-link collapsed">
                     <i class="align-middle" data-feather="command"></i> <span class="align-middle">{{ __('Home Page Settings')}}</span>
