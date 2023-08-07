@@ -26,19 +26,19 @@
                                 {{ csrf_field() }}
                                 <div class="mb-3">
                                     <label class="form-label">Name<span class="text-danger">*</span></label>
-                                    <input type="text" name="firstname" placeholder="NAME" required="" class="form-control" maxlength="35">
+                                    <input type="text" name="firstname" value="{{old('firstname')}}" placeholder="NAME" required="" class="form-control" maxlength="35">
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Phone No.<span class="text-danger">*</span></label>
-                                    <input type="text" name="mobile" id="mobile" maxlength="10" placeholder="PHONE NO" required="" class="form-control num_only">
+                                    <input type="text" name="phone" id="phone"  value="{{old('phone')}}" maxlength="10" placeholder="PHONE NO" required="" class="form-control num_only">
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Email<span class="text-danger">*</span></label>
-                                    <input type="email" name="email" placeholder="EMAIL ID" required="" class="form-control ">
+                                    <input type="email" name="email" value="{{old('email')}}" placeholder="EMAIL ID" required="" class="form-control ">
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Password<span class="text-danger">*</span></label>
-                                    <input type="password" name="password" id="password" placeholder="PASSWORD" class="form-control" required="" data-parsley-minlength="8" data-parsley-pattern="(?=.*[a-z])(?=.*[0-9])(?=.*[A-Z]).*" data-parsley-pattern-message="Your password must be a minimum of 8 characters long and include at least 1 lowercase and 1 uppercase letter and 1 number.">
+                                    <input type="password" name="password" value="{{old('password')}}" id="password" placeholder="PASSWORD" class="form-control" required="" data-parsley-minlength="8" data-parsley-pattern="(?=.*[a-z])(?=.*[0-9])(?=.*[A-Z]).*" data-parsley-pattern-message="Your password must be a minimum of 8 characters long and include at least 1 lowercase and 1 uppercase letter and 1 number.">
                                     <small>Note : Your password must be a minimum of 8 characters long and include at least 1 lowercase and 1 uppercase letter and 1 number.</small>
                                 </div>
                                 <div class="mb-3">
