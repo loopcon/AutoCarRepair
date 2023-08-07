@@ -101,7 +101,7 @@ class RegisterController extends Controller
 
         if (Auth::guard('user')->attempt(['email' => $request->email, 'password' => $request->password])) {
             $user_id = Auth::guard('user')->user()->id;
-            $user_detail = User::where([['id', '=', $user_id], ['is_archive', Constant::ARCHIVE]])->first();
+            $user_detail = User::where([['id', '=', $user_id], ['is_archive', Constant::NOT_ARCHIVE]])->first();
 
             if ($user_detail) {
                 //to remove cookie

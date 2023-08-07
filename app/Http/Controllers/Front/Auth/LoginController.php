@@ -43,7 +43,7 @@ class LoginController extends Controller
         // Attempt to log the user in
         if (Auth::guard('user')->attempt(['email' => $request->email, 'password' => $request->password])) {
             $user_id = Auth::guard('user')->user()->id;
-            $user_detail = User::where([['id', '=', $user_id], ['is_archive', Constant::ARCHIVE]])->first();
+            $user_detail = User::where([['id', '=', $user_id], ['is_archive', Constant::NOT_ARCHIVE]])->first();
             if ($user_detail) {
                 Cookie::queue(Cookie::forget('email'));
                 Cookie::queue(Cookie::forget('password'));
@@ -84,7 +84,7 @@ class LoginController extends Controller
         $uData = User::select('id', 'firstname', 'remember_token', 'is_archive')->where([['email', $request->email]])->first();
         $is_active = isset($uData->is_archive) ? $uData->is_archive : NULL;
 
-        if ($is_active == Constant::ARCHIVE) {
+        if ($is_active == Constant::NOT_ARCHIVE) {
             $user_id = isset($uData->id) && $uData->id ? $uData->id : NULL;
             if ($user_id) {
                 $token = generateRandomString();
