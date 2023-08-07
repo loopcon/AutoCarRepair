@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Auth;
 use App\Models\User;
-use Illuminate\Contracts\Session\Session;
 use App\Models\EmailTemplates;
 use App\Models\HomePageSetting;
 use App\Constant;
@@ -100,7 +99,6 @@ class LoginController extends Controller
                 $ndata = EmailTemplates::select('template')->where('label', 'forgot_password')->first();
                 $html = isset($ndata->template) ? $ndata->template : NULL;
                 $mailHtml = str_replace($templateStr, $data, $html);
-                print_r($mailHtml);exit;
 //                \Mail::to($request->email)->send(new \App\Mail\CommonMail($mailHtml, 'Forgot Password ' . $this->data['site_name']));
                 return redirect()->back()->with('success', trans('Reset link has been sent to your email address.'));
             }

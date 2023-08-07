@@ -6,7 +6,7 @@
 <div class="shop-center-tophead">
     <img src="{{ asset('front/img/service-inner-bg.png') }}" class="img-fluid" alt="">
     <div class="shop-center-text">
-    <h2>{{ strtoupper($site_title) }}</h2>
+        <h2>{{ strtoupper($site_title) }}</h2>
         <ul class="shop-center-breadcum">
             <li><a href="">Home</a></li>
             <li><i class="fa-solid fa-angles-right"></i></li>
@@ -40,7 +40,6 @@
     </div>
 </div>
 <meta name="csrf-token" content="{{ csrf_token() }}" />
-<!-- faq page end -->
 @endsection
 @section('javascript')
 <script src="{{ asset('plugins/parsley/parsley.js') }}"></script>

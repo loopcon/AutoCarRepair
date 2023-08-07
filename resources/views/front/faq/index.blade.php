@@ -13,27 +13,27 @@
 </div>
 
 <div class="faq-section-main">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class=" col-lg-10">
-                    <div id="accordion" class="accordion">
-                        @if($faqs->count())
-                            @foreach($faqs as $key => $faq)
-                                <div class="accordion-box faq-text-content">
-                                    <a href="#" class="accordion-header @if($key == 0) {{'active-accordion'}} @endif" data-target="acrd_1">{{ $faq->name }}</a>
-                                    <div class="accordion-content" id="acrd_{{$key+1}}" style="@if($key == 0) {{'display:block'}} @endif">
-                                        <p class="accordion-text-content">
-                                            {!! $faq->description !!}
-                                        </p>
-                                    </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class=" col-lg-10">
+                <div id="accordion" class="accordion">
+                    @if($faqs->count())
+                        @foreach($faqs as $key => $faq)
+                            <div class="accordion-box faq-text-content">
+                                <a href="#" class="accordion-header @if($key == 0) {{'active-accordion'}} @endif" data-target="acrd_1">{{ $faq->name }}</a>
+                                <div class="accordion-content" id="acrd_{{$key+1}}" style="@if($key == 0) {{'display:block'}} @endif">
+                                    <p class="accordion-text-content">
+                                        {!! $faq->description !!}
+                                    </p>
                                 </div>
-                            @endforeach
-                        @endif
-                    </div>
+                            </div>
+                        @endforeach
+                    @endif
                 </div>
             </div>
         </div>
     </div>
+</div>
 <!-- faq page end -->
 @endsection
 @section('javascript')
