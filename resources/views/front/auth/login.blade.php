@@ -39,7 +39,6 @@
                                     </div> -->
                                     <div class="text-center mt-3">
                                         <button type="submit" class="btn btn-lg btn-primary">Login</button>
-                                        <span><a href="{{route('front_logout')}}" class="btn btn-lg btn-primary">logout</a></span>
                                     </div>
                                 </form>
                             </div>
