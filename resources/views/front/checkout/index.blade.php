@@ -13,17 +13,17 @@
                     <div class="row ">
                          <div class="col-12 col-sm-6 col-md-12 col-lg-6">
                             <div class="mb-3">
-                                <input type="text" class="form-control" name="name" required="" maxlength="50" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Name" >
+                                <input type="text" class="form-control" name="name" required="" maxlength="50" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Name" value="{{ Auth::guard('user')->check() ? Auth::guard('user')->user()->firstname.' '.Auth::guard('user')->user()->lastname : ''}}">
                             </div>
                          </div>
                          <div class="col-12 col-sm-6 col-md-12 col-lg-6">
                             <div class="mb-3">
-                                <input type="text" class="form-control num_only" maxlength="10" required="" name="mobile" id="mobile" aria-describedby="emailHelp" placeholder="Phone Number">
+                                <input type="text" class="form-control num_only" maxlength="10" required="" name="mobile" id="mobile" aria-describedby="emailHelp" placeholder="Phone Number" value="{{ Auth::guard('user')->check() ? Auth::guard('user')->user()->phone : ''}}">
                             </div>
                          </div>
                     </div>
                     <div class="mb-3">
-                        <input type="email" class="form-control" id="email" name="email" required="" aria-describedby="emailHelp" placeholder="Email">
+                        <input type="email" class="form-control" id="email" name="email" required="" aria-describedby="emailHelp" placeholder="Email" value="{{ Auth::guard('user')->check() ? Auth::guard('user')->user()->email : ''}}">
                     </div>
                     <div class="otp-section">
                         <div class="mb-3 otpinput-main">
@@ -97,35 +97,40 @@
                 <h4>Add Address</h4>
                 <div>
                     <div class="mb-3">
-                        <input type="text" class="form-control" id="address" name="address" aria-describedby="emailHelp" placeholder="Enter Address">
+                        <input type="text" class="form-control" id="address" required="" name="address" aria-describedby="emailHelp" placeholder="Enter Address">
                     </div>
                     <div class="row m-0">
                         <div class="col-12 col-sm-6">
                             <div class="mb-3">
-                                <input type="text" class="form-control num_only" id="zip" maxlength="6" name="zip" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Pincode">
+                                <input type="text" class="form-control num_only" required="" id="zip" maxlength="6" name="zip" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Pincode">
                             </div>
                         </div>
                         <div class="col-12 col-sm-6">
                             <div class="mb-3">
-                                <input type="text" class="form-control" name="city" id="city" aria-describedby="emailHelp" placeholder="City">
+                                <input type="text" class="form-control" name="city" required="" id="city" aria-describedby="emailHelp" placeholder="City">
                             </div>
                         </div>
                     </div>
                     <div class="row m-0">
-                        <div class="col-12 col-md-6 ">
-                            <p>Choose From Saved Addresses</p>
-                            <div class="row m-0 choose-address-main">
-                                <div class="col-3">
-                                    <i class="fa-solid fa-location-dot"></i>
-                                </div>
-                                <div class="col-9">
-                                    <p> ffdfdffssdg, ffddsfs, new delhi , india</p>
-                                </div>
-                                <div class="text-center">
-                                    <button class="select-btn-main">SELECT</button>
-                                </div>
-                            </div>
-                        </div>  
+                        @if(isset($addresses) && $addresses->count())
+                            <div class="col-12">
+                                <p>Choose From Saved Addresses</p>
+                                @foreach($addresses as $aval)
+                                    <div class="row m-0 choose-address-main mb-3">
+                                        <input type="radio" name="address_radio" value="{{$aval->id}}" class="form-check-input address_radio">
+                                        <input type="hidden" id='uaddress{{$aval->id}}' value="{{$aval->address}}">
+                                        <input type="hidden" id='uzip{{$aval->id}}' value="{{$aval->zip}}">
+                                        <input type="hidden" id='ucity{{$aval->id}}' value="{{$aval->city}}">
+                                        <div class="col-3">
+                                            <i class="fa-solid fa-location-dot"></i>
+                                        </div>
+                                        <div class="col-9">
+                                            <p> {{$aval->address}} , {{$aval->zip}}, {{$aval->city}}</p>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>  
+                        @endif
                     </div>
 <!--                    <div class="text-end mt-3 mb-3">
                         <button class="sele-date-continue-btn">CONTINUE <i class="fa-solid fa-arrow-right"></i></button>
@@ -164,6 +169,19 @@
 <script>
 $(document).ready(function(){
     getCartAjaxHtml();
+
+    $(document).on('click', '.address_radio', function(){
+        var id = $("input[name='address_radio']:checked").val();
+        if(id){
+            var address = $('#uaddress'+id).val();
+            var zip = $('#uzip'+id).val();
+            var city = $('#ucity'+id).val();
+
+            $('#address').val(address);
+            $('#zip').val(zip);
+            $('#city').val(city);
+        }
+    });
     $(document).on('click', '.plus-btn', function(){
         var id = $(this).data('id');
         var qty = $('#qty'+id).html();

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Constant;
 use App\Models\Cart;
 use Session;
+use Auth;
 
 class CartController extends MainController
 {
@@ -14,6 +15,7 @@ class CartController extends MainController
     {
         if($request->ajax()){
             $cart_id = NULL;
+            $user_id = Auth::guard('user')->check() ? Auth::guard('user')->user()->id : NULL;
             if($request->product_id){
                 $cartInfo = Cart::select('id')->where([['product_id', $request->product_id]])->first();
                 $cart_id = isset($cartInfo->id) && $cartInfo->id ? $cartInfo->id : NULL;
@@ -33,6 +35,7 @@ class CartController extends MainController
             foreach($cfields as $cfield){
                 $cart_data->$cfield = isset($request->$cfield) && $request->$cfield != '' ? $request->$cfield : NULL;
             }
+            $cart_data->user_id = $user_id;
             $cart_data->save();
             $cart_id = $cart_data->id;
 

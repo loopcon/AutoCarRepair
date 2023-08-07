@@ -432,3 +432,20 @@ ALTER TABLE `order_details`
 
 -- Khushali : 07-08-2023 11:55 AM
 ALTER TABLE `users` CHANGE `status` `status` TINYINT(1) NULL DEFAULT '1' COMMENT '0=\"InActive\";1=\"Active\" ';
+
+-- Khushali : 07-08-2023 1:12 AM
+CREATE TABLE `user_addresses` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL COMMENT '`id` of `users`',
+  `address` text DEFAULT NULL,
+  `zip` int(11) DEFAULT NULL,
+  `city` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+ALTER TABLE `user_addresses`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `user_addresses`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;

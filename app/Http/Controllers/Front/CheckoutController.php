@@ -8,6 +8,7 @@ use App\Constant;
 use App\Models\Cart;
 use App\Models\Order;
 use App\Models\OrderDetails;
+use App\Models\UserAddress;
 use Auth;
 use Session;
 
@@ -24,6 +25,12 @@ class CheckoutController extends MainController
         }
         $cart_data = Cart::whereIn('id', $cart)->get();
         $return_data['cart_data'] = $cart_data;
+
+        $user_id = Auth::guard('user')->check() ? Auth::guard('user')->user()->id : NULL;
+        if($user_id){
+            $addresses = UserAddress::where('user_id', $user_id)->get();
+            $return_data['addresses'] = $addresses;
+        }
         return view('front/checkout/index',array_merge($this->data,$return_data));
     }
 
@@ -51,9 +58,9 @@ class CheckoutController extends MainController
 
         $payment_type = $request->payment_type;
         if($payment_type == Constant::OFFLINE){
-            $user_id = Auth::guard('user')->check() ? auth()->user()->id : NULL;
+            $user_id = Auth::guard('user')->check() ? Auth::guard('user')->user()->id : NULL;
             $checkout_type = $user_id ? Constant::USER_CHECKOUT : Constant::GUEST_CHECKOUT;
-            
+
             $order = new Order();
             $order->is_guest_chekout = $checkout_type;
             $order->payment_type = $payment_type;
@@ -87,6 +94,15 @@ class CheckoutController extends MainController
                 }
                 Session::put('cart', array());
 
+                $address_radio = $request->address_radio;
+                if(empty($address_radio) && $user_id){
+                    $address = new UserAddress();
+                    $address->address = $request->address;
+                    $address->zip = $request->zip;
+                    $address->city = $request->city;
+                    $address->user_id = $user_id;
+                    $address->save();
+                }
                 return redirect('thank-you')->with('success', 'Your order created successfully!');
             }
         }
