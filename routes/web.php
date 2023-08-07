@@ -145,6 +145,8 @@ Route::group(['prefix' => 'backend','as' => 'admin_'], function() {
         Route::get('user-delete/{id}', [App\Http\Controllers\Backend\UserController::class, 'destroy'])->name('user-delete');
         Route::get('user-address/{user_id?}', [App\Http\Controllers\Backend\UserController::class, 'address'])->name('user-address');
         Route::post('user-address-datatable', [App\Http\Controllers\Backend\UserController::class, 'userAddressDatatable'])->name('user-address-datatable');
+        
+        Route::post('user-datatable', [App\Http\Controllers\Backend\UserController::class, 'userDatatable'])->name('user-datatable');
     });
 });
 Route::group(['as' => 'front_', 'middleware' => 'XSS'], function() {

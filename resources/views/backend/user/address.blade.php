@@ -24,6 +24,7 @@
                         </div>
                     </div> -->
                     <div class="card-body">
+                        <input type="hidden" name="user_id" value="{{$user_id}}">
                         <table id="user-address" class="table table-striped table-hover" style="width:100%">
                             <thead>
                                 <tr>
@@ -58,9 +59,9 @@ $(document).ready(function() {
         "lengthMenu": [[50, 100, 200, 400], [50, 100, 200, 400]],
         "columns": [
             {data: 'id', name: 'id'},
-            {data: 'firstname', name: 'firstname'},
+            {data: 'user', name: 'user'},
             {data: 'address', name: 'address'},
-            {data: 'zipcode', name: 'zipcode'},
+            {data: 'zip', name: 'zip'},
             {data: 'city', name: 'city'},
             {data: 'action', name: 'action', orderable: false, searchable: false},
         ],
@@ -68,7 +69,8 @@ $(document).ready(function() {
             url : "{{ route('admin_user-address-datatable') }}",
             type : "POST",
             data : function(d) {
-                d._token = "{{ csrf_token() }}"
+                d._token = "{{ csrf_token() }}",
+                d.user_id = $('input[name="user_id"]').val()
             }
         }
     });

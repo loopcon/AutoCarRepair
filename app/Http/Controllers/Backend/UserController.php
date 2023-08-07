@@ -62,24 +62,17 @@ class UserController extends MainController
     public function address(request $request,$id){
         $return_data = array();       
         $return_data['site_title'] = trans('User Address');
-        $user_id = $request->user_id;
-        // print_r($user_id);exit;
-        // $record = User::select('id','address','firstname','zipcode','city')->where([['id', $user_id], ['is_archive', Constant::NOT_ARCHIVE]])->first();
-        // $return_data['record'] = $record;
+        $return_data['user_id'] = $request->user_id;
         return view('backend.user.address', array_merge($this->data, $return_data));
     }
 
     public function userAddressDatatable(request $request)
     {  
         if($request->ajax()){
-            $query = UserAddress::select('id','user_id','address','zip','city')->with('userDetail')->where('user_id', $request->id);
+            $query = UserAddress::select('id','user_id','address','zip','city')->with('userDetail')->where('user_id', $request->user_id);
             $list = $query->get();
 
             return DataTables::of($list)
-                ->addColumn('address', function ($row) {
-                    $html = $row->address;
-                    return $html;
-                })
                 ->addColumn('user', function($row) {
                     return $row->userDetail->firstname;
                 })
@@ -91,7 +84,7 @@ class UserController extends MainController
                     $html .= "</span>";
                     return $html;
                 })
-                ->rawColumns(['id','firstname','address','zipcode','city','action'])
+                ->rawColumns(['user','address','action'])
                 ->make(true);
         } else {
             return redirect('backend/dashboard');

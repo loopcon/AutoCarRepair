@@ -14,6 +14,6 @@ class UserAddress extends Model
 
     public function userDetail()
     {
-        return $this->hasOne(User::class, 'id', 'user_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 }
