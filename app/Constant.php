@@ -13,4 +13,8 @@ class Constant {
     /** payment type **/
     const ONLINE = '0';
     const OFFLINE = '1';
+
+    /** checkout type **/
+    const GUEST_CHECKOUT = '1';
+    const USER_CHECKOUT = '0';
 }

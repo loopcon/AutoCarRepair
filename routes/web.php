@@ -179,6 +179,7 @@ Route::group(['as' => 'front_', 'middleware' => 'XSS'], function() {
     Route::get('checkout', [App\Http\Controllers\Front\CheckoutController::class, 'index'])->name('checkout');
     Route::post('cart-ajax-html', [App\Http\Controllers\Front\CheckoutController::class, 'cartAjaxHtml'])->name('cart-ajax-html');
     Route::post('create-order', [\App\Http\Controllers\Front\CheckoutController::class, 'createOrder'])->name('create-order');
+    Route::post('thank-yout', [\App\Http\Controllers\Front\CheckoutController::class, 'thankYou'])->name('thank-you');
 
     Route::post('send-otp', [\App\Http\Controllers\Front\OtpController::class, 'send'])->name('send-otp');
     Route::post('verify-otp', [\App\Http\Controllers\Front\OtpController::class, 'verify'])->name('verify-otp');

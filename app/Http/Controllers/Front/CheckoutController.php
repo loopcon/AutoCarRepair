@@ -8,6 +8,7 @@ use App\Constant;
 use App\Models\Cart;
 use App\Models\Order;
 use App\Models\OrderDetails;
+use Auth;
 use Session;
 
 class CheckoutController extends MainController
@@ -50,7 +51,11 @@ class CheckoutController extends MainController
 
         $payment_type = $request->payment_type;
         if($payment_type == Constant::OFFLINE){
+            $user_id = Auth::guard('user')->check() ? auth()->user()->id : NULL;
+            $checkout_type = $user_id ? Constant::USER_CHECKOUT : Constant::GUEST_CHECKOUT;
+            
             $order = new Order();
+            $order->is_guest_chekout = $checkout_type;
             $order->payment_type = $payment_type;
             $order->name = $request->name;
             $order->email = $request->email;
@@ -82,8 +87,14 @@ class CheckoutController extends MainController
                 }
                 Session::put('cart', array());
 
-                return redirect('/')->with('success', 'Your order created successfully.');
+                return redirect('thank-you')->with('success', 'Your order created successfully!');
             }
         }
+    }
+
+    public function thankYou(request $request){
+        $return_data = array();
+        $return_data['site_title'] = trans('Thank you');
+        return view('front/thank_you',array_merge($this->data,$return_data));
     }
 }
