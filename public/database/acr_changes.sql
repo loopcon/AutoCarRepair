@@ -429,3 +429,6 @@ ALTER TABLE `order_details`
 
 ALTER TABLE `order_details`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+-- Khushali : 07-08-2023 11:55 AM
+ALTER TABLE `users` CHANGE `status` `status` TINYINT(1) NULL DEFAULT '1' COMMENT '0=\"InActive\";1=\"Active\" ';

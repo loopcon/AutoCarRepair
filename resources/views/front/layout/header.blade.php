@@ -60,6 +60,20 @@
                     <li><a  class="@if($page == 'service-center'){{'acr-active'}}@endif" href="{{url('service-center')}}">Service Center</a></li>
                     <li><a href="#">Blog</a></li>
                     <li><a class="@if($page == 'shopping'){{'acr-active'}}@endif" href="{{url('shopping')}}">Shopping</a></li>
+                    <li class="dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa fa-user"></i>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            @if(!Auth::guard('user')->check())
+                                <li><a class="dropdown-item text-black" href="{{route('front_login')}}">Login</a></li>
+                                <li><a class="dropdown-item text-black" href="{{route('front_register')}}">Register</a></li>
+                            @else
+                                <li><a class="dropdown-item text-black" href="javascript:void(0);">My Profile</a></li>
+                                <li><a class="dropdown-item text-black" href="{{route('front_logout')}}">Logout</a></li>
+                            @endif
+                        </ul>
+                      </li>
                 </ul>
             </div>
             <div class="search-main-section">
