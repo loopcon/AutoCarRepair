@@ -99,6 +99,8 @@
 <script src="{{ asset('front/js/jquery.min.js') }}"></script>
 <script src="{{ asset('front/js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ asset('front/js/all.min.js') }}"></script>
+<script src="{{ asset('plugins/notification/toastr.min.js') }}"></script>
+<script src="{{asset('plugins/sweetalert/sweetalert.js')}}" type="text/javascript"></script>
 <script>
     $(document).ready(function() {
         basic();
@@ -144,6 +146,7 @@
                 return false;
             }
         });
+        setCartItemCount();
     }
     function PreviewImage(no) 
     {
@@ -156,6 +159,21 @@
             $('#uploadPreview'+no).addClass('previewImage');
             $('#uploadPreview'+no).css('width', '250px');
         };
+    }
+
+    function setCartItemCount(){
+        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({
+            url : '{{ route('front_cart-item-count') }}',
+            method : 'post',
+            data : {_token: CSRF_TOKEN},
+            success : function(result){
+                var result = $.parseJSON(result);
+                if(result.total){
+                    $('#cart_header_total_item').html('('+result.total+')');
+                }
+            }
+        });
     }
 </script>
 @yield('javascript')

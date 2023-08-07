@@ -356,7 +356,7 @@ input[type='radio'] {accent-color: #E56F31;  }
 .plus-col > button, .number { width: 100%; border: 0px; text-align: center; background: unset;}
 button { color: #000; outline: none; }
 #minus-btn svg{  font-size: 17px; }
-#count { font-size: 17px; color: #fff;}
+.count { font-size: 17px; color: #fff;}
 .add-to-cart-img{ width: 50px;}
 .service-add-main{ display: flex; align-items: center; justify-content: space-between; background-color: #D9D9D9;padding: 10px; }
 .service-add-sec-main{ display: flex; align-items: center;}

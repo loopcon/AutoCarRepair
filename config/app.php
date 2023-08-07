@@ -168,7 +168,8 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        Yajra\DataTables\DataTablesServiceProvider::class
+        Yajra\DataTables\DataTablesServiceProvider::class,
+        Craftsys\Msg91\Msg91LaravelServiceProvider::class
     ])->toArray(),
 
     /*
@@ -185,6 +186,7 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         'Constant' => App\Constant::class,
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
+        'Msg91' => Craftsys\Msg91\Facade\Msg91::class,
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 

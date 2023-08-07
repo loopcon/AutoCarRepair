@@ -54,16 +54,25 @@
                         <div class="shopinner-prise-text"><p>₹{{formatNumber($record->price)}}</p></div>
                         <div class="quantity-sec-main">
                             <p>Quantity</p>
-                            <select class="form-select" aria-label="Default select example">
-                                <option selected>1</option>
-                                <option value="1">2</option>
-                                <option value="2">3</option>
-                                <option value="3">4</option>
-                              </select>
+                            <input type="hidden" name="product_id" id="product_id" value="{{$record->id}}">
+                            <input type="hidden" name="qty" value="1">
+                            <div class="frame">
+                                <div class="plus-minus-main">
+                                      <div class="button plus-col minus-btn-col-1">
+                                          <button id="minus-btn"><i class="fa-solid fa-trash-can"></i></button>
+                                      </div>
+                                      <div class="number plus-col text-btn-col-2">
+                                          <h1 id="count">1</h1>
+                                      </div>
+                                      <div class="button plus-col plus-btn-col-1">
+                                          <button id="plus-btn"><i class="fa-solid fa-plus"></i></button>
+                                    </div>
+                                  </div>
+                              </div>
                         </div>
                     </div>
                     <div>
-                        <button class="addtocard-shopinner">Add To Cart</button>
+                        <button class="addtocard-shopinner" id="add_to_cart">Add To Cart</button>
                         @if($record->amazon_link)
                             <button class="buyfrom-shopinner" onclick="window.open('https://{{$record->amazon_link}}', '_blank')">Buy From Amazon</button>
                         @endif
@@ -191,6 +200,60 @@
                     $("ul#tab li:nth-child("+nthChild+")").addClass("active");
                 }
             });
+
+        let minusBtn = document.getElementById("minus-btn");
+        let count = document.getElementById("count");
+        let plusBtn = document.getElementById("plus-btn");
+
+        let countNum = 1;
+        count.innerHTML = countNum;
+        $('input[name="qty"]').val(countNum);
+
+        minusBtn.addEventListener("click", () => {
+//            console.log(countNum);
+            if(parseInt(countNum) > 1){
+                countNum -= 1;
+                count.innerHTML = countNum;
+                $('input[name="qty"]').val(countNum);
+            }
+        });
+
+        plusBtn.addEventListener("click", () => {
+            countNum += 1;
+            count.innerHTML = countNum;
+            $('input[name="qty"]').val(countNum);
+        });
+
+        $(document).on('click', '#add_to_cart', function(){
+            swal({
+                title: "",
+                text: "Are you sure? You want to add this product to cart!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: "Yes",
+                cancelButtonText: "{{__('Cancel')}}",
+                closeOnConfirm: true
+            },
+            function(){
+                addItemToCart();
+            });
+        });
+
+        function addItemToCart(){
+            var product_id = $('#product_id').val();
+            var qty = $('input[name="qty"]').val();
+            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+            $.ajax({
+                url : '{{ route('front_add-to-cart') }}',
+                method : 'post',
+                data : {_token: CSRF_TOKEN, product_id : product_id, qty : qty},
+                success : function(result){
+                    toastr.success('Item successfully added to cart!');
+                    setCartItemCount();
+                }
+            });
+        }
     });
 </script>
 @endsection

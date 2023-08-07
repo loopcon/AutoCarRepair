@@ -172,6 +172,17 @@ Route::group(['as' => 'front_', 'middleware' => 'XSS'], function() {
         }
     }
     /** product detail route end **/
+    Route::post('add-to-cart', [App\Http\Controllers\Front\CartController::class, 'add'])->name('add-to-cart');
+    Route::post('cart-item-count', [App\Http\Controllers\Front\CartController::class, 'itemCount'])->name('cart-item-count');
+    Route::post('update-cart', [App\Http\Controllers\Front\CartController::class, 'update'])->name('update-cart');
+    Route::post('remove-from-cart', [App\Http\Controllers\Front\CartController::class, 'remove'])->name('remove-from-cart');
+    Route::get('checkout', [App\Http\Controllers\Front\CheckoutController::class, 'index'])->name('checkout');
+    Route::post('cart-ajax-html', [App\Http\Controllers\Front\CheckoutController::class, 'cartAjaxHtml'])->name('cart-ajax-html');
+    Route::post('create-order', [\App\Http\Controllers\Front\CheckoutController::class, 'createOrder'])->name('create-order');
+
+    Route::post('send-otp', [\App\Http\Controllers\Front\OtpController::class, 'send'])->name('send-otp');
+    Route::post('verify-otp', [\App\Http\Controllers\Front\OtpController::class, 'verify'])->name('verify-otp');
+    Route::post('resend-otp', [\App\Http\Controllers\Front\OtpController::class, 'resend'])->name('resend-otp');
 
     Route::get('our-services', [App\Http\Controllers\Front\ServiceController::class, 'services'])->name('our-services');
     Route::get('contact-us', [App\Http\Controllers\Front\ContactController::class, 'index'])->name('contact-us');

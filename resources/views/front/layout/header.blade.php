@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="{{ asset('front/css/owl.theme.default.min.css') }}">
     <link rel="stylesheet" href="{{ asset('front/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('front/css/responsive.css') }}">
+    <link rel="stylesheet" href="{{asset('plugins/notification/toastr.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('public/plugins/sweetalert/sweetalert.css')}}">
     @yield('css')
 </head>
 <body>
@@ -83,6 +85,7 @@
                     <a class="navbar-appointment-btn" href="#" data-bs-toggle="modal" data-bs-target="#appointmentModal" >Appointment Now</a>
                 </div>
             </div>
+            <a href="{{url('checkout')}}" class="text-white"><i class="fa fa-cart-plus"></i><span id="cart_header_total_item"></span></a>
         </div>
     </div>
 </div>

@@ -45,8 +45,6 @@ class HomeController extends MainController
             'phone' => $request->phone,
             'service' => $request->service,
             'message' => $request->message,
-            'created_by' => Auth::guard('admin')->user()->id,
-            'updated_by' => NULL,
         ]);
         if($appointment){
             return redirect('/')->with('success', trans('Your Request Sent Successfully!'));

@@ -43,7 +43,7 @@
                                     <h5><a href="{{url('shopping/'.$product->slug)}}">{{$product->name}}</a></h5>
                                     <h5>{{isset($product->shopCategoryDetail->name) ? $product->shopCategoryDetail->name : ''}}</h5>
                                     <div class="shoping-card-prise">
-                                        <div class="shoping-card-text"><p>₹{{$product->price}}</p></div>
+                                        <div class="shoping-card-text"><p>₹{{formatNumber($product->price)}}</p></div>
                                         <div class="shoping-star-group">
                                             <i class="fa-solid fa-star"></i>
                                             <i class="fa-solid fa-star"></i>
@@ -52,7 +52,7 @@
                                             <i class="fa-solid fa-star"></i>
                                         </div>
                                     </div>
-                                    <button class="shop-add-btn">Add to cart</button>
+                                    <button class="shop-add-btn add_to_cart" data-product_id="{{$product->id}}">Add to cart</button>
                                 </div>
                             </div>
                         @endforeach
@@ -82,6 +82,23 @@
             $(document).on('click', '.filter_category', function(){
                 getSearchVals();
             });
+
+            $(document).on('click', '.add_to_cart', function(){
+                var product_id = $(this).data('product_id');
+                swal({
+                    title: "",
+                    text: "Are you sure? You want to add this product to cart!",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonClass: "btn-danger",
+                    confirmButtonText: "Yes",
+                    cancelButtonText: "{{__('Cancel')}}",
+                    closeOnConfirm: true
+                },
+                function(){
+                    addItemToCart(product_id);
+                });
+            });
         });
 
         function getSearchVals(page = ''){
@@ -104,6 +121,20 @@
                     var result = $.parseJSON(result);
                     console.log(result);
                     $('#search_ajax_list').html(result.html);
+                }
+            });
+        }
+
+        function addItemToCart(product_id){
+            var qty = 1;
+            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+            $.ajax({
+                url : '{{ route('front_add-to-cart') }}',
+                method : 'post',
+                data : {_token: CSRF_TOKEN, product_id : product_id, qty : qty},
+                success : function(result){
+                    toastr.success('Item successfully added to cart!');
+                    setCartItemCount();
                 }
             });
         }
