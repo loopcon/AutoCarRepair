@@ -53,7 +53,7 @@
 <script src="{{ asset('plugins/select2/js/select2.min.js') }}"></script>
 <script>
 $(document).ready(function() {
-    var page = $("#orders").DataTable({
+    var order = $("#orders").DataTable({
         "order": [], //Initial no order.
         "aaSorting": [],
         processing: true,
