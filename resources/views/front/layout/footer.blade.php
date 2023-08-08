@@ -142,10 +142,29 @@
             var model_id = $(this).data('id');
             fuelFromModelSearch(model_id, '');
         });
-        /*$('#appointmentselectModal').on('hidden.bs.modal', function() {
+
+        $(document).on('keyup', '#search_fuel', function(){
+            var search_fuel = $(this).val();
+            fuelFromModelSearch('', search_fuel);
+        });
+
+        $(document).on('click', '.amodal-fuel', function(){
+            var fuel_id = $(this).data('id');
+            appointmentnumberModal(fuel_id);
+        });
+
+        $(document).on('click', '.apt-btn', function(){
+            appointmentnumberModal(fuel_id = '');
+        });
+        $('#appointmentselectModal').on('hidden.bs.modal', function() {
             $('#search_brand').val('');
-            searchBrand('');
-        });*/
+        });
+        $('#appointmentsearchModal').on('hidden.bs.modal', function() {
+            $('#search_model').val('');
+        });
+        $('#appointmentfuelModal').on('hidden.bs.modal', function() {
+            $('#search_fuel').val('');
+        });
     });
     function basic(){
         $("input").attr("autocomplete", "off");
@@ -214,7 +233,7 @@
         });
     }
 
-    function modelFromBrandSearch(brand_id, search_model = ''){
+    function modelFromBrandSearch(brand_id = '', search_model = ''){
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
         $.ajax({
             url : '{{ route('front_model-from-brand-modal') }}',
@@ -229,17 +248,40 @@
         });
     }
 
-    function fuelFromModelSearch(model_id){
+    function fuelFromModelSearch(model_id = '', search_fuel = ''){
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
         $.ajax({
             url : '{{ route('front_search-fuel-from-model') }}',
             method : 'post',
-            data : {_token: CSRF_TOKEN, model_id: model_id},
+            data : {_token: CSRF_TOKEN, model_id: model_id, fuel: search_fuel},
             success : function(result){
                 var result = $.parseJSON(result);
                 $('#amodal_fuels').html(result.html);
                 $('#appointmentfuelModal').modal('show');
                 $('#appointmentsearchModal').modal('hide');
+            }
+        });
+    }
+
+    function appointmentnumberModal(fuel_id){
+        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({
+            url : '{{ route('front_appoitment-number-modal') }}',
+            method : 'post',
+            data : {_token: CSRF_TOKEN, fuel_id: fuel_id},
+            success : function(result){
+                var result = $.parseJSON(result);
+                $('#appointmentfuelModal').modal('hide');
+                if(result.result == 'success' && result.type == 'number'){
+                    $('#search_info').html(result.html);
+                    $('#appointmentnumberModal').modal('show');
+                } else if(result.result == 'success' && result.type == 'fuel'){
+                    fuelFromModelSearch();
+                } else if(result.result == 'success' && result.type == 'model'){
+                    modelFromBrandSearch();
+                } else {
+                    $('#appointmentselectModal').modal('show');
+                }
             }
         });
     }

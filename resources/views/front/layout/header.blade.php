@@ -96,7 +96,7 @@
                 </div>
                 
                 <div>
-                    <a class="navbar-appointment-btn" href="#" data-bs-toggle="modal" data-bs-target="#appointmentselectModal" >Appointment Now</a>
+                    <a class="navbar-appointment-btn apt-btn" href="javascript:void(0)" >Appointment Now</a>
                 </div>
             </div>
             <a href="{{url('checkout')}}" class="text-white"><i class="fa fa-cart-plus"></i><span id="cart_header_total_item"></span></a>
@@ -130,7 +130,7 @@
                         </div>
                     </div>
                     <div>
-                        <a class="navbar-appointment-btn" href="#" data-bs-toggle="modal" data-bs-target="#appointmentselectModal" >Appointment Now</a>
+                        <a class="navbar-appointment-btn apt-btn" href="javascript:void(0);" >Appointment Now</a>
                     </div>
                 </div>
             </div>
@@ -226,27 +226,12 @@
             <div>
                 <h1>Select Fuel Type </h1>
                 <div class="input-group">
-                    <input type="text" class="form-control search-brand-input" placeholder="Search Fuel"  aria-label="Amount (to the nearest dollar)">
+                    <input type="text" class="form-control search-brand-input" id="search_fuel" placeholder="Search Fuel"  aria-label="Amount (to the nearest dollar)">
                     <div class="search-icon">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </div>
                 </div>
                 <div class="row m-0 search-modal-box" id="amodal_fuels">
-                    <div class="col-4 brand-logo-center">
-                        <a href="#" data-bs-toggle="modal" data-bs-target="#appointmentnumberModal" ><img src="{{ asset('front/img/PETROL.png')}}" class="img-fluid" alt="">
-                            <p class="select-modal-name">Petrol</p>
-                        </a>
-                    </div>
-                    <div class="col-4 brand-logo-center">
-                        <a href="#"><img src="{{ asset('front/img/CNG.png') }}" class="img-fluid" alt="">
-                            <p class="select-modal-name">CNG</p>
-                        </a>
-                    </div>
-                    <div class="col-4 brand-logo-center">
-                        <a href="#"><img src="{{ asset('front/img/DIESEL.png') }}" class="img-fluid" alt="">
-                            <p class="select-modal-name">Diesel</p>
-                        </a>
-                    </div>
                 </div>
             </div>
         </div>
@@ -264,30 +249,18 @@
             </div>
             <div class="modal-body">
                 <div>
-                    <h1>Select Fuel Type </h1>
-                    <div class="row m-0 search-modal-box">
-                        <div class="col-4 brand-logo-center">
-                           <a href="#"><img src="{{ asset('front/img/Maruti-Suzuki-Logo.png') }}" class="img-fluid" alt="">
-                           </a>
-                        </div>
-                        <div class="col-4 brand-logo-center">
-                            <a href="#"><img src="{{ asset('front/img/swift.png') }}" class="img-fluid" alt="">
-                                <p class="select-modal-name">Swift</p>
-                            </a>
-                        </div>
-                        <div class="col-4 brand-logo-center">
-                            <a href="#"><img src="{{ asset('front/img/DIESEL.png') }}" class="img-fluid" alt="">
-                                <p class="select-modal-name">Diesel</p>
-                            </a>
-                        </div>
+                    <h1>Get instant quotes for your car service </h1>
+                    <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#appointmentselectModal">Change</a>
+                    <div class="row m-0 search-modal-box" id="search_info">
+
                     </div>
                     <div class="form-group">
-                        <input type="tel" class="form-control"   id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Phone Number">
-                      </div>
+                        <input type="tel" class="form-control"  id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Phone Number">
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <a class="check-price-btn-main" href="#"><button type="button"  class="check-price-btn" >Check Price For Free </button></a>
+                <a class="check-price-btn-main" href="javascript:void(0);"><button type="button"  class="check-price-btn" >Check Price For Free </button></a>
             </div>
         </div>
     </div>

@@ -48,6 +48,8 @@ class SearchController extends MainController
                 $brand_id = Session::get('brand_id');
             } else {
                 Session::put('brand_id', $brand_id);
+                Session::put('model_id', '');
+                Session::put('fuel_id', '');
                 Session::save();
             }
             $query = CarModel::select('id', 'image', 'title')->where([['carbrand_id', $brand_id], ['is_archive', Constant::NOT_ARCHIVE], ['status', Constant::ACTIVE]]);
@@ -77,6 +79,7 @@ class SearchController extends MainController
 
     public function fuelFromModel(request $request){
         if($request->ajax()){
+            $fuel = $request->fuel ? strtolower(str_replace(' ', '', $request->fuel)) : NULL;
             $brand_id = Session::get('brand_id');
             $model_id = $request->model_id;
             if(empty($model_id)){
@@ -89,19 +92,22 @@ class SearchController extends MainController
             $fuels = ScheduledPackage::select('fuel_type_id')->where([['brand_id', $brand_id], ['model_id', $model_id], ['is_archive', Constant::NOT_ARCHIVE], ['status', Constant::ACTIVE]])->groupBy('fuel_type_id')->get();
             $farray = array();
             if($fuels->count()){
-                foreach($fuels as $fuel){
-                    array_push($farray, $fuel->fuel_type_id);
+                foreach($fuels as $fval){
+                    array_push($farray, $fval->fuel_type_id);
                 }
             }
 
             $query = FuelType::select('id', 'title', 'image')->whereIn('id', $farray)->where([['is_archive', Constant::NOT_ARCHIVE], ['status', Constant::ACTIVE]]);
+            if($fuel){
+                $query->whereRaw("LOWER(REPLACE(title, ' ', '')) LIKE '%".$fuel."%'");
+            }
             $fuel_data = $query->orderBy('title', 'asc')->get();
             $html = '';
             if($fuel_data->count()){
-                foreach($fuel_data as $fuel){
+                foreach($fuel_data as $fval){
                     $html .= '<div class="col-4 brand-logo-center">
-                                <a href="javascript:void(0);" class="amodal-fuel" data-id="'.$fuel->id.'"><img src="'. asset("public/uploads/fueltype/".$fuel->image).'" class="img-fluid" alt="">
-                                    <p class="select-modal-name">'.$fuel->title.'</p>
+                                <a href="javascript:void(0);" class="amodal-fuel" data-id="'.$fval->id.'"><img src="'. asset("public/uploads/fueltype/".$fval->image).'" class="img-fluid" alt="">
+                                    <p class="select-modal-name">'.$fval->title.'</p>
                                 </a>
                             </div>';
                 }
@@ -110,6 +116,53 @@ class SearchController extends MainController
             }
 
             echo json_encode(array('html' => $html));
+            exit;
+        } else {
+            return redirect('/');
+        }
+    }
+
+    public function appoitmentNumberModel(request $request){
+        if($request->ajax()){
+            $fuel_id = $request->fuel_id;
+            $brand_id = Session::get('brand_id');
+            $model_id = Session::get('model_id');
+            if(empty($fuel_id)){
+                $fuel_id = Session::get('fuel_id');
+            } else {
+                Session::put('fuel_id', $fuel_id);
+                Session::save();
+            }
+
+            $brandInfo = CarBrand::select('id', 'image')->where([['id', $brand_id]])->first();
+            $modelInfo = CarModel::select('id', 'title', 'image')->where([['id', $model_id]])->first();
+            $fuelInfo = FuelType::select('id', 'title', 'image')->where([['id', $fuel_id]])->first();
+
+            $return = array('result' => 'error');
+            $html = '';
+            if(isset($brandInfo->id) && $brandInfo->id && isset($modelInfo->id) && $modelInfo->id && isset($fuelInfo->id) && $fuelInfo->id){
+                $html .= '<div class="col-4 brand-logo-center">
+                           <a href="javascript:void(0);"><img src="'.asset("public/uploads/carbrand/".$brandInfo->image) .'" class="img-fluid" alt=""></a>
+                        </div>
+                        <div class="col-4 brand-logo-center">
+                            <a href="javascript:void(0);">
+                                <img src="'.asset("public/uploads/carmodel/".$modelInfo->image) .'" class="img-fluid" alt="">
+                                <p class="select-modal-name">'.$modelInfo->title.'</p>
+                            </a>
+                        </div>
+                        <div class="col-4 brand-logo-center">
+                            <a href="javascript:void(0);">
+                                <img src="'.asset("public/uploads/fueltype/".$fuelInfo->image) .'" class="img-fluid" alt="">
+                                <p class="select-modal-name">'.$fuelInfo->title.'</p>
+                            </a>
+                        </div>';
+                $return = array('result' => 'success', 'type' => 'number', 'html' => $html);
+            } elseif( isset($brandInfo->id) && $brandInfo->id && isset($modelInfo->id) && $modelInfo->id){
+                $return = array('result' => 'success', 'type' => 'fuel');
+            } elseif( isset($brandInfo->id) && $brandInfo->id){
+                $return = array('result' => 'success', 'type' => 'model');
+            }
+            echo json_encode($return);
             exit;
         } else {
             return redirect('/');
