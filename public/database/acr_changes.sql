@@ -454,3 +454,6 @@ ALTER TABLE `user_addresses`
 ALTER TABLE `car_brands` CHANGE `status` `status` TINYINT(1) NULL DEFAULT '1' COMMENT '0=\"In Active\";1=\"Active\" ';
 
 ALTER TABLE `model` ADD `image` TEXT NULL AFTER `title`;
+
+-- Nirali : 08-08-2023 4:25 PM
+ALTER TABLE `home_page_setting` ADD `button_title` VARCHAR(255) NULL AFTER `footer_description`, ADD `button_link` VARCHAR(255) NULL AFTER `button_title`;

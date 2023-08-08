@@ -66,6 +66,20 @@
                                     @if ($errors->has('footer_description')) <div class="text-danger">{{ $errors->first('footer_description') }}</div>@endif
                                 </div>
 
+                                <div class="col-md-6">
+                                    <label class="form-label" for="button_title">{{__('Button Title')}}<span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="button_title" name="button_title" placeholder="{{__('Button Title')}}" required=""  data-parsley-required-message="{{ __("This value is required.")}}" value="{{ isset($record->button_title) ? $record->button_title : old('button_title') }}">
+
+                                    @if ($errors->has('button_title')) <div class="text-danger">{{ $errors->first('button_title') }}</div>@endif
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label class="form-label" for="button_link">{{__('Button link')}}<span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="button_link" name="button_link" placeholder="{{__('Button Title')}}" required=""  data-parsley-required-message="{{ __("This value is required.")}}" value="{{ isset($record->button_link) ? $record->button_link : old('button_link') }}">
+
+                                    @if ($errors->has('button_link')) <div class="text-danger">{{ $errors->first('button_link') }}</div>@endif
+                                </div>
+
                                 <div class="mt-3  col-md-12">
                                     <h6>SEO Details</h6>
                                     <hr/>
