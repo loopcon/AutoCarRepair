@@ -188,6 +188,19 @@ Route::group(['as' => 'front_', 'middleware' => 'XSS'], function() {
     Route::post('search-fuel-from-model', [\App\Http\Controllers\Front\SearchController::class, 'fuelFromModel'])->name('search-fuel-from-model');
     Route::post('appoitment-number-modal', [\App\Http\Controllers\Front\SearchController::class, 'appoitmentNumberModel'])->name('appoitment-number-modal');
 
+    /** product-detail route start **/
+    $scategories = Cache::remember('service_categories', 10, function() { 
+                return DB::table('service_categories')->select('id', 'slug')
+                ->get();
+            });
+            
+    if(!empty($scategories)) {
+        foreach ($scategories as $scategory) {
+            Route::get($scategory->slug.'/{brand?}/{model?}/{fuel?}', [App\Http\Controllers\Front\ServiceController::class, 'detail'])->name($scategory->slug.'/{brand_model?}/{fuel?}')->middleware('XSS');
+        }
+    }
+    /** product detail route end **/
+
     Route::post('add-to-cart', [App\Http\Controllers\Front\CartController::class, 'add'])->name('add-to-cart');
     Route::post('cart-item-count', [App\Http\Controllers\Front\CartController::class, 'itemCount'])->name('cart-item-count');
     Route::post('update-cart', [App\Http\Controllers\Front\CartController::class, 'update'])->name('update-cart');

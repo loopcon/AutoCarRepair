@@ -165,6 +165,18 @@
         $('#appointmentfuelModal').on('hidden.bs.modal', function() {
             $('#search_fuel').val('');
         });
+
+        $(document).on('click', '#check_price', function(){
+            var phone = $('#price_phone').val();
+            var length = phone.length;
+            if(phone == ''){
+                toastr.error('Please enter phone number!');
+            } else if(length != '10'){
+                toastr.error('Please enter valid phone number!');
+            } else {
+                location.href = "{{url('our-services')}}";
+            }
+        });
     });
     function basic(){
         $("input").attr("autocomplete", "off");

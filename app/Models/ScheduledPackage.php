@@ -27,4 +27,8 @@ class ScheduledPackage extends Model
     public function fuelTypeDetail(){
         return $this->belongsTo(FuelType::class, 'fuel_type_id');
     }
+
+    public function specifications(){
+        return $this->hasMany(PackageSpecification::class, 'sp_id');
+    }
 }

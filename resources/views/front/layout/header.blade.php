@@ -255,12 +255,12 @@
 
                     </div>
                     <div class="form-group">
-                        <input type="tel" class="form-control"  id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Phone Number">
+                        <input type="text" class="form-control num_only" maxlength="10"  id="price_phone" aria-describedby="emailHelp" placeholder="Enter Phone Number">
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <a class="check-price-btn-main" href="javascript:void(0);"><button type="button"  class="check-price-btn" >Check Price For Free </button></a>
+                <a class="check-price-btn-main" id="check_price" href="javascript:void(0);"><button type="button"  class="check-price-btn" >Check Price For Free </button></a>
             </div>
         </div>
     </div>
