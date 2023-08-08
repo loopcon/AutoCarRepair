@@ -57,6 +57,10 @@ class CarModelController extends MainController
             $carmodel->$field = isset($request->$field) && $request->$field ? $request->$field : NULL;
         }
         $carmodel->slug = $slug;
+        if($request->hasFile('image')) {
+            $newName = fileUpload($request, 'image', 'uploads/carmodel');
+            $carmodel->image = $newName;
+        }
         $carmodel->created_by = Auth::guard('admin')->user()->id;
         $carmodel->save();
         if($carmodel){
@@ -117,6 +121,14 @@ class CarModelController extends MainController
         }
         $carmodel->slug = $slug;
         $carmodel->updated_by = Auth::guard('admin')->user()->id;
+        if($request->hasFile('image')) {
+            $old_image = $carmodel->image;
+            if($old_image){
+                removeFile('uploads/carmodel/'.$old_image);
+            }
+            $newName = fileUpload($request, 'image', 'uploads/carmodel');
+            $carmodel->image = $newName;
+        }
         $carmodel->save();
 
         if($carmodel) {
@@ -140,12 +152,17 @@ class CarModelController extends MainController
         );
         $is_delete = checkDeleteConstrainnt($constraint_array, $id);
         if($is_delete) {
-                $carmodel = CarModel::where('id', $id)->delete();
-                if($carmodel) {
-                    return redirect()->back()->with('success', trans('Car Model Deleted Successfully!'));
-                } else {
-                    return redirect()->back()->with('error', trans('Something went wrong, please try again later!'));
-                }
+            $image = CarModel::where('id', $id)->first();
+            $old_image = $image->image;
+            if($old_image){
+                removeFile('uploads/carmodel/'.$old_image);
+            }
+            $carmodel = CarModel::where('id', $id)->delete();
+            if($carmodel) {
+                return redirect()->back()->with('success', trans('Car Model Deleted Successfully!'));
+            } else {
+                return redirect()->back()->with('error', trans('Something went wrong, please try again later!'));
+            }
         } else {
             return redirect()->back()->with('error', trans('You can not delete this car model! Somewhere this car model information is added in system!'));
         }
@@ -153,7 +170,7 @@ class CarModelController extends MainController
     public function carmodelsDatatable(request $request)
     {
         if($request->ajax()){
-            $query = CarModel::with('brandDetail')->select('id', 'carbrand_id', 'title', 'status')->where('is_archive', '=', Constant::NOT_ARCHIVE)->orderBy('id', 'DESC');
+            $query = CarModel::with('brandDetail')->select('id', 'image', 'carbrand_id', 'title', 'status')->where('is_archive', '=', Constant::NOT_ARCHIVE)->orderBy('id', 'DESC');
 
             if($request->carBrand!='all') {
                 if($request->carBrand!='') {
@@ -164,6 +181,10 @@ class CarModelController extends MainController
             }
             $list = $query->get();
             return DataTables::of($list)
+                ->addColumn('image', function ($row) {
+                    $image = $row->image ? "<img src='".url('uploads/carmodel/'.$row->image)."' width='80px' height='80px'>" : '';
+                    return $image;
+                })
                 ->addColumn('maker', function ($row) {
                     $maker = isset($row->brandDetail->title) ? $row->brandDetail->title : '';
                     return $maker;
@@ -186,7 +207,7 @@ class CarModelController extends MainController
                     $html .= "</span>";
                     return $html;
                 })
-                ->rawColumns(['maker','action','status'])
+                ->rawColumns(['maker', 'image','action','status'])
                 ->make(true);
         } else {
             return redirect('backend/dashboard');

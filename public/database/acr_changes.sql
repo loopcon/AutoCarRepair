@@ -449,3 +449,8 @@ ALTER TABLE `user_addresses`
 
 ALTER TABLE `user_addresses`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+-- Khushali : 07-08-2023 2:01 PM
+ALTER TABLE `car_brands` CHANGE `status` `status` TINYINT(1) NULL DEFAULT '1' COMMENT '0=\"In Active\";1=\"Active\" ';
+
+ALTER TABLE `model` ADD `image` TEXT NULL AFTER `title`;

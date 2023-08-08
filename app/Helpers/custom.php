@@ -184,3 +184,8 @@ function getServiceCategory(){
     $services = \App\Models\ServiceCategory::select('id', 'title')->where([['is_archive', \App\Constant::NOT_ARCHIVE], ['status', \App\Constant::ACTIVE]])->orderBy('id', 'desc')->get();
     return $services;
 }
+
+function getbrands(){
+    $brands = \App\Models\CarBrand::select('id', 'image')->where([['is_archive', \App\Constant::NOT_ARCHIVE], ['status', \App\Constant::ACTIVE]])->orderBy('id', 'desc')->get();
+    return $brands;
+}

@@ -96,7 +96,7 @@
                 </div>
                 
                 <div>
-                    <a class="navbar-appointment-btn" href="#" data-bs-toggle="modal" data-bs-target="#appointmentModal" >Appointment Now</a>
+                    <a class="navbar-appointment-btn" href="#" data-bs-toggle="modal" data-bs-target="#appointmentselectModal" >Appointment Now</a>
                 </div>
             </div>
             <a href="{{url('checkout')}}" class="text-white"><i class="fa fa-cart-plus"></i><span id="cart_header_total_item"></span></a>
@@ -130,7 +130,7 @@
                         </div>
                     </div>
                     <div>
-                        <a class="navbar-appointment-btn" href="#" data-bs-toggle="modal" data-bs-target="#appointmentModal" >Appointment Now</a>
+                        <a class="navbar-appointment-btn" href="#" data-bs-toggle="modal" data-bs-target="#appointmentselectModal" >Appointment Now</a>
                     </div>
                 </div>
             </div>
@@ -152,34 +152,7 @@
     </div>
 </div>
 <!-- mobile menu end  -->
-<!-- Appointment modal -->  
-<div class="modal fade" id="appointmentModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog appointment-dialog">
-        <div class="modal-content ">
-            <div class="modal-header">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="appointment-contet-modal">
-                    <h1>Experience The Best Car Service In Delhi</h1>
-                    <div class="appointment-car-service">
-                        <p>Get instant quotes for four car service  </p>
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected>Open this select menu</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button"  class="check-price-btn" data-bs-toggle="modal" data-bs-target="#appointmentselectModal">Check Price For Free </button>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Appointment modal -->
+
 <!-- Appointment select modal -->  
 <div class="modal fade" id="appointmentselectModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog appointmentselect-dialog">
@@ -191,39 +164,22 @@
                 <div>
                     <h1>Select Brand</h1>
                     <div class="input-group">
-                        <input type="text" class="form-control search-brand-input" placeholder="Search Brand"  aria-label="Amount (to the nearest dollar)">
+                        <input type="text" class="form-control search-brand-input" id="search_brand" placeholder="Search Brand"  aria-label="Amount (to the nearest dollar)">
                         <div class="search-icon">
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </div>
-                        </div>
-                    <div class="row m-0">
-                        <div class="col-4 brand-logo-center">
-                            <a href="" data-bs-toggle="modal" data-bs-target="#appointmentsearchModal"><img src="{{ asset('front/img/Maruti-Suzuki-Logo.png')}}" class="img-fluid" alt=""></a>
-                        </div>
-                        <div class="col-4 brand-logo-center">
-                            <a href="#"><img src="{{ asset('front/img/mahindra-new.png') }}" class="img-fluid" alt=""></a>
-                        </div>
-                        <div class="col-4 brand-logo-center">
-                            <a href="#"><img src="{{ asset('front/img/toyota-logos.png') }}" class="img-fluid" alt=""></a>
-                        </div>
-                        <div class="col-4 brand-logo-center">
-                            <a href="#"><img src="{{ asset('front/img/hyundai-logo.png') }}" class="img-fluid" alt=""></a>
-                        </div>
-                        <div class="col-4 brand-logo-center">
-                            <a href="#"><img src="{{ asset('front/img/Tata-Group-logo.png') }}" class="img-fluid" alt=""></a>
-                        </div>
-                        <div class="col-4 brand-logo-center">
-                            <a href="#"><img src="{{ asset('front/img/Volkswagen-logo.png') }}" class="img-fluid" alt=""></a>
-                        </div>
-                        <div class="col-4 brand-logo-center">
-                            <a href="#"><img src="{{ asset('front/img/mercedes-benz.png') }}" class="img-fluid" alt=""></a>
-                        </div>
-                        <div class="col-4 brand-logo-center">
-                            <a href="#"><img src="{{ asset('front/img/bmw-logo.png') }}" class="img-fluid" alt=""></a>
-                        </div>
-                        <div class="col-4 brand-logo-center">
-                            <a href="#"><img src="{{ asset('front/img/Volvo-logo.png') }}" class="img-fluid" alt=""></a>
-                        </div>
+                    </div>
+                    <div class="row m-0" id="amodal_brands">
+                        @php($brands = getbrands())
+                        @if($brands->count())
+                            @foreach($brands as $brand)
+                                @if($brand->image)
+                                    <div class="col-4 brand-logo-center">
+                                        <a href="javascript:void(0);" class="amodal-brand" data-id="{{$brand->id}}"><img src="{{ asset('public/uploads/carbrand/'.$brand->image) }}" class="img-fluid" alt=""></a>
+                                    </div>
+                                @endif
+                            @endforeach
+                        @endif
                     </div>
                 </div>
             </div>
@@ -244,58 +200,13 @@
                 <div>
                     <h1>Select Modal</h1>
                     <div class="input-group">
-                        <input type="text" class="form-control search-brand-input" placeholder="Search Modal"  aria-label="Amount (to the nearest dollar)">
+                        <input type="text" class="form-control search-brand-input" id="search_model" placeholder="Search Modal"  aria-label="Amount (to the nearest dollar)">
                         <div class="search-icon">
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </div>
                     </div>
-                    <div class="row m-0 search-modal-box">
-                        <div class="col-4 brand-logo-center">
-                            <a href="#"  data-bs-toggle="modal" data-bs-target="#appointmentfuelModal"><img src="{{ asset('front/img/rits.png')}}" class="img-fluid" alt="">
-                                <p class="select-modal-name">Ritz</p>
-                            </a>
-                        </div>
-                        <div class="col-4 brand-logo-center">
-                            <a href="#"><img src="{{ asset('front/img/swift-old.png') }}" class="img-fluid" alt="">
-                                <p class="select-modal-name">Swift</p>
-                            </a>
-                        </div>
-                        <div class="col-4 brand-logo-center">
-                            <a href="#"><img src="{{ asset('front/img/swift-old.png') }}" class="img-fluid" alt="">
-                                <p class="select-modal-name">Swift</p>
-                            </a>
-                        </div>
-                        <div class="col-4 brand-logo-center">
-                            <a href="#"><img src="{{ asset('front/img/wagonr.png') }}" class="img-fluid" alt="">
-                                <p class="select-modal-name">Wagon R</p>
-                            </a>
-                        </div>
-                        <div class="col-4 brand-logo-center">
-                            <a href="#"><img src="{{ asset('front/img/baleno.png') }}" class="img-fluid" alt="">
-                                <p class="select-modal-name">Baleno</p>
-                            </a>
-                            
-                        </div>
-                        <div class="col-4 brand-logo-center">
-                            <a href="#"><img src="{{ asset('front/img/rits.png') }}" class="img-fluid" alt="">
-                                <p class="select-modal-name">Ritz</p>
-                            </a>
-                        </div>
-                        <div class="col-4 brand-logo-center">
-                            <a href="#"><img src="{{ asset('front/img/baleno.png') }}" class="img-fluid" alt="">
-                                <p class="select-modal-name">Baleno</p>
-                            </a>
-                        </div>
-                        <div class="col-4 brand-logo-center">
-                            <a href="#"><img src="{{ asset('front/img/swift.png') }}" class="img-fluid" alt="">
-                                <p class="select-modal-name">Swift</p>
-                            </a>
-                        </div>
-                        <div class="col-4 brand-logo-center">
-                            <a href="#"><img src="{{ asset('front/img/wagonr.png') }}" class="img-fluid" alt="">
-                                <p class="select-modal-name">wagon R</p>
-                            </a>
-                        </div>
+                    <div class="row m-0 search-modal-box" id="amodal_models">
+
                     </div>
                 </div>
             </div>
@@ -320,7 +231,7 @@
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </div>
                 </div>
-                <div class="row m-0 search-modal-box">
+                <div class="row m-0 search-modal-box" id="amodal_fuels">
                     <div class="col-4 brand-logo-center">
                         <a href="#" data-bs-toggle="modal" data-bs-target="#appointmentnumberModal" ><img src="{{ asset('front/img/PETROL.png')}}" class="img-fluid" alt="">
                             <p class="select-modal-name">Petrol</p>

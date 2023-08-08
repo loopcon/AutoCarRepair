@@ -177,6 +177,11 @@ Route::group(['as' => 'front_', 'middleware' => 'XSS'], function() {
         }
     }
     /** product detail route end **/
+
+    Route::post('search-brand', [\App\Http\Controllers\Front\SearchController::class, 'brands'])->name('search-brand');
+    Route::post('search-model-from-brand-modal', [\App\Http\Controllers\Front\SearchController::class, 'modelFromBrandModal'])->name('model-from-brand-modal');
+    Route::post('search-fuel-from-model', [\App\Http\Controllers\Front\SearchController::class, 'fuelFromModel'])->name('search-fuel-from-model');
+
     Route::post('add-to-cart', [App\Http\Controllers\Front\CartController::class, 'add'])->name('add-to-cart');
     Route::post('cart-item-count', [App\Http\Controllers\Front\CartController::class, 'itemCount'])->name('cart-item-count');
     Route::post('update-cart', [App\Http\Controllers\Front\CartController::class, 'update'])->name('update-cart');

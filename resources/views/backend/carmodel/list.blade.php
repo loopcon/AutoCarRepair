@@ -39,6 +39,7 @@
                             <thead>
                                 <tr>
                                     <th>{{__('Id')}}</th>
+                                    <th>{{__('Image')}}</th>
                                     <th>{{__('Brand')}}</th>
                                     <th>{{__('Title')}}</th>                                    
                                     <th>{{__('Status')}}</th>                                    
@@ -77,6 +78,7 @@
                 "lengthMenu": [[50, 100, 200, 400], [50, 100, 200, 400]],
                 "columns": [
                     {data: 'id', name: 'id'},
+                    {data: 'image', name: 'image'},
                     {data: 'maker', name: 'maker'},
                     {data: 'title', name: 'title'},
                     {data: 'status', name: 'status'},

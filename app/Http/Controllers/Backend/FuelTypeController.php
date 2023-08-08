@@ -124,8 +124,8 @@ class FuelTypeController extends MainController
         $this->validate($request, [
             'title' => [
                 'required',
-                Rule::unique('fuel_type')->where(function ($query) use($request) {
-                    return $query->where('is_archive', Constant::NOT_ARCHIVE);
+                Rule::unique('fuel_type')->where(function ($query) use($request, $id) {
+                    return $query->where([['is_archive', Constant::NOT_ARCHIVE], ['id', '!=', $id]]);
                 }),
             ],
         ]);

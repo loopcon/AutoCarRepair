@@ -121,6 +121,31 @@
         $('.btn-toggle-item').click(function(){
             $('.mobile-toggle-data').toggle();
         });
+
+        $(document).on('keyup', '#search_brand', function(){
+            var search_brand = $(this).val();
+            searchBrand(search_brand);
+        });
+
+        $(document).on('click', '.amodal-brand', function(){
+            var brand_id = $(this).data('id');
+            modelFromBrandSearch(brand_id, '');
+        });
+
+        $(document).on('keyup', '#search_model', function(){
+            var search_model = $(this).val();
+            var brand_id = "{{session()->get('brand_id')}}";
+            modelFromBrandSearch(brand_id, search_model);
+        });
+
+        $(document).on('click', '.amodal-model', function(){
+            var model_id = $(this).data('id');
+            fuelFromModelSearch(model_id, '');
+        });
+        /*$('#appointmentselectModal').on('hidden.bs.modal', function() {
+            $('#search_brand').val('');
+            searchBrand('');
+        });*/
     });
     function basic(){
         $("input").attr("autocomplete", "off");
@@ -172,6 +197,49 @@
                 if(result.total){
                     $('#cart_header_total_item').html('('+result.total+')');
                 }
+            }
+        });
+    }
+
+    function searchBrand(search_brand = ''){
+        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({
+            url : '{{ route('front_search-brand') }}',
+            method : 'post',
+            data : {_token: CSRF_TOKEN, brand: search_brand},
+            success : function(result){
+                var result = $.parseJSON(result);
+                $('#amodal_brands').html(result.html);
+            }
+        });
+    }
+
+    function modelFromBrandSearch(brand_id, search_model = ''){
+        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({
+            url : '{{ route('front_model-from-brand-modal') }}',
+            method : 'post',
+            data : {_token: CSRF_TOKEN, brand_id: brand_id, model:search_model},
+            success : function(result){
+                var result = $.parseJSON(result);
+                $('#amodal_models').html(result.html);
+                $('#appointmentsearchModal').modal('show');
+                $('#appointmentselectModal').modal('hide');
+            }
+        });
+    }
+
+    function fuelFromModelSearch(model_id){
+        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({
+            url : '{{ route('front_search-fuel-from-model') }}',
+            method : 'post',
+            data : {_token: CSRF_TOKEN, model_id: model_id},
+            success : function(result){
+                var result = $.parseJSON(result);
+                $('#amodal_fuels').html(result.html);
+                $('#appointmentfuelModal').modal('show');
+                $('#appointmentsearchModal').modal('hide');
             }
         });
     }
