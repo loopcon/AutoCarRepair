@@ -24,18 +24,16 @@
                         </div>
                     </div> -->
                     <div class="card-body">
-                        <table id="orders" class="table table-striped table-hover" style="width:100%">
+                        <input type="hidden" name="order_id" value="{{$order_id}}">
+                        <table id="order-detail" class="table table-striped table-hover" style="width:100%">
                             <thead>
                                 <tr>
                                     <th>{{__('Id')}}</th>
-                                    <th>{{__('User')}}</th>
-                                    <th>{{__('Email')}}</th>
-                                    <th>{{__('Phone')}}</th>
-                                    <th>{{__('Address')}}</th>
-                                    <th>{{__('Zip')}}</th>
-                                    <th>{{__('City')}}</th>
+                                    <th>{{__('Order')}}</th>
+                                    <th>{{__('Product')}}</th>
+                                    <th>{{__('Price')}}</th>
+                                    <th>{{__('Quality')}}</th>
                                     <th>{{__('Total')}}</th>
-                                    <th>{{__('Date')}}</th>
                                     <th>{{__('Action')}}</th>
                                 </tr>
                             </thead>
@@ -53,7 +51,7 @@
 <script src="{{ asset('plugins/select2/js/select2.min.js') }}"></script>
 <script>
 $(document).ready(function() {
-    var page = $("#orders").DataTable({
+    var detail = $("#order-detail").DataTable({
         "order": [], //Initial no order.
         "aaSorting": [],
         processing: true,
@@ -62,21 +60,19 @@ $(document).ready(function() {
         "lengthMenu": [[50, 100, 200, 400], [50, 100, 200, 400]],
         "columns": [
             {data: 'id', name: 'id'},
-            {data: 'name', name: 'name'},
-            {data: 'email', name: 'email'},
-            {data: 'phone', name: 'phone'},
-            {data: 'address', name: 'address'},
-            {data: 'zip', name: 'zip'},
-            {data: 'city', name: 'city'},
-            {data: 'total', name: 'total'},
-            {data: 'order_date', name: 'order_date'},
+            {data: 'order', name: 'user'},
+            {data: 'product', name: 'product'},
+            {data: 'price', name: 'price'},
+            {data: 'qty', name: 'qty'},
+            {data: 'subtotal', name: 'subtotal'},
             {data: 'action', name: 'action', orderable: false, searchable: false},
         ],
         "ajax" : {
-            url : "{{ route('admin_order-datatable') }}",
+            url : "{{ route('admin_order-detail-datatable') }}",
             type : "POST",
             data : function(d) {
-                d._token = "{{ csrf_token() }}"
+                d._token = "{{ csrf_token() }}",
+                d.order_id = $('input[name="order_id"]').val()
             }
         }
     });
@@ -85,7 +81,7 @@ $(document).ready(function() {
         var href = $(this).data('href');
         swal({
             title: "",
-            text: "{{__('Are you sure? Delete this Order!')}}",
+            text: "{{__('Are you sure? Delete this Order Detail!')}}",
             type: "warning",
             showCancelButton: true,
             confirmButtonClass: "btn-danger",
@@ -99,5 +95,5 @@ $(document).ready(function() {
     });
 });
 </script>
-@endsection
 
+@endsection

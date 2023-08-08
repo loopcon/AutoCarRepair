@@ -32,7 +32,6 @@ class UserController extends MainController
 
             return DataTables::of($list)
                 ->addColumn('action', function ($row) {
-                    $roles = Session::get('roles');
                     $html = "";
                     $id = Crypt::encrypt($row->id);
                     $html .= "<span class='text-nowrap'>";
@@ -80,7 +79,7 @@ class UserController extends MainController
                     $html = "";
                     $id = Crypt::encrypt($row->id);
                     $html .= "<span class='text-nowrap'>";
-                    $html .= "<a href='javascript:void(0);' data-href='".route('admin_user-delete',array($id))."' rel='tooltip' title='".trans('Delete')."' class='btn btn-danger btn-sm mr-20 delete'><i class='fa fa-trash-alt'></i></a>&nbsp";
+                    $html .= "<a href='javascript:void(0);' data-href='".route('admin_user-address-delete',array($row->id))."' rel='tooltip' title='".trans('Delete')."' class='btn btn-danger btn-sm mr-20 delete'><i class='fa fa-trash-alt'></i></a>&nbsp";
                     $html .= "</span>";
                     return $html;
                 })
@@ -88,6 +87,17 @@ class UserController extends MainController
                 ->make(true);
         } else {
             return redirect('backend/dashboard');
+        }
+    }
+
+    public function addressDestroy($id)
+    {
+        // $id = Crypt::decrypt($id);
+        $useraddress = UserAddress::where('id', $id)->delete();
+        if($useraddress) {
+            return redirect()->back()->with('success', trans('User Address Deleted Successfully!'));
+        } else {
+            return redirect()->back()->with('error', trans('Something went wrong, please try again later!'));
         }
     }
 }

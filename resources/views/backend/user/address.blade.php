@@ -79,7 +79,7 @@ $(document).ready(function() {
         var href = $(this).data('href');
         swal({
             title: "",
-            text: "{{__('Are you sure? Delete this user!')}}",
+            text: "{{__('Are you sure? Delete this user Address!')}}",
             type: "warning",
             showCancelButton: true,
             confirmButtonClass: "btn-danger",
