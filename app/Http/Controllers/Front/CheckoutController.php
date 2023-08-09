@@ -18,12 +18,23 @@ class CheckoutController extends MainController
     {
         $return_data = array();
         $return_data['site_title'] = trans('Checkout');
-        $cart = Session::get('cart');
-//        dd($cart);
-        if(empty($cart)){
+        $pcart = Session::get('pcart');
+        $scart = Session::get('scart');
+        if(empty($pcart) && empty($scart)){
             return redirect('/');
         }
-        $cart_data = Cart::whereIn('id', $cart)->get();
+        $cart_ids = array();
+        if(isset($scart['cart_id']) && $scart['cart_id']){
+            array_push($cart_ids, $scart['cart_id']);
+        }
+        if($pcart && is_array($pcart)){
+            foreach($pcart as $pval){
+                if(isset($pval['cart_id']) && $pval['cart_id']){
+                    array_push($cart_ids, $pval['cart_id']);
+                }
+            }
+        }
+        $cart_data = Cart::whereIn('id', $cart_ids)->get();
         $return_data['cart_data'] = $cart_data;
 
         $user_id = Auth::guard('user')->check() ? Auth::guard('user')->user()->id : NULL;
@@ -36,12 +47,24 @@ class CheckoutController extends MainController
 
     public function cartAjaxHtml(request $request){
         if($request->ajax()){
-            $cart = Session::get('cart');
             $status = 'success';
-            if(empty($cart)){
+            $pcart = Session::get('pcart');
+            $scart = Session::get('scart');
+            if(empty($pcart) && empty($scart)){
                 $status = 'error';
             }
-            $cart_data = Cart::whereIn('id', $cart)->get();
+            $cart_ids = array();
+            if(isset($scart['cart_id']) && $scart['cart_id']){
+                array_push($cart_ids, $scart['cart_id']);
+            }
+            if($pcart && is_array($pcart)){
+                foreach($pcart as $pval){
+                    if(isset($pval['cart_id']) && $pval['cart_id']){
+                        array_push($cart_ids, $pval['cart_id']);
+                    }
+                }
+            }
+            $cart_data = Cart::with('productDetail', 'serviceDetail')->whereIn('id', $cart_ids)->get();
             $html = view('front/checkout/cart_ajax',array('cart_data' => $cart_data))->render();
             echo json_encode(array('status' => $status, 'html' => $html));
             exit;
@@ -51,8 +74,9 @@ class CheckoutController extends MainController
     }
 
     public function createOrder(request $request){
-        $cart = Session::get('cart');
-        if(empty($cart)){
+        $pcart = Session::get('pcart');
+        $scart = Session::get('scart');
+        if(empty($pcart) && empty($scart)){
             return redirect('/');
         }
 
@@ -74,17 +98,35 @@ class CheckoutController extends MainController
             $order->order_date = date('Y-m-d');
             $order->save();
 
-            $cart_data = Cart::with('productDetail')->whereIn('id', $cart)->get();
+            $cart_ids = array();
+            if(isset($scart['cart_id']) && $scart['cart_id']){
+                array_push($cart_ids, $scart['cart_id']);
+            }
+            if($pcart && is_array($pcart)){
+                foreach($pcart as $pval){
+                    if(isset($pval['cart_id']) && $pval['cart_id']){
+                        array_push($cart_ids, $pval['cart_id']);
+                    }
+                }
+            }
+            $cart_data = Cart::with('productDetail')->whereIn('id', $cart_ids)->get();
             if($cart_data->count() && $order){
                 $order_id = $order->id;
                 foreach($cart_data as $cdata){
-                    $price = isset($cdata->productDetail->price) ? $cdata->productDetail->price : 0;
+                    $price = 0;
+                    if($cdata->product_id){
+                        $price = isset($cdata->productDetail->price) ? $cdata->productDetail->price : 0;
+                    }
+                    if($cdata->service_id){
+                        $price = isset($cdata->serviceDetail->price) ? $cdata->serviceDetail->price : 0;
+                    }
                     $qty = $cdata->qty;
                     $subtotal = $qty*$price;
 
                     $odetail = new OrderDetails();
                     $odetail->order_id = $order_id;
                     $odetail->product_id = $cdata->product_id;
+                    $odetail->service_id = $cdata->service_id;
                     $odetail->price = $price;
                     $odetail->qty = $qty;
                     $odetail->subtotal = $subtotal;
@@ -92,7 +134,8 @@ class CheckoutController extends MainController
 
                     Cart::where('id', $cdata->id)->delete();
                 }
-                Session::put('cart', array());
+                Session::put('scart', array());
+                Session::put('pcart', array());
 
                 $address_radio = $request->address_radio;
                 if(empty($address_radio) && $user_id){

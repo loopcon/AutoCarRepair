@@ -189,3 +189,23 @@ function getbrands(){
     $brands = \App\Models\CarBrand::select('id', 'image')->where([['is_archive', \App\Constant::NOT_ARCHIVE], ['status', \App\Constant::ACTIVE]])->orderBy('id', 'desc')->get();
     return $brands;
 }
+
+function weekOfDays($total_days){
+    $weekOfdays = array();
+    $date = date("l");// current day
+    $weekends = 0;
+    for($i = 0; $i < $total_days; $i++) {
+        $day = date("l", strtotime($date . "+$i day"));
+        if($day == 'Sunday'){
+            $weekends++;
+        }
+    }
+    $total_days = $total_days + $weekends;
+    for($i = 0; $i < $total_days; $i++) {
+        $day = date("l", strtotime($date . "+$i day"));
+        if($day != 'Sunday'){
+            $weekOfdays[] = date("d M", strtotime($date . "+$i day"));
+        }
+    }
+    return $weekOfdays;
+}

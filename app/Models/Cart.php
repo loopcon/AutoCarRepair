@@ -9,9 +9,13 @@ class Cart extends Model
 {
     use HasFactory;
     protected $table = 'cart';
-    protected $fillable = ['id','user_id', 'product_id','qty','created_at','updated_at'];
+    protected $fillable = ['id','user_id', 'product_id', 'service_id','qty','created_at','updated_at'];
 
     public function productDetail(){
         return $this->belongsTo(Product::class, 'product_id')->with('primaryImage');
+    }
+
+    public function serviceDetail(){
+        return $this->belongsTo(ScheduledPackage::class, 'service_id')->with('brandDetail', 'modelDetail', 'fuelTypeDetail');
     }
 }

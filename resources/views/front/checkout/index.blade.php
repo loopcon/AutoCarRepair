@@ -36,10 +36,18 @@
                     <input type="hidden" id="is_otp_verify" value="0">
                     <a href="javascript:void(0)" class="btn verify-otpbtn" id="send_otp">SEND OTP </a>
             </div>
-            <?php /**<div class="Choose-service-date-main">
+            <div class="Choose-service-date-main">
                 <h4>Choose service date</h4>
                 <div class="date-sec-main">
-                    <a class="date-main select-date" href="#">
+                    @php($weekdays = weekOfDays('6'))
+                    @if($weekdays)
+                        @foreach($weekdays as $week)
+                            <a class="date-main select-date" href="javascript:void(0);">
+                                <p>{{$week}}</p>
+                            </a>
+                        @endforeach
+                    @endif
+<!--                    <a class="date-main select-date" href="#">
                         <p>26</p>
                         <p>WED</p>
                     </a>
@@ -62,7 +70,7 @@
                     <a class="date-main" href="#">
                         <p>31</p>
                         <p>WED</p>
-                    </a>
+                    </a>-->
                 </div>
                 <div class="pick-slot-main">
                     <h4>Pick Time Slot <span>(5 slot available)</span> </h4>
@@ -89,10 +97,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="sele-date-continue-sec">
+<!--                <div class="sele-date-continue-sec">
                     <button class="sele-date-continue-btn">CONTINUE <i class="fa-solid fa-arrow-right"></i></button>
-                </div>
-            </div> **/ ?>
+                </div>-->
+            </div>
             <div class="select-address">
                 <h4>Add Address</h4>
                 <div>
@@ -199,7 +207,7 @@ $(document).ready(function(){
         } else {
             swal({
                 title: "",
-                text: "Are you sure? You want to delete this product from cart!",
+                text: "Are you sure? You want to delete this item from cart!",
                 type: "warning",
                 showCancelButton: true,
                 confirmButtonClass: "btn-danger",
