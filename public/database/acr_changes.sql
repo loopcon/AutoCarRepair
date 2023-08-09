@@ -458,11 +458,9 @@ ALTER TABLE `model` ADD `image` TEXT NULL AFTER `title`;
 -- Nirali : 08-08-2023 4:25 PM
 ALTER TABLE `home_page_setting` ADD `button_title` VARCHAR(255) NULL AFTER `footer_description`, ADD `button_link` VARCHAR(255) NULL AFTER `button_title`;
 
-<<<<<<< Updated upstream
 -- Disha : 09-08-2023 2:25 PM
 ALTER TABLE `user_addresses` ADD `state` VARCHAR(255) NULL DEFAULT NULL AFTER `city`;
-=======
+
 -- khushali : 09-8-2023 12:05 PM
 ALTER TABLE `cart` ADD `service_id` INT NULL COMMENT '`id` of `sceduled_package`' AFTER `product_id`;
 ALTER TABLE `order_details` ADD `service_id` INT NULL COMMENT '`id` of `sceduled_packages`' AFTER `product_id`;
->>>>>>> Stashed changes
