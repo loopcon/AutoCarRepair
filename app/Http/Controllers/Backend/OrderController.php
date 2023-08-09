@@ -35,7 +35,7 @@ class OrderController extends MainController
                     $html = "";
                     $id = Crypt::encrypt($row->id);
                     $html .= "<span class='text-nowrap'>";
-                    $html .= "<a href='javascript:void(0);' data-href='".route('admin_order-delete',array($id))."' rel='tooltip' title='".trans('Delete')."' class='btn btn-danger btn-sm mr-20 delete'><i class='fa fa-trash-alt'></i></a>&nbsp";
+                    // $html .= "<a href='javascript:void(0);' data-href='".route('admin_order-delete',array($id))."' rel='tooltip' title='".trans('Delete')."' class='btn btn-danger btn-sm mr-20 delete'><i class='fa fa-trash-alt'></i></a>&nbsp";
                     $html .= "<a href='".route('admin_order-detail',array($row->id))."' rel='tooltip' title='Detail' class='btn btn-success btn-sm'>Detail</a>";
                     $html .= "</span>";
                     return $html;
@@ -47,16 +47,16 @@ class OrderController extends MainController
         }
     }
 
-    public function destroy($id)
-    {
-        $id = Crypt::decrypt($id);
-        $order = Order::where('id', $id)->delete();
-        if($order) {
-            return redirect()->back()->with('success', trans('Order Deleted Successfully!'));
-        } else {
-            return redirect()->back()->with('error', trans('Something went wrong, please try again later!'));
-        }
-    }
+    // public function destroy($id)
+    // {
+    //     $id = Crypt::decrypt($id);
+    //     $order = Order::where('id', $id)->delete();
+    //     if($order) {
+    //         return redirect()->back()->with('success', trans('Order Deleted Successfully!'));
+    //     } else {
+    //         return redirect()->back()->with('error', trans('Something went wrong, please try again later!'));
+    //     }
+    // }
 
     public function detail(request $request,$id)
     {
@@ -94,14 +94,14 @@ class OrderController extends MainController
         }
     }
 
-    public function detailDestroy($id)
-    {
-        $id = Crypt::decrypt($id);
-        $orderdetail = OrderDetails::where('id', $id)->delete();
-        if($orderdetail) {
-            return redirect()->back()->with('success', trans('Order Detail Deleted Successfully!'));
-        } else {
-            return redirect()->back()->with('error', trans('Something went wrong, please try again later!'));
-        }
-    }
+    // public function detailDestroy($id)
+    // {
+    //     $id = Crypt::decrypt($id);
+    //     $orderdetail = OrderDetails::where('id', $id)->delete();
+    //     if($orderdetail) {
+    //         return redirect()->back()->with('success', trans('Order Detail Deleted Successfully!'));
+    //     } else {
+    //         return redirect()->back()->with('error', trans('Something went wrong, please try again later!'));
+    //     }
+    // }
 }

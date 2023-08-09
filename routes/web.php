@@ -149,10 +149,10 @@ Route::group(['prefix' => 'backend','as' => 'admin_'], function() {
 
         Route::get('order',[App\Http\Controllers\Backend\OrderController::class, 'index'])->name('order')->middleware('XSS');;
         Route::post('order-datatable', [App\Http\Controllers\Backend\OrderController::class, 'orderDatatable'])->name('order-datatable');
-        Route::get('order-delete/{id}', [App\Http\Controllers\Backend\OrderController::class, 'destroy'])->name('order-delete');
+        // Route::get('order-delete/{id}', [App\Http\Controllers\Backend\OrderController::class, 'destroy'])->name('order-delete');
         Route::get('order-detail/{order_id?}', [App\Http\Controllers\Backend\OrderController::class, 'detail'])->name('order-detail');
         Route::post('order-detail-datatable', [App\Http\Controllers\Backend\OrderController::class, 'orderDetailDatatable'])->name('order-detail-datatable');
-        Route::get('order-detail-delete/{id}', [App\Http\Controllers\Backend\OrderController::class, 'detailDestroy'])->name('order-detail-delete');
+        // Route::get('order-detail-delete/{id}', [App\Http\Controllers\Backend\OrderController::class, 'detailDestroy'])->name('order-detail-delete');
     });
 });
 Route::group(['as' => 'front_', 'middleware' => 'XSS'], function() {
