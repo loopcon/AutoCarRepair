@@ -457,3 +457,6 @@ ALTER TABLE `model` ADD `image` TEXT NULL AFTER `title`;
 
 -- Nirali : 08-08-2023 4:25 PM
 ALTER TABLE `home_page_setting` ADD `button_title` VARCHAR(255) NULL AFTER `footer_description`, ADD `button_link` VARCHAR(255) NULL AFTER `button_title`;
+
+-- Disha : 09-08-2023 2:25 PM
+ALTER TABLE `user_addresses` ADD `state` VARCHAR(255) NULL DEFAULT NULL AFTER `city`;
