@@ -72,6 +72,12 @@
                                         <input type="text" class="form-control" id="sku" name="sku" placeholder="{{__('Sku')}}" maxlength="30" required=""  data-parsley-required-message="{{ __("This value is required.")}}" value="{{ isset($record->sku) ? $record->sku : old('sku') }}">
                                         @if ($errors->has('sku')) <div class="text-danger">{{ $errors->first('sku') }}</div>@endif
                                     </div>
+                                    <div class="mb-3 col-md-4">
+                                        <label class="form-label" for="slug">{{__('Slug')}}<span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" id="slug" placeholder="{{__('Slug')}}" value="{{ isset($record->slug) ? $record->slug : old('slug') }}" required="">
+                                        <input type='hidden' name="slug"  value="{{ isset($record->slug) ? $record->slug : old('slug') }}">
+                                        @if ($errors->has('slug')) <div class="text-danger">{{ $errors->first('slug') }}</div>@endif
+                                    </div>
 
                                     <div class="mt-3  col-md-12">
                                         <h6>SEO Details</h6>
@@ -323,6 +329,36 @@
                 if(image_count <= 0) {
                     $("#product-images .image-head").addClass("d-none");
                 }
+            });
+
+            $(document).on('keypress', '#slug', function (e) {
+                var regex = new RegExp("^[a-zA-Z0-9 \s]+$");
+                var slug = $(this).val();
+                console.log(slug);
+                var str = String.fromCharCode(!e.charCode ? e.which : e.charCode);
+                if (regex.test(str)) {
+                    return true;
+                }
+                else {
+                    e.preventDefault();
+                    return false;
+                }
+            });
+
+            $(document).on('keyup', '#slug', function (e) {
+                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                setTimeout(function () {
+                    var slug = $('#slug').val();
+                    $.ajax({
+                        url : '{{ route('admin_make-product-slug') }}',
+                        method : 'post',
+                        data : {_token: CSRF_TOKEN, slug : slug},
+                        success : function(result){
+                            var result = $.parseJSON(result);
+                            $('input[name="slug"]').val(result.slug);
+                        }
+                    });
+                }, 20);
             });
         });
     </script>

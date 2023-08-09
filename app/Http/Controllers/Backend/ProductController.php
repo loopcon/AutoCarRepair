@@ -46,6 +46,7 @@ class ProductController extends MainController
      */
     public function store(Request $request)
     {
+        $request->slug = isset($request->slug) && $request->slug ? $request->slug : NULL;
             $this->validate($request, [
                 'name' => ['required'],
                 'price' => ['required'],
@@ -58,14 +59,14 @@ class ProductController extends MainController
                 'required'  => trans('The :attribute field is required.')
             ]
         );
-        $slug = $request->name != '' || $request->name != '' ?  slugify($request->name.'-'.$request->sku) : NULL;
-
+        // $slug = $request->name != '' || $request->name != '' ?  slugify($request->name.'-'.$request->sku) : NULL;
+        $slug = $request->slug;
         $product = new Product();
-        $fields = array('name', 'sku', 'shop_category_id', 'description', 'specification', 'price', 'amazon_link', 'flipcart_link', 'meta_title', 'meta_keywords', 'meta_description');
+        $fields = array('name', 'sku', 'shop_category_id', 'description', 'specification', 'price', 'amazon_link', 'flipcart_link', 'meta_title', 'meta_keywords', 'meta_description','slug');
         foreach($fields as $field){
             $product->$field = isset($request->$field) && $request->$field != '' ? $request->$field : NULL;
         }
-        $product->slug = $slug;
+        // $product->slug = $slug;
         $product->created_by = Auth::guard('admin')->user()->id;
         $product->save();
         if($product){
@@ -111,6 +112,7 @@ class ProductController extends MainController
     public function update(Request $request,  $id)
     {
         $id = Crypt::decrypt($id);
+        $request->slug = isset($request->slug) && $request->slug ? $request->slug : NULL;
         $this->validate($request, [
             'name' => ['required'],
             'price' => ['required'],
@@ -122,10 +124,10 @@ class ProductController extends MainController
         ],[
             'required'  => trans('The :attribute field is required.')
         ]);
-        $slug = $request->name != '' || $request->sku != '' ?  slugify($request->name.'-'.$request->sku) : NULL;
-
+        // $slug = $request->name != '' || $request->sku != '' ?  slugify($request->name.'-'.$request->sku) : NULL;
         $product = Product::where('id', $id)->update([
-            'slug' => $slug,
+            // 'slug' => $slug,
+            'slug' => $request->slug,
             'name' => $request->name,
             'sku' => $request->sku,
             'shop_category_id' => $request->shop_category_id,
@@ -278,6 +280,16 @@ class ProductController extends MainController
             $html = view('backend.product.ajax_html',array('i' => $request->id))->render();
             echo json_encode(array('html' => $html));
             exit;
+        } else {
+            return redirect('backend/dashboard');
+        }
+    }
+
+    public function makeSlug(request $request)
+    {
+        if($request->ajax()){
+            $slug = $request->slug ? slugify($request->slug) : NULL;
+            echo json_encode(array('slug' => $slug));exit;
         } else {
             return redirect('backend/dashboard');
         }
