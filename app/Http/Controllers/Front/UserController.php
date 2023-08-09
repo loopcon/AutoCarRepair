@@ -77,7 +77,6 @@ class UserController extends MainController
                         $user_address->user_id = $user->id;
                         $user_address->save();
                     }
-                    
                 }
             }
             return redirect('my-profile')->with('success', trans('User Updated Successfully!'));
