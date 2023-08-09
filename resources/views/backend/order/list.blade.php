@@ -69,7 +69,7 @@ $(document).ready(function() {
             {data: 'zip', name: 'zip'},
             {data: 'city', name: 'city'},
             {data: 'total', name: 'total'},
-            {data: 'order_date', name: 'order_date'},
+            {data: 'odate', name: 'odate'},
             {data: 'action', name: 'action', orderable: false, searchable: false},
         ],
         "ajax" : {

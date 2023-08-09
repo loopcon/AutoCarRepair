@@ -31,6 +31,13 @@ class OrderController extends MainController
                 ->addColumn('name', function($row) {
                     return $row->name;
                 })
+                ->addColumn('odate', function($row) {
+                    $order_date = $row->order_date ? date("d/m/Y", strtotime($row->order_date)) : NULL;
+                    $html = "<span class='text-nowrap'>";
+                    $html .= $order_date;
+                    $html .= "</span>";
+                    return $html;
+                })
                 ->addColumn('action', function ($row) {
                     $html = "";
                     $id = Crypt::encrypt($row->id);
@@ -40,7 +47,7 @@ class OrderController extends MainController
                     $html .= "</span>";
                     return $html;
                 })
-                ->rawColumns(['id','user_id','name','email','phone','address','zip','city','total','action'])
+                ->rawColumns(['name','action','odate'])
                 ->make(true);
         } else {
             return redirect('backend/dashboard');
