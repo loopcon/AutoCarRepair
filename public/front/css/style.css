@@ -421,3 +421,30 @@ button { color: #000; outline: none; }
 .faq-section-main .accordion-text-content { margin-bottom: 0px; font-size: 18px; }
 /* faq section css end  */
 
+/* profile page css */
+.profileimg {
+    display: flex;
+    justify-content: center;
+    position: relative;
+  }
+  
+  .profileimg img {
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+  }
+  
+  .profilepenicon {
+    position: absolute;
+    left: 60%;
+    top: 70%;
+    background-color: #aaaaaa;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    text-align: center;
+    padding-top: 6px;
+    padding-left: 3px;
+    opacity: 0.8;
+  }
+/* profile page css */

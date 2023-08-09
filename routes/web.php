@@ -168,6 +168,8 @@ Route::group(['as' => 'front_', 'middleware' => 'XSS'], function() {
     Route::get('reset-password/{token?}', [\App\Http\Controllers\Front\Auth\LoginController::class, 'showResetPasswordForm'])->name('reset-password');
     Route::post('set-new-password', [\App\Http\Controllers\Front\Auth\LoginController::class, 'resetPassword'])->name('set-new-password');
 
+    Route::get('my-profile', [\App\Http\Controllers\Front\UserController::class, 'myprofile'])->name('my-profile');
+
     Route::get('shopping', [App\Http\Controllers\Front\ProductController::class, 'shopping'])->name('shopping');
     Route::post('search-shopping-ajax', [App\Http\Controllers\Front\ProductController::class, 'searchAjax'])->name('search-shopping-ajax');
     /** product-detail route start **/

@@ -29,7 +29,7 @@ class OrderController extends MainController
 
             return DataTables::of($list)
                 ->addColumn('name', function($row) {
-                    return $row->userData->firstname ?? '';
+                    return $row->name;
                 })
                 ->addColumn('action', function ($row) {
                     $html = "";
