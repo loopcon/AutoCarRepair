@@ -45,6 +45,9 @@ Route::group(['prefix' => 'backend','as' => 'admin_'], function() {
 
         Route::get('site-settings', [\App\Http\Controllers\Backend\SettingsController::class, 'index'])->name('site-settings');
         Route::post('site-settings', [\App\Http\Controllers\Backend\SettingsController::class, 'update'])->name('site-settings');
+        Route::get('pick-up-slot-settings', [\App\Http\Controllers\Backend\SettingsController::class, 'pickUpSlotSetting'])->name('pick-up-slot-settings');
+        Route::post('pick-up-slot-settings', [\App\Http\Controllers\Backend\SettingsController::class, 'pickUpSlotSettingUpdate'])->name('pick-up-slot-settings');
+        Route::post('pick-up-slot-delete', [\App\Http\Controllers\Backend\SettingsController::class, 'pickUpSlotDelete'])->name('pick-up-slot-delete');
 
         Route::get('email-templates', [\App\Http\Controllers\Backend\EmailTemplatesController::class, 'index'])->name('email-templates');
         Route::post('email-templates', [\App\Http\Controllers\Backend\EmailTemplatesController::class, 'update'])->name('email-templates');

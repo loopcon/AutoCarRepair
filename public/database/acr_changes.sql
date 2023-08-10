@@ -464,3 +464,24 @@ ALTER TABLE `user_addresses` ADD `state` VARCHAR(255) NULL DEFAULT NULL AFTER `c
 -- khushali : 09-8-2023 12:05 PM
 ALTER TABLE `cart` ADD `service_id` INT NULL COMMENT '`id` of `sceduled_package`' AFTER `product_id`;
 ALTER TABLE `order_details` ADD `service_id` INT NULL COMMENT '`id` of `sceduled_packages`' AFTER `product_id`;
+
+-- khushali : 10-08-2023 3:08 PM
+--
+-- Table structure for table `pick_up_slot_settings`
+--
+
+CREATE TABLE `pick_up_slot_settings` (
+  `id` int(11) NOT NULL,
+  `slot` tinyint(1) DEFAULT NULL COMMENT '0=Evening;1=Afternoon',
+  `time` varchar(100) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `created_by` int(11) DEFAULT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `updated_by` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+ALTER TABLE `pick_up_slot_settings`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `pick_up_slot_settings`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
