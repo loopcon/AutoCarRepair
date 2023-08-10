@@ -108,6 +108,11 @@ Route::group(['prefix' => 'backend','as' => 'admin_'], function() {
         Route::get('home-page-content', [\App\Http\Controllers\Backend\HomePageSettingController::class, 'index'])->name('home-page-content');
         Route::post('home-page-content-update', [\App\Http\Controllers\Backend\HomePageSettingController::class, 'update'])->name('home-page-content-update');
 
+        Route::get('offer-slider',[App\Http\Controllers\Backend\OfferSliderController::class, 'index'])->name('offer-slider');
+        // Route::post('offer-slider-ajax-html', [\App\Http\Controllers\Backend\OfferSliderController::class, 'sliderAjaxHtml'])->name('offer-slider-ajax-html');
+        Route::post('offer-slider',[App\Http\Controllers\Backend\OfferSliderController::class, 'slideupdate'])->name('offer-slider')->middleware('XSS');
+        Route::post('offer-slider-delete', [\App\Http\Controllers\Backend\OfferSliderController::class, 'offerSliderDelete'])->name('offer-slider-delete');
+
         Route::get('scheduled-package',[App\Http\Controllers\Backend\ServiceController::class, 'scheduledPackageList'])->name('scheduled-package')->middleware('XSS');
         Route::get('scheduled-package-create',[App\Http\Controllers\Backend\ServiceController::class, 'scheduledPackageCreate'])->name('scheduled-package-create')->middleware('XSS');
         Route::post('scheduled-package-store',[App\Http\Controllers\Backend\ServiceController::class, 'scheduledPackageStore'])->name('scheduled-package-store')->middleware('XSS');
@@ -157,10 +162,7 @@ Route::group(['prefix' => 'backend','as' => 'admin_'], function() {
         Route::get('order-detail/{order_id?}', [App\Http\Controllers\Backend\OrderController::class, 'detail'])->name('order-detail');
         Route::post('order-detail-datatable', [App\Http\Controllers\Backend\OrderController::class, 'orderDetailDatatable'])->name('order-detail-datatable');
         // Route::get('order-detail-delete/{id}', [App\Http\Controllers\Backend\OrderController::class, 'detailDestroy'])->name('order-detail-delete');
-        
-        Route::get('offer-slider',[App\Http\Controllers\Backend\OfferSliderController::class, 'index'])->name('offer-slider');
-        Route::post('offer-slider-ajax-html', [\App\Http\Controllers\Backend\OfferSliderController::class, 'sliderAjaxHtml'])->name('offer-slider-ajax-html');
-        Route::post('offer-slider-update',[App\Http\Controllers\Backend\OfferSliderController::class, 'slideupdate'])->name('offer-slider-update')->middleware('XSS');
+
     });
 });
 Route::group(['as' => 'front_', 'middleware' => 'XSS'], function() {
