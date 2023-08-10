@@ -151,12 +151,16 @@ Route::group(['prefix' => 'backend','as' => 'admin_'], function() {
         Route::post('user-address-datatable', [App\Http\Controllers\Backend\UserController::class, 'userAddressDatatable'])->name('user-address-datatable');
         Route::get('user-address-delete/{id}', [App\Http\Controllers\Backend\UserController::class, 'addressDestroy'])->name('user-address-delete');
 
-        Route::get('order',[App\Http\Controllers\Backend\OrderController::class, 'index'])->name('order')->middleware('XSS');;
+        Route::get('order',[App\Http\Controllers\Backend\OrderController::class, 'index'])->name('order')->middleware('XSS');
         Route::post('order-datatable', [App\Http\Controllers\Backend\OrderController::class, 'orderDatatable'])->name('order-datatable');
         // Route::get('order-delete/{id}', [App\Http\Controllers\Backend\OrderController::class, 'destroy'])->name('order-delete');
         Route::get('order-detail/{order_id?}', [App\Http\Controllers\Backend\OrderController::class, 'detail'])->name('order-detail');
         Route::post('order-detail-datatable', [App\Http\Controllers\Backend\OrderController::class, 'orderDetailDatatable'])->name('order-detail-datatable');
         // Route::get('order-detail-delete/{id}', [App\Http\Controllers\Backend\OrderController::class, 'detailDestroy'])->name('order-detail-delete');
+        
+        Route::get('offer-slider',[App\Http\Controllers\Backend\OfferSliderController::class, 'index'])->name('offer-slider');
+        Route::post('offer-slider-ajax-html', [\App\Http\Controllers\Backend\OfferSliderController::class, 'sliderAjaxHtml'])->name('offer-slider-ajax-html');
+        Route::post('offer-slider-update',[App\Http\Controllers\Backend\OfferSliderController::class, 'slideupdate'])->name('offer-slider-update')->middleware('XSS');
     });
 });
 Route::group(['as' => 'front_', 'middleware' => 'XSS'], function() {

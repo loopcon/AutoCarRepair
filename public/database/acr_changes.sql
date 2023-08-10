@@ -485,3 +485,28 @@ ALTER TABLE `pick_up_slot_settings`
 
 ALTER TABLE `pick_up_slot_settings`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+-- Disha : 10-08-2023 9:50 AM
+--
+-- Table structure for table `offer_slider`
+--
+CREATE TABLE `offer_slider` (
+  `id` int(11) NOT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `title1` varchar(255) DEFAULT NULL,
+  `title2` varchar(255) DEFAULT NULL,
+  `btn_title` varchar(255) DEFAULT NULL,
+  `btn_link` varchar(255) DEFAULT NULL,
+  `is_archive` tinyint(1) NOT NULL DEFAULT 1 COMMENT '0=Yes;1=No',
+  `created_by` int(11) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_by` int(11) DEFAULT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+ALTER TABLE `offer_slider`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `offer_slider`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
