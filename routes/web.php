@@ -107,6 +107,9 @@ Route::group(['prefix' => 'backend','as' => 'admin_'], function() {
 
         Route::get('home-page-content', [\App\Http\Controllers\Backend\HomePageSettingController::class, 'index'])->name('home-page-content');
         Route::post('home-page-content-update', [\App\Http\Controllers\Backend\HomePageSettingController::class, 'update'])->name('home-page-content-update');
+        Route::get('brand-logo-slider',[App\Http\Controllers\Backend\HomePageSettingController::class, 'brandLogoSlider'])->name('brand-logo-slider');
+        Route::post('brand-logo-slider',[App\Http\Controllers\Backend\HomePageSettingController::class, 'slideupdate'])->name('brand-logo-slider')->middleware('XSS');
+        Route::post('brand-logo-slider-delete', [\App\Http\Controllers\Backend\HomePageSettingController::class, 'slideDelete'])->name('brand-logo-slider-delete');
 
         Route::get('offer-slider',[App\Http\Controllers\Backend\OfferSliderController::class, 'index'])->name('offer-slider');
         Route::post('offer-slider',[App\Http\Controllers\Backend\OfferSliderController::class, 'slideupdate'])->name('offer-slider')->middleware('XSS');

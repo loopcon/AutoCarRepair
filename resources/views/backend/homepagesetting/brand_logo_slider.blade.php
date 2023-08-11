@@ -19,11 +19,11 @@
                         <div class="col-md-12 text-end">
                             <div class="col-md-12 text-end"><a href="javascript:void(0)" id="add_more" class="btn btn-success"><i class="align-middle" data-feather="plus"></i>{{__('Add More')}}</a></div>
                         </div>
-                        <form method="POST" action="{{route('admin_offer-slider') }}" id="pick-up-form" enctype="multipart/form-data" data-parsley-validate="">
+                        <form method="POST" action="{{route('admin_brand-logo-slider') }}" id="pick-up-form" enctype="multipart/form-data" data-parsley-validate="">
                             {{ csrf_field() }}
                             <div id="sliders">
-                                @if($slider->count())
-                                    @foreach($slider as $key => $record)
+                                @if($brandslider->count())
+                                    @foreach($brandslider as $key => $record)
                                         <div class="row" id="slider{{$key}}">
                                             @if($key > 0)
                                                 <div class="col-md-12 text-end">
@@ -39,7 +39,7 @@
                                                     @if(isset($record->image))
                                                         @if($record->image !='')
                                                             @php($required = '')
-                                                            <img class='previewImage img-fluid' id="uploadPreview{{$i}}" src="{{url('uploads/offerslider/'.$record->image)}}"  alt=''>
+                                                            <img class='previewImage img-fluid' id="uploadPreview{{$i}}" src="{{url('uploads/brandlogoslider/'.$record->image)}}"  alt=''>
                                                         @else
                                                             @php($required = 'required')
                                                             <img class='img-fluid' id="uploadPreview{{$i}}" src="{{url('public/no.jpg')}}"  alt=''>
@@ -54,25 +54,9 @@
                                                 </div>
                                                 <p class="image_errortext">For Best resolution please upload 1280*444 size and in WebP file format.</p>
                                             </div>
-                                            <div class="mb-3 col-md-4">
-                                                <label class="form-label" for="title1">{{__('Title 1')}}<span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control" id="title1" value="{{ isset($record->title1) ? $record->title1 : old('title1') }}" name="title1_{{$key}}" placeholder="{{__('Title1')}}" maxlength="50" required=""  data-parsley-required-message="{{ __("This value is required.")}}" >
-                                            </div>
-                                            <div class="mb-3 col-md-4">
-                                                <label class="form-label" for="title2">{{__('Title 2')}}<span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control" id="title2" value="{{ isset($record->title2) ? $record->title2 : old('title2') }}" name="title2_{{$key}}" placeholder="{{__('Title2')}}" maxlength="30" required=""  data-parsley-required-message="{{ __("This value is required.")}}">
-                                            </div>
-                                            <div class="mb-3 col-md-4">
-                                                <label class="form-label" for="btn_title">{{__('Button Title')}}<span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control" id="btn_title" value="{{ isset($record->btn_title) ? $record->btn_title : old('btn_title') }}"  name="btn_title_{{$key}}" placeholder="{{__('Button Title')}}" maxlength="30" required=""  data-parsley-required-message="{{ __("This value is required.")}}">
-                                            </div>   
-                                            <div class="mb-3 col-md-4">
-                                                <label class="form-label" for="btn_link">{{__('Button Link')}}<span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control" id="btn_link" value="{{ isset($record->btn_link) ? $record->btn_link : old('btn_link') }}"  name="btn_link_{{$key}}" placeholder="{{__('Button Link')}}" maxlength="30" required=""  data-parsley-required-message="{{ __("This value is required.")}}" >
-                                            </div>   
                                         </div>
                                     @endforeach
-                                    @php($total = $slider->count())
+                                    @php($total = $brandslider->count())
                                 @else
                                 <div class="row" id="slider0">
                                     <input type="hidden" name="id_0" value="">
@@ -87,31 +71,15 @@
                                             <input type="file" id="uploadImage{{$i}}" accept="image/x-png, image/gif, image/jpeg" class="btn btn-warning btn-block btn-sm"  name="image_0"  data-parsley-required-message="{{ __("This value is required.")}}" onChange="this.parentNode.nextSibling.value = this.value; PreviewImage({{$i}});" >
                                         </div>
                                     </div>
-                                    <div class="mb-3 col-md-4">
-                                        <label class="form-label" for="title1">{{__('Title 1')}}<span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control"  value="" name="title1_0" placeholder="{{__('Title1')}}" maxlength="50" required=""  data-parsley-required-message="{{ __("This value is required.")}}" >
-                                    </div>
-                                    <div class="mb-3 col-md-4">
-                                        <label class="form-label" for="title2">{{__('Title 2')}}<span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control"  value="" name="title2_0" placeholder="{{__('Title2')}}" maxlength="30" required=""  data-parsley-required-message="{{ __("This value is required.")}}">
-                                    </div>
-                                    <div class="mb-3 col-md-4">
-                                        <label class="form-label" for="btn_title">{{__('Button Title')}}<span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control"  value=""  name="btn_title_0" placeholder="{{__('Button Title')}}" maxlength="30" required=""  data-parsley-required-message="{{ __("This value is required.")}}">
-                                    </div>   
-                                    <div class="mb-3 col-md-4">
-                                        <label class="form-label" for="btn_link">{{__('Button Link')}}<span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control"  value=""  name="btn_link_0" placeholder="{{__('Button Link')}}" maxlength="30" required=""  data-parsley-required-message="{{ __("This value is required.")}}" >
-                                    </div>   
                                 </div>
                                     @php($total = 1)
                                 @endif
                             </div>
                             <input type="hidden" name="total" value="{{$total}}">
                             <input type="hidden" name="last_id" value="{{$total}}"> 
-                                
+
                             <button type="submit" class="btn btn-primary">{{__('Submit')}}</button>
-                            <a href="{{route('admin_offer-slider')}}" class="btn btn-danger">{{__('Cancel')}}</a>
+                            <a href="{{route('admin_brand-logo-slider')}}" class="btn btn-danger">{{__('Cancel')}}</a>
                         </form>
                     </div>
                 </div>
@@ -146,22 +114,6 @@ $(document).ready(function(){
                                 <input type="file" id="uploadImage'+last_id+'" accept="image/x-png, image/gif, image/jpeg" class="btn btn-warning btn-block btn-sm"  name="image_'+last_id+'" required data-parsley-required-message="This value is required." onChange="this.parentNode.nextSibling.value = this.value; PreviewImage('+last_id+');" >\n\
                             </div>\n\
                         </div>\n\
-                        <div class="mb-3 col-md-4">\n\
-                            <label class="form-label" for="title1">Title 1<span class="text-danger">*</span></label>\n\
-                            <input type="text" class="form-control" name="title1_'+last_id+'" placeholder="Title 1" maxlength="30" required=""  data-parsley-required-message="{{ __("This value is required.")}}" value="">\n\
-                        </div>\n\
-                        <div class="mb-3 col-md-4">\n\
-                            <label class="form-label" for="title2">Title 2<span class="text-danger">*</span></label>\n\
-                            <input type="text" class="form-control" name="title2_'+last_id+'" placeholder="Title 2" maxlength="30" required=""  data-parsley-required-message="{{ __("This value is required.")}}" value="">\n\
-                        </div>\n\
-                        <div class="mb-3 col-md-4">\n\
-                            <label class="form-label" for="btn_title">Button Title<span class="text-danger">*</span></label>\n\
-                            <input type="text" class="form-control" name="btn_title_'+last_id+'" placeholder="Button Title" maxlength="30" required=""  data-parsley-required-message="{{ __("This value is required.")}}" value="">\n\
-                        </div>\n\
-                        <div class="mb-3 col-md-4">\n\
-                            <label class="form-label" for="btn_link">Button Link<span class="text-danger">*</span></label>\n\
-                            <input type="text" class="form-control" name="btn_link_'+last_id+'" placeholder="Button Link" maxlength="30" required=""  data-parsley-required-message="{{ __("This value is required.")}}" value="">\n\
-                        </div>\n\
                     </div>';
         $('#sliders').append(html);
         var total = parseInt(total) + 1;
@@ -177,7 +129,7 @@ $(document).ready(function(){
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
         swal({
             title: "",
-            text: "Are you sure? Delete this Offer Slider!",
+            text: "Are you sure? Delete this Brand Logo Slider!",
             type: "warning",
             showCancelButton: true,
             confirmButtonClass: "btn-danger",
@@ -187,7 +139,7 @@ $(document).ready(function(){
         function(){
             if(db_id){
                 $.ajax({
-                    url : '{{ route('admin_offer-slider-delete') }}',
+                    url : '{{ route('admin_brand-logo-slider-delete') }}',
                     method : 'post',
                     data : {_token: CSRF_TOKEN, id : db_id},
                     success : function(result){
@@ -197,7 +149,7 @@ $(document).ready(function(){
                         $('input[name="total"]').val(total);
                         window.notyf.open({
                             type : 'success',
-                            message : 'Offer Slider Deleted Successfully!',
+                            message : 'Brand Logo Slider Deleted Successfully!',
                             duration : '10000',
                             ripple : true,
                             dismissible : true,
@@ -215,7 +167,7 @@ $(document).ready(function(){
                 $('input[name="total"]').val(total);
                 window.notyf.open({
                     type : 'success',
-                    message : 'Offer Slider Deleted Successfully!',
+                    message : 'Brand Logo Slider Deleted Successfully!',
                     duration : '10000',
                     ripple : true,
                     dismissible : true,

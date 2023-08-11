@@ -510,6 +510,7 @@ ALTER TABLE `offer_slider`
 ALTER TABLE `offer_slider`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
+<<<<<<< Updated upstream
 -- Khushali : 11-08-2023 3:14 PM
 --
 -- Table structure for table `booked_slots`
@@ -535,3 +536,28 @@ ALTER TABLE `booked_slots`
 
 ALTER TABLE `booked_slots`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+=======
+
+-- Disha : 11-08-2023 2:21 PM
+--
+-- Table structure for table `brand_logo_slider`
+--
+
+CREATE TABLE `brand_logo_slider` (
+  `id` int(11) NOT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_by` int(11) DEFAULT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+ALTER TABLE `brand_logo_slider`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `brand_logo_slider`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+
+
+>>>>>>> Stashed changes

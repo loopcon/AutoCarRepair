@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Constant;
 use App\Models\HomePageSetting;
 use App\Models\OfferSlider;
+use App\Models\BrandLogoSlider;
 use App\Models\ServiceCategory;
 use App\Models\Enquiry;
 use Auth;
@@ -54,4 +55,5 @@ class HomeController extends MainController
             return redirect()->back()->with('error', trans('Something went wrong, please try again later!'));
         }
     }
+
 }

@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\HomePageSetting;
+use App\Models\BrandLogoSlider;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Crypt;
 use Auth;
 use Session;
 use DB;
@@ -48,4 +50,60 @@ class HomePageSettingController extends MainController
             return redirect()->back()->with('error', trans('Something went wrong, please try again later!'));
         }
     }
+
+    public function brandLogoSlider()
+    {
+        $return_data = array();
+        $return_data['site_title'] = trans('Brand Logo Slider');
+        $return_data['brandslider'] = BrandLogoSlider::orderBy('id', 'asc')->get();
+        return view('backend.homepagesetting.brand_logo_slider',array_merge($this->data,$return_data));
+    }
+
+    public function slideupdate(Request $request)
+    {
+        $return_data = array();       
+        $total = $request->last_id;
+        if($total){
+            for($i = 0; $i < $total; $i++){
+                $id = 'id_'.$i;
+                $image = 'image_'.$i;
+                if(isset($request->$image)){
+                    $image = 'image_'.$i;
+                    if($request->$id){
+                        $id_val = Crypt::decrypt($request->$id);
+                        $brand_slider = BrandLogoSlider::find($id_val);
+                        $brand_slider->updated_by = Auth::guard('admin')->user()->id;
+                    } else {
+                        $brand_slider = new BrandLogoSlider();
+                        $brand_slider->created_by = Auth::guard('admin')->user()->id;
+                    }
+                    if($request->hasFile($image)) {
+                        if($request->$id){
+                            $old_image = $brand_slider->image;
+                            if($old_image){
+                                removeFile('uploads/brandlogoslider/'.$old_image);
+                            }
+                        }
+                        $newName = fileUpload($request, $image, 'uploads/brandlogoslider/');
+                        $brand_slider->image = $newName;
+                    }
+                    $brand_slider->save();
+                }
+            }   
+            return redirect()->back()->with('success', trans('Brand Logo Slider Updated Successfully!'));
+        } else {
+            return redirect()->back()->with('error', trans('Something went wrong, please try again later!'));
+        }
+    }
+
+    public function slideDelete(request $request)
+    {
+        $brand_slider = BrandLogoSlider::where('id', $request->id)->first();
+        $old_image = $brand_slider->image;
+        if($old_image){
+            removeFile('uploads/brandlogoslider/'.$old_image);
+        }
+        BrandLogoSlider::where('id', $request->id)->delete();
+    }
 }
+

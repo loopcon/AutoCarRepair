@@ -45,8 +45,8 @@ class OfferSliderController extends MainController
 
                     $offer_slider->title1 = $request->$title1 ? $request->$title1 : NULL;
                     $offer_slider->title2 = $request->$title2 ? $request->$title2 : NULL;
-                    $offer_slider->btn_title = $request->$btn_title ? $request->$btn_title : NULL;;
-                    $offer_slider->btn_link = $request->$btn_link ? $request->$btn_link : NULL;;
+                    $offer_slider->btn_title = $request->$btn_title ? $request->$btn_title : NULL;
+                    $offer_slider->btn_link = $request->$btn_link ? $request->$btn_link : NULL;
                     if($request->hasFile($image)) {
                         if($request->$id){
                             $old_image = $offer_slider->image;
@@ -68,7 +68,7 @@ class OfferSliderController extends MainController
 
     public function offerSliderDelete(request $request)
     {
-        $offer_slider = OfferSlider::where('id', $request->id)->get();
+        $offer_slider = OfferSlider::where('id', $request->id)->first();
         $old_image = $offer_slider->image;
         if($old_image){
             removeFile('uploads/offerslider/'.$old_image);
