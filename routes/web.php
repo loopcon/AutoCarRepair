@@ -109,7 +109,6 @@ Route::group(['prefix' => 'backend','as' => 'admin_'], function() {
         Route::post('home-page-content-update', [\App\Http\Controllers\Backend\HomePageSettingController::class, 'update'])->name('home-page-content-update');
 
         Route::get('offer-slider',[App\Http\Controllers\Backend\OfferSliderController::class, 'index'])->name('offer-slider');
-        // Route::post('offer-slider-ajax-html', [\App\Http\Controllers\Backend\OfferSliderController::class, 'sliderAjaxHtml'])->name('offer-slider-ajax-html');
         Route::post('offer-slider',[App\Http\Controllers\Backend\OfferSliderController::class, 'slideupdate'])->name('offer-slider')->middleware('XSS');
         Route::post('offer-slider-delete', [\App\Http\Controllers\Backend\OfferSliderController::class, 'offerSliderDelete'])->name('offer-slider-delete');
 
