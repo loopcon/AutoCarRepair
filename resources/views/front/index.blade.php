@@ -275,26 +275,15 @@
 <div class="brand-logo-section">
     <div class="container">
         <div id="partner-brand-carousel" class="owl-carousel owl-theme">
-            <div class="item">
-                <div class="partner-brand-logo">
-                    <img src="{{ asset('front/img/livguard_logo.png') }}"  alt="">
-                </div>
-            </div>
-            <div class="item">
-                <div class="partner-brand-logo">
-                    <img src="{{ asset('front/img/denso_logo.png') }}"  alt="">
-                </div>
-            </div>
-            <div class="item">
-                <div class="partner-brand-logo">
-                    <img src="{{ asset('front/img/castrol_logo.png') }}"  alt="">
-                </div>
-            </div>
-            <div class="item">
-                <div class="partner-brand-logo">
-                    <img src="{{ asset('front/img/Asianppg_logo.png') }}"  alt="">
-                </div>
-            </div>
+            @if($brand_logo_slider->count())
+                @foreach($brand_logo_slider as $record)
+                    <div class="item">
+                        <div class="partner-brand-logo">
+                            <img src="{{ asset('uploads/brandlogoslider/'.$record->image) }}"  alt="">
+                        </div>
+                    </div>
+                @endforeach
+            @endif
         </div>
     </div>
 </div>
