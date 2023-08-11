@@ -71,7 +71,7 @@
                         <div class="row">
                             @foreach($eslots as $slot)
                                 <div class="col-12 col-sm-3">
-                                    <a class="btn evening-slot-btn slot-btn" data-id="{{$slot->id}}">{{$slot->time}}</a>
+                                    <a class="btn evening-slot-btn slot-btn" data-id="{{$slot->time}}">{{$slot->time}}</a>
                                 </div>
                             @endforeach
                         </div>

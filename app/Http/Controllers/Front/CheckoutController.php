@@ -79,28 +79,6 @@ class CheckoutController extends MainController
         }
     }
 
-    public function getAvailableSlotForDate(request $request){
-        if($request->ajax()){
-            $date = $request->date;
-            $booked_info = BookedSlot::where([['slot_date', $date]])->first();
-            $ptime1 = isset($booked_info->pick_up_time1) ? $booked_info->pick_up_time1 : NULL;
-            $ptime2 = isset($booked_info->pick_up_time2) ? $booked_info->pick_up_time2 : NULL;
-            $time_takes = isset($booked_info->time_takes) ? $booked_info->time_takes : NULL;
-            $time_type = isset($booked_info->time_type) && $booked_info->time_type == '1' ? 'PM' : 'AM';
-
-            
-            $time = $time_type == 'PM' ? $ptime2 + 12 : $ptime2;
-            $time = $time.":00";
-//            dd($time);
-            $time = date('H:i', strtotime($time.'+'.$time_takes.' hour'));
-            dd($time);
-            $time = $time_type == 'PM' ? $time - 12 : $time;
-            dd($time);
-        } else {
-            return redirect('/');
-        }
-    }
-
     public function createOrder(request $request){
         $pcart = Session::get('pcart');
         $scart = Session::get('scart');
