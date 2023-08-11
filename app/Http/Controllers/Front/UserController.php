@@ -84,4 +84,15 @@ class UserController extends MainController
             return redirect()->back()->with('error', trans('Something went wrong, please try again later!'));
         }
     }
+
+    public function addressDelete(request $request)
+    {
+        $address = UserAddress::where('id', $request->id)->delete();
+        if($address)
+        {
+        return redirect('my-profile')->with('success', trans('User Deleted Successfully!'));
+        } else {
+            return redirect()->back()->with('error', trans('Something went wrong, please try again later!'));
+        }
+    }
 }

@@ -1,6 +1,7 @@
 @extends('front.layout.main')
 @section('css')
     <link class="js-stylesheet" href="{{ asset('plugins/parsley/parsley.css') }}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{asset('public/plugins/sweetalert/sweetalert.css')}}">
     <link class="js-stylesheet" href="{{ asset('plugins/select2/css/select2.min.css') }}" rel="stylesheet">
 @endsection
 @section('content')
@@ -31,17 +32,14 @@
                                     ?>
                                     @if(isset($user_profile))
                                         @if($user_profile !='')
-                                            @php($required = '')
                                             <img class='previewImage img-fluid' id="uploadPreview0" src="{{url('uploads/user/'.$user_profile)}}"  alt=''>
                                         @else
-                                            @php($required = 'required')
                                             <img class='img-fluid' id="uploadPreview0" src="{{url('front/img/no_image.jpg')}}"  alt=''>
                                         @endif
                                     @else
-                                        @php($required = 'required')
                                         <img class='img-fluid' id="uploadPreview0" src="{{url('front/img/no_image.jpg')}}" alt=''>
                                     @endif
-                                    <input type="file" id="uploadImage0" class="profilepenicon" accept="image/x-png, image/gif, image/jpeg"  name="image" {{$required}} data-parsley-required-message="{{ __("This value is required.")}}" onChange="this.parentNode.nextSibling.value = this.value; PreviewImage(0);" />
+                                    <input type="file" id="uploadImage0" class="profilepenicon" accept="image/x-png, image/gif, image/jpeg"  name="image"  onChange="this.parentNode.nextSibling.value = this.value; PreviewImage(0);" />
                                     <!--<i class="fa-solid fa-pen profilepenicon "></i>-->
                                 </div>
                                 <div class="col-md-6">
@@ -60,12 +58,19 @@
                                     <label class="form-label">Email<span class="text-danger">*</span></label>
                                     <input type="email" name="email" value="{{auth()->user()->email}}" placeholder="EMAIL ID" required="" class="form-control ">
                                 </div>
+                                
                                 <div class="col-md-12">
                                     <h4>User Addresses</h4>
-                                    <hr>
                                 </div>
                                 @if($addresses->count())
                                     @foreach($addresses as $address)
+                                    <div class="row" id="address">
+                                        <div class="col-md-12 text-end">
+                                            <div class="col-md-12 text-end"><a href="javascript:void(0)" data-db_id="{{$address->id}}" data-id="" class="btn btn-danger delete">Delete Below Address</a></div>
+                                        </div>
+                                        <div class="col-12">
+                                            <hr>
+                                        </div>
                                         <input  type="hidden" name="aid[]" value="{{($address->id)}}" >
                                         <div class="col-md-12">
                                             <label class="form-label">Address<span class="text-danger">*</span></label>
@@ -90,11 +95,12 @@
                                             </select>
                                             @if ($errors->has('state')) <div class="text-danger">{{ $errors->first('state') }}</div>@endif
                                         </div>
-                                        <div class="col-12">
-                                            <hr>
-                                        </div>
+                                    </div>
                                     @endforeach
                                 @endif
+                                <div class="col-12">
+                                    <hr>
+                                </div>
                                 <div class="col-md-12">
                                     <label class="form-label">Address</label>
                                     <textarea name="address[]" value="" placeholder="Address"  class="form-control "></textarea>
@@ -132,9 +138,51 @@
 @section('javascript')
 <script src="{{ asset('plugins/parsley/parsley.js') }}"></script>
 <script src="{{ asset('plugins/select2/js/select2.min.js') }}"></script>
+<script src="{{asset('plugins/sweetalert/sweetalert.js')}}" type="text/javascript"></script>
 <script>
     $(document).ready(function(){
         $('.state_selection').select2();
+
+        $(document).on('click', '.delete', function(){
+        var db_id = $(this).data('db_id');
+        var id = $(this).data('id');
+        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+        swal({
+            title: "",
+            text: "Are you sure? Delete this Address!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonClass: "btn-danger",
+            confirmButtonText: "Yes, delete it!",
+            closeOnConfirm: true
+        },
+        function(){
+            if(db_id){
+                $.ajax({
+                    url : '{{ route('front_address-delete') }}',
+                    method : 'post',
+                    data : {_token: CSRF_TOKEN, id : db_id},
+                    success : function(result){
+                        $('#address' + id ).remove();
+                        var total = $('input[name="aid[]"]').val();
+                        var total = parseInt(total) - 1;
+                        $('input[name="aid[]"]').val(total);
+                        window.notyf.open({
+                            type : 'success',
+                            message : 'Address Deleted Successfully!',
+                            duration : '10000',
+                            ripple : true,
+                            dismissible : true,
+                            position: {
+                                    x: 'right',
+                                    y: 'top'
+                            }
+                        });
+                    }
+                });
+            }
+        });
     });
+});
 </script>
 @endsection

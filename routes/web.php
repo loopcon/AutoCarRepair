@@ -247,5 +247,6 @@ Route::group(['as' => 'front_', 'middleware' => 'XSS'], function() {
     Route::group(['middleware' => 'auth:user'], function () {
         Route::get('my-profile', [\App\Http\Controllers\Front\UserController::class, 'myprofile'])->name('my-profile')->middleware('XSS');;
         Route::post('my-profile-update', [\App\Http\Controllers\Front\UserController::class, 'myprofileUpdate'])->name('my-profile-update')->middleware('XSS');;
+        Route::post('address-delete', [\App\Http\Controllers\Front\UserController::class, 'addressDelete'])->name('address-delete')->middleware('XSS');;
     });
 });
