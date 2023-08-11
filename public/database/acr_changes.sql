@@ -510,7 +510,6 @@ ALTER TABLE `offer_slider`
 ALTER TABLE `offer_slider`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
-<<<<<<< Updated upstream
 -- Khushali : 11-08-2023 3:14 PM
 --
 -- Table structure for table `booked_slots`
@@ -536,7 +535,6 @@ ALTER TABLE `booked_slots`
 
 ALTER TABLE `booked_slots`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-=======
 
 -- Disha : 11-08-2023 2:21 PM
 --
@@ -560,4 +558,3 @@ ALTER TABLE `brand_logo_slider`
 
 
 
->>>>>>> Stashed changes
