@@ -126,42 +126,22 @@
 <div class="offeer-section">
     <div>
         <div id="offer-carousel" class="owl-carousel ">
-            <div class="item">
-                <div class="offer-section-main">
-                    <img src="{{ asset('front/img/slider-Offers.png') }}"  alt="">
-                    <div class="offer-section-item">
-                        <div class="container">
-                            <p>EXCLUSIVE MONTHLY OFFER</p>
-                            <h4>UPTO 20% DISCOUNT FOR ALL BRAND SERVICE</h4>
-                            <button class="explore-btn"> Explore More</button>
+            @if($offer_slider->count())
+                @foreach($offer_slider as $slider)
+                <div class="item">
+                    <div class="offer-section-main">
+                        <img src="{{ asset('uploads/offerslider/'.$slider->image) }}"  alt="">
+                        <div class="offer-section-item">
+                            <div class="container">
+                                <p>{{$slider->title1}}</p>
+                                <h4>{{$slider->title2}}</h4>
+                                <a href="https://{{$slider->btn_link}}" target="_blank" ><button class="explore-btn">{{$slider->btn_title}}</button></a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="item">
-                <div class="offer-section-main">
-                    <img src="{{ asset('front/img/slider-Offers.png') }}"  alt="">
-                    <div class="offer-section-item">
-                        <div class="container">
-                            <p>EXCLUSIVE MONTHLY OFFER</p>
-                            <h4>UPTO 20% DISCOUNT FOR ALL BRAND SERVICE</h4>
-                            <button class="explore-btn"> Explore More</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="offer-section-main">
-                    <img src="{{ asset('front/img/slider-Offers.png') }}"  alt="">
-                    <div class="offer-section-item">
-                        <div class="container">
-                            <p>EXCLUSIVE MONTHLY OFFER</p>
-                            <h4>UPTO 20% DISCOUNT FOR ALL BRAND SERVICE</h4>
-                            <button class="explore-btn"> Explore More</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                @endforeach
+            @endif  
         </div>
     </div>
 </div> 
