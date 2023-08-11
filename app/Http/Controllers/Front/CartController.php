@@ -20,12 +20,13 @@ class CartController extends MainController
             $service_cart = Session::get('scart') ? Session::get('scart') : array();
             if(isset($request->product_id) && $request->product_id){
                 if(isset($product_cart[$request->product_id]) && $product_cart[$request->product_id]){
-                    $cart_id = isset($product_cart[$request->product_id]['cart_id']) && $product_cart[$request->product_id]['cart_id'];
+                    $cart_id = isset($product_cart[$request->product_id]['cart_id']) && $product_cart[$request->product_id]['cart_id'] ? $product_cart[$request->product_id]['cart_id'] : NULL;
                 }
             }
             if(isset($request->service_id) && $request->service_id){
                 if(isset($service_cart['service']) && $service_cart['service']){
-                    $cart_id = isset($service_cart['cart_id']) && $service_cart['cart_id'];
+//                   dd($service_cart);
+                    $cart_id = isset($service_cart['cart_id']) && $service_cart['cart_id'] ? $service_cart['cart_id'] : NULL;
                 }
             }
 
@@ -34,7 +35,12 @@ class CartController extends MainController
             if($cart_id){
                 $cart_data = Cart::find($cart_id);
                 $qty = $cart_data->qty;
-                $request->qty = $request->qty + $qty;
+                if(isset($cart_data->service_id) && $cart_data->service_id){
+                    $request->qty = $request->qty;
+                } else {
+                    $request->qty = $request->qty + $qty;
+                }
+                
             } else {
                 $cart_data = new Cart();
             }

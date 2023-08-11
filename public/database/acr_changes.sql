@@ -510,3 +510,28 @@ ALTER TABLE `offer_slider`
 ALTER TABLE `offer_slider`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
+-- Khushali : 11-08-2023 3:14 PM
+--
+-- Table structure for table `booked_slots`
+--
+
+CREATE TABLE `booked_slots` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) DEFAULT NULL COMMENT '`id` of `users`',
+  `order_id` int(11) DEFAULT NULL COMMENT '`id` of `orders`',
+  `order_detail_id` int(11) DEFAULT NULL COMMENT '`id` of `order_details`',
+  `service_id` int(11) DEFAULT NULL COMMENT '`id` of `scheduled_packages`',
+  `slot_date` date DEFAULT NULL,
+  `pick_up_time1` varchar(100) DEFAULT NULL,
+  `pick_up_time2` varchar(100) DEFAULT NULL,
+  `time_type` tinyint(1) DEFAULT NULL COMMENT '0=AM;1=PM',
+  `time_takes` int(11) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+ALTER TABLE `booked_slots`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `booked_slots`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;

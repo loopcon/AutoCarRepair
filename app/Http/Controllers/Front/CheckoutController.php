@@ -9,6 +9,8 @@ use App\Models\Cart;
 use App\Models\Order;
 use App\Models\OrderDetails;
 use App\Models\UserAddress;
+use App\Models\PickUpSlotSetting;
+use App\Models\BookedSlot;
 use Auth;
 use Session;
 
@@ -42,6 +44,10 @@ class CheckoutController extends MainController
             $addresses = UserAddress::where('user_id', $user_id)->get();
             $return_data['addresses'] = $addresses;
         }
+        $aslots = PickUpSlotSetting::select('id', 'time', 'slot')->where('slot', Constant::AFTERNOON)->orderBy('id')->get();
+        $eslots = PickUpSlotSetting::select('id', 'time', 'slot')->where('slot', Constant::EVENING)->orderBy('id')->get();
+        $return_data['aslots'] = $aslots;
+        $return_data['eslots'] = $eslots;
         return view('front/checkout/index',array_merge($this->data,$return_data));
     }
 
@@ -68,6 +74,28 @@ class CheckoutController extends MainController
             $html = view('front/checkout/cart_ajax',array('cart_data' => $cart_data))->render();
             echo json_encode(array('status' => $status, 'html' => $html));
             exit;
+        } else {
+            return redirect('/');
+        }
+    }
+
+    public function getAvailableSlotForDate(request $request){
+        if($request->ajax()){
+            $date = $request->date;
+            $booked_info = BookedSlot::where([['slot_date', $date]])->first();
+            $ptime1 = isset($booked_info->pick_up_time1) ? $booked_info->pick_up_time1 : NULL;
+            $ptime2 = isset($booked_info->pick_up_time2) ? $booked_info->pick_up_time2 : NULL;
+            $time_takes = isset($booked_info->time_takes) ? $booked_info->time_takes : NULL;
+            $time_type = isset($booked_info->time_type) && $booked_info->time_type == '1' ? 'PM' : 'AM';
+
+            
+            $time = $time_type == 'PM' ? $ptime2 + 12 : $ptime2;
+            $time = $time.":00";
+//            dd($time);
+            $time = date('H:i', strtotime($time.'+'.$time_takes.' hour'));
+            dd($time);
+            $time = $time_type == 'PM' ? $time - 12 : $time;
+            dd($time);
         } else {
             return redirect('/');
         }
@@ -132,6 +160,30 @@ class CheckoutController extends MainController
                     $odetail->subtotal = $subtotal;
                     $odetail->save();
 
+                    if($cdata->service_id){
+                        $slot_time = $request->slot_time;
+                        $slot_time = str_replace(' ', '', $slot_time);
+                        $slotarray = explode('-', $slot_time);
+                        $slot2 = isset($slotarray[1]) ? $slotarray[1] : NULL;
+                        $time_type = 1;
+                        if( $slot2 && strpos( $slot2, "AM" ) !== false) {
+                            $time_type = 0;
+                        }
+                        $slot2 = str_replace('AM', '', $slot2);
+                        $slot2 = str_replace('PM', '', $slot2);
+                        
+                        $slot = new BookedSlot();
+                        $slot->user_id = $user_id;
+                        $slot->order_id = $order_id;
+                        $slot->order_detail_id = $odetail->id;
+                        $slot->slot_date = $request->slot_date;
+                        $slot->pick_up_time1 = isset($slotarray[0]) ? $slotarray[0] : NULL;
+                        $slot->pick_up_time2 = $slot2;
+                        $slot->time_type = $time_type;
+                        $slot->time_takes = isset($request->time_takes) ? $request->time_takes : NULL;
+                        $slot->service_id = $cdata->service_id;
+                        $slot->save();
+                    }
                     Cart::where('id', $cdata->id)->delete();
                 }
                 Session::put('scart', array());

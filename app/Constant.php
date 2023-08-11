@@ -17,4 +17,8 @@ class Constant {
     /** checkout type **/
     const GUEST_CHECKOUT = '1';
     const USER_CHECKOUT = '0';
+
+    /** slot **/
+    const AFTERNOON = '1';
+    const EVENING = '0';
 }

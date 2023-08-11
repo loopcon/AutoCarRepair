@@ -1,4 +1,5 @@
 @php($subtotal = 0)
+@php($is_service_available = 0)
 @if($cart_data->count())
     @foreach($cart_data as $item)
         
@@ -13,6 +14,8 @@
                     <p>{{isset($item->productDetail->name) ? $item->productDetail->name : NULL}}</p>
                 @endif
                 @if(isset($item->service_id) && $item->service_id)
+                    @php($is_service_available = 1)
+
                     @if(isset($item->serviceDetail->image) && $item->serviceDetail->image)
                         <img src="{{ asset('public/uploads/service/package/'.$item->serviceDetail->image) }}"  class="add-to-cart-img" alt="">
                     @else
@@ -57,6 +60,7 @@
                             </div>
                         </div>
                     </div>
+                    <input type="hidden" name="time_takes" value="{{isset($item->serviceDetail->time_takes) ? $item->serviceDetail->time_takes : ''}}">
                 @endif
             </div>
         </div>
@@ -73,5 +77,6 @@
 </div>
 <div>
     <input type="hidden" name="order_total" value="{{$subtotal}}">
-    <button class="confirm-booking-btn" id="booking_confirm"> Confirm Booking</button>
+    <input type="hidden" name="is_service_in_cart" value="{{$is_service_available}}">
+    <button class="confirm-booking-btn" id="booking_confirm" type="submit"> Confirm Booking</button>
 </div>

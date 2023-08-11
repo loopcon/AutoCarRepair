@@ -4,7 +4,7 @@
 @endsection
 @section('content')
 <div class="container">
-    <form method="POST" action="{{route('front_create-order')}}" id="appointment-form" enctype="multipart/form-data" data-parsley-validate="">
+    <form method="POST" action="{{route('front_create-order')}}" id="checkout-form" enctype="multipart/form-data" data-parsley-validate="">
         @csrf
     <div class="row m-0">
         <div class="col-12 col-md-7">
@@ -36,70 +36,47 @@
                     <input type="hidden" id="is_otp_verify" value="0">
                     <a href="javascript:void(0)" class="btn verify-otpbtn" id="send_otp">SEND OTP </a>
             </div>
-            <div class="Choose-service-date-main">
+            <div class="Choose-service-date-main d-none" id="service_slot_section">
                 <h4>Choose service date</h4>
                 <div class="date-sec-main">
                     @php($weekdays = weekOfDays('6'))
                     @if($weekdays)
                         @foreach($weekdays as $week)
-                            <a class="date-main select-date" href="javascript:void(0);">
+                            <a class="date-main slot-date" data-date="{{date('Y-m-d', strtotime($week))}}" href="javascript:void(0);">
                                 <p>{{$week}}</p>
                             </a>
                         @endforeach
                     @endif
-<!--                    <a class="date-main select-date" href="#">
-                        <p>26</p>
-                        <p>WED</p>
-                    </a>
-                    <a class="date-main" href="#">
-                        <p>27</p>
-                        <p>WED</p>
-                    </a>
-                    <a class="date-main" href="#">
-                        <p>28</p>
-                        <p>WED</p>
-                    </a>
-                    <a class="date-main" href="#">
-                        <p>29</p>
-                        <p>WED</p>
-                    </a>
-                    <a class="date-main" href="#">
-                        <p>30</p>
-                        <p>WED</p>
-                    </a>
-                    <a class="date-main" href="#">
-                        <p>31</p>
-                        <p>WED</p>
-                    </a>-->
                 </div>
                 <div class="pick-slot-main">
-                    <h4>Pick Time Slot <span>(5 slot available)</span> </h4>
+                    <h4>Pick Time Slot <span>({{$aslots->count()+$eslots->count()}} slot available)</span> </h4>
+                    <input type="hidden" name="slot_date" value="">
+                    <input type="hidden" name="slot_time" value="">
                 </div>
-                <div class="afternoon-slot-sec-main">
-                    <h4><span>slots</span>Afternoon Slot</h4>
-                    <div class="row m-0">
-                        <div class="col-12 col-sm-6">
-                            <button class="afternoon-slot-btn afternoon-slot-active">2-3PM</button>
-                        </div>
-                        <div class="col-12 col-sm-6">
-                            <button class="afternoon-slot-btn">3-4PM</button>
+                @if($aslots->count())
+                    <div class="afternoon-slot-sec-main">
+                        <h4><span>slots</span>Afternoon Slot</h4>
+                        <div class="row m-0">
+                            @foreach($aslots as $slot)
+                                <div class="col-12 col-sm-3">
+                                    <a class="btn afternoon-slot-btn slot-btn" data-id="{{$slot->time}}">{{$slot->time}}</a>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
-                </div>
-                <div class="evening-slot-sec-main">
-                    <h4><span>slots</span>Evening Slot</h4>
-                    <div class="row">
-                        <div class="col-12 col-sm-6">
-                            <button class="evening-slot-btn evening-slot-active">2-3PM</button>
-                        </div>
-                        <div class="col-12 col-sm-6">
-                            <button class="evening-slot-btn">3-4PM</button>
+                @endif
+                @if($eslots->count())
+                    <div class="evening-slot-sec-main">
+                        <h4><span>slots</span>Evening Slot</h4>
+                        <div class="row">
+                            @foreach($eslots as $slot)
+                                <div class="col-12 col-sm-3">
+                                    <a class="btn evening-slot-btn slot-btn" data-id="{{$slot->id}}">{{$slot->time}}</a>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
-                </div>
-<!--                <div class="sele-date-continue-sec">
-                    <button class="sele-date-continue-btn">CONTINUE <i class="fa-solid fa-arrow-right"></i></button>
-                </div>-->
+                @endif
             </div>
             <div class="select-address">
                 <h4>Add Address</h4>
@@ -140,9 +117,6 @@
                             </div>  
                         @endif
                     </div>
-<!--                    <div class="text-end mt-3 mb-3">
-                        <button class="sele-date-continue-btn">CONTINUE <i class="fa-solid fa-arrow-right"></i></button>
-                    </div>-->
                 </div>
             </div>
             <div>
@@ -177,6 +151,37 @@
 <script>
 $(document).ready(function(){
     getCartAjaxHtml();
+
+    $("#checkout-form").submit(function(e) {
+        //e.preventDefault();
+        var slot_time = $('input[name="slot_time"]').val();
+        var slot_date = $('input[name="slot_date"]').val();
+        if(slot_date == ''){
+            toastr.error('Please select slot date!');
+            return false;
+        } else if(slot_time == ''){
+            toastr.error('Please select slot time!');
+            return false;
+        } else {
+           $("#checkout-form").submit();
+        }
+   });
+
+    $(document).on('click' , '.slot-btn', function(){
+        var id = $(this).data('id');
+        $('input[name="slot_time"]').val(id);
+        $('.slot-btn').removeClass('evening-slot-active');
+        $(this).addClass('evening-slot-active');
+    });
+
+    $(document).on('click', '.slot-date', function(){
+        var date = $(this).data('date');
+        $('input[name="slot_date"]').val(date);
+        $('.slot-btn').removeClass('evening-slot-active');
+        $('input[name="slot_time"]').val('');
+        $('.slot-date').removeClass('select-date');
+        $(this).addClass('select-date');
+    });
 
     $(document).on('click', '.address_radio', function(){
         var id = $("input[name='address_radio']:checked").val();
@@ -222,90 +227,90 @@ $(document).ready(function(){
     });
 
     $('#resend_otp').hide();
-            $('.otp-section').hide();
-            $('#booking_confirm').hide();
-            $(document).on('click', '#send_otp', function(){
-                var validateMobNum= /[1-9]{1}[0-9]{9}/;
-                var mobile = $('#mobile').val();
-                if (validateMobNum.test(mobile) && mobile.length == 10) {
-                    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-                    $.ajax({
-                        url : '{{ route('front_send-otp') }}',
-                        method : 'post',
-                        data : {_token: CSRF_TOKEN, mobile:mobile},
-                        success : function(result){
-                            var result = $.parseJSON(result);
-                            if(result.result == 'success'){
-                                $("#mobile").attr("readonly", "readonly");
-                                $('.otp-section').show();
-                                $('#send_otp').hide();
-                                timer(20);
-                            } else {
-                                toastr.error('Something went wrong. Please try again later!');
-                            }
-                        }
-                    });
-                }
-                else {
-                    toastr.error('Please Enter Valid Mobile No.');
-                }
-            });
-
-            $(document).on('click', '#verify_otp', function(){
-                var mobile = $('#mobile').val();
-                var otp = $('#otp').val();
-                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-                $.ajax({
-                    url : '{{ route('front_verify-otp') }}',
-                    method : 'post',
-                    data : {_token: CSRF_TOKEN, mobile:mobile, otp:otp},
-                    success : function(result){
-                        var result = $.parseJSON(result);
-                        if(result.result == 'success'){
-                            $('#verify_otp').hide();
-                            $('#resend_text').hide();
-                            $('#is_otp_verify').val('1');
-                            $('#booking_confirm').show();
-                            $("#mobile").attr("readonly", "readonly"); 
-                            $('#otp').hide();
-                        } else {
-                            toastr.error('Please Enter Valid OTP.');
-                        }
+    $('.otp-section').hide();
+    $('#booking_confirm').hide();
+    $(document).on('click', '#send_otp', function(){
+        var validateMobNum= /[1-9]{1}[0-9]{9}/;
+        var mobile = $('#mobile').val();
+        if (validateMobNum.test(mobile) && mobile.length == 10) {
+            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+            $.ajax({
+                url : '{{ route('front_send-otp') }}',
+                method : 'post',
+                data : {_token: CSRF_TOKEN, mobile:mobile},
+                success : function(result){
+                    var result = $.parseJSON(result);
+                    if(result.result == 'success'){
+                        $("#mobile").attr("readonly", "readonly");
+                        $('.otp-section').show();
+                        $('#send_otp').hide();
+                        timer(20);
+                    } else {
+                        toastr.error('Something went wrong. Please try again later!');
                     }
-                });
+                }
             });
+        }
+        else {
+            toastr.error('Please Enter Valid Mobile No.');
+        }
+    });
 
-            $(document).on('click', '#resend_otp', function(){
-                var validateMobNum= /[1-9]{1}[0-9]{9}/;
-                var mobile = $('#mobile').val();
-                if (validateMobNum.test(mobile) && mobile.length == 10) {
-                    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-                    $.ajax({
-                        url : '{{ route('front_resend-otp') }}',
-                        method : 'post',
-                        data : {_token: CSRF_TOKEN, mobile:mobile},
-                        success : function(result){
-                            var result = $.parseJSON(result);
-                            if(result.result == 'success'){
-                                console.log('test');
-                                $('.otp-section').show();
-                                $('#verify_otp').show();
-                                $('#resend_text').show();
-                                $('#otp').val('');
-                                $('#otp').show();
-                                $("#mobile").attr("readonly", "readonly");
-                                $('#resend_otp').hide();
-                                timer(20);
-                            } else {
-                                toastr.error('Something went wrong. Please try again later!');
-                            }
-                        }
-                    });
+    $(document).on('click', '#verify_otp', function(){
+        var mobile = $('#mobile').val();
+        var otp = $('#otp').val();
+        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({
+            url : '{{ route('front_verify-otp') }}',
+            method : 'post',
+            data : {_token: CSRF_TOKEN, mobile:mobile, otp:otp},
+            success : function(result){
+                var result = $.parseJSON(result);
+                if(result.result == 'success'){
+                    $('#verify_otp').hide();
+                    $('#resend_text').hide();
+                    $('#is_otp_verify').val('1');
+                    $('#booking_confirm').show();
+                    $("#mobile").attr("readonly", "readonly"); 
+                    $('#otp').hide();
+                } else {
+                    toastr.error('Please Enter Valid OTP.');
                 }
-                else {
-                    toastr.error('Please Enter Valid Mobile No.');
+            }
+        });
+    });
+
+    $(document).on('click', '#resend_otp', function(){
+        var validateMobNum= /[1-9]{1}[0-9]{9}/;
+        var mobile = $('#mobile').val();
+        if (validateMobNum.test(mobile) && mobile.length == 10) {
+            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+            $.ajax({
+                url : '{{ route('front_resend-otp') }}',
+                method : 'post',
+                data : {_token: CSRF_TOKEN, mobile:mobile},
+                success : function(result){
+                    var result = $.parseJSON(result);
+                    if(result.result == 'success'){
+                        console.log('test');
+                        $('.otp-section').show();
+                        $('#verify_otp').show();
+                        $('#resend_text').show();
+                        $('#otp').val('');
+                        $('#otp').show();
+                        $("#mobile").attr("readonly", "readonly");
+                        $('#resend_otp').hide();
+                        timer(20);
+                    } else {
+                        toastr.error('Something went wrong. Please try again later!');
+                    }
                 }
             });
+        }
+        else {
+            toastr.error('Please Enter Valid Mobile No.');
+        }
+    });
     function updateCart(cart_id){
         var qty = $('#qty'+cart_id).html();
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
@@ -333,6 +338,12 @@ $(document).ready(function(){
                     if(is_verify_otp == '0'){
                         $('#booking_confirm').hide();
                     }
+                    setTimeout(function(){
+                        var is_service_available = $('input[name="is_service_in_cart"]').val();
+                        if(is_service_available == '1'){
+                            $('#service_slot_section').removeClass('d-none');
+                        }
+                    },100);
                 } else {
                     location.href="{{route('front_/')}}";
                 }
