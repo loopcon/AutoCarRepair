@@ -74,37 +74,36 @@
                                     @endforeach
                                     @php($total = $slider->count())
                                 @else
-                                    <div class="row" id="slider0">
-                                        <input type="hidden" name="id_0" value="">
-                                            <div class="mb-3 col-md-4">
-                                                <label class="form-label" for="image">{{__('Image')}}<span class="text-danger">*</span></label>
-                                                <div class="profile-icon">
-                                                @php($i = 0)
-                                                @php($required = 'required')
-                                                    <img class='img-fluid' id="uploadPreview{{$i}}" src="{{url('public/no.jpg')}}"  alt=''>
-                                                </div>
-                                                <div class="m-b-10">
-                                                    <input type="file" id="uploadImage{{$i}}" accept="image/x-png, image/gif, image/jpeg" class="btn btn-warning btn-block btn-sm"  name="image_0"  data-parsley-required-message="{{ __("This value is required.")}}" onChange="this.parentNode.nextSibling.value = this.value; PreviewImage({{$i}});" >
-                                                </div>
+                                <div class="row" id="slider0">
+                                    <input type="hidden" name="id_0" value="">
+                                        <div class="mb-3 col-md-4">
+                                            <label class="form-label" for="image">{{__('Image')}}<span class="text-danger">*</span></label>
+                                            <div class="profile-icon">
+                                            @php($i = 0)
+                                            @php($required = 'required')
+                                                <img class='img-fluid' id="uploadPreview{{$i}}" src="{{url('public/no.jpg')}}"  alt=''>
                                             </div>
-                                            <div class="mb-3 col-md-4">
-                                                <label class="form-label" for="title1">{{__('Title 1')}}<span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control"  value="" name="title1_0" placeholder="{{__('Title1')}}" maxlength="50" required=""  data-parsley-required-message="{{ __("This value is required.")}}" >
+                                            <div class="m-b-10">
+                                                <input type="file" id="uploadImage{{$i}}" accept="image/x-png, image/gif, image/jpeg" class="btn btn-warning btn-block btn-sm"  name="image_0"  data-parsley-required-message="{{ __("This value is required.")}}" onChange="this.parentNode.nextSibling.value = this.value; PreviewImage({{$i}});" >
                                             </div>
-                                            <div class="mb-3 col-md-4">
-                                                <label class="form-label" for="title2">{{__('Title 2')}}<span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control"  value="" name="title2_0" placeholder="{{__('Title2')}}" maxlength="30" required=""  data-parsley-required-message="{{ __("This value is required.")}}">
-                                            </div>
-                                            <div class="mb-3 col-md-4">
-                                                <label class="form-label" for="btn_title">{{__('Button Title')}}<span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control"  value=""  name="btn_title_0" placeholder="{{__('Button Title')}}" maxlength="30" required=""  data-parsley-required-message="{{ __("This value is required.")}}">
-                                            </div>   
-                                            <div class="mb-3 col-md-4">
-                                                <label class="form-label" for="btn_link">{{__('Button Link')}}<span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control"  value=""  name="btn_link_0" placeholder="{{__('Button Link')}}" maxlength="30" required=""  data-parsley-required-message="{{ __("This value is required.")}}" >
-                                            </div>   
-                                        <!-- </div> -->
-                                    </div>
+                                        </div>
+                                        <div class="mb-3 col-md-4">
+                                            <label class="form-label" for="title1">{{__('Title 1')}}<span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control"  value="" name="title1_0" placeholder="{{__('Title1')}}" maxlength="50" required=""  data-parsley-required-message="{{ __("This value is required.")}}" >
+                                        </div>
+                                        <div class="mb-3 col-md-4">
+                                            <label class="form-label" for="title2">{{__('Title 2')}}<span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control"  value="" name="title2_0" placeholder="{{__('Title2')}}" maxlength="30" required=""  data-parsley-required-message="{{ __("This value is required.")}}">
+                                        </div>
+                                        <div class="mb-3 col-md-4">
+                                            <label class="form-label" for="btn_title">{{__('Button Title')}}<span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control"  value=""  name="btn_title_0" placeholder="{{__('Button Title')}}" maxlength="30" required=""  data-parsley-required-message="{{ __("This value is required.")}}">
+                                        </div>   
+                                        <div class="mb-3 col-md-4">
+                                            <label class="form-label" for="btn_link">{{__('Button Link')}}<span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control"  value=""  name="btn_link_0" placeholder="{{__('Button Link')}}" maxlength="30" required=""  data-parsley-required-message="{{ __("This value is required.")}}" >
+                                        </div>   
+                                </div>
                                     @php($total = 1)
                                 @endif
                             </div>

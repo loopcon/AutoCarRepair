@@ -27,36 +27,39 @@ class OfferSliderController extends MainController
         if($total){
             for($i = 0; $i < $total; $i++){
                 $id = 'id_'.$i;
-                $image = 'image_'.$i;
-                $title1 = 'title1_'.$i;
-                $title2 = 'title2_'.$i;
                 $btn_title = 'btn_title_'.$i;
-                $btn_link = 'btn_link_'.$i;
-                if($request->$id){
-                    $id_val = Crypt::decrypt($request->$id);
-                    $offer_slider = OfferSlider::find($id_val);
-                    $offer_slider->updated_by = Auth::guard('admin')->user()->id;
-                } else {
-                    $offer_slider = new OfferSlider();
-                    $offer_slider->created_by = Auth::guard('admin')->user()->id;
-                }
-
-                $offer_slider->title1 = $request->$title1;
-                $offer_slider->title2 = $request->$title2;
-                $offer_slider->btn_title = $request->$btn_title;
-                $offer_slider->btn_link = $request->$btn_link;
-                if($request->hasFile($image)) {
+                if(isset($request->$btn_title)){
+                    $image = 'image_'.$i;
+                    $title1 = 'title1_'.$i;
+                    $title2 = 'title2_'.$i;
+                    $btn_title = 'btn_title_'.$i;
+                    $btn_link = 'btn_link_'.$i;
                     if($request->$id){
-                        $old_image = $offer_slider->image;
-                        if($old_image){
-                            removeFile('uploads/offerslider/'.$old_image);
-                        }
+                        $id_val = Crypt::decrypt($request->$id);
+                        $offer_slider = OfferSlider::find($id_val);
+                        $offer_slider->updated_by = Auth::guard('admin')->user()->id;
+                    } else {
+                        $offer_slider = new OfferSlider();
+                        $offer_slider->created_by = Auth::guard('admin')->user()->id;
                     }
-                    $newName = fileUpload($request, $image, 'uploads/offerslider/');
-                    $offer_slider->image = $newName;
-                }
-                $offer_slider->save();
-            }
+
+                    $offer_slider->title1 = $request->$title1 ? $request->$title1 : NULL;
+                    $offer_slider->title2 = $request->$title2 ? $request->$title2 : NULL;
+                    $offer_slider->btn_title = $request->$btn_title ? $request->$btn_title : NULL;;
+                    $offer_slider->btn_link = $request->$btn_link ? $request->$btn_link : NULL;;
+                    if($request->hasFile($image)) {
+                        if($request->$id){
+                            $old_image = $offer_slider->image;
+                            if($old_image){
+                                removeFile('uploads/offerslider/'.$old_image);
+                            }
+                        }
+                        $newName = fileUpload($request, $image, 'uploads/offerslider/');
+                        $offer_slider->image = $newName;
+                    }
+                    $offer_slider->save();
+                }    
+            }   
             return redirect()->back()->with('success', trans('Offer Slider Updated Successfully!'));
         } else {
             return redirect()->back()->with('error', trans('Something went wrong, please try again later!'));
@@ -65,7 +68,7 @@ class OfferSliderController extends MainController
 
     public function offerSliderDelete(request $request)
     {
-        $offer_slider = OfferSlider::where('id', $request->id)->first();
+        $offer_slider = OfferSlider::where('id', $request->id)->get();
         $old_image = $offer_slider->image;
         if($old_image){
             removeFile('uploads/offerslider/'.$old_image);
