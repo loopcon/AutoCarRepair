@@ -164,9 +164,6 @@
                     data : {_token: CSRF_TOKEN, id : db_id},
                     success : function(result){
                         $('#address' + id ).remove();
-                        var total = $('input[name="aid[]"]').val();
-                        var total = parseInt(total) - 1;
-                        $('input[name="aid[]"]').val(total);
                         window.notyf.open({
                             type : 'success',
                             message : 'Address Deleted Successfully!',

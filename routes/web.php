@@ -85,7 +85,7 @@ Route::group(['prefix' => 'backend','as' => 'admin_'], function() {
         Route::post('change-fuel-type-status', [App\Http\Controllers\Backend\FuelTypeController::class, 'changeFuelTypeStatus'])->name('change-fuel-type-status')->middleware('XSS');
 
         Route::get('service-category',[App\Http\Controllers\Backend\ServiceController::class, 'serviceCategoryList'])->name('service-category')->middleware('XSS');
-        Route::get('service-category-create',[App\Http\Controllers\Backend\ServiceController::class, 'serviceCategorycreate'])->name('service-category-create')->middleware('XSS');;
+        Route::get('service-category-create',[App\Http\Controllers\Backend\ServiceController::class, 'serviceCategorycreate'])->name('service-category-create')->middleware('XSS');
         Route::post('service-category-datatable', [App\Http\Controllers\Backend\ServiceController::class, 'serviceCategoryDatatable'])->name('service-category-datatable')->middleware('XSS');
         Route::post('service-category-store',[App\Http\Controllers\Backend\ServiceController::class, 'serviceCategoryStore'])->name('service-category-store')->middleware('XSS');
         Route::get('service-category-edit/{id}',[App\Http\Controllers\Backend\ServiceController::class, 'serviceCategoryedit'])->name('service-category-edit');
@@ -245,8 +245,8 @@ Route::group(['as' => 'front_', 'middleware' => 'XSS'], function() {
     /** cms pages route end **/
 
     Route::group(['middleware' => 'auth:user'], function () {
-        Route::get('my-profile', [\App\Http\Controllers\Front\UserController::class, 'myprofile'])->name('my-profile')->middleware('XSS');;
-        Route::post('my-profile-update', [\App\Http\Controllers\Front\UserController::class, 'myprofileUpdate'])->name('my-profile-update')->middleware('XSS');;
-        Route::post('address-delete', [\App\Http\Controllers\Front\UserController::class, 'addressDelete'])->name('address-delete')->middleware('XSS');;
+        Route::get('my-profile', [\App\Http\Controllers\Front\UserController::class, 'myprofile'])->name('my-profile')->middleware('XSS');
+        Route::post('my-profile-update', [\App\Http\Controllers\Front\UserController::class, 'myprofileUpdate'])->name('my-profile-update')->middleware('XSS');
+        Route::post('address-delete', [\App\Http\Controllers\Front\UserController::class, 'addressDelete'])->name('address-delete')->middleware('XSS');
     });
 });
