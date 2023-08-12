@@ -90,7 +90,7 @@ class UserController extends MainController
         $address = UserAddress::where('id', $request->id)->delete();
         if($address)
         {
-        return redirect('my-profile')->with('success', trans('User Deleted Successfully!'));
+        return redirect('my-profile')->with('success', trans('Address Deleted Successfully!'));
         } else {
             return redirect()->back()->with('error', trans('Something went wrong, please try again later!'));
         }

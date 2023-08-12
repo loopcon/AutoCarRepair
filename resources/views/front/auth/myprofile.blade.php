@@ -24,7 +24,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="row">
-                            <form method="post" action="{{route('front_my-profile-update')}}" id="register-form" class="row  g-3" enctype="multipart/form-data" data-parsley-validate=''>
+                            <form method="post" action="{{route('front_my-profile-update')}}" id="my-profile-form" class="row  g-3" enctype="multipart/form-data" data-parsley-validate=''>
                                 {{ csrf_field() }}
                                 <div class="profileimg">
                                     <?php
@@ -58,7 +58,7 @@
                                     <label class="form-label">Email<span class="text-danger">*</span></label>
                                     <input type="email" name="email" value="{{auth()->user()->email}}" placeholder="EMAIL ID" required="" class="form-control ">
                                 </div>
-                                
+
                                 <div class="col-md-12">
                                     <h4>User Addresses</h4>
                                 </div>
@@ -134,6 +134,7 @@
         </div>
     </div>
 </div>
+<meta name="csrf-token" content="{{ csrf_token() }}" />
 @endsection
 @section('javascript')
 <script src="{{ asset('plugins/parsley/parsley.js') }}"></script>
