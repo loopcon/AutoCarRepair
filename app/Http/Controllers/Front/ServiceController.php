@@ -9,6 +9,7 @@ use App\Models\ServiceCategory;
 use App\Models\ScheduledPackage;
 use App\Models\CarBrand;
 use App\Models\CarModel;
+use App\Models\Enquiry;
 use App\Models\FuelType;
 use Session;
 
@@ -91,4 +92,19 @@ class ServiceController extends MainController
 
         return view('front/service/detail',array_merge($this->data,$return_data));
     }
+    // public function sendMassage(request $request)
+    // {
+    //     //print_r("model ajaxEditModelHtml");exit;
+    //     if($request->ajax()){
+    //         $id = $request->id;
+    //         $id = $id ? Crypt::decrypt($id) : NULL;
+    //         $record  = Enquiry::select('id','name','email')->where([['is_archive', Constant::NOT_ARCHIVE]])->orderby('id')->get(); 
+    //         $html = view('front.service.enquiry', array('record' => $record))->render();
+    //         $return = array();
+    //         $return['html'] = $html;
+    //         echo json_encode($return);
+    //     } else {
+    //         return redirect('backend/dashboard');
+    //     }
+    // }
 }
