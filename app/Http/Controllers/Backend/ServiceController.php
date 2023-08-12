@@ -10,6 +10,7 @@ use App\Models\PackageSpecification;
 use App\Models\CarModel;
 use App\Models\CarBrand;
 use App\Models\FuelType;
+use App\Models\BookedSlot;
 use Auth;
 use Session;
 use Illuminate\Validation\Rule;
@@ -516,6 +517,107 @@ class ServiceController extends MainController
             }
             $return_data['html'] = $html;
             echo json_encode($return_data);exit;
+        } else {
+            return redirect('backend/dashboard');
+        }
+    }
+
+    public function bookedServices(request $request){
+        $return_data = array();       
+        $return_data['site_title'] = trans('Booked Services');
+        $return_data['packages'] = ScheduledPackage::select('id', 'title')->where([['is_archive', Constant::NOT_ARCHIVE], ['status', Constant::ACTIVE]])->get();
+        $return_data['brands'] = CarBrand::select('id', 'title')->where([['is_archive', Constant::NOT_ARCHIVE], ['status', Constant::ACTIVE]])->get();
+        $return_data['models'] = CarModel::select('id', 'title')->where([['is_archive', Constant::NOT_ARCHIVE], ['status', Constant::ACTIVE]])->get();
+        $return_data['fuel_type'] = FuelType::select('id', 'title')->where([['is_archive', Constant::NOT_ARCHIVE], ['status', Constant::ACTIVE]])->get();
+        $return_data['od_id'] = $request->get('od_id') ? Crypt::decrypt($request->get('od_id')) : NULL;
+        return view('backend.service.booked', array_merge($this->data, $return_data));
+    }
+
+    public function bookedServicesDatatable(request $request)
+    {
+        if($request->ajax()){
+            $query = BookedSlot::with('userDetail', 'order', 'packageDetail')->select('id', 'user_id', 'order_id', 'order_detail_id', 'service_id', 'slot_date', 'pick_up_time1', 'pick_up_time2', 'time_type', 'time_takes')->orderBy('id', 'DESC');
+
+            if($request->od_id){
+                $query->where('order_detail_id', $request->od_id);
+            }
+
+            if($request->package != 'all'){
+                $query->where('service_id', $request->package);
+            }
+            if($request->brand != 'all'){
+                $query->whereHas('packageDetail', function($q) use ($request) {
+                    $q->whereHas('brandDetail', function($qq) use ($request) {
+                        $qq->where([['id', '=', $request->brand]]);
+                    });
+                });
+            }
+            if($request->model_id != 'all'){
+                $query->whereHas('packageDetail', function($q) use ($request) {
+                    $q->whereHas('modelDetail', function($qq) use ($request) {
+                        $qq->where([['id', '=', $request->model_id]]);
+                    });
+                });
+            }
+            if($request->fuel_type != 'all'){
+                $query->whereHas('packageDetail', function($q) use ($request) {
+                    $q->whereHas('fuelTypeDetail', function($qq) use ($request) {
+                        $qq->where([['id', '=', $request->fuel_type]]);
+                    });
+                });
+            }
+            $list = $query->get();
+
+            return DataTables::of($list)
+                ->addColumn('order_no', function ($row){
+                    $invoice_no = isset($row->order->invoice_no) ? $row->order->invoice_no : NULL;
+                    $order_no = "<span class='text-nowrap'>#".$invoice_no."</span>";
+                    return $order_no;
+                })
+                ->addColumn('user', function ($row) {
+                    $user_id = $row->user_id ? Crypt::encrypt($row->user_id) : NULL;
+                    
+                    $user = isset($row->order->name) ? $row->order->name : '';
+                    $html = $user_id ? "<a href='".route('admin_user-detail', array($user_id)).">' target='_blank'>".$user."</a>" : $user;
+                    return $html;
+                })
+                ->addColumn('phone', function($row){
+                    $phone = isset($row->order->phone) ? $row->order->phone : '';
+                    return $phone;
+                })
+                ->addColumn('service', function($row){
+                    $scheduled_title = isset($row->packageDetail->title) ? $row->packageDetail->title : NULL;
+                    $brand = isset($row->packageDetail->brandDetail->title) ? $row->packageDetail->brandDetail->title : NULL;
+                    $model = isset($row->packageDetail->modelDetail->title) ? $row->packageDetail->modelDetail->title : NULL;
+                    $fuel_type = isset($row->packageDetail->fuelTypeDetail->title) ? $row->packageDetail->fuelTypeDetail->title : NULL;
+                    return "<span class='text-nowrap'>".$scheduled_title."</br>".$brand.' - '.$model.' - '.$fuel_type."</span>";
+                })
+                ->addColumn('booked_date', function($row){
+                    $html = "<span class='text-nowrap'>";
+                    $html .= isset($row->slot_date) && $row->slot_date ? date('d/m/Y', strtotime($row->slot_date)) : NULL;
+                    $html .= "</span>";
+                    return $html;
+                })
+                ->addColumn('time', function($row){
+                    $html = "<span class='text-nowrap'>";
+                    $html .= $row->pick_up_time1.' - '.$row->pick_up_time2;
+                    $html .= $row->time_type == '0' ? 'AM' : 'PM';
+                    $html .= "</span>";
+                    return $html;
+                })
+                ->addColumn('time_takes', function($row){
+                    $time = isset($row->time_takes) && $row->time_takes ? $row->time_takes.' Hrs' : NULL;
+                    return $time;
+                })
+                ->addColumn('action', function ($row) {
+                    $html = "";
+                    $id = Crypt::encrypt($row->id);
+                    $html .= "<span class='text-nowrap'>";
+                    $html .= "</span>";
+                    return $html;
+                })
+                ->rawColumns(['order_no', 'user', 'phone', 'service', 'booked_date', 'time', 'time_takes', 'action'])
+                ->make(true);
         } else {
             return redirect('backend/dashboard');
         }

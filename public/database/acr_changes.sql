@@ -556,5 +556,6 @@ ALTER TABLE `brand_logo_slider`
 ALTER TABLE `brand_logo_slider`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
-
+-- Khushali : 12-8-23 11:18 AM
+ALTER TABLE `orders` ADD `invoice_no` VARCHAR(100) NULL AFTER `id`;
 

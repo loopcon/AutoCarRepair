@@ -9,7 +9,7 @@ class OrderDetails extends Model
 {
     use HasFactory;
     protected $table = 'order_details';
-    protected $fields = ['order_id', 'product_id', 'price', 'qty', 'subtotal'];
+    protected $fields = ['order_id', 'service_id', 'product_id', 'price', 'qty', 'subtotal'];
 
     public function orderDetail()
     {
@@ -19,5 +19,9 @@ class OrderDetails extends Model
     public function productDetail()
     {
         return $this->belongsTo(Product::class,'product_id');
+    }
+
+    public function packageDetail(){
+        return $this->belongsTo(ScheduledPackage::class, 'service_id')->with('brandDetail', 'modelDetail', 'fuelTypeDetail');
     }
 }

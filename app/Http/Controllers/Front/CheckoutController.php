@@ -92,6 +92,7 @@ class CheckoutController extends MainController
             $checkout_type = $user_id ? Constant::USER_CHECKOUT : Constant::GUEST_CHECKOUT;
 
             $order = new Order();
+            $order->user_id = $user_id;
             $order->is_guest_chekout = $checkout_type;
             $order->payment_type = $payment_type;
             $order->name = $request->name;

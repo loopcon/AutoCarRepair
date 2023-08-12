@@ -156,10 +156,11 @@ $(document).ready(function(){
         //e.preventDefault();
         var slot_time = $('input[name="slot_time"]').val();
         var slot_date = $('input[name="slot_date"]').val();
-        if(slot_date == ''){
+        var is_service_in_cart = $('input[name="is_service_in_cart"]').val();
+        if(slot_date == '' && is_service_in_cart == '1'){
             toastr.error('Please select slot date!');
             return false;
-        } else if(slot_time == ''){
+        } else if(slot_time == '' && is_service_in_cart == '1'){
             toastr.error('Please select slot time!');
             return false;
         } else {

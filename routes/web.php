@@ -92,6 +92,8 @@ Route::group(['prefix' => 'backend','as' => 'admin_'], function() {
         Route::post('service-category-update/{id}',[App\Http\Controllers\Backend\ServiceController::class, 'serviceCategoryUpdate'])->name('service-category-update')->middleware('XSS');
         Route::get('service-category-delete/{id}', [App\Http\Controllers\Backend\ServiceController::class, 'serviceCategoryDestroy'])->name('service-category-delete')->middleware('XSS');
         Route::post('change-service-category-status', [App\Http\Controllers\Backend\ServiceController::class, 'changeServiceCategoryStatus'])->name('change-service-category-status')->middleware('XSS');
+        Route::get('booked-services', [App\Http\Controllers\Backend\ServiceController::class, 'bookedServices'])->name('booked-services');
+        Route::post('booked-service-datatable', [App\Http\Controllers\Backend\ServiceController::class, 'bookedServicesDatatable'])->name('booked-service-datatable');
 
         Route::get('products',[App\Http\Controllers\Backend\ProductController::class, 'index'])->name('products');
         Route::get('product-create',[App\Http\Controllers\Backend\ProductController::class, 'create'])->name('product-create');
@@ -154,16 +156,17 @@ Route::group(['prefix' => 'backend','as' => 'admin_'], function() {
         Route::get('user',[App\Http\Controllers\Backend\UserController::class, 'index'])->name('user')->middleware('XSS');
         Route::post('user-datatable', [App\Http\Controllers\Backend\UserController::class, 'userDatatable'])->name('user-datatable');
         Route::get('user-delete/{id}', [App\Http\Controllers\Backend\UserController::class, 'destroy'])->name('user-delete');
+        Route::get('user-detail/{id}', [\App\Http\Controllers\Backend\UserController::class, 'detail'])->name('user-detail');
         Route::get('user-address/{user_id?}', [App\Http\Controllers\Backend\UserController::class, 'address'])->name('user-address');
         Route::post('user-address-datatable', [App\Http\Controllers\Backend\UserController::class, 'userAddressDatatable'])->name('user-address-datatable');
         Route::get('user-address-delete/{id}', [App\Http\Controllers\Backend\UserController::class, 'addressDestroy'])->name('user-address-delete');
 
         Route::get('order',[App\Http\Controllers\Backend\OrderController::class, 'index'])->name('order')->middleware('XSS');
         Route::post('order-datatable', [App\Http\Controllers\Backend\OrderController::class, 'orderDatatable'])->name('order-datatable');
-        // Route::get('order-delete/{id}', [App\Http\Controllers\Backend\OrderController::class, 'destroy'])->name('order-delete');
-        Route::get('order-detail/{order_id?}', [App\Http\Controllers\Backend\OrderController::class, 'detail'])->name('order-detail');
+        Route::get('order-delete/{id}', [App\Http\Controllers\Backend\OrderController::class, 'destroy'])->name('order-delete');
+        Route::get('order-detail/{id?}', [App\Http\Controllers\Backend\OrderController::class, 'detail'])->name('order-detail');
         Route::post('order-detail-datatable', [App\Http\Controllers\Backend\OrderController::class, 'orderDetailDatatable'])->name('order-detail-datatable');
-        // Route::get('order-detail-delete/{id}', [App\Http\Controllers\Backend\OrderController::class, 'detailDestroy'])->name('order-detail-delete');
+        Route::get('order-detail-delete/{id}', [App\Http\Controllers\Backend\OrderController::class, 'detailDestroy'])->name('order-detail-delete');
 
     });
 });

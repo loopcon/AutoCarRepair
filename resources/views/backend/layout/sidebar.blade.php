@@ -50,13 +50,14 @@
                 </ul> 
             </li>
 
-            <li class="sidebar-item">
+            <li class="sidebar-item {{ (request()->is('backend/service-category*') || request()->is('backend/scheduled-package*') || request()->is('backend/booked-service*')) ? 'active' : '' }}">
                 <a data-bs-target="#sidebar_category" data-bs-toggle="collapse" class="sidebar-link collapsed">
                     <i class="align-middle" data-feather="command"></i> <span class="align-middle">{{ __('Services')}}</span>
                 </a>
-                <ul id="sidebar_category" class="sidebar-dropdown list-unstyled collapse {{ request()->is('backend/service-category*') || request()->is('backend/scheduled-package*') ? 'show' : '' }}" data-parent="#sidebar">
+                <ul id="sidebar_category" class="sidebar-dropdown list-unstyled collapse {{ request()->is('backend/service-category*') || request()->is('backend/scheduled-package*') || request()->is('backend/booked-service*') ? 'show' : '' }}" data-parent="#sidebar">
                     <li class="sidebar-item {{ (request()->is('backend/service-category*')) ? 'active' : '' }}"><a class="sidebar-link" href="{{ route('admin_service-category')}}">{{ __('Category')}}</a></li>
                     <li class="sidebar-item {{ (request()->is('backend/scheduled-package*')) ? 'active' : '' }}"><a class="sidebar-link" href="{{ route('admin_scheduled-package')}}">{{ __('Scheduled Package')}}</a></li>
+                    <li class="sidebar-item {{ (request()->is('backend/booked-service*')) ? 'active' : '' }}"><a class="sidebar-link" href="{{ route('admin_booked-services')}}">{{ __('Booked Service')}}</a></li>
                 </ul> 
             </li>
 
@@ -76,7 +77,7 @@
                     <!--<span class="badge badge-sidebar-primary">5</span>-->
                 </a>
             </li>
-             <li class="sidebar-item {{ (request()->is('backend/user')) ? 'active' : '' }}">
+             <li class="sidebar-item {{ (request()->is('backend/user*')) ? 'active' : '' }}">
                 <a href="{{route('admin_user')}}" class="sidebar-link">
                     <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">{{ __('Users') }}</span>
                     <!--<span class="badge badge-sidebar-primary">5</span>-->

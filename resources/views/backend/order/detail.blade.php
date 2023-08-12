@@ -16,6 +16,18 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
+                     <div class="card-header">
+                        <h5 class="card-title mb-0">Basic Details</h5>
+                    </div> 
+                    <div class="card-body">
+                        <span><b>Invoice No: </b>#{{$detail->invoice_no}}</span><br/>
+                        <span><b>Name: </b>{{$detail->name}}</span><br/>
+                        <span><b>Email: </b>{{$detail->email}}</span><br/>
+                        <span><b>Phone: </b>{{$detail->phone}}</span><br/>
+                        <span><b>Address: </b>{{$detail->address.', '.$detail->zip.', '.$detail->city}}</span>
+                    </div>
+                </div>
+                <div class="card">
                     <!-- <div class="card-header">
                         <div class="form-row">
                             <div class="col-md-12 text-end">
@@ -24,15 +36,14 @@
                         </div>
                     </div> -->
                     <div class="card-body">
-                        <input type="hidden" name="order_id" value="{{$order_id}}">
+                        <input type="hidden" name="order_id" value="{{$detail->id}}">
                         <table id="order-detail" class="table table-striped table-hover" style="width:100%">
                             <thead>
                                 <tr>
                                     <th>{{__('Id')}}</th>
-                                    <th>{{__('Order')}}</th>
-                                    <th>{{__('Product')}}</th>
+                                    <th>{{__('Item')}}</th>
                                     <th>{{__('Price')}}</th>
-                                    <th>{{__('Quality')}}</th>
+                                    <th>{{__('Qty')}}</th>
                                     <th>{{__('Total')}}</th>
                                     <th>{{__('Action')}}</th>
                                 </tr>
@@ -60,8 +71,7 @@ $(document).ready(function() {
         "lengthMenu": [[50, 100, 200, 400], [50, 100, 200, 400]],
         "columns": [
             {data: 'id', name: 'id'},
-            {data: 'order', name: 'user'},
-            {data: 'product', name: 'product'},
+            {data: 'item', name: 'item'},
             {data: 'price', name: 'price'},
             {data: 'qty', name: 'qty'},
             {data: 'subtotal', name: 'subtotal'},
