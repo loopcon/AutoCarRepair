@@ -107,6 +107,7 @@ Route::group(['prefix' => 'backend','as' => 'admin_'], function() {
         Route::post('product-image-ajax-html', [\App\Http\Controllers\Backend\ProductController::class, 'imageAjaxHtml'])->name('product-image-ajax-html');
         Route::post('product-image-delete', [\App\Http\Controllers\Backend\ProductController::class, 'imageDelete'])->name('product-image-delete');
         Route::post('make-product-slug', [\App\Http\Controllers\Backend\ProductController::class, 'makeSlug'])->name('make-product-slug');
+        Route::get('product-detail/{id?}', [\App\Http\Controllers\Backend\ProductController::class, 'productDetail'])->name('product-detail');
 
         Route::get('home-page-content', [\App\Http\Controllers\Backend\HomePageSettingController::class, 'index'])->name('home-page-content');
         Route::post('home-page-content-update', [\App\Http\Controllers\Backend\HomePageSettingController::class, 'update'])->name('home-page-content-update');

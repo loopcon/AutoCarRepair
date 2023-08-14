@@ -254,6 +254,7 @@ class ProductController extends MainController
                     } else {
                         $html .= "<a href='javascript:void(0);' class='btn btn-success btn-sm status' data-status='".Constant::ACTIVE."' data-id='".$id."' title='Active'><i class='fas fa-check'></i></a>";
                     }
+                    $html .= "<a href='".route('admin_product-detail',array($id))."' data-href='' rel='tooltip' title='".trans('Detail')."' class='btn btn-info btn-sm detail'>Detail</a>";
                     $html .= "</span>";
                     return $html;
                 })
@@ -296,5 +297,19 @@ class ProductController extends MainController
         } else {
             return redirect('backend/dashboard');
         }
+    }
+
+    public function productDetail(request $request,$id)
+    {
+        $return_data = array();       
+        $return_data['site_title'] = trans('Product Detail');
+        $id = Crypt::decrypt($id);
+        $detail = Product::with('shopCategoryDetail','primaryImage')->where('id',$id)->first();
+        // $detail = Product::find($id);
+        if(!isset($detail->id)){
+            return redirect()->back()->with('error', 'Something went wrong, please try again later!');
+        }
+        $return_data['detail'] = $detail;
+        return view('backend.product.detail', array_merge($this->data, $return_data));
     }
 }
