@@ -577,8 +577,11 @@ class ServiceController extends MainController
             return DataTables::of($list)
                 ->addColumn('order_no', function ($row){
                     $invoice_no = isset($row->order->invoice_no) ? $row->order->invoice_no : NULL;
-                    $order_no = "<span class='text-nowrap'>#".$invoice_no."</span>";
-                    return $order_no;
+                    $order_id = isset($row->order_id) && $row->order_id ? Crypt::encrypt($row->order_id) : NULL;
+                    $html = "<span class='text-nowrap'>";
+                    $html .= $order_id ? "<a href='".route('admin_order-detail', array($order_id))."' target='blank'>#".$invoice_no."</a>" : "";
+                    $html .= "</span>";
+                    return $html;
                 })
                 ->addColumn('user', function ($row) {
                     $user_id = $row->user_id ? Crypt::encrypt($row->user_id) : NULL;

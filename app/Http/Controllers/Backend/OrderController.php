@@ -41,7 +41,9 @@ class OrderController extends MainController
                     return $html;
                 })
                 ->addColumn('name', function($row) {
-                    return $row->name;
+                    $user_id = $row->user_id;
+                    $html = $user_id ? "<a href='".route('admin_user-detail', array(Crypt::encrypt($user_id)))."' target='blank'>".$row->name."</a>" : $row->name;
+                    return $html;
                 })
                 ->addColumn('odate', function($row) {
                     $order_date = $row->order_date ? date("d/m/Y", strtotime($row->order_date)) : NULL;

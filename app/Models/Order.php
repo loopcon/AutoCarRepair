@@ -9,7 +9,7 @@ class Order extends Model
 {
     use HasFactory;
     protected $table = 'orders';
-    protected $fields = ['user_id', 'is_guest_chekout', 'payment_type', 'name', 'email', 'phone', 'address', 'zip', 'city', 'total', 'order_date'];
+    protected $fields = ['user_id', 'is_guest_chekout', 'payment_type', 'name', 'email', 'phone', 'address', 'zip', 'city', 'subtotal', 'product_gst_rate', 'service_gst_rate', 'product_gst', 'service_gst', 'total', 'order_date'];
 
     public function userData()
     {

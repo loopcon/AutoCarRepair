@@ -73,7 +73,9 @@ class CheckoutController extends MainController
                 }
             }
             $cart_data = Cart::with('productDetail', 'serviceDetail')->whereIn('id', $cart_ids)->get();
-            $html = view('front/checkout/cart_ajax',array('cart_data' => $cart_data))->render();
+            $return_data = array();
+            $return_data['cart_data'] = $cart_data;
+            $html = view('front/checkout/cart_ajax', array_merge($this->data, $return_data))->render();
             echo json_encode(array('status' => $status, 'html' => $html));
             exit;
         } else {
@@ -103,6 +105,11 @@ class CheckoutController extends MainController
             $order->address = $request->address;
             $order->zip = $request->zip;
             $order->city = $request->city;
+            $order->subtotal = $request->subtotal;
+            $order->product_gst_rate = isset($this->data['product_gst']) ? $this->data['product_gst'] : 0;
+            $order->service_gst_rate = isset($this->data['service_gst']) ? $this->data['service_gst'] : 0;
+            $order->product_gst = $request->product_gst;
+            $order->service_gst = $request->service_gst;
             $order->total = $request->order_total;
             $order->order_date = date('Y-m-d');
             $order->save();

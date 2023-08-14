@@ -559,3 +559,10 @@ ALTER TABLE `brand_logo_slider`
 -- Khushali : 12-8-23 11:18 AM
 ALTER TABLE `orders` ADD `invoice_no` VARCHAR(100) NULL AFTER `id`;
 
+-- Khushali : 14-08-2023 3:41 PM
+INSERT INTO `settings` (`id`, `name`, `label`, `value`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES (NULL, 'Product Gst(%)', 'product_gst', NULL, NULL, current_timestamp(), NULL, current_timestamp());
+
+INSERT INTO `settings` (`id`, `name`, `label`, `value`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES (NULL, 'Service Gst(%)', 'service_gst', NULL, NULL, current_timestamp(), NULL, current_timestamp());
+
+ALTER TABLE `orders` ADD `subtotal` DECIMAL(15,2) NULL AFTER `city`, ADD `product_gst` DECIMAL(15, 2) NULL AFTER `subtotal`, ADD `service_gst` DECIMAL(15,2) NULL AFTER `product_gst`;
+ALTER TABLE `orders` ADD `product_gst_rate` DECIMAL(15,2) NULL AFTER `subtotal`, ADD `service_gst_rate` DECIMAL(15, 2) NULL AFTER `product_gst_rate`;

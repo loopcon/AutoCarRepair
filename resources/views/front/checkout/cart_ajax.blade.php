@@ -1,11 +1,13 @@
-@php($subtotal = 0)
+@php($subtotal = $producttotal = $servicetotal = 0)
 @php($is_service_available = 0)
+@php($is_product_available = 0)
 @if($cart_data->count())
     @foreach($cart_data as $item)
         
         <div class="service-add-main">
             <div class="service-name-text">
                 @if(isset($item->product_id) && $item->product_id)
+                    @php($is_product_available = 1)
                     @if(isset($item->productDetail->primaryImage->image) && $item->productDetail->primaryImage->image)
                         <img src="{{ asset('public/uploads/product/'.$item->product_id.'/'.$item->productDetail->primaryImage->image) }}"  class="add-to-cart-img" alt="">
                     @else
@@ -30,6 +32,7 @@
                     @php($unit_price = isset($item->productDetail->price) && $item->productDetail->price ? $item->productDetail->price : 0)
                     @php($item_total = $qty * $unit_price)
                     @php($subtotal = $subtotal + $item_total)
+                    @php($producttotal = $producttotal + $item_total)
                     <p>₹{{formatNumber($item_total)}}</p>
                     <div class="frame">
                         <div class="plus-minus-main">
@@ -49,6 +52,7 @@
                     @php($unit_price = isset($item->serviceDetail->price) && $item->serviceDetail->price ? $item->serviceDetail->price : 0)
                     @php($item_total = $qty * $unit_price)
                     @php($subtotal = $subtotal + $item_total)
+                    @php($servicetotal = $servicetotal + $item_total)
                     <p>₹{{formatNumber($item_total)}}</p>
                     <div class="frame">
                         <div class="plus-minus-main">
@@ -71,12 +75,43 @@
     <p>Item Total</p>
     <p>₹{{formatNumber($subtotal)}}</p>
 </div>
+@php($pgst_val = $sgst_val = 0)
+@if($is_product_available == 1)
+    <div class="item-total-sec-main">
+        @php($pgst_val = $product_gst && $producttotal ? ($producttotal*$product_gst)/100 : 0)
+        <p>
+            @if($is_product_available == 1 && $is_service_available == 1) 
+                Product Gst({{$product_gst}} %)
+            @else
+                Gst({{$product_gst}} %)
+            @endif
+        </p>
+        <p>₹{{formatNumber($pgst_val)}}</p>
+    </div>
+@endif
+@if($is_service_available == 1)
+    <div class="item-total-sec-main">
+        @php($sgst_val = $service_gst && $servicetotal ? ($servicetotal*$service_gst)/100 : 0)
+        <p>
+            @if($is_service_available == 1 && $is_service_available == 1) 
+                Service Gst({{$service_gst}} %)
+            @else
+                Gst({{$service_gst}} %)
+            @endif
+        </p>
+        <p>₹{{formatNumber($sgst_val)}}</p>
+    </div>
+@endif
+@php($total = $subtotal + $pgst_val + $sgst_val)
 <div class="you-pay-sec-main">
     <p>You Pay</p>
-    <p>₹{{formatNumber($subtotal)}}</p>
+    <p>₹{{formatNumber($total)}}</p>
 </div>
 <div>
-    <input type="hidden" name="order_total" value="{{$subtotal}}">
+    <input type="hidden" name="subtotal" value="{{$subtotal}}">
+    <input type="hidden" name="product_gst" value="{{$pgst_val}}">
+    <input type="hidden" name="service_gst" value="{{$sgst_val}}">
+    <input type="hidden" name="order_total" value="{{$total}}">
     <input type="hidden" name="is_service_in_cart" value="{{$is_service_available}}">
     <button class="confirm-booking-btn" id="booking_confirm" type="submit"> Confirm Booking</button>
 </div>
