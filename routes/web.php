@@ -231,7 +231,6 @@ Route::group(['as' => 'front_', 'middleware' => 'XSS'], function() {
     Route::post('resend-otp', [\App\Http\Controllers\Front\OtpController::class, 'resend'])->name('resend-otp');
 
     Route::get('our-services', [App\Http\Controllers\Front\ServiceController::class, 'services'])->name('our-services');
-    // Route::post('enquiry-model-html', [App\Http\Controllers\Front\ServiceController::class, 'sendMassage'])->name('enquiry-model-html');
     Route::get('contact-us', [App\Http\Controllers\Front\ContactController::class, 'index'])->name('contact-us');
     Route::get('service-center', [App\Http\Controllers\Front\ServiceCenterConroller::class, 'index'])->name('service-center');
     Route::get('faq', [App\Http\Controllers\Front\FaqController::class, 'index'])->name('faq');
