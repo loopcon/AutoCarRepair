@@ -85,6 +85,67 @@
         </div>
     </div>
 </main>
+<div class="modal fade" id="slot_modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-md" role="document">
+        <form method="POST" action="{{route('admin_change-service-slot')}}" id="slot-form" enctype="multipart/form-data" data-parsley-validate="">
+        @csrf
+        <input type="hidden" name="booking_id" value="">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Change Slot Information</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body m-3">
+                    <div class="Choose-service-date-main" id="service_slot_section">
+                        <h4>Choose service date</h4>
+                        <div class="date-sec-main">
+                            @php($weekdays = weekOfDays('6'))
+                            @if($weekdays)
+                                @foreach($weekdays as $week)
+                                    <a class="date-main slot-date" data-date="{{date('Y-m-d', strtotime($week))}}" href="javascript:void(0);">
+                                        <p>{{$week}}</p>
+                                    </a>
+                                @endforeach
+                            @endif
+                        </div>
+                        <div class="pick-slot-main">
+                            <h4>Pick Time Slot <span>({{$aslots->count()+$eslots->count()}} slot available)</span> </h4>
+                            <input type="hidden" name="slot_date" value="">
+                            <input type="hidden" name="slot_time" value="">
+                        </div>
+                        @if($aslots->count())
+                            <div class="afternoon-slot-sec-main">
+                                <h4><span>slots</span>Afternoon Slot</h4>
+                                <div class="row m-0">
+                                    @foreach($aslots as $slot)
+                                        <div class="col-12 col-sm-3">
+                                            <a class="btn afternoon-slot-btn slot-btn" data-id="{{$slot->time}}">{{$slot->time}}</a>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        @endif
+                        @if($eslots->count())
+                            <div class="evening-slot-sec-main">
+                                <h4><span>slots</span>Evening Slot</h4>
+                                <div class="row">
+                                    @foreach($eslots as $slot)
+                                        <div class="col-12 col-sm-3">
+                                            <a class="btn evening-slot-btn slot-btn" data-id="{{$slot->time}}">{{$slot->time}}</a>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        @endif
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 <meta name="csrf-token" content="{{ csrf_token() }}" />
 @endsection
 @section('javascript')
@@ -128,6 +189,63 @@ $(document).ready(function() {
     $(document).on('change', '#package, #brand, #carModel, #fuelType', function(){
         bservices.ajax.reload();
     });
+
+    $(document).on('click', '.change_slot', function(){
+        $('#slot_modal').modal('show');
+        var id = $(this).data('id');
+        $('input[name="booking_id"]').val(id);
+    });
+
+    $(document).on('click' , '.slot-btn', function(){
+        var id = $(this).data('id');
+        $('input[name="slot_time"]').val(id);
+        $('.slot-btn').removeClass('evening-slot-active');
+        $(this).addClass('evening-slot-active');
+    });
+
+    $(document).on('click', '.slot-date', function(){
+        var date = $(this).data('date');
+        $('input[name="slot_date"]').val(date);
+        $('.slot-btn').removeClass('evening-slot-active');
+        $('input[name="slot_time"]').val('');
+        $('.slot-date').removeClass('select-date');
+        $(this).addClass('select-date');
+    });
+
+    $("#slot-form").submit(function(e) {
+        //e.preventDefault();
+        var slot_time = $('input[name="slot_time"]').val();
+        var slot_date = $('input[name="slot_date"]').val();
+        if(slot_date == ''){
+            window.notyf.open({
+                type : 'error',
+                message : 'Please select slot date!',
+                duration : '10000',
+                ripple : true,
+                dismissible : true,
+                position: {
+                        x: 'right',
+                        y: 'top'
+                }
+            });
+            return false;
+        } else if(slot_time == ''){
+            window.notyf.open({
+                type : 'error',
+                message : 'Please select slot time!',
+                duration : '10000',
+                ripple : true,
+                dismissible : true,
+                position: {
+                        x: 'right',
+                        y: 'top'
+                }
+            });
+            return false;
+        } else {
+           $("#slot-form").submit();
+        }
+   });
 });
 </script>
 @endsection

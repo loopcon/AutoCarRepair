@@ -11,6 +11,8 @@ use App\Models\CarModel;
 use App\Models\CarBrand;
 use App\Models\FuelType;
 use App\Models\BookedSlot;
+use App\Models\PickUpSlotSetting;
+use App\Models\EmailTemplates;
 use Auth;
 use Session;
 use Illuminate\Validation\Rule;
@@ -530,6 +532,10 @@ class ServiceController extends MainController
         $return_data['models'] = CarModel::select('id', 'title')->where([['is_archive', Constant::NOT_ARCHIVE], ['status', Constant::ACTIVE]])->get();
         $return_data['fuel_type'] = FuelType::select('id', 'title')->where([['is_archive', Constant::NOT_ARCHIVE], ['status', Constant::ACTIVE]])->get();
         $return_data['od_id'] = $request->get('od_id') ? Crypt::decrypt($request->get('od_id')) : NULL;
+        $aslots = PickUpSlotSetting::select('id', 'time', 'slot')->where('slot', Constant::AFTERNOON)->orderBy('id')->get();
+        $eslots = PickUpSlotSetting::select('id', 'time', 'slot')->where('slot', Constant::EVENING)->orderBy('id')->get();
+        $return_data['aslots'] = $aslots;
+        $return_data['eslots'] = $eslots;
         return view('backend.service.booked', array_merge($this->data, $return_data));
     }
 
@@ -613,7 +619,7 @@ class ServiceController extends MainController
                     $html = "";
                     $id = Crypt::encrypt($row->id);
                     $html .= "<span class='text-nowrap'>";
-                    $html .= "<a class='badge bg-primary me-1 my-1' href='javascript:void(0);' data-id='".$row->id."'>Change Slot Time</a>";
+                    $html .= "<a class='badge bg-primary me-1 my-1 change_slot' href='javascript:void(0);' data-id='".$row->id."'>Change Slot Time</a>";
                     $html .= "</span>";
                     return $html;
                 })
@@ -621,6 +627,52 @@ class ServiceController extends MainController
                 ->make(true);
         } else {
             return redirect('backend/dashboard');
+        }
+    }
+
+    public function changeServiceSlot(request $request){
+        if(isset($request->booking_id) && $request->booking_id){
+            $slot_time = $request->slot_time;
+            $slot_time = str_replace(' ', '', $slot_time);
+            $slotarray = explode('-', $slot_time);
+            $slot2 = isset($slotarray[1]) ? $slotarray[1] : NULL;
+            $time_type = 1;
+            if( $slot2 && strpos( $slot2, "AM" ) !== false) {
+                $time_type = 0;
+            }
+            $slot2 = str_replace('AM', '', $slot2);
+            $slot2 = str_replace('PM', '', $slot2);
+
+            $slot = BookedSlot::find($request->booking_id);
+            $slot->slot_date = $request->slot_date;
+            $slot->pick_up_time1 = isset($slotarray[0]) ? $slotarray[0] : NULL;
+            $slot->pick_up_time2 = $slot2;
+            $slot->time_type = $time_type;
+            $slot->save();
+
+            if($slot){
+
+                // Send email for Time Rearrange - Start
+                $serviceInfo = BookedSlot::with('order')->select('*')->where('id', $request->booking_id)->first();
+                $user = isset($serviceInfo->order->name) && $serviceInfo->order->name ? $serviceInfo->order->name : NULL;
+                $invoice_no = isset($serviceInfo->order->invoice_no) && $serviceInfo->order->invoice_no ? $serviceInfo->order->invoice_no : NULL;
+                $email = isset($serviceInfo->order->email) && $serviceInfo->order->email ? $serviceInfo->order->email : NULL;
+                $date = $request->slot_date ? date('d/m/Y', strtotime($request->slot_date)) : NULL;
+
+                $templateStr = array('[USER]', '[INVOICE-NO]', '[DATE]', '[TIME]');
+                $data = array($user, $invoice_no, $date, $request->slot_time);
+                $ndata = EmailTemplates::select('template')->where('label', 'time_rearrange')->first();
+                $html = isset($ndata->template) ? $ndata->template : NULL;
+                $mailHtml = str_replace($templateStr, $data, $html);
+//                print_r($mailHtml);exit;
+//                \Mail::to($email)->send(new \App\Mail\CommonMail($mailHtml, 'Time Rearrange - '.$this->data['site_name']));
+                // Send email for Time Rearrange - End
+                return redirect('backend/booked-services')->with('success', 'Slot Information updated successfully!');
+            } else {
+                return redirect()->back()->with('error', 'Something went wrong, please try again later!');
+            }
+        } else {
+            return redirect()->back()->with('error', 'Something went wrong, please try again later!');
         }
     }
 }

@@ -129,3 +129,22 @@ input[type=range]:focus::-ms-fill-upper {
 .features{
     position: relative;
 }
+.date-sec-main{ display: flex;}
+.date-main { margin: 0px 10px; text-decoration: none; border: 1px solid #000; padding: 8px 20px; border-radius: 10px; color: #000; }
+.date-main:hover{ color: #000000;}
+.date-main p { margin-bottom: 0px; text-align: center;}
+a.select-date{ border: 1px solid #E56F31; color: #E56F31; }
+/*.Choose-service-date-main{ background-color: #F2F2F2; padding: 20px; margin-top: 25px; margin-bottom: 20px; }*/
+.Choose-service-date-main h4{  font-size: 18px; font-weight: bold; }
+.pick-slot-main h4{  font-size: 18px; margin: 20px 0px; }
+.pick-slot-main h4 span{ color: #ccc; font-size: 15px;}
+.afternoon-slot-btn{ background-color: unset;  border: 1px solid #000; width: 100%; height: 45px; color: #000; font-weight: bold; }
+.afternoon-slot-active{background-color: rgba(229,  111, 49, 0.3);  border: 1px solid #E56F31; width: 100%; height: 45px; color: #E56F31; font-weight: bold; }
+.afternoon-slot-sec-main{ margin: 25px 0px; border-bottom: 2px dashed rgba(0, 0, 0, 0.4); padding-bottom: 25px; }
+.afternoon-slot-sec-main h4{ padding-bottom: 20px;}
+.afternoon-slot-sec-main h4 span{ color: #000; background-color:rgba(229,  111, 49, 0.3); font-size: 15px; padding: 3px 0px 3px 3px; margin-right: 5px;}
+.evening-slot-btn{ background-color: unset;  border: 1px solid #000; width: 100%; height: 45px; color: #000; font-weight: bold; }
+.evening-slot-active{background-color: rgba(229,  111, 49, 0.3);  border: 1px solid #E56F31; width: 100%; height: 45px; color: #E56F31; font-weight: bold; }
+.evening-slot-sec-main{ margin: 25px 0px; border-bottom: 2px dashed rgba(0, 0, 0, 0.4); padding-bottom: 25px; }
+.evening-slot-sec-main h4{ padding-bottom: 20px;}
+.evening-slot-sec-main h4 span{ color: #000; background-color:rgba(229,  111, 49, 0.3); font-size: 15px; padding: 3px 0px 3px 3px; margin-right: 5px;}

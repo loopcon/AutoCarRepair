@@ -11,8 +11,10 @@ use App\Models\OrderDetails;
 use App\Models\UserAddress;
 use App\Models\PickUpSlotSetting;
 use App\Models\BookedSlot;
+use App\Models\ScheduledPackage;
 use Auth;
 use Session;
+use App\Models\EmailTemplates;
 
 class CheckoutController extends MainController
 {
@@ -166,6 +168,24 @@ class CheckoutController extends MainController
                         $slot->time_takes = isset($request->time_takes) ? $request->time_takes : NULL;
                         $slot->service_id = $cdata->service_id;
                         $slot->save();
+
+                        // Send email for Booked Service - Start
+                        $package_data = ScheduledPackage::with('modelDetail', 'brandDetail', 'fuelTypeDetail')->Select('id','brand_id', 'model_id', 'fuel_type_id', 'title')->where('id', $cdata->service_id)->first();
+                        $package = isset($package_data->title) && $package_data->title ? $package_data->title : NULL;
+                        $model = isset($package_data->modelDetail->title) ? $package_data->modelDetail->title : NULL;
+                        $brand = isset($package_data->brandDetail->title) ? $package_data->brandDetail->title : NULL;
+                        $fuelType = isset($package_data->fuelTypeDetail->title) ? $package_data->fuelTypeDetail->title : NULL;
+                        $service_info = $package.' - '.$brand. ' - '.$model.' - '.$fuelType;
+
+                        $sdate = $request->slot_date ? date('d/m/Y', strtotime($request->slot_date)) : '';
+                        $templateStr = array('[USER]', '[SERVICE]', '[DATE]', '[TIME]');
+                        $data = array($request->name, $service_info, $sdate, $request->slot_time);
+                        $ndata = EmailTemplates::select('template')->where('label', 'booked_service')->first();
+                        $html = isset($ndata->template) ? $ndata->template : NULL;
+                        $mailHtml = str_replace($templateStr, $data, $html);
+//                        print_r($mailHtml);exit;
+//                        \Mail::to($request->email)->send(new \App\Mail\CommonMail($mailHtml, 'Service Booked - '.$this->data['site_name']));
+                        // Send email for Booked Service - End
                     }
                     Cart::where('id', $cdata->id)->delete();
                 }
