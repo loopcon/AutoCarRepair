@@ -93,6 +93,7 @@
 $(document).ready(function() {
     $('.select2').select2();
     var bservices = $("#bservices").DataTable({
+        "sScrollX": '100%',
         "order": [], //Initial no order.
         "aaSorting": [],
         processing: true,

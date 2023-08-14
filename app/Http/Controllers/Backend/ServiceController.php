@@ -613,6 +613,7 @@ class ServiceController extends MainController
                     $html = "";
                     $id = Crypt::encrypt($row->id);
                     $html .= "<span class='text-nowrap'>";
+                    $html .= "<a class='badge bg-primary me-1 my-1' href='javascript:void(0);' data-id='".$row->id."'>Change Slot Time</a>";
                     $html .= "</span>";
                     return $html;
                 })

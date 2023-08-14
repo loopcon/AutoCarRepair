@@ -119,6 +119,10 @@ class CheckoutController extends MainController
             $cart_data = Cart::with('productDetail')->whereIn('id', $cart_ids)->get();
             if($cart_data->count() && $order){
                 $order_id = $order->id;
+                $id_length = strlen((string)$order_id);
+                $iorder_id = $id_length == 1 ? '0'.$order_id : $order_id;
+                $inovice_no = 'ACR'.date('y').$iorder_id;
+                Order::where('id', $order_id)->update(array('invoice_no' => $inovice_no));
                 foreach($cart_data as $cdata){
                     $price = 0;
                     if($cdata->product_id){
