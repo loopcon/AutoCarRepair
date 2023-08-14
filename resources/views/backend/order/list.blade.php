@@ -28,6 +28,7 @@
                             <thead>
                                 <tr>
                                     <th>{{__('Id')}}</th>
+                                    <th>{{__('Invoice No.')}}</th>
                                     <th>{{__('User')}}</th>
                                     <th>{{__('Email')}}</th>
                                     <th>{{__('Phone')}}</th>
@@ -62,6 +63,7 @@ $(document).ready(function() {
         "lengthMenu": [[50, 100, 200, 400], [50, 100, 200, 400]],
         "columns": [
             {data: 'id', name: 'id'},
+            {data: 'invoice_no', name: 'invoice_no'},
             {data: 'name', name: 'name'},
             {data: 'email', name: 'email'},
             {data: 'phone', name: 'phone'},

@@ -25,13 +25,21 @@ class OrderController extends MainController
     public function orderDatatable(request $request)
     {
         if($request->ajax()){
-            $query = Order::select('id','user_id','name','email','phone','address','zip','city','total','order_date')->with('userData')->orderBy('id', 'DESC');
+            $query = Order::select('id','invoice_no', 'user_id','name','email','phone','address','zip','city','total','order_date')->with('userData')->orderBy('id', 'DESC');
             if($request->user_id){
                 $query->where('user_id', $request->user_id);
             }
             $list = $query->get();
 
             return DataTables::of($list)
+                ->addColumn('invoice_no', function ($row) {
+                    $html = "";
+                    $html .= "<span class='text-nowrap'>";
+                    $html .= "#";
+                    $html .=isset($row->invoice_no) ? $row->invoice_no : NULL;
+                    $html .= "</span>";
+                    return $html;
+                })
                 ->addColumn('name', function($row) {
                     return $row->name;
                 })
@@ -51,7 +59,7 @@ class OrderController extends MainController
                     $html .= "</span>";
                     return $html;
                 })
-                ->rawColumns(['name','action','odate'])
+                ->rawColumns(['invoice_no','name','action','odate'])
                 ->make(true);
         } else {
             return redirect('backend/dashboard');
@@ -89,6 +97,14 @@ class OrderController extends MainController
             $list = $query->get();
 
             return DataTables::of($list)
+            ->addColumn('invoice_no', function ($row) {
+                $html = "";
+                $html .= "<span class='text-nowrap'>";
+                $html .= "#";
+                $html .=isset($row->orderDetail->invoice_no) ? $row->orderDetail->invoice_no : NULL;
+                $html .= "</span>";
+                return $html;
+            })
                 ->addColumn('item', function($row) {
                     if($row->service_id){
                         $scheduled_title = isset($row->packageDetail->title) ? $row->packageDetail->title : NULL;
@@ -113,7 +129,7 @@ class OrderController extends MainController
                     $html .= "</span>";
                     return $html;
                 })
-                ->rawColumns(['item','action'])
+                ->rawColumns(['invoice_no','item','action'])
                 ->make(true);
         } else {
             return redirect('backend/dashboard');
