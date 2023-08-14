@@ -29,10 +29,14 @@ class EnquiryController extends MainController
     {
         if($request->ajax()){
             $roles = Session::get('roles');
-            $query = Enquiry::select('id', 'name','email','phone','service','message')->where('is_archive', '=', Constant::NOT_ARCHIVE)->orderBy('id', 'DESC');
+            $query = Enquiry::select('id', 'name','email','phone','service','message')->with('serviceCategory')->where('is_archive', '=', Constant::NOT_ARCHIVE)->orderBy('id', 'DESC');
             $list = $query->get();
 
             return DataTables::of($list)
+                ->addColumn('service', function ($row) {
+                    $service = isset($row->serviceCategory->title) && $row->serviceCategory->title ? $row->serviceCategory->title :NULL;
+                    return $service;
+                })
                 ->addColumn('action', function ($row) {
                     $roles = Session::get('roles');
                     $html = "";
@@ -42,7 +46,7 @@ class EnquiryController extends MainController
                     $html .= "</span>";
                     return $html;
                 })
-                ->rawColumns(['action'])
+                ->rawColumns(['service','action'])
                 ->make(true);
         } else {
             return redirect('backend/dashboard');
