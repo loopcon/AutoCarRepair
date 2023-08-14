@@ -55,6 +55,7 @@
     <script>
         $(document).ready(function() {
             var fueltype = $("#fueltype").DataTable({
+                "sScrollX": '100%',
                 "order": [], //Initial no order.
                 "aaSorting": [],
                 processing: true,

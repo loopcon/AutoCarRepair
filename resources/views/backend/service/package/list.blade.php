@@ -103,6 +103,7 @@ $(document).ready(function() {
     $('#carModel').select2();
     $('#fuelType').select2();
     var table = $("#table").DataTable({
+        "sScrollX": '100%',
         "order": [], //Initial no order.
         "aaSorting": [],
         processing: true,

@@ -63,6 +63,7 @@
 <script>
 $(document).ready(function() {
     var detail = $("#order-detail").DataTable({
+        "sScrollX": '100%',
         "order": [], //Initial no order.
         "aaSorting": [],
         processing: true,

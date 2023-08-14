@@ -55,6 +55,7 @@
     <script>
         $(document).ready(function() {
             var carmakers = $("#carmaker").DataTable({
+                "sScrollX": '100%',
                 "order": [], //Initial no order.
                 "aaSorting": [],
                 processing: true,

@@ -51,6 +51,7 @@
 <script>
 $(document).ready(function() {
     var page = $("#enquiry").DataTable({
+        "sScrollX": '100%',
         "order": [], //Initial no order.
         "aaSorting": [],
         processing: true,

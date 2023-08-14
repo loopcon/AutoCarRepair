@@ -61,6 +61,7 @@
 $(document).ready(function() {
     $('#shopCategory').select2();
     var product = $("#products").DataTable({
+        "sScrollX": '100%',
         "order": [], //Initial no order.
         "aaSorting": [],
         processing: true,

@@ -55,6 +55,7 @@
     <script>
         $(document).ready(function() {
             var shopcategory = $("#shopcategory").DataTable({
+                "sScrollX": '100%',
                 "order": [], //Initial no order.
                 "aaSorting": [],
                 processing: true,

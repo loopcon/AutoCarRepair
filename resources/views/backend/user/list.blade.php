@@ -50,6 +50,7 @@
 <script>
 $(document).ready(function() {
     var page = $("#user").DataTable({
+        "sScrollX": '100%',
         "order": [], //Initial no order.
         "aaSorting": [],
         processing: true,
