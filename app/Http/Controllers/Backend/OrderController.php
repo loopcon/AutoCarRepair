@@ -55,7 +55,7 @@ class OrderController extends MainController
                     $id = Crypt::encrypt($row->id);
                     $html .= "<span class='text-nowrap'>";
                     // $html .= "<a href='javascript:void(0);' data-href='".route('admin_order-delete',array($id))."' rel='tooltip' title='".trans('Delete')."' class='btn btn-danger btn-sm mr-20 delete'><i class='fa fa-trash-alt'></i></a>&nbsp";
-                    $html .= "<a href='".route('admin_order-detail',array($id))."' rel='tooltip' title='Detail' class='btn btn-success btn-sm'>Detail</a>";
+                    $html .= "<a href='".route('admin_order-detail',array($id))."' rel='tooltip' title='Detail' class='btn btn-info btn-sm'>Detail</a>";
                     $html .= "</span>";
                     return $html;
                 })
