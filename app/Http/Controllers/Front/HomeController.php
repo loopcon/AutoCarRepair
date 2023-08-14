@@ -10,6 +10,7 @@ use App\Models\OfferSlider;
 use App\Models\BrandLogoSlider;
 use App\Models\ServiceCategory;
 use App\Models\Enquiry;
+use App\Models\EmailTemplates;
 use Auth;
 use DB;
 
@@ -50,11 +51,24 @@ class HomeController extends MainController
             'service' => $request->service,
             'message' => $request->message,
         ]);
+
         if($appointment){
+            $scategories = ServiceCategory::select('id', 'title')->where('id',$request->service)->first();
+            $name = $request->name;
+            $email = $request->email;
+            $phone = $request->phone;
+            $service = isset($scategories->title) ? $scategories->title : NULL;
+            $message = $request->message;
+
+            $templateStr = array('[NAME]','[EMAIL]','[PHONE]','[Service]','[Message]');
+            $data = array($name, $email,$phone, $service, $message);
+            $ndata = EmailTemplates::select('template')->where('label', 'request_appointment')->first();
+            $html = isset($ndata->template) ? $ndata->template : NULL;
+            $mailHtml = str_replace($templateStr, $data, $html);
+            // \Mail::to($request->email)->send(new \App\Mail\CommonMail($mailHtml, 'Request An Appointment - ' . $this->data['site_name']));
             return redirect('/')->with('success', trans('Your Request Sent Successfully!'));
         } else {
             return redirect()->back()->with('error', trans('Something went wrong, please try again later!'));
         }
     }
-
 }
