@@ -140,7 +140,7 @@ a.badge:hover{
 /* why choose us end */
 /* offer slider  css start  */
 .offeer-section .explore-btn{  background-color: #011098; color: #fff;border: none;width: 145px;height: 45px;font-size: 17px;border-radius: 6px;font-weight: bold; }
-.offeer-section .offer-section-main img{ position: relative; height: 460px; object-fit: cover;}
+.offeer-section .offer-section-main img{ position: relative; height: 500px; object-fit: cover;}
 .offeer-section .offer-section-item{ position: absolute;top: 50%;left: 10%;transform: translateY(-50%);}
 .offeer-section .offer-section-item p { color: #fff; margin-bottom: 0px;font-size: 22px;font-weight: bold;}
 .offeer-section .offer-section-item h4 { color: #fff;font-size: 48px;width: 56%;font-weight: bold;margin: 35px 0px;}
