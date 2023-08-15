@@ -130,7 +130,7 @@
                 @foreach($offer_slider as $slider)
                 <div class="item">
                     <div class="offer-section-main">
-                        <img src="{{ asset('uploads/offerslider/'.$slider->image) }}"  alt="">
+                        <img class="img-fluid" src="{{ asset('uploads/offerslider/'.$slider->image) }}"  alt="">
                         <div class="offer-section-item">
                             <div class="container">
                                 <p>{{$slider->title1}}</p>

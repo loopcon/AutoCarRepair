@@ -36,7 +36,7 @@
     .footet-down-bg .copy-right-text-main p{ font-size: 15px;}
     .shop-center-text{ width: 100%;}
     .shop-center-text h2{ text-align: center; font-size: 45px; }
-    
+    .offeer-section .offer-section-main img{ height: 400px;}
 }
 @media (max-width:767px) {
     .slider-section-main h2{ font-size: 50px; }
@@ -59,6 +59,7 @@
     .call-main { margin-top: 10px;}
     .shoping-breadcrum-bg .shoping-breadcrum-main{ flex-wrap: wrap; justify-content: start;}
     .thank-you-sec-main h2{ font-size: 50px;}
+    .offeer-section .offer-section-main img{ height: 380px;}
 }
 @media (max-width:575px) {
     .slider-section-main h2{ font-size: 35px; }
@@ -117,9 +118,10 @@
     #tab{ padding-left: 0px;}
     .shopping-section .shoping-main-product img{ display: block; margin: auto; }
     .thank-you-sec-main h2{ font-size: 40px;}
-    .offeer-section .owl-carousel .owl-nav button.owl-prev span{ width: 30px; height: 30px; line-height: 20px;}
-    .offeer-section .owl-carousel .owl-nav button.owl-next span{ width: 30px; height: 30px; line-height: 20px;}
+    .offeer-section .owl-carousel .owl-nav button.owl-prev span{ width: 30px; height: 30px; line-height: 26px;}
+    .offeer-section .owl-carousel .owl-nav button.owl-next span{ width: 30px; height: 30px; line-height: 26px;}
     .footet-down-bg .copy-right-text-main{ justify-content: center;}
+    .offeer-section .offer-section-main img{ height: 300px;}
 }
 @media (max-width:450px) {
     .mobile-menu-sectiondata{  flex-wrap: wrap;justify-content: center; }
