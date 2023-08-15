@@ -51,13 +51,13 @@
 
                                     <div class="mb-3 col-md-6">
                                         <label class="form-label" for="amazon_link">{{__('Amazon Link')}}</label>
-                                        <input type="url" class="form-control" id="amazon_link" name="amazon_link" placeholder="{{__('Amazon Link')}}" maxlength="30"  data-parsley-required-message="{{ __("This value is required.")}}" value="{{ isset($record->amazon_link) ? $record->amazon_link : old('amazon_link') }}">
+                                        <input type="url" class="form-control" id="amazon_link" name="amazon_link" placeholder="{{__('Amazon Link')}}" data-parsley-required-message="{{ __("This value is required.")}}" value="{{ isset($record->amazon_link) ? $record->amazon_link : old('amazon_link') }}">
                                         @if ($errors->has('amazon_link')) <div class="text-danger">{{ $errors->first('amazon_link') }}</div>@endif
                                     </div>
 
                                     <div class="mb-3 col-md-6">
                                         <label class="form-label" for="flipcart_link">{{__('Flipcart Link')}}</label>
-                                        <input type="url" class="form-control" id="flipcart_link" name="flipcart_link" placeholder="{{__('Flipcart Link')}}" maxlength="30"  data-parsley-required-message="{{ __("This value is required.")}}" value="{{ isset($record->flipcart_link) ? $record->flipcart_link : old('flipcart_link') }}">
+                                        <input type="url" class="form-control" id="flipcart_link" name="flipcart_link" placeholder="{{__('Flipcart Link')}}" data-parsley-required-message="{{ __("This value is required.")}}" value="{{ isset($record->flipcart_link) ? $record->flipcart_link : old('flipcart_link') }}">
                                         @if ($errors->has('flipcart_link')) <div class="text-danger">{{ $errors->first('flipcart_link') }}</div>@endif
                                     </div>
 
