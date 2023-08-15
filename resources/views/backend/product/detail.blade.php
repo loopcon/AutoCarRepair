@@ -73,7 +73,7 @@
                         <br>
                         <p class="text-muted">{{isset($detail->slug) && $detail->slug ? $detail->slug : ''}}</p>
                     </div>
-                    @if(isset($detail->meta_title) && $detail->meta_title || isset($detail->meta_keyword) && $detail->meta_keyword  (isset($detail->meta_description) && $detail->meta_description) )
+                    @if(isset($detail->meta_title) && $detail->meta_title || isset($detail->meta_keywords) && $detail->meta_keywords || isset($detail->meta_description) && $detail->meta_description)
                         <div class="col-md-12">
                             <h4>Seo Details</h4>
                             <hr>
@@ -85,11 +85,11 @@
                                 <p class="text-muted">{{isset($detail->meta_title) && $detail->meta_title ? $detail->meta_title : ''}}</p>
                             </div>
                         @endif
-                        @if(isset($detail->meta_keywords) && $detail->meta_keywords)
+                        @if($detail->meta_keywords)
                             <div class="col-md-4 col-6 b-r">
                                 <strong>Meta Keyword</strong>
                                 <br>
-                                <p class="text-muted">{{ $detail->meta_keywords }}</p>
+                                <p class="text-muted">{{ isset($detail->meta_keywords) && $detail->meta_keywords ? $detail->meta_keywords : ''}}</p>
                             </div>
                         @endif
                         @if(isset($detail->meta_description) && $detail->meta_description)
