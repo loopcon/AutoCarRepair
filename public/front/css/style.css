@@ -4,6 +4,13 @@
     padding: 0px;
 }
 body{ font-family: 'Playfair Display', serif; }
+.font-small{font-size: 12px;}
+a.badge{
+    text-decoration: none;
+}
+a.badge:hover{
+    color:white;
+}
 /* top navbar css start  */
 .acr-logo{ height: 95px; width: auto; padding: 8px 0px; }
 .top-navbar-main{ align-items: center;}

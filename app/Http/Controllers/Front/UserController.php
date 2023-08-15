@@ -24,7 +24,7 @@ class UserController extends MainController
         $return_data['states'] = States::select('id','name')->orderBy('id','DESC')->get();
         $addresses = UserAddress::select('id','address', 'zip', 'city','state')->where('user_id',$user_id)->get();
         $return_data['addresses'] = $addresses;
-        return view('front.auth.myprofile',array_merge($this->data,$return_data)); 
+        return view('front.user.profile',array_merge($this->data,$return_data)); 
     } 
 
     public function myprofileUpdate(request $request)

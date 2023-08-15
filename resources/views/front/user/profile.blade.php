@@ -145,42 +145,32 @@
         $('.state_selection').select2();
 
         $(document).on('click', '.delete', function(){
-        var db_id = $(this).data('db_id');
-        var id = $(this).data('id');
-        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-        swal({
-            title: "",
-            text: "Are you sure? Delete this Address!",
-            type: "warning",
-            showCancelButton: true,
-            confirmButtonClass: "btn-danger",
-            confirmButtonText: "Yes, delete it!",
-            closeOnConfirm: true
-        },
-        function(){
-            if(db_id){
-                $.ajax({
-                    url : '{{ route('front_address-delete') }}',
-                    method : 'post',
-                    data : {_token: CSRF_TOKEN, id : db_id},
-                    success : function(result){
-                        $('#address' + id ).remove();
-                        window.notyf.open({
-                            type : 'success',
-                            message : 'Address Deleted Successfully!',
-                            duration : '10000',
-                            ripple : true,
-                            dismissible : true,
-                            position: {
-                                    x: 'right',
-                                    y: 'top'
-                            }
-                        });
-                    }
-                });
-            }
+            var db_id = $(this).data('db_id');
+            var id = $(this).data('id');
+            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+            swal({
+                title: "",
+                text: "Are you sure? Delete this Address!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: "Yes, delete it!",
+                closeOnConfirm: true
+            },
+            function(){
+                if(db_id){
+                    $.ajax({
+                        url : '{{ route('front_address-delete') }}',
+                        method : 'post',
+                        data : {_token: CSRF_TOKEN, id : db_id},
+                        success : function(result){
+                            $('#address' + id ).remove();
+                            toastr.success('Address deleted successfully!');
+                        }
+                    });
+                }
+            });
         });
     });
-});
 </script>
 @endsection

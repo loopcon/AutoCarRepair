@@ -566,3 +566,6 @@ INSERT INTO `settings` (`id`, `name`, `label`, `value`, `created_by`, `created_a
 
 ALTER TABLE `orders` ADD `subtotal` DECIMAL(15,2) NULL AFTER `city`, ADD `product_gst` DECIMAL(15, 2) NULL AFTER `subtotal`, ADD `service_gst` DECIMAL(15,2) NULL AFTER `product_gst`;
 ALTER TABLE `orders` ADD `product_gst_rate` DECIMAL(15,2) NULL AFTER `subtotal`, ADD `service_gst_rate` DECIMAL(15, 2) NULL AFTER `product_gst_rate`;
+
+ALTER TABLE `orders` CHANGE `is_complete` `is_complete` TINYINT(1) NULL DEFAULT '0' COMMENT '0=No;1=Yes;2=Cancel';
+UPDATE `email_templates` SET `label` = 'cancel_order', `value` = 'Cancel Order' WHERE `email_templates`.`id` = 12;

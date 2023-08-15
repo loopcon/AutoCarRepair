@@ -15,4 +15,14 @@ class Order extends Model
     {
         return $this->belongsTo(User::class,'user_id');
     }
+
+    public function detail()
+    {
+        return $this->hasMany(OrderDetails::class, 'order_id')->with('productDetail', 'packageDetail');
+    }
+
+    public function slotDetail()
+    {
+        return $this->hasOne(BookedSlot::class, 'order_id');
+    }
 }

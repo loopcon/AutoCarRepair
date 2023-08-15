@@ -70,6 +70,7 @@
                                 <li><a class="dropdown-item text-black" href="{{route('front_register')}}">Register</a></li>
                             @else
                                 <li><a class="dropdown-item text-black" href="{{route('front_my-profile')}}">My Profile</a></li>
+                                <li><a class="dropdown-item text-black" href="{{route('front_my-orders')}}">My Orders</a></li>
                                 <li><a class="dropdown-item text-black" href="{{route('front_logout')}}">Logout</a></li>
                             @endif
                         </ul>

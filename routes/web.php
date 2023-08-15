@@ -253,5 +253,8 @@ Route::group(['as' => 'front_', 'middleware' => 'XSS'], function() {
         Route::get('my-profile', [\App\Http\Controllers\Front\UserController::class, 'myprofile'])->name('my-profile')->middleware('XSS');
         Route::post('my-profile-update', [\App\Http\Controllers\Front\UserController::class, 'myprofileUpdate'])->name('my-profile-update')->middleware('XSS');
         Route::post('address-delete', [\App\Http\Controllers\Front\UserController::class, 'addressDelete'])->name('address-delete')->middleware('XSS');
+        Route::get('my-orders', [\App\Http\Controllers\Front\orderController::class, 'list'])->name('my-orders')->middleware('XSS');
+        Route::get('cancel-order/{id?}', [App\Http\Controllers\Front\OrderController::class, 'cancel'])->name('cancel-order');
+        Route::post('change-service-slot', [App\Http\Controllers\Front\OrderController::class, 'changeSlot'])->name('change-service-slot');
     });
 });
