@@ -31,7 +31,7 @@
                             <br>
                             <p class="text-muted">{{isset($detail->sku) && $detail->sku ? $detail->sku : ''}}</p>
                         </div>
-                    @if(isset($detail->description) && $detail->description))
+                    @if(isset($detail->description) && $detail->description)
                         <div class="col-md-12">
                             <strong>Description</strong>
                             <br>
