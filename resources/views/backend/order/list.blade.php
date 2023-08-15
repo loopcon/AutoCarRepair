@@ -37,6 +37,7 @@
                                     <th>{{__('City')}}</th>
                                     <th>{{__('Total')}}</th>
                                     <th>{{__('Date')}}</th>
+                                    <th>{{__('Status')}}</th>
                                     <th>{{__('Action')}}</th>
                                 </tr>
                             </thead>
@@ -73,6 +74,7 @@ $(document).ready(function() {
             {data: 'city', name: 'city'},
             {data: 'total', name: 'total'},
             {data: 'odate', name: 'odate'},
+            {data: 'status', name: 'status'},
             {data: 'action', name: 'action', orderable: false, searchable: false},
         ],
         "ajax" : {

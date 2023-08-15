@@ -23,6 +23,7 @@ class Constant {
     const EVENING = '0';
 
     /** order **/
-    const YES = '1';
     const NO = '0';
+    const YES = '1';
+    const CANCEL = '2';
 }

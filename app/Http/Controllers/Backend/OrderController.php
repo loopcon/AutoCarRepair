@@ -53,6 +53,12 @@ class OrderController extends MainController
                     $html .= "</span>";
                     return $html;
                 })
+                ->addColumn('status', function ($row) {
+                    $html = $row->is_complete == Constant::YES ? '<span class="text-success">Complete</span>' : '';
+                    $html .= $row->is_complete == Constant::NO ? '<span class="text-primary">Pending</span>': '';
+                    $html .= $row->is_complete == Constant::CANCEL ? '<span class="text-danger">Cancelled </span>': '';
+                    return $html;
+                })
                 ->addColumn('action', function ($row) {
                     $html = "";
                     $id = Crypt::encrypt($row->id);
@@ -65,7 +71,7 @@ class OrderController extends MainController
                     $html .= "</span>";
                     return $html;
                 })
-                ->rawColumns(['invoice_no','name','action','odate'])
+                ->rawColumns(['invoice_no','name','status','action','odate'])
                 ->make(true);
         } else {
             return redirect('backend/dashboard');
