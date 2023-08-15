@@ -21,4 +21,8 @@ class Constant {
     /** slot **/
     const AFTERNOON = '1';
     const EVENING = '0';
+
+    /** order **/
+    const YES = '1';
+    const NO = '0';
 }
