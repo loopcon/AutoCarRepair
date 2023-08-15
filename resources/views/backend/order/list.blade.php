@@ -100,6 +100,45 @@ $(document).ready(function() {
             location.href = href;
         });
     });
+
+    $(document).on('click', '.complete', function(){
+        var id = $(this).data('id');
+        var complete = $(this).data('complete');
+        var message = complete ? 'complete' : 'complete';
+        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+        swal({
+            title: "",
+            text: "Are you sure? "+message+" this Order!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonClass: "btn-danger",
+            confirmButtonText: "Yes, "+message+" it!",
+            cancelButtonText: "{{__('Cancel')}}",
+            closeOnConfirm: true
+        },
+        function(){
+            $.ajax({
+                url : '{{ route('admin_order-complete') }}',
+                method : 'post',
+                data : {_token: CSRF_TOKEN, id : id, complete : complete},
+                success : function(result){
+                    var res = $.parseJSON(result);
+                    window.notyf.open({
+                        type : 'success',
+                        message : res.message,
+                        duration : '10000',
+                        ripple : true,
+                        dismissible : true,
+                        position: {
+                                x: 'right',
+                                y: 'top'
+                        }
+                    });
+                    order.ajax.reload();
+                }
+            });
+        });
+    });
 });
 </script>
 @endsection

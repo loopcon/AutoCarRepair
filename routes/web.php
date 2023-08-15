@@ -169,7 +169,7 @@ Route::group(['prefix' => 'backend','as' => 'admin_'], function() {
         Route::get('order-detail/{id?}', [App\Http\Controllers\Backend\OrderController::class, 'detail'])->name('order-detail');
         Route::post('order-detail-datatable', [App\Http\Controllers\Backend\OrderController::class, 'orderDetailDatatable'])->name('order-detail-datatable');
         Route::get('order-detail-delete/{id}', [App\Http\Controllers\Backend\OrderController::class, 'detailDestroy'])->name('order-detail-delete');
-
+        Route::post('order-complete', [App\Http\Controllers\Backend\OrderController::class, 'orderComplete'])->name('order-complete')->middleware('XSS');
     });
 });
 Route::group(['as' => 'front_', 'middleware' => 'XSS'], function() {

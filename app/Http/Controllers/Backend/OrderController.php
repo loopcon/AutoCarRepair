@@ -9,6 +9,7 @@ use App\Models\OrderDetails;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Crypt;
 use App\Constant;
+use Auth;
 use Session;
 use DataTables;
 use DB;
@@ -25,7 +26,7 @@ class OrderController extends MainController
     public function orderDatatable(request $request)
     {
         if($request->ajax()){
-            $query = Order::select('id','invoice_no', 'user_id','name','email','phone','address','zip','city','total','order_date')->with('userData')->orderBy('id', 'DESC');
+            $query = Order::select('id','invoice_no','is_complete', 'user_id','name','email','phone','address','zip','city','total','order_date')->with('userData')->orderBy('id', 'DESC');
             if($request->user_id){
                 $query->where('user_id', $request->user_id);
             }
@@ -57,7 +58,10 @@ class OrderController extends MainController
                     $id = Crypt::encrypt($row->id);
                     $html .= "<span class='text-nowrap'>";
                     // $html .= "<a href='javascript:void(0);' data-href='".route('admin_order-delete',array($id))."' rel='tooltip' title='".trans('Delete')."' class='btn btn-danger btn-sm mr-20 delete'><i class='fa fa-trash-alt'></i></a>&nbsp";
-                    $html .= "<a href='".route('admin_order-detail',array($id))."' rel='tooltip' title='Detail' class='btn btn-info btn-sm'>Detail</a>";
+                    $html .= "<a href='".route('admin_order-detail',array($id))."' rel='tooltip' title='Detail' class='btn btn-info btn-sm'>Detail</a><br><br>";
+                    if($row->is_complete == Constant::NO) {
+                        $html .= "<a href='javascript:void(0);' class='btn btn-warning btn-sm complete' data-status='".Constant::YES."' data-id='".$id."' rel='tooltip' title='complete'>Is omplete?</a>";
+                    } 
                     $html .= "</span>";
                     return $html;
                 })
@@ -148,4 +152,16 @@ class OrderController extends MainController
     //         return redirect()->back()->with('error', trans('Something went wrong, please try again later!'));
     //     }
     // }
+
+    public function orderComplete(request $request){
+        if($request->ajax()){
+            $id = Crypt::decrypt($request->id);
+            $message = $request->is_complete == Constant::NO ? 'order not completed' : 'Order Completed Successfully!';
+            Order::where([['id', $id]])->update(['is_complete' => Constant::YES]); 
+            echo json_encode(array('message' => $message));
+            exit;
+        } else {
+            return redirect('backend/dashboard');
+        }
+    }
 }
