@@ -35,7 +35,7 @@
                         <div class="col-md-12">
                             <strong>Description</strong>
                             <br>
-                            <p class="text-muted">{{ $detail->description }}</p>
+                            <p class="text-muted">{!! $detail->description !!}</p>
                             <hr>
                         </div>
                     @endif
@@ -43,7 +43,7 @@
                         <div class="col-md-12">
                             <strong>Specification</strong>
                             <br>
-                            <p class="text-muted">{{$detail->specification}}</p>
+                            <p class="text-muted">{!! $detail->specification !!}</p>
                             <hr>
                         </div>
                     @endif
@@ -97,26 +97,30 @@
                             <div class="col-md-4 col-6 b-r">
                                 <strong>Meta Description</strong>
                                 <br>
-                                <p class="text-muted">{{ $detail->meta_description }}</p>
+                                <p class="text-muted">{!! $detail->meta_description !!}</p>
                             </div>
                         @endif
                     @endif
-
+                
                     @if(isset($detail->primaryImage->image) && $detail->primaryImage->image)
                         <div class="col-md-12">
                             <h4>Image</h4>
                             <hr>
                         </div>
-                        <div class="col-md-4 col-6 b-r">
-                            <strong>Image</strong>
-                            <br>
-                                <img src="{{url('public/uploads/product/'.$detail->id.'/'.$detail->primaryImage->image)}}">
-                        </div>
-                        <div class="col-md-4 col-6 b-r">
-                            <strong>Primary</strong>
-                            <br>
-                            <p class="text-muted">{{isset($detail->primaryImage->is_primary) && $detail->primaryImage->is_primary ? $detail->primaryImage->is_primary : ''}}</p>
-                        </div>
+                        <strong>Image</strong>
+                        @if($images->count())
+                            @foreach($images as $image)
+                                <div class="col-md-3">
+                                    <img class ="img-responsive img-fluid" src="{{url('uploads/product/'.$detail->id.'/'.$image->image)}}">
+                                </div>
+
+                                <div class="col-md-3">
+                                    <strong>Primary</strong>
+                                    <br>
+                                    <p class="text-muted">{{ $image->is_primary }}</p>
+                                </div>
+                            @endforeach
+                        @endif
                     @endif
                 </div>
             </div>

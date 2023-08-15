@@ -308,7 +308,9 @@ class ProductController extends MainController
         if(!isset($detail->id)){
             return redirect()->back()->with('error', 'Something went wrong, please try again later!');
         }
+        $images =  ProductImage::select('id','image','is_primary')->where('product_id',$id)->get();
         $return_data['detail'] = $detail;
+        $return_data['images'] = $images;
         return view('backend.product.detail', array_merge($this->data, $return_data));
     }
 }
