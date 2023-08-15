@@ -190,18 +190,8 @@ class ProductController extends MainController
     public function destroy(Request $request, $id)
     {
         $id = Crypt::decrypt($id);
-        $product = Product::where('id',$id)->delete();
+        $product = Product::where('id',$id)->update(array('is_archive' => Constant::ARCHIVE));
         if($product){
-            $image_info = ProductImage::where('product_id',$id)->first();
-            if(isset($image_info))
-            {
-                $image = $image_info->image;
-                $product_id = $image_info->product_id;
-                if($image){
-                    removeFile('uploads/product/'.$product_id.'/'.$image);
-                }
-                $product_image = ProductImage::where('product_id',$id)->delete();
-            }
             return redirect()->back()->with('success', trans('Product Deleted Successfully!'));
         } else {
             return redirect()->back()->with('error', trans('Something went wrong, please try again later!'));
