@@ -84,7 +84,7 @@
                     <div class="mb-3">
                         <input type="text" class="form-control" id="address" required="" name="address" aria-describedby="emailHelp" placeholder="Enter Address">
                     </div>
-                    <div class="row m-0">
+                    <div class="row ">
                         <div class="col-12 col-sm-6">
                             <div class="mb-3">
                                 <input type="text" class="form-control num_only" required="" id="zip" maxlength="6" name="zip" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Pincode">
