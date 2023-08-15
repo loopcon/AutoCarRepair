@@ -73,6 +73,7 @@
                         <br>
                         <p class="text-muted">{{isset($detail->slug) && $detail->slug ? $detail->slug : ''}}</p>
                     </div>
+
                     @if(isset($detail->meta_title) && $detail->meta_title || isset($detail->meta_keywords) && $detail->meta_keywords || isset($detail->meta_description) && $detail->meta_description)
                         <div class="col-md-12">
                             <h4>Seo Details</h4>
@@ -100,6 +101,7 @@
                             </div>
                         @endif
                     @endif
+
                     @if(isset($detail->primaryImage->image) && $detail->primaryImage->image)
                         <div class="col-md-12">
                             <h4>Image</h4>
