@@ -179,7 +179,7 @@ class ProductController extends MainController
             $image = isset($image_info->image) && $image_info->image ? $image_info->image : NULL;
             $product_id = isset($image_info->product_id) && $image_info->product_id ? $image_info->product_id : NULL;
             if($image){
-                removeFile('uploads/product/'.$product_id.'/'.$image);
+                removeFile('public/uploads/product/'.$product_id.'/'.$image);
             }
             ProductImage::where('id', $request->id)->delete();
         }
@@ -305,7 +305,6 @@ class ProductController extends MainController
         $return_data['site_title'] = trans('Product Detail');
         $id = Crypt::decrypt($id);
         $detail = Product::with('shopCategoryDetail','primaryImage')->where('id',$id)->first();
-        // $detail = Product::find($id);
         if(!isset($detail->id)){
             return redirect()->back()->with('error', 'Something went wrong, please try again later!');
         }

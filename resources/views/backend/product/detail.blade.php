@@ -16,41 +16,53 @@
         <div class="row col-12">
             <div class="card">
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-4 mt-2">
                         <strong>Shop Category</strong>
                         <br>
-                        <p class="text-muted">{{isset($detail->shop_category_id) && $detail->shop_category_id ? $detail->shop_category_id : ''}}</p>
+                        <p class="text-muted">{{isset($detail->shopCategoryDetail->name) && $detail->shopCategoryDetail->name ? $detail->shopCategoryDetail->name : ''}}</p>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4 mt-2">
                         <strong>Product Name</strong>
                         <br>
                         <p class="text-muted">{{isset($detail->name) && $detail->name ? $detail->name : ''}}</p>
                     </div>
-                    <div class="col-md-4 col-6 b-r">
-                        <strong>Sku</strong>
-                        <br>
-                        <p class="text-muted">{{isset($detail->sku) && $detail->sku ? $detail->sku : ''}}</p>
-                    </div>
-                    <div class="col-md-4 col-6 b-r">
-                        <strong>Description</strong>
-                        <br>
-                        <p class="text-muted">{{isset($detail->description) && $detail->description ? $detail->description : ''}}</p>
-                    </div>
-                    <div class="col-md-4 col-6 b-r">
-                        <strong>Specification</strong>
-                        <br>
-                        <p class="text-muted">{{isset($detail->specification) && $detail->specification ? $detail->specification : ''}}</p>
-                    </div>
-                    <div class="col-md-4 col-6 b-r">
-                        <strong>Amazone Link</strong>
-                        <br>
-                        <p class="text-muted">{{isset($detail->amazon_link) && $detail->amazon_link ? $detail->amazon_link : ''}}</p>
-                    </div>
-                    <div class="col-md-4 col-6 b-r">
-                        <strong>Flipcart Link</strong>
-                        <br>
-                        <p class="text-muted">{{isset($detail->flipcart_link) && $detail->flipcart_link ? $detail->flipcart_link : ''}}</p>
-                    </div>
+                        <div class="col-md-4 col-6 mt-2">
+                            <strong>Sku</strong>
+                            <br>
+                            <p class="text-muted">{{isset($detail->sku) && $detail->sku ? $detail->sku : ''}}</p>
+                        </div>
+                    @if(isset($detail->description) && $detail->description))
+                        <div class="col-md-12">
+                            <strong>Description</strong>
+                            <br>
+                            <p class="text-muted">{{ $detail->description }}</p>
+                            <hr>
+                        </div>
+                    @endif
+                    @if(isset($detail->specification) && $detail->specification)
+                        <div class="col-md-12">
+                            <strong>Specification</strong>
+                            <br>
+                            <p class="text-muted">{{$detail->specification}}</p>
+                            <hr>
+                        </div>
+                    @endif
+                    @if(isset($detail->amazon_link) && $detail->amazon_link)
+                        <div class="col-md-12">
+                            <strong>Amazone Link</strong>
+                            <br>
+                            <p class="text-muted">{{ $detail->amazon_link }}</p>
+                            <hr>
+                        </div>
+                    @endif
+                    @if(isset($detail->flipcart_link) && $detail->flipcart_link)
+                        <div class="col-md-12">
+                            <strong>Flipcart Link</strong>
+                            <br>
+                            <p class="text-muted">{{ $detail->flipcart_link }}</p>
+                            <hr>
+                        </div>
+                    @endif
                     <div class="col-md-4 col-6 b-r">
                         <strong>Price</strong>
                         <br>
@@ -61,41 +73,49 @@
                         <br>
                         <p class="text-muted">{{isset($detail->slug) && $detail->slug ? $detail->slug : ''}}</p>
                     </div>
-                    <div class="col-md-12">
-                        <h4>Seo Details</h4>
-                        <hr>
-                    </div>
-                    <div class="col-md-4 col-6 b-r">
-                        <strong>Meta Title</strong>
-                        <br>
-                        <p class="text-muted">{{isset($detail->meta_title) && $detail->meta_title ? $detail->meta_title : ''}}</p>
-                    </div>
-                    <div class="col-md-4 col-6 b-r">
-                        <strong>Meta Keyword</strong>
-                        <br>
-                        <p class="text-muted">{{isset($detail->meta_keyword) && $detail->meta_keyword ? $detail->meta_keyword : ''}}</p>
-                    </div>
-                    <div class="col-md-4 col-6 b-r">
-                        <strong>Meta Description</strong>
-                        <br>
-                        <p class="text-muted">{{isset($detail->meta_description) && $detail->meta_description ? $detail->meta_description : ''}}</p>
-                    </div>
-                    <div class="col-md-12">
-                        <h4>Image</h4>
-                        <hr>
-                    </div>
-                    <div class="col-md-4 col-6 b-r">
-                        <strong>Image</strong>
-                        <br>
-                        @if(isset($detail->primaryImage->image) && $detail->primaryImage->image)
-                            <img src="{{url('public/uploads/product/'.$detail->id.'/'.$detail->primaryImage->image)}}">
+                    @if(isset($detail->meta_title) && $detail->meta_title || isset($detail->meta_keyword) && $detail->meta_keyword  (isset($detail->meta_description) && $detail->meta_description) )
+                        <div class="col-md-12">
+                            <h4>Seo Details</h4>
+                            <hr>
+                        </div>
+                        @if($detail->meta_title)
+                            <div class="col-md-4 col-6 b-r">
+                                <strong>Meta Title</strong>
+                                <br>
+                                <p class="text-muted">{{isset($detail->meta_title) && $detail->meta_title ? $detail->meta_title : ''}}</p>
+                            </div>
                         @endif
-                    </div>
-                    <div class="col-md-4 col-6 b-r">
-                        <strong>Primary</strong>
-                        <br>
-                        <p class="text-muted">{{isset($detail->primaryImage->is_primary) && $detail->primaryImage->is_primary ? $detail->primaryImage->is_primary : ''}}</p>
-                    </div>
+                        @if(isset($detail->meta_keywords) && $detail->meta_keywords)
+                            <div class="col-md-4 col-6 b-r">
+                                <strong>Meta Keyword</strong>
+                                <br>
+                                <p class="text-muted">{{ $detail->meta_keywords }}</p>
+                            </div>
+                        @endif
+                        @if(isset($detail->meta_description) && $detail->meta_description)
+                            <div class="col-md-4 col-6 b-r">
+                                <strong>Meta Description</strong>
+                                <br>
+                                <p class="text-muted">{{ $detail->meta_description }}</p>
+                            </div>
+                        @endif
+                    @endif
+                    @if(isset($detail->primaryImage->image) && $detail->primaryImage->image)
+                        <div class="col-md-12">
+                            <h4>Image</h4>
+                            <hr>
+                        </div>
+                        <div class="col-md-4 col-6 b-r">
+                            <strong>Image</strong>
+                            <br>
+                                <img src="{{url('public/uploads/product/'.$detail->id.'/'.$detail->primaryImage->image)}}">
+                        </div>
+                        <div class="col-md-4 col-6 b-r">
+                            <strong>Primary</strong>
+                            <br>
+                            <p class="text-muted">{{isset($detail->primaryImage->is_primary) && $detail->primaryImage->is_primary ? $detail->primaryImage->is_primary : ''}}</p>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>

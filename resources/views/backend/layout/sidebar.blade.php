@@ -11,7 +11,7 @@
 
             <li class="sidebar-item {{ (request()->is('backend/dashboard') || request()->is('backend/inventory-report')) ? 'active' : '' }}">
                 <a href="{{route('admin_dashboard')}}" class="sidebar-link">
-                    <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">{{ __('Dashboard') }}</span>
+                <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">{{ __('Dashboard') }}</span>
                     <!--<span class="badge badge-sidebar-primary">5</span>-->
                 </a>
             </li>
@@ -63,7 +63,7 @@
 
             <li class="sidebar-item {{ (request()->is('backend/shop-category*') || request()->is('backend/product*'))? 'active' : '' }}">
                 <a data-bs-target="#sidebar_product" data-bs-toggle="collapse" class="sidebar-link collapsed">
-                    <i class="align-middle" data-feather="slack"></i> <span class="align-middle">{{ __('Product Details')}}</span>
+                    <i class="align-middle" data-feather="list"></i> <span class="align-middle">{{ __('Product Details')}}</span>
                 </a>
                 <ul id="sidebar_product" class="sidebar-dropdown list-unstyled collapse {{ (request()->is('backend/shop-category*') || request()->is('backend/product*'))  ? 'show' : '' }}" data-parent="#sidebar">
                     <li class="sidebar-item {{ (request()->is('backend/shop-category*')) ? 'active' : '' }}"><a class="sidebar-link" href="{{ route('admin_shop-category')}}">{{ __('Shop Category')}}</a></li>
@@ -73,13 +73,13 @@
 
             <li class="sidebar-item {{ (request()->is('backend/enquiry')) ? 'active' : '' }}">
                 <a href="{{route('admin_enquiry')}}" class="sidebar-link">
-                    <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">{{ __('Enquires') }}</span>
+                    <i class="align-middle" data-feather="edit"></i> <span class="align-middle">{{ __('Enquires') }}</span>
                     <!--<span class="badge badge-sidebar-primary">5</span>-->
                 </a>
             </li>
              <li class="sidebar-item {{ (request()->is('backend/user*')) ? 'active' : '' }}">
                 <a href="{{route('admin_user')}}" class="sidebar-link">
-                    <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">{{ __('Users') }}</span>
+                    <i class="align-middle" data-feather="user"></i> <span class="align-middle">{{ __('Users') }}</span>
                     <!--<span class="badge badge-sidebar-primary">5</span>-->
                 </a>
             </li>
@@ -91,7 +91,7 @@
             </li>
             <li class="sidebar-item">
                 <a data-bs-target="#sidebar_content" data-bs-toggle="collapse" class="sidebar-link collapsed">
-                    <i class="align-middle" data-feather="command"></i> <span class="align-middle">{{ __('Home Page Settings')}}</span>
+                    <i class="align-middle" data-feather="aperture"></i><span class="align-middle">{{ __('Home Page Settings')}}</span>
                 </a>
                 <ul id="sidebar_content" class="sidebar-dropdown list-unstyled collapse {{ request()->is('backend/home-page-content*') || request()->is('backend/offer-slider*') || request()->is('backend/brand-logo-slider*') ? 'show' : '' }}" data-parent="#sidebar">
                     <li class="sidebar-item {{ (request()->is('backend/home-page-content*')) ? 'active' : '' }}"><a class="sidebar-link" href="{{ route('admin_home-page-content')}}">{{ __('Content')}}</a></li>
