@@ -43,7 +43,7 @@
                                     <th>{{__('Id')}}</th>
                                     <th>{{__('Item')}}</th>
                                     <th>{{__('Price')}}</th>
-                                    <th>{{__('Gst(percentage)')}}</th>
+                                    <th>{{__('Gst(%)')}}</th>
                                     <th>{{__('Qty')}}</th>
                                     <th>{{__('Total')}}</th>
                                     <th>{{__('Action')}}</th>
