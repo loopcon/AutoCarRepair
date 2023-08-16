@@ -30,6 +30,17 @@ class OrderController extends MainController
             if($request->user_id){
                 $query->where('user_id', $request->user_id);
             }
+            if($request->status!='all') {
+                if($request->status=='0') {
+                    $query->where([['is_complete', '=', $request->status]]);
+                }
+                if($request->status=='1') {
+                    $query->where([['is_complete', '=', $request->status]]);
+                }
+                if($request->status=='2') {
+                    $query->where([['is_complete', '=', $request->status]]);
+                }
+            }
             $list = $query->get();
 
             return DataTables::of($list)
