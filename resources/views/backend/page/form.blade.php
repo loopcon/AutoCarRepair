@@ -27,8 +27,8 @@
                                 </div>
 
                                 <div class="mb-3 col-md-6">
-                                    <label class="form-label" for="slug">{{__('Slug')}}</label>
-                                    <input type="text" class="form-control" id="slug" name="slug" placeholder="{{__('Slug')}}" maxlength="30"  value="{{ isset($record->slug) ? $record->slug : old('slug') }}">
+                                    <label class="form-label" for="slug">{{__('Slug')}}<span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="slug" name="slug" placeholder="{{__('Slug')}}" maxlength="30" required=""  data-parsley-required-message="{{ __("This value is required.")}}"  value="{{ isset($record->slug) ? $record->slug : old('slug') }}">
 
                                     @if ($errors->has('slug')) <div class="text-danger">{{ $errors->first('slug') }}</div>@endif
                                 </div>
