@@ -37,11 +37,53 @@
             <div class="col-12 col-sm-4 col-xxl d-flex">
                 <div class="card flex-fill bg-success">
                     <div class="card-body py-4">
-                        <a href="{{route('admin_shop-category')}}">
+                        <a href="{{route('admin_service-category')}}">
                             <div class="d-flex align-items-start text-center">
                                 <div class="flex-grow-1">
-                                    <h2 class="mb-2 text-white"><i class=" fa fa-upload text-center"></i>&nbsp;{{$total_category}}</h2>
+                                    <h2 class="mb-2 text-white"><i class=" fa fa-upload text-center"></i>&nbsp;{{$total_service_category}}</h2>
                                     <h1 class="mb-2 text-white fs-3 text">Total Category</h1>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-4 col-xxl d-flex">
+                <div class="card flex-fill bg-success">
+                    <div class="card-body py-4">
+                        <a href="{{route('admin_booked-services')}}">
+                            <div class="d-flex align-items-start text-center">
+                                <div class="flex-grow-1">
+                                    <h2 class="mb-2 text-white"><i class=" fa fa-upload text-center"></i>&nbsp;{{$total_booked_service}}</h2>
+                                    <h1 class="mb-2 text-white fs-3 text">Total Booked Service</h1>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-4 col-xxl d-flex">
+                <div class="card flex-fill bg-success">
+                    <div class="card-body py-4">
+                        <a href="{{route('admin_order')}}">
+                            <div class="d-flex align-items-start text-center">
+                                <div class="flex-grow-1">
+                                    <h2 class="mb-2 text-white"><i class=" fa fa-upload text-center"></i>&nbsp;{{$total_order}}</h2>
+                                    <h1 class="mb-2 text-white fs-3 text">Total Order</h1>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-4 col-xxl d-flex">
+                <div class="card flex-fill bg-success">
+                    <div class="card-body py-4">
+                        <a href="{{route('admin_user')}}">
+                            <div class="d-flex align-items-start text-center">
+                                <div class="flex-grow-1">
+                                    <h2 class="mb-2 text-white"><i class=" fa fa-upload text-center"></i>&nbsp;{{$total_user}}</h2>
+                                    <h1 class="mb-2 text-white fs-3 text">Total User</h1>
                                 </div>
                             </div>
                         </a>
