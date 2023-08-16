@@ -43,6 +43,7 @@
                                     <th>{{__('Id')}}</th>
                                     <th>{{__('Item')}}</th>
                                     <th>{{__('Price')}}</th>
+                                    <th>{{__('Gst(%)')}}</th>
                                     <th>{{__('Qty')}}</th>
                                     <th>{{__('Total')}}</th>
                                     <th>{{__('Action')}}</th>
@@ -74,6 +75,7 @@ $(document).ready(function() {
             {data: 'id', name: 'id'},
             {data: 'item', name: 'item'},
             {data: 'price', name: 'price'},
+            {data: 'gst', name: 'gst'},
             {data: 'qty', name: 'qty'},
             {data: 'subtotal', name: 'subtotal'},
             {data: 'action', name: 'action', orderable: false, searchable: false},

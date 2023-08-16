@@ -10,6 +10,10 @@ use Auth;
 use App\Models\Admin;
 use App\Models\Product;
 use App\Models\ShopCategory;
+use App\Models\ServiceCategory;
+use App\Models\BookedSlot;
+use App\Models\Order;
+use App\Models\User;
 use Session;
 
 class DashboardController extends MainController
@@ -19,7 +23,10 @@ class DashboardController extends MainController
         $return_data = array();
         $return_data['site_title'] = trans('Dashboard');
         $return_data['total_product'] = Product::select('id')->where('is_archive', '=', Constant::NOT_ARCHIVE)->get()->count();
-        $return_data['total_category'] = ShopCategory::select('id')->where('is_archive', '=', Constant::NOT_ARCHIVE)->get()->count();
+        $return_data['total_service_category'] = ServiceCategory::select('id')->where('is_archive', '=', Constant::NOT_ARCHIVE)->get()->count();
+        $return_data['total_booked_service'] = BookedSlot::select('id')->get()->count();
+        $return_data['total_order'] = Order::select('id')->get()->count();
+        $return_data['total_user'] = User::select('id')->where('is_archive', '=', Constant::NOT_ARCHIVE)->get()->count();
         return view('backend.dashboard.index', array_merge($this->data, $return_data));
     }
 

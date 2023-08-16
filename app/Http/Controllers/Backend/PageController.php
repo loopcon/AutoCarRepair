@@ -53,9 +53,10 @@ class PageController extends MainController
                 'required'  => trans('The :attribute field is required.')
             ]
         );
-        $slug = $request->name != '' ? slugify($request->name) : NULL;
+        // $slug = $request->name != '' ? slugify($request->name) : NULL;
         $page = Page::create([
-            'slug' => $slug,
+            // 'slug' => $slug,
+            'slug' => slugify($request->slug),
             'name' => $request->name ? strip_tags($request->name) : NULL,
             'description' => $request->description,
             'meta_keyword' => $request->meta_keyword ? strip_tags($request->meta_keyword) : NULL,
@@ -117,10 +118,11 @@ class PageController extends MainController
             ]
         );
 
-        $slug = $request->name != '' ? slugify($request->name) : NULL;
+        // $slug = $request->name != '' ? slugify($request->name) : NULL;
 
         $page = Page::where('id', $id)->update([
-                'slug' => $slug,
+                // 'slug' => $slug,
+                'slug' => slugify($request->slug),
                 'name' => $request->name ? strip_tags($request->name) : NULL,
                 'description' => $request->description,
                 'meta_keyword' => $request->meta_keyword ? strip_tags($request->meta_keyword) : NULL,

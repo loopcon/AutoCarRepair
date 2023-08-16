@@ -16,13 +16,19 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    <!-- <div class="card-header">
+                    <div class="card-header">
                         <div class="form-row">
-                            <div class="col-md-12 text-end">
-                                <div class="col-md-12 text-end"><a href="{{route('admin_faq-create')}}" class="btn btn-success"><i class="align-middle" data-feather="plus"></i>{{__('Add')}}</a></div>
+                            <div class="form-group col-md-2 ">
+                                <label for="status">Status</label>
+                                <select id="status" class="form-control select2" name="status">
+                                    <option value="all" selected>--Select--</option>
+                                    <option value="0">Pending</option>
+                                    <option value="1">Complete</option>
+                                    <option value="2">Cancelled</option>
+                                </select>
                             </div>
                         </div>
-                    </div> -->
+                    </div>
                     <div class="card-body">
                         <table id="orders" class="table table-striped table-hover" style="width:100%">
                             <thead>
@@ -37,6 +43,7 @@
                                     <th>{{__('City')}}</th>
                                     <th>{{__('Total')}}</th>
                                     <th>{{__('Date')}}</th>
+                                    <th>{{__('Status')}}</th>
                                     <th>{{__('Action')}}</th>
                                 </tr>
                             </thead>
@@ -54,6 +61,7 @@
 <script src="{{ asset('plugins/select2/js/select2.min.js') }}"></script>
 <script>
 $(document).ready(function() {
+    $('#status').select2();
     var order = $("#orders").DataTable({
         "sScrollX": '100%',
         "order": [], //Initial no order.
@@ -73,6 +81,7 @@ $(document).ready(function() {
             {data: 'city', name: 'city'},
             {data: 'total', name: 'total'},
             {data: 'odate', name: 'odate'},
+            {data: 'status', name: 'status'},
             {data: 'action', name: 'action', orderable: false, searchable: false},
         ],
         "ajax" : {
@@ -80,8 +89,13 @@ $(document).ready(function() {
             type : "POST",
             data : function(d) {
                 d._token = "{{ csrf_token() }}"
+                d.status = $("#status").val()
             }
         }
+    });
+
+    $(document).on('change', '#status', function(){
+        order.ajax.reload();
     });
 
     $(document).on('click', '.delete', function() {
