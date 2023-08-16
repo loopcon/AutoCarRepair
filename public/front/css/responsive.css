@@ -7,6 +7,10 @@
     .address-main{ height: 280px;}
     .call-main { height: 280px;}
     .why-choose-section .why-choose-item h5{ font-size: 45px;}
+    .acr-navbar-main li{ margin-right: 25px;}
+    .slider-section-main h2{ font-size: 60px;}
+    .slider-section-main h5{ font-size: 40px;}
+    .our-service-section .servic-type-box{ min-height: 270px;}
 }
 @media (min-width:991px){ 
     .mobile-menu-sectiondata{ display: none;}
@@ -30,13 +34,17 @@
     .service-add-main{ flex-wrap: wrap;}
     .address-main{ margin-bottom: 15px;}
     .shopping-innerbg .addtocard-shopinner{ width: 120px; font-size: 15px; margin-right: 5px;}
-    .shopping-innerbg .buyfrom-shopinner{ width: 140px; font-size: 15px;}
+    .shopping-innerbg .buyfrom-shopinner{ width: 160px; font-size: 15px;}
     .contact-section-main .address-main-contact p{ width: 60%;}
     .footet-down-bg .main-soical-icon svg{ padding: 5px;}
     .footet-down-bg .copy-right-text-main p{ font-size: 15px;}
     .shop-center-text{ width: 100%;}
     .shop-center-text h2{ text-align: center; font-size: 45px; }
     .offeer-section .offer-section-main img{ height: 400px;}
+    .our-service-section .servic-type-box{ min-height: 265px;}
+    .search-svg-main{ margin-right: 30px; font-size: 25px; color: #000;}
+    .mobile-menu-main{ height: 100px;}
+    .mobile-toggle-data{ top: 102px;}
 }
 @media (max-width:767px) {
     .slider-section-main h2{ font-size: 50px; }
@@ -60,6 +68,9 @@
     .shoping-breadcrum-bg .shoping-breadcrum-main{ flex-wrap: wrap; justify-content: start;}
     .thank-you-sec-main h2{ font-size: 50px;}
     .offeer-section .offer-section-main img{ height: 380px;}
+    .search-svg-main{ margin-right: 30px; font-size: 25px; color: #000;}
+    .mobile-menu-main{ height: 100px;}
+    .mobile-toggle-data{ top: 102px;}
 }
 @media (max-width:575px) {
     .slider-section-main h2{ font-size: 35px; }
@@ -67,7 +78,7 @@
     .slider-section-main p { font-size: 14px;}
     .slider-section-main button{ height: 35px; width: 150px; margin-bottom: 15px;}
     .service-section .always-service-text p{ width: 90%; font-size: 30px;}
-    .navbar-appointment-btn{ height: 35px; width: 150px; font-size: 0.8rem;}
+    .navbar-appointment-btn{ height: 35px; width: 130px; font-size: 0.8rem; padding: 0px 5px;}
     .search-icon-main img{ margin-right: 10px; margin-top: 0px; height: 20px;}
     .acr-logo{ height: 70px;}
     .why-choose-section .why-choose-item h4{ font-size: 18px;}
@@ -107,8 +118,8 @@
     .shop-center-breadcum li a{ font-size: 17px;}
     .shop-center-breadcum li svg{ font-size: 15px;}
     .shop-center-breadcum li { font-size: 17px;}
-    .shopping-innerbg .addtocard-shopinner{ width: 100px; font-size: 15px; margin-right: 5px;}
-    .shopping-innerbg .buyfrom-shopinner{ width: 130px; font-size: 15px;}
+    .shopping-innerbg .addtocard-shopinner{ width: 100%; font-size: 15px; margin-right: 5px;}
+    .shopping-innerbg .buyfrom-shopinner{ width: 100%; font-size: 15px; margin-bottom: 5px; }
     .shopping-innerbg .product-content-main h2 { font-size: 1.3rem;}
     .description-btn{ height: 35px; font-size: 15px; width: 100px; line-height: 32px;}
     .specification-btn{ height: 35px; font-size: 15px; width: 100px; line-height: 32px; }
@@ -122,9 +133,17 @@
     .offeer-section .owl-carousel .owl-nav button.owl-next span{ width: 30px; height: 30px; line-height: 26px;}
     .footet-down-bg .copy-right-text-main{ justify-content: center;}
     .offeer-section .offer-section-main img{ height: 300px;}
+    .mobile-menu-sectiondata{    }
+    .mobile-toggle-data{ top: 82px;}
+    .mobile-menu-main{ height: 80px; }
+    .our-service-section .servic-type-box{margin: 12px 6px;}
+    .our-service-section .service-main-heading h2{ margin-top: 10px; margin-bottom: 10px;}
+    .our-service-section .servic-type-box{ min-height: 200px;}
+    .faq-section-main{ padding: 17px 0px;}
+    .search-svg-main{ margin-right: 10px; font-size: 20px; color: #000;}
 }
 @media (max-width:450px) {
-    .mobile-menu-sectiondata{  flex-wrap: wrap;justify-content: center; }
+    .mobile-menu-sectiondata{  flex-wrap: wrap; height: 80px; }
     .btn-toggle-item{ margin-left: 5px; padding: 5px 9px;}
     .btn-toggle-item svg{ font-size: 20px;}
     .acr-logo{ height: 60px;}

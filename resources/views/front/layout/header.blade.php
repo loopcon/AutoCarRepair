@@ -79,7 +79,8 @@
             </div>
             <div class="search-main-section">
                 <div class="search-icon-main">
-                    <img data-bs-toggle="modal" data-bs-target="#searchbarModal"  src="{{ asset('front/img/navbar-search-icon.png') }}" alt="">
+                    {{-- <img data-bs-toggle="modal" data-bs-target="#searchbarModal"  src="{{ asset('front/img/navbar-search-icon.png') }}" alt=""> --}}
+                    <span class="search-svg-main" data-bs-toggle="modal" data-bs-target="#mosearchbarModal"><i class="fa-solid fa-magnifying-glass"></i></span>
                 </div>
                 <div class="modal fade" id="searchbarModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog searchbar-dialog">
@@ -100,7 +101,7 @@
                     <a class="navbar-appointment-btn apt-btn" href="javascript:void(0)" >Appointment Now</a>
                 </div>
             </div>
-            <a href="{{url('checkout')}}" class="text-white"><i class="fa fa-cart-plus"></i><span id="cart_header_total_item"></span></a>
+            <a href="{{url('checkout')}}" class="card-icon-main"><i class="fa fa-cart-plus"></i><span id="cart_header_total_item"></span></a>
         </div>
     </div>
 </div>
@@ -114,7 +115,8 @@
             <div class="mo-appointmentbtn">
                 <div class="mo-search-main-section">
                     <div class="search-icon-main">
-                        <img data-bs-toggle="modal" data-bs-target="#mosearchbarModal"  src="{{ asset('front/img/navbar-search-icon.png') }}" alt="">
+                        <span class="search-svg-main" data-bs-toggle="modal" data-bs-target="#mosearchbarModal"><i class="fa-solid fa-magnifying-glass"></i></span>
+                        {{-- <img   src="{{ asset('front/img/navbar-search-icon.png') }}" alt=""> --}}
                     </div>
                     <div class="modal fade" id="mosearchbarModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog mosearchbar-dialog">

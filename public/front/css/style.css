@@ -38,7 +38,7 @@ a.badge:hover{
 .navbar-appointment-btn:hover{ color: #fff;}
 .search-main-section{ display: flex; justify-content: end;}
 .search-icon-main { display: flex; align-items: center; justify-content: center; position: relative; }
-.search-icon-main img { margin-top: 10px; margin-right: 30px; }
+.search-icon-main img { margin-top: 10px; margin-right: 18px; }
 /* appointment modal  css start  */
 .appointment-dialog .modal-header {  border-bottom: 0px !important;}
 .appointment-dialog{ height: 100%; display: flex; align-items: center; justify-content: center;}
@@ -462,3 +462,7 @@ button { color: #000; outline: none; }
     opacity: 0.8;
   }
   /* profile page css */
+
+  .search-svg-main{ margin-right: 25px; font-size: 25px; color: #fff;}
+  .card-icon-main{ color: #fff;}
+  .card-icon-main svg{ font-size: 22px;}
