@@ -116,18 +116,29 @@ class OrderController extends MainController
     public function orderDetailDatatable(request $request)
     {
         if($request->ajax()){
-            $query = OrderDetails::with('packageDetail', 'productDetail')->select('id','order_id','product_id', 'service_id','price','qty','subtotal')->where('order_id', $request->order_id);
+            $query = OrderDetails::with('packageDetail', 'productDetail','orderDetail')->select('id','order_id','product_id', 'service_id','price','qty','subtotal')->where('order_id', $request->order_id);
             $list = $query->get();
 
             return DataTables::of($list)
-            ->addColumn('invoice_no', function ($row) {
-                $html = "";
-                $html .= "<span class='text-nowrap'>";
-                $html .= "#";
-                $html .=isset($row->orderDetail->invoice_no) ? $row->orderDetail->invoice_no : NULL;
-                $html .= "</span>";
-                return $html;
-            })
+                ->addColumn('gst', function($row) {
+                    if($row->service_id) {
+                        $html = $row->orderDetail->service_gst_rate;
+                    } else if($row->product_id) 
+                    {
+                        $html = $row->orderDetail->product_gst_rate;
+                    }else{
+                        $html = '';
+                    }
+                    return $html;
+                })
+                ->addColumn('invoice_no', function ($row) {
+                    $html = "";
+                    $html .= "<span class='text-nowrap'>";
+                    $html .= "#";
+                    $html .=isset($row->orderDetail->invoice_no) ? $row->orderDetail->invoice_no : NULL;
+                    $html .= "</span>";
+                    return $html;
+                })
                 ->addColumn('item', function($row) {
                     if($row->service_id){
                         $scheduled_title = isset($row->packageDetail->title) ? $row->packageDetail->title : NULL;
@@ -152,7 +163,7 @@ class OrderController extends MainController
                     $html .= "</span>";
                     return $html;
                 })
-                ->rawColumns(['invoice_no','item','action'])
+                ->rawColumns(['invoice_no','item','gst','action'])
                 ->make(true);
         } else {
             return redirect('backend/dashboard');
