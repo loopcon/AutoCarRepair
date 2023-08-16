@@ -35,7 +35,7 @@
                 </div>
             </div>
             <div class="col-12 col-sm-4 col-xxl d-flex">
-                <div class="card flex-fill bg-success">
+                <div class="card flex-fill bg-danger">
                     <div class="card-body py-4">
                         <a href="{{route('admin_service-category')}}">
                             <div class="d-flex align-items-start text-center">
@@ -49,7 +49,7 @@
                 </div>
             </div>
             <div class="col-12 col-sm-4 col-xxl d-flex">
-                <div class="card flex-fill bg-success">
+                <div class="card flex-fill bg-info">
                     <div class="card-body py-4">
                         <a href="{{route('admin_booked-services')}}">
                             <div class="d-flex align-items-start text-center">
@@ -77,7 +77,7 @@
                 </div>
             </div>
             <div class="col-12 col-sm-4 col-xxl d-flex">
-                <div class="card flex-fill bg-success">
+                <div class="card flex-fill bg-warning">
                     <div class="card-body py-4">
                         <a href="{{route('admin_user')}}">
                             <div class="d-flex align-items-start text-center">
