@@ -151,19 +151,19 @@ class OrderController extends MainController
                     }
                     return $item;
                 })
-                ->addColumn('action', function ($row) {
-                    $html = "";
-                    $id = Crypt::encrypt($row->id);
-                    $user_id = isset($row->orderDetail->user_id) ? $row->orderDetail->user_id : '';
-                    $html .= "<span class='text-nowrap'>";
-                    if($row->service_id){
-                        $html .= "<a href='".route('admin_booked-services')."?od_id=".$id."' class='badge bg-primary me-1 my-1' target='blank'>Slot Detail</a>";
-                    }
-//                    $html .= "<a href='javascript:void(0);' data-href='".route('admin_order-detail-delete',array($id))."' rel='tooltip' title='".trans('Delete')."' class='btn btn-danger btn-sm mr-20 delete'><i class='fa fa-trash-alt'></i></a>&nbsp";
-                    $html .= "</span>";
-                    return $html;
-                })
-                ->rawColumns(['invoice_no','item','gst','action'])
+                // ->addColumn('action', function ($row) {
+                //     $html = "";
+                //     $id = Crypt::encrypt($row->id);
+                //     $user_id = isset($row->orderDetail->user_id) ? $row->orderDetail->user_id : '';
+                //     $html .= "<span class='text-nowrap'>";
+                //     if($row->service_id){
+                //         $html .= "<a href='".route('admin_booked-services')."?od_id=".$id."' class='badge bg-primary me-1 my-1' target='blank'>Slot Detail</a>";
+                //     }
+                //   $html .= "<a href='javascript:void(0);' data-href='".route('admin_order-detail-delete',array($id))."' rel='tooltip' title='".trans('Delete')."' class='btn btn-danger btn-sm mr-20 delete'><i class='fa fa-trash-alt'></i></a>&nbsp";
+                //     $html .= "</span>";
+                //     return $html;
+                // })
+                ->rawColumns(['invoice_no','item','gst'])
                 ->make(true);
         } else {
             return redirect('backend/dashboard');

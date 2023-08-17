@@ -181,7 +181,7 @@ function checkDeleteConstrainnt($relationArray, $value){
 }
 
 function getServiceCategory(){
-    $services = \App\Models\ServiceCategory::select('id', 'title')->where([['is_archive', \App\Constant::NOT_ARCHIVE], ['status', \App\Constant::ACTIVE]])->orderBy('id', 'desc')->get();
+    $services = \App\Models\ServiceCategory::select('id', 'title','slug')->where([['is_archive', \App\Constant::NOT_ARCHIVE], ['status', \App\Constant::ACTIVE]])->orderBy('id', 'desc')->get();
     return $services;
 }
 

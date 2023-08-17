@@ -83,7 +83,7 @@
                                                         {{$order->city}},<br/>
                                                         {{$order->zip}},<br/>
                                                     </td>
-                                                    <td>{{$order->total}}</td>
+                                                    <td>₹{{formatNumber($order->total)}}</td>
                                                     <td>
                                                         @if($order->is_complete == '0')
                                                             <a href='javascript:void(0);' data-href='{{route('front_cancel-order', array(\Crypt::encrypt($order->id)))}}' class='badge bg-danger cancel'>Cancel Order</a><br/>
