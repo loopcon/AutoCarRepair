@@ -13,7 +13,7 @@ class FaqController extends MainController
     {
         $return_data = array();
         $return_data['site_title'] = trans('Faq');
-        $return_data['faqs'] = Faq::select('id','name','description')->where('is_archive',CONSTANT::ARCHIVE)->orderBy('id','desc')->get();
+        $return_data['faqs'] = Faq::select('id','name','description')->where('is_archive','0')->orderBy('id','desc')->get();
         return view('front/faq/index',array_merge($this->data,$return_data));
     }
 }
