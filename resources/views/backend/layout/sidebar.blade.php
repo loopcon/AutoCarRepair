@@ -34,7 +34,7 @@
                 </a>
                 <ul id="sidebar_pages" class="sidebar-dropdown list-unstyled collapse {{ (request()->is('backend/page*') || request()->is('backend/faq*') || request()->is('backend/service-center-detail*'))  ? 'show' : '' }}" data-parent="#sidebar">
                     <li class="sidebar-item {{ (request()->is('backend/page*')) ? 'active' : '' }}"><a class="sidebar-link" href="{{ route('admin_pages')}}">{{ __('Page')}}</a></li>
-                    <li class="sidebar-item {{ (request()->is('backend/faq*')) ? 'active' : '' }}"><a class="sidebar-link" href="{{ route('admin_faq')}}">{{ __('FAQ')}}</a></li>
+                    <li class="sidebar-item {{ (request()->is('backend/faq*')) ? 'active' : '' }}"><a class="sidebar-link" href="{{ route('admin_faq')}}">{{ __('Faq')}}</a></li>
                     <li class="sidebar-item {{ (request()->is('backend/service-center-detail*')) ? 'active' : '' }}"><a class="sidebar-link" href="{{ route('admin_service-center-detail')}}">{{ __('Service Center Detail')}}</a></li>
                 </ul> 
             </li>
