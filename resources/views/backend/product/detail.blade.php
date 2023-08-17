@@ -110,14 +110,8 @@
                         <strong>Image</strong>
                         @if($images->count())
                             @foreach($images as $image)
-                                <div class="col-md-3">
-                                    <img class ="img-responsive img-fluid" src="{{url('uploads/product/'.$detail->id.'/'.$image->image)}}">
-                                </div>
-
-                                <div class="col-md-3">
-                                    <strong>Primary</strong>
-                                    <br>
-                                    <p class="text-muted">{{ $image->is_primary }}</p>
+                                <div class="col-md-3 mt-2">
+                                    <img class ="img-responsive img-fluid" src="{{url('uploads/product/'.$image->product_id.'/'.$image->image)}}">
                                 </div>
                             @endforeach
                         @endif

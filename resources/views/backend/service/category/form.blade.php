@@ -54,7 +54,7 @@
                                     <div class="m-b-10">
                                         <input type="file" id="uploadImage0" accept="image/x-png, image/gif, image/jpeg" class="btn btn-warning btn-block btn-sm"  name="image" {{$required}} data-parsley-required-message="{{ __("This value is required.")}}" onChange="this.parentNode.nextSibling.value = this.value; PreviewImage(0);" >
                                     </div> 
-                                    <p class="image_errortext">For Best resolution please upload 92*59 size and in WebP file format.</p>
+                                    <p class="image_errortext">For Best resolution please upload 250*250 size and in WebP file format.</p>
                                 </div>
 
                                 <div class="mb-3 col-md-6">
