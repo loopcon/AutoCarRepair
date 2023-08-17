@@ -52,7 +52,7 @@
                                                 <div class="m-b-10">
                                                     <input type="file" id="uploadImage{{$i}}" accept="image/x-png, image/gif, image/jpeg" class="btn btn-warning btn-block btn-sm"  name="image_{{$key}}" {{$required}} data-parsley-required-message="{{ __("This value is required.")}}" onChange="this.parentNode.nextSibling.value = this.value; PreviewImage({{$i}});" >
                                                 </div>
-                                                <p class="image_errortext">For Best resolution please upload 1200*500 size and in WebP file format.</p>
+                                                <p class="text-danger">For Best resolution please upload 1200*500 size and in WebP file format.</p>
                                             </div>
                                             <div class="mb-3 col-md-4">
                                                 <label class="form-label" for="title1">{{__('Title 1')}}<span class="text-danger">*</span></label>
