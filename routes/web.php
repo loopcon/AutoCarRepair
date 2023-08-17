@@ -234,7 +234,7 @@ Route::group(['as' => 'front_', 'middleware' => 'XSS'], function() {
     Route::get('our-services', [App\Http\Controllers\Front\ServiceController::class, 'services'])->name('our-services');
     Route::get('contact-us', [App\Http\Controllers\Front\ContactController::class, 'index'])->name('contact-us');
     Route::get('service-center', [App\Http\Controllers\Front\ServiceCenterConroller::class, 'index'])->name('service-center');
-    Route::get('faq', [App\Http\Controllers\Front\FaqController::class, 'index'])->name('faq');
+    Route::get('faqs', [App\Http\Controllers\Front\FaqController::class, 'index'])->name('faqs');
 
     /** cms pages route start **/
     $pages = Cache::remember('pages', 10, function() { 
