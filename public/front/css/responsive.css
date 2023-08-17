@@ -11,6 +11,9 @@
     .slider-section-main h2{ font-size: 60px;}
     .slider-section-main h5{ font-size: 40px;}
     .our-service-section .servic-type-box{ min-height: 270px;}
+    .login-icon-main{transform: translate3d(-52px, 36px, 0px) !important;}
+    #sync1 .product-inner-imgmain img{ height: auto;}
+    #sync2 .product-inner-imgmain img{ height: auto; }
 }
 @media (min-width:991px){ 
     .mobile-menu-sectiondata{ display: none;}
@@ -33,8 +36,8 @@
     .date-main{ margin-bottom: 10px;}
     .service-add-main{ flex-wrap: wrap;}
     .address-main{ margin-bottom: 15px;}
-    .shopping-innerbg .addtocard-shopinner{ width: 120px; font-size: 15px; margin-right: 5px;}
-    .shopping-innerbg .buyfrom-shopinner{ width: 160px; font-size: 15px;}
+    .shopping-innerbg .addtocard-shopinner{ width: 100%; font-size: 15px; margin-right: 5px;}
+    .shopping-innerbg .buyfrom-shopinner{ width: 100%; font-size: 15px;}
     .contact-section-main .address-main-contact p{ width: 60%;}
     .footet-down-bg .main-soical-icon svg{ padding: 5px;}
     .footet-down-bg .copy-right-text-main p{ font-size: 15px;}
@@ -45,6 +48,8 @@
     .search-svg-main{ margin-right: 30px; font-size: 25px; color: #000;}
     .mobile-menu-main{ height: 100px;}
     .mobile-toggle-data{ top: 102px;}
+    #sync1 .product-inner-imgmain img{ height: auto;}
+    #sync2 .product-inner-imgmain img{ height: auto; }
 }
 @media (max-width:767px) {
     .slider-section-main h2{ font-size: 50px; }
@@ -71,6 +76,8 @@
     .search-svg-main{ margin-right: 30px; font-size: 25px; color: #000;}
     .mobile-menu-main{ height: 100px;}
     .mobile-toggle-data{ top: 102px;}
+    #sync1 .product-inner-imgmain img{ height: auto;}
+    #sync2 .product-inner-imgmain img{ height: auto; }
 }
 @media (max-width:575px) {
     .slider-section-main h2{ font-size: 35px; }
@@ -141,6 +148,8 @@
     .our-service-section .servic-type-box{ min-height: 200px;}
     .faq-section-main{ padding: 17px 0px;}
     .search-svg-main{ margin-right: 10px; font-size: 20px; color: #000;}
+    #sync1 .product-inner-imgmain img{ height: auto;}
+    #sync2 .product-inner-imgmain img{ height: auto; }
 }
 @media (max-width:450px) {
     .mobile-menu-sectiondata{  flex-wrap: wrap; height: 80px; }

@@ -34,7 +34,7 @@
                                     <input type="password" name="cpassword" id="cpassword" placeholder="CONFIRM PASSWORD" class="form-control" required=""  data-parsley-equalto="#cpassword" data-parsley-required-message="Confirm password should match password field.">
                                 </div>
                                 <div class="text-center mt-3">
-                                    <button type="submit" class="btn btn-lg btn-primary">Submit</button>
+                                    <button type="submit" class="sign-up-btn-main">Submit</button>
                                 </div>
                             </form>
                         </div>
