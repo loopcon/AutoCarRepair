@@ -267,7 +267,7 @@ a.badge:hover{
 .shopping-section .fliter-main ul li a {  text-decoration: none; color: #000000; display: block;}
 .shopping-section .fliter-main ul li a svg { color:#000000; float: right;  }
 .shopping-section .fliter-item1{  display: none;}
-.shopping-section .shoping-main-product{ border: 1px solid #000000; margin: 12px 0px; } 
+.shopping-section .shoping-main-product{ border: 1px solid #000000; margin: 12px 0px; min-height: 440px; } 
 .shopping-section .shoping-main-product h5{ font-size: 16px; margin: 0px 15px; }
 .shopping-section .shoping-main-product h5 a{ text-decoration: none; color: #000;}
 .shopping-section .shoping-card-prise { margin: 15px; display: flex; align-items: center; justify-content: space-between;  }
