@@ -106,7 +106,7 @@
 
                                 <div class="form-group col-md-12">
                                     <div class="col-md-12 d-flex px-0">
-                                        <label class="form-label w-100">Image<span class="text-danger">(For Best resolution please upload 250*250 size and in WebP file format.)</span></label>
+                                        <label class="form-label w-100">Image<span class="text-danger">(For Best resolution please upload 400*500 size and in WebP file format.)</span></label>
                                         <a href="Javascript:void(0);" id="product-image-add" class="btn btn-success" style="width: 11vw;"><i class="fas fa-fw fa-plus align-middle"></i> Add more</a>
                                     </div>
                                     <div id="product-images" class="col-md-12">
