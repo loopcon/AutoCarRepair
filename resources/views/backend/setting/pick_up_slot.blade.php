@@ -124,7 +124,7 @@ $(document).ready(function(){
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
         swal({
             title: "",
-            text: "Are you sure? Delete this Slider!",
+            text: "Are you sure? Delete this Slot!",
             type: "warning",
             showCancelButton: true,
             confirmButtonClass: "btn-danger",
