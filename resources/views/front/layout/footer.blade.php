@@ -50,6 +50,10 @@
                     @if(isset($cmsInfo->slug) && $cmsInfo->slug)
                         <li><a href="{{url($cmsInfo->slug)}}">{{isset($cmsInfo->name) ? ucwords($cmsInfo->name) : ''}}</a></li>
                     @endif
+                    @php($cmsInfo = getCmsPageName('12'))
+                    @if(isset($cmsInfo->slug) && $cmsInfo->slug)
+                        <li><a href="{{url($cmsInfo->slug)}}">{{isset($cmsInfo->name) ? ucwords($cmsInfo->name) : ''}}</a></li>
+                    @endif
                 </ul>
             </div>
             <div class="col-10 col-sm-4 col-lg-2">
