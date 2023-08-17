@@ -19,7 +19,9 @@
                     @if(isset($record->images) && $record->images->count())
                         @foreach($record->images as $image)
                             <div class="item">
-                                <img src="{{ asset('public/uploads/product/'.$record->id.'/'.$image->image) }}" class="img-fluid" alt="">
+                                <div class="product-inner-imgmain">
+                                    <img src="{{ asset('public/uploads/product/'.$record->id.'/'.$image->image) }}" class="img-fluid" alt="">
+                                </div>
                             </div>
                         @endforeach
                     @endif
@@ -28,7 +30,9 @@
                     @if(isset($record->images) && $record->images->count())
                         @foreach($record->images as $image)
                             <div class="item">
-                                <img src="{{ asset('public/uploads/product/'.$record->id.'/'.$image->image) }}" class="img-fluid" alt="">
+                                <div class="product-inner-imgmain">
+                                    <img src="{{ asset('public/uploads/product/'.$record->id.'/'.$image->image) }}" class="img-fluid" alt="">
+                                </div>
                             </div>
                         @endforeach
                     @endif
@@ -71,13 +75,19 @@
                               </div>
                         </div>
                     </div>
-                    <div>
-                        <button class="addtocard-shopinner" id="add_to_cart">Add To Cart</button>
+                    <div class="row justify-content-center">
+                        <div class="col-12 col-sm-6">
+                            <button class="addtocard-shopinner" id="add_to_cart">Add To Cart</button>
+                        </div>
                         @if($record->amazon_link)
-                            <button class="buyfrom-shopinner" onclick="window.open('https://{{$record->amazon_link}}', '_blank')">Buy From Amazon</button>
+                            <div class="col-12 col-sm-6">
+                                <button class="buyfrom-shopinner" onclick="window.open('https://{{$record->amazon_link}}', '_blank')">Buy From Amazon</button>
+                            </div>
                         @endif
                         @if($record->flipcart_link)
-                            <button class="buyfrom-shopinner" onclick="window.open('https://{{$record->flipcart_link}}', '_blank')">Buy From Flipcart</button>
+                            <div class="col-12 col-sm-6">
+                                <button class="buyfrom-shopinner" onclick="window.open('https://{{$record->flipcart_link}}', '_blank')">Buy From Flipcart</button>
+                            </div>
                         @endif
                     </div>
                 </div>

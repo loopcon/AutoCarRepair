@@ -60,11 +60,11 @@
                     <li><a  class="@if($page == 'service-center'){{'acr-active'}}@endif" href="{{url('service-center')}}">Service Center</a></li>
                     <li><a href="#">Blog</a></li>
                     <li><a class="@if($page == 'shopping'){{'acr-active'}}@endif" href="{{url('shopping')}}">Shopping</a></li>
-                    <li class="dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <li class="dropdown ">
+                        <a class="nav-link login-icon-text dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fa fa-user"></i>
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <ul class="dropdown-menu login-icon-main" aria-labelledby="navbarDropdown">
                             @if(!Auth::guard('user')->check())
                                 <li><a class="dropdown-item text-black" href="{{route('front_login')}}">Login</a></li>
                                 <li><a class="dropdown-item text-black" href="{{route('front_register')}}">Register</a></li>
@@ -80,7 +80,7 @@
             <div class="search-main-section">
                 <div class="search-icon-main">
                     {{-- <img data-bs-toggle="modal" data-bs-target="#searchbarModal"  src="{{ asset('front/img/navbar-search-icon.png') }}" alt=""> --}}
-                    <span class="search-svg-main" data-bs-toggle="modal" data-bs-target="#mosearchbarModal"><i class="fa-solid fa-magnifying-glass"></i></span>
+                    <span class="search-svg-main" data-bs-toggle="modal" data-bs-target="#searchbarModal" ><i class="fa-solid fa-magnifying-glass"></i></span>
                 </div>
                 <div class="modal fade" id="searchbarModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog searchbar-dialog">

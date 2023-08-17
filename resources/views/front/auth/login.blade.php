@@ -34,7 +34,7 @@
                                     <a class="forget_msg forgetmsg" href="{{route('front_forgot-password')}}">Forget Password?</a>
                                 </div>
                                 <div class="text-center mt-3">
-                                    <button type="submit" class="btn btn-lg btn-primary">Login</button>
+                                    <button type="submit" class="sign-up-btn-main">Login</button>
                                 </div>
                             </form>
                         </div>

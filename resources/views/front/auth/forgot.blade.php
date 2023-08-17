@@ -29,7 +29,7 @@
                                     <input type="email" name="email" placeholder="EMAIL ID" required="" class="form-control ">
                                 </div>
                                 <div class="text-center mt-3">
-                                    <button type="submit" class="btn btn-lg btn-primary">Submit</button>
+                                    <button type="submit" class="sign-up-btn-main">Submit</button>
                                 </div>
                             </form>
                         </div>
