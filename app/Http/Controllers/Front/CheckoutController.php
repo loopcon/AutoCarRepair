@@ -83,7 +83,13 @@ class CheckoutController extends MainController
         }
     }
 
-    public function createOrder(request $request){
+    public function createOrder(request $request)
+    {
+        $this->validate($request, [
+            'city' => 'required|regex:/^[\pL\s\-]+$/u',
+            
+            ],['required'  => trans('city allowed only character')
+        ]);
         $pcart = Session::get('pcart');
         $scart = Session::get('scart');
         if(empty($pcart) && empty($scart)){

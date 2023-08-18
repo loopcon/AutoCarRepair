@@ -190,6 +190,11 @@ function getbrands(){
     return $brands;
 }
 
+function getmodel(){
+    $models = \App\Models\CarModel::select('id', 'image')->where([['is_archive', \App\Constant::NOT_ARCHIVE], ['status', \App\Constant::ACTIVE]])->orderBy('id', 'desc')->get();
+    return $models;
+}
+
 function weekOfDays($total_days){
     $weekOfdays = array();
     $date = date("l");// current day

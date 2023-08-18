@@ -215,7 +215,16 @@
                         </div>
                     </div>
                     <div class="row m-0 search-modal-box" id="amodal_models">
-
+                        @php($models = getmodel())
+                            @if($models->count())
+                                @foreach($models as $model)
+                                    @if($model->image)
+                                        <div class="col-4 brand-logo-center">
+                                            <a href="javascript:void(0);" class="amodal-brand" data-id="{{$model->id}}"><img src="{{ asset('public/uploads/carmodel/'.$model->image) }}" class="img-fluid" alt=""></a>
+                                        </div>
+                                    @endif
+                                @endforeach
+                            @endif
                     </div>
                 </div>
             </div>

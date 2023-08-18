@@ -62,12 +62,10 @@
                             </div>
                         </div>
                     </div>
-                    @if($price_show)
-                        <div class="payment-main" >
-                            <div class="packeage-prise"> <p>₹ {{$record->price}}</p>  </div>
-                            <div> <button class="ser-inner-addtocart" id="add_to_cart_service" data-id="{{$record->id}}"> Add to Cart</button></div>
-                        </div>
-                    @endif
+                    <div class="payment-main" >
+                        <div class="packeage-prise"> <p>₹ {{$record->price}}</p>  </div>
+                        <div> <button class="ser-inner-addtocart" id="add_to_cart_service" data-id="{{$record->id}}"> Add to Cart</button></div>
+                    </div>
                 </div>
             @endforeach
         @endif

@@ -13,6 +13,7 @@
                         <h2>{{ isset($hsetting->section1_title1) ? $hsetting->section1_title1 : ''}} </h2>
                         <h5>{{ isset($hsetting->section1_title2) ? $hsetting->section1_title2 : ''}}</h5>
                         <p>{{ isset($hsetting->section1_description) ? $hsetting->section1_description : ''}}</p>
+                        <!-- <a class="service apt-btn" href="javascript:void(0);"></a> -->
                         <button>Get Service</button>
                     </div>
                 </div>
@@ -31,7 +32,7 @@
 <div class="container">
     <div class="service-section">
         <div>
-            <a class="service-main-btn">Services</a>
+            <a href="{{url('our-services')}}" class="service-main-btn">Services</a>
         </div>
         <div class="always-service-text">
             <p>We Always Ready to Serve You the Best Service</p>
@@ -41,21 +42,23 @@
                 @php($key = 0)
                 @foreach($scategories as $service)
                     <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                        <div class="services-cate-main services-cate-common{{$key}}">
-                            <div class="car-service-img-main">
-                                @if(isset($service->image) && $service->image)
-                                    <img src="{{ asset('uploads/service/category/'.$service->image) }}" class="img-fluid" alt="">
-                                @else
-                                    <img src="{{ asset('front/img/no_image.jpg') }}" class="img-fluid" alt="">
-                                @endif
+                        <a href="{{url($service->slug)}}">
+                            <div class="services-cate-main services-cate-common{{$key}}">
+                                <div class="car-service-img-main">
+                                    @if(isset($service->image) && $service->image)
+                                        <img src="{{ asset('uploads/service/category/'.$service->image) }}" class="img-fluid" alt="">
+                                    @else
+                                        <img src="{{ asset('front/img/no_image.jpg') }}" class="img-fluid" alt="">
+                                    @endif
+                                </div>
+                                <div class="services-cate-item">
+                                    @php($img = $key + 1)
+                                    <img src="{{ asset('front/img/ser-cat'.$img.'small.png') }}" class="img-fluid" alt="">
+                                    <h4> {{$service->title}} </h4>
+                                    <p>We are always help to make one of the best adjustment service </p>
+                                </div>
                             </div>
-                            <div class="services-cate-item">
-                                @php($img = $key + 1)
-                                <img src="{{ asset('front/img/ser-cat'.$img.'small.png') }}" class="img-fluid" alt="">
-                                <h4> {{$service->title}} </h4>
-                                <p>We are always help to make one of the best adjustment service </p>
-                            </div>
-                        </div>
+                        </a>
                     </div>
                 @php($key++)
                 @if($key == 6)
@@ -135,7 +138,7 @@
                             <div class="container">
                                 <p>{{$slider->title1}}</p>
                                 <h4>{{$slider->title2}}</h4>
-                                <a href="https://{{$slider->btn_link}}" target="_blank" ><button class="explore-btn">{{$slider->btn_title}}</button></a>
+                                <a href="{{url('our-services')}}" target="_blank" ><button class="explore-btn">{{$slider->btn_title}}</button></a>
                             </div>
                         </div>
                     </div>
@@ -355,9 +358,18 @@
                     </div>
                 </div>
 
-               
+                <div class="form-group mb-3">
+                    <label for="exampleFormControlTextarea1" class="form-label">YOUR MESSAGE</label>
+                    <textarea class="form-control" id="message" name="message" rows="1" required=""></textarea>
+                    @if ($errors->has('message')) <div class="text-warning">{{ $errors->first('message') }}</div>@endif
+                </div>
+                @if (session()->has('success'))
+                    <div class="msg-success">
+                        <h6>Thanks for Enquery, our Customer care represent will contact you soon.</h6>
+                    </div>
+                @endif
                 <input type="submit" class="form-btn-contant" value="Send Message">
-          </form>
+            </form>
     </div>
 </div>
 <!-- form section end  -->

@@ -114,6 +114,8 @@ a.badge:hover{
 /* service css start  */
 .always-service-text::before{content: url('../img/service-main-img.png'); width: 100%; height: auto; overflow: hidden; position: absolute;margin-top: -110px;left: 0;z-index: 11;  display: inline-block; }
 .service-section .service-main-btn{ text-decoration: none; text-align: center; background: #E56F31; color: #fff; height: 45px; width: 200px; display: block; margin:0 auto; line-height: 45px; border-radius: 10px; font-size: 18px; font-weight: bold; } 
+.service-section::before{content: url('../img/service-main-img.png'); width: 100%; height: auto; overflow: hidden; position: absolute;margin-top: -110px;left: 0;z-index: -1;  display: inline-block; }
+.service-section .service-main-btn{ text-decoration: none; text-align: center; background: #E56F31; color: #fff; height: 45px; width: 200px; display: block; margin:0 auto; line-height: 45px; border-radius: 10px;} 
 .service-section .always-service-text p{ font-size: 37px; text-align: center; width: 41%; margin: 20px auto; font-weight: bold; padding-bottom: 35px;} 
 .service-section .always-service-text { margin-bottom: 30px; }
 .service-section .services-cate-main{ position: relative; margin-bottom: 100px;}
@@ -185,6 +187,7 @@ a.badge:hover{
 .form-section-bg .request-text-main { width: 50%; padding-top: 50px; padding-bottom: 35px; padding-left: 12px;}
 /* .form-section-bg .request-text-main h3::before{  content: url('../img/Contact-Us-heading.png'); position: absolute; z-index: 0; margin-top: -8px; display: block; height: auto; width: 350px; overflow: hidden;} */
 .form-section-bg .request-text-main h2{ color: #E56F31; font-size: 44px; font-weight: bold; } 
+.form-section-bg .msg-success h6{ color: #E56F31;} 
 .form-section-bg .request-text-main p{  color: #fff; font-size: 15px;}
 .form-section-bg .form-label{ color: #fff; }
 .form-section-bg .form-control{ border-bottom: 1px solid #fff !important; background-color: unset; border: 0px; border-radius: 0px; color: #fff; padding: 0px; }
