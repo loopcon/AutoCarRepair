@@ -15,43 +15,37 @@
     </div>
 </div>
 
-<div class="faq-section-main">
+<div class="register-section-main">
     <div class="container">
         <div class="row justify-content-center">
             <div class=" col-lg-6">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="m-sm-4">
-                            <form method="post" action="{{route('front_register')}}" id="register-form" enctype="multipart/form-data" data-parsley-validate=''>
-                                {{ csrf_field() }}
-                                <div class="mb-3">
-                                    <label class="form-label">Name<span class="text-danger">*</span></label>
-                                    <input type="text" name="firstname" value="{{old('firstname')}}" placeholder="NAME" required="" class="form-control" maxlength="35">
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Phone No.<span class="text-danger">*</span></label>
-                                    <input type="text" name="phone" id="phone"  value="{{old('phone')}}" maxlength="10" placeholder="PHONE NO" required="" class="form-control num_only">
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Email<span class="text-danger">*</span></label>
-                                    <input type="email" name="email" value="{{old('email')}}" placeholder="EMAIL ID" required="" class="form-control ">
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Password<span class="text-danger">*</span></label>
-                                    <input type="password" name="password" value="{{old('password')}}" id="password" placeholder="PASSWORD" class="form-control" required="" data-parsley-minlength="8" data-parsley-pattern="(?=.*[a-z])(?=.*[0-9])(?=.*[A-Z]).*" data-parsley-pattern-message="Your password must be a minimum of 8 characters long and include at least 1 lowercase and 1 uppercase letter and 1 number.">
-                                    <small>Note : Your password must be a minimum of 8 characters long and include at least 1 lowercase and 1 uppercase letter and 1 number.</small>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Confirm Password<span class="text-danger">*</span></label>
-                                    <input type="password" name="cpassword" id="cpassword" placeholder="CONFIRM PASSWORD" class="form-control" required=""  data-parsley-equalto="#cpassword" data-parsley-required-message="Confirm password should match password field.">
-                                </div>
-                                <div class="text-center mt-3">
-                                    <button type="submit" class="sign-up-btn-main">Sign up</button> 
-                                </div>
-                            </form>
-                        </div>
+                <form method="post" action="{{route('front_register')}}" id="register-form" enctype="multipart/form-data" data-parsley-validate=''>
+                    {{ csrf_field() }}
+                    <div class="mb-3">
+                        <label class="form-label email-text-heading">Name<span class="text-light">*</span></label>
+                        <input type="text" name="firstname" value="{{old('firstname')}}" placeholder="NAME" required="" class="form-control input-login-main" maxlength="35">
                     </div>
-                </div>
+                    <div class="mb-3">
+                        <label class="form-label email-text-heading">Phone No.<span class="text-light">*</span></label>
+                        <input type="text" name="phone" id="phone"  value="{{old('phone')}}" maxlength="10" placeholder="PHONE NO" required="" class="form-control num_only input-login-main">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label email-text-heading">Email<span class="text-light">*</span></label>
+                        <input type="email" name="email" value="{{old('email')}}" placeholder="EMAIL ID" required="" class="form-control input-login-main">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label email-text-heading">Password<span class="text-light">*</span></label>
+                        <input type="password" name="password" value="{{old('password')}}" id="password" placeholder="PASSWORD" class="form-control input-login-main" required="" data-parsley-minlength="8" data-parsley-pattern="(?=.*[a-z])(?=.*[0-9])(?=.*[A-Z]).*" data-parsley-pattern-message="Your password must be a minimum of 8 characters long and include at least 1 lowercase and 1 uppercase letter and 1 number.">
+                        <small class="text-light">Note : Your password must be a minimum of 8 characters long and include at least 1 lowercase and 1 uppercase letter and 1 number.</small>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label email-text-heading">Confirm Password<span class="text-light">*</span></label>
+                        <input type="password" name="cpassword" id="cpassword" placeholder="CONFIRM PASSWORD" class="form-control input-login-main" required=""  data-parsley-equalto="#cpassword" data-parsley-required-message="Confirm password should match password field.">
+                    </div>
+                    <div class="text-center mt-3">
+                        <button type="submit" class="sign-up-btn-main">Sign up</button> 
+                    </div>
+                </form>
             </div>
         </div>
     </div>

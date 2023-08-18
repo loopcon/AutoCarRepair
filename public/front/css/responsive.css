@@ -14,6 +14,7 @@
     .login-icon-main{transform: translate3d(-52px, 36px, 0px) !important;}
     #sync1 .product-inner-imgmain img{ height: auto;}
     #sync2 .product-inner-imgmain img{ height: auto; }
+    .save-more-section .save-more-text{ font-size: 34px;}
 }
 @media (min-width:991px){ 
     .mobile-menu-sectiondata{ display: none;}
@@ -23,7 +24,7 @@
     .top-navbar-main{ display: none;}
     .offeer-section .offer-section-item p { font-size: 20px;}
     .offeer-section .offer-section-item h4{ font-size: 35px; width: 60%; margin: 25px 0px;}
-    .save-more-section .save-more-img::before{ display: none;}
+    /* .save-more-section .save-more-img::before{ display: none;} */
     .slider-section-main h2{ font-size: 50px;}
     .slider-section-main h5{ font-size: 35px;}
     .why-choose-section .why-choose-item h5{ font-size: 30px;}
@@ -50,6 +51,7 @@
     .mobile-toggle-data{ top: 102px;}
     #sync1 .product-inner-imgmain img{ height: auto;}
     #sync2 .product-inner-imgmain img{ height: auto; }
+    .save-more-img img{ display: none;}
 }
 @media (max-width:767px) {
     .slider-section-main h2{ font-size: 50px; }
@@ -58,7 +60,8 @@
     .slider-section-main button{ height: 35px; width: 150px; margin-bottom: 15px;}
     .offeer-section .offer-section-item p { font-size: 15px;}
     .offeer-section .offer-section-item h4{ font-size: 28px; width: 60%; margin: 25px 0px;}
-    .save-more-section .save-more-img::before{ display: none;}
+    /* .save-more-section .save-more-img::before{ display: none;} */
+    .save-more-img img{ display: none;}
     .service-section .always-service-text p{ width: 80%;}
     .service-inner-tophead h2{ font-size: 40px; text-align: center;}
     .service-inner-tophead-text{ width: 100%;  }
@@ -100,7 +103,8 @@
     .form-section-bg .request-text-main h2{ font-size: 25px;}
     .form-section-bg .request-text-main{ width: 100%;}
     .footer-bg-main .footer-img-main{ border-right: 0px;}
-    .save-more-section .save-more-img::before{ width: 200px; display: none;}
+    /* .save-more-section .save-more-img::before{ width: 200px; display: none;} */
+    .save-more-img img{ display: none;}
     .form-section-bg .request-text-main h3::before{ width: 200px;}
     .ser-inner-banner { height: 250px;  width: auto !important; overflow: hidden; object-fit: cover; }
     .service-inner-tophead h2{ font-size: 30px; text-align: center;}

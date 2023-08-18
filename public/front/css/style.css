@@ -32,11 +32,12 @@ a.badge:hover{
 .acr-navbar-section{ display: flex; align-items: center; justify-content:space-between;}
 .acr-navbar-main{ list-style: none; display: flex;  margin-bottom: 0px; padding-left: 0px; }
 .acr-navbar-main li a { color: #fff; text-decoration: none; margin-bottom: 0px;  font-size: 1.2rem; font-weight: bold;}
+.acr-navbar-main li a:hover{ color: #E56F31;}
 .acr-navbar-main li{ margin-right: 30px;}
 .acr-navbar-main li a.acr-active{ color: #E56F31;}
 .navbar-appointment-btn{ height: 50px; background-color: #E56F31; display: inline-block; vertical-align: middle; padding: 0px 20px; color: #fff; text-decoration: none; font-weight: bold; font-size: 1.2rem; display: flex; align-items: center; } 
 .navbar-appointment-btn:hover{ color: #fff;}
-.search-main-section{ display: flex; justify-content: end;}
+.search-main-section{ display: flex; justify-content: end; align-items: center;}
 .search-icon-main { display: flex; align-items: center; justify-content: center; position: relative; }
 .search-icon-main img { margin-top: 10px; margin-right: 18px; }
 /* appointment modal  css start  */
@@ -107,12 +108,12 @@ a.badge:hover{
 .slider-section-main h2{ color: #000000; font-size: 70px; font-weight: bold; text-shadow: 0px 4px 3px rgba(0,0,0,0.3); margin-bottom: 0px;}
 .slider-section-main h5{ color: #E56F31; font-size: 49px; font-weight: bold; text-shadow:0px 4px 3px  rgba(249, 149, 0, 0.5); margin-bottom: 0px;}
 .slider-section-main p{ color: #000000; font-size: 20px; margin-bottom: 0px; padding: 30px 0px;}
-.slider-section-main button{ background-color: #E56F31; width: 180px; height: 50px; text-align: center; border-radius: 10px; border: 0px; color: #fff; font-weight: bold; font-size: 18px; }
+.slider-section-main button{ background-color: #E56F31; width: 180px; height: 45px; text-align: center; border-radius: 10px; border: 0px; color: #fff; font-weight: bold; font-size: 18px; }
 .slider-section-box{ display: flex; align-items: center;}
 /* slider css end  */
 /* service css start  */
-.service-section::before{content: url('../img/service-main-img.png'); width: 100%; height: auto; overflow: hidden; position: absolute;margin-top: -110px;left: 0;z-index: 11;  display: inline-block; }
-.service-section .service-main-btn{ text-decoration: none; text-align: center; background: #E56F31; color: #fff; height: 45px; width: 200px; display: block; margin:0 auto; line-height: 45px; border-radius: 10px;} 
+.always-service-text::before{content: url('../img/service-main-img.png'); width: 100%; height: auto; overflow: hidden; position: absolute;margin-top: -110px;left: 0;z-index: 11;  display: inline-block; }
+.service-section .service-main-btn{ text-decoration: none; text-align: center; background: #E56F31; color: #fff; height: 45px; width: 200px; display: block; margin:0 auto; line-height: 45px; border-radius: 10px; font-size: 18px; font-weight: bold; } 
 .service-section .always-service-text p{ font-size: 37px; text-align: center; width: 41%; margin: 20px auto; font-weight: bold; padding-bottom: 35px;} 
 .service-section .always-service-text { margin-bottom: 30px; }
 .service-section .services-cate-main{ position: relative; margin-bottom: 100px;}
@@ -139,7 +140,7 @@ a.badge:hover{
 .why-choose-section .why-choose-box-main{  align-items: center; margin-bottom: 25px; }
 /* why choose us end */
 /* offer slider  css start  */
-.offeer-section .explore-btn{  background-color: #011098; color: #fff;border: none;width: 145px;height: 45px;font-size: 17px;border-radius: 6px;font-weight: bold; }
+.offeer-section .explore-btn{  background-color: #E56F31; color: #fff;border: none;width: 145px;height: 45px;font-size: 17px;border-radius: 6px;font-weight: bold; }
 .offeer-section .offer-section-main img{ position: relative; height: 500px; object-fit: cover;}
 .offeer-section .offer-section-item{ position: absolute;top: 50%;left: 10%;transform: translateY(-50%);}
 .offeer-section .offer-section-item p { color: #fff; margin-bottom: 0px;font-size: 22px;font-weight: bold;}
@@ -168,20 +169,21 @@ a.badge:hover{
 .testimonial-section .owl-theme .owl-dots{ text-align: start;}
 /* testimonial css end  */
 /* brand logo css start  */
-.brand-logo-section{ padding-top: 35px;  padding-bottom: 75px;  background-color: #F2F2F2;}
+.brand-logo-section{ padding-top: 35px;  /*padding-bottom: 75px;*/  background-color: #F2F2F2; height: 368px; display: flex; align-items: center;}
 .brand-logo-section .partner-brand-logo{ background-color: #F6F5F5; height: 110px; width: auto; display: flex; }
 .brand-logo-section .partner-brand-logo img{  height: 74px; width: auto; margin: auto auto; }
 /* brand logo css end */
 /* save more css start  */
-.save-more-section{ background-color: #E56F31;}
+.save-more-section{ background-color: #E56F31; height: 200px;}
 .save-more-section .save-more-text{ color: #fff; font-weight: bold; font-size: 40px;  margin: 45px 10px; }
 .save-more-section .save-more-text p{ margin-bottom: 0px;   }
-.save-more-section .save-more-img::before { content: url('../img/cont-blue-toyota.png'); position: absolute; margin-top: -50px; height: auto;  overflow-x: hidden;  }
+/* .save-more-section .save-more-img::before { content: url('../img/cont-blue-toyota.png'); position: absolute; margin-top: -50px; height: auto;  overflow-x: hidden;  } */
+.save-more-img img{ margin-left: auto;}
 /* save more css end  */
 /* form  section css start  */
 .form-section-bg{ background-color: #164498; padding-bottom: 30px; }
-.form-section-bg .request-text-main { width: 50%; padding-top: 50px; padding-bottom: 35px;}
-.form-section-bg .request-text-main h3::before{  content: url('../img/Contact-Us-heading.png'); position: absolute; z-index: 0; margin-top: -8px; display: block; height: auto; width: 350px; overflow: hidden;}
+.form-section-bg .request-text-main { width: 50%; padding-top: 50px; padding-bottom: 35px; padding-left: 12px;}
+/* .form-section-bg .request-text-main h3::before{  content: url('../img/Contact-Us-heading.png'); position: absolute; z-index: 0; margin-top: -8px; display: block; height: auto; width: 350px; overflow: hidden;} */
 .form-section-bg .request-text-main h2{ color: #E56F31; font-size: 44px; font-weight: bold; } 
 .form-section-bg .request-text-main p{  color: #fff; font-size: 15px;}
 .form-section-bg .form-label{ color: #fff; }
@@ -192,7 +194,7 @@ a.badge:hover{
 .form-section-bg .form-select:focus{ outline: none; box-shadow: none;}
 .form-section-bg .form-select option{ color: #000000;}
 .form-section-bg .form-select svg{ color: #fff;}
-.form-section-bg .form-btn-contant { background-color:#E56F31; color: #fff; border: 0px; width: 165px; height: 50px; font-size: 20px; border-radius: 10px; margin-top: 40px; }
+.form-section-bg .form-btn-contant { background-color:#E56F31; color: #fff; border: 0px; width: 165px; height: 45px; font-size: 20px; border-radius: 10px; margin-top: 40px; }
 /* form  section css end  */ 
 /* footer css start  */
 .footer-bg-main{ background-color: #a19f9f; padding-top: 50px; padding-bottom: 50px; }
@@ -229,7 +231,7 @@ a.badge:hover{
 /* service page css start  */
 .our-service-section {  padding-top: 30px; padding-bottom: 35px;}
 .our-service-section .service-main-heading h2{  font-size: 44px; font-weight: bold; text-align: center; margin-top: 20px; margin-bottom: 20px;}
-.our-service-section .servic-type-box { border: 1px solid #000; box-shadow: 2px 2px 15px 0px rgba(0, 0, 0, 0.91); padding: 25px; margin:25px 10px;}
+.our-service-section .servic-type-box { border: 1px solid #000; box-shadow: 2px 2px 15px 0px #000000E8; padding: 25px; margin:25px 10px;}
 .our-service-section .servic-type-box h4{ color: #E56F31; font-size: 28px; font-weight: bold; }
 .our-service-section .servic-type-box p{ font-size: 15px;  }
 .our-service-section .our-ser-send-msgbtn{  background-color: #E56F31; color: #fff; width: 190px; height: 50px; font-size: 23px; font-weight: bold; border: 0px; border-radius: 10px;}
@@ -288,7 +290,8 @@ a.badge:hover{
 .contact-section-main .contact-helpnumber-main img{ display: block; margin-left: auto; width: 80px;}
 /* contact us css end */
 /* shopping inner css start  */
-.shopping-innerbg{background-color: #f1f1f1; padding: 25px; margin: 25px 0px; }
+.shopping-innerbg-secmain{background-color: #f1f1f1; }
+.shopping-innerbg{ padding: 25px; padding: 25px 0px; }
 .shopping-innerbg .product-content-main{ color: #164498; font-size: 24px; font-weight:bold ;}
 .shopping-innerbg .share-image{  display: flex; align-items: center; margin-top: 20px; margin-bottom: 8px;}
 .shopping-innerbg .share-image p{ margin-bottom: 0px; color:#164498 ; font-size:15px; margin-right: 10px;}
@@ -299,8 +302,10 @@ a.badge:hover{
 .quantity-sec-main{ display: flex; align-items: center;}
 .quantity-sec-main p{ font-size: 16px; color: #000000; margin-bottom: 0px; margin-right: 8px;}
 .quantity-sec-main .form-select{ width: 90px; background: #D9D9D9; border-radius: 0px; }
-.shopping-innerbg .addtocard-shopinner{ color: #E56F31; border: 1px solid #E56F31; width: 100%; font-size: 20px; height: 45px; background-color: unset;  margin-bottom: 5px;  }
+.shopping-innerbg .addtocard-shopinner{ background-color: #E56F31; color: #fff; border: 1px solid #E56F31; width: 100%; font-size: 20px; height: 45px;   margin-bottom:20px;  }
+.shopping-innerbg .addtocard-shopinner:hover{ background-color:unset; color: #E56F31; border: 1px solid #E56F31;}
 .shopping-innerbg .buyfrom-shopinner{ color: #164498; border: 1px solid #164498; width: 100%; font-size: 20px; height: 45px; background-color: unset;} 
+.shopping-innerbg .buyfrom-shopinner:hover{ background-color: #164498; color: #fff; }
 .description-main { background-color: #f1f1f1; padding: 25px 35px; margin: 20px 0px; height: auto;}
 .description-btn { display: inline-block; text-align: center; line-height: 45px; text-decoration: none; background-color: #E56F31; border: none; width: 160px; height: 45px;  color: #fff; font-size: 20px; margin-right: 5px; }
 .description-btn:hover{color: #fff;}
@@ -327,7 +332,7 @@ ul.specification-tab-text li{ display: block !important; font-size: 20px;}
 /* add to cart css start  */
 .personal-detail-main{ background-color: #F2F2F2; padding: 20px; margin-top: 25px; margin-bottom: 20px;}
 .personal-detail-main h4{  color: #164498; font-size: 24px; font-weight: bold;}
-.personal-detail-main .verify-otpbtn { background-color: #E56F31; color: #fff; width: 150px; height: 40px; border: none; border-radius: 6px; margin-bottom: 15px; }
+.personal-detail-main .verify-otpbtn { background-color: #E56F31; color: #fff; width: 150px; height: 45px; border: none; border-radius: 6px; margin-bottom: 15px; line-height: 34px;font-size: 18px; }
 .otpinput-main {  position: relative;}
 .otpinput-main a{ position: absolute; top:22%; right: 2%; font-size: 16px; color: #000; text-decoration: none;} 
 .date-sec-main{ display: flex;}
@@ -359,8 +364,10 @@ a.select-date{ border: 1px solid #E56F31; color: #E56F31; }
 .select-address { background: #F2F2F2; padding: 20px; margin-top: 25px; margin-bottom: 20px;}
 .select-address h4{ color: #164498; font-size: 24px; font-weight: bold; }
 .pay-online-text{ display: flex; margin-bottom: 20px;}
+.pay-online-text img{ margin-right: 8px;}
 .pay-online-text input  { text-align: end; margin-left: auto; accent-color: #E56F31; }
-.pay-cash-text { display: flex; margin-bottom: 20px;}
+.pay-cash-text { display: flex; margin-bottom: 20px; align-items: center;}
+.pay-cash-text img{ margin-right: 8px; }
 .pay-cash-text input { text-align: end; margin-left: auto; accent-color: #E56F31;}
 input[type='radio'] {accent-color: #E56F31;  }
 .plus-minus-main { display: flex;width: 83px;justify-content: space-between;align-items: center;background: #888888;height: 35px;padding: 0px 7px;}
@@ -375,13 +382,14 @@ button { color: #000; outline: none; }
 .service-add-main{ display: flex; align-items: center; justify-content: space-between; background-color: #D9D9D9;padding: 10px; }
 .service-add-sec-main{ display: flex; align-items: center;}
 .service-name-text {display: flex; align-items: center; }
+.service-name-text img{ margin-right: 8px; width: 45px; height: auto; }
 .service-name-text p { margin-bottom: 0px;}
 .service-add-sec-main p{ margin-bottom: 0px; margin-bottom: 0px; font-size: 20px ; margin-right: 11px;}
 .add-accessory-sec-main{ margin-bottom: 30px; text-align: end; }
 .add-accessory-btn{ background-color: #E56F31; color: #fff;  font-size: 17px;border: 0px;width: 165px;height: 45px; line-height: 30px; border-radius: 8px; margin: 20px auto; }
-.item-total-sec-main{ display: flex; justify-content: space-between; margin-bottom: 20px;}
+.item-total-sec-main{ display: flex; justify-content: space-between; margin-bottom: 20px; padding: 0px 10px;}
 .you-pay-sec-main{ display: flex; justify-content: space-between; border: 1px solid #ccc;}
-.you-pay-sec-main p { margin-bottom: 0px; padding: 7px 20px;}
+.you-pay-sec-main p { margin-bottom: 0px; padding: 7px 10px;}
 .confirm-booking-btn{ background-color: #E56F31; color: #fff;font-size: 17px;border: 0px;width: 165px;height: 45px; line-height: 30px; border-radius: 8px; margin: 20px auto; }
 .card-detial-sec-main{ background: #F2F2F2; padding: 25px; margin: 25px 0px;}
 /* add to cart css end  */
@@ -464,9 +472,10 @@ button { color: #000; outline: none; }
   /* profile page css */
 
   .search-svg-main { margin-right: 25px; font-size: 25px; color: #fff; }
-  .card-icon-main{ color: #fff;}
+  .search-svg-main:hover{ color: #E56F31;}
+  .card-icon-main{ color: #fff; margin-right: 10px; font-size: 20px; }
   .card-icon-main svg{ font-size: 22px;}
-  .card-icon-main:hover{color: #fff;}
+  .card-icon-main:hover{color: #E56F31;}
   .login-icon-text{ text-align: center !important;}
   .login-icon-text:hover, .login-icon-text:focus{ color:#fff;}
   .login-icon-main li{ margin-right: 0px; }
@@ -474,7 +483,36 @@ button { color: #000; outline: none; }
   #plus-btn svg{ font-size: 20px;}
   .shoping-main-product-section{min-height: 450px;}
   .login-icon-main{ transform: translate(-50px, 35px) !important;  }
-  .sign-up-btn-main{ border: 0px;background-color: #E56F31;width: auto;height: 40px;border-radius: 8px;color: #fff; padding: 0px 20px;}
+  .sign-up-btn-main{ border: 0px;background-color: #E56F31;width: auto;height: 45px;border-radius: 8px;color: #fff; padding: 0px 20px; font-size: 18px; font-weight: bold;}
   .check-box-fliter{ float: right;}
   #sync1 .product-inner-imgmain img{ height: 350px; object-fit: cover; }
   #sync2 .product-inner-imgmain img{ height: 125px; object-fit: cover; }
+  .minus-btn{color: #000;}
+  .minus-btn:hover{color: #000;}
+  .plus-btn{color: #000;}
+  .plus-btn:hover{color: #000;}
+  
+  /* 2px 2px 15px 0px rgba(0, 0, 0, 0.91) */
+/* login css start  */
+.login-section-main{ background-color: #164498; padding: 40px 0px;}
+.email-text-heading{ color: #fff;}
+.input-login-main{background: #164498 !important;border: 0px;border-bottom: 1px solid #fff;border-radius: 0px;color: #fff !important ; padding-left: 0px;}
+.input-login-main::placeholder{ color: #fff;}
+.input-login-main:focus{background: #164498 !important;box-shadow: unset !important;border-bottom: 1px solid #fff !important;}
+.forget_msg{ color: #fff; margin-top: 5px; display: block;}
+.forget_msg:hover{color: #fff;}
+/* login css end */
+/* register css start  */
+.register-section-main{ background-color: #164498; padding: 40px 0px; }
+/* register css end */
+/* forget css start  */
+.forget-section-main{ background-color: #164498; padding: 40px 0px; }
+/* forget css start  */
+.select-arrow-bg{ 
+  background-image: url('public/front/img/select-down-arrow.png') !important;
+  background-size: 100% !important;
+  height: 30px;
+}
+.login-main-section{ list-style: none; padding-left: 0px; margin-bottom: 0px; margin-left: 10px; margin-right: 10px; }
+.login-main-section li a{ color: #fff; font-size: 20px;}
+.login-main-section li a:hover{ color: #E56F31;}

@@ -292,14 +292,14 @@
 <div class="save-more-section">
     <div class="container">
         <div class="row m-0">
-            <div class="col-12 col-md-10 col-lg-5">
+            <div class="col-12 col-md-10 col-lg-6">
                 <div class="save-more-text">
                     <p>Save More With Our Ongoing Offers</p>
                 </div>
             </div>
-            <div class="col-12  col-lg-7">
+            <div class="col-12  col-lg-6 save-more-img-main">
                 <div class="save-more-img">
-
+                    <img  class="img-fluid"  src="{{ asset('front/img/cont-blue-toyota.png') }}" alt="">
                 </div>
             </div>
         </div>
@@ -310,7 +310,7 @@
 <div class="form-section-bg">
     <div class="container">
         <div class="request-text-main">
-            <h3></h3>
+            <h3>Contact Us</h3>
             <h2>Request an Appointment</h2>     
             <p>After you submit the form, a representative will call you back with the information you’ll need to make an appointment.</p>
         </div>
@@ -336,8 +336,9 @@
                         </div>
                         <div class="mb-5">
                             <label for="exampleInputEmail1" class="form-label">YOUR SERVICE</label>
-                            <select class="form-select" id="service" required="" name="service" aria-label="Default select example">
-                                <option selected disabled>Open this select menu</option>
+                            <select class="form-select select-arrow-bg" id="service" required="" name="service" aria-label="Default select example">
+                                <span class="d-block"><i class="fa-solid fa-chevron-down"></i></span>
+                                <option selected disabled>Open this select menu </option>
                                 @foreach($scategories as $value)
                                     <option value="{{$value->id}}" {{isset($scategories->id) && $scategories->id == $value->id ? 'selected' : (old('id') && old('id') == $value->id ? 'selected' : '')}}>{{$value->title}}</option>
                                 @endforeach
@@ -347,13 +348,14 @@
                             @if ($errors->has('service')) <div class="text-warning">{{ $errors->first('service') }}</div>@endif
                         </div>
                     </div>
+                    <div class="form-group mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">YOUR MESSAGE</label>
+                        <textarea class="form-control" id="message" name="message" rows="1" required=""></textarea>
+                        @if ($errors->has('message')) <div class="text-warning">{{ $errors->first('message') }}</div>@endif
+                    </div>
                 </div>
 
-                <div class="form-group mb-3">
-                    <label for="exampleFormControlTextarea1" class="form-label">YOUR MESSAGE</label>
-                    <textarea class="form-control" id="message" name="message" rows="1" required=""></textarea>
-                    @if ($errors->has('message')) <div class="text-warning">{{ $errors->first('message') }}</div>@endif
-                  </div>
+               
                 <input type="submit" class="form-btn-contant" value="Send Message">
           </form>
     </div>

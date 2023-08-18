@@ -45,13 +45,13 @@
                                         <h5>{{isset($product->shopCategoryDetail->name) ? $product->shopCategoryDetail->name : ''}}</h5>
                                         <div class="shoping-card-prise">
                                             <div class="shoping-card-text"><p>₹{{formatNumber($product->price)}}</p></div>
-                                            <div class="shoping-star-group">
+                                            <?php /*<div class="shoping-star-group">
                                                 <i class="fa-solid fa-star"></i>
                                                 <i class="fa-solid fa-star"></i>
                                                 <i class="fa-solid fa-star"></i>
                                                 <i class="fa-solid fa-star"></i>
                                                 <i class="fa-solid fa-star"></i>
-                                            </div>
+                                            </div> */ ?>
                                         </div>
                                         <button class="shop-add-btn add_to_cart" data-product_id="{{$product->id}}">Add to cart</button>
                                     </div>

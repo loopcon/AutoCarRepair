@@ -121,7 +121,7 @@
             </div>
             <div>
                 <div class="select-payment-main">
-                    <h4>Add Address</h4>
+                    <h4>Payment Selection</h4>
                     <div>
                         <p>Select a  payment method and place Order :</p>
                     </div>
