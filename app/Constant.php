@@ -19,6 +19,7 @@ class Constant {
     const USER_CHECKOUT = '0';
 
     /** slot **/
+    const MORNING = '2';
     const AFTERNOON = '1';
     const EVENING = '0';
 

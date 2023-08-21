@@ -1,24 +1,22 @@
 @extends('front.layout.main')
 @section('content')
 <!-- service inner page start  -->
-<div class="service-inner-tophead">
-    @if(isset($category->image_1) && $category->image_1)
-        <img src="{{ asset('public/uploads/service/category/'.$category->image_1) }}" class="ser-inner-banner img-fluid" alt="">
-    @else
-        <img src="{{ asset('front/img/service-inner-bg.png')}}" class="ser-inner-banner img-fluid" alt="">
-    @endif
-    <div class="service-inner-tophead-text">
-        <h2>{{isset($category->title) && $category->title ? $category->title : ''}}</h2>
-        <ul class="ser-inner-breadcum">
+<div class="shoping-breadcrum-bg">
+    <div class="container">
+        <ul class="shoping-breadcrum-main">
             <li><a href="{{route('front_/')}}">Home</a></li>
-            <li><i class="fa-solid fa-angles-right"></i></li>
+            <li><i class="fa-solid fa-chevron-right"></i></li>
             <li><a href="{{route('front_our-services')}}">Car Service</a></li>
-            <li><i class="fa-solid fa-angles-right"></i></li>
+            <li><i class="fa-solid fa-chevron-right"></i></li>
             <li>{{isset($category->title) && $category->title ? $category->title : ''}}</li>
         </ul>
     </div>
 </div>
-
+<!-- <di class="row">
+    <div class="testiminoal-img-main-text">
+        <h4>Sheduled Package</h4>
+    </div>
+</div> -->
 <div class="service-innersection-mian">
     <div class="container">
         @if(isset($detail) && $detail->count())
@@ -70,7 +68,28 @@
             @endforeach
         @endif
     </div>
+    @if(isset($faqs->name) && isset($faqs->description))
+        <div class="faq-section-main">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class=" col-lg-10">
+                        <div id="accordion" class="accordion">
+                            <div class="accordion-box faq-text-content">
+                                <a href="#" class="accordion-header" data-target="acrd_1">{{isset($faqs->name) && $faqs->name ? $faqs->name :'' }}</a>
+                                <div class="accordion-content" id="acrd" style="display:block">
+                                    <p class="accordion-text-content">
+                                        {!! isset($faqs->description) && $faqs->description ? $faqs->description :'' !!}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+    @endif
 </div>
+
 <!-- service inner page end -->
 @endsection
 @section('javascript')

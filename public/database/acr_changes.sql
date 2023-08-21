@@ -569,3 +569,9 @@ ALTER TABLE `orders` ADD `product_gst_rate` DECIMAL(15,2) NULL AFTER `subtotal`,
 
 ALTER TABLE `orders` CHANGE `is_complete` `is_complete` TINYINT(1) NULL DEFAULT '0' COMMENT '0=No;1=Yes;2=Cancel';
 UPDATE `email_templates` SET `label` = 'cancel_order', `value` = 'Cancel Order' WHERE `email_templates`.`id` = 12;
+
+-- Disha : 19-8-23 9:46 AM
+ALTER TABLE `pick_up_slot_settings` CHANGE `slot` `slot` TINYINT(1) NULL DEFAULT NULL COMMENT '0=Evening;1=Afternoon;2=Morning';
+
+-- Disha : 19-8-23 11:09 AM
+ALTER TABLE `faq` ADD `service_category_id` INT(255) NULL DEFAULT NULL AFTER `id`;

@@ -18,8 +18,18 @@
                         <form method="POST" action="@if(isset($record->id)){{ route('admin_faq-update', array('id' => Crypt::encrypt($record->id))) }}@else{{route('admin_faq-store')}}@endif" id="faq-form" enctype="multipart/form-data" data-parsley-validate="">
                             <input type="hidden" name="id" value="{{ isset($record->id) ? Crypt::encrypt($record->id) : '' }}">
                             {{ csrf_field() }}
-                            <div class="form-row">
-                                <div class="mb-3 col-md-6">
+                            <div class="row">
+                                <div class="mb-3 col-md-3">
+                                    <label for="service_category_id" class="form-label">Service Category</label>
+                                    <select class="form-control select2" id="service_category_id" required="" name="service_category_id">
+                                        <option value="all">--select--</option>
+                                            @foreach($service_category as $category)
+                                                <option value="{{$category->id}}" @if(isset($record->service_category_id) && $record->service_category_id == $category->id){{'selected'}}@endif>{{$category->title}}</option>
+                                            @endforeach
+                                    </select>
+                                    @if ($errors->has('service_category_id')) <div class="text-warning">{{ $errors->first('service_category_id') }}</div>@endif
+                                </div>
+                                <div class="mb-3 col-md-9">
                                     <label class="form-label" for="name">{{__('Question')}}<span class="text-danger">*</span></label>
                                     <input type="text" class="form-control" id="name" name="name" placeholder="{{__('question')}}" required=""  data-parsley-required-message="{{ __("This value is required.")}}" value="{{ isset($record->name) ? $record->name : old('name') }}">
 
@@ -50,6 +60,7 @@
     <script src="{{asset('public/plugins/ckeditor/ckeditor.js')}}"  type="text/javascript"></script>
     <script>
         $(document).ready(function(){
+            $("#service_category_id").select2()
             CKEDITOR.replace('description', {
                 height:1000,
                 removePlugins : 'resize',

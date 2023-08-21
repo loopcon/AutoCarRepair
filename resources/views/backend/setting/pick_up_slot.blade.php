@@ -42,6 +42,7 @@
                                                     <option value="">-- select --</option>
                                                     <option value="1" @if(isset($record->slot) && $record->slot == '1'){{'selected'}}@endif>Afternoon</option>
                                                     <option value="0" @if(isset($record->slot) && $record->slot == '0'){{'selected'}}@endif>Evening</option>
+                                                    <option value="2" @if(isset($record->slot) && $record->slot == '2'){{'selected'}}@endif>Morning</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -60,6 +61,7 @@
                                                 <option value="">-- select --</option>
                                                 <option value="1">Afternoon</option>
                                                 <option value="0">Evening</option>
+                                                <option value="2">Morning</option>
                                             </select>
                                         </div>
                                     </div>
@@ -107,6 +109,7 @@ $(document).ready(function(){
                                 <option value="">-- select --</option>\n\
                                 <option value="1">Afternoon</option>\n\
                                 <option value="0">Evening</option>\n\
+                                <option value="2">Morning</option>\n\
                             </select>\n\
                         </div>\n\
                     </div>';

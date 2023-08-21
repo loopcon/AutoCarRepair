@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Faq;
+use App\Models\ServiceCategory;
 use Auth;
 use Session;
 use Illuminate\Validation\Rule;
@@ -31,6 +32,8 @@ class FaqController extends MainController
     {
         $return_data = array();
         $return_data['site_title'] = trans('Faq Create');
+        $service_category= ServiceCategory::select('id', 'title')->where([['is_archive', Constant::NOT_ARCHIVE], ['status', Constant::ACTIVE]])->get();
+        $return_data['service_category'] = $service_category;
         return view('backend.faq.form',array_merge($this->data,$return_data));
     }
 
@@ -40,6 +43,7 @@ class FaqController extends MainController
     public function store(Request $request)
     {
         $this->validate($request, [
+                'service_category_id' => ['required'],
                 'name' => ['required'],
                 'description' => ['required'],
             ],[
@@ -49,6 +53,7 @@ class FaqController extends MainController
         $slug = $request->name != '' ? slugify($request->name) : NULL;
         $faq = Faq::create([
             'slug' => $slug,
+            'service_category_id' => $request->service_category_id,
             'name' => $request->name ? strip_tags($request->name) : NULL,
             'description' => $request->description,
             'created_by' => Auth::guard('admin')->user()->id,
@@ -78,6 +83,8 @@ class FaqController extends MainController
         $return_data = array();
         $faq = Faq::find($id);
         $return_data['record'] = $faq;
+        $service_category= ServiceCategory::select('id', 'title')->where([['is_archive', Constant::NOT_ARCHIVE], ['status', Constant::ACTIVE]])->get();
+        $return_data['service_category'] = $service_category;
         $return_data['site_title'] = trans('Faq Edit');
         return view('backend.faq.form', array_merge($this->data, $return_data));
     }
@@ -100,6 +107,7 @@ class FaqController extends MainController
 
         $faq = Faq::where('id', $id)->update([
                 'slug' => $slug,
+                'service_category_id' => $request->service_category_id,
                 'name' => $request->name ? strip_tags($request->name) : NULL,
                 'description' => $request->description,
                 'updated_by' => Auth::guard('admin')->user()->id,
