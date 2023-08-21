@@ -20,9 +20,9 @@
                             {{ csrf_field() }}
                             <div class="row">
                                 <div class="mb-3 col-md-3">
-                                    <label for="service_category_id" class="form-label">Service Category</label>
-                                    <select class="form-control select2" id="service_category_id" required="" name="service_category_id">
-                                        <option value="all">--select--</option>
+                                    <label for="service_category_id" class="form-label">Service Category<span class="text-danger">*</span></label>
+                                    <select class="form-control select2" id="service_category_id" name="service_category_id" required="">
+                                        <option value="">--select--</option>
                                             @foreach($service_category as $category)
                                                 <option value="{{$category->id}}" @if(isset($record->service_category_id) && $record->service_category_id == $category->id){{'selected'}}@endif>{{$category->title}}</option>
                                             @endforeach

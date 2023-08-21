@@ -12,18 +12,16 @@
         </ul>
     </div>
 </div>
-<!-- <di class="row">
-    <div class="testiminoal-img-main-text">
-        <h4>Sheduled Package</h4>
-    </div>
-</div> -->
+
 <div class="service-innersection-mian">
     <div class="container">
+    <h2>Scheduled Packages</h2>
         @if(isset($detail) && $detail->count())
             @foreach($detail as $record)
                 <div class="service-inner-mainbg">
                     <div class="row">
                         <div class="col-12 col-md-4">
+                            <h3>{{isset($record->note) && $record->note ? $record->note : '' }}</h3>
                             @if(isset($record->image) && $record->image)
                                 <img src="{{ asset('public/uploads/service/package/'.$record->image) }}" class="img-fluid" alt="">
                             @else
@@ -60,36 +58,43 @@
                             </div>
                         </div>
                     </div>
-                    <div class="payment-main" >
-                        <div class="packeage-prise"> <p>₹ {{$record->price}}</p>  </div>
-                        <div> <button class="ser-inner-addtocart" id="add_to_cart_service" data-id="{{$record->id}}"> Add to Cart</button></div>
-                    </div>
-                </div>
+                    @if($price_show)
+                        <div class="payment-main">
+                            <div class="packeage-prise"> <p>₹ {{$record->price}}</p>  </div>
+                            <div> <button class="ser-inner-addtocart" id="add_to_cart_service" data-id="{{$record->id}}"> Add to Cart</button></div>
+                        </div>
+                    @else
+                        <div class="col-md-3">
+                            <a class="navbar-appointment-btn apt-btn" href="javascript:void(0)">Appointment Now</a>
+                        </div>
+                    @endif
             @endforeach
         @endif
     </div>
-    @if(isset($faqs->name) && isset($faqs->description))
+    <div class="row mb-3 text-center"> <a href="{{url('our-services')}}"><button class="ser-inner-addtocart">Explore More Services</button></a></div>
+    @if($faqs->count())
         <div class="faq-section-main">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class=" col-lg-10">
                         <div id="accordion" class="accordion">
+                        @foreach($faqs as $key => $faq)
                             <div class="accordion-box faq-text-content">
-                                <a href="#" class="accordion-header" data-target="acrd_1">{{isset($faqs->name) && $faqs->name ? $faqs->name :'' }}</a>
-                                <div class="accordion-content" id="acrd" style="display:block">
+                                <a href="#" class="accordion-header @if($key == 0) {{'active-accordion'}} @endif" data-target="acrd_1">{{ isset($faq->name) && $faq->name ? $faq->name : '' }}</a>
+                                <div class="accordion-content" id="acrd_{{$key+1}}" style="@if($key == 0) {{'display:block'}} @endif">
                                     <p class="accordion-text-content">
-                                        {!! isset($faqs->description) && $faqs->description ? $faqs->description :'' !!}
+                                        {!! isset($faq->description) && $faq->description ? $faq->description : '' !!}
                                     </p>
                                 </div>
                             </div>
+                        @endforeach
                         </div>
                     </div>
                 </div>
             </div>
-        </div> 
-    @endif
+        </div>
+     @endif
 </div>
-
 <!-- service inner page end -->
 @endsection
 @section('javascript')
@@ -124,6 +129,19 @@ $(document).ready(function(){
             }
         });
     }
+    $(function() {
+	    $(".accordion-header").click(function(event) {
+		    event.preventDefault();
+		    var dis = $(this);
+		    var acr_box = dis.closest(".accordion");
+            if(!dis.hasClass("active-accordion")){
+                acr_box.find(".accordion-header").removeClass("active-accordion");
+                dis.addClass("active-accordion");
+                acr_box.find(".accordion-content").slideUp();
+                dis.next().stop(true,true).slideToggle();
+            }
+	    });
+    });    
 });
 </script>
 @endsection

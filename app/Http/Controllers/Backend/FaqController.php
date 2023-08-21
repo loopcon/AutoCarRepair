@@ -22,6 +22,8 @@ class FaqController extends MainController
     {
         $return_data = array();       
         $return_data['site_title'] = trans('FAQ');
+        $servicecategories= ServiceCategory::select('id', 'title')->where([['is_archive', Constant::NOT_ARCHIVE], ['status', Constant::ACTIVE]])->get();
+        $return_data['servicecategories'] = $servicecategories;
         return view('backend.faq.list', array_merge($this->data, $return_data));
     }
 
@@ -43,7 +45,6 @@ class FaqController extends MainController
     public function store(Request $request)
     {
         $this->validate($request, [
-                'service_category_id' => ['required'],
                 'name' => ['required'],
                 'description' => ['required'],
             ],[
@@ -136,10 +137,16 @@ class FaqController extends MainController
     public function faqDatatable(request $request)
     {
         if($request->ajax()){
-            $roles = Session::get('roles');
-            $query = Faq::select('id', 'name','description')->where('is_archive', '=', Constant::ARCHIVE)->orderBy('id', 'DESC');
+            $query = Faq::with('serviceCategoryDetail')->select('id','name','description','service_category_id')->where('is_archive', '=', '0')->orderBy('id', 'DESC');
+            
+            if($request->serviceCategory!='all') {
+                if($request->serviceCategory!='') {
+                    $query->whereHas('serviceCategoryDetail', function($q) use ($request) {
+                        $q->where([['service_category_id', '=', $request->serviceCategory]]);
+                    });
+                }
+            }
             $list = $query->get();
-
             return DataTables::of($list)
                 ->addColumn('action', function ($row) {
                     $roles = Session::get('roles');
@@ -155,7 +162,11 @@ class FaqController extends MainController
                     $html = $row->description;
                     return $html;
                 })
-                ->rawColumns(['action','description'])
+                ->addColumn('service_category_id', function ($row) {
+                    $category = isset($row->serviceCategoryDetail->title) ? $row->serviceCategoryDetail->title : '';
+                    return $category;
+                })
+                ->rawColumns(['action','description','service_category_id'])
                 ->make(true);
         } else {
             return redirect('backend/dashboard');

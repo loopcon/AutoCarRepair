@@ -36,6 +36,49 @@
                     <input type="hidden" id="is_otp_verify" value="0">
                     <a href="javascript:void(0)" class="btn verify-otpbtn" id="send_otp">SEND OTP </a>
             </div>
+
+            <div class="select-address">
+                <h4>Add Address</h4>
+                <div>
+                    <div class="mb-3">
+                        <input type="text" class="form-control" id="address" required="" name="address" aria-describedby="emailHelp" placeholder="Enter Address">
+                    </div>
+                    <div class="row ">
+                        <div class="col-12 col-sm-6">
+                            <div class="mb-3">
+                                <input type="text" class="form-control num_only" required="" id="zip" maxlength="6" name="zip" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Pincode">
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6">
+                            <div class="mb-3">
+                                <input type="text" class="form-control" name="city" required="" id="city" aria-describedby="emailHelp" placeholder="City">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row m-0">
+                        @if(isset($addresses) && $addresses->count())
+                            <div class="col-12">
+                                <p>Choose From Saved Addresses</p>
+                                @foreach($addresses as $aval)
+                                    <div class="row m-0 choose-address-main mb-3">
+                                        <input type="radio" name="address_radio" value="{{$aval->id}}" class="form-check-input address_radio">
+                                        <input type="hidden" id='uaddress{{$aval->id}}' value="{{$aval->address}}">
+                                        <input type="hidden" id='uzip{{$aval->id}}' value="{{$aval->zip}}">
+                                        <input type="hidden" id='ucity{{$aval->id}}' value="{{$aval->city}}">
+                                        <div class="col-3">
+                                            <i class="fa-solid fa-location-dot"></i>
+                                        </div>
+                                        <div class="col-9">
+                                            <p> {{$aval->address}} , {{$aval->zip}}, {{$aval->city}}</p>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>  
+                        @endif
+                    </div>
+                </div>
+            </div>
+
             <div class="Choose-service-date-main d-none" id="service_slot_section">
                 <h4>Choose service date</h4>
                 <div class="date-sec-main">
@@ -78,47 +121,7 @@
                     </div>
                 @endif
             </div>
-            <div class="select-address">
-                <h4>Add Address</h4>
-                <div>
-                    <div class="mb-3">
-                        <input type="text" class="form-control" id="address" required="" name="address" aria-describedby="emailHelp" placeholder="Enter Address">
-                    </div>
-                    <div class="row ">
-                        <div class="col-12 col-sm-6">
-                            <div class="mb-3">
-                                <input type="text" class="form-control num_only" required="" id="zip" maxlength="6" name="zip" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Pincode">
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-6">
-                            <div class="mb-3">
-                                <input type="text" class="form-control" name="city" required="" id="city" aria-describedby="emailHelp" placeholder="City">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row m-0">
-                        @if(isset($addresses) && $addresses->count())
-                            <div class="col-12">
-                                <p>Choose From Saved Addresses</p>
-                                @foreach($addresses as $aval)
-                                    <div class="row m-0 choose-address-main mb-3">
-                                        <input type="radio" name="address_radio" value="{{$aval->id}}" class="form-check-input address_radio">
-                                        <input type="hidden" id='uaddress{{$aval->id}}' value="{{$aval->address}}">
-                                        <input type="hidden" id='uzip{{$aval->id}}' value="{{$aval->zip}}">
-                                        <input type="hidden" id='ucity{{$aval->id}}' value="{{$aval->city}}">
-                                        <div class="col-3">
-                                            <i class="fa-solid fa-location-dot"></i>
-                                        </div>
-                                        <div class="col-9">
-                                            <p> {{$aval->address}} , {{$aval->zip}}, {{$aval->city}}</p>
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </div>  
-                        @endif
-                    </div>
-                </div>
-            </div>
+
             <div>
                 <div class="select-payment-main">
                     <h4>Payment Selection</h4>

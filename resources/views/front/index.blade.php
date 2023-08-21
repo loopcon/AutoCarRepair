@@ -13,8 +13,8 @@
                         <h2>{{ isset($hsetting->section1_title1) ? $hsetting->section1_title1 : ''}} </h2>
                         <h5>{{ isset($hsetting->section1_title2) ? $hsetting->section1_title2 : ''}}</h5>
                         <p>{{ isset($hsetting->section1_description) ? $hsetting->section1_description : ''}}</p>
-                        <!-- <a class="service apt-btn" href="javascript:void(0);"></a> -->
-                        <button>Get Service</button>
+                        <a class="service apt-btn" href="javascript:void(0);">Get Service</a>
+                        <!-- <button>Get Service</button> -->
                     </div>
                 </div>
                 <div class="col-12 col-md-6">

@@ -78,10 +78,7 @@ class ServiceController extends MainController
         $query->orderBy('id', 'desc');
         $services = $query->get();
 
-        // $category_id = $request->id;
-        // $faqs = Faq::select('id','service_category_id','name','description')->where('service_category_id',$category_id)->where('is_archive','0')->first();
-        // $return_data['faqs'] = $faqs;
-
+        
         $categoryInfo = ServiceCategory::select('*')->where([['slug', $category]])->first();
         $return_data = array();
         $meta_title = isset($categoryInfo->meta_title) && $categoryInfo->meta_title ? $categoryInfo->meta_title : NULL;
@@ -94,6 +91,8 @@ class ServiceController extends MainController
         if($brand && $model && $fuel){
             $return_data['price_show'] = '1';
         }
+        $faqs = Faq::select('id','service_category_id','name','description')->where('service_category_id',$categoryInfo->id)->where('is_archive','0')->get();
+        $return_data['faqs'] = $faqs;
         return view('front/service/detail',array_merge($this->data,$return_data));
     }
     // public function sendMassage(request $request)
