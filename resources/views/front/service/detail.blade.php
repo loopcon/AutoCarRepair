@@ -16,6 +16,7 @@
 <div class="service-innersection-mian">
     <div class="container">
     <h2 class="Scheduled-heading-seriner">Scheduled Packages</h2>
+        <h2>Scheduled Packages</h2>
         @if(isset($detail) && $detail->count())
             @foreach($detail as $record)
                 <div class="service-inner-mainbg">
@@ -26,6 +27,9 @@
                                 <h3 class="recommanded-heading">{{ $record->note }}</h3>
                             </div>
                         @endif 
+                            @if(isset($record->note) && $record->note)
+                                <h3 class="recommanded-heading">{{ $record->note }}</h3>
+                            @endif 
                             @if(isset($record->image) && $record->image)
                                 <img src="{{ asset('public/uploads/service/package/'.$record->image) }}" class="img-fluid" alt="">
                             @else
@@ -50,15 +54,19 @@
                                         <li>{{$record->recommended_info}}</li>
                                     </ul>
                                     <!-- <a href="#">View All</a> -->
+                                    <!-- <a href="#" class="more"><span>View All</span></a>  -->
                                 </div>
                                 @php($specifications = isset($record->specifications) && $record->specifications->count() ? $record->specifications : '')
                                 @if($specifications)
                                     @foreach($specifications as $srecord)
-                                        <div class="col-12 col-sm-6 basic-service-text-main">
+                                        <div class="col-12 col-sm-6 basic-service-text-main spacification" >
                                             <p><i class="fa-solid fa-circle-check"></i> {{$srecord->specification}} </p>
                                         </div>
                                     @endforeach
                                 @endif
+                                <div class="col-12 col-sm-6">
+                                    <a href="#" class="more"><small>+{{ $record->specifications->count()-5 }} more View All</small></a> 
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -70,45 +78,181 @@
                     @else
                         <div class="serin-appointment-btn-maingroup ">
                             <a class="serin-appointment-btn" href="javascript:void(0)">Appointment Now</a>
+                        <div class="col-md-3">
+                            <a class="navbar-appointment-btn apt-btn " href="javascript:void(0)">Appointment Now</a>
                         </div>
                     @endif
+                </div>
             @endforeach
         @endif
     </div>
     <div class="row mb-3 text-center"> <a href="{{url('our-services')}}"><button class="explore-more-btnseriner">Explore More Services</button></a></div>
     @if($faqs->count())
-        <div class="faq-section-main">
+        <div class="faq-section-main">    
+        <div class="row mb-3 text-center"> <a href="{{url('our-services')}}"><button class="ser-inner-addtocart">Explore More Services</button></a></div>
+        <!-- testimonial start  -->
+        <div class="testimonial-section">
             <div class="container">
-                <div class="row justify-content-center">
-                    <div class=" col-lg-10">
-                        <div id="accordion" class="accordion">
-                        @foreach($faqs as $key => $faq)
-                            <div class="accordion-box faq-text-content">
-                                <a href="#" class="accordion-header @if($key == 0) {{'active-accordion'}} @endif" data-target="acrd_1">{{ isset($faq->name) && $faq->name ? $faq->name : '' }}</a>
-                                <div class="accordion-content" id="acrd_{{$key+1}}" style="@if($key == 0) {{'display:block'}} @endif">
-                                    <p class="accordion-text-content">
-                                        {!! isset($faq->description) && $faq->description ? $faq->description : '' !!}
-                                    </p>
+                <div class="row m-0">
+                    <div class="col-12 col-md-6">
+                        <div class="row  m-0 testiminoal-img-main">
+                            <div class="col-12 col-sm-6 col-md-12 col-lg-6 testiminoal-img-item">
+                                <img src="{{ asset('front/img/testiminoal-img.png') }}" class="img-fluid" alt="">
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-12 col-lg-6">
+                                <div class="testiminoal-img-main-text">
+                                    <p>Testimonials</p>
+                                    <h4>What our customers are saying</h4>
                                 </div>
                             </div>
-                        @endforeach
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 testiminoal-carousel-sec-main">
+                        <div id="testiminoal-carousel" class="owl-carousel owl-theme">
+                            <div class="item">
+                                <div >
+                                    <div class="star-group-icon">
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <div class="test-slider-text">
+                                        <p>“The people at ACR are AMAZING. Their prices are more than fair and they work quickly. I had an instance…”</p>
+                                    </div>
+                                    <div class="test-rating-sec-main">   
+                                        <div>
+                                            <div class="test-rating-main">
+                                                <img src="{{ asset('front/img/alon-musk-img.png') }}" class="img-fluid" alt="">
+                                            </div>
+                                        </div>  
+                                        <div class="test-rating-sec-item">
+                                            <span>Elon Musk</span>
+                                            <p>10 April 2023</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div >
+                                    <div class="star-group-icon">
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <div class="test-slider-text">
+                                        <p>“The people at ACR are AMAZING. Their prices are more than fair and they work quickly. I had an instance…”</p>
+                                    </div>
+                                    <div class="test-rating-sec-main">   
+                                        <div>
+                                            <div class="test-rating-main">
+                                                <img src="{{ asset('front/img/alon-musk-img.png') }}" class="img-fluid" alt="">
+                                            </div>
+                                        </div>  
+                                        <div class="test-rating-sec-item">
+                                            <span>Elon Musk</span>
+                                            <p>10 April 2023</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div>
+                                    <div class="star-group-icon">
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <div class="test-slider-text">
+                                        <p>“The people at ACR are AMAZING. Their prices are more than fair and they work quickly. I had an instance…”</p>
+                                    </div>
+                                    <div class="test-rating-sec-main">   
+                                        <div>
+                                            <div class="test-rating-main">
+                                                <img src="{{ asset('front/img/alon-musk-img.png') }}" class="img-fluid" alt="">
+                                            </div>
+                                        </div>  
+                                        <div class="test-rating-sec-item">
+                                            <span>Elon Musk</span>
+                                            <p>10 April 2023</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div >
+                                    <div class="star-group-icon">
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <div class="test-slider-text">
+                                        <p>“The people at ACR are AMAZING. Their prices are more than fair and they work quickly. I had an instance…”</p>
+                                    </div>
+                                    <div class="test-rating-sec-main">   
+                                        <div>
+                                            <div class="test-rating-main">
+                                                <img src="{{ asset('front/img/alon-musk-img.png') }}" class="img-fluid" alt="">
+                                            </div>
+                                        </div>  
+                                        <div class="test-rating-sec-item">
+                                            <span>Elon Musk</span>
+                                            <p>10 April 2023</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-     @endif
+        <!-- testimonial end  -->
+
+        <!-- faq start -->
+        @if($faqs->count())
+            <div class="faq-section-main">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class=" col-lg-10">
+                            <div id="accordion" class="accordion">
+                                @foreach($faqs as $key => $faq)
+                                    <div class="accordion-box faq-text-content">
+                                        <a href="#" class="accordion-header @if($key == 0) {{'active-accordion'}} @endif" data-target="acrd_1">{{ isset($faq->name) && $faq->name ? $faq->name : '' }}</a>
+                                        <div class="accordion-content" id="acrd_{{$key+1}}" style="@if($key == 0) {{'display:block'}} @endif">
+                                            <p class="accordion-text-content">
+                                                {!! isset($faq->description) && $faq->description ? $faq->description : '' !!}
+                                            </p>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endif
+        <!-- faq end -->
+    </div>
 </div>
 <!-- service inner page end -->
 @endsection
 @section('javascript')
+<script src="{{ asset('front/js/owl.carousel.min.js') }}"></script>
 <script>
 $(document).ready(function(){
     $(document).on('click', '#add_to_cart_service', function(){
         var service_id = $(this).data('id');
         swal({
             title: "",
-            text: "Are you sure? You want to add this product to cart!",
+            text: "Thanks For Selecting This Service Package",
             type: "warning",
             showCancelButton: true,
             confirmButtonClass: "btn-danger",
@@ -145,7 +289,39 @@ $(document).ready(function(){
                 dis.next().stop(true,true).slideToggle();
             }
 	    });
-    });    
+    }); 
+
+    $('#testiminoal-carousel').owlCarousel({
+        loop: true,
+        margin: 30,
+        dots: true,
+        nav: false,
+        items: 1,
+        autoplay:true,
+        autoplayTimeout:2000,
+        autoplayHoverPause:true
+    });
+
+    $(document).ready(function () {
+        $('.spacification').hide();
+        $('.spacification:lt(5)').show();
+        var spacificationcount = $('.spacification').length;
+        if (spacificationcount <= 5) 
+        { 
+        $('.more').hide();
+        }
+        else 
+        {
+        $('.more').click(function () {
+        $('.spacification:not(:visible):lt(5)').show();
+        if($('.spacification:not(:visible)').length<=0)
+        {
+        $('.more').hide();
+        }
+        return false;
+        });
+        } 
+    });
 });
 </script>
 @endsection

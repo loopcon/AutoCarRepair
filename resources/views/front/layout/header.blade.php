@@ -208,6 +208,7 @@
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </div>
                     </div>
+                    <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#appointmentselectModal">Change</a>
                     <div class="row m-0 search-modal-box" id="amodal_models">
 
                     </div>
@@ -234,6 +235,7 @@
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </div>
                 </div>
+                <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#appointmentselectModal">Change</a>
                 <div class="row m-0 search-modal-box" id="amodal_fuels">
                 </div>
             </div>
