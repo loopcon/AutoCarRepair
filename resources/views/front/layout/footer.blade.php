@@ -4,7 +4,7 @@
         <div class="row m-0">
             <div class="col-12 col-sm-6 col-lg-3">
                 <div class="footer-img-main">
-                    <img src="{{ asset('front/img/acr-logo.png') }}"  alt="">
+                    <img src="{{ asset('front/img/acr-logo.webp') }}"  alt="">
                     <p>{{$footer_description}}</p>
                 </div>
                 
@@ -12,7 +12,7 @@
             <div class="col-12 col-sm-6 col-lg-4">
                 <div class="row m-0">
                     <div class="col-2">
-                        <img src="{{ asset('front/img/footer-location.png') }}" class="img-fluid" alt="">
+                        <img src="{{ asset('front/img/footer-location.webp') }}" class="img-fluid" alt="">
                     </div>
                     <div class="col-10 footer-address">
                         <p>{!! $address !!}</p>
@@ -20,7 +20,7 @@
                 </div>
                 <div class="row m-0 footer-email-main">
                     <div class="col-2">
-                        <img src="{{ asset('front/img/footer-email.png') }}" class="img-fluid" alt="">
+                        <img src="{{ asset('front/img/footer-email.webp') }}" class="img-fluid" alt="">
                     </div>
                     <div class="col-10 footer-email">
                         <p>Email US:</p>
@@ -29,7 +29,7 @@
                 </div>
                 <div class="row m-0 footer-call-main">
                     <div class="col-2">
-                        <img src="{{ asset('front/img/footer-call.png') }}" class="img-fluid" alt="">
+                        <img src="{{ asset('front/img/footer-call.webp') }}" class="img-fluid" alt="">
                     </div>
                     <div class="col-10 footer-call">
                         <p>Call:</p>
@@ -68,7 +68,7 @@
                 </ul>
             </div>
             <div class="col-2 col-sm-2 col-lg-1 footer-msgimg-main">
-                <img src="{{ asset('front/img/footer-msg.png') }}" class="img-fluid" alt="">
+                <img src="{{ asset('front/img/footer-msg.webp') }}" class="img-fluid" alt="">
             </div>  
         </div>
     </div>

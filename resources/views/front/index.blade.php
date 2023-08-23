@@ -13,7 +13,7 @@
                         <h2>{{ isset($hsetting->section1_title1) ? $hsetting->section1_title1 : ''}} </h2>
                         <h5>{{ isset($hsetting->section1_title2) ? $hsetting->section1_title2 : ''}}</h5>
                         <p>{{ isset($hsetting->section1_description) ? $hsetting->section1_description : ''}}</p>
-                        <a class="service apt-btn" href="javascript:void(0);">Get Service</a>
+                        <a class="get-service-btn apt-btn" href="javascript:void(0);">Get Service</a>
                         <!-- <button>Get Service</button> -->
                     </div>
                 </div>
@@ -77,7 +77,7 @@
             <div class="row m-0 why-choose-box-main">
                 <div class="col-12 col-md-6">
                     <div class="why-choose-img-main">
-                        <img src="{{ asset('front/img/advance-service-main.png') }}" class="img-fluid" alt="">
+                        <img src="{{ asset('front/img/advance-service-main.webp') }}" class="img-fluid" alt="">
                     </div>
                 </div>
                 <div class="col-12 col-md-6">
@@ -92,28 +92,28 @@
                         <div class="row m-0">
                             <div class="col-12 col-sm-6"> 
                                 <div class="why-choose-inner-item">
-                                    <img src="{{ asset('front/img/why-mechanic.png') }}" class="img-fluid" alt="">
+                                    <img src="{{ asset('front/img/why-mechanic.webp') }}" class="img-fluid" alt="">
                                     <h4>Skilled Technicians</h4>
                                     <p>We want to get you in and out quickly while providing you top notch auto repair service in Delhi.</p>
                                 </div>
                             </div>
                             <div class="col-12 col-sm-6">
                                 <div class="why-choose-inner-item">
-                                    <img src="{{ asset('front/img/why-qualservice.png') }}" class="img-fluid" alt="">
+                                    <img src="{{ asset('front/img/why-qualservice.webp') }}" class="img-fluid" alt="">
                                     <h4>Quality Services</h4>
                                     <p>We take pride in offering you the best services available and 100% Satisfaction Guarantee.</p>
                                 </div>
                             </div>
                             <div class="col-12 col-sm-6">
                                 <div class="why-choose-inner-item">
-                                    <img src="{{ asset('front/img/why-car-insurance.png') }}" class="img-fluid" alt="">
+                                    <img src="{{ asset('front/img/why-car-insurance.webp') }}" class="img-fluid" alt="">
                                     <h4>Cashless Insurance Claims</h4>
                                     <p>We take pride in offering you the best services available and 100% Satisfaction Guarantee.</p>
                                 </div>
                             </div>
                             <div class="col-12 col-sm-6">
                                 <div class="why-choose-inner-item">
-                                    <img src="{{ asset('front/img/why-car-parts.png') }}" class="img-fluid" alt="">
+                                    <img src="{{ asset('front/img/why-car-parts.webp') }}" class="img-fluid" alt="">
                                     <h4>100% OEM Genuien Parts</h4>
                                     <p>We want to get you in and out quickly while providing you top notch auto repair service in Delhi.</p>
                                 </div>
@@ -156,7 +156,7 @@
             <div class="col-12 col-md-6">
                 <div class="row  m-0 testiminoal-img-main">
                     <div class="col-12 col-sm-6 col-md-12 col-lg-6 testiminoal-img-item">
-                        <img src="{{ asset('front/img/testiminoal-img.png') }}" class="img-fluid" alt="">
+                        <img src="{{ asset('front/img/testiminoal-img.webp') }}" class="img-fluid" alt="">
                     </div>
                     <div class="col-12 col-sm-6 col-md-12 col-lg-6">
                         <div class="testiminoal-img-main-text">
@@ -302,7 +302,7 @@
             </div>
             <div class="col-12  col-lg-6 save-more-img-main">
                 <div class="save-more-img">
-                    <img  class="img-fluid"  src="{{ asset('front/img/cont-blue-toyota.png') }}" alt="">
+                    <img  class="img-fluid"  src="{{ asset('front/img/cont-blue-toyota.webp') }}" alt="">
                 </div>
             </div>
         </div>
@@ -313,13 +313,13 @@
 <div class="form-section-bg">
     <div class="container">
         <div class="request-text-main">
-            <h3>Contact Us</h3>
+            <h3 class="owText">Contact Us</h3>
             <h2>Request an Appointment</h2>     
             <p>After you submit the form, a representative will call you back with the information you’ll need to make an appointment.</p>
         </div>
         <form method="POST" action="{{route('front_appointment-store')}}" id="appointment-form" enctype="multipart/form-data" data-parsley-validate="">
             @csrf
-                <div class="row m-0">
+                <div class="row">
                     <div class="col-12 col-sm-6">
                         <div class="mb-5">
                             <label for="exampleInputEmail1" class="form-label">YOUR NAME</label>
@@ -339,8 +339,7 @@
                         </div>
                         <div class="mb-5">
                             <label for="exampleInputEmail1" class="form-label">YOUR SERVICE</label>
-                            <select class="form-select select-arrow-bg" id="service" required="" name="service" aria-label="Default select example">
-                                <span class="d-block"><i class="fa-solid fa-chevron-down"></i></span>
+                            <select class="request-select-box" id="service" required="" name="service" aria-label="Default select example">
                                 <option selected disabled>Open this select menu </option>
                                 @foreach($scategories as $value)
                                     <option value="{{$value->id}}" {{isset($scategories->id) && $scategories->id == $value->id ? 'selected' : (old('id') && old('id') == $value->id ? 'selected' : '')}}>{{$value->title}}</option>
@@ -350,11 +349,6 @@
                             </select>
                             @if ($errors->has('service')) <div class="text-warning">{{ $errors->first('service') }}</div>@endif
                         </div>
-                    </div>
-                    <div class="form-group mb-3">
-                        <label for="exampleFormControlTextarea1" class="form-label">YOUR MESSAGE</label>
-                        <textarea class="form-control" id="message" name="message" rows="1" required=""></textarea>
-                        @if ($errors->has('message')) <div class="text-warning">{{ $errors->first('message') }}</div>@endif
                     </div>
                 </div>
 
@@ -373,6 +367,63 @@
     </div>
 </div>
 <!-- form section end  -->
+<!--service center section start -->
+<div class="container choose-service-centersection">
+    <div id="choose-service-center" class="owl-carousel owl-theme">
+        <div class="item">
+            <div>
+                <a href="#"  data-bs-toggle="modal" data-bs-target="#servicecenterModal"><img src="{{ asset('front/img/testiminoal-img.webp') }}" class="service-center-slider-img" alt=""></a>
+            </div>
+        </div>
+        <div class="item">
+          <div>
+            <a href="#" data-bs-toggle="modal" data-bs-target="#servicecenterModal"><img src="{{ asset('front/img/testiminoal-img.webp') }}" class="service-center-slider-img" alt=""></a>
+          </div>
+        </div>
+        <div class="item">
+            <a href="#" data-bs-toggle="modal" data-bs-target="#servicecenterModal"><img src="{{ asset('front/img/testiminoal-img.webp') }}" class="service-center-slider-img" alt=""></a>
+        </div>
+        <div class="item">
+              <a href="#" data-bs-toggle="modal" data-bs-target="#servicecenterModal"><img src="{{ asset('front/img/testiminoal-img.webp') }}" class="service-center-slider-img" alt=""></a>
+        </div>
+        <div class="item">
+            <a href="#" data-bs-toggle="modal" data-bs-target="#servicecenterModal"><img src="{{ asset('front/img/testiminoal-img.webp') }}" class="service-center-slider-img" alt=""></a>
+        </div>
+        <div class="item">
+            <a href="#" data-bs-toggle="modal" data-bs-target="#servicecenterModal"><img src="{{ asset('front/img/testiminoal-img.webp') }}" class="service-center-slider-img" alt=""></a>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="servicecenterModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog servicecenter-dailog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div>
+                        <img src="{{ asset('front/img/advance-service-main.webp') }}" class="service-center-popupimg" alt="">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="servicecenteraddress-main">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <p>Unit-1 Plot, 29 & 30, near Kargil Shaheed Sukhbir Singh Yadav Marg, Info Technology Park, Sector 34, Gurugram, Haryana 122001 </p>
+                    </div>
+                    <div class="servicecenter-call-main">
+                        <i class="fa-solid fa-phone"></i>
+                        <a href="#">9967564432</a>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+<!--service center section end -->
 @endsection
 @section('javascript')
 <script src="{{ asset('plugins/parsley/parsley.js') }}"></script>
@@ -422,6 +473,28 @@
             }
         }
 
+        });
+        $('#choose-service-center').owlCarousel({
+            loop: true,
+            margin: 30,
+            dots: false,
+            nav: true,
+            items: 4,
+            responsiveClass: true,
+            responsive: {
+                0: {
+                items: 1
+                },
+                450:{
+                items: 2
+                },
+                600: {
+                items: 3
+                },
+                1024: {
+                items: 4
+                }
+            }
         });
     });
     // if ( getElementById( 'name' ) == null )

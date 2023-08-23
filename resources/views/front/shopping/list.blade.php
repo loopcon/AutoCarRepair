@@ -1,7 +1,7 @@
 @extends('front.layout.main')
 @section('content')
 <!-- shoping page start  -->
-<div class="shoping-breadcrum-bg">
+<div class="shoping-breadcrum-bg shoping-category-bg">
     <div class="container">
         <ul class="shoping-breadcrum-main">
             <li><a href="{{url('shopping')}}">Shopping </a></li>
@@ -15,6 +15,7 @@
         <div class="row">
             <div class="col-12  col-md-4 col-lg-3">
                 <div class="fliter-main">
+                    <h4 class="shop-category-heading">Shop by Categories</h4>
                     <ul>
                         @if($scategories->count())
                             @foreach($scategories as $category)
@@ -37,15 +38,17 @@
                                 <a href="{{url('shopping/'.$product->slug)}}">
                                     <div class="shoping-main-product">
                                         @if(isset($product->primaryImage->image) && $product->primaryImage->image)
-                                            <img src="{{ asset('public/uploads/product/'.$product->id.'/'.$product->primaryImage->image) }}" class="img-fluid" alt="">
+                                            <img src="{{ asset('public/uploads/product/'.$product->id.'/'.$product->primaryImage->image) }}"  alt="">
                                         @else
                                             <img src="{{ asset('front/img/no_image.jpg') }}" class="img-fluid" alt="">
                                         @endif
-                                        <h5><a href="{{url('shopping/'.$product->slug)}}">{{$product->name}}</a></h5>
-                                        <h5>{{isset($product->shopCategoryDetail->name) ? $product->shopCategoryDetail->name : ''}}</h5>
+                                        <div class="shoping-text-name">
+                                            <h5><a href="{{url('shopping/'.$product->slug)}}">{{$product->name}}</a></h5>
+                                            <h5>{{isset($product->shopCategoryDetail->name) ? $product->shopCategoryDetail->name : ''}}</h5>
+                                        </div>
                                         <div class="shoping-card-prise">
                                             <div class="shoping-card-text"><p>₹{{formatNumber($product->price)}}</p></div>
-                                            <?php /*<div class="shoping-star-group">
+                                          <?php /*  <div class="shoping-star-group">
                                                 <i class="fa-solid fa-star"></i>
                                                 <i class="fa-solid fa-star"></i>
                                                 <i class="fa-solid fa-star"></i>

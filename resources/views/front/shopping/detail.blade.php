@@ -11,111 +11,120 @@
     </div>
 </div>
 
-<div class="shopping-innerbg-secmain">
+<div class="shopping-innerbg-secmain"> 
     <div class="container">
-        <div class="shopping-innerbg">
-            <div class="row">
-                <div class="col-12 col-md-6">
-                    <div id="sync1" class="owl-carousel owl-theme">
-                        @if(isset($record->images) && $record->images->count())
-                            @foreach($record->images as $image)
-                                <div class="item">
-                                    <div class="product-inner-imgmain">
-                                        <img src="{{ asset('public/uploads/product/'.$record->id.'/'.$image->image) }}" class="img-fluid" alt="">
-                                    </div>
+    <div class="shopping-innerbg">
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <div id="sync1" class="owl-carousel owl-theme">
+                    @if(isset($record->images) && $record->images->count())
+                        @foreach($record->images as $image)
+                            <div class="item">
+                                <div class="product-inner-imgmain">
+                                    <img src="{{ asset('public/uploads/product/'.$record->id.'/'.$image->image) }}" class="img-fluid" alt="">
                                 </div>
-                            @endforeach
-                        @endif
-                    </div>
-                    <div id="sync2" class="owl-carousel owl-theme">
-                        @if(isset($record->images) && $record->images->count())
-                            @foreach($record->images as $image)
-                                <div class="item">
-                                    <div class="product-inner-imgmain">
-                                        <img src="{{ asset('public/uploads/product/'.$record->id.'/'.$image->image) }}" class="img-fluid" alt="">
-                                    </div>
-                                </div>
-                            @endforeach
-                        @endif
-                    </div>
+                            </div>
+                        @endforeach
+                    @endif
                 </div>
-                <div class="col-12 col-md-6">
-                    <div class="product-content-main">
-                        <h2>{{$record->name}}</h2>
-                        <div class="share-image">
-                            <p>Share</p>
-                           <?php /* <a href="https://web.whatsapp.com/send?text={{url('shopping/'.$record->slug)}}" data-action="share/whatsapp/share" target="blank">
-                                <img src="{{ asset('front/img/shop-whatsapp.png') }}"  alt="">
-                            </a> */ ?>
-                            <a href="https://www.facebook.com/sharer/sharer.php?u={{url('shopping/'.$record->slug)}}"  target="blank">
-                                <img src="{{ asset('front/img/shop-facebook.png') }}" alt="">
-                            </a>
-                            <?php /* <a href="https://twitter.com/intent/tweet?url={{url('shopping/'.$record->slug)}}" target="blank">
-                                <img src="{{ asset('front/img/shop-twitter.png') }}" alt="">
-                            </a> */ ?>
-                        </div>
-                        <?php /* <a class="write-text" href="#">Write A Review </a> */ ?>
-                        <div class="shop-inner-prise">
-                            <div class="shopinner-prise-text"><p>₹{{formatNumber($record->price)}}</p></div>
-                            <div class="quantity-sec-main">
-                                <p>Quantity</p>
-                                <input type="hidden" name="product_id" id="product_id" value="{{$record->id}}">
-                                <input type="hidden" name="qty" value="1">
-                                <div class="frame">
-                                    <div class="plus-minus-main">
-                                        <div class="button plus-col minus-btn-col-1">
-                                            <button id="minus-btn"><i class="fa-solid fa-trash-can"></i></button>
-                                        </div>
-                                        <div class="number plus-col text-btn-col-2">
-                                            <h1 id="count">1</h1>
-                                        </div>
-                                        <div class="button plus-col plus-btn-col-1">
-                                            <button id="plus-btn"><i class="fa-solid fa-plus"></i></button>
-                                        </div>
-                                    </div>
+                <div id="sync2" class="owl-carousel owl-theme">
+                    @if(isset($record->images) && $record->images->count())
+                        @foreach($record->images as $image)
+                            <div class="item">
+                                <div class="product-inner-imgmain">
+                                    <img src="{{ asset('public/uploads/product/'.$record->id.'/'.$image->image) }}" class="img-fluid" alt="">
                                 </div>
                             </div>
-                        </div>
-                        <div class="row justify-content-center">
-                            <div class="col-12 col-sm-6">
-                                <button class="addtocard-shopinner" id="add_to_cart">Add To Cart</button>
-                            </div>
-                        </div>
-                        <div class="row justify-content-center"> 
-                            @if($record->amazon_link)
-                                <div class="col-12 col-sm-6">
-                                    <button class="buyfrom-shopinner" onclick="window.open('https://{{$record->amazon_link}}', '_blank')">Buy From Amazon</button>
-                                </div>
-                            @endif
-                            @if($record->flipcart_link)
-                                <div class="col-12 col-sm-6">
-                                    <button class="buyfrom-shopinner" onclick="window.open('https://{{$record->flipcart_link}}', '_blank')">Buy From Flipcart</button>
-                                </div>
-                            @endif
-                        </div>
-                    </div>
+                        @endforeach
+                    @endif
                 </div>
             </div>
-        </div>
-        <div>
-            <div class="description-main">
-                <ul id="tabs">
-                    <li class="description-btn active"> Description</li>
-                    <li class="specification-btn">Specification</li>
-                </ul>
-                <ul id="tab">
-                    <li class="active">
-                        <p>{!! $record->description !!}</p>
-                    </li>
-                    <li>
-                        <ul class="specification-tab-text">
-                            {!! $record->specification !!}
-                        </ul>
-                    </li>
-                </ul>
+            <div class="col-12 col-md-6">
+                <div class="product-content-main">
+                    <h2>{{$record->name}}</h2>
+                    <div class="share-image">
+                        <p>Share</p>
+                    <?php /*   <a href="https://web.whatsapp.com/send?text={{url('shopping/'.$record->slug)}}" data-action="share/whatsapp/share" target="blank">
+                            <img src="{{ asset('front/img/shop-whatsapp.png') }}"  alt="">
+                        </a> */ ?>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u={{url('shopping/'.$record->slug)}}"  target="blank">
+                            <img src="{{ asset('front/img/shop-facebook.png') }}" alt="">
+                        </a>
+                    <?php /*    <a href="https://twitter.com/intent/tweet?url={{url('shopping/'.$record->slug)}}" target="blank">
+                            <img src="{{ asset('front/img/shop-twitter.png') }}" alt="">
+                        </a> */ ?>
+                    </div>
+                    <?php /* <a class="write-text" href="#">Write A Review </a> */ ?>
+                    <div class="shop-inner-prise">
+                        <div class="shopinner-prise-text"><p>₹{{formatNumber($record->price)}}</p></div>
+                        <div class="quantity-sec-main">
+                            <p>Quantity</p>
+                            <input type="hidden" name="product_id" id="product_id" value="{{$record->id}}">
+                            <input type="hidden" name="qty" value="1">
+                            <div class="frame">
+                                <div class="plus-minus-main">
+                                      <div class="button plus-col minus-btn-col-1">
+                                          <button id="minus-btn"><i class="fa-solid fa-minus"></i></button>
+                                      </div>
+                                      <div class="number plus-col text-btn-col-2">
+                                          <h1 id="count">1</h1>
+                                      </div>
+                                      <div class="button plus-col plus-btn-col-1">
+                                          <button id="plus-btn"><i class="fa-solid fa-plus"></i></button>
+                                    </div>
+                                  </div>
+                              </div>
+                        </div>
+                    </div>
+                    <?php /* <div>
+                        <button class="addtocard-shopinner" id="add_to_cart">Add To Cart</button>
+                        @if($record->amazon_link)
+                            <button class="buyfrom-shopinner" onclick="window.open('https://{{$record->amazon_link}}', '_blank')">Buy From Amazon</button>
+                        @endif
+                        @if($record->flipcart_link)
+                            <button class="buyfrom-shopinner" onclick="window.open('https://{{$record->flipcart_link}}', '_blank')">Buy From Flipcart</button>
+                        @endif
+                    </div> */ ?>
+                    <div class="row justify-content-center">
+                        <div class="col-12 col-sm-6">
+                            <button class="addtocard-shopinner" id="add_to_cart">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center"> 
+                        @if($record->amazon_link)
+                            <div class="col-12 col-sm-6">
+                                <button class="buyfrom-shopinner" onclick="window.open('https://{{$record->amazon_link}}', '_blank')">Buy From Amazon</button>
+                            </div>
+                        @endif
+                        @if($record->flipcart_link)
+                            <div class="col-12 col-sm-6">
+                                <button class="buyfrom-shopinner" onclick="window.open('https://{{$record->flipcart_link}}', '_blank')">Buy From Flipcart</button>
+                            </div>
+                        @endif
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+    <div>
+        <div class="description-main">
+            <ul id="tabs">
+                <li class="description-btn active"> Description</li>
+                <li class="specification-btn">Specification</li>
+            </ul>
+            <ul id="tab">
+                <li class="active">
+                    <p>{!! $record->description !!}</p>
+                </li>
+                <li>
+                    <ul class="specification-tab-text">
+                        {!! $record->specification !!}
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
 </div>
 <!-- product-inner page end -->
 @endsection

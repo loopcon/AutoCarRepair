@@ -21,13 +21,13 @@
 <div class="container">
     <div class="row m-0 top-navbar-main">
         <div class="col-12 col-md-6">
-            <a href="{{route('front_/')}}"><img src="{{ asset('front/img/acr-logo.png') }}" class="acr-logo" alt=""></a>
+             <a href="{{route('front_/')}}"><img src="{{ asset('front/img/acr-logo.webp') }}" class="acr-logo" alt=""></a>
         </div>
         <div class="col-12 col-md-6">
             <div class="topbar-email-call">
                 <div class="top-email-main">
                     <div class="email-main">
-                        <img src="{{ asset('front/img/top-email.png') }}" alt="">
+                        <img src="{{ asset('front/img/top-email.webp') }}" alt="">
                     </div>
                     <div class="top-email-text">
                         <p >Mail</p>
@@ -36,7 +36,7 @@
                 </div>
                 <div class="top-call-main">
                     <div class="call-img-main">
-                        <img src="{{ asset('front/img/top-call.png') }}" alt="">
+                        <img src="{{ asset('front/img/top-call.webp') }}" alt="">
                     </div>
                     <div class="top-call-text">
                         <p>Call US</p>
@@ -60,12 +60,27 @@
                     <li><a  class="@if($page == 'service-center'){{'acr-active'}}@endif" href="{{url('service-center')}}">Service Center</a></li>
                     <li><a href="#">Blog</a></li>
                     <li><a class="@if($page == 'shopping'){{'acr-active'}}@endif" href="{{url('shopping')}}">Shopping</a></li>
+                    <li class="dropdown ">
+                        <a class="nav-link login-icon-text dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa fa-user"></i>
+                        </a>
+                        <ul class="dropdown-menu login-icon-main" aria-labelledby="navbarDropdown">
+                            @if(!Auth::guard('user')->check())
+                                <li><a class="dropdown-item text-black" href="{{route('front_login')}}">Login</a></li>
+                                <li><a class="dropdown-item text-black" href="{{route('front_register')}}">Register</a></li>
+                            @else
+                                <li><a class="dropdown-item text-black" href="{{route('front_my-profile')}}">My Profile</a></li>
+                                <li><a class="dropdown-item text-black" href="{{route('front_my-orders')}}">My Orders</a></li>
+                                <li><a class="dropdown-item text-black" href="{{route('front_logout')}}">Logout</a></li>
+                            @endif
+                        </ul>
+                    </li>
                 </ul>
             </div>
             <div class="search-main-section">
                 <div class="search-icon-main">
-                    {{-- <img data-bs-toggle="modal" data-bs-target="#searchbarModal"  src="{{ asset('front/img/navbar-search-icon.png') }}" alt=""> --}}
-                    <span class="search-svg-main" data-bs-toggle="modal" data-bs-target="#searchbarModal" ><i class="fa-solid fa-magnifying-glass"></i></span>
+                    <?php /* <img data-bs-toggle="modal" data-bs-target="#searchbarModal"  src="{{ asset('front/img/navbar-search-icon.png') }}" alt=""> */ ?>
+                     <span class="search-svg-main" data-bs-toggle="modal" data-bs-target="#searchbarModal" ><i class="fa-solid fa-magnifying-glass"></i></span>
                 </div>
                 <div class="modal fade" id="searchbarModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog searchbar-dialog">
@@ -85,29 +100,8 @@
                 <div>
                     <a class="navbar-appointment-btn apt-btn" href="javascript:void(0)" >Appointment Now</a>
                 </div>
-                <div>
-                    <ul class="login-main-section">
-                        <li class="dropdown ">
-                            <a class="nav-link login-icon-text dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fa fa-user"></i>
-                            </a>
-                            <ul class="dropdown-menu login-icon-main" aria-labelledby="navbarDropdown">
-                                @if(!Auth::guard('user')->check())
-                                    <li><a class="dropdown-item text-black" href="{{route('front_login')}}">Login</a></li>
-                                    <li><a class="dropdown-item text-black" href="{{route('front_register')}}">Register</a></li>
-                                @else
-                                    <li><a class="dropdown-item text-black" href="{{route('front_my-profile')}}">My Profile</a></li>
-                                    <li><a class="dropdown-item text-black" href="{{route('front_my-orders')}}">My Orders</a></li>
-                                    <li><a class="dropdown-item text-black" href="{{route('front_logout')}}">Logout</a></li>
-                                @endif
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-                <div>
-                    <a href="{{url('checkout')}}" class="card-icon-main"><i class="fa fa-cart-plus"></i><span id="cart_header_total_item"></span></a>
-                </div>
             </div>
+            <a href="{{url('checkout')}}" class="card-icon-main"><i class="fa fa-cart-plus"></i><span id="cart_header_total_item"></span></a>
         </div>
     </div>
 </div>
@@ -116,13 +110,13 @@
     <div class="container">
         <div class="mobile-menu-sectiondata">
             <div class="mo-logo">
-                <img src="{{ asset('front/img/acr-logo.png') }}" class="acr-logo" alt="">
+                <img src="{{ asset('front/img/acr-logo.webp') }}" class="acr-logo" alt="">
             </div>
             <div class="mo-appointmentbtn">
                 <div class="mo-search-main-section">
                     <div class="search-icon-main">
-                        <span class="search-svg-main" data-bs-toggle="modal" data-bs-target="#mosearchbarModal"><i class="fa-solid fa-magnifying-glass"></i></span>
-                        {{-- <img   src="{{ asset('front/img/navbar-search-icon.png') }}" alt=""> --}}
+                        <?php /*<img data-bs-toggle="modal" data-bs-target="#mosearchbarModal"  src="{{ asset('front/img/navbar-search-icon.png') }}" alt=""> */ ?>
+                        <span class="search-svg-main" data-bs-toggle="modal" data-bs-target="#mosearchbarModal" ><i class="fa-solid fa-magnifying-glass"></i></span>
                     </div>
                     <div class="modal fade" id="mosearchbarModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog mosearchbar-dialog">

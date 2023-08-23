@@ -1,7 +1,7 @@
 @extends('front.layout.main')
 @section('content')
 <div class="shop-center-tophead">
-    <img src="{{ asset('front/img/service-inner-bg.png') }}" class="img-fluid" alt="">
+    <img src="{{ asset('front/img/service-inner-bg.webp') }}" class="img-fluid" alt="">
     <div class="shop-center-text">
         <h2>{{ strtoupper($site_title) }}</h2>
         <ul class="shop-center-breadcum">

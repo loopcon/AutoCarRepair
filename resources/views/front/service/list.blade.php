@@ -13,7 +13,7 @@
                         @if(in_array($service->id, $carray) && isset($brand) && isset($model) && isset($fuel))
                             @php($href = $service->slug.'/'.$brand.'/'.$model.'/'.$fuel)
                         @endif
-                        <a href="{{url($href)}}">
+                        <a class="servic-type-box-section" href="{{url($href)}}">
                             <div class="servic-type-box">
                                 <img src="{{asset('front/img/our-service-img.png')}}" class="img-fluid" alt="">
                                 <h4>{{ $service->title }}</h4>
