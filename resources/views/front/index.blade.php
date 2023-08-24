@@ -370,58 +370,47 @@
 <!--service center section start -->
 <div class="container choose-service-centersection">
     <div id="choose-service-center" class="owl-carousel owl-theme">
-        <div class="item">
-            <div>
-                <a href="#"  data-bs-toggle="modal" data-bs-target="#servicecenterModal"><img src="{{ asset('front/img/testiminoal-img.webp') }}" class="service-center-slider-img" alt=""></a>
-            </div>
-        </div>
-        <div class="item">
-          <div>
-            <a href="#" data-bs-toggle="modal" data-bs-target="#servicecenterModal"><img src="{{ asset('front/img/testiminoal-img.webp') }}" class="service-center-slider-img" alt=""></a>
-          </div>
-        </div>
-        <div class="item">
-            <a href="#" data-bs-toggle="modal" data-bs-target="#servicecenterModal"><img src="{{ asset('front/img/testiminoal-img.webp') }}" class="service-center-slider-img" alt=""></a>
-        </div>
-        <div class="item">
-              <a href="#" data-bs-toggle="modal" data-bs-target="#servicecenterModal"><img src="{{ asset('front/img/testiminoal-img.webp') }}" class="service-center-slider-img" alt=""></a>
-        </div>
-        <div class="item">
-            <a href="#" data-bs-toggle="modal" data-bs-target="#servicecenterModal"><img src="{{ asset('front/img/testiminoal-img.webp') }}" class="service-center-slider-img" alt=""></a>
-        </div>
-        <div class="item">
-            <a href="#" data-bs-toggle="modal" data-bs-target="#servicecenterModal"><img src="{{ asset('front/img/testiminoal-img.webp') }}" class="service-center-slider-img" alt=""></a>
-        </div>
-    </div>
-    <!-- Modal -->
-    <div class="modal fade" id="servicecenterModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog servicecenter-dailog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <div class="row">
-                <div class="col-md-6">
-                    <div>
-                        <img src="{{ asset('front/img/advance-service-main.webp') }}" class="service-center-popupimg" alt="">
-                    </div>
+        @if($service_center->count())
+            @foreach($service_center as $detail)
+                <div class="item">
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#servicecenterModal-{{$detail->id}}"><img src="{{ asset('uploads/servicecenterdetail/'.$detail->image) }}" class="service-center-slider-img detail" alt=""></a>
                 </div>
-                <div class="col-md-6">
-                    <div class="servicecenteraddress-main">
-                        <i class="fa-solid fa-location-dot"></i>
-                        <p>Unit-1 Plot, 29 & 30, near Kargil Shaheed Sukhbir Singh Yadav Marg, Info Technology Park, Sector 34, Gurugram, Haryana 122001 </p>
+            @endforeach
+        @endif        
+    </div>
+    @if($popup_detail->count())
+        @foreach($popup_detail as $detail)
+            <!-- Modal -->
+            <div class="modal fade" id="servicecenterModal-{{$detail->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog servicecenter-dailog">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="servicecenter-call-main">
-                        <i class="fa-solid fa-phone"></i>
-                        <a href="#">9967564432</a>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div>
+                                    <img src="{{ asset('uploads/servicecenterdetail/'.$detail->image) }}" class="service-center-popupimg" alt="">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="servicecenteraddress-main">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                    <p>{{$detail->address}}</p>
+                                </div>
+                                <div class="servicecenter-call-main">
+                                    <i class="fa-solid fa-phone"></i>
+                                    <a href="#">{{$detail->phone_number}}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     </div>
                 </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
+        @endforeach
+    @endif
 </div>
 <!--service center section end -->
 @endsection

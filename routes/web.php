@@ -150,6 +150,7 @@ Route::group(['prefix' => 'backend','as' => 'admin_'], function() {
 
         Route::get('service-center-detail', [\App\Http\Controllers\Backend\ServiceCenterDetailController::class, 'index'])->name('service-center-detail');
         Route::post('service-center-detail-update', [\App\Http\Controllers\Backend\ServiceCenterDetailController::class, 'update'])->name('service-center-detail-update');
+        Route::post('service-center-delete', [App\Http\Controllers\Backend\ServiceCenterDetailController::class, 'serviceCenterDelete'])->name('service-center-delete');
 
         Route::get('enquiry',[App\Http\Controllers\Backend\EnquiryController::class, 'index'])->name('enquiry')->middleware('XSS');
         Route::post('enquiry-datatable', [App\Http\Controllers\Backend\EnquiryController::class, 'enquiryDatatable'])->name('enquiry-datatable');

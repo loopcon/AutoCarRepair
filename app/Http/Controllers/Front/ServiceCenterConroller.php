@@ -13,8 +13,8 @@ class ServiceCenterConroller extends MainController
     {
         $return_data = array();
         $return_data['site_title'] = trans('Service Center');
-        $record = ServiceCenterDetail::select('id', 'name', 'address','phone_number','image')->first();
-        $return_data['record'] = $record;
+        $service_center = ServiceCenterDetail::orderBy('id','desc')->get();
+        $return_data['service_center'] = $service_center;
         return view('front/servicecenter/index',array_merge($this->data,$return_data));
     }
 }

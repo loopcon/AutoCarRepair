@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\ServiceCenterDetail;
+use Illuminate\Support\Facades\Crypt;
 use Auth;
 
 class ServiceCenterDetailController extends MainController
@@ -13,31 +14,63 @@ class ServiceCenterDetailController extends MainController
     {
         $return_data = array();
         $return_data['site_title'] = trans('Service Center Detail');
-        $return_data['record'] =  ServiceCenterDetail::find(1);
+        $return_data['scdetail'] =  ServiceCenterDetail::orderBy('id','asc')->get();
         return view('backend.service_center_detail.index',array_merge($this->data,$return_data));
     }
 
     public function update(request $request)
     {
-        $service_center_detail = ServiceCenterDetail::find(1);
-        $fields = array('name','address','phone_number');
-        foreach($fields as $field){
-            $service_center_detail->$field = isset($request->$field) && $request->$field != '' ? $request->$field : NULL;
-        }
-        if($request->hasFile('image')) {
-            $old_image = isset($service_center_detail->image) ? $service_center_detail->image : NULL;
-            if($old_image){
-                removeFile('uploads/servicecenterdetail/'.$old_image);
+        $return_data = array();       
+        $total = $request->last_id;
+        if($total){
+            for($i = 0; $i < $total; $i++){
+                $id = 'id_'.$i;
+                $name = 'name_'.$i;
+                if(isset($request->$name)){
+                    $image = 'image_'.$i;
+                    $name = 'name_'.$i;
+                    $address = 'address_'.$i;
+                    $phone_number = 'phone_number_'.$i;
+                    if($request->$id){
+                        $id_val = Crypt::decrypt($request->$id);
+                        $scdetail = ServiceCenterDetail::find($id_val);
+                        $scdetail->updated_by = Auth::guard('admin')->user()->id;
+                    } else {
+                        $scdetail = new ServiceCenterDetail();
+                        $scdetail->created_by = Auth::guard('admin')->user()->id;
+                    }
+
+                    $scdetail->name = $request->$name ? $request->$name : NULL;
+                    $scdetail->address = $request->$address ? $request->$address : NULL;
+                    $scdetail->phone_number = $request->$phone_number ? $request->$phone_number : NULL;
+                    if($request->hasFile($image)) {
+                        if($request->$id){
+                            $old_image = $scdetail->image;
+                            if($old_image){
+                                removeFile('uploads/servicecenterdetail/'.$old_image);
+                            }
+                        }
+                        $newName = fileUpload($request, $image, 'uploads/servicecenterdetail/');
+                        $scdetail->image = $newName;
+                    }
+                    $scdetail->save();
+                }
             }
-            $newName = fileUpload($request, 'image', 'uploads/servicecenterdetail');
-            $service_center_detail->image = $newName;
         }
-        $service_center_detail->updated_by = Auth::guard('admin')->user()->id;
-        $service_center_detail->save();
-        if($service_center_detail){
+        if($scdetail){
             return redirect()->back()->with('success ',trans('Service Center Detail Updated Uccessfully'));
         }else{
             return redirect()->back()->with('error ',trans('Something went wrong, please try again later!'));
         }
+    }
+
+    public function serviceCenterDelete(request $request)
+    {
+        $scdetail = ServiceCenterDetail::where('id', $request->id)->first();
+        $old_image = $scdetail->image;
+        if($old_image){
+            removeFile('uploads/servicecenterdetail/'.$old_image);
+        }
+        ServiceCenterDetail::where('id', $request->id)->delete();
     }
 }
