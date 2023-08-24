@@ -48,8 +48,10 @@ class CheckoutController extends MainController
         }
         $aslots = PickUpSlotSetting::select('id', 'time', 'slot')->where('slot', Constant::AFTERNOON)->orderBy('id')->get();
         $eslots = PickUpSlotSetting::select('id', 'time', 'slot')->where('slot', Constant::EVENING)->orderBy('id')->get();
+        $mslots = PickUpSlotSetting::select('id', 'time', 'slot')->where('slot', Constant::MORNING)->orderBy('id')->get();
         $return_data['aslots'] = $aslots;
         $return_data['eslots'] = $eslots;
+        $return_data['mslots'] = $mslots;
         return view('front/checkout/index',array_merge($this->data,$return_data));
     }
 
@@ -223,5 +225,53 @@ class CheckoutController extends MainController
         $return_data = array();
         $return_data['site_title'] = trans('Thank you');
         return view('front/thank_you',array_merge($this->data,$return_data));
+    }
+    
+    public function getAvailableSlot(request $request){
+        if($request->ajax()){
+            $date = $request->date;
+            $today = date('Y-m-d');
+
+            $slot_ids = array();
+            if($date == $today){
+                $slots = PickUpSlotSetting::select('id', 'time', 'slot')->orderBy('id')->get();
+                foreach($slots as $slot){
+                    $slot_time = $slot->time;
+                    $slot_time = str_replace(' ', '', $slot_time);
+                    $slotarray = explode('-', $slot_time);
+                    $slot1 = isset($slotarray[0]) ? $slotarray[0] : NULL;
+                    $slot2 = isset($slotarray[1]) ? $slotarray[1] : NULL;
+                    $slot2 = str_replace('PM', '', $slot2);
+                    $time_type = 'PM';
+                    if( $slot2 && strpos( $slot2, "AM" ) !== false) {
+                        $time_type = 'AM';
+                    }
+                    $slot2 = str_replace('AM', '', $slot2);
+
+                    $stime1 = $today.' '.$slot1.':00 '.$time_type;
+                    $stime2 = $today.' '.$slot2.':00 '.$time_type;
+                    $current = time();
+                    if($current <= strtotime($stime1)){
+                        array_push($slot_ids, $slot->id);
+                    } else if( $current <= strtotime($stime2)){
+                        array_push($slot_ids, $slot->id);
+                    }
+                }
+                $aslots = PickUpSlotSetting::select('id', 'time', 'slot')->where('slot', Constant::AFTERNOON)->whereIn('id',$slot_ids)->orderBy('id')->get();
+                $eslots = PickUpSlotSetting::select('id', 'time', 'slot')->where('slot', Constant::EVENING)->whereIn('id',$slot_ids)->orderBy('id')->get();
+                $mslots = PickUpSlotSetting::select('id', 'time', 'slot')->where('slot', Constant::MORNING)->whereIn('id',$slot_ids)->orderBy('id')->get();
+            } else {
+                $aslots = PickUpSlotSetting::select('id', 'time', 'slot')->where('slot', Constant::AFTERNOON)->orderBy('id')->get();
+                $eslots = PickUpSlotSetting::select('id', 'time', 'slot')->where('slot', Constant::EVENING)->orderBy('id')->get();
+                $mslots = PickUpSlotSetting::select('id', 'time', 'slot')->where('slot', Constant::MORNING)->orderBy('id')->get();
+            }
+            $data = array('aslots' => $aslots, 'eslots' => $eslots, 'mslots' => $mslots);
+            $html = view('front/checkout/slot_ajax', array_merge($this->data, $data))->render();
+            $total_slots = $aslots->count() + $eslots->count() + $mslots->count();
+            echo json_encode(array('html' => $html, 'total_slots' => $total_slots));
+            exit;
+        } else {
+            return redirect('/');
+        }
     }
 }

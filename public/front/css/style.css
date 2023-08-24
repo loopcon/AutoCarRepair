@@ -345,9 +345,9 @@ ul#tabs li.specification-btn.active { background: #E56F31;color: #fff;border: 1p
 .otpinput-main {  position: relative;}
 .otpinput-main a{ position: absolute; top:22%; right: 2%; font-size: 16px; color: #000; text-decoration: none;} 
 .date-sec-main{ display: flex;}
-.date-main {  text-decoration: none; border: 1px solid #000; padding: 8px 20px; border-radius: 10px; color: #000; margin-right:15px; }
+.date-main {  text-decoration: none; border: 1px solid #000; padding: 8px 15px; border-radius: 10px; color: #000; margin-right:15px; }
 .date-main:hover{ color: #000000;}
-.date-main p { margin-bottom: 0px; text-align: center;}
+.date-main p { margin-bottom: 0px; text-align: center; font-size: 12px;}
 a.select-date{ border: 1px solid #E56F31; color: #E56F31; }
 .Choose-service-date-main{ background-color: #F2F2F2; padding: 20px; margin-top: 25px; margin-bottom: 20px; }
 .Choose-service-date-main h4{ color: #164498; font-size: 24px; font-weight: bold; }

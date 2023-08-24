@@ -30,7 +30,7 @@
                             <input type="text" class="form-control num_only" id="otp" name="otp" aria-describedby="emailHelp" placeholder="OTP">
                             <div id="resend_text"><b>Resend OTP in <span id="timer"></span> seconds</b></div>
                         </div>
-                        <a href="javascript:void(0)" id="verify_otp" class="btn verify-otpbtn">VERIFY OTP </a>
+                        <!--<a href="javascript:void(0)" id="verify_otp" class="btn verify-otpbtn">VERIFY OTP </a>-->
                         <a href="javascript:void(0)" id="resend_otp" class="btn verify-otpbtn">RESEND OTP </a>
                     </div>
                     <input type="hidden" id="is_otp_verify" value="0">
@@ -86,40 +86,54 @@
                     @if($weekdays)
                         @foreach($weekdays as $week)
                             <a class="date-main slot-date" data-date="{{date('Y-m-d', strtotime($week))}}" href="javascript:void(0);">
-                                <p>{{$week}}</p>
+                                <p>{{$week}}<br/>{{date('l', strtotime($week))}}</p>
                             </a>
                         @endforeach
                     @endif
                 </div>
                 <div class="pick-slot-main">
-                    <h4>Pick Time Slot <span>({{$aslots->count()+$eslots->count()}} slot available)</span> </h4>
+                    <h4>Pick Time Slot <span id="total_slots">({{$aslots->count()+$eslots->count()+$mslots->count()}} slot available)</span> </h4>
                     <input type="hidden" name="slot_date" value="">
                     <input type="hidden" name="slot_time" value="">
                 </div>
-                @if($aslots->count())
-                    <div class="afternoon-slot-sec-main">
-                        <h4><span>slots</span>Afternoon Slot</h4>
-                        <div class="row m-0">
-                            @foreach($aslots as $slot)
-                                <div class="col-12 col-sm-3">
-                                    <a class="btn afternoon-slot-btn slot-btn" data-id="{{$slot->time}}">{{$slot->time}}</a>
-                                </div>
-                            @endforeach
+                <div id="slot_info">
+                    @if($mslots->count())
+                        <div class="afternoon-slot-sec-main">
+                            <h4><span>slots</span>Morning Slot</h4>
+                            <div class="row m-0">
+                                @foreach($mslots as $slot)
+                                    <div class="col-12 col-sm-3">
+                                        <a class="btn afternoon-slot-btn slot-btn" data-id="{{$slot->time}}">{{$slot->time}}</a>
+                                    </div>
+                                @endforeach
+                            </div>
                         </div>
-                    </div>
-                @endif
-                @if($eslots->count())
-                    <div class="evening-slot-sec-main">
-                        <h4><span>slots</span>Evening Slot</h4>
-                        <div class="row">
-                            @foreach($eslots as $slot)
-                                <div class="col-12 col-sm-3">
-                                    <a class="btn evening-slot-btn slot-btn" data-id="{{$slot->time}}">{{$slot->time}}</a>
-                                </div>
-                            @endforeach
+                    @endif
+                    @if($aslots->count())
+                        <div class="afternoon-slot-sec-main">
+                            <h4><span>slots</span>Afternoon Slot</h4>
+                            <div class="row m-0">
+                                @foreach($aslots as $slot)
+                                    <div class="col-12 col-sm-3">
+                                        <a class="btn afternoon-slot-btn slot-btn" data-id="{{$slot->time}}">{{$slot->time}}</a>
+                                    </div>
+                                @endforeach
+                            </div>
                         </div>
-                    </div>
-                @endif
+                    @endif
+                    @if($eslots->count())
+                        <div class="evening-slot-sec-main">
+                            <h4><span>slots</span>Evening Slot</h4>
+                            <div class="row">
+                                @foreach($eslots as $slot)
+                                    <div class="col-12 col-sm-3">
+                                        <a class="btn evening-slot-btn slot-btn" data-id="{{$slot->time}}">{{$slot->time}}</a>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    @endif
+                </div>
             </div>
 
             <div>
@@ -156,18 +170,26 @@ $(document).ready(function(){
     getCartAjaxHtml();
 
     $("#checkout-form").submit(function(e) {
+        $('#booking_confirm').addClass('d-none');
+        $('#loading_btn').removeClass('d-none');
         //e.preventDefault();
         var slot_time = $('input[name="slot_time"]').val();
         var slot_date = $('input[name="slot_date"]').val();
         var is_service_in_cart = $('input[name="is_service_in_cart"]').val();
         if(slot_date == '' && is_service_in_cart == '1'){
+            $('#booking_confirm').removeClass('d-none');
+            $('#loading_btn').addClass('d-none');
             toastr.error('Please select slot date!');
             return false;
         } else if(slot_time == '' && is_service_in_cart == '1'){
+            $('#booking_confirm').removeClass('d-none');
+            $('#loading_btn').addClass('d-none');
             toastr.error('Please select slot time!');
             return false;
         } else {
-           $("#checkout-form").submit();
+            $('#booking_confirm').addClass('d-none');
+            $('#loading_btn').removeClass('d-none');
+            $("#checkout-form").submit();
         }
    });
 
@@ -180,11 +202,25 @@ $(document).ready(function(){
 
     $(document).on('click', '.slot-date', function(){
         var date = $(this).data('date');
-        $('input[name="slot_date"]').val(date);
-        $('.slot-btn').removeClass('evening-slot-active');
-        $('input[name="slot_time"]').val('');
-        $('.slot-date').removeClass('select-date');
-        $(this).addClass('select-date');
+        $this = $(this);
+        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({
+            url : '{{ route('front_get-available-slot') }}',
+            method : 'post',
+            data : {_token: CSRF_TOKEN, date:date},
+            success : function(result){
+                var result = $.parseJSON(result);
+                $('#slot_info').html(result.html);
+                $('input[name="slot_date"]').val(date);
+                $('.slot-btn').removeClass('evening-slot-active');
+                $('input[name="slot_time"]').val('');
+                $('.slot-date').removeClass('select-date');
+                $this.addClass('select-date');
+                $('#total_slots').html("("+result.total_slots+" slot available)");
+            }
+        });
+        
+        
     });
 
     $(document).on('click', '.address_radio', function(){
@@ -260,28 +296,31 @@ $(document).ready(function(){
         }
     });
 
-    $(document).on('click', '#verify_otp', function(){
+    $(document).on('keyup', '#otp', function(){
         var mobile = $('#mobile').val();
         var otp = $('#otp').val();
-        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-        $.ajax({
-            url : '{{ route('front_verify-otp') }}',
-            method : 'post',
-            data : {_token: CSRF_TOKEN, mobile:mobile, otp:otp},
-            success : function(result){
-                var result = $.parseJSON(result);
-                if(result.result == 'success'){
-                    $('#verify_otp').hide();
-                    $('#resend_text').hide();
-                    $('#is_otp_verify').val('1');
-                    $('#booking_confirm').show();
-                    $("#mobile").attr("readonly", "readonly"); 
-                    $('#otp').hide();
-                } else {
-                    toastr.error('Please Enter Valid OTP.');
+        var olength = otp.toString().length;
+        if(parseInt(olength) > 3){
+            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+            $.ajax({
+                url : '{{ route('front_verify-otp') }}',
+                method : 'post',
+                data : {_token: CSRF_TOKEN, mobile:mobile, otp:otp},
+                success : function(result){
+                    var result = $.parseJSON(result);
+                    if(result.result == 'success'){
+//                        $('#verify_otp').hide();
+                        $('#resend_text').hide();
+                        $('#is_otp_verify').val('1');
+                        $('#booking_confirm').show();
+                        $("#mobile").attr("readonly", "readonly"); 
+                        $('#otp').hide();
+                    } else {
+                        toastr.error('Please Enter Valid OTP.');
+                    }
                 }
-            }
-        });
+            });
+        }
     });
 
     $(document).on('click', '#resend_otp', function(){
@@ -298,7 +337,7 @@ $(document).ready(function(){
                     if(result.result == 'success'){
                         console.log('test');
                         $('.otp-section').show();
-                        $('#verify_otp').show();
+//                        $('#verify_otp').show();
                         $('#resend_text').show();
                         $('#otp').val('');
                         $('#otp').show();
@@ -346,6 +385,8 @@ $(document).ready(function(){
                         var is_service_available = $('input[name="is_service_in_cart"]').val();
                         if(is_service_available == '1'){
                             $('#service_slot_section').removeClass('d-none');
+                        } else {
+                            $('#service_slot_section').addClass('d-none');
                         }
                     },100);
                 } else {
@@ -392,7 +433,7 @@ let timerOn = true;
             if(is_otp_verify == '0'){
                 $('#resend_otp').show();
                 $("#mobile").removeAttr("readonly"); 
-                $('#verify_otp').hide();
+//                $('#verify_otp').hide();
                 $('#resend_text').hide();
                 $('#otp').hide();
             }

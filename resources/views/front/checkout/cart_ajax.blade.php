@@ -113,5 +113,9 @@
     <input type="hidden" name="service_gst" value="{{$sgst_val}}">
     <input type="hidden" name="order_total" value="{{$total}}">
     <input type="hidden" name="is_service_in_cart" value="{{$is_service_available}}">
+    <a class="btn confirm-booking-btn d-none" id="loading_btn">
+        <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+        Loading...
+    </a>
     <button class="confirm-booking-btn" id="booking_confirm" type="submit"> Confirm Booking</button>
 </div>
