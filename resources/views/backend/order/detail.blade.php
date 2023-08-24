@@ -46,6 +46,7 @@
                                     <th>{{__('Gst(%)')}}</th>
                                     <th>{{__('Qty')}}</th>
                                     <th>{{__('Total')}}</th>
+                                    <th>{{__('Action')}}</th>
                                 </tr>
                             </thead>
                         </table>
@@ -77,6 +78,7 @@ $(document).ready(function() {
             {data: 'gst', name: 'gst'},
             {data: 'qty', name: 'qty'},
             {data: 'subtotal', name: 'subtotal'},
+            {data: 'action', name: 'action', orderable: false, searchable: false},
         ],
         "ajax" : {
             url : "{{ route('admin_order-detail-datatable') }}",
