@@ -210,7 +210,7 @@
 
     <!-- faq start -->
     @if($faqs->count())
-        <div class="faq-section-main">
+        <div class="faq-section-main mb-3">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class=" col-lg-10">

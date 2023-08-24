@@ -46,7 +46,7 @@
                             <div class="services-cate-main services-cate-common{{$key}}">
                                 <div class="car-service-img-main">
                                     @if(isset($service->image) && $service->image)
-                                        <img src="{{ asset('uploads/service/category/'.$service->image) }}" class="img-fluid" alt="">
+                                        <img src="{{ asset('uploads/service/category/'.$service->image) }}" class="img-fluid" alt="" onmouseover="this.src='{{ asset('uploads/service/category/'.$service->image_1) }}'" onmouseout="this.src='{{ asset('uploads/service/category/'.$service->image) }}'" />
                                     @else
                                         <img src="{{ asset('front/img/no_image.jpg') }}" class="img-fluid" alt="">
                                     @endif
