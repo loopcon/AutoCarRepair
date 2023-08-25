@@ -105,8 +105,10 @@
 <script src="{{ asset('front/js/all.min.js') }}"></script>
 <script src="{{ asset('plugins/notification/toastr.min.js') }}"></script>
 <script src="{{asset('plugins/sweetalert/sweetalert.js')}}" type="text/javascript"></script>
+<script src="{{ asset('plugins/parsley/parsley.js') }}"></script>
+<script src="{{ asset('front/js/owl.carousel.min.js') }}"></script>
 <script>
-    $(document).ready(function() {
+$(document).ready(function() {
         basic();
         // notification //
         <?php if (Session::get('error')) : ?>
@@ -171,7 +173,7 @@
         });
 
         $(document).on('click', '#check_price', function(){
-            var phone = $('#price_phone').val();
+            var phone = $('#mobile').val();
             var length = phone.length;
             if(phone == ''){
                 toastr.error('Please enter phone number!');
@@ -181,7 +183,127 @@
                 location.href = "{{url('our-services')}}";
             }
         });
-    });
+
+        //otp in popop
+        $('#resend_otp').hide();
+        $('.otp-section').hide();
+        $('#check_price').hide();
+        $(document).on('click', '#send_otp', function(){
+            var validateMobNum= /[1-9]{1}[0-9]{9}/;
+            var mobile = $('#mobile').val();
+            if (validateMobNum.test(mobile) && mobile.length == 10) {
+                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                $.ajax({
+                    url : '{{ route('front_send-otp') }}',
+                    method : 'post',
+                    data : {_token: CSRF_TOKEN, mobile:mobile},
+                    success : function(result){
+                        var result = $.parseJSON(result);
+                        if(result.result == 'success'){
+                            $("#mobile").attr("readonly", "readonly");
+                            $('.otp-section').show();
+                            $('#send_otp').hide();
+                            timer(20);
+                        } else {
+                            toastr.error('Something went wrong. Please try again later!');
+                        }
+                    }
+                });
+            }
+            else {
+                toastr.error('Please Enter Valid Mobile No.');
+            }
+        });
+
+        $(document).on('keyup', '#otp', function(){
+            var mobile = $('#mobile').val();
+            var otp = $('#otp').val();
+            var olength = otp.toString().length;
+            if(parseInt(olength) > 3){
+                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                $.ajax({
+                    url : '{{ route('front_verify-otp') }}',
+                    method : 'post',
+                    data : {_token: CSRF_TOKEN, mobile:mobile, otp:otp},
+                    success : function(result){
+                        var result = $.parseJSON(result);
+                        if(result.result == 'success'){
+                            $('#resend_text').hide();
+                            $('#is_otp_verify').val('1');
+                            $('#check_price').show();
+                            $("#mobile").attr("readonly", "readonly"); 
+                            $('#otp').hide();
+                        } else {
+                            toastr.error('Please Enter Valid OTP.');
+                        }
+                    }
+                });
+            }
+        });
+
+        $(document).on('click', '#resend_otp', function(){
+            var validateMobNum= /[1-9]{1}[0-9]{9}/;
+            var mobile = $('#mobile').val();
+            console.log('mobile');
+            if (validateMobNum.test(mobile) && mobile.length == 10) {
+                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                $.ajax({
+                    url : '{{ route('front_resend-otp') }}',
+                    method : 'post',
+                    data : {_token: CSRF_TOKEN, mobile:mobile},
+                    success : function(result){
+                        var result = $.parseJSON(result);
+                        if(result.result == 'success'){
+                            console.log('test');
+                            $('.otp-section').show();
+                            $('#resend_text').show();
+                            $('#otp').val('');
+                            $('#otp').show();
+                            $("#mobile").attr("readonly", "readonly");
+                            $('#resend_otp').hide();
+                            timer(20);
+                        } else {
+                            toastr.error('Something went wrong. Please try again later!');
+                        }
+                    }
+                });
+            }
+            else {
+                toastr.error('Please Enter Valid Mobile No.');
+            }
+        });
+    //
+});
+
+    let timerStart = true;
+            function timer(remaining) {
+                var m = Math.floor(remaining / 60);
+                var s = remaining % 60;
+                m = m < 10 ? '0' + m : m;
+                s = s < 10 ? '0' + s : s;
+                document.getElementById('timer').innerHTML = m + ':' + s;
+                remaining -= 1;
+                if(remaining >= 0 && timerStart) {
+                setTimeout(function() {
+                    timer(remaining);
+                }, 1000);
+                return;
+                }
+
+                if(!timerStart) {
+                // Do validate stuff here
+                return;
+                }
+                // Do timeout stuff here
+                var is_otp_verify = $('#is_otp_verify').val();
+                if(is_otp_verify == '0'){
+                    $('#resend_otp').show();
+                    $("#mobile").removeAttr("readonly"); 
+                    $('#resend_text').hide();
+                    $('#otp').hide();
+                }
+            }
+
     function basic(){
         $("input").attr("autocomplete", "off");
         $("textarea").attr("autocomplete", "off");

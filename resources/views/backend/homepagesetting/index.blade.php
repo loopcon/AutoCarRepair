@@ -75,7 +75,7 @@
 
                                 <div class="col-md-6">
                                     <label class="form-label" for="button_link">{{__('Button link')}}<span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="button_link" name="button_link" placeholder="{{__('Button Title')}}" required=""  data-parsley-required-message="{{ __("This value is required.")}}" value="{{ isset($record->button_link) ? $record->button_link : old('button_link') }}">
+                                    <input type="text" class="form-control" id="button_link" name="button_link" placeholder="{{__('Button Link')}}" required=""  data-parsley-required-message="{{ __("This value is required.")}}" value="{{ isset($record->button_link) ? $record->button_link : old('button_link') }}">
 
                                     @if ($errors->has('button_link')) <div class="text-danger">{{ $errors->first('button_link') }}</div>@endif
                                 </div>

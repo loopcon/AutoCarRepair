@@ -34,7 +34,7 @@
                                             <input type="hidden" name="id_{{$key}}" value="{{ isset($record->id) ? Crypt::encrypt($record->id) : '' }}">
                                             <div class="mb-3 col-md-4">
                                                 <label class="form-label" for="time">{{__('Time')}}<span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control" name="time_{{$key}}" placeholder="{{__('Time')}}" maxlength="30" required=""  data-parsley-required-message="{{ __("This value is required.")}}" value="{{ isset($record->time) ? $record->time : old('time') }}">
+                                                <input type="text" class="form-control" name="time_{{$key}}" placeholder="{{__('Time')}}" required=""  data-parsley-required-message="{{ __("This value is required.")}}" value="{{ isset($record->time) ? $record->time : old('time') }}">
                                             </div>
                                             <div class="mb-3 col-md-4">
                                                 <label class="form-label" for="slot">{{__('Slot')}}<span class="text-danger">*</span></label>
@@ -53,7 +53,7 @@
                                         <input type="hidden" name="id_0" value="">
                                         <div class="mb-3 col-md-4">
                                             <label class="form-label" for="time">{{__('Time')}}<span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" name="time_0" placeholder="{{__('Time')}}" maxlength="30" required=""  data-parsley-required-message="{{ __("This value is required.")}}" value="">
+                                            <input type="text" class="form-control" name="time_0" placeholder="{{__('Time')}}"  required=""  data-parsley-required-message="{{ __("This value is required.")}}" value="">
                                         </div>
                                         <div class="mb-3 col-md-4">
                                             <label class="form-label" for="slot">{{__('Slot')}}<span class="text-danger">*</span></label>
@@ -101,7 +101,7 @@ $(document).ready(function(){
                         <input type="hidden" name="id_'+last_id+'" value="">\n\
                         <div class="mb-3 col-md-4">\n\
                             <label class="form-label" for="time">Time<span class="text-danger">*</span></label>\n\
-                            <input type="text" class="form-control" name="time_'+last_id+'" placeholder="Time" maxlength="30" required=""  data-parsley-required-message="{{ __("This value is required.")}}" value="">\n\
+                            <input type="text" class="form-control" name="time_'+last_id+'" placeholder="Time"  required=""  data-parsley-required-message="{{ __("This value is required.")}}" value="">\n\
                         </div>\n\
                         <div class="mb-3 col-md-4">\n\
                             <label class="form-label" for="slot">Slot<span class="text-danger">*</span></label>\n\

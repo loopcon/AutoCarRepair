@@ -328,7 +328,7 @@
                         </div>
                         <div class="mb-5">
                             <label for="exampleInputEmail1" class="form-label">YOUR PHONE</label>
-                            <input type="text" class="form-control num_only" id="phone" maxlength="10" name="phone" placeholder="Enter Your Phone Number" aria-describedby="nae">
+                            <input type="text" class="form-control num_only" id="mobile" maxlength="10" name="phone" placeholder="Enter Your Phone Number" aria-describedby="nae">
                         </div>
                     </div>
                     <div class="col-12 col-sm-6">
@@ -362,7 +362,18 @@
                         <h6>Thanks for Enquery, our Customer care represent will contact you soon.</h6>
                     </div>
                 @endif
-                <input type="submit" class="form-btn-contant" value="Send Message">
+                <input type="submit" class="form-btn-contant" id="send_message" value="Send Message">
+
+                <div class="otp-section">
+                    <div class="mb-3 otpinput-main">
+                        <input type="text" class="form-control num_only" id="otp" name="otp" aria-describedby="emailHelp" placeholder="OTP">
+                        <div class="text-white" id="resend_text"><b>Resend OTP in <span id="timer"></span> seconds</b></div>
+                    </div>
+                    <!--<a href="javascript:void(0)" id="verify_otp" class="btn verify-otpbtn">VERIFY OTP </a>-->
+                    <a href="javascript:void(0)" id="resend_otp" class="btn form-btn-contant">RESEND OTP </a>
+                </div>
+                <input type="hidden" id="is_otp_verify" value="0">
+                <a href="javascript:void(0)" class="btn form-btn-contant" id="send_otp">SEND OTP </a>
             </form>
     </div>
 </div>
@@ -418,7 +429,7 @@
 <script src="{{ asset('plugins/parsley/parsley.js') }}"></script>
 <script src="{{ asset('front/js/owl.carousel.min.js') }}"></script>
 <script>
-    $(document).ready(function(){
+$(document).ready(function(){
         $('#offer-carousel').owlCarousel({
             loop: true,
             margin: 30,
@@ -485,7 +496,125 @@
                 }
             }
         });
+
+    $('#resend_otp').hide();
+    $('.otp-section').hide();
+    $('#send_message').hide();
+    $(document).on('click', '#send_otp', function(){
+        var validateMobNum= /[1-9]{1}[0-9]{9}/;
+        var mobile = $('#mobile').val();
+        if (validateMobNum.test(mobile) && mobile.length == 10) {
+            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+            $.ajax({
+                url : '{{ route('front_send-otp') }}',
+                method : 'post',
+                data : {_token: CSRF_TOKEN, mobile:mobile},
+                success : function(result){
+                    var result = $.parseJSON(result);
+                    if(result.result == 'success'){
+                        $("#mobile").attr("readonly", "readonly");
+                        $('.otp-section').show();
+                        $('#send_otp').hide();
+                        timer(20);
+                    } else {
+                        toastr.error('Something went wrong. Please try again later!');
+                    }
+                }
+            });
+        }
+        else {
+            toastr.error('Please Enter Valid Mobile No.');
+        }
     });
+
+    $(document).on('keyup', '#otp', function(){
+        var mobile = $('#mobile').val();
+        var otp = $('#otp').val();
+        var olength = otp.toString().length;
+        if(parseInt(olength) > 3){
+            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+            $.ajax({
+                url : '{{ route('front_verify-otp') }}',
+                method : 'post',
+                data : {_token: CSRF_TOKEN, mobile:mobile, otp:otp},
+                success : function(result){
+                    var result = $.parseJSON(result);
+                    if(result.result == 'success'){
+//                        $('#verify_otp').hide();
+                        $('#resend_text').hide();
+                        $('#is_otp_verify').val('1');
+                        $('#send_message').show();
+                        $("#mobile").attr("readonly", "readonly"); 
+                        $('#otp').hide();
+                    } else {
+                        toastr.error('Please Enter Valid OTP.');
+                    }
+                }
+            });
+        }
+    });
+
+    $(document).on('click', '#resend_otp', function(){
+        var validateMobNum= /[1-9]{1}[0-9]{9}/;
+        var mobile = $('#mobile').val();
+        if (validateMobNum.test(mobile) && mobile.length == 10) {
+            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+            $.ajax({
+                url : '{{ route('front_resend-otp') }}',
+                method : 'post',
+                data : {_token: CSRF_TOKEN, mobile:mobile},
+                success : function(result){
+                    var result = $.parseJSON(result);
+                    if(result.result == 'success'){
+                        console.log('test');
+                        $('.otp-section').show();
+//                        $('#verify_otp').show();
+                        $('#resend_text').show();
+                        $('#otp').val('');
+                        $('#otp').show();
+                        $("#mobile").attr("readonly", "readonly");
+                        $('#resend_otp').hide();
+                        timer(20);
+                    } else {
+                        toastr.error('Something went wrong. Please try again later!');
+                    }
+                }
+            });
+        }
+        else {
+            toastr.error('Please Enter Valid Mobile No.');
+        }
+    });
+});
+let timerOn = true;
+        function timer(remaining) {
+            var m = Math.floor(remaining / 60);
+            var s = remaining % 60;
+            m = m < 10 ? '0' + m : m;
+            s = s < 10 ? '0' + s : s;
+            document.getElementById('timer').innerHTML = m + ':' + s;
+            remaining -= 1;
+            if(remaining >= 0 && timerOn) {
+              setTimeout(function() {
+                  timer(remaining);
+              }, 1000);
+              return;
+            }
+
+            if(!timerOn) {
+              // Do validate stuff here
+              return;
+            }
+            // Do timeout stuff here
+            var is_otp_verify = $('#is_otp_verify').val();
+            if(is_otp_verify == '0'){
+                $('#resend_otp').show();
+                $("#mobile").removeAttr("readonly"); 
+//                $('#verify_otp').hide();
+                $('#resend_text').hide();
+                $('#otp').hide();
+            }
+        }
     // if ( getElementById( 'name' ) == null )
     // {
     //     function onFocus() {

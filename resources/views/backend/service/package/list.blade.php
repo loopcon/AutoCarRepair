@@ -34,7 +34,7 @@
                                     @endif
                                 </select>
                             </div>
-                            <div class="form-group col-md-2 select-parsley">
+                            <?php /**<div class="form-group col-md-2 select-parsley">
                                 <label for="brand">Brand</label>
                                 <select id="brand" class="form-control select2" name="brand">
                                     <option value="all" selected>--Select--</option>
@@ -66,7 +66,7 @@
                                         @endforeach
                                     @endif
                                 </select>
-                            </div>
+                            </div>**/ ?>
                         </div>
                     </div>
                     <div class="card-body">
@@ -77,10 +77,9 @@
                                     <th>{{__('Image')}}</th>
                                     <th>{{__('Title')}}</th>
                                     <th>{{__('Category')}}</th>
-                                    <th>{{__('Car Detail')}}</th>
+                                    <?php /*<th>{{__('Car Detail')}}</th>*/ ?>
                                     <th>{{__('Note')}}</th>
                                     <th>{{__('Time Takes')}}</th>
-                                    <th>{{__('Price')}}</th>
                                     <th>{{__('Action')}}</th>
                                 </tr>
                             </thead>
@@ -99,9 +98,6 @@
 <script>
 $(document).ready(function() {
     $('#serviceCategory').select2();
-    $('#brand').select2();
-    $('#carModel').select2();
-    $('#fuelType').select2();
     var table = $("#table").DataTable({
         "sScrollX": '100%',
         "order": [], //Initial no order.
@@ -115,10 +111,8 @@ $(document).ready(function() {
             {data: 'image', name: 'image'},
             {data: 'title', name: 'title'},
             {data: 'category', name: 'category'},
-            {data: 'car_detail', name: 'car_detail'},
             {data: 'note', name: 'note'},
             {data: 'time_takes', name: 'time_takes'},
-            {data: 'price', name: 'price'},
             {data: 'action', name: 'action', orderable: false, searchable: false},
         ],
         "ajax" : {
@@ -127,23 +121,11 @@ $(document).ready(function() {
             data : function(d) {
                 d._token = "{{ csrf_token() }}"
                 d.serviceCategory = $('#serviceCategory').val()
-                d.brand = $('#brand').val()
-                d.carModel = $('#carModel').val()
-                d.fuelType = $('#fuelType').val()
             }
         }
     });
 
     $(document).on('change', '#serviceCategory', function(){
-        table.ajax.reload();
-    });
-    $(document).on('change', '#brand', function(){
-        table.ajax.reload();
-    });
-    $(document).on('change', '#carModel', function(){
-        table.ajax.reload();
-    });
-    $(document).on('change', '#fuelType', function(){
         table.ajax.reload();
     });
 
