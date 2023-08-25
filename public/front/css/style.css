@@ -117,7 +117,7 @@ a.badge:hover{
 .service-section .always-service-text { margin-bottom: 30px; }
 .service-section .services-cate-main{ position: relative; margin-bottom: 100px;}
 .service-section .services-cate-item { background-color:#01073C; position: absolute; top: 78%; width: 95%; transition-duration: 1s; }
-.service-section .services-cate-item:hover{ width: 100%; transition-duration: 2s;  }
+.service-section .services-cate-item:hover{ width: 100%; transition-duration: 1s;  }
 .service-section .services-cate-item h4 { color: #fff; font-weight: bold; margin-left: 10px; text-align: left; font-size: 20px;}
 .service-section .services-cate-item p { color: #fff;  margin-left: 10px; text-align: left;font-size: 12px; margin-bottom: 10px; }
 .service-section .services-cate-item p::after{ content: url('../img/ser-cat1big.png');   position: absolute; top: 2px; left: 52%; }
@@ -526,3 +526,33 @@ button { color: #000; outline: none; }
 .service-center-slider-img{ margin-top: 25px;margin-bottom: 17px;height: 250px;width: 100% !important;object-fit: cover;}
 .serin-appointment-btn-maingroup{display:flex; justify-content:end;}
 .Scheduled-heading-seriner{ margin-top:25px; }
+.sticky{
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 999;
+    animation: b .9s ease-in-out;
+}
+.pagination {
+    display: inline-block;
+}
+.pagination a {
+    color: #000000;
+    float: left;
+    padding: 1px 11px;
+    text-decoration: none;
+    transition: background-color .5s;
+    border: 1px solid #DDD;
+    margin: 0 4px;
+    font-size: 20px;
+}
+.pagination a.active {
+    background-color: #164498;
+    color: #FFFFFF;
+    border: 1px solid #164498;
+}
+.pagination a:hover:not(.active) {
+    background-color: #164498;
+    color: #fff !important;
+}
+.pagination-main{ display: flex; justify-content: center;}
