@@ -337,7 +337,7 @@
                             <input type="email" class="form-control" id="email" required="" name="email" placeholder="Enter Your Email" aria-describedby="emailHelp">
                             @if ($errors->has('email')) <div class="text-warning">{{ $errors->first('email') }}</div>@endif
                         </div>
-                        <div class="mb-5">
+                        <?php /*<div class="mb-5">
                             <label for="exampleInputEmail1" class="form-label">YOUR SERVICE</label>
                             <select class="request-select-box" id="service" required="" name="service" aria-label="Default select example">
                                 <option selected disabled>Open this select menu </option>
@@ -348,14 +348,13 @@
                                 <option value="3">Three</option> -->
                             </select>
                             @if ($errors->has('service')) <div class="text-warning">{{ $errors->first('service') }}</div>@endif
+                        </div> */ ?>
+                        <div class="form-group mb-3">
+                            <label for="exampleFormControlTextarea1" class="form-label">YOUR MESSAGE</label>
+                            <textarea class="form-control" id="message" name="message" rows="2" required=""></textarea>
+                            @if ($errors->has('message')) <div class="text-warning">{{ $errors->first('message') }}</div>@endif
                         </div>
                     </div>
-                </div>
-
-                <div class="form-group mb-3">
-                    <label for="exampleFormControlTextarea1" class="form-label">YOUR MESSAGE</label>
-                    <textarea class="form-control" id="message" name="message" rows="1" required=""></textarea>
-                    @if ($errors->has('message')) <div class="text-warning">{{ $errors->first('message') }}</div>@endif
                 </div>
                 @if (session()->has('success'))
                     <div class="msg-success">

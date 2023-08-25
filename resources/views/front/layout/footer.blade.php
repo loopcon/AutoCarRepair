@@ -126,6 +126,15 @@
             $('.mobile-toggle-data').toggle();
         });
 
+        $(window).scroll(function () { 
+            if ($(window).scrollTop() > 50) {
+                $('#header-sticky').addClass('sticky');
+            }
+            if ($(window).scrollTop() < 51) {
+                $('#header-sticky').removeClass('sticky');
+            }
+        });
+
         $(document).on('keyup', '#search_brand', function(){
             var search_brand = $(this).val();
             searchBrand(search_brand);

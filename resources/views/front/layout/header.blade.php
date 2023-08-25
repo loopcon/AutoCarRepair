@@ -49,7 +49,7 @@
 </div>
 <!-- topbar end  -->
 <!-- navbar start  -->
-<div class="navbar-bg">
+<div class="navbar-bg" id="header-sticky">
     <div class="container">
         <div class="acr-navbar-section">
             <div>
