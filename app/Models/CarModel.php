@@ -10,7 +10,7 @@ class CarModel extends Model
     use HasFactory;
 
     protected $table = 'model';
-    protected $fillable = ['slug', 'carbrand_id', 'title', 'is_archive', 'status'];
+    protected $fillable = ['slug', 'carbrand_id', 'title', 'image','is_archive', 'status'];
     
     public function brandDetail(){
         return $this->belongsTo(CarBrand::class, 'carbrand_id');

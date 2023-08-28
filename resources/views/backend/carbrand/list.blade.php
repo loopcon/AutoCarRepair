@@ -18,7 +18,9 @@
                     <div class="card-header">
                         <div class="form-row">
                             <div class="col-md-12 text-end">
-                                <div class="col-md-12 text-end"><a href="javascript:void(0)" class="btn btn-success ajax-form" id=""><i class="align-middle" data-feather="plus"></i>{{__('Add')}}</a></div>
+                                <div class="col-md-12 text-end"><a href="javascript:void(0)" class="btn btn-success ajax-form" id=""><i class="align-middle" data-feather="plus"></i>{{__('Add')}}</a>
+                                <a href="javascript:void(0)" id="import" class="btn btn-icon icon-left btn-warning"> Import </a>
+                                <a class="btn btn-info" href="{{ route('admin_car-brand-csv-export') }}">{{__('Export Sample Data')}}</a></div>
                             </div>
                         </div>
                     </div>
@@ -171,5 +173,10 @@
                 }
             });
         }
+
+        $(document).on('click', '#import', function(){
+                location.href = "<?php echo route('admin_car-brand-import-add') ?>"
+            });
+
     </script>
 @endsection

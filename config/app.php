@@ -169,7 +169,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
-        Craftsys\Msg91\Msg91LaravelServiceProvider::class
+        Craftsys\Msg91\Msg91LaravelServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
     ])->toArray(),
 
     /*
@@ -184,9 +185,13 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
-        'Constant' => App\Constant::class,
+        'Constant' => 
+        App\Constant::class,
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
-        'Msg91' => Craftsys\Msg91\Facade\Msg91::class,
+        'Excel' => 
+        Maatwebsite\Excel\Facades\Excel::class,
+        'Msg91' => 
+        Craftsys\Msg91\Facade\Msg91::class,
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 
