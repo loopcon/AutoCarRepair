@@ -28,9 +28,9 @@
                             </div>
                         @endif 
                             @if(isset($record->image) && $record->image)
-                                <img src="{{ asset('public/uploads/service/package/'.$record->image) }}" class="img-fluid" alt="">
+                                <img src="{{ $record->image }}" class="img-fluid" alt="" title="">
                             @else
-                                <img src="{{ asset('front/img/inner-palish-service.png') }}" class="img-fluid" alt="">
+                                <img src="{{ asset('front/img/inner-palish-service.png') }}" class="img-fluid" alt="" title="">
                             @endif
                         </div>
                         <div class="col-12 col-md-8">
@@ -90,7 +90,7 @@
                 <div class="col-12 col-md-6">
                     <div class="row  m-0 testiminoal-img-main">
                         <div class="col-12 col-sm-6 col-md-12 col-lg-6 testiminoal-img-item">
-                            <img src="{{ asset('front/img/testiminoal-img.png') }}" class="img-fluid" alt="">
+                            <img src="{{ asset('front/img/testiminoal-img.png') }}" class="img-fluid" alt="" title="">
                         </div>
                         <div class="col-12 col-sm-6 col-md-12 col-lg-6">
                             <div class="testiminoal-img-main-text">
@@ -117,7 +117,7 @@
                                 <div class="test-rating-sec-main">   
                                     <div>
                                         <div class="test-rating-main">
-                                            <img src="{{ asset('front/img/alon-musk-img.png') }}" class="img-fluid" alt="">
+                                            <img src="{{ asset('front/img/alon-musk-img.png') }}" class="img-fluid" alt="" title="">
                                         </div>
                                     </div>  
                                     <div class="test-rating-sec-item">
@@ -142,7 +142,7 @@
                                 <div class="test-rating-sec-main">   
                                     <div>
                                         <div class="test-rating-main">
-                                            <img src="{{ asset('front/img/alon-musk-img.png') }}" class="img-fluid" alt="">
+                                            <img src="{{ asset('front/img/alon-musk-img.png') }}" class="img-fluid" alt="" title="">
                                         </div>
                                     </div>  
                                     <div class="test-rating-sec-item">
@@ -167,7 +167,7 @@
                                 <div class="test-rating-sec-main">   
                                     <div>
                                         <div class="test-rating-main">
-                                            <img src="{{ asset('front/img/alon-musk-img.png') }}" class="img-fluid" alt="">
+                                            <img src="{{ asset('front/img/alon-musk-img.png') }}" class="img-fluid" alt="" title="">
                                         </div>
                                     </div>  
                                     <div class="test-rating-sec-item">
@@ -192,7 +192,7 @@
                                 <div class="test-rating-sec-main">   
                                     <div>
                                         <div class="test-rating-main">
-                                            <img src="{{ asset('front/img/alon-musk-img.png') }}" class="img-fluid" alt="">
+                                            <img src="{{ asset('front/img/alon-musk-img.png') }}" class="img-fluid" alt="" title="">
                                         </div>
                                     </div>  
                                     <div class="test-rating-sec-item">
@@ -240,7 +240,7 @@
             <div class="row m-0 why-choose-box-main">
                 <div class="col-12 col-md-6">
                     <div class="why-choose-img-main">
-                        <img src="{{ asset('front/img/advance-service-main.webp') }}" class="img-fluid" alt="">
+                        <img src="{{ asset('front/img/advance-service-main.webp') }}" class="img-fluid" alt="" title="">
                     </div>
                 </div>
                 <div class="col-12 col-md-6">
@@ -255,28 +255,28 @@
                         <div class="row m-0">
                             <div class="col-12 col-sm-6"> 
                                 <div class="why-choose-inner-item">
-                                    <img src="{{ asset('front/img/why-mechanic.webp') }}" class="img-fluid" alt="">
+                                    <img src="{{ asset('front/img/why-mechanic.webp') }}" class="img-fluid" alt="" title="">
                                     <h4>Skilled Technicians</h4>
                                     <p>We want to get you in and out quickly while providing you top notch auto repair service in Delhi.</p>
                                 </div>
                             </div>
                             <div class="col-12 col-sm-6">
                                 <div class="why-choose-inner-item">
-                                    <img src="{{ asset('front/img/why-qualservice.webp') }}" class="img-fluid" alt="">
+                                    <img src="{{ asset('front/img/why-qualservice.webp') }}" class="img-fluid" alt="" title="">
                                     <h4>Quality Services</h4>
                                     <p>We take pride in offering you the best services available and 100% Satisfaction Guarantee.</p>
                                 </div>
                             </div>
                             <div class="col-12 col-sm-6">
                                 <div class="why-choose-inner-item">
-                                    <img src="{{ asset('front/img/why-car-insurance.webp') }}" class="img-fluid" alt="">
+                                    <img src="{{ asset('front/img/why-car-insurance.webp') }}" class="img-fluid" alt="" title="">
                                     <h4>Cashless Insurance Claims</h4>
                                     <p>We take pride in offering you the best services available and 100% Satisfaction Guarantee.</p>
                                 </div>
                             </div>
                             <div class="col-12 col-sm-6">
                                 <div class="why-choose-inner-item">
-                                    <img src="{{ asset('front/img/why-car-parts.webp') }}" class="img-fluid" alt="">
+                                    <img src="{{ asset('front/img/why-car-parts.webp') }}" class="img-fluid" alt="" title=""> 
                                     <h4>100% OEM Genuien Parts</h4>
                                     <p>We want to get you in and out quickly while providing you top notch auto repair service in Delhi.</p>
                                 </div>

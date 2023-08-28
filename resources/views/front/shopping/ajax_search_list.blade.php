@@ -3,9 +3,9 @@
         <div class="col-12 col-sm-6 col-md-6 col-lg-4">
             <div class="shoping-main-product">
                 @if(isset($product->primaryImage->image) && $product->primaryImage->image)
-                    <img src="{{ asset('public/uploads/product/'.$product->id.'/'.$product->primaryImage->image) }}" class="img-fluid" alt="">
+                    <img src="{{ asset('public/uploads/product/'.$product->id.'/'.$product->primaryImage->image) }}" class="img-fluid" alt="" title="">
                 @else
-                    <img src="{{ asset('front/img/no_image.jpg') }}" class="img-fluid" alt="">
+                    <img src="{{ asset('front/img/no_image.jpg') }}" class="img-fluid" alt="" title="">
                 @endif
                 <h5>{{$product->name}}</h5>
                 <h5>{{isset($product->shopCategoryDetail->name) ? $product->shopCategoryDetail->name : ''}}</h5>

@@ -1,3 +1,4 @@
+
 <!-- new footer start  -->
 <div class="footer-soical-icon">
     <i class="fa-brands fa-facebook-f"></i>
@@ -82,6 +83,11 @@
     </div>
 </div>
 <!-- new footer end  -->
+<!--new footer start -->
+<div>
+    
+</div>
+<!--new footer end -->
 <!-- footer start  -->
 <div class="footer-bg-main">
     <div class="footer-widthset">  
@@ -140,7 +146,7 @@
                     @endif
                 </ul>
             </div>
-            <div class="col-10 col-sm-4 col-lg-2">
+            <div class="col-10 col-sm-4 col-lg-3">
                 <ul class="fot-ourservice-main">
                     <li><a class="fot-ourservice-heading" href="{{route('front_our-services')}}">Our Services</a></li>
                     @php($services = getServiceCategory())
@@ -151,13 +157,16 @@
                     @endif
                 </ul>
             </div>
-            <div class="col-2 col-sm-2 col-lg-1 footer-msgimg-main">
+           <?php /* <div class="col-2 col-sm-2 col-lg-1 footer-msgimg-main">
                 <img src="{{ asset('front/img/footer-msg.webp') }}" class="img-fluid" alt="">
-            </div>  
+            </div> */ ?> 
         </div>
     </div>
 </div>
 <!-- footer end  -->
+<div class="footer-whatappicon">
+     <a href="#"><img src="{{ asset('front/img/whatsapp-acr-img.webp') }}" class="img-fluid" alt=""></a>
+</div>
 <!-- footer down start -->
     <div class="footet-down-bg">
         <div class="footet-down-main">
@@ -266,7 +275,7 @@ $(document).ready(function() {
         });
 
         $(document).on('click', '#check_price', function(){
-            var phone = $('#apponmentmobile').val();
+            var phone = $('#mobile').val();
             var length = phone.length;
             if(phone == ''){
                 toastr.error('Please enter phone number!');
@@ -278,12 +287,12 @@ $(document).ready(function() {
         });
 
         //otp in popop
-        $('#appointmentresend_otp').hide();
+        $('#resend_otp').hide();
         $('.otp-section').hide();
         $('#check_price').hide();
-        $(document).on('click', '#appointmentsend_otp', function(){
+        $(document).on('click', '#send_otp', function(){
             var validateMobNum= /[1-9]{1}[0-9]{9}/;
-            var mobile = $('#apponmentmobile').val();
+            var mobile = $('#mobile').val();
             if (validateMobNum.test(mobile) && mobile.length == 10) {
                 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
                 $.ajax({
@@ -293,10 +302,10 @@ $(document).ready(function() {
                     success : function(result){
                         var result = $.parseJSON(result);
                         if(result.result == 'success'){
-                            $("#apponmentmobile").attr("readonly", "readonly");
+                            $("#mobile").attr("readonly", "readonly");
                             $('.otp-section').show();
-                            $('#appointmentsend_otp').hide();
-                            timer(30);
+                            $('#send_otp').hide();
+                            timer(20);
                         } else {
                             toastr.error('Something went wrong. Please try again later!');
                         }
@@ -308,9 +317,9 @@ $(document).ready(function() {
             }
         });
 
-        $(document).on('keyup', '#appointmentotp', function(){
-            var mobile = $('#apponmentmobile').val();
-            var otp = $('#appointmentotp').val();
+        $(document).on('keyup', '#otp', function(){
+            var mobile = $('#mobile').val();
+            var otp = $('#otp').val();
             var olength = otp.toString().length;
             if(parseInt(olength) > 3){
                 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
@@ -321,11 +330,11 @@ $(document).ready(function() {
                     success : function(result){
                         var result = $.parseJSON(result);
                         if(result.result == 'success'){
-                            $('#appointmentresend_text').hide();
-                            $('#appointmentis_otp_verify').val('1');
+                            $('#resend_text').hide();
+                            $('#is_otp_verify').val('1');
                             $('#check_price').show();
-                            $("#apponmentmobile").attr("readonly", "readonly"); 
-                            $('#appointmentotp').hide();
+                            $("#mobile").attr("readonly", "readonly"); 
+                            $('#otp').hide();
                         } else {
                             toastr.error('Please Enter Valid OTP.');
                         }
@@ -334,9 +343,10 @@ $(document).ready(function() {
             }
         });
 
-        $(document).on('click', '#appointmentresend_otp', function(){
+        $(document).on('click', '#resend_otp', function(){
             var validateMobNum= /[1-9]{1}[0-9]{9}/;
-            var mobile = $('#apponmentmobile').val();
+            var mobile = $('#mobile').val();
+            console.log('mobile');
             if (validateMobNum.test(mobile) && mobile.length == 10) {
                 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
                 $.ajax({
@@ -346,13 +356,14 @@ $(document).ready(function() {
                     success : function(result){
                         var result = $.parseJSON(result);
                         if(result.result == 'success'){
+                            console.log('test');
                             $('.otp-section').show();
-                            $('#appointmentresend_text').show();
-                            $('#appointmentotp').val('');
-                            $('#appointmentotp').show();
-                            $("#apponmentmobile").attr("readonly", "readonly");
-                            $('#appointmentresend_otp').hide();
-                            timer(30);
+                            $('#resend_text').show();
+                            $('#otp').val('');
+                            $('#otp').show();
+                            $("#mobile").attr("readonly", "readonly");
+                            $('#resend_otp').hide();
+                            timer(20);
                         } else {
                             toastr.error('Something went wrong. Please try again later!');
                         }
@@ -386,12 +397,12 @@ $(document).ready(function() {
                 return;
                 }
                 // Do timeout stuff here
-                var is_otp_verify = $('#appointmentis_otp_verify').val();
+                var is_otp_verify = $('#is_otp_verify').val();
                 if(is_otp_verify == '0'){
-                    $('#appointmentresend_otp').show();
-                    $("#apponmentmobile").removeAttr("readonly"); 
-                    $('#appointmentresend_text').hide();
-                    $('#appointmentotp').hide();
+                    $('#resend_otp').show();
+                    $("#mobile").removeAttr("readonly"); 
+                    $('#resend_text').hide();
+                    $('#otp').hide();
                 }
             }
 
