@@ -260,7 +260,7 @@
 
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control num_only" maxlength="10"  id="apponmentmobile" name="mobile" aria-describedby="emailHelp" placeholder="Enter Phone Number">
+                        <input type="text" class="form-control num_only" maxlength="10"  id="appointmentmobile" name="mobile" aria-describedby="emailHelp" placeholder="Enter Phone Number">
                     </div>
                 </div>
                 <div class="otp-section">
@@ -278,6 +278,16 @@
             <div class="modal-footer">
                 <a class="check-price-btn-main" id="check_price" href="javascript:void(0);"><button type="button"  class="check-price-btn" >Check Price For Free </button></a>
             </div>
+            <div class="otp-section">
+                <div class="mb-3 otpinput-main">
+                    <input type="text" class="form-control num_only" id="appointmentotp" name="otp" aria-describedby="emailHelp" placeholder="OTP">
+                    <div id="appointmentresend_text"><b>Resend OTP in <span id="ontimer"></span> seconds</b></div>
+                </div>
+                <!--<a href="javascript:void(0)" id="verify_otp" class="btn verify-otpbtn">VERIFY OTP </a>-->
+                <a href="javascript:void(0)" id="appointmentresend_otp" class="check-price-btn">RESEND OTP </a>
+            </div>
+            <input type="hidden" id="appointmentis_otp_verify" value="0">
+            <a href="javascript:void(0)" class="btn check-price-btn" id="appointmentsend_otp">SEND OTP </a>
         </div>
     </div>
 </div>

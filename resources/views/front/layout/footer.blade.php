@@ -191,7 +191,7 @@
 </div>
 <!-- footer end  -->
 <div class="footer-whatappicon">
-     <a href="#"><img src="{{ asset('front/img/whatsapp-acr-img.webp') }}" class="img-fluid" alt=""></a>
+     <a href="https://wa.me/{{$phone}}" target="_blank"><img src="{{ asset('front/img/whatsapp-acr-img.webp') }}" class="img-fluid" alt=""></a>
 </div>
 <!-- footer down start -->
     <div class="footet-down-bg">
@@ -302,7 +302,7 @@ $(document).ready(function() {
         });
 
         $(document).on('click', '#check_price', function(){
-            var phone = $('#mobile').val();
+            var phone = $('#appointmentmobile').val();
             var length = phone.length;
             if(phone == ''){
                 toastr.error('Please enter phone number!');
@@ -314,12 +314,12 @@ $(document).ready(function() {
         });
 
         //otp in popop
-        $('#resend_otp').hide();
+        $('#appointmentresend_otp').hide();
         $('.otp-section').hide();
         $('#check_price').hide();
-        $(document).on('click', '#send_otp', function(){
+        $(document).on('click', '#appointmentsend_otp', function(){
             var validateMobNum= /[1-9]{1}[0-9]{9}/;
-            var mobile = $('#mobile').val();
+            var mobile = $('#appointmentmobile').val();
             if (validateMobNum.test(mobile) && mobile.length == 10) {
                 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
                 $.ajax({
@@ -329,10 +329,10 @@ $(document).ready(function() {
                     success : function(result){
                         var result = $.parseJSON(result);
                         if(result.result == 'success'){
-                            $("#mobile").attr("readonly", "readonly");
+                            $("#appointmentmobile").attr("readonly", "readonly");
                             $('.otp-section').show();
-                            $('#send_otp').hide();
-                            timer(20);
+                            $('#appointmentsend_otp').hide();
+                            timer(30);
                         } else {
                             toastr.error('Something went wrong. Please try again later!');
                         }
@@ -344,9 +344,9 @@ $(document).ready(function() {
             }
         });
 
-        $(document).on('keyup', '#otp', function(){
-            var mobile = $('#mobile').val();
-            var otp = $('#otp').val();
+        $(document).on('keyup', '#appointmentotp', function(){
+            var mobile = $('#appointmentmobile').val();
+            var otp = $('#appointmentotp').val();
             var olength = otp.toString().length;
             if(parseInt(olength) > 3){
                 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
@@ -357,11 +357,11 @@ $(document).ready(function() {
                     success : function(result){
                         var result = $.parseJSON(result);
                         if(result.result == 'success'){
-                            $('#resend_text').hide();
-                            $('#is_otp_verify').val('1');
+                            $('#appointmentresend_text').hide();
+                            $('#appointmentis_otp_verify').val('1');
                             $('#check_price').show();
-                            $("#mobile").attr("readonly", "readonly"); 
-                            $('#otp').hide();
+                            $("#appointmentmobile").attr("readonly", "readonly"); 
+                            $('#appointmentotp').hide();
                         } else {
                             toastr.error('Please Enter Valid OTP.');
                         }
@@ -370,10 +370,9 @@ $(document).ready(function() {
             }
         });
 
-        $(document).on('click', '#resend_otp', function(){
+        $(document).on('click', '#appointmentresend_otp', function(){
             var validateMobNum= /[1-9]{1}[0-9]{9}/;
-            var mobile = $('#mobile').val();
-            console.log('mobile');
+            var mobile = $('#appointmentmobile').val();
             if (validateMobNum.test(mobile) && mobile.length == 10) {
                 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
                 $.ajax({
@@ -383,14 +382,13 @@ $(document).ready(function() {
                     success : function(result){
                         var result = $.parseJSON(result);
                         if(result.result == 'success'){
-                            console.log('test');
                             $('.otp-section').show();
-                            $('#resend_text').show();
-                            $('#otp').val('');
-                            $('#otp').show();
-                            $("#mobile").attr("readonly", "readonly");
-                            $('#resend_otp').hide();
-                            timer(20);
+                            $('#appointmentresend_text').show();
+                            $('#appointmentotp').val('');
+                            $('#appointmentotp').show();
+                            $("#appointmentmobile").attr("readonly", "readonly");
+                            $('#appointmentresend_otp').hide();
+                            timer(30);
                         } else {
                             toastr.error('Something went wrong. Please try again later!');
                         }
@@ -410,7 +408,7 @@ $(document).ready(function() {
                 var s = remaining % 60;
                 m = m < 10 ? '0' + m : m;
                 s = s < 10 ? '0' + s : s;
-                document.getElementById('timer').innerHTML = m + ':' + s;
+                document.getElementById('ontimer').innerHTML = m + ':' + s;
                 remaining -= 1;
                 if(remaining >= 0 && timerStart) {
                 setTimeout(function() {
@@ -424,12 +422,12 @@ $(document).ready(function() {
                 return;
                 }
                 // Do timeout stuff here
-                var is_otp_verify = $('#is_otp_verify').val();
+                var is_otp_verify = $('#appointmentis_otp_verify').val();
                 if(is_otp_verify == '0'){
-                    $('#resend_otp').show();
-                    $("#mobile").removeAttr("readonly"); 
-                    $('#resend_text').hide();
-                    $('#otp').hide();
+                    $('#appointmentresend_otp').show();
+                    $("#appointmentmobile").removeAttr("readonly"); 
+                    $('#appointmentresend_text').hide();
+                    $('#appointmentotp').hide();
                 }
             }
 
