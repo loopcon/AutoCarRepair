@@ -58,7 +58,7 @@
                                 </div>
 
                                 <div class="mb-3 col-md-6">
-                                    <label class="form-label" for="image_1">{{__('Image')}}</label>
+                                    <label class="form-label" for="image_1">{{__('Second Image')}}</label>
                                     <div class="product_image">
                                         @if(isset($record->image_1))
                                             @if($record->image_1 !='')

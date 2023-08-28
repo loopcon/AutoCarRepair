@@ -39,7 +39,7 @@
                     {{ csrf_field() }}
                     <div class="mb-3">
                          <label class="form-label email-text-heading">Name<span class="text-light">*</span></label> 
-                        <input type="text" name="firstname" value="{{old('firstname')}}" placeholder="NAME" required="" class="form-control input-login-main" maxlength="35">
+                        <input type="text" name="firstname" value="{{old('firstname')}}" placeholder="NAME" required="" class="form-control input-login-main">
                     </div>
                     <div class="mb-3">
                          <label class="form-label email-text-heading">Phone No.<span class="text-light">*</span></label> 

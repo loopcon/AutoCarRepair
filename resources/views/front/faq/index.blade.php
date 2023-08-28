@@ -3,7 +3,7 @@
 <div class="shop-center-tophead">
     <img src="{{ asset('front/img/service-inner-bg.webp') }}" class="img-fluid" alt="">
     <div class="shop-center-text">
-        <h2>{{ strtoupper($site_title) }}</h2>
+        <h1 class="text-white">{{ strtoupper($site_title) }}</h1>
         <ul class="shop-center-breadcum">
             <li><a href="{{url('/')}}">Home</a></li>
             <li><i class="fa-solid fa-angles-right"></i></li>

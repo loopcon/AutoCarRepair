@@ -21,14 +21,14 @@
                             <div class="row">
                                 <div class="mb-3 col-md-6">
                                     <label class="form-label" for="name">{{__('Page Name')}}<span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="name" name="name" placeholder="{{__('Page Name')}}" maxlength="30" required=""  data-parsley-required-message="{{ __("This value is required.")}}" value="{{ isset($record->name) ? $record->name : old('name') }}">
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="{{__('Page Name')}}" required=""  data-parsley-required-message="{{ __("This value is required.")}}" value="{{ isset($record->name) ? $record->name : old('name') }}">
 
                                     @if ($errors->has('name')) <div class="text-danger">{{ $errors->first('name') }}</div>@endif
                                 </div>
 
                                 <div class="mb-3 col-md-6">
                                     <label class="form-label" for="slug">{{__('Slug')}}<span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="slug" name="slug" placeholder="{{__('Slug')}}" maxlength="30" required=""  data-parsley-required-message="{{ __("This value is required.")}}"  value="{{ isset($record->slug) ? $record->slug : old('slug') }}">
+                                    <input type="text" class="form-control" id="slug" name="slug" placeholder="{{__('Slug')}}" required=""  data-parsley-required-message="{{ __("This value is required.")}}"  value="{{ isset($record->slug) ? $record->slug : old('slug') }}">
 
                                     @if ($errors->has('slug')) <div class="text-danger">{{ $errors->first('slug') }}</div>@endif
                                 </div>

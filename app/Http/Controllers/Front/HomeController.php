@@ -14,11 +14,29 @@ use App\Models\Enquiry;
 use App\Models\EmailTemplates;
 use Auth;
 use DB;
+//use Google;
 
 class HomeController extends MainController
 {
     public function index(Request $request)
     {
+        /*$url = "https://mybusiness.googleapis.com/v4/accounts/12687265727280981176/locations/EnJLYXJnaWwgU2hhaGVlZCBTdWtoYmlyIFNpbmdoIFlhZGF2IE1hcmcsIFVkeW9nIFZpaGFyIEluZHVzdHJpYWwgQXJlYSBQaGFzZSBWSSwgU2VjdG9yIDM3LCBHdXJ1Z3JhbSwgSGFyeWFuYSwgSW5kaWEiLiosChQKEgkRdpI_8xcNOREXslgxMPydKxIUChIJmxwFxvEXDTkRWS1Zh5ES1vM/reviews";
+//        $url = "https://maps.googleapis.com/maps/api/place/details/json?cid=12909283986953620003&key=AIzaSyCm_f4MOEgNY7na0hCIsz1TQIimdeVkJUU";
+        $ch = curl_init();
+     curl_setopt($ch, CURLOPT_URL, $url);
+     curl_setopt($ch, CURLOPT_POST, 0);
+     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+     $response = curl_exec ($ch);
+     
+dd($response);
+//        $scopes = [
+//            'https://www.googleapis.com/auth/plus.business.manage'
+//        ];
+//        $google_client = new Google_Client();
+//        $google_client->setApplicationName('YOUR APPLICATION NAME');
+//        $google_client->setClientId('YOUR CLIENT ID');
+//        $google_client->setClientSecret('SECRET');*/
         $return_data = array();
         $return_data['settings'] = $this->data;
         $hsetting = HomePageSetting::select('section1_title1', 'section1_title2', 'section1_image', 'section1_description', 'meta_title', 'meta_keywords', 'meta_description')->where('id', 1)->first();
@@ -41,7 +59,7 @@ class HomeController extends MainController
         $this->validate($request, [
                 'name' => ['required'],
                 'email' => ['required'],
-                'service' => ['required'],
+                // 'service' => ['required'],
                 'message' => ['required'],
             ],[
                 'required'  => trans('The :attribute field is required.')
@@ -51,7 +69,7 @@ class HomeController extends MainController
             'name' => $request->name ? strip_tags($request->name) : NULL,
             'email' => $request->email,
             'phone' => $request->phone,
-            'service' => $request->service,
+            // 'service' => $request->service,
             'message' => $request->message,
         ]);
 
@@ -60,11 +78,11 @@ class HomeController extends MainController
             $name = $request->name;
             $email = $request->email;
             $phone = $request->phone;
-            $service = isset($scategories->title) ? $scategories->title : NULL;
+            // $service = isset($scategories->title) ? $scategories->title : NULL;
             $message = $request->message;
 
-            $templateStr = array('[NAME]','[EMAIL]','[PHONE]','[Service]','[Message]');
-            $data = array($name, $email,$phone, $service, $message);
+            $templateStr = array('[NAME]','[EMAIL]','[PHONE]','[Message]');
+            $data = array($name, $email,$phone, $message);
             $ndata = EmailTemplates::select('template')->where('label', 'request_appointment')->first();
             $html = isset($ndata->template) ? $ndata->template : NULL;
             $mailHtml = str_replace($templateStr, $data, $html);

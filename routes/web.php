@@ -176,6 +176,8 @@ Route::group(['prefix' => 'backend','as' => 'admin_'], function() {
 Route::group(['as' => 'front_', 'middleware' => 'XSS'], function() {
     Route::get('/', [\App\Http\Controllers\Front\HomeController::class, 'index'])->name('/');
     Route::post('appointment-store',[App\Http\Controllers\Front\HomeController::class, 'appointmentStore'])->name('appointment-store');
+    Route::get('reviews', [App\Http\Controllers\Front\HomeController::class, 'getReviews'])->name('reviews');
+
     Route::get('register', [\App\Http\Controllers\Front\Auth\RegisterController::class, 'showRegisterForm'])->name('register');
     Route::post('register', [\App\Http\Controllers\Front\Auth\RegisterController::class, 'register'])->name('register');
     Route::get('login', [\App\Http\Controllers\Front\Auth\LoginController::class, 'showLoginForm'])->name('login');
