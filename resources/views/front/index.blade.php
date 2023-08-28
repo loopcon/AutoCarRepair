@@ -19,7 +19,7 @@
                 </div>
                 <div class="col-12 col-md-6">
                     <div>
-                        <img src="{{ isset($hsetting->section1_image) && $hsetting->section1_image ? asset('uploads/content/'.$hsetting->section1_image) : asset('front/img/slider-image.png') }}" class="img-fluid" alt="" title="banner">
+                        <img src="{{ isset($hsetting->section1_image) && $hsetting->section1_image ? asset('uploads/content/'.$hsetting->section1_image) : asset('front/img/slider-image.png') }}" class="img-fluid" alt="" title="{{ isset($hsetting->image_title) ? $hsetting->image_title : ''}}">
                     </div>
                 </div>
             </div>
@@ -46,7 +46,7 @@
                             <div class="services-cate-main services-cate-common{{$key}}">
                                 <div class="car-service-img-main">
                                     @if(isset($service->image) && $service->image)
-                                        <img src="{{ asset('uploads/service/category/'.$service->image) }}" class="img-fluid" alt="" title="{{$service->title}}"  onmouseover="this.src='{{ asset('uploads/service/category/'.$service->image_1) }}'" onmouseout="this.src='{{ asset('uploads/service/category/'.$service->image) }}'" />
+                                        <img src="{{ asset('uploads/service/category/'.$service->image) }}" class="img-fluid" alt="" title="{{$service->title}}" />
                                     @else
                                         <img src="{{ asset('front/img/no_image.jpg') }}" class="img-fluid" alt="">
                                     @endif
@@ -78,7 +78,7 @@
             <div class="row m-0 why-choose-box-main">
                 <div class="col-12 col-md-6">
                     <div class="why-choose-img-main">
-                        <img src="{{ asset('front/img/advance-service-main.webp') }}" class="img-fluid" alt="" title="car repair service">
+                        <img src="{{ asset('front/img/advance-service-main.webp') }}" class="img-fluid" alt="" title="Why Choose Us">
                     </div>
                 </div>
                 <div class="col-12 col-md-6">
@@ -134,7 +134,7 @@
                 @foreach($offer_slider as $slider)
                 <div class="item">
                     <div class="offer-section-main">
-                        <img class="img-fluid" src="{{ asset('uploads/offerslider/'.$slider->image) }}"  alt="" title="offer-slider">
+                        <img class="img-fluid" src="{{ asset('uploads/offerslider/'.$slider->image) }}"  alt="" title="{{ isset($slider->image_title) ? $slider->image_title : ''}}">
                         <div class="offer-section-item">
                             <div class="container">
                                 <p>{{$slider->title1}}</p>
@@ -157,7 +157,7 @@
             <div class="col-12 col-md-6">
                 <div class="row  m-0 testiminoal-img-main">
                     <div class="col-12 col-sm-6 col-md-12 col-lg-6 testiminoal-img-item">
-                        <img src="{{ asset('front/img/testiminoal-img.webp') }}" class="img-fluid" alt="" title="">
+                        <img src="{{ asset('front/img/testiminoal-img.webp') }}" class="img-fluid" alt="" title="Testimonials">
                     </div>
                     <div class="col-12 col-sm-6 col-md-12 col-lg-6">
                         <div class="testiminoal-img-main-text">
@@ -303,7 +303,7 @@
             </div>
             <div class="col-12  col-lg-6 save-more-img-main">
                 <div class="save-more-img">
-                    <img  class="img-fluid"  src="{{ asset('front/img/cont-blue-toyota.webp') }}" alt="" title="">
+                    <img  class="img-fluid"  src="{{ asset('front/img/cont-blue-toyota.webp') }}" alt="" title=" Ongoing Offers">
                 </div>
             </div>
         </div>

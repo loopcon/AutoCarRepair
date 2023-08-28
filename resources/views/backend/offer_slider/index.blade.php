@@ -55,6 +55,10 @@
                                                 <p class="text-danger">For Best resolution please upload 1200*500 size and in WebP file format.</p>
                                             </div>
                                             <div class="mb-3 col-md-4">
+                                                <label class="form-label" for="image_title">{{__('Image Title')}}</label>
+                                                <input type="text" class="form-control" id="image_title" value="{{ isset($record->image_title) ? $record->image_title : old('image_title') }}" name="image_title_{{$key}}" placeholder="{{__('Image Title')}}" >
+                                            </div>
+                                            <div class="mb-3 col-md-4">
                                                 <label class="form-label" for="title1">{{__('Title 1')}}<span class="text-danger">*</span></label>
                                                 <input type="text" class="form-control" id="title1" value="{{ isset($record->title1) ? $record->title1 : old('title1') }}" name="title1_{{$key}}" placeholder="{{__('Title1')}}" required=""  data-parsley-required-message="{{ __("This value is required.")}}" >
                                             </div>
@@ -86,6 +90,10 @@
                                         <div class="m-b-10">
                                             <input type="file" id="uploadImage{{$i}}" accept="image/x-png, image/gif, image/jpeg" class="btn btn-warning btn-block btn-sm"  name="image_0"  data-parsley-required-message="{{ __("This value is required.")}}" onChange="this.parentNode.nextSibling.value = this.value; PreviewImage({{$i}});" >
                                         </div>
+                                    </div>
+                                    <div class="mb-3 col-md-4">
+                                        <label class="form-label" for="image_title">{{__('Image Title')}}</label>
+                                        <input type="text" class="form-control"  value="" name="image_title_0" placeholder="{{__('Image Title')}}">
                                     </div>
                                     <div class="mb-3 col-md-4">
                                         <label class="form-label" for="title1">{{__('Title 1')}}<span class="text-danger">*</span></label>
@@ -145,6 +153,10 @@ $(document).ready(function(){
                             <div class="m-b-10">\n\
                                 <input type="file" id="uploadImage'+last_id+'" accept="image/x-png, image/gif, image/jpeg" class="btn btn-warning btn-block btn-sm"  name="image_'+last_id+'" required data-parsley-required-message="This value is required." onChange="this.parentNode.nextSibling.value = this.value; PreviewImage('+last_id+');" >\n\
                             </div>\n\
+                        </div>\n\
+                        <div class="mb-3 col-md-4">\n\
+                            <label class="form-label" for="image_title">Image Title</label>\n\
+                            <input type="text" class="form-control" name="image_title_'+last_id+'" placeholder="Image Title" value="">\n\
                         </div>\n\
                         <div class="mb-3 col-md-4">\n\
                             <label class="form-label" for="title1">Title 1<span class="text-danger">*</span></label>\n\

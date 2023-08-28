@@ -40,6 +40,7 @@ class HomePageSettingController extends MainController
         $content->button_link = $request->button_link;
         $content->section1_description = $request->section1_description;
         $content->meta_title = $request->meta_title;
+        $content->image_title = $request->image_title;
         $content->meta_keywords = $request->meta_keywords;
         $content->meta_description = $request->meta_description;
         $content->updated_by = Auth::guard('admin')->user()->id;
@@ -67,8 +68,10 @@ class HomePageSettingController extends MainController
             for($i = 0; $i < $total; $i++){
                 $id = 'id_'.$i;
                 $image = 'image_'.$i;
+                $image_title = 'image_title_'.$i;
                 if(isset($request->$image)){
                     $image = 'image_'.$i;
+                    $image_title = 'image_title_'.$i;
                     if($request->$id){
                         $id_val = Crypt::decrypt($request->$id);
                         $brand_slider = BrandLogoSlider::find($id_val);
@@ -87,6 +90,7 @@ class HomePageSettingController extends MainController
                         $newName = fileUpload($request, $image, 'uploads/brandlogoslider/');
                         $brand_slider->image = $newName;
                     }
+                    $brand_slider->image_title = $request->$image_title ? $request->$image_title : NULL;
                     $brand_slider->save();
                 }
             }   
