@@ -170,7 +170,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
         Craftsys\Msg91\Msg91LaravelServiceProvider::class,
-        PulkitJalan\Google\GoogleServiceProvider::class
+        // PulkitJalan\Google\GoogleServiceProvider::class
     ])->toArray(),
 
     /*
@@ -188,7 +188,7 @@ return [
         'Constant' => App\Constant::class,
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
         'Msg91' => Craftsys\Msg91\Facade\Msg91::class,
-        'Google' => PulkitJalan\Google\Facades\Google::class
+        // 'Google' => PulkitJalan\Google\Facades\Google::class
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 
