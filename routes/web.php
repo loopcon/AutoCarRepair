@@ -67,6 +67,9 @@ Route::group(['prefix' => 'backend','as' => 'admin_'], function() {
         Route::post('car-brand-update/{id}',[App\Http\Controllers\Backend\CarBrandController::class, 'update'])->name('car-brand-update')->middleware('XSS');
         Route::get('car-brand-delete/{id}', [App\Http\Controllers\Backend\CarBrandController::class, 'destroy'])->name('car-brand-delete')->middleware('XSS');
         Route::post('change-car-brand-status', [App\Http\Controllers\Backend\CarBrandController::class, 'changeCarBrandStatus'])->name('change-car-brand-status')->middleware('XSS');
+        Route::post('car-brand-import', [App\Http\Controllers\Backend\CarBrandController::class, 'import'])->name('car-brand-import');
+        Route::get('car-brand-import-add', [App\Http\Controllers\Backend\CarBrandController::class, 'importAdd'])->name('car-brand-import-add');
+        Route::get('car-brand-csv-export', [App\Http\Controllers\Backend\CarBrandController::class, 'export'])->name('car-brand-csv-export');
 
         Route::get('car-model',[App\Http\Controllers\Backend\CarModelController::class, 'index'])->name('car-model')->middleware('XSS');
         Route::post('ajax-edit-model-html',[App\Http\Controllers\Backend\CarModelController::class, 'ajaxEditModelHtml'])->name('ajax-edit-model-html')->middleware('XSS');
@@ -75,6 +78,9 @@ Route::group(['prefix' => 'backend','as' => 'admin_'], function() {
         Route::post('car-model-update/{id}',[App\Http\Controllers\Backend\CarModelController::class, 'update'])->name('car-model-update')->middleware('XSS');
         Route::get('car-model-delete/{id}', [App\Http\Controllers\Backend\CarModelController::class, 'destroy'])->name('car-model-delete')->middleware('XSS');
         Route::post('change-car-model-status', [App\Http\Controllers\Backend\CarModelController::class, 'changeCarModelStatus'])->name('change-car-model-status')->middleware('XSS');
+        Route::post('car-model-import', [App\Http\Controllers\Backend\CarModelController::class, 'import'])->name('car-model-import');
+        Route::get('car-model-import-add', [App\Http\Controllers\Backend\CarModelController::class, 'importAdd'])->name('car-model-import-add');
+        Route::get('car-model-csv-export', [App\Http\Controllers\Backend\CarModelController::class, 'export'])->name('car-model-csv-export');
 
         Route::get('fuel-type',[App\Http\Controllers\Backend\FuelTypeController::class, 'index'])->name('fuel-type')->middleware('XSS');
         Route::post('ajax-edit-fuel-html',[App\Http\Controllers\Backend\FuelTypeController::class, 'ajaxEditFuelHtml'])->name('ajax-edit-fuel-html')->middleware('XSS');

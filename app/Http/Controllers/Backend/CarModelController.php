@@ -14,6 +14,9 @@ use Illuminate\Support\Facades\Crypt;
 use App\Constant;
 use DataTables;
 use DB;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\ExportCarModel;
+use App\Imports\ImportCarModel;
 
 class CarModelController extends MainController
 {
@@ -224,5 +227,27 @@ class CarModelController extends MainController
         } else {
             return redirect('backend/dashboard');
         }
+    }
+
+    public function export(Request $request){
+        return Excel::download(new ExportCarModel, 'SampleData.xlsx');
+    }
+
+    public function importAdd()
+    {
+        $return_data = array();
+        $return_data['site_title'] = trans('Import Data');
+        return view('backend.carmodel.import', array_merge($this->data, $return_data));
+    }
+
+    public function import(Request $request){
+        $request->validate([
+            'file' => 'required|max:10000|mimes:xlsx,xls',
+        ]);
+
+        $path = $request->file('file')->store('files'); 
+
+        Excel::import(new ImportCarModel,$path);
+        return redirect('backend/car-model')->with('success', trans('Car Model Imported successfully.'));
     }
 }
