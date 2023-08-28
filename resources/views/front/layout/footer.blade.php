@@ -1,3 +1,87 @@
+<!-- new footer start  -->
+<div class="footer-soical-icon">
+    <i class="fa-brands fa-facebook-f"></i>
+    <i class="fa-brands fa-instagram"></i>
+    <i class="fa-brands fa-twitter"></i>
+    <i class="fa-brands fa-linkedin"></i>
+    <i class="fa-brands fa-youtube"></i>
+    <i class="fa-brands fa-whatsapp"></i>
+</div>
+<div class="newfooter-bg-main">
+    <div class="row m-0">
+        <div class="col-3">
+            <ul class="our-service-main">
+                <li class="our-section-head">OUR SERVICES</li>
+                <li><a href="#">Scheduled Services</a></li>
+                <li><a href="#">AC Services</a></li>
+                <li><a href="#">Cleaning & Detailing</a></li>
+                <li><a href="#">Lights & Fitments</a></li>
+                <li><a href="#">Denting Painting</a></li>
+                <li><a href="#">Insurance Services</a></li>
+                <li><a href="#">Custom Repair</a></li>
+                <li><a href="#">Batteries</a></li>
+                <li><a href="#">Tyres</a></li>
+                <li><a href="#">Detailing Services</a></li>
+                <li><a href="#">Windshields & Glass</a></li>
+            </ul>
+        </div>
+        <div class="col-3">
+            <ul class="our-service-main">
+                <li class="our-section-head">LUXURY BRANDS</li>
+                <li><a href="#">Mercedes</a></li>
+                <li><a href="#">BMW</a></li>
+                <li><a href="#">Audi</a></li>
+                <li><a href="#">Volvo</a></li>
+                <li><a href="#">Mitsubishi</a></li>
+                <li><a href="#">Jaguar</a></li>
+                <li><a href="#">Porsche</a></li>
+                <li><a href="#">Rolls Royce</a></li>
+                <li><a href="#">Ferrari</a></li>
+                <li><a href="#">Land Rover</a></li>
+            </ul>
+        </div>
+        <div class="col-3">
+            <ul class="our-service-main">
+                <li class="our-section-head">POPULAR BRANDS</li>
+                <li><a href="#">Maruti Suzuki</a></li>
+                <li><a href="#">Hyundai</a></li>
+                <li><a href="#">Honda</a></li>
+                <li><a href="#">Toyota</a></li>
+                <li><a href="#">Tata</a></li>
+                <li><a href="#">Mahindra</a></li>
+                <li><a href="#">Chevrolet</a></li>
+                <li><a href="#">Fiat</a></li>
+                <li><a href="#">Renault</a></li>
+                <li><a href="#">Kia</a></li>
+                <li><a href="#">Skoda</a></li>
+                <li><a href="#">Volkswagen</a></li>
+            </ul>
+        </div>
+        <div class="col-3">
+            <ul class="our-service-main">
+                <li class="our-section-head">POPULAR AREAS NEAR YOU</li>
+                <li><a href="#">Garage near me in Andheri</a></li>
+                <li><a href="#">Garage near me in Mulund</a></li>
+                <li><a href="#">Garage near me in Powai</a></li>
+                <li><a href="#">Garage near me in Chembur</a></li>
+                <li><a href="#">Garage near me in Goregaon</a></li>
+                <li><a href="#">Garage near me in Ghatkoper</a></li>
+                <li><a href="#">Garage near me in Bandra</a></li>
+                <li><a href="#">Garage near me in Kurla</a></li>
+                <li><a href="#">Garage near me in Borivali</a></li>
+                <li><a href="#">Garage near me in Parel</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="footer-address">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-4"></div>
+        <div class="col-6"></div>
+    </div>
+</div>
+<!-- new footer end  -->
 <!-- footer start  -->
 <div class="footer-bg-main">
     <div class="footer-widthset">  

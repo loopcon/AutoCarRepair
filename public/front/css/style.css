@@ -556,3 +556,16 @@ button { color: #000; outline: none; }
     color: #fff !important;
 }
 .pagination-main{ display: flex; justify-content: center;}
+/* new footer  css start  */
+.footer-soical-icon{ 
+    display: flex;
+    justify-content: end;
+    margin-right: 35px;
+    margin-bottom: 10px;
+ }
+.footer-soical-icon svg{ height:20px;width:20px;padding: 10px;background-color: #071c2c;color: #fff;border-radius: 50%;margin-right:7px; }
+.newfooter-bg-main{ background-color: #071c2c; padding: 20px 0px;} 
+.newfooter-bg-main .our-service-main{ list-style: none; margin-bottom: 0px;}
+.newfooter-bg-main .our-service-main li a{ text-decoration: none; color: #fff; font-size: 14px;}
+.newfooter-bg-main .our-section-head{ color: #fff; font-size: 18px; padding-bottom: 8px;  }
+/* new footer  css end  */
