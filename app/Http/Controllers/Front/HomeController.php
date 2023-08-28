@@ -41,7 +41,7 @@ class HomeController extends MainController
         $this->validate($request, [
                 'name' => ['required'],
                 'email' => ['required'],
-                'service' => ['required'],
+                // 'service' => ['required'],
                 'message' => ['required'],
             ],[
                 'required'  => trans('The :attribute field is required.')
@@ -51,7 +51,7 @@ class HomeController extends MainController
             'name' => $request->name ? strip_tags($request->name) : NULL,
             'email' => $request->email,
             'phone' => $request->phone,
-            'service' => $request->service,
+            // 'service' => $request->service,
             'message' => $request->message,
         ]);
 
@@ -60,11 +60,11 @@ class HomeController extends MainController
             $name = $request->name;
             $email = $request->email;
             $phone = $request->phone;
-            $service = isset($scategories->title) ? $scategories->title : NULL;
+            // $service = isset($scategories->title) ? $scategories->title : NULL;
             $message = $request->message;
 
-            $templateStr = array('[NAME]','[EMAIL]','[PHONE]','[Service]','[Message]');
-            $data = array($name, $email,$phone, $service, $message);
+            $templateStr = array('[NAME]','[EMAIL]','[PHONE]','[Message]');
+            $data = array($name, $email,$phone, $message);
             $ndata = EmailTemplates::select('template')->where('label', 'request_appointment')->first();
             $html = isset($ndata->template) ? $ndata->template : NULL;
             $mailHtml = str_replace($templateStr, $data, $html);

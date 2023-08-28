@@ -151,6 +151,60 @@
     </div>
 </div>
 <!-- testimonial end  -->
+ <!-- why choose us start  -->
+ <div class="why-choose-section">
+        <div class="container">
+            <div class="row m-0 why-choose-box-main">
+                <div class="col-12 col-md-6">
+                    <div class="why-choose-img-main">
+                        <img src="{{ asset('front/img/advance-service-main.webp') }}" class="img-fluid" alt="">
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="why-choose-main">
+                        <div class="why-choose-item">
+                            <h4>Why Choose Us?</h4>
+                            <h5> Why Choose Auto Car Repair Service?</h5>
+                            <p>Our goal is to ensure that every customer’s satisfaction is guaranteed. We 
+                                have a range of highly skilled technicians who can perform work on a 
+                                variety of makes and models.</p>    
+                        </div>
+                        <div class="row m-0">
+                            <div class="col-12 col-sm-6"> 
+                                <div class="why-choose-inner-item">
+                                    <img src="{{ asset('front/img/why-mechanic.webp') }}" class="img-fluid" alt="">
+                                    <h4>Skilled Technicians</h4>
+                                    <p>We want to get you in and out quickly while providing you top notch auto repair service in Delhi.</p>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <div class="why-choose-inner-item">
+                                    <img src="{{ asset('front/img/why-qualservice.webp') }}" class="img-fluid" alt="">
+                                    <h4>Quality Services</h4>
+                                    <p>We take pride in offering you the best services available and 100% Satisfaction Guarantee.</p>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <div class="why-choose-inner-item">
+                                    <img src="{{ asset('front/img/why-car-insurance.webp') }}" class="img-fluid" alt="">
+                                    <h4>Cashless Insurance Claims</h4>
+                                    <p>We take pride in offering you the best services available and 100% Satisfaction Guarantee.</p>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <div class="why-choose-inner-item">
+                                    <img src="{{ asset('front/img/why-car-parts.webp') }}" class="img-fluid" alt="">
+                                    <h4>100% OEM Genuien Parts</h4>
+                                    <p>We want to get you in and out quickly while providing you top notch auto repair service in Delhi.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- why choose us end  -->
 @endsection
 @section('javascript')
 <script src="{{ asset('plugins/parsley/parsley.js') }}"></script>

@@ -44,11 +44,11 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label">First Name<span class="text-danger">*</span></label>
-                                    <input type="text" name="firstname" value="{{auth()->user()->firstname}}" placeholder="FIRST NAME" required="" class="form-control" maxlength="50">
+                                    <input type="text" name="firstname" value="{{auth()->user()->firstname}}" placeholder="FIRST NAME" required="" class="form-control">
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label">Last Name<span class="text-danger">*</span></label>
-                                    <input type="text" name="lastname" value="{{auth()->user()->lastname}}" placeholder="LAST NAME" required="" class="form-control" maxlength="50">
+                                    <input type="text" name="lastname" value="{{auth()->user()->lastname}}" placeholder="LAST NAME" required="" class="form-control">
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label">Phone No.<span class="text-danger">*</span></label>
@@ -78,7 +78,7 @@
                                         </div>
                                         <div class="col-md-4">
                                             <label class="form-label">City<span class="text-danger">*</span></label>
-                                            <input type="text" name="city[]" value="{{ $address->city}}" placeholder="CITY" required="" class="form-control" maxlength="35">
+                                            <input type="text" name="city[]" value="{{ $address->city}}" placeholder="CITY" required="" class="form-control">
                                         </div> 
                                         <div class="col-md-4">
                                             <label class="form-label">Zip Code<span class="text-danger">*</span></label>
@@ -107,7 +107,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <label class="form-label">City</label>
-                                    <input type="text" name="city[]" value="" placeholder="CITY"  class="form-control" maxlength="35">
+                                    <input type="text" name="city[]" value="" placeholder="CITY"  class="form-control">
                                 </div> 
                                 <div class="col-md-4">
                                     <label class="form-label">Zip Code</label>

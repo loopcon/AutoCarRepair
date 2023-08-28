@@ -98,7 +98,7 @@
                 </div>
                 
                 <div>
-                    <a class="navbar-appointment-btn apt-btn" href="javascript:void(0)" >Appointment Now</a>
+                    <a class="navbar-appointment-btn apt-btn" href="javascript:void(0)" >Book A Service</a>
                 </div>
             </div>
             <a href="{{url('checkout')}}" class="card-icon-main"><i class="fa fa-cart-plus"></i><span id="cart_header_total_item"></span></a>
@@ -260,7 +260,7 @@
 
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control num_only" maxlength="10"  id="mobile" aria-describedby="emailHelp" placeholder="Enter Phone Number">
+                        <input type="text" class="form-control num_only" maxlength="10"  id="apponmentmobile" name="mobile" aria-describedby="emailHelp" placeholder="Enter Phone Number">
                     </div>
                 </div>
             </div>
@@ -269,14 +269,14 @@
             </div>
             <div class="otp-section">
                 <div class="mb-3 otpinput-main">
-                    <input type="text" class="form-control num_only" id="otp" name="otp" aria-describedby="emailHelp" placeholder="OTP">
-                    <div id="resend_text"><b>Resend OTP in <span id="timer"></span> seconds</b></div>
+                    <input type="text" class="form-control num_only" id="appointmentotp" name="otp" aria-describedby="emailHelp" placeholder="OTP">
+                    <div id="appointmentresend_text"><b>Resend OTP in <span id="timer"></span> seconds</b></div>
                 </div>
                 <!--<a href="javascript:void(0)" id="verify_otp" class="btn verify-otpbtn">VERIFY OTP </a>-->
-                <a href="javascript:void(0)" id="resend_otp" class="check-price-btn">RESEND OTP </a>
+                <a href="javascript:void(0)" id="appointmentresend_otp" class="check-price-btn">RESEND OTP </a>
             </div>
-            <input type="hidden" id="is_otp_verify" value="0">
-            <a href="javascript:void(0)" class="btn check-price-btn" id="send_otp">SEND OTP </a>
+            <input type="hidden" id="appointmentis_otp_verify" value="0">
+            <a href="javascript:void(0)" class="btn check-price-btn" id="appointmentsend_otp">SEND OTP </a>
         </div>
     </div>
 </div>

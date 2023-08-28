@@ -33,7 +33,7 @@
 
                                     <div class="mb-3 col-md-8">
                                         <label class="form-label" for="name">{{__('Product Name')}}<span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" id="name" name="name" placeholder="{{__('Product Name')}}" maxlength="30" required=""  data-parsley-required-message="{{ __("This value is required.")}}" value="{{ isset($record->name) ? $record->name : old('name') }}">
+                                        <input type="text" class="form-control" id="name" name="name" placeholder="{{__('Product Name')}}" required=""  data-parsley-required-message="{{ __("This value is required.")}}" value="{{ isset($record->name) ? $record->name : old('name') }}">
                                         @if ($errors->has('name')) <div class="text-danger">{{ $errors->first('name') }}</div>@endif
                                     </div>
 
@@ -63,13 +63,13 @@
 
                                     <div class="mb-3 col-md-3">
                                         <label class="form-label" for="price">{{__('Price')}}<span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control numeric" required="" id="price" name="price" placeholder="{{__('Price')}}" maxlength="10"   data-parsley-required-message="{{ __("This value is required.")}}" value="{{ isset($record->price) ? $record->price : old('price') }}">
+                                        <input type="text" class="form-control numeric" required="" id="price" name="price" placeholder="{{__('Price')}}" data-parsley-required-message="{{ __("This value is required.")}}" value="{{ isset($record->price) ? $record->price : old('price') }}">
                                         @if ($errors->has('price')) <div class="text-danger">{{ $errors->first('price') }}</div>@endif
                                     </div>
 
                                     <div class="mb-3 col-md-4">
                                         <label class="form-label" for="sku">{{__('Sku')}}<span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" id="sku" name="sku" placeholder="{{__('Sku')}}" maxlength="30" required=""  data-parsley-required-message="{{ __("This value is required.")}}" value="{{ isset($record->sku) ? $record->sku : old('sku') }}">
+                                        <input type="text" class="form-control" id="sku" name="sku" placeholder="{{__('Sku')}}" required=""  data-parsley-required-message="{{ __("This value is required.")}}" value="{{ isset($record->sku) ? $record->sku : old('sku') }}">
                                         @if ($errors->has('sku')) <div class="text-danger">{{ $errors->first('sku') }}</div>@endif
                                     </div>
                                     <div class="mb-3 col-md-4">

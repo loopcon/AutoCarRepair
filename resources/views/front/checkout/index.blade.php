@@ -13,7 +13,7 @@
                     <div class="row ">
                          <div class="col-12 col-sm-6 col-md-12 col-lg-6">
                             <div class="mb-3">
-                                <input type="text" class="form-control" name="name" required="" maxlength="50" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Name" value="{{ Auth::guard('user')->check() ? Auth::guard('user')->user()->firstname.' '.Auth::guard('user')->user()->lastname : ''}}">
+                                <input type="text" class="form-control" name="name" required="" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Name" value="{{ Auth::guard('user')->check() ? Auth::guard('user')->user()->firstname.' '.Auth::guard('user')->user()->lastname : ''}}">
                             </div>
                          </div>
                          <div class="col-12 col-sm-6 col-md-12 col-lg-6">
@@ -284,7 +284,7 @@ $(document).ready(function(){
                         $("#mobile").attr("readonly", "readonly");
                         $('.otp-section').show();
                         $('#send_otp').hide();
-                        timer(20);
+                        timer(30);
                     } else {
                         toastr.error('Something went wrong. Please try again later!');
                     }
@@ -343,7 +343,7 @@ $(document).ready(function(){
                         $('#otp').show();
                         $("#mobile").attr("readonly", "readonly");
                         $('#resend_otp').hide();
-                        timer(20);
+                        timer(30);
                     } else {
                         toastr.error('Something went wrong. Please try again later!');
                     }
