@@ -76,10 +76,36 @@
     </div>
 </div>
 <div class="footer-address">
-    <div class="row">
-        <div class="col-2"></div>
-        <div class="col-4"></div>
-        <div class="col-6"></div>
+    <div class="row m-0 align-items-center">
+        <div class="col-2">
+            <div>
+                <img src="{{ asset('front/img/acr-my-tvs.png') }}" class="acr-my-tvsimage"  alt="">
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="contact-number-main">
+                <p>
+                    <img src="{{ asset('front/img/call-image.png') }}" class="call-image-main" alt="">
+                    Contact Number
+                </p>
+                <a href="#" class="footer-number-main">09810446692</a>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="address-text-main">
+                <p>
+                    <div>
+                        <img src="{{ asset('front/img/location-icon-footer.png') }}" class="addres-image-main" alt="">
+                        <span>Address:-</span>
+                    </div>
+                     </p>
+                <a href="#">Unit-1 Plot, 29 & 30, near Kargil
+                    Shaheed Sukhbir Singh Yadav Marg,
+                    Info Technology Park, Sector 34,
+                    Gurugram, Haryana 122001</a>
+            </div>
+            
+        </div>
     </div>
 </div>
 <!-- new footer end  -->
@@ -185,8 +211,9 @@
                     <p>© {{$copyright_year}} - {{$site_name}} - All rights reserved</p>
                 </div>
                 <div class="col-12 col-sm-6 col-md-3 back-top-main">
-                    <p>Back to Top </p>
-                    <img src="{{ asset('front/img/back-top.png') }}" class="img-fluid" alt="">
+                    <a href="#" class="home-back-totoptext"> Back to Top 
+                        <img src="{{ asset('front/img/back-top.png') }}" class="img-fluid" alt="">
+                    </a>
                 </div>
             </div>
         </div>
