@@ -27,7 +27,7 @@
                             <div class="row">
                                 <div class="mb-3 col-md-6">
                                     <label class="form-label" for="title">{{__('Title')}}<span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="title" name="title" placeholder="{{__('Title')}}" maxlength="50" required=""  data-parsley-required-message="{{ __("This value is required.")}}" value="{{ isset($record->title) ? $record->title : old('title') }}">
+                                    <input type="text" class="form-control" id="title" name="title" placeholder="{{__('Title')}}" required=""  data-parsley-required-message="{{ __("This value is required.")}}" value="{{ isset($record->title) ? $record->title : old('title') }}">
                                 </div>
 
                                 <div class="mb-3 col-md-6">
@@ -58,7 +58,7 @@
                                 </div>
 
                                 <div class="mb-3 col-md-6">
-                                    <label class="form-label" for="image_1">{{__('Image')}}</label>
+                                    <label class="form-label" for="image_1">{{__('Second Image')}}</label>
                                     <div class="product_image">
                                         @if(isset($record->image_1))
                                             @if($record->image_1 !='')

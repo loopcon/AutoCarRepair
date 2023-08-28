@@ -1,3 +1,93 @@
+
+<!-- new footer start  -->
+<div class="footer-soical-icon">
+    <i class="fa-brands fa-facebook-f"></i>
+    <i class="fa-brands fa-instagram"></i>
+    <i class="fa-brands fa-twitter"></i>
+    <i class="fa-brands fa-linkedin"></i>
+    <i class="fa-brands fa-youtube"></i>
+    <i class="fa-brands fa-whatsapp"></i>
+</div>
+<div class="newfooter-bg-main">
+    <div class="row m-0">
+        <div class="col-3">
+            <ul class="our-service-main">
+                <li class="our-section-head">OUR SERVICES</li>
+                <li><a href="#">Scheduled Services</a></li>
+                <li><a href="#">AC Services</a></li>
+                <li><a href="#">Cleaning & Detailing</a></li>
+                <li><a href="#">Lights & Fitments</a></li>
+                <li><a href="#">Denting Painting</a></li>
+                <li><a href="#">Insurance Services</a></li>
+                <li><a href="#">Custom Repair</a></li>
+                <li><a href="#">Batteries</a></li>
+                <li><a href="#">Tyres</a></li>
+                <li><a href="#">Detailing Services</a></li>
+                <li><a href="#">Windshields & Glass</a></li>
+            </ul>
+        </div>
+        <div class="col-3">
+            <ul class="our-service-main">
+                <li class="our-section-head">LUXURY BRANDS</li>
+                <li><a href="#">Mercedes</a></li>
+                <li><a href="#">BMW</a></li>
+                <li><a href="#">Audi</a></li>
+                <li><a href="#">Volvo</a></li>
+                <li><a href="#">Mitsubishi</a></li>
+                <li><a href="#">Jaguar</a></li>
+                <li><a href="#">Porsche</a></li>
+                <li><a href="#">Rolls Royce</a></li>
+                <li><a href="#">Ferrari</a></li>
+                <li><a href="#">Land Rover</a></li>
+            </ul>
+        </div>
+        <div class="col-3">
+            <ul class="our-service-main">
+                <li class="our-section-head">POPULAR BRANDS</li>
+                <li><a href="#">Maruti Suzuki</a></li>
+                <li><a href="#">Hyundai</a></li>
+                <li><a href="#">Honda</a></li>
+                <li><a href="#">Toyota</a></li>
+                <li><a href="#">Tata</a></li>
+                <li><a href="#">Mahindra</a></li>
+                <li><a href="#">Chevrolet</a></li>
+                <li><a href="#">Fiat</a></li>
+                <li><a href="#">Renault</a></li>
+                <li><a href="#">Kia</a></li>
+                <li><a href="#">Skoda</a></li>
+                <li><a href="#">Volkswagen</a></li>
+            </ul>
+        </div>
+        <div class="col-3">
+            <ul class="our-service-main">
+                <li class="our-section-head">POPULAR AREAS NEAR YOU</li>
+                <li><a href="#">Garage near me in Andheri</a></li>
+                <li><a href="#">Garage near me in Mulund</a></li>
+                <li><a href="#">Garage near me in Powai</a></li>
+                <li><a href="#">Garage near me in Chembur</a></li>
+                <li><a href="#">Garage near me in Goregaon</a></li>
+                <li><a href="#">Garage near me in Ghatkoper</a></li>
+                <li><a href="#">Garage near me in Bandra</a></li>
+                <li><a href="#">Garage near me in Kurla</a></li>
+                <li><a href="#">Garage near me in Borivali</a></li>
+                <li><a href="#">Garage near me in Parel</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="footer-address">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-4"></div>
+        <div class="col-6"></div>
+    </div>
+</div>
+<!-- new footer end  -->
+<!--new footer start -->
+<div>
+    
+</div>
+<!--new footer end -->
 <!-- footer start  -->
 <div class="footer-bg-main">
     <div class="footer-widthset">  
@@ -56,7 +146,7 @@
                     @endif
                 </ul>
             </div>
-            <div class="col-10 col-sm-4 col-lg-2">
+            <div class="col-10 col-sm-4 col-lg-3">
                 <ul class="fot-ourservice-main">
                     <li><a class="fot-ourservice-heading" href="{{route('front_our-services')}}">Our Services</a></li>
                     @php($services = getServiceCategory())
@@ -67,13 +157,16 @@
                     @endif
                 </ul>
             </div>
-            <div class="col-2 col-sm-2 col-lg-1 footer-msgimg-main">
+           <?php /* <div class="col-2 col-sm-2 col-lg-1 footer-msgimg-main">
                 <img src="{{ asset('front/img/footer-msg.webp') }}" class="img-fluid" alt="">
-            </div>  
+            </div> */ ?> 
         </div>
     </div>
 </div>
 <!-- footer end  -->
+<div class="footer-whatappicon">
+     <a href="#"><img src="{{ asset('front/img/whatsapp-acr-img.webp') }}" class="img-fluid" alt=""></a>
+</div>
 <!-- footer down start -->
     <div class="footet-down-bg">
         <div class="footet-down-main">
@@ -105,8 +198,10 @@
 <script src="{{ asset('front/js/all.min.js') }}"></script>
 <script src="{{ asset('plugins/notification/toastr.min.js') }}"></script>
 <script src="{{asset('plugins/sweetalert/sweetalert.js')}}" type="text/javascript"></script>
+<script src="{{ asset('plugins/parsley/parsley.js') }}"></script>
+<script src="{{ asset('front/js/owl.carousel.min.js') }}"></script>
 <script>
-    $(document).ready(function() {
+$(document).ready(function() {
         basic();
         // notification //
         <?php if (Session::get('error')) : ?>
@@ -124,6 +219,15 @@
 
         $('.btn-toggle-item').click(function(){
             $('.mobile-toggle-data').toggle();
+        });
+
+        $(window).scroll(function () { 
+            if ($(window).scrollTop() > 50) {
+                $('#header-sticky').addClass('sticky');
+            }
+            if ($(window).scrollTop() < 51) {
+                $('#header-sticky').removeClass('sticky');
+            }
         });
 
         $(document).on('keyup', '#search_brand', function(){
@@ -171,7 +275,7 @@
         });
 
         $(document).on('click', '#check_price', function(){
-            var phone = $('#price_phone').val();
+            var phone = $('#mobile').val();
             var length = phone.length;
             if(phone == ''){
                 toastr.error('Please enter phone number!');
@@ -181,7 +285,127 @@
                 location.href = "{{url('our-services')}}";
             }
         });
-    });
+
+        //otp in popop
+        $('#resend_otp').hide();
+        $('.otp-section').hide();
+        $('#check_price').hide();
+        $(document).on('click', '#send_otp', function(){
+            var validateMobNum= /[1-9]{1}[0-9]{9}/;
+            var mobile = $('#mobile').val();
+            if (validateMobNum.test(mobile) && mobile.length == 10) {
+                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                $.ajax({
+                    url : '{{ route('front_send-otp') }}',
+                    method : 'post',
+                    data : {_token: CSRF_TOKEN, mobile:mobile},
+                    success : function(result){
+                        var result = $.parseJSON(result);
+                        if(result.result == 'success'){
+                            $("#mobile").attr("readonly", "readonly");
+                            $('.otp-section').show();
+                            $('#send_otp').hide();
+                            timer(20);
+                        } else {
+                            toastr.error('Something went wrong. Please try again later!');
+                        }
+                    }
+                });
+            }
+            else {
+                toastr.error('Please Enter Valid Mobile No.');
+            }
+        });
+
+        $(document).on('keyup', '#otp', function(){
+            var mobile = $('#mobile').val();
+            var otp = $('#otp').val();
+            var olength = otp.toString().length;
+            if(parseInt(olength) > 3){
+                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                $.ajax({
+                    url : '{{ route('front_verify-otp') }}',
+                    method : 'post',
+                    data : {_token: CSRF_TOKEN, mobile:mobile, otp:otp},
+                    success : function(result){
+                        var result = $.parseJSON(result);
+                        if(result.result == 'success'){
+                            $('#resend_text').hide();
+                            $('#is_otp_verify').val('1');
+                            $('#check_price').show();
+                            $("#mobile").attr("readonly", "readonly"); 
+                            $('#otp').hide();
+                        } else {
+                            toastr.error('Please Enter Valid OTP.');
+                        }
+                    }
+                });
+            }
+        });
+
+        $(document).on('click', '#resend_otp', function(){
+            var validateMobNum= /[1-9]{1}[0-9]{9}/;
+            var mobile = $('#mobile').val();
+            console.log('mobile');
+            if (validateMobNum.test(mobile) && mobile.length == 10) {
+                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                $.ajax({
+                    url : '{{ route('front_resend-otp') }}',
+                    method : 'post',
+                    data : {_token: CSRF_TOKEN, mobile:mobile},
+                    success : function(result){
+                        var result = $.parseJSON(result);
+                        if(result.result == 'success'){
+                            console.log('test');
+                            $('.otp-section').show();
+                            $('#resend_text').show();
+                            $('#otp').val('');
+                            $('#otp').show();
+                            $("#mobile").attr("readonly", "readonly");
+                            $('#resend_otp').hide();
+                            timer(20);
+                        } else {
+                            toastr.error('Something went wrong. Please try again later!');
+                        }
+                    }
+                });
+            }
+            else {
+                toastr.error('Please Enter Valid Mobile No.');
+            }
+        });
+    //
+});
+
+    let timerStart = true;
+            function timer(remaining) {
+                var m = Math.floor(remaining / 60);
+                var s = remaining % 60;
+                m = m < 10 ? '0' + m : m;
+                s = s < 10 ? '0' + s : s;
+                document.getElementById('timer').innerHTML = m + ':' + s;
+                remaining -= 1;
+                if(remaining >= 0 && timerStart) {
+                setTimeout(function() {
+                    timer(remaining);
+                }, 1000);
+                return;
+                }
+
+                if(!timerStart) {
+                // Do validate stuff here
+                return;
+                }
+                // Do timeout stuff here
+                var is_otp_verify = $('#is_otp_verify').val();
+                if(is_otp_verify == '0'){
+                    $('#resend_otp').show();
+                    $("#mobile").removeAttr("readonly"); 
+                    $('#resend_text').hide();
+                    $('#otp').hide();
+                }
+            }
+
     function basic(){
         $("input").attr("autocomplete", "off");
         $("textarea").attr("autocomplete", "off");

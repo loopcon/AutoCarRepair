@@ -1,7 +1,7 @@
 @extends('front.layout.main')
 @section('content')
 <div class="service-inner-tophead">
-    <img src="{{ asset('front/img/service-inner-bg.png') }}" class="img-fluid" alt="">
+    <img src="{{ asset('front/img/service-inner-bg.png') }}" class="img-fluid" alt="" title="">
     <div class="service-inner-tophead-text">
         <h2>{{ strtoupper($site_title) }}</h2>
         <ul class="shop-center-breadcum">
@@ -22,7 +22,7 @@
                             <h3>{{ $record->name }}</h3>
                         </div>
                         <div class="col-12 col-md-6 ">
-                            <img src="{{asset('public/uploads/servicecenterdetail/'.$record->image)}}" class="img-fluid" alt="">
+                            <img src="{{asset('public/uploads/servicecenterdetail/'.$record->image)}}" class="img-fluid" alt="" title="">
                         </div>
                         <div class="col-12 col-md-6 shop-address-main">
                             <div class="row">

@@ -86,7 +86,7 @@
     </div>
 </main>
 <div class="modal fade" id="slot_modal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-md" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <form method="POST" action="{{route('admin_change-service-slot')}}" id="slot-form" enctype="multipart/form-data" data-parsley-validate="">
         @csrf
         <input type="hidden" name="booking_id" value="">
@@ -103,40 +103,54 @@
                             @if($weekdays)
                                 @foreach($weekdays as $week)
                                     <a class="date-main slot-date" data-date="{{date('Y-m-d', strtotime($week))}}" href="javascript:void(0);">
-                                        <p>{{$week}}</p>
+                                    <p>{{$week}}<br/>{{date('l', strtotime($week))}}</p>
                                     </a>
                                 @endforeach
                             @endif
                         </div>
                         <div class="pick-slot-main">
-                            <h4>Pick Time Slot <span>({{$aslots->count()+$eslots->count()}} slot available)</span> </h4>
+                            <h4>Pick Time Slot <span id="total_slots">({{$aslots->count()+$eslots->count()}} slot available)</span> </h4>
                             <input type="hidden" name="slot_date" value="">
                             <input type="hidden" name="slot_time" value="">
                         </div>
-                        @if($aslots->count())
-                            <div class="afternoon-slot-sec-main">
-                                <h4><span>slots</span>Afternoon Slot</h4>
-                                <div class="row m-0">
-                                    @foreach($aslots as $slot)
-                                        <div class="col-12 col-sm-3">
-                                            <a class="btn afternoon-slot-btn slot-btn" data-id="{{$slot->time}}">{{$slot->time}}</a>
-                                        </div>
-                                    @endforeach
+                        <div id="slot_info">
+                            @if($mslots->count())
+                                <div class="afternoon-slot-sec-main">
+                                    <h4><span>slots</span>Morning Slot</h4>
+                                    <div class="row m-0">
+                                        @foreach($mslots as $slot)
+                                            <div class="col-12 col-sm-3">
+                                                <a class="btn afternoon-slot-btn slot-btn" data-id="{{$slot->time}}">{{$slot->time}}</a>
+                                            </div>
+                                        @endforeach
+                                    </div>
                                 </div>
-                            </div>
-                        @endif
-                        @if($eslots->count())
-                            <div class="evening-slot-sec-main">
-                                <h4><span>slots</span>Evening Slot</h4>
-                                <div class="row">
-                                    @foreach($eslots as $slot)
-                                        <div class="col-12 col-sm-3">
-                                            <a class="btn evening-slot-btn slot-btn" data-id="{{$slot->time}}">{{$slot->time}}</a>
-                                        </div>
-                                    @endforeach
+                            @endif
+                            @if($aslots->count())
+                                <div class="afternoon-slot-sec-main">
+                                    <h4><span>slots</span>Afternoon Slot</h4>
+                                    <div class="row m-0">
+                                        @foreach($aslots as $slot)
+                                            <div class="col-12 col-sm-3">
+                                                <a class="btn afternoon-slot-btn slot-btn" data-id="{{$slot->time}}">{{$slot->time}}</a>
+                                            </div>
+                                        @endforeach
+                                    </div>
                                 </div>
-                            </div>
-                        @endif
+                            @endif
+                            @if($eslots->count())
+                                <div class="evening-slot-sec-main">
+                                    <h4><span>slots</span>Evening Slot</h4>
+                                    <div class="row">
+                                        @foreach($eslots as $slot)
+                                            <div class="col-12 col-sm-3">
+                                                <a class="btn evening-slot-btn slot-btn" data-id="{{$slot->time}}">{{$slot->time}}</a>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            @endif
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -205,11 +219,23 @@ $(document).ready(function() {
 
     $(document).on('click', '.slot-date', function(){
         var date = $(this).data('date');
-        $('input[name="slot_date"]').val(date);
-        $('.slot-btn').removeClass('evening-slot-active');
-        $('input[name="slot_time"]').val('');
-        $('.slot-date').removeClass('select-date');
-        $(this).addClass('select-date');
+        $this = $(this);
+        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({
+            url : '{{ route('front_get-available-slot') }}',
+            method : 'post',
+            data : {_token: CSRF_TOKEN, date:date},
+            success : function(result){
+                var result = $.parseJSON(result);
+                $('#slot_info').html(result.html);
+                $('input[name="slot_date"]').val(date);
+                $('.slot-btn').removeClass('evening-slot-active');
+                $('input[name="slot_time"]').val('');
+                $('.slot-date').removeClass('select-date');
+                $this.addClass('select-date');
+                $('#total_slots').html("("+result.total_slots+" slot available)");
+            }
+        });
     });
 
     $("#slot-form").submit(function(e) {

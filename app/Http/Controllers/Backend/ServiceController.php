@@ -235,9 +235,9 @@ class ServiceController extends MainController
     {
         $return_data = array();       
         $return_data['site_title'] = trans('Scheduled Packages');
-        $return_data['brands'] = CarBrand::select('id', 'title')->where([['is_archive', Constant::NOT_ARCHIVE], ['status', Constant::ACTIVE]])->get();
-        $return_data['models'] = CarModel::select('id', 'title')->where([['is_archive', Constant::NOT_ARCHIVE], ['status', Constant::ACTIVE]])->get();
-        $return_data['fuel_type'] = FuelType::select('id', 'title')->where([['is_archive', Constant::NOT_ARCHIVE], ['status', Constant::ACTIVE]])->get();
+        // $return_data['brands'] = CarBrand::select('id', 'title')->where([['is_archive', Constant::NOT_ARCHIVE], ['status', Constant::ACTIVE]])->get();
+        // $return_data['models'] = CarModel::select('id', 'title')->where([['is_archive', Constant::NOT_ARCHIVE], ['status', Constant::ACTIVE]])->get();
+        // $return_data['fuel_type'] = FuelType::select('id', 'title')->where([['is_archive', Constant::NOT_ARCHIVE], ['status', Constant::ACTIVE]])->get();
         $return_data['categories'] = ServiceCategory::select('id', 'title')->where([['is_archive', Constant::NOT_ARCHIVE], ['status', Constant::ACTIVE]])->get();
         return view('backend.service.package.list', array_merge($this->data, $return_data));
     }
@@ -245,8 +245,8 @@ class ServiceController extends MainController
     public function scheduledPackageCreate()
     {
         $return_data = array();
-        $return_data['brands'] = CarBrand::select('id', 'title')->where([['is_archive', Constant::NOT_ARCHIVE], ['status', Constant::ACTIVE]])->get();
-        $return_data['fuel_type'] = FuelType::select('id', 'title')->where([['is_archive', Constant::NOT_ARCHIVE], ['status', Constant::ACTIVE]])->get();
+        // $return_data['brands'] = CarBrand::select('id', 'title')->where([['is_archive', Constant::NOT_ARCHIVE], ['status', Constant::ACTIVE]])->get();
+        // $return_data['fuel_type'] = FuelType::select('id', 'title')->where([['is_archive', Constant::NOT_ARCHIVE], ['status', Constant::ACTIVE]])->get();
         $return_data['site_title'] = trans('Scheduled Package Create');
         $return_data['categories'] = ServiceCategory::select('id', 'title')->where([['is_archive', Constant::NOT_ARCHIVE], ['status', Constant::ACTIVE]])->get();
         return view('backend.service.package.form',array_merge($this->data,$return_data));
@@ -264,27 +264,23 @@ class ServiceController extends MainController
                 'title' => ['required'],
                 'sc_id' => ['required'],
                 'time_takes' => ['required'],
-                'brand_id' => ['required'],
-                'model_id' => ['required'],
-                'fuel_type_id' => ['required'],
-                'price' => ['required'],
             ]
         );
         $slug = $request->title != '' ? slugify($request->title) : NULL;
 
         $spackage = new ScheduledPackage();
-        $fields = array('sc_id', 'brand_id', 'model_id', 'fuel_type_id', 'title', 'price', 'warrenty_info', 'note', 'recommended_info', 'time_takes','meta_title','meta_keywords','meta_description');
+        $fields = array('sc_id', 'title', 'image', 'image_other', 'warrenty_info', 'note', 'recommended_info', 'time_takes','meta_title','meta_keywords','meta_description');
         foreach($fields as $field){
             $spackage->$field = isset($request->$field) && $request->$field != '' ? $request->$field : NULL;
         }
-        if($request->hasFile('image')) {
-            $newName = fileUpload($request, 'image', 'uploads/service/package');
-            $spackage->image = $newName;
-        }
-        if($request->hasFile('image_other')) {
-            $newName = fileUpload($request, 'image_other', 'uploads/service/package');
-            $spackage->image_other = $newName;
-        }
+        // if($request->hasFile('image')) {
+        //     $newName = fileUpload($request, 'image', 'uploads/service/package');
+        //     $spackage->image = $newName;
+        // }
+        // if($request->hasFile('image_other')) {
+        //     $newName = fileUpload($request, 'image_other', 'uploads/service/package');
+        //     $spackage->image_other = $newName;
+        // }
         $spackage->slug = $slug;
         $spackage->created_by = Auth::guard('admin')->user()->id;
         $spackage->save();
@@ -323,8 +319,8 @@ class ServiceController extends MainController
         $return_data['site_title'] = trans('Scheduled Package Edit');
         $return_data['categories'] = ServiceCategory::select('id', 'title')->where([['is_archive', Constant::NOT_ARCHIVE], ['status', Constant::ACTIVE]])->get();
         $return_data['specifications'] = PackageSpecification::select('id', 'specification')->where([['sp_id', $id]])->get();
-        $return_data['brands'] = CarBrand::select('id', 'title')->where([['is_archive', Constant::NOT_ARCHIVE], ['status', Constant::ACTIVE]])->get();
-        $return_data['fuel_type'] = FuelType::select('id', 'title')->where([['is_archive', Constant::NOT_ARCHIVE], ['status', Constant::ACTIVE]])->get();
+        // $return_data['brands'] = CarBrand::select('id', 'title')->where([['is_archive', Constant::NOT_ARCHIVE], ['status', Constant::ACTIVE]])->get();
+        // $return_data['fuel_type'] = FuelType::select('id', 'title')->where([['is_archive', Constant::NOT_ARCHIVE], ['status', Constant::ACTIVE]])->get();
         return view('backend.service.package.form', array_merge($this->data, $return_data));
     }
 
@@ -343,36 +339,36 @@ class ServiceController extends MainController
                 'title' => ['required'],
                 'sc_id' => ['required'],
                 'time_takes' => ['required'],
-                'brand_id' => ['required'],
-                'model_id' => ['required'],
-                'fuel_type_id' => ['required'],
-                'price' => ['required'],
+                // 'brand_id' => ['required'],
+                // 'model_id' => ['required'],
+                // 'fuel_type_id' => ['required'],
+                // 'price' => ['required'],
             ]
         );
 
         $slug = $request->title != '' ? slugify($request->title) : NULL;
 
         $spackage = ScheduledPackage::find($id);
-        $fields = array('sc_id', 'brand_id', 'model_id', 'fuel_type_id', 'title', 'price', 'warrenty_info', 'recommended_info', 'note', 'time_takes','meta_title','meta_keywords','meta_description');
+        $fields = array('sc_id', 'title', 'image','image_other', 'warrenty_info', 'recommended_info', 'note', 'time_takes','meta_title','meta_keywords','meta_description');
         foreach($fields as $field){
             $spackage->$field = isset($request->$field) && $request->$field != '' ? $request->$field : NULL;
         }
-        if($request->hasFile('image')) {
-            $old_image = $spackage->image;
-            if($old_image){
-                removeFile('uploads/service/package/'.$old_image);
-            }
-            $newName = fileUpload($request, 'image', 'uploads/service/package');
-            $spackage->image = $newName;
-        }
-        if($request->hasFile('image_other')) {
-            $old_image = $spackage->image_other;
-            if($old_image){
-                removeFile('uploads/service/package/'.$old_image);
-            }
-            $newName = fileUpload($request, 'image_other', 'uploads/service/package');
-            $spackage->image_other = $newName;
-        }
+        // if($request->hasFile('image')) {
+        //     $old_image = $spackage->image;
+        //     if($old_image){
+        //         removeFile('uploads/service/package/'.$old_image);
+        //     }
+        //     $newName = fileUpload($request, 'image', 'uploads/service/package');
+        //     $spackage->image = $newName;
+        // }
+        // if($request->hasFile('image_other')) {
+        //     $old_image = $spackage->image_other;
+        //     if($old_image){
+        //         removeFile('uploads/service/package/'.$old_image);
+        //     }
+        //     $newName = fileUpload($request, 'image_other', 'uploads/service/package');
+        //     $spackage->image_other = $newName;
+        // }
         $spackage->slug = $slug;
         $spackage->updated_by = Auth::guard('admin')->user()->id;
         $spackage->save();
@@ -409,15 +405,15 @@ class ServiceController extends MainController
     public function scheduledPackageDestroy($id)
     {
         $id = Crypt::decrypt($id);
-        $service_img = ScheduledPackage::where('id', $id)->first();
-        $old_image_other = $service_img->image_other;
-        if($old_image_other){
-            removeFile('uploads/service/package/'.$old_image_other);
-        }
-        $old_image = $service_img->image;
-        if($old_image){
-            removeFile('uploads/service/package/'.$old_image);
-        }
+        // $service_img = ScheduledPackage::where('id', $id)->first();
+        // $old_image_other = $service_img->image_other;
+        // if($old_image_other){
+        //     removeFile('uploads/service/package/'.$old_image_other);
+        // }
+        // $old_image = $service_img->image;
+        // if($old_image){
+        //     removeFile('uploads/service/package/'.$old_image);
+        // }
         $page = ScheduledPackage::where('id', $id)->delete();
         if($page) {
 
@@ -430,7 +426,7 @@ class ServiceController extends MainController
     public function scheduledPackageDatatable(request $request)
     {
         if($request->ajax()){
-            $query = ScheduledPackage::with('categoryDetail', 'brandDetail', 'modelDetail', 'fuelTypeDetail')->select('id', 'sc_id', 'brand_id', 'model_id', 'fuel_type_id', 'title', 'image', 'warrenty_info', 'recommended_info', 'note', 'time_takes', 'price')->where('is_archive', '=', Constant::NOT_ARCHIVE)->orderBy('id', 'DESC');
+            $query = ScheduledPackage::with('categoryDetail', 'brandDetail', 'modelDetail', 'fuelTypeDetail')->select('id', 'sc_id', 'title', 'image', 'warrenty_info', 'recommended_info', 'note', 'time_takes')->where('is_archive', '=', Constant::NOT_ARCHIVE)->orderBy('id', 'DESC');
 
             if($request->serviceCategory!='all') {
                 if($request->serviceCategory!='') {
@@ -439,45 +435,45 @@ class ServiceController extends MainController
                     });
                 }
             }
-            if($request->brand!='all') {
-                if($request->brand!='') {
-                    $query->whereHas('brandDetail', function($q) use ($request) {
-                        $q->where([['brand_id', '=', $request->brand]]);
-                    });
-                }
-            }
-            if($request->carModel!='all') {
-                if($request->carModel!='') {
-                    $query->whereHas('modelDetail', function($q) use ($request) {
-                        $q->where([['model_id', '=', $request->carModel]]);
-                    });
-                }
-            }
-            if($request->fuelType!='all') {
-                if($request->fuelType!='') {
-                    $query->whereHas('fuelTypeDetail', function($q) use ($request) {
-                        $q->where([['fuel_type_id', '=', $request->fuelType]]);
-                    });
-                }
-            }
+            // if($request->brand!='all') {
+            //     if($request->brand!='') {
+            //         $query->whereHas('brandDetail', function($q) use ($request) {
+            //             $q->where([['brand_id', '=', $request->brand]]);
+            //         });
+            //     }
+            // }
+            // if($request->carModel!='all') {
+            //     if($request->carModel!='') {
+            //         $query->whereHas('modelDetail', function($q) use ($request) {
+            //             $q->where([['model_id', '=', $request->carModel]]);
+            //         });
+            //     }
+            // }
+            // if($request->fuelType!='all') {
+            //     if($request->fuelType!='') {
+            //         $query->whereHas('fuelTypeDetail', function($q) use ($request) {
+            //             $q->where([['fuel_type_id', '=', $request->fuelType]]);
+            //         });
+            //     }
+            // }
 
             $list = $query->get();
 
             return DataTables::of($list)
                 ->addColumn('image', function ($row) {
-                    $image = $row->image ? "<img src='".url('uploads/service/package/'.$row->image)."' width='80px' height='80px'>" : '';
+                    $image = $row->image;
                     return $image;
                 })
                 ->addColumn('category', function($row){
                     $category = isset($row->categoryDetail->title) ? $row->categoryDetail->title : NULL;
                     return $category;
                 })
-                ->addColumn('car_detail', function($row){
-                    $brand = isset($row->brandDetail->title) ? $row->brandDetail->title : NULL;
-                    $model = isset($row->modelDetail->title) ? $row->modelDetail->title : NULL;
-                    $fuel_type = isset($row->fuelTypeDetail->title) ? $row->fuelTypeDetail->title : NULL;
-                    return $brand.' - '.$model.' - '.$fuel_type;
-                })
+                // ->addColumn('car_detail', function($row){
+                //     $brand = isset($row->brandDetail->title) ? $row->brandDetail->title : NULL;
+                //     $model = isset($row->modelDetail->title) ? $row->modelDetail->title : NULL;
+                //     $fuel_type = isset($row->fuelTypeDetail->title) ? $row->fuelTypeDetail->title : NULL;
+                //     return $brand.' - '.$model.' - '.$fuel_type;
+                // })
                 ->addColumn('time_takes', function($row){
                     $time = isset($row->time_takes) && $row->time_takes ? $row->time_takes.' Hrs' : NULL;
                     return $time;
@@ -491,7 +487,7 @@ class ServiceController extends MainController
                     $html .= "</span>";
                     return $html;
                 })
-                ->rawColumns(['image', 'category', 'car_detail', 'time_takes', 'action'])
+                ->rawColumns(['image', 'category', 'time_takes', 'action'])
                 ->make(true);
         } else {
             return redirect('backend/dashboard');
@@ -534,8 +530,10 @@ class ServiceController extends MainController
         $return_data['od_id'] = $request->get('od_id') ? Crypt::decrypt($request->get('od_id')) : NULL;
         $aslots = PickUpSlotSetting::select('id', 'time', 'slot')->where('slot', Constant::AFTERNOON)->orderBy('id')->get();
         $eslots = PickUpSlotSetting::select('id', 'time', 'slot')->where('slot', Constant::EVENING)->orderBy('id')->get();
+        $mslots = PickUpSlotSetting::select('id', 'time', 'slot')->where('slot', Constant::MORNING)->orderBy('id')->get();
         $return_data['aslots'] = $aslots;
         $return_data['eslots'] = $eslots;
+        $return_data['mslots'] = $mslots;
         return view('backend.service.booked', array_merge($this->data, $return_data));
     }
 

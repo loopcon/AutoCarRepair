@@ -38,9 +38,9 @@
                                 <a href="{{url('shopping/'.$product->slug)}}">
                                     <div class="shoping-main-product">
                                         @if(isset($product->primaryImage->image) && $product->primaryImage->image)
-                                            <img src="{{ asset('public/uploads/product/'.$product->id.'/'.$product->primaryImage->image) }}"  alt="">
+                                            <img src="{{ asset('public/uploads/product/'.$product->id.'/'.$product->primaryImage->image) }}"  alt="" title="">
                                         @else
-                                            <img src="{{ asset('front/img/no_image.jpg') }}" class="img-fluid" alt="">
+                                            <img src="{{ asset('front/img/no_image.jpg') }}" class="img-fluid" alt="" title="">
                                         @endif
                                         <div class="shoping-text-name">
                                             <h5><a href="{{url('shopping/'.$product->slug)}}">{{$product->name}}</a></h5>
@@ -65,6 +65,18 @@
                             {!! $products->links() !!}
                         </div>
                     @endif
+                </div>
+            </div>
+            <div class="pagination-main">
+                <div class="pagination">
+                    <a href="#">&laquo;</a>
+                    <a href="#">1</a>
+                    <a href="#" class="active">2</a>
+                    <a href="#">3</a>
+                    <a href="#">4</a>
+                    <a href="#">5</a>
+                    <a href="#">6</a>
+                    <a href="#">&raquo;</a>
                 </div>
             </div>
         </div>

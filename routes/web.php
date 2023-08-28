@@ -182,6 +182,8 @@ Route::group(['prefix' => 'backend','as' => 'admin_'], function() {
 Route::group(['as' => 'front_', 'middleware' => 'XSS'], function() {
     Route::get('/', [\App\Http\Controllers\Front\HomeController::class, 'index'])->name('/');
     Route::post('appointment-store',[App\Http\Controllers\Front\HomeController::class, 'appointmentStore'])->name('appointment-store');
+    Route::get('reviews', [App\Http\Controllers\Front\HomeController::class, 'getReviews'])->name('reviews');
+
     Route::get('register', [\App\Http\Controllers\Front\Auth\RegisterController::class, 'showRegisterForm'])->name('register');
     Route::post('register', [\App\Http\Controllers\Front\Auth\RegisterController::class, 'register'])->name('register');
     Route::get('login', [\App\Http\Controllers\Front\Auth\LoginController::class, 'showLoginForm'])->name('login');
@@ -232,6 +234,7 @@ Route::group(['as' => 'front_', 'middleware' => 'XSS'], function() {
     Route::get('checkout', [App\Http\Controllers\Front\CheckoutController::class, 'index'])->name('checkout');
     Route::post('cart-ajax-html', [App\Http\Controllers\Front\CheckoutController::class, 'cartAjaxHtml'])->name('cart-ajax-html');
     Route::post('create-order', [\App\Http\Controllers\Front\CheckoutController::class, 'createOrder'])->name('create-order');
+    Route::post('get-available-slot', [\App\Http\Controllers\Front\CheckoutController::class, 'getAvailableSlot'])->name('get-available-slot');
     Route::get('thank-you', [\App\Http\Controllers\Front\CheckoutController::class, 'thankYou'])->name('thank-you');
 
     Route::post('send-otp', [\App\Http\Controllers\Front\OtpController::class, 'send'])->name('send-otp');

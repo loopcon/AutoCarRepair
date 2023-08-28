@@ -26,8 +26,10 @@ class OrderController extends MainController
         $return_data['orders'] = Order::with('detail', 'slotDetail')->where('user_id', $user_id)->orderBy('id', 'desc')->get();
         $aslots = PickUpSlotSetting::select('id', 'time', 'slot')->where('slot', Constant::AFTERNOON)->orderBy('id')->get();
         $eslots = PickUpSlotSetting::select('id', 'time', 'slot')->where('slot', Constant::EVENING)->orderBy('id')->get();
+        $mslots = PickUpSlotSetting::select('id', 'time', 'slot')->where('slot', Constant::MORNING)->orderBy('id')->get();
         $return_data['aslots'] = $aslots;
         $return_data['eslots'] = $eslots;
+        $return_data['mslots'] = $mslots;
         return view('front.user.orders',array_merge($this->data,$return_data)); 
     } 
 

@@ -16,7 +16,7 @@
         <div class="form-row">
             <div class="mb-3 col-md-6">
                 <label class="form-label" for="name">{{__('Category Name')}}<span class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="name" name="name" placeholder="{{__('Category Name')}}" maxlength="50" required=""  data-parsley-required-message="{{ __("This value is required.")}}" value="{{ isset($record->name) ? $record->name : old('name') }}">
+                <input type="text" class="form-control" id="name" name="name" placeholder="{{__('Category Name')}}" required=""  data-parsley-required-message="{{ __("This value is required.")}}" value="{{ isset($record->name) ? $record->name : old('name') }}">
             </div>
 
             <div class="mb-3 col-md-12">

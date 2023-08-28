@@ -70,7 +70,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'asia/kolkata',
 
     /*
     |--------------------------------------------------------------------------
@@ -171,6 +171,8 @@ return [
         Yajra\DataTables\DataTablesServiceProvider::class,
         Craftsys\Msg91\Msg91LaravelServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
+        // PulkitJalan\Google\GoogleServiceProvider::class
+
     ])->toArray(),
 
     /*
@@ -192,6 +194,9 @@ return [
         Maatwebsite\Excel\Facades\Excel::class,
         'Msg91' => 
         Craftsys\Msg91\Facade\Msg91::class,
+
+        'Msg91' => Craftsys\Msg91\Facade\Msg91::class,
+        // 'Google' => PulkitJalan\Google\Facades\Google::class
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 
