@@ -575,3 +575,10 @@ ALTER TABLE `pick_up_slot_settings` CHANGE `slot` `slot` TINYINT(1) NULL DEFAULT
 
 -- Disha : 19-8-23 11:09 AM
 ALTER TABLE `faq` ADD `service_category_id` INT(255) NULL DEFAULT NULL AFTER `id`;
+
+-- Disha : 28-8-23 6:18 PM
+ALTER TABLE `home_page_setting` ADD `image_title` VARCHAR(255) NULL DEFAULT NULL AFTER `section1_description`;
+
+ALTER TABLE `offer_slider` ADD `image_title` VARCHAR(255) NULL DEFAULT NULL AFTER `image`;
+
+ALTER TABLE `brand_logo_slider` ADD `image_title` VARCHAR(255) NULL DEFAULT NULL AFTER `image`;

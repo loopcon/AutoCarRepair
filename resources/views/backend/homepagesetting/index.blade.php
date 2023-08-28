@@ -33,7 +33,7 @@
                                 </div>
 
                                 <div class="mt-2 col-md-6">
-                                <label for="section1_image">{{__('Section 1 Image')}}</label>
+                                    <label for="section1_image">{{__('Section 1 Image')}}</label>
                                     <div class="product_image">
                                     @php($required = 'required')
                                         @if(isset($record->section1_image))
@@ -52,6 +52,13 @@
                                     <div class="m-b-10">
                                         <input type="file" id="uploadImage1" accept="image/x-png, image/gif, image/jpeg" class="btn btn-warning btn-block btn-sm"  name="section1_image" onChange="this.parentNode.nextSibling.value = this.value; PreviewImage(1);">
                                     </div> 
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label class="form-label" for="image_title">{{__('Image Title')}}</label>
+                                    <input type="text" class="form-control" id="image_title" name="image_title" placeholder="{{__('Image Title')}}"  value="{{ isset($record->image_title) ? $record->image_title : old('image_title') }}">
+
+                                    @if ($errors->has('image_title')) <div class="text-danger">{{ $errors->first('image_title') }}</div>@endif
                                 </div>
 
                                 <div class="mt-2 col-md-6">

@@ -30,6 +30,7 @@ class OfferSliderController extends MainController
                 $btn_title = 'btn_title_'.$i;
                 if(isset($request->$btn_title)){
                     $image = 'image_'.$i;
+                    $image_title = 'image_title_'.$i;
                     $title1 = 'title1_'.$i;
                     $title2 = 'title2_'.$i;
                     $btn_title = 'btn_title_'.$i;
@@ -43,6 +44,7 @@ class OfferSliderController extends MainController
                         $offer_slider->created_by = Auth::guard('admin')->user()->id;
                     }
 
+                    $offer_slider->image_title = $request->$image_title ? $request->$image_title : NULL;
                     $offer_slider->title1 = $request->$title1 ? $request->$title1 : NULL;
                     $offer_slider->title2 = $request->$title2 ? $request->$title2 : NULL;
                     $offer_slider->btn_title = $request->$btn_title ? $request->$btn_title : NULL;
