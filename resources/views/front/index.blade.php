@@ -40,22 +40,23 @@
         <div class="row m-0">
             @if($scategories->count())
                 @php($key = 0)
-                @foreach($scategories as $service)
+                @foreach($scategories as $sk => $service)
                     <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                         <a href="{{url($service->slug)}}">
                             <div class="services-cate-main services-cate-common{{$key}}">
                                 <div class="car-service-img-main">
                                     @if(isset($service->image) && $service->image)
-                                        <img src="{{ asset('uploads/service/category/'.$service->image) }}" class="img-fluid" alt="" title="service Image"  onmouseover="this.src='{{ asset('uploads/service/category/'.$service->image_1) }}'" onmouseout="this.src='{{ asset('uploads/service/category/'.$service->image) }}'" />
+                                        <img src="{{ asset('uploads/service/category/'.$service->image) }}" class="img-fluid" alt="" title="{{$service->title}}"  onmouseover="this.src='{{ asset('uploads/service/category/'.$service->image_1) }}'" onmouseout="this.src='{{ asset('uploads/service/category/'.$service->image) }}'" />
                                     @else
                                         <img src="{{ asset('front/img/no_image.jpg') }}" class="img-fluid" alt="">
                                     @endif
                                 </div>
-                                <div class="services-cate-item">
-                                    @php($img = $key + 1)
-                                    <img src="{{ asset('front/img/ser-cat'.$img.'small.png') }}" class="img-fluid" alt="" title="">
+                                <div class="services-cate-item" >
+                                    @php($img = $sk + 1)
+                                    <img src="{{ asset('front/img/ser-cat'.$img.'small.png') }}" class="img-fluid" alt="" title="{{$service->title}}">
                                     <h4> {{$service->title}} </h4>
-                                    <p>We are always help to make one of the best adjustment service </p>
+                                    <p >We are always help to make one of the best adjustment service </p>
+                                    <img src="{{ asset('front/img/ser-cat'.$img.'big.png') }}" class="se-cat-bigimage" alt="" title="{{$service->title}}">
                                 </div>
                             </div>
                         </a>
@@ -321,20 +322,24 @@
             @csrf
                 <div class="row">
                     <div class="col-12 col-sm-6">
-                        <div class="mb-5">
+                        <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">YOUR NAME</label>
-                            <input type="text" class="form-control" id="name" name="name" required="" placeholder="Enter Your Name" aria-describedby="nae">
+                            <input type="text" class="form-control home-email-input" id="name" name="name" required="" placeholder="Enter Your Name" aria-describedby="nae">
                             @if ($errors->has('name')) <div class="text-warning">{{ $errors->first('name') }}</div>@endif
                         </div>
-                        <div class="mb-5">
+                        <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">YOUR PHONE</label>
+<<<<<<< Updated upstream
                             <input type="text" class="form-control num_only" id="mobile" maxlength="10" name="phone" placeholder="Enter Your Phone Number" aria-describedby="emailHelp">
+=======
+                            <input type="text" class="form-control num_only home-email-input" id="mobile" maxlength="10" name="phone" placeholder="Enter Your Phone Number" aria-describedby="nae">
+>>>>>>> Stashed changes
                         </div>
                     </div>
                     <div class="col-12 col-sm-6">
-                        <div class="mb-5">
+                        <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">YOUR EMAIL</label>
-                            <input type="email" class="form-control" id="email" required="" name="email" placeholder="Enter Your Email" aria-describedby="emailHelp">
+                            <input type="email" class="form-control home-email-input" id="email" required="" name="email" placeholder="Enter Your Email" aria-describedby="emailHelp">
                             @if ($errors->has('email')) <div class="text-warning">{{ $errors->first('email') }}</div>@endif
                         </div>
                         <?php /*<div class="mb-5">
@@ -351,7 +356,7 @@
                         </div> */ ?>
                         <div class="form-group mb-3">
                             <label for="exampleFormControlTextarea1" class="form-label">YOUR MESSAGE</label>
-                            <textarea class="form-control" id="message" name="message" rows="2" required=""></textarea>
+                            <textarea class="form-control home-email-input" id="message" name="message" rows="1" required=""></textarea>
                             @if ($errors->has('message')) <div class="text-warning">{{ $errors->first('message') }}</div>@endif
                         </div>
                     </div>
