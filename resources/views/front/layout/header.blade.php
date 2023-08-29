@@ -110,7 +110,7 @@
     <div class="container">
         <div class="mobile-menu-sectiondata">
             <div class="mo-logo">
-                <img src="{{ asset('front/img/acr-logo.webp') }}" class="acr-logo" alt="">
+                <a href="{{route('front_/')}}"><img src="{{ asset('front/img/acr-logo.webp') }}" class="acr-logo" alt=""></a>
             </div>
             <div class="mo-appointmentbtn">
                 <div class="mo-search-main-section">
@@ -133,7 +133,7 @@
                         </div>
                     </div>
                     <div>
-                        <a class="navbar-appointment-btn apt-btn" href="javascript:void(0);" >Appointment Now</a>
+                        <a class="navbar-appointment-btn apt-btn" href="javascript:void(0);" >Book A Service</a>
                     </div>
                 </div>
             </div>
@@ -148,6 +148,7 @@
                         <li><a class="@if($page == 'service-center'){{'acr-active'}}@endif" href="{{url('service-center')}}">Service Center</a></li>
                         <li><a href="#">Blog</a></li>
                         <li><a class="@if($page == 'shopping'){{'acr-active'}}@endif href="{{url('front-shopping')}}">Shopping</a></li>
+                        <li><a href="{{url('checkout')}}" class="card-icon-main"><i class="fa fa-cart-plus"></i><span id="cart_header_total_item"></span></a></li>
                     </ul>
                 </div>
             </div>
