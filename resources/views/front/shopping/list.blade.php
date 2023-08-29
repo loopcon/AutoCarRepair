@@ -102,7 +102,7 @@
 
             $(document).on('click', '.add_to_cart', function(){
                 var product_id = $(this).data('product_id');
-                swal({
+                /*swal({
                     title: "",
                     text: "Are you sure? You want to add this product to cart!",
                     type: "warning",
@@ -114,7 +114,8 @@
                 },
                 function(){
                     addItemToCart(product_id);
-                });
+                });*/
+                addItemToCart(product_id);
             });
         });
 

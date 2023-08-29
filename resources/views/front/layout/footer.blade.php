@@ -315,7 +315,7 @@ $(document).ready(function() {
 
         //otp in popop
         $('#appointmentresend_otp').hide();
-        $('.otp-section').hide();
+        $('.aptotp-section').hide();
         $('#check_price').hide();
         $(document).on('click', '#appointmentsend_otp', function(){
             var validateMobNum= /[1-9]{1}[0-9]{9}/;
@@ -330,9 +330,9 @@ $(document).ready(function() {
                         var result = $.parseJSON(result);
                         if(result.result == 'success'){
                             $("#appointmentmobile").attr("readonly", "readonly");
-                            $('.otp-section').show();
+                            $('.aptotp-section').show();
                             $('#appointmentsend_otp').hide();
-                            timer(30);
+                            apttimer(30);
                         } else {
                             toastr.error('Something went wrong. Please try again later!');
                         }
@@ -382,13 +382,13 @@ $(document).ready(function() {
                     success : function(result){
                         var result = $.parseJSON(result);
                         if(result.result == 'success'){
-                            $('.otp-section').show();
+                            $('.aptotp-section').show();
                             $('#appointmentresend_text').show();
                             $('#appointmentotp').val('');
                             $('#appointmentotp').show();
                             $("#appointmentmobile").attr("readonly", "readonly");
                             $('#appointmentresend_otp').hide();
-                            timer(30);
+                            apttimer(30);
                         } else {
                             toastr.error('Something went wrong. Please try again later!');
                         }
@@ -401,35 +401,6 @@ $(document).ready(function() {
         });
     //
 });
-
-    let timerStart = true;
-            function timer(remaining) {
-                var m = Math.floor(remaining / 60);
-                var s = remaining % 60;
-                m = m < 10 ? '0' + m : m;
-                s = s < 10 ? '0' + s : s;
-                document.getElementById('ontimer').innerHTML = m + ':' + s;
-                remaining -= 1;
-                if(remaining >= 0 && timerStart) {
-                setTimeout(function() {
-                    timer(remaining);
-                }, 1000);
-                return;
-                }
-
-                if(!timerStart) {
-                // Do validate stuff here
-                return;
-                }
-                // Do timeout stuff here
-                var is_otp_verify = $('#appointmentis_otp_verify').val();
-                if(is_otp_verify == '0'){
-                    $('#appointmentresend_otp').show();
-                    $("#appointmentmobile").removeAttr("readonly"); 
-                    $('#appointmentresend_text').hide();
-                    $('#appointmentotp').hide();
-                }
-            }
 
     function basic(){
         $("input").attr("autocomplete", "off");
@@ -549,6 +520,34 @@ $(document).ready(function() {
                 }
             }
         });
+    }
+    let timerStart = true;
+    function apttimer(remaining) {
+        var m = Math.floor(remaining / 60);
+        var s = remaining % 60;
+        m = m < 10 ? '0' + m : m;
+        s = s < 10 ? '0' + s : s;
+        document.getElementById('apttimer').innerHTML = m + ':' + s;
+        remaining -= 1;
+        if(remaining >= 0 && timerStart) {
+        setTimeout(function() {
+            apttimer(remaining);
+        }, 1000);
+        return;
+        }
+
+        if(!timerStart) {
+        // Do validate stuff here
+        return;
+        }
+        // Do timeout stuff here
+        var is_otp_verify = $('#appointmentis_otp_verify').val();
+        if(is_otp_verify == '0'){
+            $('#appointmentresend_otp').show();
+            $("#appointmentmobile").removeAttr("readonly"); 
+            $('#appointmentresend_text').hide();
+            $('#appointmentotp').hide();
+        }
     }
 </script>
 @yield('javascript')
