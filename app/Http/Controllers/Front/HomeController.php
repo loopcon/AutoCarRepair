@@ -39,7 +39,7 @@ dd($response);
 //        $google_client->setClientSecret('SECRET');*/
         $return_data = array();
         $return_data['settings'] = $this->data;
-        $hsetting = HomePageSetting::select('section1_title1', 'section1_title2', 'section1_image', 'section1_description','image_title', 'meta_title', 'meta_keywords', 'meta_description')->where('id', 1)->first();
+        $hsetting = HomePageSetting::select('section1_title1', 'section1_title2', 'section1_image', 'section1_description','image_title', 'meta_title', 'meta_keywords', 'meta_description', 'price_list')->where('id', 1)->first();
         $return_data['hsetting'] = $hsetting;
         $return_data['offer_slider'] = OfferSlider::select('id', 'title1', 'title2', 'image','image_title', 'btn_link', 'btn_title')->orderBy('id', 'ASC')->get();
         $return_data['brand_logo_slider'] = BrandLogoSlider::select('id', 'image')->orderBy('id', 'ASC')->get();

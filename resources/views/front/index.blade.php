@@ -422,6 +422,14 @@
             </div>
         @endforeach
     @endif
+    @if(isset($hsetting->price_list) && $hsetting->price_list)
+        <div class="container">
+            <div class="col-12">
+                <h3>Car Services Price List in NCR, Delhi 2023</h3>
+            </div>
+            {!! $hsetting->price_list !!}
+        </div>
+    @endif
 </div>
 <!--service center section end -->
 @endsection

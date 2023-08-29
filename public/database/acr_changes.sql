@@ -582,3 +582,6 @@ ALTER TABLE `home_page_setting` ADD `image_title` VARCHAR(255) NULL DEFAULT NULL
 ALTER TABLE `offer_slider` ADD `image_title` VARCHAR(255) NULL DEFAULT NULL AFTER `image`;
 
 ALTER TABLE `brand_logo_slider` ADD `image_title` VARCHAR(255) NULL DEFAULT NULL AFTER `image`;
+
+-- Khushali : 29-08-2023 10:07 AM
+ALTER TABLE `home_page_setting` ADD `price_list` LONGTEXT NULL AFTER `button_link`;
