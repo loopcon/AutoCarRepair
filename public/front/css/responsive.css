@@ -52,6 +52,7 @@
     #sync1 .product-inner-imgmain img{ height: auto;}
     #sync2 .product-inner-imgmain img{ height: auto; }
     .save-more-img img{ display: none;}
+    .footer-address .contact-number-main p{ font-size: 22px;}
 }
 @media (max-width:767px) {
     .slider-section-main h2{ font-size: 50px; }
@@ -154,6 +155,12 @@
     .search-svg-main{ margin-right: 10px; font-size: 20px; color: #000;}
     #sync1 .product-inner-imgmain img{ height: auto;}
     #sync2 .product-inner-imgmain img{ height: auto; }
+    .footer-address .contact-number-main p{  font-size: 28px;}
+    .footer-address .acr-my-tvsimage{ width: 200px; margin: auto; display: block;}
+    .footer-address .address-text-main{ flex-wrap: wrap; justify-content: center;}
+    .footer-address .address-text-main a{ text-align: center;}
+    .footer-address .contact-number-main{ margin-bottom: 20px; margin-top: 10px;}
+    .footer-menu-item{ margin-bottom: 15px;}
 }
 @media (max-width:450px) {
     .mobile-menu-sectiondata{  flex-wrap: wrap; height: 80px; }

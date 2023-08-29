@@ -1,16 +1,16 @@
 
 <!-- new footer start  -->
 <div class="footer-soical-icon">
-    <i class="fa-brands fa-facebook-f"></i>
-    <i class="fa-brands fa-instagram"></i>
-    <i class="fa-brands fa-twitter"></i>
-    <i class="fa-brands fa-linkedin"></i>
-    <i class="fa-brands fa-youtube"></i>
-    <i class="fa-brands fa-whatsapp"></i>
+    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+    <a href="#"><i class="fa-brands fa-twitter"></i></a>
+    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+    <a href="#"><i class="fa-brands fa-youtube"></i></a>
+    <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
 </div>
 <div class="newfooter-bg-main">
     <div class="row m-0">
-        <div class="col-3">
+        <div class="col-12 col-sm-6 col-md-3">
             <ul class="our-service-main">
                 <li class="our-section-head">OUR SERVICES</li>
                 <li><a href="#">Scheduled Services</a></li>
@@ -26,7 +26,7 @@
                 <li><a href="#">Windshields & Glass</a></li>
             </ul>
         </div>
-        <div class="col-3">
+        <div class="col-12 col-sm-6 col-md-3">
             <ul class="our-service-main">
                 <li class="our-section-head">LUXURY BRANDS</li>
                 <li><a href="#">Mercedes</a></li>
@@ -41,7 +41,7 @@
                 <li><a href="#">Land Rover</a></li>
             </ul>
         </div>
-        <div class="col-3">
+        <div class="col-12 col-sm-6 col-md-3">
             <ul class="our-service-main">
                 <li class="our-section-head">POPULAR BRANDS</li>
                 <li><a href="#">Maruti Suzuki</a></li>
@@ -58,7 +58,7 @@
                 <li><a href="#">Volkswagen</a></li>
             </ul>
         </div>
-        <div class="col-3">
+        <div class="col-12 col-sm-6 col-md-3">
             <ul class="our-service-main">
                 <li class="our-section-head">POPULAR AREAS NEAR YOU</li>
                 <li><a href="#">Garage near me in Andheri</a></li>
@@ -77,12 +77,12 @@
 </div>
 <div class="footer-address">
     <div class="row m-0 align-items-center">
-        <div class="col-2">
+        <div class="col-12 col-sm-6 col-md-2">
             <div>
                 <img src="{{ asset('front/img/acr-my-tvs.png') }}" class="acr-my-tvsimage"  alt="">
             </div>
         </div>
-        <div class="col-4">
+        <div class="col-12 col-sm-6 col-md-4">
             <div class="contact-number-main">
                 <p>
                     <img src="{{ asset('front/img/call-image.png') }}" class="call-image-main" alt="">
@@ -91,14 +91,12 @@
                 <a href="#" class="footer-number-main">09810446692</a>
             </div>
         </div>
-        <div class="col-6">
+        <div class="col-12 col-sm-12 col-md-6">
             <div class="address-text-main">
-                <p>
-                    <div>
-                        <img src="{{ asset('front/img/location-icon-footer.png') }}" class="addres-image-main" alt="">
-                        <span>Address:-</span>
-                    </div>
-                     </p>
+                <div class="address-main-imagesec">
+                    <img src="{{ asset('front/img/location-icon-footer.png') }}" class="addres-image-main" alt="">
+                    <span>Address:-</span>
+                </div>
                 <a href="#">Unit-1 Plot, 29 & 30, near Kargil
                     Shaheed Sukhbir Singh Yadav Marg,
                     Info Technology Park, Sector 34,
@@ -108,14 +106,24 @@
         </div>
     </div>
 </div>
-<!-- new footer end  -->
-<!--new footer start -->
-<div>
-    
+<div class="footer-menu-main">
+    <div>
+        <ul class="footer-menu-item">
+            <li><a href="#">FAQs</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">Blogs</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms & Conditions </a></li>
+        </ul>
+    </div>
+    <div>
+        <p class="copy-right-text">autocarrepair2023 All Right Reserved</p>
+    </div>
 </div>
-<!--new footer end -->
+<!-- new footer end  -->
+
 <!-- footer start  -->
-<div class="footer-bg-main">
+<?php /*<div class="footer-bg-main">
     <div class="footer-widthset">  
         <div class="row m-0">
             <div class="col-12 col-sm-6 col-lg-3">
@@ -185,10 +193,10 @@
             </div>
            <?php /* <div class="col-2 col-sm-2 col-lg-1 footer-msgimg-main">
                 <img src="{{ asset('front/img/footer-msg.webp') }}" class="img-fluid" alt="">
-            </div> */ ?> 
+            </div> * / ?> 
         </div>
     </div>
-</div>
+</div> */ ?>
 <!-- footer end  -->
 <div class="footer-whatappicon">
      <a href="https://wa.me/{{$phone}}" target="_blank"><img src="{{ asset('front/img/whatsapp-acr-img.webp') }}" class="img-fluid" alt=""></a>
@@ -549,6 +557,33 @@ $(document).ready(function() {
                 }
             }
         });
+
+        $('#aboutus-brand-carousel').owlCarousel({
+            loop: true,
+            margin: 30,
+            dots: false,
+            nav: false,
+            items: 4,
+            autoplay:true,
+            autoplayTimeout:2000,
+            autoplayHoverPause:true,
+            responsiveClass: true,
+            responsive: {
+                0: {
+                items: 1
+                },
+                450:{
+                items: 2
+                },
+                600: {
+                items: 3
+                },
+                1024: {
+                items: 4
+                }
+            }
+        });
+
     }
 </script>
 @yield('javascript')
