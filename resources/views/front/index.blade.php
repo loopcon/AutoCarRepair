@@ -53,10 +53,10 @@
                                 </div>
                                 <div class="services-cate-item" >
                                     @php($img = $sk + 1)
-                                    <img src="{{ asset('front/img/ser-cat'.$img.'small.png') }}" class="img-fluid" alt="" title="{{$service->title}}">
-                                    <h4> {{$service->title}} </h4>
-                                    <p >We are always help to make one of the best adjustment service </p>
-                                    <img src="{{ asset('front/img/ser-cat'.$img.'big.png') }}" class="se-cat-bigimage" alt="" title="{{$service->title}}">
+                                    <img src="{{ asset('front/img/ser-cat'.$img.'small.png') }}" class="service-cat-smallimg" alt="" title="{{$service->title}}">
+                                    <div class="home-service-main"> <h4> {{$service->title}} </h4> </div>
+                                    <?php /* <p >We are always help to make one of the best adjustment service </p>
+                                    <img src="{{ asset('front/img/ser-cat'.$img.'big.png') }}" class="se-cat-bigimage" alt="" title="{{$service->title}}"> */ ?>
                                 </div>
                             </div>
                         </a>

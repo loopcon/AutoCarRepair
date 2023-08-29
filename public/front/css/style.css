@@ -122,9 +122,11 @@ a.badge:hover{
 .service-section .services-cate-main{ position: relative; margin-bottom: 100px;}
 .service-section .services-cate-item { background-color:#01073C; position: absolute; top: 78%; width: 95%; transition-duration: 0.5s; }
 .service-section .services-cate-item:hover{ width: 100%; transition-duration: 0.4s;  }
-.service-section .services-cate-item h4 { color: #fff; font-weight: bold; margin-left: 10px; text-align: left; font-size: 20px; z-index: 1; position: relative;}
-.service-section .services-cate-item p { color: #fff;  margin-left: 10px; text-align: left;font-size: 12px; margin-bottom: 10px; z-index: 1; position: relative;}
+.service-section .services-cate-item h4 { color: #fff; font-weight: bold; margin-left: 10px; text-align: left; font-size: 20px;  margin-bottom: 0px; }
+.service-section .services-cate-item p { color: #fff;  margin-left: 10px; text-align: left;font-size: 12px; margin-bottom: 10px; }
 .service-section .se-cat-bigimage { position: absolute; top: 0;left: 51%;width:70px; opacity: 0.5; }
+.service-cat-smallimg{ height: 46px; }
+.home-service-main{ display: flex; align-items: center; height: 72px; overflow: hidden; margin-bottom: 10px;}
 /* service css end  */
 /* why choose us start */
 .why-choose-section{ padding: 20px 0;}
@@ -135,7 +137,7 @@ a.badge:hover{
 .why-choose-section .why-choose-inner-item p{ font-size: 15px; color: #000000; font-weight: normal; }
 .why-choose-section  .why-choose-img-main img{ padding: 0px 15px;}
 .why-choose-section .why-choose-main{ padding: 0px 15px;}
-.why-choose-section .why-choose-box-main{  align-items: center; margin-bottom: 25px; }
+/* .why-choose-section .why-choose-box-main{  align-items: center; margin-bottom: 25px; } */
 /* why choose us end */
 /* offer slider  css start  */
 .offeer-section .explore-btn{  background-color: #E56F31; color: #fff;border: none;width: 145px;height: 45px;font-size: 17px;border-radius: 10px;font-weight: bold; font-size:18px; }
@@ -232,11 +234,26 @@ a.badge:hover{
 /* service page css start  */
 .our-service-section {  padding-top: 30px; padding-bottom: 35px;}
 .our-service-section .service-main-heading h2{  font-size: 44px; font-weight: bold; text-align: center; margin-top: 20px; margin-bottom: 20px;}
-.our-service-section .servic-type-box { border: 1px solid #000; box-shadow: 2px 2px 15px 0px #000000E8; padding: 25px; margin:25px 10px;}
-.our-service-section .servic-type-box h4{ color: #E56F31; font-size: 28px; font-weight: bold; }
-.our-service-section .servic-type-box p{ font-size: 15px; color:#000; }
+.our-service-section .servic-type-box {box-shadow: 2px 2px 15px 0px #000000E8; padding: 25px; margin:25px 10px; border-radius: 8px;}
+.our-service-section .servic-type-box:hover{transform: scale(1.1);}
+.our-service-section .servic-type-box h4{ color: #E56F31; font-size: 28px; font-weight: bold;  text-align: center; margin-bottom: 0px; }
+.our-service-section .servic-type-box p{ 
+    font-size: 15px;
+    color: #000;
+    height: 64px;
+    overflow: hidden;
+    margin-bottom: 0px;
+ }
 .our-service-section .our-ser-send-msgbtn{  background-color: #E56F31; color: #fff; width: 190px; height: 50px; font-size: 23px; font-weight: bold; border: 0px; border-radius: 10px;}
 .our-service-section .our-section-main-btngroup{ text-align: center; margin-top: 30px; margin-bottom: 30px;}
+.our-service-section .servic-type-box-image{height: 50px;display: block;margin: auto; }
+.our-service-section .service-type-head{ 
+    height: 68px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    margin-bottom: 0px;
+ }
 /* service page css end  */
 /* service inner page css start  */
 .service-inner-tophead{ position: relative;}
@@ -557,7 +574,7 @@ button { color: #000; outline: none; }
 /* new footer  css start  */
 .footer-soical-icon{ display: flex;justify-content: end;margin-right: 35px;margin-bottom: 10px; margin-top: 10px; }
 .footer-soical-icon svg{ height:20px;width:20px;padding: 10px;background-color: #071c2c;color: #fff;border-radius: 50%;margin-right:7px; }
-.newfooter-bg-main{ background-color: #071c2c; padding: 20px 0px;} 
+.newfooter-bg-main{ background-color: #164498; padding: 20px 0px;} 
 .newfooter-bg-main .our-service-main{ list-style: none; margin-bottom: 0px; padding-left: 10px;}
 .newfooter-bg-main .our-service-main li a{ text-decoration: none; color: #fff; font-size: 14px;}
 .newfooter-bg-main .our-section-head{ color: #fff; font-size: 18px; padding-bottom: 8px;  }
@@ -599,3 +616,4 @@ button { color: #000; outline: none; }
     object-fit: contain;
 }
 /* about us css end  */
+.filter-click-main{ width: 100%;}

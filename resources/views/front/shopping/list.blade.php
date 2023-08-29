@@ -20,10 +20,14 @@
                         @if($scategories->count())
                             @foreach($scategories as $category)
                                 <li>
-                                    <a href="javascript:void(0);">
+                                    <?php /*<a for="pcategory{{$category->id}}" href="javascript:void(0);">
                                         {{$category->name}}
                                         <input class="form-check-input filter_category check-box-fliter" type="checkbox" value="{{$category->id}}" id="pcategory{{$category->id}}">
-                                    </a>
+                                    </a> */ ?>
+                                    <label class="filter-click-main" for="pcategory{{$category->id}}">
+                                        {{$category->name}}
+                                        <input class="form-check-input filter_category check-box-fliter" type="checkbox" value="{{$category->id}}" id="pcategory{{$category->id}}">
+                                    </label>
                                 </li>
                             @endforeach
                         @endif
@@ -118,6 +122,14 @@
                 addItemToCart(product_id);
             });
         });
+
+        $("#checkbox_lbl").click(function(){ 
+            if($("#checkbox_id").is(':checked'))
+                $("#checkbox_id").removAttr('checked');
+            else
+            $("#checkbox_id").attr('checked');
+            });
+
 
         function getSearchVals(page = ''){
             var category = [];
