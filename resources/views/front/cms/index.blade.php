@@ -19,7 +19,7 @@
 <!-- about section start  -->
 <div class="container">
     <div class="about-main-sec">
-        <h2>ABOUT US</h2>
+        <h1>ABOUT US</h1>
         <p class="about-text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here'</p>
     </div>
     <div class="row align-items-center about-image-text-main">

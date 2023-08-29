@@ -86,29 +86,28 @@
             <div class="contact-number-main">
                 <p>
                     <img src="{{ asset('front/img/call-image.png') }}" class="call-image-main" alt="">
-                    Contact Number
+                   <a href="#" class="footer-number-main">09810446692</a>
                 </p>
-                <a href="#" class="footer-number-main">09810446692</a>
             </div>
         </div>
         <div class="col-12 col-sm-12 col-md-6">
             <div class="address-text-main">
                 <div class="address-main-imagesec">
                     <img src="{{ asset('front/img/location-icon-footer.png') }}" class="addres-image-main" alt="">
-                    <span>Address:-</span>
                 </div>
                 <a href="#">Unit-1 Plot, 29 & 30, near Kargil
                     Shaheed Sukhbir Singh Yadav Marg,
                     Info Technology Park, Sector 34,
                     Gurugram, Haryana 122001</a>
             </div>
-            
         </div>
     </div>
 </div>
 <div class="footer-menu-main">
     <div>
         <ul class="footer-menu-item">
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">FAQs</a></li>
             <li><a href="#">FAQs</a></li>
             <li><a href="#">Contact Us</a></li>
             <li><a href="#">Blogs</a></li>

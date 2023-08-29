@@ -578,7 +578,7 @@ button { color: #000; outline: none; }
 .newfooter-bg-main .our-service-main{ list-style: none; margin-bottom: 0px; padding-left: 10px;}
 .newfooter-bg-main .our-service-main li a{ text-decoration: none; color: #fff; font-size: 14px;}
 .newfooter-bg-main .our-section-head{ color: #fff; font-size: 18px; padding-bottom: 8px;  }
-.footer-address .acr-my-tvsimage{ max-width: 100%; height: auto; padding: 10px; }
+.footer-address .acr-my-tvsimage{ max-width: 100%; height: auto; padding: 10px; width: 130px; }
 .footer-address .call-image-main{width:40px; }
 .footer-address .contact-number-main{ display: flex;flex-direction: column;align-items: center;}
 .footer-address .contact-number-main p { margin-bottom: 0px; font-weight: 600; font-size: 32px;}
@@ -594,7 +594,7 @@ button { color: #000; outline: none; }
 .footer-menu-item li:last-child a::after{content: ''; }
 .footer-menu-item li a::after{ content: '|'; margin-left:   8px;}
 .copy-right-text{ margin-bottom: 0px; font-weight: 600;}
-.footer-address{ padding: 15px 0px;}
+.footer-address{ padding: 7px 0px;}
 /* new footer  css end  */
 /* about us css start  */
 .about-main-sec h2{ text-align: center; font-weight: 600; font-size: 23px; margin-top: 25px;}
@@ -616,4 +616,4 @@ button { color: #000; outline: none; }
     object-fit: contain;
 }
 /* about us css end  */
-.filter-click-main{ width: 100%;}
+.filter-click-main{ width: 100%; cursor: pointer;}
