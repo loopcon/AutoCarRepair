@@ -248,7 +248,7 @@
         });
 
         $(document).on('click', '#add_to_cart', function(){
-            swal({
+            /*swal({
                 title: "",
                 text: "Are you sure? You want to add this product to cart!",
                 type: "warning",
@@ -260,7 +260,8 @@
             },
             function(){
                 addItemToCart();
-            });
+            });*/
+            addItemToCart();
         });
 
         function addItemToCart(){

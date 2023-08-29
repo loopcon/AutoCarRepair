@@ -86,6 +86,16 @@
 
                                     @if ($errors->has('button_link')) <div class="text-danger">{{ $errors->first('button_link') }}</div>@endif
                                 </div>
+                                <div class="mt-3  col-md-12">
+                                    <hr/>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="mb-3 col-md-12">
+                                        <label class="form-label" for="price_list">{{__('Price List')}}</label>
+                                        <textarea class="form-control" id="price_list" name="price_list" placeholder="{{__('Price List')}}">{{ isset($record->price_list) ? $record->price_list : old('price_list') }}</textarea>
+                                        @if ($errors->has('price_list')) <div class="text-danger">{{ $errors->first('price_list') }}</div>@endif
+                                    </div>
+                                </div>
 
                                 <div class="mt-3  col-md-12">
                                     <h6>SEO Details</h6>
@@ -125,4 +135,29 @@
 @section('javascript')
     <script src="{{ asset('plugins/parsley/parsley.js') }}"></script>
     <script src="{{asset('public/plugins/ckeditor/ckeditor.js')}}"  type="text/javascript"></script>
+    <script>
+        $(document).ready(function(){
+            CKEDITOR.replace('price_list', {
+                height:1000,
+                removePlugins : 'resize',
+                filebrowserBrowseUrl : '<?php echo url("public/plugins/kcfinder/browse.php?opener=ckeditor&type=files") ?>',
+                filebrowserImageBrowseUrl : '<?php echo url("public/plugins/kcfinder/browse.php?opener=ckeditor&type=images") ?>',
+                filebrowserFlashBrowseUrl : '<?php echo url("public/plugins/kcfinder/browse.php?opener=ckeditor&type=flash") ?>',
+                filebrowserUploadUrl : '<?php echo url("public/plugins/kcfinder/upload.php?opener=ckeditor&type=files") ?>',
+                filebrowserImageUploadUrl : '<?php echo url("public/plugins/kcfinder/upload.php?opener=ckeditor&type=images") ?>',
+                filebrowserFlashUploadUrl : '<?php echo url("public/plugins/kcfinder/upload.php?opener=ckeditor&type=flash") ?>',
+            });
+            CKEDITOR.on('instanceReady', function () {
+                $('#description').attr('required', '');
+                $.each(CKEDITOR.instances, function (instance) {
+                    CKEDITOR.instances[instance].on("change", function (e) {
+                        for (instance in CKEDITOR.instances) {
+                            CKEDITOR.instances[instance].updateElement();
+                            //$('form').parsley().validate();
+                        }
+                    });
+                });
+            });
+        });
+    </script>
 @endsection
