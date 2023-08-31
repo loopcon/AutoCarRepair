@@ -22,7 +22,7 @@
                             <h3>{{ $record->name }}</h3>
                         </div>
                         <div class="col-12 col-md-6 ">
-                            <img src="{{asset('public/uploads/servicecenterdetail/'.$record->image)}}" class="img-fluid service-center-image" alt="" title="">
+                            <img src="{{asset('public/uploads/servicecenterdetail/'.$record->image)}}" class="img-fluid service-center-image" alt="" title="{{$record->image_title}}">
                         </div>
                         <div class="col-12 col-md-6 shop-address-main">
                             <div class="row">

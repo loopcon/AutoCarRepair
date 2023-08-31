@@ -113,6 +113,7 @@
                                         <div class="row image-head my-2">
                                             <div class="col-md-4 pl-0"><strong>Image File</strong></div>
                                             <div class="col-md-2 text-end"><strong>Primary</strong></div>
+                                            <div class="col-md-2 text-end"><strong>Image Title</strong></div>
                                             <div class="col-md-6 pl-0 text-end"><strong>Action</strong></div>
                                         </div>
                                         @php($total = 0)
@@ -135,7 +136,11 @@
                                                     <div class="col-md-2 pl-0 text-end">
                                                         <br/><input type="radio" class="" value="{{$pkey}}" name="is_primary" @if($pval->is_primary == '1') checked="checked" @endif/>
                                                     </div>
-                                                    <div class="col-md-6 pl-0 text-end">
+                                                    <div class="mb-3 col-md-3">
+                                                        <label class="form-label" for="image_title">{{__('Image Title')}}</label>
+                                                        <input type="text" class="form-control"  value="{{ isset($pval->image_title) ? $pval->image_title : '' }}" name="image_title{{$pkey}}" placeholder="{{__('Image Title')}}">
+                                                    </div>
+                                                    <div class="col-md-2 pl-0 text-end">
                                                         <br/><span class="btn btn-danger btn-sm delete" data-id="{{$pkey}}" data-db_id="{{$pval->id}}"><i class="fas fa-trash"></i></span>
                                                     </div>
                                                 </div>

@@ -28,6 +28,7 @@ class ServiceCenterDetailController extends MainController
                 $name = 'name_'.$i;
                 if(isset($request->$name)){
                     $image = 'image_'.$i;
+                    $image_title = 'image_title_'.$i;
                     $name = 'name_'.$i;
                     $address = 'address_'.$i;
                     $phone_number = 'phone_number_'.$i;
@@ -41,6 +42,7 @@ class ServiceCenterDetailController extends MainController
                     }
 
                     $scdetail->name = $request->$name ? $request->$name : NULL;
+                    $scdetail->image_title = $request->$image_title ? $request->$image_title : NULL;
                     $scdetail->address = $request->$address ? $request->$address : NULL;
                     $scdetail->phone_number = $request->$phone_number ? $request->$phone_number : NULL;
                     if($request->hasFile($image)) {

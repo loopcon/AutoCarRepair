@@ -46,7 +46,7 @@
                                             </div>
 
                                             <div class="mt-2 col-md-6">
-                                            <label for="image">{{__('Image')}}<span class="text-danger">*</span></label>
+                                                <label for="image">{{__('Image')}}<span class="text-danger">*</span></label>
                                                 <div class="image">
                                                 @php($i = $key)
                                                     @if(isset($record->image))
@@ -66,6 +66,12 @@
                                                     <input type="file" id="uploadImage{{$i}}" accept="image/x-png, image/gif, image/jpeg" class="btn btn-warning btn-block btn-sm"  name="image_{{$key}}" {{$required}} data-parsley-required-message="{{ __("This value is required.")}}" onChange="this.parentNode.nextSibling.value = this.value; PreviewImage({{$i}});">
                                                     @if ($errors->has('image')) <div class="errors_msg">{{ $errors->first('image') }}</div>@endif
                                                 </div> 
+                                            </div>
+                                            <div class="mt-2 col-md-6">
+                                                <label class="form-label" for="image_title">{{__('Image Title')}}</label>
+                                                <input type="text" class="form-control" name="image_title_{{$key}}" placeholder="{{__('Image Title')}}" value="{{ isset($record->image_title) ? $record->image_title : old('image_title') }}">
+
+                                                @if ($errors->has('image_title')) <div class="text-danger">{{ $errors->first('image_title') }}</div>@endif
                                             </div>
 
                                             <div class="mt-2 col-md-6">
@@ -102,6 +108,12 @@
                                             <div class="m-b-10">
                                                 <input type="file" id="uploadImage{{$i}}" accept="image/x-png, image/gif, image/jpeg" class="btn btn-warning btn-block btn-sm"  name="image_0"  data-parsley-required-message="{{ __("This value is required.")}}" onChange="this.parentNode.nextSibling.value = this.value; PreviewImage({{$i}});" >
                                             </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label" for="image_title">{{__('Image Title')}}</label>
+                                            <input type="text" class="form-control" name="image_title_0" placeholder="{{__('Image Title')}}" value="">
+
+                                            @if ($errors->has('image_title')) <div class="text-danger">{{ $errors->first('image_title') }}</div>@endif
                                         </div>
 
                                         <div class="mt-2 col-md-6">
@@ -158,6 +170,10 @@ $(document).ready(function(){
                             <div class="m-b-10">\n\
                                 <input type="file" id="uploadImage'+last_id+'" accept="image/x-png, image/gif, image/jpeg" class="btn btn-warning btn-block btn-sm"  name="image_'+last_id+'" required data-parsley-required-message="This value is required." onChange="this.parentNode.nextSibling.value = this.value; PreviewImage('+last_id+');" >\n\
                             </div>\n\
+                        </div>\n\
+                        <div class="mb-3 col-md-6">\n\
+                            <label class="form-label" for="image_title">Image Title</label>\n\
+                            <input type="text" class="form-control" name="image_title_'+last_id+'" placeholder="Image Title" value="">\n\
                         </div>\n\
                         <div class="mb-3 col-md-6">\n\
                             <label class="form-label" for="phone_number">Phone Number<span class="text-danger">*</span></label>\n\

@@ -72,17 +72,20 @@ class ProductController extends MainController
         if($product){
             $total_images = isset($request->last_id) && $request->last_id ? $request->last_id : NULL;
             $is_primary = isset($request->is_primary) ? isset($request->is_primary) : NULL;
+            $image_title = isset($request->image_title) ? isset($request->image_title) : NULL;
             if($total_images){
                 for($i = 0; $i < $total_images; $i++){
                     $name = 'image'.$i;
-                    if($request->hasFile($name)) {
+                    $image_title = 'image_title'.$i;
+                    // if($request->hasFile($name)) {
                         $newName = fileUpload($request, $name, 'uploads/product/'.$product->id);
                         $product_img = new ProductImage();
                         $product_img->image = $newName;
                         $product_img->is_primary = $is_primary == $i ? '1' : 0;
                         $product_img->product_id = $product->id;
+                        $product_img->image_title = $request->$image_title ? $request->$image_title : NULL;
                         $product_img->save();
-                    }
+                    // }
                 }
             }
             return redirect('backend/products')->with('success', trans('Product Added Successfully!'));
@@ -145,9 +148,11 @@ class ProductController extends MainController
         if($product){
             $total_images = isset($request->last_id) && $request->last_id ? $request->last_id : NULL;
             $is_primary = isset($request->is_primary) ? isset($request->is_primary) : NULL;
+            // $image_title  = isset($request->image_title ) ? isset($request->image_title ) : NULL;
             if($total_images){
                 for($i = 0; $i < $total_images; $i++){
                     $name = 'image'.$i;
+                    $image_title = 'image_title'.$i;
                     $pid = 'pid'.$i;
                     if($request->hasFile($name)) {
                         $newName = fileUpload($request, $name, 'uploads/product/'.$id);
@@ -163,6 +168,7 @@ class ProductController extends MainController
                         $product_img->image = $newName;
                         $product_img->is_primary = $is_primary == $i ? '1' : 0;
                         $product_img->product_id = $id;
+                        $product_img->image_title = $request->$image_title ? $request->$image_title : NULL;
                         $product_img->save();
                     }
                 }

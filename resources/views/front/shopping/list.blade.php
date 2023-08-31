@@ -42,9 +42,9 @@
                                 <a href="{{url('shopping/'.$product->slug)}}">
                                     <div class="shoping-main-product">
                                         @if(isset($product->primaryImage->image) && $product->primaryImage->image)
-                                            <img src="{{ asset('public/uploads/product/'.$product->id.'/'.$product->primaryImage->image) }}"  alt="" title="">
+                                            <img src="{{ asset('public/uploads/product/'.$product->id.'/'.$product->primaryImage->image) }}"  alt="" title="{{isset($product->primaryImage->image_title) ? $product->primaryImage->image_title : ''}}">
                                         @else
-                                            <img src="{{ asset('front/img/no_image.jpg') }}" class="img-fluid" alt="" title="">
+                                            <img src="{{ asset('front/img/no_image.jpg') }}" class="img-fluid" alt="" title="noiio">
                                         @endif
                                         <div class="shoping-text-name">
                                             <h5><a href="{{url('shopping/'.$product->slug)}}">{{$product->name}}</a></h5>

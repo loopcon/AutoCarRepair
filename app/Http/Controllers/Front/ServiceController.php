@@ -38,9 +38,9 @@ class ServiceController extends MainController
             $return_data['brand'] = isset($brandInfo->slug) && $brandInfo->slug ? $brandInfo->slug : NULL;
             $return_data['model'] = isset($modelInfo->slug) && $modelInfo->slug ? $modelInfo->slug : NULL;
             $return_data['fuel'] = isset($fuelInfo->slug) && $fuelInfo->slug ? $fuelInfo->slug : NULL;
-            $return_data['scategories'] = ServiceCategory::select('id', 'slug', 'title', 'image', 'description')->where([['is_archive', Constant::NOT_ARCHIVE], ['status', Constant::ACTIVE]])->whereIn('id', $carray)->orderBy('id', 'desc')->get();
+            $return_data['scategories'] = ServiceCategory::select('id', 'slug', 'title', 'image','icon_image', 'description')->where([['is_archive', Constant::NOT_ARCHIVE], ['status', Constant::ACTIVE]])->whereIn('id', $carray)->orderBy('id', 'desc')->get();
         } else {
-            $return_data['scategories'] = ServiceCategory::select('id', 'slug', 'title', 'image', 'description')->where([['is_archive', Constant::NOT_ARCHIVE], ['status', Constant::ACTIVE]])->orderBy('id', 'desc')->get();
+            $return_data['scategories'] = ServiceCategory::select('id', 'slug', 'title', 'image', 'icon_image', 'description')->where([['is_archive', Constant::NOT_ARCHIVE], ['status', Constant::ACTIVE]])->orderBy('id', 'desc')->get();
         }
         
         $return_data['carray'] = $carray;
