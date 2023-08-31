@@ -283,7 +283,7 @@
                 @foreach($brand_logo_slider as $record)
                     <div class="item">
                         <div class="partner-brand-logo">
-                            <img src="{{ asset('uploads/brandlogoslider/'.$record->image) }}"  alt="" title="">
+                            <img src="{{ asset('uploads/brandlogoslider/'.$record->image) }}"  alt="" title="{{$record->image_title}}">
                         </div>
                     </div>
                 @endforeach

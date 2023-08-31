@@ -56,7 +56,7 @@
                                             </div>
                                             <div class="mb-3 col-md-4">
                                                 <label class="form-label" for="image_title">{{__('Image Title')}}</label>
-                                                <input type="text" class="form-control" id="image_title" value="{{ isset($record->image_title) ? $record->image_title : old('image_title') }}" name="image_title_{{$key}}" placeholder="{{__('Image Title')}}" >
+                                                <input type="text" class="form-control" value="{{ isset($record->image_title) ? $record->image_title : old('image_title') }}" name="image_title_{{$key}}" placeholder="{{__('Image Title')}}" >
                                             </div>
                                         </div>
                                     @endforeach
@@ -78,7 +78,7 @@
                                 </div>
                                 <div class="mb-3 col-md-4">
                                     <label class="form-label" for="image_title">{{__('Image Title')}}</label>
-                                    <input type="text" class="form-control" id="image_title" value="{{ isset($record->image_title) ? $record->image_title : old('image_title') }}" name="image_title_0" placeholder="{{__('Image Title')}}" >
+                                    <input type="text" class="form-control" value="{{ isset($record->image_title) ? $record->image_title : old('image_title') }}" name="image_title_0" placeholder="{{__('Image Title')}}" >
                                 </div>
                                     @php($total = 1)
                                 @endif

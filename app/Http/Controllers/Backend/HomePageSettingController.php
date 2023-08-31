@@ -70,7 +70,7 @@ class HomePageSettingController extends MainController
                 $id = 'id_'.$i;
                 $image = 'image_'.$i;
                 $image_title = 'image_title_'.$i;
-                if(isset($request->$image)){
+                if(isset($request->$id)){
                     $image = 'image_'.$i;
                     $image_title = 'image_title_'.$i;
                     if($request->$id){

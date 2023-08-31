@@ -42,7 +42,7 @@ dd($response);
         $hsetting = HomePageSetting::select('section1_title1', 'section1_title2', 'section1_image', 'section1_description','image_title', 'meta_title', 'meta_keywords', 'meta_description', 'price_list')->where('id', 1)->first();
         $return_data['hsetting'] = $hsetting;
         $return_data['offer_slider'] = OfferSlider::select('id', 'title1', 'title2', 'image','image_title', 'btn_link', 'btn_title')->orderBy('id', 'ASC')->get();
-        $return_data['brand_logo_slider'] = BrandLogoSlider::select('id', 'image')->orderBy('id', 'ASC')->get();
+        $return_data['brand_logo_slider'] = BrandLogoSlider::select('id', 'image','image_title')->orderBy('id', 'ASC')->get();
         $meta_title = isset($hsetting->meta_title) && $hsetting->meta_title ? $hsetting->meta_title : NULL;
         $return_data['meta_keywords'] =  isset($hsetting->meta_keywords) && $hsetting->meta_keywords ? $hsetting->meta_keywords : NULL;
         $return_data['meta_description'] =  isset($hsetting->meta_description) && $hsetting->meta_description ? $hsetting->meta_description : NULL;

@@ -585,3 +585,6 @@ ALTER TABLE `brand_logo_slider` ADD `image_title` VARCHAR(255) NULL DEFAULT NULL
 
 -- Khushali : 29-08-2023 10:07 AM
 ALTER TABLE `home_page_setting` ADD `price_list` LONGTEXT NULL AFTER `button_link`;
+
+-- Disha : 31-8-23 10:16 PM
+ALTER TABLE `service_center_detail` ADD `image_title` VARCHAR(255) NULL DEFAULT NULL AFTER `image`;
