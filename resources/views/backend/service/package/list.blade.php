@@ -23,7 +23,7 @@
                                 <div class="col-md-12 text-end">
                                     <a href="{{route('admin_scheduled-package-create')}}" class="btn btn-success"><i class="align-middle" data-feather="plus"></i>{{__('Add')}}</a>
                                     <a href="javascript:void(0)" class="btn btn-icon icon-left btn-primary" id="csv_link"> Import CSV </a>
-                                    <a href="{{asset('public/samples/scheduled_package_pricing.csv')}}" class="btn btn-icon icon-left btn-warning"> Export Sample Data </a>
+                                    <a href="{{asset('public/samples/scheduled_package_pricing.csv')}}" class="btn btn-icon icon-left btn-warning"> Download Sample CSV </a>
                                 </div>
                             </div>
                         </div>
