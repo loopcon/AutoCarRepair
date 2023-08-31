@@ -21,7 +21,7 @@
                         @foreach($record->images as $image)
                             <div class="item">
                                 <div class="product-inner-imgmain">
-                                    <img src="{{ asset('public/uploads/product/'.$record->id.'/'.$image->image) }}" class="img-fluid" alt="" title="">
+                                    <img src="{{ asset('public/uploads/product/'.$record->id.'/'.$image->image) }}" class="img-fluid" alt="" title="{{isset($image->image_title) ? $image->image_title : NULL}}">
                                 </div>
                             </div>
                         @endforeach
@@ -32,7 +32,7 @@
                         @foreach($record->images as $image)
                             <div class="item">
                                 <div class="product-inner-imgmain">
-                                    <img src="{{ asset('public/uploads/product/'.$record->id.'/'.$image->image) }}" class="img-fluid" alt="" title="">
+                                    <img src="{{ asset('public/uploads/product/'.$record->id.'/'.$image->image) }}" class="img-fluid" alt="" title="{{isset($image->image_title) ? $image->image_title : NULL}}">
                                 </div>
                             </div>
                         @endforeach
@@ -248,7 +248,7 @@
         });
 
         $(document).on('click', '#add_to_cart', function(){
-            swal({
+            /*swal({
                 title: "",
                 text: "Are you sure? You want to add this product to cart!",
                 type: "warning",
@@ -260,7 +260,8 @@
             },
             function(){
                 addItemToCart();
-            });
+            });*/
+            addItemToCart();
         });
 
         function addItemToCart(){

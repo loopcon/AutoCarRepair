@@ -39,6 +39,7 @@ class HomePageSettingController extends MainController
         $content->button_title = $request->button_title;
         $content->button_link = $request->button_link;
         $content->section1_description = $request->section1_description;
+        $content->price_list = $request->price_list;
         $content->meta_title = $request->meta_title;
         $content->image_title = $request->image_title;
         $content->meta_keywords = $request->meta_keywords;
@@ -69,7 +70,7 @@ class HomePageSettingController extends MainController
                 $id = 'id_'.$i;
                 $image = 'image_'.$i;
                 $image_title = 'image_title_'.$i;
-                if(isset($request->$image)){
+                if(isset($request->$id)){
                     $image = 'image_'.$i;
                     $image_title = 'image_title_'.$i;
                     if($request->$id){

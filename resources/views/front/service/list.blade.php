@@ -15,8 +15,10 @@
                         @endif
                         <a class="servic-type-box-section" href="{{url($href)}}">
                             <div class="servic-type-box">
-                                <img src="{{asset('front/img/our-service-img.png')}}" class="img-fluid" alt="" title="">
-                                <h4>{{ $service->title }}</h4>
+                                <img src="{{asset('uploads/service/category/icon/'.$service->icon_image)}}" class="servic-type-box-image" alt="" title="">
+                                <div class="service-type-head">
+                                    <h4>{{ $service->title }}</h4>
+                                </div> 
                                 <p>{{$service->description}}</p>
                             </div>
                         </a>

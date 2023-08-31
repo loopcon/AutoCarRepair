@@ -582,3 +582,38 @@ ALTER TABLE `home_page_setting` ADD `image_title` VARCHAR(255) NULL DEFAULT NULL
 ALTER TABLE `offer_slider` ADD `image_title` VARCHAR(255) NULL DEFAULT NULL AFTER `image`;
 
 ALTER TABLE `brand_logo_slider` ADD `image_title` VARCHAR(255) NULL DEFAULT NULL AFTER `image`;
+
+-- Khushali : 29-08-2023 10:07 AM
+ALTER TABLE `home_page_setting` ADD `price_list` LONGTEXT NULL AFTER `button_link`;
+
+-- Disha : 31-8-23 10:16 PM
+ALTER TABLE `service_center_detail` ADD `image_title` VARCHAR(255) NULL DEFAULT NULL AFTER `image`;
+
+ALTER TABLE `shop_categories` ADD `image_title` VARCHAR(255) NULL DEFAULT NULL AFTER `image`;
+
+ALTER TABLE `product_images` ADD `image_title` VARCHAR(255) NULL DEFAULT NULL AFTER `image`;
+
+-- Disha : 31-8-23 1:56 PM
+ALTER TABLE `service_categories` ADD `icon_image` VARCHAR(255) NULL DEFAULT NULL AFTER `image_1`;
+
+-- Khushali : 31-08-23 11:12 AM
+--
+-- Table structure for table `scheduled_package_detail`
+--
+
+CREATE TABLE `scheduled_package_detail` (
+  `id` int(11) NOT NULL,
+  `sp_id` int(11) DEFAULT NULL COMMENT '`id` of `scheduled_packages`',
+  `brand_id` int(11) DEFAULT NULL COMMENT '`id` of `car_brands`',
+  `model_id` int(11) DEFAULT NULL COMMENT '`id` of `model`',
+  `fuel_type_id` int(11) DEFAULT NULL COMMENT '`id` of `fuel_type`',
+  `price` decimal(15,2) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+ALTER TABLE `scheduled_package_detail`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `scheduled_package_detail`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;

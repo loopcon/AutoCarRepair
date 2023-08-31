@@ -116,15 +116,17 @@ a.badge:hover{
 /* slider css end  */
 /* service css start  */
 .service-section::before{content: url('../img/service-main-img.webp'); width: 100%; height: auto; overflow: hidden; position: absolute;margin-top: -110px;left: 0;z-index: -1;  display: inline-block; }
-.service-section .service-main-btn{ text-decoration: none; text-align: center; background: #E56F31; color: #fff; height: 45px; width: 200px; display: block; margin:0 auto; line-height: 45px; border-radius: 10px; font-size:18px; font-weight:bold; } 
-.service-section .always-service-text p{ font-size: 37px; text-align: center; width: 100%; margin: 20px auto; font-weight: bold; padding-bottom: 35px;} 
+.service-section .service-main-btn{ text-decoration: none; text-align: center; background: #E56F31; color: #fff; height: 45px; width: 200px; display: block; line-height: 45px; border-radius: 10px; font-size:18px; font-weight:bold; margin-top:15px;margin-right:auto;margin-left:auto; } 
+.service-section .always-service-text p{ font-size: 37px; text-align: center; width: 100%; margin: 20px auto; font-weight: bold;} 
 .service-section .always-service-text { margin-bottom: 30px; }
 .service-section .services-cate-main{ position: relative; margin-bottom: 100px;}
 .service-section .services-cate-item { background-color:#01073C; position: absolute; top: 78%; width: 95%; transition-duration: 0.5s; }
 .service-section .services-cate-item:hover{ width: 100%; transition-duration: 0.4s;  }
-.service-section .services-cate-item h4 { color: #fff; font-weight: bold; margin-left: 10px; text-align: left; font-size: 20px; z-index: 1; position: relative;}
-.service-section .services-cate-item p { color: #fff;  margin-left: 10px; text-align: left;font-size: 12px; margin-bottom: 10px; z-index: 1; position: relative;}
+.service-section .services-cate-item h4 { color: #fff; font-weight: bold; margin-left: 10px; text-align: left; font-size: 20px;  margin-bottom: 0px; }
+.service-section .services-cate-item p { color: #fff;  margin-left: 10px; text-align: left;font-size: 12px; margin-bottom: 10px; }
 .service-section .se-cat-bigimage { position: absolute; top: 0;left: 51%;width:70px; opacity: 0.5; }
+.service-cat-smallimg{ height: 46px; }
+.home-service-main{ display: flex; align-items: center; height: 72px; overflow: hidden; margin-bottom: 10px;}
 /* service css end  */
 /* why choose us start */
 .why-choose-section{ padding: 20px 0;}
@@ -135,7 +137,7 @@ a.badge:hover{
 .why-choose-section .why-choose-inner-item p{ font-size: 15px; color: #000000; font-weight: normal; }
 .why-choose-section  .why-choose-img-main img{ padding: 0px 15px;}
 .why-choose-section .why-choose-main{ padding: 0px 15px;}
-.why-choose-section .why-choose-box-main{  align-items: center; margin-bottom: 25px; }
+/* .why-choose-section .why-choose-box-main{  align-items: center; margin-bottom: 25px; } */
 /* why choose us end */
 /* offer slider  css start  */
 .offeer-section .explore-btn{  background-color: #E56F31; color: #fff;border: none;width: 145px;height: 45px;font-size: 17px;border-radius: 10px;font-weight: bold; font-size:18px; }
@@ -164,7 +166,7 @@ a.badge:hover{
 .testimonial-section .testiminoal-carousel-sec-main{ display: flex; align-items: center ; }
 .testimonial-section .owl-theme .owl-dots .owl-dot span{ height: 3px; width: 18px; background-color: #000; }
 .testimonial-section .owl-theme .owl-dots .owl-dot.active span { background-color: #D90E0E;}
-.testimonial-section .owl-theme .owl-dots{ text-align: start;}
+.testimonial-section .owl-theme .owl-dots{ text-align: center;}
 /* testimonial css end  */
 /* brand logo css start  */
 .brand-logo-section{ background-color: #F2F2F2; height: 368px; display: flex; align-items: center;}
@@ -232,11 +234,27 @@ a.badge:hover{
 /* service page css start  */
 .our-service-section {  padding-top: 30px; padding-bottom: 35px;}
 .our-service-section .service-main-heading h2{  font-size: 44px; font-weight: bold; text-align: center; margin-top: 20px; margin-bottom: 20px;}
-.our-service-section .servic-type-box { border: 1px solid #000; box-shadow: 2px 2px 15px 0px #000000E8; padding: 25px; margin:25px 10px;}
-.our-service-section .servic-type-box h4{ color: #E56F31; font-size: 28px; font-weight: bold; }
-.our-service-section .servic-type-box p{ font-size: 15px; color:#000; }
+.our-service-section .servic-type-box {box-shadow: 2px 2px 15px 0px #000000E8; padding: 25px; margin:25px 10px; border-radius: 8px; }
+.our-service-section .servic-type-box:hover{transform: scale(1.1); transition: all ease 0.2s;}
+.our-service-section .servic-type-box h4{ color: #E56F31; font-size: 28px; font-weight: bold;  text-align: center; margin-bottom: 0px; }
+.our-service-section .servic-type-box p{ 
+    font-size: 15px;
+    color: #000;
+    height: 64px;
+    overflow: hidden;
+    margin-bottom: 0px;
+ }
 .our-service-section .our-ser-send-msgbtn{  background-color: #E56F31; color: #fff; width: 190px; height: 50px; font-size: 23px; font-weight: bold; border: 0px; border-radius: 10px;}
 .our-service-section .our-section-main-btngroup{ text-align: center; margin-top: 30px; margin-bottom: 30px;}
+.our-service-section .servic-type-box-image{height: 50px;display: block;margin: auto; }
+.our-service-section .service-type-head{ 
+    height: 68px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin-bottom: 0px;
+ }
 /* service page css end  */
 /* service inner page css start  */
 .service-inner-tophead{ position: relative;}
@@ -247,6 +265,7 @@ a.badge:hover{
 .ser-inner-breadcum li  { color: #fff;  font-size: 25px; }
 .ser-inner-breadcum li svg { margin: 0px 10px; font-size: 21px; } 
 .service-innersection-mian .service-inner-mainbg {  background-color:#eeeeee; padding: 20px; margin: 25px auto; box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px; position: relative; }
+.service-innersection-mian .service-inner-mainbg:hover{ transform: scale(1.1);transform: scale(1.1);}
 .service-innersection-mian .service-inner-basic-heading h2{ color: #E56F31; font-size: 24px; font-weight: bold; }
 .service-innersection-mian .basic-service-text-main p{ margin-bottom: 4px; font-size: 16px; }
 .service-innersection-mian .basic-service-text-main p svg{ color: #000851; margin-right: 5px;}
@@ -268,13 +287,14 @@ a.badge:hover{
 .shoping-breadcrum-bg .shoping-breadcrum-main li svg { margin: 0px 10px;  font-size: 16px; margin-bottom: 0px; }
 .shoping-breadcrum-bg .shoping-breadcrum-main li a { text-decoration: none;  color: #000000; font-size: 18px; }
 .shopping-section{ margin-bottom:22px;}
-.shopping-section .fliter-main{ /*background-color: #f1f1f1; */  border:1px solid #000; margin-bottom:15px;}
+.shopping-section .fliter-main{ /*background-color: #f1f1f1; */   margin-bottom:15px; box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px; background-color: #eeeeee;}
 .shopping-section .fliter-main ul { list-style: none; padding-left: 0px; padding: 20px; }
 .shopping-section .fliter-main ul li { margin-bottom: 10px; }
 .shopping-section .fliter-main ul li a {  text-decoration: none; color: #000000; display: block;}
 .shopping-section .fliter-main ul li a svg { color:#000000; float: right;  }
 .shopping-section .fliter-item1{  display: none;}
-.shopping-section .shoping-main-product{ border: 1px solid #000000;  min-height: 400px; margin-bottom:15px; } 
+.shopping-section .shoping-main-product{   min-height: 400px; margin-bottom:15px; box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px; background-color: #eeeeee; } 
+.shopping-section .shoping-main-product:hover{ transform: scale(1.1); transition: all ease 0.2s;}
 .shopping-section .shoping-main-product img{ height:250px; width:100%; object-fit: contain; }
 .shopping-section .shoping-main-product h5{ font-size: 16px;  margin-right:15px; margin-left:15px; margin-bottom:0px; }
 .shopping-section .shoping-main-product h5 a{ text-decoration: none; color: #000; margin-top:0px; }
@@ -419,9 +439,9 @@ button { color: #000; outline: none; }
 .shop-center-breadcum li svg { margin: 0px 10px; font-size: 21px; } 
 .shop-center-bg { background-color: #F2F2F2; padding: 20px; margin: 30px 0px;}
 .shop-address-main{ display: flex; align-items: center;}
-.address-main { padding: 15px; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; background-color: #fff; text-align: center; height: 250px;}
+.address-main { padding: 15px;   text-align: center; height: 250px;}
 .address-main svg{ font-size: 60px; color: #164498; margin-bottom: 25px; } 
-.call-main { padding: 15px; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; background-color: #fff; text-align: center; height: 250px; }
+.call-main { padding: 15px;  text-align: center; height: 250px; }
 .call-main svg{ font-size: 60px; color: #164498; margin-bottom: 25px; }
 .call-main a{ display: block; color: #000; text-decoration: none; font-size: 25px;}
 /* shop  center css end  */
@@ -435,7 +455,7 @@ button { color: #000; outline: none; }
 .btn-toggle-item{ background-color: unset;  padding: 5px 15px; border: 1px solid rgba(0, 0, 0, 0.8); border-radius: 5px;}
 .btn-toggle-item svg { font-size: 24px; }
 .mo-search-main-section{display: flex; justify-content: end;}
-.mobile-toggle-data{ display: none; position: absolute; left: 0px; background: #fff; width: 100%; top: 20%; }
+.mobile-toggle-data{ display: none; position: absolute; left: 0px; background: #fff; width: 100%; top: 20%; z-index:2; }
 .mobile-menu-sectiondata{ display: flex; align-items: center; justify-content: space-between;}
 /* mobile menu css end  */
 .car-service-img-main img{ width: 100% !important; }
@@ -500,7 +520,7 @@ button { color: #000; outline: none; }
 .login-breadcrum-main li svg { padding:0px 8px; font-size:15px; }
 .login-breadcrum-main li a{ color: #fff; text-decoration: none; padding: 10px 0px; font-size: 18px; font-weight: bold; }
 .personal-input-main{ border-radius: 0px; }
-.shop-category-heading{text-align: center;padding-top: 7px;/* display: block; */font-size: 19px;font-weight: 600;border-bottom: 1px solid #000;padding-bottom: 6px;letter-spacing: 1px; }
+.shop-category-heading{text-align: center;padding-top: 7px;/* display: block; */font-size: 19px;font-weight: 600;padding-bottom: 6px;letter-spacing: 1px; }
 .request-select-box{display: block;width: 100%;background: unset;color: #fff;border-bottom: 1px solid #fff;border-top: 0px;border-right: 0px;border-left: 0px}
 .request-select-box option{color:#000;}
 .request-select-box:focus-visible{ border-bottom: 1px solid #fff; border-top: 0px;border-right: 0px;border-left: 0px;  outline:0px;}
@@ -553,21 +573,52 @@ button { color: #000; outline: none; }
 .footer-whatappicon{position: fixed;bottom: 10%;right: 4%;z-index:9999;}
 .footer-whatappicon img{ width: 50px;height: 50px;object-fit: cover; }
 .home-back-totoptext{color:#fff; text-decoration: none; font-weight: 600; }
+.home-back-totoptext:hover{color: #fff;}
 /* new footer  css start  */
-.footer-soical-icon{ display: flex;justify-content: end;margin-right: 35px;margin-bottom: 10px;}
+.footer-soical-icon{ display: flex;justify-content: end;margin-right: 35px;margin-bottom: 10px; margin-top: 10px; }
 .footer-soical-icon svg{ height:20px;width:20px;padding: 10px;background-color: #071c2c;color: #fff;border-radius: 50%;margin-right:7px; }
-.newfooter-bg-main{ background-color: #071c2c; padding: 20px 0px;} 
-.newfooter-bg-main .our-service-main{ list-style: none; margin-bottom: 0px;}
+.newfooter-bg-main{ background-color: #164498; padding: 20px 0px;} 
+.newfooter-bg-main .our-service-main{ list-style: none; margin-bottom: 0px; padding-left: 10px;}
 .newfooter-bg-main .our-service-main li a{ text-decoration: none; color: #fff; font-size: 14px;}
 .newfooter-bg-main .our-section-head{ color: #fff; font-size: 18px; padding-bottom: 8px;  }
-.footer-address .acr-my-tvsimage{ max-width: 100%; height: auto; padding: 10px; }
+.footer-address .acr-my-tvsimage{ max-width: 100%; height: auto; padding: 10px; width: 130px; }
 .footer-address .call-image-main{width:40px; }
 .footer-address .contact-number-main{ display: flex;flex-direction: column;align-items: center;}
 .footer-address .contact-number-main p { margin-bottom: 0px; font-weight: 600; font-size: 32px;}
 .footer-address .footer-number-main{ text-decoration: none; font-size: 22px; color: #000;font-weight: 600; }
 .footer-address .address-text-main{ display: flex;  }
-.footer-address .address-text-main p{ display: flex;   }
-.footer-address .address-text-main  span{ margin-bottom: 0px; font-weight: 600; font-size: 25px; }
-.footer-address .address-text-main a{ text-decoration: none; font-size: 16px; color: #000;font-weight: 600; }
-.addres-image-main{ width: 20px;}
+.footer-address .address-text-main .address-main-imagesec{ display: flex; align-items: start;   }
+.footer-address .address-text-main  span{ margin-bottom: 0px; font-weight: 600; font-size: 22px; margin-right: 10px; }
+.footer-address .address-text-main a{ text-decoration: none; font-size: 16px; color: #000; }
+.addres-image-main{ width: 31px;}
+.footer-menu-main{ display: flex; justify-content: space-between; border-top: 6px solid #071c2c;padding: 10px 20px; flex-wrap: wrap; }
+.footer-menu-item{ display: flex; align-items: center; margin-bottom: 0px;list-style: none; padding-left: 0px; flex-wrap: wrap; }
+.footer-menu-item li a{ color: #000;font-weight: 600;margin-right: 10px; }
+.footer-menu-item li:last-child a::after{content: ''; }
+.footer-menu-item li a::after{ content: '|'; margin-left:   8px;}
+.copy-right-text{ margin-bottom: 0px; font-weight: 600;}
+.footer-address{ padding: 7px 0px;}
 /* new footer  css end  */
+/* about us css start  */
+.about-main-sec h2{ text-align: center; font-weight: 600; font-size: 23px; margin-top: 25px;}
+.about-text{ text-align: center; margin-bottom: 0px;}
+.aboutus-logo-section{ background-color: #164498; height: 190px; display: flex; align-items: center;}
+.about-image-text-main{ padding: 30px 0px;}
+.about-partner-brand-logo{ 
+    background-color: #F6F5F5; 
+    height: 110px; 
+    width: auto; 
+    display: flex;
+    box-shadow: 6px 6px 11px 1px #0000005E;
+    margin-right: 15px;
+}
+.about-partner-brand-logo img{
+    height: 70px;
+    width: 100%;
+    margin:  auto;
+    object-fit: contain;
+}
+/* about us css end  */
+.filter-click-main{ width: 100%; cursor: pointer;}
+.filter-click-main span{ float: right;}
+.service-center-image{ display:block; margin:auto;}

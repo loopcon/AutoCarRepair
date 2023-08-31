@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\ServiceCategory;
 use App\Models\ScheduledPackage;
+use App\Models\ScheduledPackageDetail;
 use App\Models\PackageSpecification;
 use App\Models\CarModel;
 use App\Models\CarBrand;
@@ -73,6 +74,10 @@ class ServiceController extends MainController
         if($request->hasFile('image_1')) {
             $newName = fileUpload($request, 'image_1', 'uploads/service/category');
             $scstegory->image_1 = $newName;
+        }
+        if($request->hasFile('icon_image')) {
+            $newName = fileUpload($request, 'icon_image', 'uploads/service/category/icon');
+            $scstegory->icon_image = $newName;
         }
         $scstegory->slug = $slug;
         $scstegory->created_by = Auth::guard('admin')->user()->id;
@@ -143,6 +148,14 @@ class ServiceController extends MainController
             $newName = fileUpload($request, 'image_1', 'uploads/service/category');
             $scategory->image_1 = $newName;
         }
+        if($request->hasFile('icon_image')) {
+            $old_image = $scategory->icon_image;
+            if($old_image){
+                removeFile('uploads/service/category/icon'.$old_image);
+            }
+            $newName = fileUpload($request, 'icon_image', 'uploads/service/category/icon');
+            $scategory->icon_image = $newName;
+        }
         $scategory->slug = $slug;
         $scategory->updated_by = Auth::guard('admin')->user()->id;
         $scategory->save();
@@ -170,8 +183,12 @@ class ServiceController extends MainController
         if($is_delete) {
             $scategory = ServiceCategory::where('id', $id)->first();
             $old_image = $scategory->image;
+            $old_icon_img = $scategory->icon_image; 
             if($old_image){
                 removeFile('uploads/service/category/'.$old_image);
+            }
+            if($old_icon_img){
+                removeFile('uploads/service/category/icon/'.$old_icon_img);
             }
             $scategory = ServiceCategory::where('id', $id)->delete();
             if($scategory) {
@@ -675,5 +692,61 @@ class ServiceController extends MainController
         } else {
             return redirect()->back()->with('error', 'Something went wrong, please try again later!');
         }
+    }
+
+    public function importSchedulePackage(request $request){
+        if (!file_exists($_FILES['myfile']['tmp_name']) || !is_readable($_FILES['myfile']['tmp_name'])){
+            return redirect()->back()->with('error', trans('Something went wrong, please try again later!'));
+        }
+        $header = null;
+        $data = array();
+        if (($handle = fopen($_FILES['myfile']['tmp_name'], 'r')) !== false)
+        {
+            while (($row = fgetcsv($handle, 1000)) !== false)
+            {
+                if (!$header)
+                    $header = $row;
+                else
+                    $data[] = $row;
+            }
+            fclose($handle);
+        }
+
+        $header = isset($data[0]) && $data[0] ? $data[0] : array();
+        foreach($data as $key => $value){
+            if($key != 0){
+                $brand_id = $model_id = $fuel_type_id = '';
+                foreach($value as $k => $v){
+                    if($k == 0){
+                        $brand_id = $v;
+                    }
+                    if($k == 1){
+                        $model_id = $v;
+                    }
+                    if($k == 2){
+                        $fuel_type_id = $v;
+                    }
+                    if($k > 2 & $v != ""){
+                        $sp_id = isset($header[$k]) ? $header[$k] : NULL;
+                        $price = $v;
+
+                        $spdetail = ScheduledPackageDetail::select('id')->where([['sp_id', $sp_id], ['brand_id', $brand_id], ['model_id', $model_id], ['fuel_type_id', $fuel_type_id]])->first();
+                        $spd_id = isset($spdetail->id) ? $spdetail->id : NULL;
+                        if($spd_id){
+                            $package_detail = ScheduledPackageDetail::find($spd_id);
+                        } else {
+                            $package_detail = new ScheduledPackageDetail();
+                            $package_detail->sp_id = $sp_id;
+                            $package_detail->brand_id = $brand_id;
+                            $package_detail->model_id = $model_id;
+                            $package_detail->fuel_type_id = $fuel_type_id;
+                        }
+                        $package_detail->price = $price;
+                        $package_detail->save();
+                    }
+                }
+            }
+        }
+        return redirect()->back()->with('success', trans('Scheduled Pacakge Detail Uploaded Successfully!'));
     }
 }

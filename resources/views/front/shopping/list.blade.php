@@ -20,10 +20,15 @@
                         @if($scategories->count())
                             @foreach($scategories as $category)
                                 <li>
-                                    <a href="javascript:void(0);">
+                                    <?php /*<a for="pcategory{{$category->id}}" href="javascript:void(0);">
                                         {{$category->name}}
                                         <input class="form-check-input filter_category check-box-fliter" type="checkbox" value="{{$category->id}}" id="pcategory{{$category->id}}">
-                                    </a>
+                                    </a> */ ?>
+                                    <label class="filter-click-main" for="pcategory{{$category->id}}">
+                                        {{$category->name}}
+                                        <?php /* <input class="form-check-input filter_category check-box-fliter" type="checkbox" value="{{$category->id}}" id="pcategory{{$category->id}}"> */ ?>
+                                        <span><i class="fa-solid fa-plus"></i></span>
+                                    </label>
                                 </li>
                             @endforeach
                         @endif
@@ -38,9 +43,9 @@
                                 <a href="{{url('shopping/'.$product->slug)}}">
                                     <div class="shoping-main-product">
                                         @if(isset($product->primaryImage->image) && $product->primaryImage->image)
-                                            <img src="{{ asset('public/uploads/product/'.$product->id.'/'.$product->primaryImage->image) }}"  alt="" title="">
+                                            <img src="{{ asset('public/uploads/product/'.$product->id.'/'.$product->primaryImage->image) }}"  alt="" title="{{isset($product->primaryImage->image_title) ? $product->primaryImage->image_title : ''}}">
                                         @else
-                                            <img src="{{ asset('front/img/no_image.jpg') }}" class="img-fluid" alt="" title="">
+                                            <img src="{{ asset('front/img/no_image.jpg') }}" class="img-fluid" alt="" title="noiio">
                                         @endif
                                         <div class="shoping-text-name">
                                             <h5><a href="{{url('shopping/'.$product->slug)}}">{{$product->name}}</a></h5>
@@ -102,7 +107,7 @@
 
             $(document).on('click', '.add_to_cart', function(){
                 var product_id = $(this).data('product_id');
-                swal({
+                /*swal({
                     title: "",
                     text: "Are you sure? You want to add this product to cart!",
                     type: "warning",
@@ -114,9 +119,18 @@
                 },
                 function(){
                     addItemToCart(product_id);
-                });
+                });*/
+                addItemToCart(product_id);
             });
         });
+
+        $("#checkbox_lbl").click(function(){ 
+            if($("#checkbox_id").is(':checked'))
+                $("#checkbox_id").removAttr('checked');
+            else
+            $("#checkbox_id").attr('checked');
+            });
+
 
         function getSearchVals(page = ''){
             var category = [];

@@ -295,7 +295,7 @@
 $(document).ready(function(){
     $(document).on('click', '#add_to_cart_service', function(){
         var service_id = $(this).data('id');
-        swal({
+        /*swal({
             title: "",
             text: "Thanks For Selecting This Service Package",
             type: "warning",
@@ -307,7 +307,8 @@ $(document).ready(function(){
         },
         function(){
             addItemToCart(service_id);
-        });
+        });*/
+		addItemToCart(service_id);
     });
     function addItemToCart(service_id){
         var qty = '1';

@@ -1,16 +1,16 @@
 
 <!-- new footer start  -->
 <div class="footer-soical-icon">
-    <i class="fa-brands fa-facebook-f"></i>
-    <i class="fa-brands fa-instagram"></i>
-    <i class="fa-brands fa-twitter"></i>
-    <i class="fa-brands fa-linkedin"></i>
-    <i class="fa-brands fa-youtube"></i>
-    <i class="fa-brands fa-whatsapp"></i>
+    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+    <a href="#"><i class="fa-brands fa-twitter"></i></a>
+    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+    <a href="#"><i class="fa-brands fa-youtube"></i></a>
+    <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
 </div>
 <div class="newfooter-bg-main">
     <div class="row m-0">
-        <div class="col-3">
+        <div class="col-12 col-sm-6 col-md-3">
             <ul class="our-service-main">
                 <li class="our-section-head">OUR SERVICES</li>
                 <li><a href="#">Scheduled Services</a></li>
@@ -26,7 +26,7 @@
                 <li><a href="#">Windshields & Glass</a></li>
             </ul>
         </div>
-        <div class="col-3">
+        <div class="col-12 col-sm-6 col-md-3">
             <ul class="our-service-main">
                 <li class="our-section-head">LUXURY BRANDS</li>
                 <li><a href="#">Mercedes</a></li>
@@ -41,7 +41,7 @@
                 <li><a href="#">Land Rover</a></li>
             </ul>
         </div>
-        <div class="col-3">
+        <div class="col-12 col-sm-6 col-md-3">
             <ul class="our-service-main">
                 <li class="our-section-head">POPULAR BRANDS</li>
                 <li><a href="#">Maruti Suzuki</a></li>
@@ -58,7 +58,7 @@
                 <li><a href="#">Volkswagen</a></li>
             </ul>
         </div>
-        <div class="col-3">
+        <div class="col-12 col-sm-6 col-md-3">
             <ul class="our-service-main">
                 <li class="our-section-head">POPULAR AREAS NEAR YOU</li>
                 <li><a href="#">Garage near me in Andheri</a></li>
@@ -77,45 +77,57 @@
 </div>
 <div class="footer-address">
     <div class="row m-0 align-items-center">
-        <div class="col-2">
+        <div class="col-12 col-sm-6 col-md-2">
             <div>
                 <img src="{{ asset('front/img/acr-my-tvs.png') }}" class="acr-my-tvsimage"  alt="">
             </div>
         </div>
-        <div class="col-4">
+        <div class="col-12 col-sm-6 col-md-4">
             <div class="contact-number-main">
                 <p>
                     <img src="{{ asset('front/img/call-image.png') }}" class="call-image-main" alt="">
-                    Contact Number
+                   <a href="#" class="footer-number-main">09810446692</a>
                 </p>
-                <a href="#" class="footer-number-main">09810446692</a>
             </div>
         </div>
-        <div class="col-6">
+        <div class="col-12 col-sm-12 col-md-6">
             <div class="address-text-main">
-                <p>
-                    <div>
-                        <img src="{{ asset('front/img/location-icon-footer.png') }}" class="addres-image-main" alt="">
-                        <span>Address:-</span>
-                    </div>
-                     </p>
+                <div class="address-main-imagesec">
+                    <img src="{{ asset('front/img/location-icon-footer.png') }}" class="addres-image-main" alt="">
+                </div>
                 <a href="#">Unit-1 Plot, 29 & 30, near Kargil
                     Shaheed Sukhbir Singh Yadav Marg,
                     Info Technology Park, Sector 34,
                     Gurugram, Haryana 122001</a>
             </div>
-            
         </div>
     </div>
 </div>
-<!-- new footer end  -->
-<!--new footer start -->
-<div>
-    
+<div class="footer-menu-main">
+    <div>
+        <ul class="footer-menu-item">
+            <li><a href="">About Us</a></li>
+            <li><a href="{{url('faqs')}}">FAQs</a></li>
+            <li><a href="{{url('contact-us')}}">Contact Us</a></li>
+            <li><a href="#">Blogs</a></li>
+            @php($cmsInfo = getCmsPageName('10'))
+                @if(isset($cmsInfo->slug) && $cmsInfo->slug)
+                    <li><a href="{{url($cmsInfo->slug)}}">Privacy Policy</a></li>
+                @endif
+            @php($cmsInfo = getCmsPageName('12'))
+            @if(isset($cmsInfo->slug) && $cmsInfo->slug)
+                <li><a href="{{url($cmsInfo->slug)}}">Terms & Conditions </a></li>
+            @endif
+        </ul>
+    </div>
+    <div>
+        <p class="copy-right-text">autocarrepair2023 All Right Reserved</p>
+    </div>
 </div>
-<!--new footer end -->
+<!-- new footer end  -->
+
 <!-- footer start  -->
-<div class="footer-bg-main">
+<?php /*<div class="footer-bg-main">
     <div class="footer-widthset">  
         <div class="row m-0">
             <div class="col-12 col-sm-6 col-lg-3">
@@ -185,10 +197,10 @@
             </div>
            <?php /* <div class="col-2 col-sm-2 col-lg-1 footer-msgimg-main">
                 <img src="{{ asset('front/img/footer-msg.webp') }}" class="img-fluid" alt="">
-            </div> */ ?> 
+            </div> * / ?> 
         </div>
     </div>
-</div>
+</div> */ ?>
 <!-- footer end  -->
 <div class="footer-whatappicon">
      <a href="https://wa.me/{{$phone}}" target="_blank"><img src="{{ asset('front/img/whatsapp-acr-img.webp') }}" class="img-fluid" alt=""></a>
@@ -198,15 +210,15 @@
         <div class="footet-down-main">
             <div class="row m-0">
                 <div class="col-12 col-sm-6  col-md-4 main-soical-icon">
-                    <p>Follow Us:  </p>
+                    <?php /* <p>Follow Us:  </p>
                     <div>
                         <a href="https://{{$facebook}}" target="blank"><i class="fa-brands fa-facebook-f"></i></a>
                         <a href="https://{{$twitter}}" target="blank"><i class="fa-brands fa-twitter"></i></a>
                         <a href="https://{{$linkedin}}" target="blank"><i class="fa-brands fa-linkedin-in"></i></a>
                         <a href="https://{{$instagram}}" target="blank"><i class="fa-brands fa-instagram"></i></a>
                         <a href="https://{{$youtube}}" target="blank"><i class="fa-brands fa-youtube"></i></a>
-                    </div>
-                </div>
+                    </div> */?>
+                </div> 
                 <div class="col-12 col-sm-6 col-md-5 copy-right-text-main">
                     <p>© {{$copyright_year}} - {{$site_name}} - All rights reserved</p>
                 </div>
@@ -315,7 +327,7 @@ $(document).ready(function() {
 
         //otp in popop
         $('#appointmentresend_otp').hide();
-        $('.otp-section').hide();
+        $('.aptotp-section').hide();
         $('#check_price').hide();
         $(document).on('click', '#appointmentsend_otp', function(){
             var validateMobNum= /[1-9]{1}[0-9]{9}/;
@@ -330,9 +342,9 @@ $(document).ready(function() {
                         var result = $.parseJSON(result);
                         if(result.result == 'success'){
                             $("#appointmentmobile").attr("readonly", "readonly");
-                            $('.otp-section').show();
+                            $('.aptotp-section').show();
                             $('#appointmentsend_otp').hide();
-                            timer(30);
+                            apttimer(30);
                         } else {
                             toastr.error('Something went wrong. Please try again later!');
                         }
@@ -382,13 +394,13 @@ $(document).ready(function() {
                     success : function(result){
                         var result = $.parseJSON(result);
                         if(result.result == 'success'){
-                            $('.otp-section').show();
+                            $('.aptotp-section').show();
                             $('#appointmentresend_text').show();
                             $('#appointmentotp').val('');
                             $('#appointmentotp').show();
                             $("#appointmentmobile").attr("readonly", "readonly");
                             $('#appointmentresend_otp').hide();
-                            timer(30);
+                            apttimer(30);
                         } else {
                             toastr.error('Something went wrong. Please try again later!');
                         }
@@ -401,35 +413,6 @@ $(document).ready(function() {
         });
     //
 });
-
-    let timerStart = true;
-            function timer(remaining) {
-                var m = Math.floor(remaining / 60);
-                var s = remaining % 60;
-                m = m < 10 ? '0' + m : m;
-                s = s < 10 ? '0' + s : s;
-                document.getElementById('ontimer').innerHTML = m + ':' + s;
-                remaining -= 1;
-                if(remaining >= 0 && timerStart) {
-                setTimeout(function() {
-                    timer(remaining);
-                }, 1000);
-                return;
-                }
-
-                if(!timerStart) {
-                // Do validate stuff here
-                return;
-                }
-                // Do timeout stuff here
-                var is_otp_verify = $('#appointmentis_otp_verify').val();
-                if(is_otp_verify == '0'){
-                    $('#appointmentresend_otp').show();
-                    $("#appointmentmobile").removeAttr("readonly"); 
-                    $('#appointmentresend_text').hide();
-                    $('#appointmentotp').hide();
-                }
-            }
 
     function basic(){
         $("input").attr("autocomplete", "off");
@@ -549,6 +532,61 @@ $(document).ready(function() {
                 }
             }
         });
+
+        $('#aboutus-brand-carousel').owlCarousel({
+            loop: true,
+            margin: 30,
+            dots: false,
+            nav: false,
+            items: 4,
+            autoplay:true,
+            autoplayTimeout:2000,
+            autoplayHoverPause:true,
+            responsiveClass: true,
+            responsive: {
+                0: {
+                items: 1
+                },
+                450:{
+                items: 2
+                },
+                600: {
+                items: 3
+                },
+                1024: {
+                items: 4
+                }
+            }
+        });
+
+    }
+    let timerStart = true;
+    function apttimer(remaining) {
+        var m = Math.floor(remaining / 60);
+        var s = remaining % 60;
+        m = m < 10 ? '0' + m : m;
+        s = s < 10 ? '0' + s : s;
+        document.getElementById('apttimer').innerHTML = m + ':' + s;
+        remaining -= 1;
+        if(remaining >= 0 && timerStart) {
+        setTimeout(function() {
+            apttimer(remaining);
+        }, 1000);
+        return;
+        }
+
+        if(!timerStart) {
+        // Do validate stuff here
+        return;
+        }
+        // Do timeout stuff here
+        var is_otp_verify = $('#appointmentis_otp_verify').val();
+        if(is_otp_verify == '0'){
+            $('#appointmentresend_otp').show();
+            $("#appointmentmobile").removeAttr("readonly"); 
+            $('#appointmentresend_text').hide();
+            $('#appointmentotp').hide();
+        }
     }
 </script>
 @yield('javascript')

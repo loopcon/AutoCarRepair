@@ -15,6 +15,9 @@
     #sync1 .product-inner-imgmain img{ height: auto;}
     #sync2 .product-inner-imgmain img{ height: auto; }
     .save-more-section .save-more-text{ font-size: 34px;}
+    .brand-logo-section{ height:330px;}
+    .save-more-img img{top:-12px; }
+    .form-section-bg .request-text-main{ width:80%; }
 }
 @media (min-width:991px){ 
     .mobile-menu-sectiondata{ display: none;}
@@ -24,7 +27,7 @@
     .top-navbar-main{ display: none;}
     .offeer-section .offer-section-item p { font-size: 20px;}
     .offeer-section .offer-section-item h4{ font-size: 35px; width: 60%; margin: 25px 0px;}
-    /* .save-more-section .save-more-img::before{ display: none;} */
+    /*.save-more-section .save-more-img::before{ display: none;}*/
     .slider-section-main h2{ font-size: 50px;}
     .slider-section-main h5{ font-size: 35px;}
     .why-choose-section .why-choose-item h5{ font-size: 30px;}
@@ -52,16 +55,23 @@
     #sync1 .product-inner-imgmain img{ height: auto;}
     #sync2 .product-inner-imgmain img{ height: auto; }
     .save-more-img img{ display: none;}
+    .footer-address .contact-number-main p{ font-size: 22px;}
+    .brand-logo-section{ height:290px;}
+    .save-more-section{height:170px; } 
+    .save-more-img img{ top:0px; display:none; }
+    .save-more-section .save-more-text p{font-size:31px; }
+    .form-section-bg .request-text-main{ width:80%; }
+    .service-center-popupimg{ margin-bottom:15px;}
+    .footer-bg-main .footer-img-main{border:0px;}
 }
 @media (max-width:767px) {
     .slider-section-main h2{ font-size: 50px; }
     .slider-section-main h5{ font-size: 32px;}
     .slider-section-main p { font-size: 14px;}
-    .slider-section-main button{ height: 35px; width: 150px; margin-bottom: 15px;}
+    .slider-section-main button{ height: 40px; width: 150px; margin-bottom: 15px;}
     .offeer-section .offer-section-item p { font-size: 15px;}
     .offeer-section .offer-section-item h4{ font-size: 28px; width: 60%; margin: 25px 0px;}
-    /* .save-more-section .save-more-img::before{ display: none;} */
-    .save-more-img img{ display: none;}
+    .save-more-section .save-more-img::before{ display: none;}
     .service-section .always-service-text p{ width: 80%;}
     .service-inner-tophead h2{ font-size: 40px; text-align: center;}
     .service-inner-tophead-text{ width: 100%;  }
@@ -81,13 +91,20 @@
     .mobile-toggle-data{ top: 102px;}
     #sync1 .product-inner-imgmain img{ height: auto;}
     #sync2 .product-inner-imgmain img{ height: auto; }
+    .brand-logo-section{ height:250px;}
+    .save-more-img img{display:none; }
+    .form-section-bg .request-text-main{ width:100%; }
+    .form-section-bg .request-text-main h2{font-size:40px; }
+    .choose-service-centersection{ padding:25px !important;}
+    .service-center-popupimg{ margin-bottom:15px;}
+    .newfooter-bg-main .our-service-main{ margin-bottom:20px;}
 }
 @media (max-width:575px) {
     .slider-section-main h2{ font-size: 35px; }
     .slider-section-main h5{ font-size: 25px;}
     .slider-section-main p { font-size: 14px;}
-    .slider-section-main button{ height: 35px; width: 150px; margin-bottom: 15px;}
-    .service-section .always-service-text p{ width: 90%; font-size: 30px;}
+    .slider-section-main button{ height: 40px; width: 150px; margin-bottom: 15px;}
+    .service-section .always-service-text p{ width: 100%; font-size: 22px;}
     .navbar-appointment-btn{ height: 35px; width: 130px; font-size: 0.8rem; padding: 0px 5px;}
     .search-icon-main img{ margin-right: 10px; margin-top: 0px; height: 20px;}
     .acr-logo{ height: 70px;}
@@ -100,11 +117,10 @@
     .testimonial-section .testiminoal-img-main-text h4{ font-size: 32px;}
     .testimonial-section .test-slider-text{ font-size: 18px;}
     .save-more-section .save-more-text{ font-size: 30px;}
-    .form-section-bg .request-text-main h2{ font-size: 25px;}
+    .form-section-bg .request-text-main h2{ font-size: 22px;}
     .form-section-bg .request-text-main{ width: 100%;}
     .footer-bg-main .footer-img-main{ border-right: 0px;}
-    /* .save-more-section .save-more-img::before{ width: 200px; display: none;} */
-    .save-more-img img{ display: none;}
+    .save-more-section .save-more-img::before{ width: 200px; display: none;}
     .form-section-bg .request-text-main h3::before{ width: 200px;}
     .ser-inner-banner { height: 250px;  width: auto !important; overflow: hidden; object-fit: cover; }
     .service-inner-tophead h2{ font-size: 30px; text-align: center;}
@@ -154,10 +170,37 @@
     .search-svg-main{ margin-right: 10px; font-size: 20px; color: #000;}
     #sync1 .product-inner-imgmain img{ height: auto;}
     #sync2 .product-inner-imgmain img{ height: auto; }
+    .brand-logo-section{ height:220px;}
+    .save-more-img img{display:none; }
+    .save-more-section .save-more-text p{ font-size:28px; }
+    .service-section .service-main-btn{height: 40px;line-height: 40px;}
+    .offeer-section .explore-btn{height:40px;}
+    .form-section-bg .form-btn-contant{height:40px;}
+    .owText{ font-size:52px; margin-bottom:-24px; }
+    .choose-service-centersection{ padding:40px !important;}
+    .service-center-popupimg{ margin-bottom:15px;}
+    .shopping-section .shoping-main-product{ margin-bottom:10px;}
+    .footer-address .acr-my-tvsimage{display:block; margin:auto;}
+    .footer-address .contact-number-main{ margin-bottom:10px; }
+    .footer-menu-item{margin-bottom:10px;}
+    .newfooter-bg-main .our-service-main{ margin-bottom:20px;}
+    .appointmentselect-dialog .search-icon svg{left:88%; }
+    .appointmentsearch-dialog .search-icon svg{left:88%; }
+    .appointmentfuel-dialog .search-icon svg{left:88%;}
+    .appointmentnumber-dialog .check-price-btn{height:40px; font-size:18px;}
+    .appointmentnumber-dialog .form-control{ height:40px;}
+    .our-service-section .servic-type-box h4{font-size:25px;}
+    .pick-slot-main h4{font-size:21px;}
+    .personal-detail-main h4{font-size:21px;}
+    .select-address h4{font-size:21px;}
+    .Choose-service-date-main h4{font-size:21px; padding-bottom:0px;}
+    .select-payment-main h4{font-size:21px;}
+    .our-service-section .servic-type-box:hover{transform: scale(1); transition-duration: 1s;}
 }
 @media (max-width:450px) {
     .mobile-menu-sectiondata{  flex-wrap: wrap; height: 80px; }
     .btn-toggle-item{ margin-left: 5px; padding: 5px 9px;}
     .btn-toggle-item svg{ font-size: 20px;}
     .acr-logo{ height: 60px;}
+    .choose-service-centersection{ padding:40px !important;}
 }
