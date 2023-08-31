@@ -230,7 +230,7 @@ class CarModelController extends MainController
     }
 
     public function export(Request $request){
-        return Excel::download(new ExportCarModel, 'SampleData.xlsx');
+        return Excel::download(new ExportCarModel, 'Car Model SampleData.xlsx');
     }
 
     public function importAdd()

@@ -12,6 +12,9 @@ use Session;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Crypt;
 use App\Constant;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\ExportProduct;
+use App\Imports\ImportProduct;
 use DataTables;
 use File;
 
@@ -302,5 +305,27 @@ class ProductController extends MainController
         $images =  ProductImage::select('id','product_id','image')->where('product_id',$id)->get();
         $return_data['images'] = $images;
         return view('backend.product.detail', array_merge($this->data, $return_data));
+    }
+
+    public function export(Request $request){
+        return Excel::download(new ExportProduct, 'Product SampleData.xlsx');
+    }
+
+    public function importAdd()
+    {
+        $return_data = array();
+        $return_data['site_title'] = trans('Import Data');
+        return view('backend.product.import', array_merge($this->data, $return_data));
+    }
+
+    public function import(Request $request){
+        $request->validate([
+            'file' => 'required|max:10000|mimes:xlsx,xls',
+        ]);
+
+        $path = $request->file('file')->store('files'); 
+
+        Excel::import(new ImportProduct,$path);
+        return redirect('backend/products')->with('success', trans('Procduct Imported successfully.'));
     }
 }

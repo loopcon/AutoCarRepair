@@ -215,7 +215,7 @@ class CarBrandController extends MainController
     }
 
     public function export(Request $request){
-        return Excel::download(new ExportCarbrand, 'SampleData.xlsx');
+        return Excel::download(new ExportCarbrand, 'Caar Brand SampleData.xlsx');
     }
 
     public function importAdd()

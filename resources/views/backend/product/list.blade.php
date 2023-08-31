@@ -19,7 +19,9 @@
                     <div class="card-header">
                         <div class="form-row">
                             <div class="col-md-12 text-end">
-                                <div class="col-md-12 text-end"><a href="{{route('admin_product-create')}}" class="btn btn-success"><i class="align-middle" data-feather="plus"></i>{{__('Add')}}</a></div>
+                                <div class="col-md-12 text-end"><a href="{{route('admin_product-create')}}" class="btn btn-success"><i class="align-middle" data-feather="plus"></i>{{__('Add')}}</a>
+                                <a href="javascript:void(0)" id="import" class="btn btn-icon icon-left btn-warning"> Import </a>
+                                <a class="btn btn-info" href="{{ route('admin_product-csv-export') }}">{{__('Product Sample Data')}}</a></div>
                             </div>
                         </div>
                         <div class="form-group col-md-2 select-parsley">
@@ -147,6 +149,10 @@ $(document).ready(function() {
         });
     });
 });
+
+$(document).on('click', '#import', function(){
+                location.href = "<?php echo route('admin_product-import-add') ?>"
+            });
 </script>
 
 @endsection
