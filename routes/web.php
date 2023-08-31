@@ -134,6 +134,7 @@ Route::group(['prefix' => 'backend','as' => 'admin_'], function() {
         Route::post('scheduled-package-datatable', [App\Http\Controllers\Backend\ServiceController::class, 'scheduledPackageDatatable'])->name('scheduled-package-datatable')->middleware('XSS');
         Route::post('specification-delete', [App\Http\Controllers\Backend\ServiceController::class, 'specificationDelete'])->name('specification-delete')->middleware('XSS');
         Route::post('get-model-from-brand', [App\Http\Controllers\Backend\ServiceController::class, 'getModelFromBrand'])->name('get-model-from-brand')->middleware('XSS');
+        Route::post('import-schedule-package', [App\Http\Controllers\Backend\ServiceController::class, 'importSchedulePackage'])->name('import-schedule-package')->middleware('XSS');
 
         Route::get('smtp', [App\Http\Controllers\Backend\SMTPController::class, 'index'])->name('smtp')->middleware('XSS');
         Route::post('smtp_update', [App\Http\Controllers\Backend\SMTPController::class, 'update'])->name('smtp_update')->middleware('XSS');
