@@ -596,4 +596,24 @@ ALTER TABLE `product_images` ADD `image_title` VARCHAR(255) NULL DEFAULT NULL AF
 -- Disha : 31-8-23 1:56 PM
 ALTER TABLE `service_categories` ADD `icon_image` VARCHAR(255) NULL DEFAULT NULL AFTER `image_1`;
 
+-- Khushali : 31-08-23 11:12 AM
+--
+-- Table structure for table `scheduled_package_detail`
+--
 
+CREATE TABLE `scheduled_package_detail` (
+  `id` int(11) NOT NULL,
+  `sp_id` int(11) DEFAULT NULL COMMENT '`id` of `scheduled_packages`',
+  `brand_id` int(11) DEFAULT NULL COMMENT '`id` of `car_brands`',
+  `model_id` int(11) DEFAULT NULL COMMENT '`id` of `model`',
+  `fuel_type_id` int(11) DEFAULT NULL COMMENT '`id` of `fuel_type`',
+  `price` decimal(15,2) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+ALTER TABLE `scheduled_package_detail`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `scheduled_package_detail`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;

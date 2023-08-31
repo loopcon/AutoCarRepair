@@ -2,6 +2,7 @@
 @section('css')
     <link rel="stylesheet" type="text/css" href="{{asset('public/plugins/sweetalert/sweetalert.css')}}">
     <link class="js-stylesheet" href="{{ asset('plugins/select2/css/select2.min.css') }}" rel="stylesheet">
+    <link class="js-stylesheet" href="{{ asset('plugins/parsley/parsley.css') }}" rel="stylesheet">
 @endsection
 @section('content')
 
@@ -19,7 +20,11 @@
                     <div class="card-header">
                         <div class="form-row">
                             <div class="col-md-12 text-end">
-                                <div class="col-md-12 text-end"><a href="{{route('admin_scheduled-package-create')}}" class="btn btn-success"><i class="align-middle" data-feather="plus"></i>{{__('Add')}}</a></div>
+                                <div class="col-md-12 text-end">
+                                    <a href="{{route('admin_scheduled-package-create')}}" class="btn btn-success"><i class="align-middle" data-feather="plus"></i>{{__('Add')}}</a>
+                                    <a href="javascript:void(0)" class="btn btn-icon icon-left btn-primary" id="csv_link"> Import CSV </a>
+                                    <a href="{{asset('public/samples/scheduled_package_pricing.csv')}}" class="btn btn-icon icon-left btn-warning"> Download Sample CSV </a>
+                                </div>
                             </div>
                         </div>
                         <div class = "row">
@@ -90,13 +95,48 @@
         </div>
     </div>
 </main>
+<div class="modal fade csv-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myLargeModalLabel">Upload Schedule Package CSV</h5>
+            </div>
+
+            <form method="POST" action="{{ route('admin_import-schedule-package') }}" enctype="multipart/form-data" data-parsley-validate="">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <input type="hidden" name="" id="" value="">
+                
+                <div class="modal-body">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <div class="col-md-6">
+                                <label for="description">Select File</label>
+                            </div>
+                            <div class="col-md-12">
+                                <input type="file" id="myfile" name="myfile" required="" accept=".csv"><br><br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 <meta name="csrf-token" content="{{ csrf_token() }}" />
 @endsection
 @section('javascript')
 <script src="{{asset('plugins/sweetalert/sweetalert.js')}}" type="text/javascript"></script>
 <script src="{{ asset('plugins/select2/js/select2.min.js') }}"></script>
+<script src="{{ asset('plugins/parsley/parsley.js') }}"></script>
 <script>
 $(document).ready(function() {
+    $(document).on('click', '#csv_link', function(){
+        $('.csv-modal').modal('show');
+    });
     $('#serviceCategory').select2();
     var table = $("#table").DataTable({
         "sScrollX": '100%',

@@ -210,15 +210,15 @@
         <div class="footet-down-main">
             <div class="row m-0">
                 <div class="col-12 col-sm-6  col-md-4 main-soical-icon">
-                    <p>Follow Us:  </p>
+                    <?php /* <p>Follow Us:  </p>
                     <div>
                         <a href="https://{{$facebook}}" target="blank"><i class="fa-brands fa-facebook-f"></i></a>
                         <a href="https://{{$twitter}}" target="blank"><i class="fa-brands fa-twitter"></i></a>
                         <a href="https://{{$linkedin}}" target="blank"><i class="fa-brands fa-linkedin-in"></i></a>
                         <a href="https://{{$instagram}}" target="blank"><i class="fa-brands fa-instagram"></i></a>
                         <a href="https://{{$youtube}}" target="blank"><i class="fa-brands fa-youtube"></i></a>
-                    </div>
-                </div>
+                    </div> */?>
+                </div> 
                 <div class="col-12 col-sm-6 col-md-5 copy-right-text-main">
                     <p>© {{$copyright_year}} - {{$site_name}} - All rights reserved</p>
                 </div>
