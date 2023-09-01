@@ -20,7 +20,7 @@
                             <div class="col-md-12 text-end">
                                 <div class="col-md-12 text-end"><a href="javascript:void(0)" class="btn btn-success ajax-form" id=""><i class="align-middle" data-feather="plus"></i>{{__('Add')}}</a>
                                 <a href="javascript:void(0)" id="import" class="btn btn-icon icon-left btn-warning"> Import </a>
-                                <a class="btn btn-info" href="{{ route('admin_car-brand-csv-export') }}">{{__('Export Sample Data')}}</a></div>
+                                <a class="btn btn-info" href="{{ route('admin_car-brand-csv-export') }}">{{__('Car Brand Sample Data')}}</a></div>
                             </div>
                         </div>
                     </div>

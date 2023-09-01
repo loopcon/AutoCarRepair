@@ -589,6 +589,13 @@ ALTER TABLE `home_page_setting` ADD `price_list` LONGTEXT NULL AFTER `button_lin
 -- Disha : 31-8-23 10:16 PM
 ALTER TABLE `service_center_detail` ADD `image_title` VARCHAR(255) NULL DEFAULT NULL AFTER `image`;
 
+ALTER TABLE `shop_categories` ADD `image_title` VARCHAR(255) NULL DEFAULT NULL AFTER `image`;
+
+ALTER TABLE `product_images` ADD `image_title` VARCHAR(255) NULL DEFAULT NULL AFTER `image`;
+
+-- Disha : 31-8-23 1:56 PM
+ALTER TABLE `service_categories` ADD `icon_image` VARCHAR(255) NULL DEFAULT NULL AFTER `image_1`;
+
 -- Khushali : 31-08-23 11:12 AM
 --
 -- Table structure for table `scheduled_package_detail`

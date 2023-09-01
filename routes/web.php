@@ -114,6 +114,9 @@ Route::group(['prefix' => 'backend','as' => 'admin_'], function() {
         Route::post('product-image-delete', [\App\Http\Controllers\Backend\ProductController::class, 'imageDelete'])->name('product-image-delete');
         Route::post('make-product-slug', [\App\Http\Controllers\Backend\ProductController::class, 'makeSlug'])->name('make-product-slug');
         Route::get('product-detail/{id?}', [\App\Http\Controllers\Backend\ProductController::class, 'productDetail'])->name('product-detail');
+        Route::post('product-import', [App\Http\Controllers\Backend\ProductController::class, 'import'])->name('product-import');
+        Route::get('product-import-add', [App\Http\Controllers\Backend\ProductController::class, 'importAdd'])->name('product-import-add');
+        Route::get('product-csv-export', [App\Http\Controllers\Backend\ProductController::class, 'export'])->name('product-csv-export');
 
         Route::get('home-page-content', [\App\Http\Controllers\Backend\HomePageSettingController::class, 'index'])->name('home-page-content');
         Route::post('home-page-content-update', [\App\Http\Controllers\Backend\HomePageSettingController::class, 'update'])->name('home-page-content-update');
@@ -246,6 +249,7 @@ Route::group(['as' => 'front_', 'middleware' => 'XSS'], function() {
     Route::get('contact-us', [App\Http\Controllers\Front\ContactController::class, 'index'])->name('contact-us');
     Route::get('service-center', [App\Http\Controllers\Front\ServiceCenterConroller::class, 'index'])->name('service-center');
     Route::get('faqs', [App\Http\Controllers\Front\FaqController::class, 'index'])->name('faqs');
+    // Route::get('about-us', [App\Http\Controllers\Front\CmsPagesController::class, 'indexAbout'])->name('about-us');
 
     /** cms pages route start **/
     $pages = Cache::remember('pages', 10, function() { 

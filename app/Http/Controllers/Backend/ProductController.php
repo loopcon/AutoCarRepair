@@ -12,6 +12,9 @@ use Session;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Crypt;
 use App\Constant;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\ExportProduct;
+use App\Imports\ImportProduct;
 use DataTables;
 use File;
 
@@ -72,17 +75,20 @@ class ProductController extends MainController
         if($product){
             $total_images = isset($request->last_id) && $request->last_id ? $request->last_id : NULL;
             $is_primary = isset($request->is_primary) ? isset($request->is_primary) : NULL;
+            $image_title = isset($request->image_title) ? isset($request->image_title) : NULL;
             if($total_images){
                 for($i = 0; $i < $total_images; $i++){
                     $name = 'image'.$i;
-                    if($request->hasFile($name)) {
+                    $image_title = 'image_title'.$i;
+                    // if($request->hasFile($name)) {
                         $newName = fileUpload($request, $name, 'uploads/product/'.$product->id);
                         $product_img = new ProductImage();
                         $product_img->image = $newName;
                         $product_img->is_primary = $is_primary == $i ? '1' : 0;
                         $product_img->product_id = $product->id;
+                        $product_img->image_title = $request->$image_title ? $request->$image_title : NULL;
                         $product_img->save();
-                    }
+                    // }
                 }
             }
             return redirect('backend/products')->with('success', trans('Product Added Successfully!'));
@@ -145,9 +151,11 @@ class ProductController extends MainController
         if($product){
             $total_images = isset($request->last_id) && $request->last_id ? $request->last_id : NULL;
             $is_primary = isset($request->is_primary) ? isset($request->is_primary) : NULL;
+            // $image_title  = isset($request->image_title ) ? isset($request->image_title ) : NULL;
             if($total_images){
                 for($i = 0; $i < $total_images; $i++){
                     $name = 'image'.$i;
+                    $image_title = 'image_title'.$i;
                     $pid = 'pid'.$i;
                     if($request->hasFile($name)) {
                         $newName = fileUpload($request, $name, 'uploads/product/'.$id);
@@ -163,6 +171,7 @@ class ProductController extends MainController
                         $product_img->image = $newName;
                         $product_img->is_primary = $is_primary == $i ? '1' : 0;
                         $product_img->product_id = $id;
+                        $product_img->image_title = $request->$image_title ? $request->$image_title : NULL;
                         $product_img->save();
                     }
                 }
@@ -302,5 +311,27 @@ class ProductController extends MainController
         $images =  ProductImage::select('id','product_id','image')->where('product_id',$id)->get();
         $return_data['images'] = $images;
         return view('backend.product.detail', array_merge($this->data, $return_data));
+    }
+
+    public function export(Request $request){
+        return Excel::download(new ExportProduct, 'Product SampleData.xlsx');
+    }
+
+    public function importAdd()
+    {
+        $return_data = array();
+        $return_data['site_title'] = trans('Import Data');
+        return view('backend.product.import', array_merge($this->data, $return_data));
+    }
+
+    public function import(Request $request){
+        $request->validate([
+            'file' => 'required|max:10000|mimes:xlsx,xls',
+        ]);
+
+        $path = $request->file('file')->store('files'); 
+
+        Excel::import(new ImportProduct,$path);
+        return redirect('backend/products')->with('success', trans('Procduct Imported successfully.'));
     }
 }

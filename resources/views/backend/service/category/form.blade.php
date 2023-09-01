@@ -79,6 +79,28 @@
                                     <p class="image_errortext">For Best resolution please upload 250*250 size and in WebP file format.</p> 
                                 </div>
 
+                                <div class="mb-3 col-md-6">
+                                    <label class="form-label" for="icon_image">{{__('Icon Image')}}<span class="text-danger">*</span></label>
+                                    <div class="icon_image">
+                                        @php($i=2)
+                                        @if(isset($record->icon_image))
+                                            @if($record->icon_image !='')
+                                                @php($required = '')
+                                                <img class='previewImage img-fluid' id="uploadPreview{{$i}}" src="{{url('public/uploads/service/category/icon/'.$record->icon_image)}}"  alt=''>
+                                            @else
+                                                @php($required = 'required')
+                                                <img class='img-fluid' id="uploadPreview{{$i}}" src="{{url('public/no.jpg')}}"  alt=''>
+                                            @endif
+                                        @else
+                                            @php($required = 'required')
+                                            <img class='img-fluid' id="uploadPreview{{$i}}" src="{{url('public/no.jpg')}}"  alt=''>
+                                        @endif
+                                    </div>
+                                    <div class="m-b-10">
+                                        <input type="file" id="uploadImage{{$i}}" accept="image/x-png, image/gif, image/jpeg" class="btn btn-warning btn-block btn-sm"  name="icon_image" required="" data-parsley-required-message="{{ __("This value is required.")}}" onChange="this.parentNode.nextSibling.value = this.value; PreviewImage({{$i}});">
+                                    </div>
+                                </div>
+
                                 <div class="mt-3  col-md-12">
                                     <h6>SEO Details</h6>
                                     <hr/>

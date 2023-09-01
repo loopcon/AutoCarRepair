@@ -101,7 +101,7 @@
                             </div>
                         @endif
                     @endif
-                
+
                     @if(isset($detail->primaryImage->image) && $detail->primaryImage->image)
                         <div class="col-md-12">
                             <h4>Image</h4>
@@ -111,7 +111,7 @@
                         @if($images->count())
                             @foreach($images as $image)
                                 <div class="col-md-3 mt-2">
-                                    <img class ="img-responsive img-fluid" src="{{url('uploads/product/'.$image->product_id.'/'.$image->image)}}">
+                                    <img class ="img-responsive img-fluid" src="{{url('uploads/product/'.$image->product_id.'/'.$image->image)}}" title="{{isset($image->image_title) && $image->image_title ? $image->image_title : ''}}">
                                 </div>
                             @endforeach
                         @endif

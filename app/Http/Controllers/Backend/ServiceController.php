@@ -75,6 +75,10 @@ class ServiceController extends MainController
             $newName = fileUpload($request, 'image_1', 'uploads/service/category');
             $scstegory->image_1 = $newName;
         }
+        if($request->hasFile('icon_image')) {
+            $newName = fileUpload($request, 'icon_image', 'uploads/service/category/icon');
+            $scstegory->icon_image = $newName;
+        }
         $scstegory->slug = $slug;
         $scstegory->created_by = Auth::guard('admin')->user()->id;
         $scstegory->save();
@@ -144,6 +148,14 @@ class ServiceController extends MainController
             $newName = fileUpload($request, 'image_1', 'uploads/service/category');
             $scategory->image_1 = $newName;
         }
+        if($request->hasFile('icon_image')) {
+            $old_image = $scategory->icon_image;
+            if($old_image){
+                removeFile('uploads/service/category/icon'.$old_image);
+            }
+            $newName = fileUpload($request, 'icon_image', 'uploads/service/category/icon');
+            $scategory->icon_image = $newName;
+        }
         $scategory->slug = $slug;
         $scategory->updated_by = Auth::guard('admin')->user()->id;
         $scategory->save();
@@ -171,8 +183,12 @@ class ServiceController extends MainController
         if($is_delete) {
             $scategory = ServiceCategory::where('id', $id)->first();
             $old_image = $scategory->image;
+            $old_icon_img = $scategory->icon_image; 
             if($old_image){
                 removeFile('uploads/service/category/'.$old_image);
+            }
+            if($old_icon_img){
+                removeFile('uploads/service/category/icon/'.$old_icon_img);
             }
             $scategory = ServiceCategory::where('id', $id)->delete();
             if($scategory) {

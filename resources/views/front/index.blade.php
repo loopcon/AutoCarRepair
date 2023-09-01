@@ -52,8 +52,7 @@
                                     @endif
                                 </div>
                                 <div class="services-cate-item" >
-                                    @php($img = $sk + 1)
-                                    <img src="{{ asset('front/img/ser-cat'.$img.'small.png') }}" class="service-cat-smallimg" alt="" title="{{$service->title}}">
+                                    <img src="{{ asset('uploads/service/category/icon/'.$service->icon_image) }}" class="service-cat-smallimg" alt="" title="{{$service->title}}">
                                     <div class="home-service-main"> <h4> {{$service->title}} </h4> </div>
                                     <?php /* <p >We are always help to make one of the best adjustment service </p>
                                     <img src="{{ asset('front/img/ser-cat'.$img.'big.png') }}" class="se-cat-bigimage" alt="" title="{{$service->title}}"> */ ?>
@@ -384,7 +383,7 @@
         @if($service_center->count())
             @foreach($service_center as $detail)
                 <div class="item">
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#servicecenterModal-{{$detail->id}}"><img src="{{ asset('uploads/servicecenterdetail/'.$detail->image) }}" class="service-center-slider-img detail" alt="" title=""></a>
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#servicecenterModal-{{$detail->id}}"><img src="{{ asset('uploads/servicecenterdetail/'.$detail->image) }}" class="service-center-slider-img detail" alt="" title="{{$detail->image_title}}"></a>
                 </div>
             @endforeach
         @endif        
@@ -402,7 +401,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div>
-                                    <img src="{{ asset('uploads/servicecenterdetail/'.$detail->image) }}" class="service-center-popupimg" alt="" title=""> 
+                                    <img src="{{ asset('uploads/servicecenterdetail/'.$detail->image) }}" class="service-center-popupimg" alt="" title="{{$detail->image_title}}"> 
                                 </div>
                             </div>
                             <div class="col-md-6">

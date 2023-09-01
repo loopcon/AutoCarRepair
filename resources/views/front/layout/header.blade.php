@@ -147,7 +147,7 @@
                         <li><a class="@if($page == 'our-services'){{'acr-active'}}@endif" href="{{url('our-services')}}">Car Service</a></li>
                         <li><a class="@if($page == 'service-center'){{'acr-active'}}@endif" href="{{url('service-center')}}">Service Center</a></li>
                         <li><a href="#">Blog</a></li>
-                        <li><a class="@if($page == 'shopping'){{'acr-active'}}@endif href="{{url('front-shopping')}}">Shopping</a></li>
+                        <li><a class="@if($page == 'shopping'){{'acr-active'}}@endif" href="{{url('shopping')}}">Shopping</a></li>
                         <li><a href="{{url('checkout')}}" class="card-icon-main"><i class="fa fa-cart-plus"></i><span id="cart_header_total_item"></span></a></li>
                     </ul>
                 </div>

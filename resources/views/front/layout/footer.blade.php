@@ -106,12 +106,18 @@
 <div class="footer-menu-main">
     <div>
         <ul class="footer-menu-item">
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">FAQs</a></li>
-            <li><a href="#">Contact Us</a></li>
+            <li><a href="">About Us</a></li>
+            <li><a href="{{url('faqs')}}">FAQs</a></li>
+            <li><a href="{{url('contact-us')}}">Contact Us</a></li>
             <li><a href="#">Blogs</a></li>
-            <li><a href="#">Privacy Policy</a></li>
-            <li><a href="#">Terms & Conditions </a></li>
+            @php($cmsInfo = getCmsPageName('10'))
+                @if(isset($cmsInfo->slug) && $cmsInfo->slug)
+                    <li><a href="{{url($cmsInfo->slug)}}">Privacy Policy</a></li>
+                @endif
+            @php($cmsInfo = getCmsPageName('12'))
+            @if(isset($cmsInfo->slug) && $cmsInfo->slug)
+                <li><a href="{{url($cmsInfo->slug)}}">Terms & Conditions </a></li>
+            @endif
         </ul>
     </div>
     <div>
