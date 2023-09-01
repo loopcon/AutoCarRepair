@@ -224,6 +224,7 @@
 @section('javascript')
     <script src="{{ asset('plugins/parsley/parsley.js') }}"></script>
     <script src="{{asset('plugins/sweetalert/sweetalert.js')}}" type="text/javascript"></script>
+    <script src="{{asset('public/plugins/ckeditor/ckeditor.js')}}"  type="text/javascript"></script>
     <script>
         $(document).ready(function(){
             $('.select2').select2();

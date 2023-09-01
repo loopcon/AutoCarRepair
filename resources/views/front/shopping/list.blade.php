@@ -26,7 +26,7 @@
                                     </a> */ ?>
                                     <label class="filter-click-main" for="pcategory{{$category->id}}">
                                         {{$category->name}}
-                                        <?php /* <input class="form-check-input filter_category check-box-fliter" type="checkbox" value="{{$category->id}}" id="pcategory{{$category->id}}"> */ ?>
+                                         <input class="form-check-input filter_category check-box-fliter" type="checkbox" value="{{$category->id}}" id="pcategory{{$category->id}}"> 
                                         <span><i class="fa-solid fa-plus"></i></span>
                                     </label>
                                 </li>
@@ -45,7 +45,7 @@
                                         @if(isset($product->primaryImage->image) && $product->primaryImage->image)
                                             <img src="{{ asset('public/uploads/product/'.$product->id.'/'.$product->primaryImage->image) }}"  alt="" title="{{isset($product->primaryImage->image_title) ? $product->primaryImage->image_title : ''}}">
                                         @else
-                                            <img src="{{ asset('front/img/no_image.jpg') }}" class="img-fluid" alt="" title="noiio">
+                                            <img src="{{ asset('front/img/no_image.jpg') }}" class="img-fluid" alt="" title="no_image">
                                         @endif
                                         <div class="shoping-text-name">
                                             <h5><a href="{{url('shopping/'.$product->slug)}}">{{$product->name}}</a></h5>

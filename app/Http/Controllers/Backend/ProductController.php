@@ -157,23 +157,25 @@ class ProductController extends MainController
                     $name = 'image'.$i;
                     $image_title = 'image_title'.$i;
                     $pid = 'pid'.$i;
+                    if($request->$pid){
+                        $product_img = ProductImage::find($request->$pid);
+                    } else {
+                        $product_img = new ProductImage();
+                    }
+                    $product_img->is_primary = $is_primary == $i ? '1' : 0;
+                    $product_img->product_id = $id;
+                    $product_img->image_title = $request->$image_title ? $request->$image_title : NULL;
                     if($request->hasFile($name)) {
-                        $newName = fileUpload($request, $name, 'uploads/product/'.$id);
                         if($request->$pid){
-                            $product_img = ProductImage::find($request->$pid);
                             $old_image = $product_img->image;
                             if($old_image){
                                 removeFile('uploads/product/'.$id.'/'.$old_image);
                             }
-                        } else {
-                            $product_img = new ProductImage();
                         }
+                        $newName = fileUpload($request, $name, 'uploads/product/'.$id);
                         $product_img->image = $newName;
-                        $product_img->is_primary = $is_primary == $i ? '1' : 0;
-                        $product_img->product_id = $id;
-                        $product_img->image_title = $request->$image_title ? $request->$image_title : NULL;
-                        $product_img->save();
                     }
+                    $product_img->save();
                 }
             }
             return redirect('backend/products')->with('success', trans('Product Updated Successfully!'));

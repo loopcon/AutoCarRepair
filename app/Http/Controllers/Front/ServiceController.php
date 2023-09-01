@@ -8,6 +8,7 @@ use App\Constant;
 use App\Models\ServiceCategory;
 use App\Models\Faq;
 use App\Models\ScheduledPackage;
+use App\Models\ScheduledPackageDetail;
 use App\Models\CarBrand;
 use App\Models\CarModel;
 use App\Models\Enquiry;
@@ -24,15 +25,17 @@ class ServiceController extends MainController
         $model_id = Session::get('model_id');
         $fuel_id = Session::get('fuel_id');
 
+        //dd($brand_id."----".$model_id."-------".$fuel_id);
         $carray = array();
         $brandInfo = CarBrand::select('id', 'slug')->where([['id', $brand_id]])->first();
         $modelInfo = CarModel::select('id', 'slug')->where([['id', $model_id]])->first();
         $fuelInfo = FuelType::select('id', 'slug')->where([['id', $fuel_id]])->first();
         if(isset($brandInfo->id) && $brandInfo->id && isset($modelInfo->id) && $modelInfo->id && isset($fuelInfo->id) && $fuelInfo->id){
-            $squery = ScheduledPackage::select('sc_id')->where([['brand_id', $brand_id], ['model_id' , $model_id], ['fuel_type_id', $fuel_id]])->groupBy('sc_id')->get();
+            $squery = ScheduledPackageDetail::with('packageDetail')->select('id', 'sp_id')->where([['brand_id', $brand_id], ['model_id' , $model_id], ['fuel_type_id', $fuel_id]])->get();
+//            $squery = ScheduledPackage::select('sc_id')->where([['brand_id', $brand_id], ['model_id' , $model_id], ['fuel_type_id', $fuel_id]])->groupBy('sc_id')->get();
             if($squery->count()){
                 foreach($squery as $record){
-                    array_push($carray, $record->sc_id);
+                    array_push($carray, $record->packageDetail->sc_id);
                 }
             }
             $return_data['brand'] = isset($brandInfo->slug) && $brandInfo->slug ? $brandInfo->slug : NULL;
@@ -56,28 +59,39 @@ class ServiceController extends MainController
         $fuel = $request->fuel;
 
 //        dd($fuel);
-        $query = ScheduledPackage::with('categoryDetail', 'brandDetail', 'modelDetail', 'fuelTypeDetail', 'specifications')->select('*');
-        $query->whereHas('categoryDetail', function($q) use($category) {
-            $q->where('slug', $category);
-        });
-        if($brand){
-            $query->whereHas('brandDetail', function($q) use($brand) {
-                $q->where('slug', $brand);
+        if($brand && $model && $fuel){
+            $query = ScheduledPackageDetail::with('packageDetail', 'brandDetail', 'modelDetail', 'fuelTypeDetail')->select('*');
+            //$query = ScheduledPackage::with('categoryDetail', 'brandDetail', 'modelDetail', 'fuelTypeDetail', 'specifications')->select('*');
+            $query->whereHas('packageDetail', function($q) use($category) {
+                $q->whereHas('categoryDetail', function($qq) use($category) {
+                    $qq->where('slug', $category);
+                });
             });
-        }
-        if($model){
-            $query->whereHas('modelDetail', function($q) use($model) {
-                $q->where('slug', $model);
+            if($brand){
+                $query->whereHas('brandDetail', function($q) use($brand) {
+                    $q->where('slug', $brand);
+                });
+            }
+            if($model){
+                $query->whereHas('modelDetail', function($q) use($model) {
+                    $q->where('slug', $model);
+                });
+            }
+            if($fuel){
+                $query->whereHas('fuelTypeDetail', function($q) use($fuel) {
+                    $q->where('slug', $fuel);
+                });
+            }
+            $query->orderBy('id', 'desc');
+            $services = $query->get();
+        } else {
+            $query = ScheduledPackage::with('categoryDetail', 'specifications')->select('*');
+            $query->whereHas('categoryDetail', function($q) use($category) {
+                    $q->where('slug', $category);
             });
+            $query->orderBy('id', 'desc');
+            $services = $query->get();
         }
-        if($fuel){
-            $query->whereHas('fuelTypeDetail', function($q) use($fuel) {
-                $q->where('slug', $fuel);
-            });
-        }
-        $query->orderBy('id', 'desc');
-        $services = $query->get();
-
         
         $categoryInfo = ServiceCategory::select('*')->where([['slug', $category]])->first();
         $return_data = array();
@@ -93,6 +107,8 @@ class ServiceController extends MainController
         }
         $faqs = Faq::select('id','service_category_id','name','description')->where('service_category_id',$categoryInfo->id)->where('is_archive','0')->get();
         $return_data['faqs'] = $faqs;
+        $price_list = ServiceCategory::select('id','price_list')->where('slug',$category)->first();
+        $return_data['price_list'] = $price_list;
         return view('front/service/detail',array_merge($this->data,$return_data));
     }
     // public function sendMassage(request $request)

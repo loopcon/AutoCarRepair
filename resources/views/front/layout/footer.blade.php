@@ -1,29 +1,34 @@
 
 <!-- new footer start  -->
 <div class="footer-soical-icon">
-    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-    <a href="#"><i class="fa-brands fa-instagram"></i></a>
-    <a href="#"><i class="fa-brands fa-twitter"></i></a>
-    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
-    <a href="#"><i class="fa-brands fa-youtube"></i></a>
-    <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+    <a href="https://{{$facebook}}" target="blank"><i class="fa-brands fa-facebook-f"></i></a>
+    <a href="https://{{$instagram}}" target="blank"><i class="fa-brands fa-instagram"></i></a>
+    <a href="https://{{$twitter}}" target="blank"><i class="fa-brands fa-twitter"></i></a>
+    <a href="https://{{$linkedin}}" target="blank"><i class="fa-brands fa-linkedin"></i></a>
+    <a href="https://{{$youtube}}" target="blank"><i class="fa-brands fa-youtube"></i></a>
+    <a href="https://wa.me/{{$whatsapp}}" target="blank"><i class="fa-brands fa-whatsapp"></i></a>
 </div>
 <div class="newfooter-bg-main">
     <div class="row m-0">
         <div class="col-12 col-sm-6 col-md-3">
             <ul class="our-service-main">
                 <li class="our-section-head">OUR SERVICES</li>
-                <li><a href="#">Scheduled Services</a></li>
-                <li><a href="#">AC Services</a></li>
-                <li><a href="#">Cleaning & Detailing</a></li>
-                <li><a href="#">Lights & Fitments</a></li>
-                <li><a href="#">Denting Painting</a></li>
-                <li><a href="#">Insurance Services</a></li>
-                <li><a href="#">Custom Repair</a></li>
-                <li><a href="#">Batteries</a></li>
-                <li><a href="#">Tyres</a></li>
-                <li><a href="#">Detailing Services</a></li>
-                <li><a href="#">Windshields & Glass</a></li>
+                @php($services = getServiceCategory())
+                @if($services->count())
+                    @foreach($services as $service)
+                        @php($brand_id = Session::get('brand_id'))
+                        @php($model_id = Session::get('model_id'))
+                        @php($fuel_id = Session::get('fuel_id'))
+                        @if($brand_id && $model_id && $fuel_id)
+                            @php($brand = getBrandSlugFromBrandId($brand_id))
+                            @php($model = getModelSlugFromModelId($model_id))
+                            @php($fuel = getFuelSlugFromFuelId($fuel_id))
+                            <li><a href="{{url($service->slug.'/'.$brand.'/'.$model.'/'.$fuel)}}">{{$service->title}}</a></li>
+                        @else
+                            <li><a href="{{url($service->slug)}}">{{$service->title}}</a></li>
+                        @endif
+                    @endforeach
+                @endif
             </ul>
         </div>
         <div class="col-12 col-sm-6 col-md-3">
@@ -86,7 +91,7 @@
             <div class="contact-number-main">
                 <p>
                     <img src="{{ asset('front/img/call-image.png') }}" class="call-image-main" alt="">
-                   <a href="#" class="footer-number-main">09810446692</a>
+                   <a href="tel:{{$phone}}" class="footer-number-main">{{$phone}}</a>
                 </p>
             </div>
         </div>
@@ -95,10 +100,7 @@
                 <div class="address-main-imagesec">
                     <img src="{{ asset('front/img/location-icon-footer.png') }}" class="addres-image-main" alt="">
                 </div>
-                <a href="#">Unit-1 Plot, 29 & 30, near Kargil
-                    Shaheed Sukhbir Singh Yadav Marg,
-                    Info Technology Park, Sector 34,
-                    Gurugram, Haryana 122001</a>
+                <a href="javascript:void(0);">{!! $address !!}</a>
             </div>
         </div>
     </div>
@@ -106,7 +108,7 @@
 <div class="footer-menu-main">
     <div>
         <ul class="footer-menu-item">
-            <li><a href="">About Us</a></li>
+            <li><a href="{{url('about-us')}}">About Us</a></li>
             <li><a href="{{url('faqs')}}">FAQs</a></li>
             <li><a href="{{url('contact-us')}}">Contact Us</a></li>
             <li><a href="#">Blogs</a></li>
@@ -121,7 +123,7 @@
         </ul>
     </div>
     <div>
-        <p class="copy-right-text">autocarrepair2023 All Right Reserved</p>
+        <p class="copy-right-text">© {{$copyright_year}} - {{$site_name}} All Right Reserved</p>
     </div>
 </div>
 <!-- new footer end  -->
@@ -203,7 +205,7 @@
 </div> */ ?>
 <!-- footer end  -->
 <div class="footer-whatappicon">
-     <a href="https://wa.me/{{$phone}}" target="_blank"><img src="{{ asset('front/img/whatsapp-acr-img.webp') }}" class="img-fluid" alt=""></a>
+     <a href="https://wa.me/{{$whatsapp}}" target="_blank"><img src="{{ asset('front/img/whatsapp-acr-img.webp') }}" class="img-fluid" alt=""></a>
 </div>
 <!-- footer down start -->
     <div class="footet-down-bg">

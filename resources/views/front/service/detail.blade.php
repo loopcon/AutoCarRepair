@@ -19,16 +19,22 @@
         <!-- <h2>Scheduled Packages</h2> -->
         @if(isset($detail) && $detail->count())
             @foreach($detail as $record)
+                @if($price_show)
+                    @php($packageDetail = $record->packageDetail)
+                @else
+                    @php($packageDetail = $record)
+                @endif
                 <div class="service-inner-mainbg">
                     <div class="row">
                         <div class="col-12 col-md-4">
-                        @if(isset($record->note) && $record->note)
+                        
+                        @if(isset($packageDetail->note) && $packageDetail->note)
                             <div class="d-flex">
-                                <h3 class="recommanded-heading">{{ $record->note }}</h3>
+                                <h3 class="recommanded-heading">{{ $packageDetail->note }}</h3>
                             </div>
                         @endif 
-                            @if(isset($record->image) && $record->image)
-                                <img src="{{ $record->image }}" class="img-fluid" alt="" title="">
+                            @if(isset($packageDetail->image) && $packageDetail->image)
+                                <img src="{{ $packageDetail->image }}" class="img-fluid" alt="" title="">
                             @else
                                 <img src="{{ asset('front/img/inner-palish-service.png') }}" class="img-fluid" alt="" title="">
                             @endif
@@ -36,34 +42,36 @@
                         <div class="col-12 col-md-8">
                             <div class="row">
                                 <div class="service-inner-basic-heading">
-                                    <h2>{{$record->title}}</h2>
+                                    <h2>{{$packageDetail->title}}</h2>
                                 </div>
                                 <div class="col-12 text-end">
-                                    <span><i class="fa fa-clock"></i>&nbsp;{{$record->time_takes}} hrs Taken</span>
+                                    <span><i class="fa fa-clock"></i>&nbsp;{{$packageDetail->time_takes}} hrs Taken</span>
                                 </div>
                                 <div class="col-12 col-sm-6 basic-service-text-main">
                                     <ul>
-                                        <li>{{$record->warrenty_info}}</li>
+                                        <li>{{$packageDetail->warrenty_info}}</li>
                                     </ul>
                                 </div>
                                 <div class="col-12 col-sm-6 basic-service-text-main">
                                     <ul>
-                                        <li>{{$record->recommended_info}}</li>
+                                        <li>{{$packageDetail->recommended_info}}</li>
                                     </ul>
                                     <!-- <a href="#">View All</a> -->
                                     <!-- <a href="#" class="more"><span>View All</span></a>  -->
                                 </div>
-                                @php($specifications = isset($record->specifications) && $record->specifications->count() ? $record->specifications : '')
+                                @php($specifications = isset($packageDetail->specifications) && $packageDetail->specifications->count() ? $packageDetail->specifications : '')
                                 @if($specifications)
-                                    @foreach($specifications as $srecord)
-                                        <div class="col-12 col-sm-6 basic-service-text-main spacification" >
+                                    @foreach($specifications as $skey => $srecord)
+                                        <div class="col-12 col-sm-6 basic-service-text-main spacification s{{$record->id}} @if($skey > 4) {{'d-none'}} @endif" >
                                             <p><i class="fa-solid fa-circle-check"></i> {{$srecord->specification}} </p>
                                         </div>
                                     @endforeach
                                 @endif
-                                <div class="col-12 col-sm-3">
-                                    <a href="#" class="more"><small>+{{ $record->specifications->count()-5 }} more View All</small></a> 
-                                </div>
+                                @if($specifications->count() > 5)
+                                    <div class="col-12 col-sm-3" id="more{{$record->id}}">
+                                        <a href="javascript:void(0)" data-id="{{$record->id}}" class="more"><small>+{{ $specifications->count() - 5 }} more View All</small></a> 
+                                    </div>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -288,6 +296,14 @@
         </div>
     </div>
     <!-- why choose us end  -->
+    @if(isset($price_list->price_list) && $price_list->price_list)
+        <div class="container">
+            <div class="col-12">
+                <h3>Car Services Price List in NCR, Delhi 2023</h3>
+            </div>
+            {!! $price_list->price_list !!}
+        </div>
+    @endif
 @endsection
 @section('javascript')
 <script src="{{ asset('front/js/owl.carousel.min.js') }}"></script>
@@ -348,25 +364,10 @@ $(document).ready(function(){
         autoplayHoverPause:true
     });
 
-    $(document).ready(function () {
-        $('.spacification').hide();
-        $('.spacification:lt(5)').show();
-        var spacificationcount = $('.spacification').length;
-        if (spacificationcount <= 5) 
-        { 
-        $('.more').hide();
-        }
-        else 
-        {
-        $('.more').click(function () {
-        $('.spacification:not(:visible):lt(5)').show();
-        if($('.spacification:not(:visible)').length<=0)
-        {
-        $('.more').hide();
-        }
-        return false;
-        });
-        } 
+    $(document).on('click', '.more', function(){
+        var id = $(this).data('id');
+        $('.s'+id).removeClass('d-none');
+        $('#more'+id).remove();
     });
 });
 </script>

@@ -8,6 +8,7 @@ use App\Constant;
 use App\Models\CarBrand;
 use App\Models\CarModel;
 use App\Models\ScheduledPackage;
+use App\Models\ScheduledPackageDetail;
 use App\Models\FuelType;
 use Session;
 
@@ -89,7 +90,11 @@ class SearchController extends MainController
                 Session::save();
             }
 
-            $fuels = ScheduledPackage::select('fuel_type_id')->where([['brand_id', $brand_id], ['model_id', $model_id], ['is_archive', Constant::NOT_ARCHIVE], ['status', Constant::ACTIVE]])->groupBy('fuel_type_id')->get();
+            $fquery = ScheduledPackageDetail::with('packageDetail')->select('fuel_type_id')->where([['brand_id', $brand_id], ['model_id', $model_id]]);
+            $fquery->whereHas('packageDetail', function($q) use($request) {
+                $q->where([['is_archive', Constant::NOT_ARCHIVE], ['status', Constant::ACTIVE]]);
+            });
+            $fuels = $fquery->groupBy('fuel_type_id')->get();
             $farray = array();
             if($fuels->count()){
                 foreach($fuels as $fval){
