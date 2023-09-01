@@ -106,7 +106,7 @@
 <div class="footer-menu-main">
     <div>
         <ul class="footer-menu-item">
-            <li><a href="">About Us</a></li>
+            <li><a href="{{url('about-us')}}">About Us</a></li>
             <li><a href="{{url('faqs')}}">FAQs</a></li>
             <li><a href="{{url('contact-us')}}">Contact Us</a></li>
             <li><a href="#">Blogs</a></li>

@@ -500,11 +500,60 @@ class ServiceController extends MainController
                     $id = Crypt::encrypt($row->id);
                     $html .= "<span class='text-nowrap'>";
                     $html .= "<a href='".route('admin_scheduled-package-edit', array($id))."' rel='tooltip' title='".trans('Edit')."' class='btn btn-info btn-sm'><i class='fas fa-pencil-alt'></i></a>&nbsp";
-                    $html .= "<a href='javascript:void(0);' data-href='".route('admin_scheduled-package-delete',array($id))."' rel='tooltip' title='".trans('Delete')."' class='btn btn-danger btn-sm delete'><i class='fa fa-trash-alt'></i></a>";
+                    $html .= "<a href='javascript:void(0);' data-href='".route('admin_scheduled-package-delete',array($id))."' rel='tooltip' title='".trans('Delete')."' class='btn btn-danger btn-sm delete'><i class='fa fa-trash-alt'></i></a>&nbsp";
+                    $html .= "<a href='".route('admin_scheduled-package-detail',array($id))."' rel='tooltip' title='".trans('Price Detail')."' class='btn btn-info btn-sm'>Price Detail</a>";
                     $html .= "</span>";
                     return $html;
                 })
                 ->rawColumns(['image', 'category', 'time_takes', 'action'])
+                ->make(true);
+        } else {
+            return redirect('backend/dashboard');
+        }
+    }
+
+    public function priceDetailList(request $request,$id)
+    {
+        $return_data = array();       
+        $return_data['site_title'] = trans('Sheduled Package Detail');
+        $id = Crypt::decrypt($id);
+        $detail = ScheduledPackage::find($id);
+        if(!isset($detail->id)){
+            return redirect()->back()->with('error', 'Something went wrong, please try again later!');
+        }
+        $return_data['detail'] = $detail;
+        return view('backend.service.package.price_detail', array_merge($this->data, $return_data));
+    }
+    public function priceDetailDataTable(Request $request)
+    {
+        if($request->ajax()){
+            $query = ScheduledPackageDetail::with('brandDetail', 'modelDetail', 'fuelTypeDetail')->select('id', 'sp_id', 'brand_id', 'model_id', 'fuel_type_id', 'price')->where('sp_id',$request->sheduled_package_id);
+
+            $list = $query->get();
+            return DataTables::of($list)
+                ->addColumn('brand_id', function ($row) {
+                    $brand_id = isset($row->brandDetail->title) ? $row->brandDetail->title : NULL;
+                    return $brand_id;
+                })
+                ->addColumn('model_id', function($row){
+                    $model_id = isset($row->modelDetail->title) ? $row->modelDetail->title : NULL;
+                    return $model_id;
+                })
+                ->addColumn('fuel_type_id', function($row){
+                    $fuel_type = isset($row->fuelTypeDetail->title) ? $row->fuelTypeDetail->title : NULL;
+                    return $fuel_type;
+                })
+                // ->addColumn('action', function ($row) {
+                //     $html = "";
+                //     $id = Crypt::encrypt($row->id);
+                //     $html .= "<span class='text-nowrap'>";
+                //     // $html .= "<a href='".route('admin_scheduled-package-edit', array($id))."' rel='tooltip' title='".trans('Edit')."' class='btn btn-info btn-sm'><i class='fas fa-pencil-alt'></i></a>&nbsp";
+                //     // $html .= "<a href='javascript:void(0);' data-href='".route('admin_scheduled-package-delete',array($id))."' rel='tooltip' title='".trans('Delete')."' class='btn btn-danger btn-sm delete'><i class='fa fa-trash-alt'></i></a>&nbsp";
+                //     // $html .= "<a href='' rel='tooltip' title='".trans('Price Detail')."' class='btn btn-info btn-sm'>Price Detail</a>";
+                //     $html .= "</span>";
+                //     return $html;
+                // })
+                ->rawColumns(['brand_id', 'model_id', 'fuel_type_id'])
                 ->make(true);
         } else {
             return redirect('backend/dashboard');
