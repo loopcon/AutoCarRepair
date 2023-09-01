@@ -93,6 +93,8 @@ class ServiceController extends MainController
         }
         $faqs = Faq::select('id','service_category_id','name','description')->where('service_category_id',$categoryInfo->id)->where('is_archive','0')->get();
         $return_data['faqs'] = $faqs;
+        $price_list = ServiceCategory::select('id','price_list')->where('slug',$category)->first();
+        $return_data['price_list'] = $price_list;
         return view('front/service/detail',array_merge($this->data,$return_data));
     }
     // public function sendMassage(request $request)

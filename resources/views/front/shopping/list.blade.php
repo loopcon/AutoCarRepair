@@ -45,7 +45,7 @@
                                         @if(isset($product->primaryImage->image) && $product->primaryImage->image)
                                             <img src="{{ asset('public/uploads/product/'.$product->id.'/'.$product->primaryImage->image) }}"  alt="" title="{{isset($product->primaryImage->image_title) ? $product->primaryImage->image_title : ''}}">
                                         @else
-                                            <img src="{{ asset('front/img/no_image.jpg') }}" class="img-fluid" alt="" title="noiio">
+                                            <img src="{{ asset('front/img/no_image.jpg') }}" class="img-fluid" alt="" title="no_image">
                                         @endif
                                         <div class="shoping-text-name">
                                             <h5><a href="{{url('shopping/'.$product->slug)}}">{{$product->name}}</a></h5>

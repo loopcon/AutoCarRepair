@@ -12,7 +12,7 @@
         </div>
     </div>
     <div class="mt-3 col-md-3">
-        <input type="text" class=""  name="image_title{{$i}}" placeholder="{{__('Image Title')}}">
+        <input type="text" class="form-control"  name="image_title{{$i}}" placeholder="{{__('Image Title')}}">
     </div>
     <div class="col-md-2 pl-0 text-end">
         <br/><input type="radio" class="" value="{{$i}}" name="is_primary" />

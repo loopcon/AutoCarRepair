@@ -93,9 +93,9 @@ Route::group(['prefix' => 'backend','as' => 'admin_'], function() {
         Route::get('service-category',[App\Http\Controllers\Backend\ServiceController::class, 'serviceCategoryList'])->name('service-category')->middleware('XSS');
         Route::get('service-category-create',[App\Http\Controllers\Backend\ServiceController::class, 'serviceCategorycreate'])->name('service-category-create')->middleware('XSS');
         Route::post('service-category-datatable', [App\Http\Controllers\Backend\ServiceController::class, 'serviceCategoryDatatable'])->name('service-category-datatable')->middleware('XSS');
-        Route::post('service-category-store',[App\Http\Controllers\Backend\ServiceController::class, 'serviceCategoryStore'])->name('service-category-store')->middleware('XSS');
+        Route::post('service-category-store',[App\Http\Controllers\Backend\ServiceController::class, 'serviceCategoryStore'])->name('service-category-store');
         Route::get('service-category-edit/{id}',[App\Http\Controllers\Backend\ServiceController::class, 'serviceCategoryedit'])->name('service-category-edit');
-        Route::post('service-category-update/{id}',[App\Http\Controllers\Backend\ServiceController::class, 'serviceCategoryUpdate'])->name('service-category-update')->middleware('XSS');
+        Route::post('service-category-update/{id}',[App\Http\Controllers\Backend\ServiceController::class, 'serviceCategoryUpdate'])->name('service-category-update');
         Route::get('service-category-delete/{id}', [App\Http\Controllers\Backend\ServiceController::class, 'serviceCategoryDestroy'])->name('service-category-delete')->middleware('XSS');
         Route::post('change-service-category-status', [App\Http\Controllers\Backend\ServiceController::class, 'changeServiceCategoryStatus'])->name('change-service-category-status')->middleware('XSS');
         Route::get('booked-services', [App\Http\Controllers\Backend\ServiceController::class, 'bookedServices'])->name('booked-services');
@@ -130,9 +130,9 @@ Route::group(['prefix' => 'backend','as' => 'admin_'], function() {
 
         Route::get('scheduled-package',[App\Http\Controllers\Backend\ServiceController::class, 'scheduledPackageList'])->name('scheduled-package')->middleware('XSS');
         Route::get('scheduled-package-create',[App\Http\Controllers\Backend\ServiceController::class, 'scheduledPackageCreate'])->name('scheduled-package-create')->middleware('XSS');
-        Route::post('scheduled-package-store',[App\Http\Controllers\Backend\ServiceController::class, 'scheduledPackageStore'])->name('scheduled-package-store')->middleware('XSS');
+        Route::post('scheduled-package-store',[App\Http\Controllers\Backend\ServiceController::class, 'scheduledPackageStore'])->name('scheduled-package-store')->middleware('XSS');;
         Route::get('scheduled-package-edit/{id}',[App\Http\Controllers\Backend\ServiceController::class, 'scheduledPackageEdit'])->name('scheduled-package-edit')->middleware('XSS');
-        Route::post('scheduled-package-update/{id}',[App\Http\Controllers\Backend\ServiceController::class, 'scheduledPackageUpdate'])->name('scheduled-package-update')->middleware('XSS');
+        Route::post('scheduled-package-update/{id}',[App\Http\Controllers\Backend\ServiceController::class, 'scheduledPackageUpdate'])->name('scheduled-package-update')->middleware('XSS');;
         Route::get('scheduled-package-delete/{id}', [App\Http\Controllers\Backend\ServiceController::class, 'scheduledPackageDestroy'])->name('scheduled-package-delete')->middleware('XSS');
         Route::post('scheduled-package-datatable', [App\Http\Controllers\Backend\ServiceController::class, 'scheduledPackageDatatable'])->name('scheduled-package-datatable')->middleware('XSS');
         Route::post('specification-delete', [App\Http\Controllers\Backend\ServiceController::class, 'specificationDelete'])->name('specification-delete')->middleware('XSS');

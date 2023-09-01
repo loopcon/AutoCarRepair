@@ -183,7 +183,7 @@
                             <div class="test-rating-sec-main">   
                                 <div>
                                     <div class="test-rating-main">
-                                        <img src="{{ asset('front/img/alon-musk-img.png') }}" class="img-fluid" alt="" title="">
+                                        <img src="{{ asset('front/img/alon-musk-img.png') }}" class="img-fluid" alt="" title="Testimotionals">
                                     </div>
                                 </div>  
                                 <div class="test-rating-sec-item">
