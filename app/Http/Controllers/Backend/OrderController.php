@@ -123,8 +123,7 @@ class OrderController extends MainController
                 ->addColumn('gst', function($row) {
                     if($row->service_id) {
                         $html = $row->orderDetail->service_gst_rate;
-                    } else if($row->product_id) 
-                    {
+                    } else if($row->product_id) {
                         $html = $row->orderDetail->product_gst_rate;
                     }else{
                         $html = '';
@@ -141,7 +140,7 @@ class OrderController extends MainController
                 })
                 ->addColumn('item', function($row) {
                     if($row->service_id){
-                        $scheduled_title = isset($row->packageDetail->title) ? $row->packageDetail->title : NULL;
+                        $scheduled_title = isset($row->packageDetail->packageDetail->title) ? $row->packageDetail->packageDetail->title : NULL;
                         $brand = isset($row->packageDetail->brandDetail->title) ? $row->packageDetail->brandDetail->title : NULL;
                         $model = isset($row->packageDetail->modelDetail->title) ? $row->packageDetail->modelDetail->title : NULL;
                         $fuel_type = isset($row->packageDetail->fuelTypeDetail->title) ? $row->packageDetail->fuelTypeDetail->title : NULL;

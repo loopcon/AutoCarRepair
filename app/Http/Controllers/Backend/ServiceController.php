@@ -612,8 +612,15 @@ class ServiceController extends MainController
                 $query->where('order_detail_id', $request->od_id);
             }
 
+            $query->whereHas('order', function($q) use ($request) {
+                $q->where('is_complete', '!=', '2');
+            });
             if($request->package != 'all'){
-                $query->where('service_id', $request->package);
+                $query->whereHas('packageDetail', function($q) use ($request) {
+                    $q->whereHas('packageDetail', function($qq) use ($request) {
+                        $qq->where([['id', '=', $request->package]]);
+                    });
+                });
             }
             if($request->brand != 'all'){
                 $query->whereHas('packageDetail', function($q) use ($request) {
@@ -659,7 +666,7 @@ class ServiceController extends MainController
                     return $phone;
                 })
                 ->addColumn('service', function($row){
-                    $scheduled_title = isset($row->packageDetail->title) ? $row->packageDetail->title : NULL;
+                    $scheduled_title = isset($row->packageDetail->packageDetail->title) ? $row->packageDetail->packageDetail->title : NULL;
                     $brand = isset($row->packageDetail->brandDetail->title) ? $row->packageDetail->brandDetail->title : NULL;
                     $model = isset($row->packageDetail->modelDetail->title) ? $row->packageDetail->modelDetail->title : NULL;
                     $fuel_type = isset($row->packageDetail->fuelTypeDetail->title) ? $row->packageDetail->fuelTypeDetail->title : NULL;
@@ -685,9 +692,15 @@ class ServiceController extends MainController
                 ->addColumn('action', function ($row) {
                     $html = "";
                     $id = Crypt::encrypt($row->id);
+                    $order_status = isset($row->order->is_complete) ? $row->order->is_complete : NULL;
                     $html .= "<span class='text-nowrap'>";
-                    $html .= "<a class='badge bg-primary me-1 my-1 change_slot' href='javascript:void(0);' data-id='".$row->id."'>Change Slot Time</a>";
+                    if($order_status == '0'){
+                        $html .= "<a class='badge bg-primary me-1 my-1 change_slot' href='javascript:void(0);' data-id='".$row->id."'>Change Slot Time</a>";
+                    } else {
+                        $html .= "<h6 class='text-success'>Order Completed</h6>";
+                    }
                     $html .= "</span>";
+                    
                     return $html;
                 })
                 ->rawColumns(['order_no', 'user', 'phone', 'service', 'booked_date', 'time', 'time_takes', 'action'])

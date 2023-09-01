@@ -26,7 +26,7 @@
                                     </a> */ ?>
                                     <label class="filter-click-main" for="pcategory{{$category->id}}">
                                         {{$category->name}}
-                                        <?php /* <input class="form-check-input filter_category check-box-fliter" type="checkbox" value="{{$category->id}}" id="pcategory{{$category->id}}"> */ ?>
+                                         <input class="form-check-input filter_category check-box-fliter" type="checkbox" value="{{$category->id}}" id="pcategory{{$category->id}}"> 
                                         <span><i class="fa-solid fa-plus"></i></span>
                                     </label>
                                 </li>

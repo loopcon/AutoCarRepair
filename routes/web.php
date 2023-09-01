@@ -266,6 +266,7 @@ Route::group(['as' => 'front_', 'middleware' => 'XSS'], function() {
         }
     }
     /** cms pages route end **/
+    Route::get('company-cms-page', [App\Http\Controllers\Front\CmsPagesController::class, 'cmsPage'])->name('company-cms-page');
 
     Route::group(['middleware' => 'auth:user'], function () {
         Route::get('my-profile', [\App\Http\Controllers\Front\UserController::class, 'myprofile'])->name('my-profile')->middleware('XSS');

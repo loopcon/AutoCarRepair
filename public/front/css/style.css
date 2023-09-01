@@ -438,7 +438,7 @@ button { color: #000; outline: none; }
 .shop-center-breadcum li  { color: #fff;  font-size: 25px; }
 .shop-center-breadcum li svg { margin: 0px 10px; font-size: 21px; } 
 .shop-center-bg { background-color: #F2F2F2; padding: 20px; margin: 30px 0px;}
-.shop-address-main{ display: flex; align-items: center;}
+/* .shop-address-main{ display: flex; align-items: center;} */
 .address-main { padding: 15px;   text-align: center; height: 250px;}
 .address-main svg{ font-size: 60px; color: #164498; margin-bottom: 25px; } 
 .call-main { padding: 15px;  text-align: center; height: 250px; }
@@ -586,7 +586,7 @@ button { color: #000; outline: none; }
 .footer-address .contact-number-main{ display: flex;flex-direction: column;align-items: center;}
 .footer-address .contact-number-main p { margin-bottom: 0px; font-weight: 600; font-size: 32px;}
 .footer-address .footer-number-main{ text-decoration: none; font-size: 22px; color: #000;font-weight: 600; }
-.footer-address .address-text-main{ display: flex;  }
+.footer-address .address-text-main{ display: flex; justify-content: center; }
 .footer-address .address-text-main .address-main-imagesec{ display: flex; align-items: start;   }
 .footer-address .address-text-main  span{ margin-bottom: 0px; font-weight: 600; font-size: 22px; margin-right: 10px; }
 .footer-address .address-text-main a{ text-decoration: none; font-size: 16px; color: #000; }
@@ -619,6 +619,15 @@ button { color: #000; outline: none; }
     object-fit: contain;
 }
 /* about us css end  */
-.filter-click-main{ width: 100%; cursor: pointer;}
-.filter-click-main span{ float: right;}
+.filter-click-main{ width: 100%; cursor: pointer; position: relative;}
+.filter-click-main span{ float: right;
+    position: absolute;
+    right: 0;
+    background-color: #f1f1f1;
+    width: 25px;
+    text-align: end;
+}
 .service-center-image{ display:block; margin:auto;}
+.filter-click-main .form-check-input:focus{
+    box-shadow: none !important;
+}

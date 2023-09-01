@@ -18,12 +18,12 @@
                 @if(isset($item->service_id) && $item->service_id)
                     @php($is_service_available = 1)
 
-                    @if(isset($item->serviceDetail->image) && $item->serviceDetail->image)
-                        <img src="{{ asset('public/uploads/service/package/'.$item->serviceDetail->image) }}"  class="add-to-cart-img" alt="">
+                    @if(isset($item->serviceDetail->packageDetail->image) && $item->serviceDetail->packageDetail->image)
+                        <img src="{{ $item->serviceDetail->packageDetail->image }}"  class="add-to-cart-img" alt="">
                     @else
                         <img src="{{ asset('front/img/no_image.jpg') }}" class="img-fluid" alt="">
                     @endif
-                    <p>{{isset($item->serviceDetail->title) ? $item->serviceDetail->title : NULL}}</p>
+                    <p>{{isset($item->serviceDetail->packageDetail->title) ? $item->serviceDetail->packageDetail->title : NULL}}</p>
                 @endif
             </div>
             <div class="service-add-sec-main">
@@ -64,7 +64,7 @@
                             </div>
                         </div>
                     </div>
-                    <input type="hidden" name="time_takes" value="{{isset($item->serviceDetail->time_takes) ? $item->serviceDetail->time_takes : ''}}">
+                    <input type="hidden" name="time_takes" value="{{isset($item->serviceDetail->packageDetail->time_takes) ? $item->serviceDetail->packageDetail->time_takes : ''}}">
                 @endif
             </div>
         </div>
