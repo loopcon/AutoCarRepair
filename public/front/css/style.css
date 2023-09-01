@@ -265,7 +265,7 @@ a.badge:hover{
 .ser-inner-breadcum li  { color: #fff;  font-size: 25px; }
 .ser-inner-breadcum li svg { margin: 0px 10px; font-size: 21px; } 
 .service-innersection-mian .service-inner-mainbg {  background-color:#eeeeee; padding: 20px; margin: 25px auto; box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px; position: relative; }
-.service-innersection-mian .service-inner-mainbg:hover{ transform: scale(1.1);transform: scale(1.1);}
+.service-innersection-mian .service-inner-mainbg:hover{ transform: scale(1.1); transition: all ease 0.2s;}
 .service-innersection-mian .service-inner-basic-heading h2{ color: #E56F31; font-size: 24px; font-weight: bold; }
 .service-innersection-mian .basic-service-text-main p{ margin-bottom: 4px; font-size: 16px; }
 .service-innersection-mian .basic-service-text-main p svg{ color: #000851; margin-right: 5px;}
