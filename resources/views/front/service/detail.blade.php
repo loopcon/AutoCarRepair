@@ -288,6 +288,14 @@
         </div>
     </div>
     <!-- why choose us end  -->
+    @if(isset($price_list->price_list) && $price_list->price_list)
+        <div class="container">
+            <div class="col-12">
+                <h3>Car Services Price List in NCR, Delhi 2023</h3>
+            </div>
+            {!! $price_list->price_list !!}
+        </div>
+    @endif
 @endsection
 @section('javascript')
 <script src="{{ asset('front/js/owl.carousel.min.js') }}"></script>

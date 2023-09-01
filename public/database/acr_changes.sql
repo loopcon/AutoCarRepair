@@ -617,3 +617,7 @@ ALTER TABLE `scheduled_package_detail`
 
 ALTER TABLE `scheduled_package_detail`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+-- Disha : 1-9-23 11:04 AM
+ALTER TABLE `service_categories` ADD `price_list` LONGTEXT NULL DEFAULT NULL AFTER `description`;
+
