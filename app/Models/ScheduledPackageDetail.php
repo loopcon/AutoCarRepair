@@ -13,7 +13,7 @@ class ScheduledPackageDetail extends Model
     protected $fillable = ['sp_id', 'brand_id', 'model_id', 'fuel_type_id', 'price', 'created_at', 'updated_at'];
 
     public function packageDetail(){
-        return $this->belongsTo(ScheduledPackage::class, 'sp_id');
+        return $this->belongsTo(ScheduledPackage::class, 'sp_id')->with('categoryDetail');
     }
 
     public function brandDetail(){

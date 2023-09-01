@@ -16,6 +16,6 @@ class Cart extends Model
     }
 
     public function serviceDetail(){
-        return $this->belongsTo(ScheduledPackage::class, 'service_id')->with('brandDetail', 'modelDetail', 'fuelTypeDetail');
+        return $this->belongsTo(ScheduledPackageDetail::class, 'service_id')->with('packageDetail','brandDetail', 'modelDetail', 'fuelTypeDetail');
     }
 }

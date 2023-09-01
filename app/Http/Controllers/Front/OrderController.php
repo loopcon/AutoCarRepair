@@ -92,10 +92,10 @@ class OrderController extends MainController
                 $ndata = EmailTemplates::select('template')->where('label', 'time_rearrange')->first();
                 $html = isset($ndata->template) ? $ndata->template : NULL;
                 $mailHtml = str_replace($templateStr, $data, $html);
-                print_r($mailHtml);exit;
+                //print_r($mailHtml);exit;
 //                \Mail::to($email)->send(new \App\Mail\CommonMail($mailHtml, 'Time Rearrange - '.$this->data['site_name']));
                 // Send email for Time Rearrange - End
-                return redirect('backend/booked-services')->with('success', 'Slot Information updated successfully!');
+                return redirect()->back()->with('success', 'Slot Information updated successfully!');
             } else {
                 return redirect()->back()->with('error', 'Something went wrong, please try again later!');
             }
