@@ -230,19 +230,19 @@ class CarModelController extends MainController
     }
 
     public function export(Request $request){
-        return Excel::download(new ExportCarModel, 'Car Model SampleData.xlsx');
+        return Excel::download(new ExportCarModel, 'Car_Model_SampleData.csv');
     }
 
-    public function importAdd()
-    {
-        $return_data = array();
-        $return_data['site_title'] = trans('Import Data');
-        return view('backend.carmodel.import', array_merge($this->data, $return_data));
-    }
+    // public function importAdd()
+    // {
+    //     $return_data = array();
+    //     $return_data['site_title'] = trans('Import Data');
+    //     return view('backend.carmodel.import', array_merge($this->data, $return_data));
+    // }
 
     public function import(Request $request){
         $request->validate([
-            'file' => 'required|max:10000|mimes:xlsx,xls',
+            'file' => 'required|max:10000',
         ]);
 
         $path = $request->file('file')->store('files'); 

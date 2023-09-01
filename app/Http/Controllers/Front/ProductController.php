@@ -16,7 +16,7 @@ class ProductController extends MainController
         $return_data = array();
         $return_data['site_title'] = trans('Shopping');
         $return_data['scategories'] = ShopCategory::with('products')->select('id', 'slug', 'name')->where([['is_archive', Constant::NOT_ARCHIVE], ['status', Constant::ACTIVE]])->orderBy('id', 'desc')->get();
-        $return_data['products'] = Product::with('shopCategoryDetail', 'primaryImage')->select('id', 'slug', 'name', 'sku', 'shop_category_id', 'price',)->where([['is_archive', Constant::NOT_ARCHIVE], ['status', Constant::ACTIVE]])->orderBy('id', 'desc')->paginate(12);
+        $return_data['products'] = Product::with('shopCategoryDetail', 'primaryImage')->select('id', 'slug', 'name', 'sku', 'shop_category_id', 'price',)->where([['is_archive', Constant::NOT_ARCHIVE], ['status', Constant::ACTIVE]])->orderBy('id', 'desc')->paginate(9);
         // print_r($return_data['products']);exit;
         return view('front/shopping/list',array_merge($this->data,$return_data));
     }

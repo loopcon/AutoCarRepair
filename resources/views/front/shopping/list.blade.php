@@ -67,7 +67,8 @@
                             </div>
                         @endforeach
                         <div class="pagination justify-content-center">
-                            {!! $products->links() !!}
+                            
+                            {{ $products->links() }}
                         </div>
                     @endif
                 </div>

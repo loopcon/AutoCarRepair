@@ -20,8 +20,8 @@
                         <div class="form-row">
                             <div class="col-md-12 text-end">
                                 <div class="col-md-12 text-end"><a href="{{route('admin_product-create')}}" class="btn btn-success"><i class="align-middle" data-feather="plus"></i>{{__('Add')}}</a>
-                                <a href="javascript:void(0)" id="import" class="btn btn-icon icon-left btn-warning"> Import </a>
-                                <a class="btn btn-info" href="{{ route('admin_product-csv-export') }}">{{__('Product Sample Data')}}</a></div>
+                                <a href="javascript:void(0)" class="btn btn-icon icon-left btn-primary" id="csv_link"> Import CSV </a>
+                                <a class="btn btn-warning" href="{{ route('admin_product-csv-export') }}">{{__('Download Sample CSV')}}</a></div>
                             </div>
                         </div>
                         <div class="form-group col-md-2 select-parsley">
@@ -54,6 +54,37 @@
         </div>
     </div>
 </main>
+<div class="modal fade csv-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myLargeModalLabel">Upload Car Brand CSV</h5>
+            </div>
+
+            <form method="POST" action="{{ route('admin_product-import') }}" enctype="multipart/form-data" data-parsley-validate="">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <input type="hidden" name="" id="" value="">
+                
+                <div class="modal-body">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <div class="col-md-6">
+                                <label for="description">Select File</label>
+                            </div>
+                            <div class="col-md-12">
+                                <input type="file" id="file" name="file" required="" accept=".csv"><br><br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" id="save" class="btn btn-primary">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 <meta name="csrf-token" content="{{ csrf_token() }}" />
 @endsection
 @section('javascript')
@@ -61,6 +92,10 @@
 <script src="{{ asset('plugins/select2/js/select2.min.js') }}"></script>
 <script>
 $(document).ready(function() {
+    $(document).on('click', '#csv_link', function(){
+                $('.csv-modal').modal('show');
+            });
+
     $('#shopCategory').select2();
     var product = $("#products").DataTable({
         "sScrollX": '100%',
@@ -150,9 +185,10 @@ $(document).ready(function() {
     });
 });
 
-$(document).on('click', '#import', function(){
-                location.href = "<?php echo route('admin_product-import-add') ?>"
-            });
+//use when import from another tab(browser)....not by pop-up
+// $(document).on('click', '#import', function(){
+//                 location.href = "<?php echo route('admin_product-import-add') ?>"
+//             });
 </script>
 
 @endsection
