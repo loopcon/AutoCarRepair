@@ -98,6 +98,8 @@
     .choose-service-centersection{ padding:25px !important;}
     .service-center-popupimg{ margin-bottom:15px;}
     .newfooter-bg-main .our-service-main{ margin-bottom:20px;}
+    .shopping-section .shoping-main-product:hover{transform: scale(1);}
+    .service-innersection-mian .service-inner-mainbg:hover{transform: scale(1);}
 }
 @media (max-width:575px) {
     .slider-section-main h2{ font-size: 35px; }
@@ -196,6 +198,8 @@
     .Choose-service-date-main h4{font-size:21px; padding-bottom:0px;}
     .select-payment-main h4{font-size:21px;}
     .our-service-section .servic-type-box:hover{transform: scale(1); transition-duration: 1s;}
+    .shopping-section .shoping-main-product:hover{transform: scale(1);}
+    .service-innersection-mian .service-inner-mainbg:hover{transform: scale(1);}
 }
 @media (max-width:450px) {
     .mobile-menu-sectiondata{  flex-wrap: wrap; height: 80px; }

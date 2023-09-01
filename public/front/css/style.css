@@ -619,6 +619,15 @@ button { color: #000; outline: none; }
     object-fit: contain;
 }
 /* about us css end  */
-.filter-click-main{ width: 100%; cursor: pointer;}
-.filter-click-main span{ float: right;}
+.filter-click-main{ width: 100%; cursor: pointer; position: relative;}
+.filter-click-main span{ float: right;
+    position: absolute;
+    right: 0;
+    background-color: #f1f1f1;
+    width: 25px;
+    text-align: end;
+}
 .service-center-image{ display:block; margin:auto;}
+.filter-click-main .form-check-input:focus{
+    box-shadow: none !important;
+}
