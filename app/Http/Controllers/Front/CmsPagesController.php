@@ -30,4 +30,10 @@ class CmsPagesController extends MainController
             return redirect('/');
         }
     }
+
+    public function cmsPage(){
+        $return_data = array();
+        $return_data['site_title'] = trans('CMS Page');
+        return view('front.cms.company', array_merge($this->data, $return_data));
+    }
 }

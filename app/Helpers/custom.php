@@ -214,3 +214,21 @@ function weekOfDays($total_days){
     }
     return $weekOfdays;
 }
+
+function getBrandSlugFromBrandId($brand_id = ''){
+    $qinfo = App\Models\CarBrand::select('slug')->where('id', $brand_id)->first();
+    $slug = isset($qinfo->slug) ? $qinfo->slug : NULL;
+    return $slug;
+}
+
+function getModelSlugFromModelId($model_id = ''){
+    $qinfo = App\Models\CarModel::select('slug')->where('id', $model_id)->first();
+    $slug = isset($qinfo->slug) ? $qinfo->slug : NULL;
+    return $slug;
+}
+
+function getFuelSlugFromFuelId($fuel_id = ''){
+    $qinfo = App\Models\FuelType::select('slug')->where('id', $fuel_id)->first();
+    $slug = isset($qinfo->slug) ? $qinfo->slug : NULL;
+    return $slug;
+}
