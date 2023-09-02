@@ -547,7 +547,7 @@ button { color: #000; outline: none; }
 .Scheduled-heading-seriner{ margin-top:25px; }
 .sticky{position: fixed;width: 100%;top: 0;z-index: 999;animation: b .9s ease-in-out;}
 .pagination {
-    display: inline-block;
+    /*display: inline-block;*/
 }
 .pagination a {
     color: #000000;

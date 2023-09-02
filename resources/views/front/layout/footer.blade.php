@@ -417,6 +417,18 @@ $(document).ready(function() {
                 toastr.error('Please Enter Valid Mobile No.');
             }
         });
+
+        $(document).on('keypress', '.search_text',function(e) {
+            var $this = $(this);
+            if (e.keyCode === 13) {
+                var search = $this.val();
+                if(search){
+                    var href = "{{route('front_search')}}"+'?search='+search;
+                    console.log(href);
+                    window.location.href = href;
+                }
+            }
+        });
     //
 });
 

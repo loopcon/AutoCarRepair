@@ -92,7 +92,7 @@
                         </div>
                         <div class="modal-body">
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="Search" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                <input type="text" class="form-control search_text" placeholder="Search" value="{{Request::get('search')}}" aria-label="Recipient's username" aria-describedby="basic-addon2">
                               </div>
                         </div>
                     </div>

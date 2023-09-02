@@ -66,14 +66,15 @@
                                 </a>
                             </div>
                         @endforeach
-                        <div class="pagination justify-content-center">
-                            
-                            {{ $products->links() }}
+                        <div class="pagination-main">
+                            <div class="pagination justify-content-center">
+                                {{ $products->links() }}
+                            </div>
                         </div>
                     @endif
                 </div>
             </div>
-            <div class="pagination-main">
+<!--            <div class="pagination-main">
                 <div class="pagination">
                     <a href="#">&laquo;</a>
                     <a href="#">1</a>
@@ -84,7 +85,7 @@
                     <a href="#">6</a>
                     <a href="#">&raquo;</a>
                 </div>
-            </div>
+            </div>-->
         </div>
     </div>
 </div>

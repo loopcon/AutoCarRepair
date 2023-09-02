@@ -23,7 +23,9 @@
             </div>
         </div>
     @endforeach
-    <div class="pagination justify-content-center">
-        {!! $products->links() !!}
+    <div class="pagination-main">
+        <div class="pagination justify-content-center">
+            {{ $products->links() }}
+        </div>
     </div>
 @endif
