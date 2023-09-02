@@ -22,6 +22,8 @@ class CmsPagesController extends MainController
                 $return_data['pageInfo'] = $pageInfo;
                 $return_data['meta_keywords'] = $pageInfo->meta_keyword;
                 $return_data['meta_description'] = $pageInfo->meta_description;
+                $return_data['meta_title'] = $pageInfo->meta_title;
+                $return_data['extra_meta_tag'] = $pageInfo->extra_meta_tag;
 
                 return view('front.cms.index', array_merge($this->data, $return_data));
             } else {
