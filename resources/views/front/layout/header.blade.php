@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="{{isset($meta_description) ? $meta_description : ''}}">
     <meta name="keywords" content="{{isset($meta_keywords) ? $meta_keywords : ''}}">
+    <meta name="meta_title" content="{{isset($meta_title) ? $meta_title : ''}}">
+    <meta name="meta_tag" content="{{isset($extra_meta_tag) ? $extra_meta_tag : ''}}">
     <title>{{$site_title.' | '. $site_name}}</title>
     <link rel="icon"  href="{{ asset('public/favicon.ico') }}">
     <link rel="stylesheet" href="{{ asset('front/css/bootstrap.min.css') }}">

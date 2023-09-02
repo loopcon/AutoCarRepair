@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Constant;
 use App\Models\Page;
+use App\Models\CompnyCmsPage;
 
 class CmsPagesController extends MainController
 {
@@ -37,10 +38,32 @@ class CmsPagesController extends MainController
         $return_data['site_title'] = trans('About Us');
         return view('front.cms.about_us', array_merge($this->data, $return_data));
     }
+
     public function cmsPage()
     {
-        $return_data = array();
-        $return_data['site_title'] = trans('CMS Page');
-        return view('front.cms.company', array_merge($this->data, $return_data));
+        $data = array();
+        $segment = request()->segment(1);
+
+        if($segment){
+            $compnypageInfo = CompnyCmsPage::where([['slug' , $segment]])->first();
+            if($compnypageInfo){
+                $return_data = array();
+                $return_data['site_title'] = trans(ucwords($compnypageInfo->name));
+                $return_data['compnypageInfo'] = $compnypageInfo;
+                $return_data['meta_keywords'] = $compnypageInfo->meta_keywords;
+                $return_data['meta_description'] = $compnypageInfo->meta_description;
+                $return_data['meta_title'] = $compnypageInfo->meta_title;
+                $return_data['extra_meta_tag'] = $compnypageInfo->extra_meta_tag;
+
+                return view('front.cms.company', array_merge($this->data, $return_data));
+            } else {
+                return redirect('/');
+            }
+        } else {
+            return redirect('/');
+        }
+        // $return_data = array();
+        // $return_data['site_title'] = trans('CMS Page');
+        // return view('front.cms.company', array_merge($this->data, $return_data));
     }
 }

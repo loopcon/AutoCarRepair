@@ -60,6 +60,14 @@ Route::group(['prefix' => 'backend','as' => 'admin_'], function() {
         Route::get('page-delete/{id}', [App\Http\Controllers\Backend\PageController::class, 'destroy'])->name('page-delete');
         Route::post('page-datatable', [App\Http\Controllers\Backend\PageController::class, 'pagesDatatable'])->name('page-datatable');
 
+        Route::get('compnycms',[App\Http\Controllers\Backend\CompnyCmsPageController::class, 'index'])->name('compnycms');
+        Route::get('compnycms-create',[App\Http\Controllers\Backend\CompnyCmsPageController::class, 'create'])->name('compnycms-create');
+        Route::post('compnycms-store',[App\Http\Controllers\Backend\CompnyCmsPageController::class, 'store'])->name('compnycms-store');
+        Route::get('compnycms-edit/{id}',[App\Http\Controllers\Backend\CompnyCmsPageController::class, 'edit'])->name('compnycms-edit');
+        Route::post('compnycms-update/{id}',[App\Http\Controllers\Backend\CompnyCmsPageController::class, 'update'])->name('compnycms-update');
+        Route::get('compnycms-delete/{id}', [App\Http\Controllers\Backend\CompnyCmsPageController::class, 'destroy'])->name('compnycms-delete');
+        Route::post('compnycms-datatable', [App\Http\Controllers\Backend\CompnyCmsPageController::class, 'CompnyCmsPageDatatable'])->name('compnycms-datatable');
+
         Route::get('car-brand',[App\Http\Controllers\Backend\CarBrandController::class, 'index'])->name('car-brand')->middleware('XSS');
         Route::post('ajax-edit-brand-html',[App\Http\Controllers\Backend\CarBrandController::class, 'ajaxEditCarBrandHtml'])->name('ajax-edit-brand-html')->middleware('XSS');
         Route::post('car-brand-datatable', [App\Http\Controllers\Backend\CarBrandController::class, 'carbrandsDatatable'])->name('car-brand-datatable')->middleware('XSS');
@@ -266,7 +274,20 @@ Route::group(['as' => 'front_', 'middleware' => 'XSS'], function() {
         }
     }
     /** cms pages route end **/
-    Route::get('company-cms-page', [App\Http\Controllers\Front\CmsPagesController::class, 'cmsPage'])->name('company-cms-page');
+    
+    /**compny  cms pages route start **/
+    $compnycms = Cache::remember('compny_cms_page', 10, function() { 
+        return DB::table('compny_cms_page')
+        ->get();
+            });
+
+        if(!empty($compnycms)) {
+        foreach ($compnycms as $page) {
+            Route::get($page->slug, [App\Http\Controllers\Front\CmsPagesController::class, 'cmsPage'])->name($page->slug);
+        }
+    }
+    // Route::get('company-cms-page', [App\Http\Controllers\Front\CmsPagesController::class, 'cmsPage'])->name('company-cms-page');
+    /**compny  cms pages route start **/
 
     Route::group(['middleware' => 'auth:user'], function () {
         Route::get('my-profile', [\App\Http\Controllers\Front\UserController::class, 'myprofile'])->name('my-profile')->middleware('XSS');

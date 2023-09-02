@@ -120,6 +120,10 @@
             @if(isset($cmsInfo->slug) && $cmsInfo->slug)
                 <li><a href="{{url($cmsInfo->slug)}}">Terms & Conditions </a></li>
             @endif
+            @php($compnyCmsInfo = getCompnyCmsPage('3'))
+            @if(isset($compnyCmsInfo->slug) && $compnyCmsInfo->slug)
+                <li><a href="{{url($compnyCmsInfo->slug)}}">Compny Cms Page </a></li>
+            @endif
         </ul>
     </div>
     <div>

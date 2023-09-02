@@ -9,6 +9,11 @@ function getCmsPageName($id = ''){
     return $pageData;
 }
 
+function getCompnyCmsPage($id = ''){
+    $compnypageData = App\Models\CompnyCmsPage::select('name', 'description', 'slug')->where([['id' , $id],['is_archive','0']])->first();
+    return $compnypageData;
+}
+
 function getSettingInfo($label){
     $sData = App\Models\Page::select('value')->where('label', $label)->first();
     $result = isset($sData->value) && $sData->value ? $sData->value : NULL;
