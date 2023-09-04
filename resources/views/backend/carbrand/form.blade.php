@@ -47,6 +47,8 @@
                                     <div class="m-b-10">
                                         <input type="file" id="uploadImage{{$i}}" accept="image/x-png, image/gif, image/jpeg" class="btn btn-warning btn-block btn-sm"  name="image" {{$required}} data-parsley-required-message="{{ __("This value is required.")}}" onChange="this.parentNode.nextSibling.value = this.value; PreviewImage({{$i}});" >
                                         @if ($errors->has('image')) <div class="errors_msg">{{ $errors->first('image') }}</div>@endif
+
+                                        
                                     </div>
                                             
                                 </div>

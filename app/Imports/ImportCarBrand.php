@@ -13,30 +13,29 @@ class ImportCarBrand implements ToModel
     * @return \Illuminate\Database\Eloquent\Model|null
     */
     public function model(array $row)
-    { 
+    {
         $url = $row[1];
-        // Get the filename with extension from the URL
-        $filename = pathinfo($url, PATHINFO_BASENAME);
-
-        //get public path of you project
-        $dir = public_path().'\uploads\carbrand';
-        // Combine the target folder and filename to get the full path
-        $destinationPath = $dir . '/' . $filename;
-        //print_r($destinationPath);exit;
-
-        
-        // Download the file from the URL and save it to the destination folder
-        $fileContent = file_get_contents($url);
-        file_put_contents($destinationPath, $fileContent);
-        //print_r($fileContent);exit;
+        $processedImageUrl = $this->processImageURL($url);
 
         return new CarBrand([
             'title' => $row[0],
-            'image' => $filename ,
+            'image' => $processedImageUrl,
             'slug' => strtolower($row[0]),
             'is_archive' => 1,
             'status' => 1,
         ]);
-
     }
+
+    protected function processImageURL($url)
+    {
+        if (preg_match('/\/d\/(.*?)\//', $url, $matches)) {
+            $fileId = $matches[1];
+            $directImageLink = "https://drive.google.com/uc?export=download&id={$fileId}";
+            return $directImageLink;
+        } else {
+            // If it's not a Google Drive link, use it as is
+            return $url;
+        }
+    }
+
 }
