@@ -42,19 +42,20 @@ class ServiceCenterDetailController extends MainController
                     }
 
                     $scdetail->name = $request->$name ? $request->$name : NULL;
+                    $scdetail->image = $request->$image ? $request->$image : NULL;
                     $scdetail->image_title = $request->$image_title ? $request->$image_title : NULL;
                     $scdetail->address = $request->$address ? $request->$address : NULL;
                     $scdetail->phone_number = $request->$phone_number ? $request->$phone_number : NULL;
-                    if($request->hasFile($image)) {
-                        if($request->$id){
-                            $old_image = $scdetail->image;
-                            if($old_image){
-                                removeFile('uploads/servicecenterdetail/'.$old_image);
-                            }
-                        }
-                        $newName = fileUpload($request, $image, 'uploads/servicecenterdetail/');
-                        $scdetail->image = $newName;
-                    }
+                    // if($request->hasFile($image)) {
+                    //     if($request->$id){
+                    //         $old_image = $scdetail->image;
+                    //         if($old_image){
+                    //             removeFile('uploads/servicecenterdetail/'.$old_image);
+                    //         }
+                    //     }
+                    //     $newName = fileUpload($request, $image, 'uploads/servicecenterdetail/');
+                    //     $scdetail->image = $newName;
+                    // }
                     $scdetail->save();
                 }
             }
@@ -68,11 +69,11 @@ class ServiceCenterDetailController extends MainController
 
     public function serviceCenterDelete(request $request)
     {
-        $scdetail = ServiceCenterDetail::where('id', $request->id)->first();
-        $old_image = $scdetail->image;
-        if($old_image){
-            removeFile('uploads/servicecenterdetail/'.$old_image);
-        }
+        // $scdetail = ServiceCenterDetail::where('id', $request->id)->first();
+        // $old_image = $scdetail->image;
+        // if($old_image){
+        //     removeFile('uploads/servicecenterdetail/'.$old_image);
+        // }
         ServiceCenterDetail::where('id', $request->id)->delete();
     }
 }

@@ -43,14 +43,14 @@ class ShopCategoryController extends MainController
         $slug = $request->name != '' ? slugify($request->name) : NULL;
 
         $shopcategory = new ShopCategory();
-        $fields = array('name','id');
+        $fields = array('name','id','image');
         foreach($fields as $field){
             $shopcategory->$field = isset($request->$field) && $request->$field ? $request->$field : NULL;
         }
-        if($request->hasFile('image')) {
-            $newName = fileUpload($request, 'image', 'uploads/shopCategory');
-            $shopcategory->image = $newName;
-        }
+        // if($request->hasFile('image')) {
+        //     $newName = fileUpload($request, 'image', 'uploads/shopCategory');
+        //     $shopcategory->image = $newName;
+        // }
         $shopcategory->slug = $slug;
         $shopcategory->created_by = Auth::guard('admin')->user()->id;
         $shopcategory->save();
@@ -97,18 +97,18 @@ class ShopCategoryController extends MainController
         $slug = $request->name != '' ? slugify($request->name) : NULL;
 
         $shopcategory = ShopCategory::find($id);
-        $fields = array('name');
+        $fields = array('name','image');
         foreach($fields as $field){
             $shopcategory->$field = isset($request->$field) && $request->$field ? $request->$field : NULL;
         }
-        if($request->hasFile('image')) {
-            $old_image = $shopcategory->image;
-            if($old_image){
-                removeFile('uploads/shopCategory/'.$old_image);
-            }
-            $newName = fileUpload($request, 'image', 'uploads/shopCategory');
-            $shopcategory->image = $newName;
-        }
+        // if($request->hasFile('image')) {
+        //     $old_image = $shopcategory->image;
+        //     if($old_image){
+        //         removeFile('uploads/shopCategory/'.$old_image);
+        //     }
+        //     $newName = fileUpload($request, 'image', 'uploads/shopCategory');
+        //     $shopcategory->image = $newName;
+        // }
         $shopcategory->slug = $slug;
         $shopcategory->updated_by = Auth::guard('admin')->user()->id;
         $shopcategory->save();
@@ -131,11 +131,11 @@ class ShopCategoryController extends MainController
        );
        $is_delete = checkDeleteConstrainnt($constraint_array, $id);
        if($is_delete) {
-            $shopcategory = ShopCategory::where('id', $id)->first();
-            $old_image = $shopcategory->image;
-            if($old_image){
-                removeFile('uploads/shopCategory/'.$old_image);
-            }
+            // $shopcategory = ShopCategory::where('id', $id)->first();
+            // $old_image = $shopcategory->image;
+            // if($old_image){
+            //     removeFile('uploads/shopCategory/'.$old_image);
+            // }
 
             $shopcategory = ShopCategory::where('id', $id)->delete();
             if($shopcategory) {
@@ -160,7 +160,7 @@ class ShopCategoryController extends MainController
                     return $html;
                 })
                 ->addColumn('image', function ($row) {
-                    $image = $row->image ? "<img src='".url('uploads/shopCategory/'.$row->image)."' width='80px' height='80px'>" : '';
+                    $image = $row->image ? $row->image : '';
                     return $image;
                 })
                 ->addColumn('status', function ($row) {

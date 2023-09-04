@@ -34,16 +34,46 @@
         <div class="col-12 col-sm-6 col-md-3">
             <ul class="our-service-main">
                 <li class="our-section-head">LUXURY BRANDS</li>
-                <li><a href="#">Mercedes</a></li>
-                <li><a href="#">BMW</a></li>
-                <li><a href="#">Audi</a></li>
-                <li><a href="#">Volvo</a></li>
-                <li><a href="#">Mitsubishi</a></li>
-                <li><a href="#">Jaguar</a></li>
-                <li><a href="#">Porsche</a></li>
-                <li><a href="#">Rolls Royce</a></li>
-                <li><a href="#">Ferrari</a></li>
-                <li><a href="#">Land Rover</a></li>
+                @php($cmsInfo = getCompnyCmsPage('1'))
+                    @if(isset($cmsInfo->slug) && $cmsInfo->slug)
+                        <li><a href="{{url($cmsInfo->slug)}}">{{isset($cmsInfo->name) ? ucwords($cmsInfo->name) : ''}}</a></li>
+                    @endif
+                @php($cmsInfo = getCompnyCmsPage('2'))
+                    @if(isset($cmsInfo->slug) && $cmsInfo->slug)
+                        <li><a href="{{url($cmsInfo->slug)}}">{{isset($cmsInfo->name) ? ucwords($cmsInfo->name) : ''}}</a></li>
+                    @endif
+                @php($cmsInfo = getCompnyCmsPage('3'))
+                    @if(isset($cmsInfo->slug) && $cmsInfo->slug)
+                        <li><a href="{{url($cmsInfo->slug)}}">{{isset($cmsInfo->name) ? ucwords($cmsInfo->name) : ''}}</a></li>
+                    @endif
+                @php($cmsInfo = getCompnyCmsPage('4'))
+                    @if(isset($cmsInfo->slug) && $cmsInfo->slug)
+                        <li><a href="{{url($cmsInfo->slug)}}">{{isset($cmsInfo->name) ? ucwords($cmsInfo->name) : ''}}</a></li>
+                    @endif
+                @php($cmsInfo = getCompnyCmsPage('5'))
+                    @if(isset($cmsInfo->slug))
+                        <li><a href="{{url($cmsInfo->slug)}}">{{isset($cmsInfo->name) ? ucwords($cmsInfo->name) : ''}}</a></li>
+                    @endif
+                @php($cmsInfo = getCompnyCmsPage('6'))
+                    @if(isset($cmsInfo->slug) && $cmsInfo->slug)
+                        <li><a href="{{url($cmsInfo->slug)}}">{{isset($cmsInfo->name) ? ucwords($cmsInfo->name) : ''}}</a></li>
+                    @endif
+                @php($cmsInfo = getCompnyCmsPage('7'))
+                    @if(isset($cmsInfo->slug) && $cmsInfo->slug)
+                        <li><a href="{{url($cmsInfo->slug)}}">{{isset($cmsInfo->name) ? ucwords($cmsInfo->name) : ''}}</a></li>
+                    @endif
+                @php($cmsInfo = getCompnyCmsPage('8'))
+                    @if(isset($cmsInfo->slug) && $cmsInfo->slug) 
+                        <li><a href="{{url($cmsInfo->slug)}}">{{isset($cmsInfo->name) ? ucwords($cmsInfo->name) : ''}}</a></li>
+                    @endif
+                @php($cmsInfo = getCompnyCmsPage('9'))
+                    @if(isset($cmsInfo->slug) && $cmsInfo->slug) 
+                        <li><a href="{{url($cmsInfo->slug)}}">{{isset($cmsInfo->name) ? ucwords($cmsInfo->name) : ''}}</a></li>
+                    @endif
+                @php($cmsInfo = getCompnyCmsPage('10'))
+                    @if(isset($cmsInfo->slug) && $cmsInfo->slug) 
+                        <li><a href="{{url($cmsInfo->slug)}}">{{isset($cmsInfo->name) ? ucwords($cmsInfo->name) : ''}}</a></li>
+                    @endif
             </ul>
         </div>
         <div class="col-12 col-sm-6 col-md-3">
@@ -114,15 +144,11 @@
             <li><a href="#">Blogs</a></li>
             @php($cmsInfo = getCmsPageName('10'))
                 @if(isset($cmsInfo->slug) && $cmsInfo->slug)
-                    <li><a href="{{url($cmsInfo->slug)}}">Privacy Policy</a></li>
+                    <li><a href="{{url($cmsInfo->slug)}}">{{isset($cmsInfo->name) ? ucwords($cmsInfo->name) : ''}}</a></li>
                 @endif
             @php($cmsInfo = getCmsPageName('12'))
             @if(isset($cmsInfo->slug) && $cmsInfo->slug)
-                <li><a href="{{url($cmsInfo->slug)}}">Terms & Conditions </a></li>
-            @endif
-            @php($compnyCmsInfo = getCompnyCmsPage('3'))
-            @if(isset($compnyCmsInfo->slug) && $compnyCmsInfo->slug)
-                <li><a href="{{url($compnyCmsInfo->slug)}}">Compny Cms Page </a></li>
+                <li><a href="{{url($cmsInfo->slug)}}">{{isset($cmsInfo->name) ? ucwords($cmsInfo->name) : ''}}</a></li>
             @endif
         </ul>
     </div>

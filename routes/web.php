@@ -287,6 +287,7 @@ Route::group(['as' => 'front_', 'middleware' => 'XSS'], function() {
             Route::get($page->slug, [App\Http\Controllers\Front\CmsPagesController::class, 'cmsPage'])->name($page->slug);
         }
     }
+    Route::post('compny-store',[App\Http\Controllers\Front\CmsPagesController::class, 'compnyStore'])->name('compny-store');
     // Route::get('company-cms-page', [App\Http\Controllers\Front\CmsPagesController::class, 'cmsPage'])->name('company-cms-page');
     /**compny  cms pages route start **/
 

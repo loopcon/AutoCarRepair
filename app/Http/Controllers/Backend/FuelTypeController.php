@@ -35,7 +35,7 @@ class FuelTypeController extends MainController
                     return $html;
                 })
                 ->addColumn('image', function ($row) {
-                    $image = $row->image ? "<img src='".url('uploads/fueltype/'.$row->image)."' width='80px' height='80px'>" : '';
+                    $image = $row->image ? $row->image : '';
                     return $image;
                 })
                 ->addColumn('status', function ($row) {
@@ -79,18 +79,18 @@ class FuelTypeController extends MainController
         $slug = $request->title != '' ? slugify($request->title) : NULL;
 
         $fueltype = new FuelType();
-        $fields = array('title');
+        $fields = array('title','image');
         foreach($fields as $field){
             $fueltype->$field = isset($request->$field) && $request->$field ? $request->$field : NULL;
         }
-        if($request->hasFile('image')) {
-            $old_image = $fueltype->image;
-            if($old_image){
-                removeFile('uploads/fueltype/'.$old_image);
-            }
-            $newName = fileUpload($request, 'image', 'uploads/fueltype');
-            $fueltype->image = $newName;
-        }
+        // if($request->hasFile('image')) {
+        //     $old_image = $fueltype->image;
+        //     if($old_image){
+        //         removeFile('uploads/fueltype/'.$old_image);
+        //     }
+        //     $newName = fileUpload($request, 'image', 'uploads/fueltype');
+        //     $fueltype->image = $newName;
+        // }
         $fueltype->slug = $slug;
         $fueltype->created_by = Auth::guard('admin')->user()->id;
         $fueltype->save();
@@ -133,18 +133,18 @@ class FuelTypeController extends MainController
         $slug = $request->title != '' ? slugify($request->title) : NULL;
 
         $fueltype = FuelType::find($id);
-        $fields = array('title');
+        $fields = array('title','image');
         foreach($fields as $field){
             $fueltype->$field = isset($request->$field) && $request->$field ? $request->$field : NULL;
         }
-        if($request->hasFile('image')) {
-            $old_image = $fueltype->image;
-            if($old_image){
-                removeFile('uploads/fueltype/'.$old_image);
-            }
-            $newName = fileUpload($request, 'image', 'uploads/fueltype');
-            $fueltype->image = $newName;
-        }
+        // if($request->hasFile('image')) {
+        //     $old_image = $fueltype->image;
+        //     if($old_image){
+        //         removeFile('uploads/fueltype/'.$old_image);
+        //     }
+        //     $newName = fileUpload($request, 'image', 'uploads/fueltype');
+        //     $fueltype->image = $newName;
+        // }
         $fueltype->slug = $slug;
         $fueltype->updated_by = Auth::guard('admin')->user()->id;
         $fueltype->save();
@@ -161,11 +161,11 @@ class FuelTypeController extends MainController
     public function destroy(string $id)
     {
         $id = Crypt::decrypt($id);
-        $fueltype = FuelType::where('id',$id)->first();
-        $old_image = $fueltype->image;
-        if($old_image){
-            removeFile('uploads/fueltype/'.$old_image);
-        }
+        // $fueltype = FuelType::where('id',$id)->first();
+        // $old_image = $fueltype->image;
+        // if($old_image){
+        //     removeFile('uploads/fueltype/'.$old_image);
+        // }
         $fueltype = FuelType::where('id',$id)->delete();
         if($fueltype){
             return redirect()->back()->with('success', trans('Fuel Type Deleted Successfully!'));

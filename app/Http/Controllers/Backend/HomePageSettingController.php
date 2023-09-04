@@ -81,16 +81,17 @@ class HomePageSettingController extends MainController
                         $brand_slider = new BrandLogoSlider();
                         $brand_slider->created_by = Auth::guard('admin')->user()->id;
                     }
-                    if($request->hasFile($image)) {
-                        if($request->$id){
-                            $old_image = $brand_slider->image;
-                            if($old_image){
-                                removeFile('uploads/brandlogoslider/'.$old_image);
-                            }
-                        }
-                        $newName = fileUpload($request, $image, 'uploads/brandlogoslider/');
-                        $brand_slider->image = $newName;
-                    }
+                    // if($request->hasFile($image)) {
+                    //     if($request->$id){
+                    //         $old_image = $brand_slider->image;
+                    //         if($old_image){
+                    //             removeFile('uploads/brandlogoslider/'.$old_image);
+                    //         }
+                    //     }
+                    //     $newName = fileUpload($request, $image, 'uploads/brandlogoslider/');
+                    //     $brand_slider->image = $newName;
+                    // }
+                    $brand_slider->image = $request->$image ? $request->$image : NULL;
                     $brand_slider->image_title = $request->$image_title ? $request->$image_title : NULL;
                     $brand_slider->save();
                 }
@@ -103,11 +104,11 @@ class HomePageSettingController extends MainController
 
     public function slideDelete(request $request)
     {
-        $brand_slider = BrandLogoSlider::where('id', $request->id)->first();
-        $old_image = $brand_slider->image;
-        if($old_image){
-            removeFile('uploads/brandlogoslider/'.$old_image);
-        }
+        // $brand_slider = BrandLogoSlider::where('id', $request->id)->first();
+        // $old_image = $brand_slider->image;
+        // if($old_image){
+        //     removeFile('uploads/brandlogoslider/'.$old_image);
+        // }
         BrandLogoSlider::where('id', $request->id)->delete();
     }
 }

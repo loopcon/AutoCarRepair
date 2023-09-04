@@ -63,22 +63,22 @@ class ServiceController extends MainController
         $slug = $request->title != '' ? slugify($request->title) : NULL;
 
         $scstegory = new ServiceCategory();
-        $fields = array('title', 'price_list','description','meta_title','meta_keywords','meta_description');
+        $fields = array('title','image','image_1','icon_image', 'price_list','description','meta_title','meta_keywords','meta_description');
         foreach($fields as $field){
             $scstegory->$field = isset($request->$field) && $request->$field ? $request->$field : NULL;
         }
-        if($request->hasFile('image')) {
-            $newName = fileUpload($request, 'image', 'uploads/service/category');
-            $scstegory->image = $newName;
-        }
-        if($request->hasFile('image_1')) {
-            $newName = fileUpload($request, 'image_1', 'uploads/service/category');
-            $scstegory->image_1 = $newName;
-        }
-        if($request->hasFile('icon_image')) {
-            $newName = fileUpload($request, 'icon_image', 'uploads/service/category/icon');
-            $scstegory->icon_image = $newName;
-        }
+        // if($request->hasFile('image')) {
+        //     $newName = fileUpload($request, 'image', 'uploads/service/category');
+        //     $scstegory->image = $newName;
+        // }
+        // if($request->hasFile('image_1')) {
+        //     $newName = fileUpload($request, 'image_1', 'uploads/service/category');
+        //     $scstegory->image_1 = $newName;
+        // }
+        // if($request->hasFile('icon_image')) {
+        //     $newName = fileUpload($request, 'icon_image', 'uploads/service/category/icon');
+        //     $scstegory->icon_image = $newName;
+        // }
         $scstegory->slug = $slug;
         $scstegory->created_by = Auth::guard('admin')->user()->id;
         $scstegory->save();
@@ -128,34 +128,34 @@ class ServiceController extends MainController
         $slug = $request->title != '' ? slugify($request->title) : NULL;
 
         $scategory = ServiceCategory::find($id);
-        $fields = array('title', 'price_list','description','meta_title','meta_keywords','meta_description');
+        $fields = array('title','image','image_1','icon_image', 'price_list','description','meta_title','meta_keywords','meta_description');
         foreach($fields as $field){
             $scategory->$field = isset($request->$field) && $request->$field ? $request->$field : NULL;
         }
-        if($request->hasFile('image')) {
-            $old_image = $scategory->image;
-            if($old_image){
-                removeFile('uploads/service/category/'.$old_image);
-            }
-            $newName = fileUpload($request, 'image', 'uploads/service/category');
-            $scategory->image = $newName;
-        }
-        if($request->hasFile('image_1')) {
-            $old_image = $scategory->image_1;
-            if($old_image){
-                removeFile('uploads/service/category/'.$old_image);
-            }
-            $newName = fileUpload($request, 'image_1', 'uploads/service/category');
-            $scategory->image_1 = $newName;
-        }
-        if($request->hasFile('icon_image')) {
-            $old_image = $scategory->icon_image;
-            if($old_image){
-                removeFile('uploads/service/category/icon'.$old_image);
-            }
-            $newName = fileUpload($request, 'icon_image', 'uploads/service/category/icon');
-            $scategory->icon_image = $newName;
-        }
+        // if($request->hasFile('image')) {
+        //     $old_image = $scategory->image;
+        //     if($old_image){
+        //         removeFile('uploads/service/category/'.$old_image);
+        //     }
+        //     $newName = fileUpload($request, 'image', 'uploads/service/category');
+        //     $scategory->image = $newName;
+        // }
+        // if($request->hasFile('image_1')) {
+        //     $old_image = $scategory->image_1;
+        //     if($old_image){
+        //         removeFile('uploads/service/category/'.$old_image);
+        //     }
+        //     $newName = fileUpload($request, 'image_1', 'uploads/service/category');
+        //     $scategory->image_1 = $newName;
+        // }
+        // if($request->hasFile('icon_image')) {
+        //     $old_image = $scategory->icon_image;
+        //     if($old_image){
+        //         removeFile('uploads/service/category/icon'.$old_image);
+        //     }
+        //     $newName = fileUpload($request, 'icon_image', 'uploads/service/category/icon');
+        //     $scategory->icon_image = $newName;
+        // }
         $scategory->slug = $slug;
         $scategory->updated_by = Auth::guard('admin')->user()->id;
         $scategory->save();
@@ -181,15 +181,15 @@ class ServiceController extends MainController
         );
         $is_delete = checkDeleteConstrainnt($constraint_array, $id);
         if($is_delete) {
-            $scategory = ServiceCategory::where('id', $id)->first();
-            $old_image = $scategory->image;
-            $old_icon_img = $scategory->icon_image; 
-            if($old_image){
-                removeFile('uploads/service/category/'.$old_image);
-            }
-            if($old_icon_img){
-                removeFile('uploads/service/category/icon/'.$old_icon_img);
-            }
+            // $scategory = ServiceCategory::where('id', $id)->first();
+            // $old_image = $scategory->image;
+            // $old_icon_img = $scategory->icon_image; 
+            // if($old_image){
+            //     removeFile('uploads/service/category/'.$old_image);
+            // }
+            // if($old_icon_img){
+            //     removeFile('uploads/service/category/icon/'.$old_icon_img);
+            // }
             $scategory = ServiceCategory::where('id', $id)->delete();
             if($scategory) {
                 return redirect()->back()->with('success', trans('Service Category Deleted Successfully!'));

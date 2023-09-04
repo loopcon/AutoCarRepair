@@ -55,15 +55,15 @@ class CarModelController extends MainController
         $slug = $request->title != '' ? slugify($request->title) : NULL;
 
         $carmodel = new CarModel();
-        $fields = array('title','carbrand_id');
+        $fields = array('title','carbrand_id','image');
         foreach($fields as $field){
             $carmodel->$field = isset($request->$field) && $request->$field ? $request->$field : NULL;
         }
         $carmodel->slug = $slug;
-        if($request->hasFile('image')) {
-            $newName = fileUpload($request, 'image', 'uploads/carmodel');
-            $carmodel->image = $newName;
-        }
+        // if($request->hasFile('image')) {
+        //     $newName = fileUpload($request, 'image', 'uploads/carmodel');
+        //     $carmodel->image = $newName;
+        // }
         $carmodel->created_by = Auth::guard('admin')->user()->id;
         $carmodel->save();
         if($carmodel){
@@ -118,20 +118,20 @@ class CarModelController extends MainController
         $slug = $request->title != '' ? slugify($request->title) : NULL;
 
         $carmodel = CarModel::find($id);
-        $fields = array('title','carbrand_id');
+        $fields = array('title','carbrand_id','image');
         foreach($fields as $field){
             $carmodel->$field = isset($request->$field) && $request->$field ? $request->$field : NULL;
         }
         $carmodel->slug = $slug;
         $carmodel->updated_by = Auth::guard('admin')->user()->id;
-        if($request->hasFile('image')) {
-            $old_image = $carmodel->image;
-            if($old_image){
-                removeFile('uploads/carmodel/'.$old_image);
-            }
-            $newName = fileUpload($request, 'image', 'uploads/carmodel');
-            $carmodel->image = $newName;
-        }
+        // if($request->hasFile('image')) {
+        //     $old_image = $carmodel->image;
+        //     if($old_image){
+        //         removeFile('uploads/carmodel/'.$old_image);
+        //     }
+        //     $newName = fileUpload($request, 'image', 'uploads/carmodel');
+        //     $carmodel->image = $newName;
+        // }
         $carmodel->save();
 
         if($carmodel) {
@@ -155,11 +155,11 @@ class CarModelController extends MainController
         );
         $is_delete = checkDeleteConstrainnt($constraint_array, $id);
         if($is_delete) {
-            $image = CarModel::where('id', $id)->first();
-            $old_image = $image->image;
-            if($old_image){
-                removeFile('uploads/carmodel/'.$old_image);
-            }
+            // $image = CarModel::where('id', $id)->first();
+            // $old_image = $image->image;
+            // if($old_image){
+            //     removeFile('uploads/carmodel/'.$old_image);
+            // }
             $carmodel = CarModel::where('id', $id)->delete();
             if($carmodel) {
                 return redirect()->back()->with('success', trans('Car Model Deleted Successfully!'));
@@ -185,7 +185,7 @@ class CarModelController extends MainController
             $list = $query->get();
             return DataTables::of($list)
                 ->addColumn('image', function ($row) {
-                    $image = $row->image ? "<img src='".url('uploads/carmodel/'.$row->image)."' width='80px' height='80px'>" : '';
+                    $image = $row->image ? $row->image : '';
                     return $image;
                 })
                 ->addColumn('maker', function ($row) {

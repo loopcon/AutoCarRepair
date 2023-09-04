@@ -36,21 +36,31 @@
             <div class="col-12 col-md-6 col-lg-4 p-0 ">
                 <div class="cms-page-section">
                     <h3 class="request-heading-main">Request an Appointment</h3>
-                    <form action="">
+                    <form method="POST" action="{{route('front_compny-store')}}" id="compny-form" enctype="multipart/form-data" data-parsley-validate="">
+                        @csrf
                         <div class="mb-3">
-                            <input type="text" class="form-control cms-email-input" id="exampleInputEmail1" placeholder="Enter Your Name" aria-describedby="emailHelp">
+                            <input type="text" class="form-control cms-email-input" name="name" id="exampleInputEmail1"  required="" placeholder="Enter Your Name" aria-describedby="emailHelp">
                         </div>
                         <div class="mb-3">
-                            <input type="email" class="form-control cms-email-input" id="exampleInputEmail1" placeholder="Enter Your Email" aria-describedby="emailHelp">
+                            <input type="email" class="form-control cms-email-input" name="email" id="exampleInputEmail1" required=""  placeholder="Enter Your Email" aria-describedby="emailHelp">
                         </div>
                         <div class="mb-3">
-                            <input type="tel" class="form-control cms-email-input" id="exampleInputEmail1" placeholder="Enter Your Phone Number" aria-describedby="emailHelp">
+                            <input type="tel" class="form-control cms-email-input" name="phone" id="mobile" required="" maxlength="10" placeholder="Enter Your Phone Number" aria-describedby="emailHelp">
                         </div>
                         <div class="mb-3">
                             <label  class="form-label email-label">Message</label>
-                            <textarea class="form-control cms-email-input" id="textAreaExample" rows="1"></textarea>
+                            <textarea class="form-control cms-email-input" name="message" id="textAreaExample" required="" rows="1"></textarea>
                         </div>
-                        <a href="javascript:void(0)" class="btn send-otp-main" id="send_otp">SEND OTP </a>
+                        <input type="submit" class="btn send-otp-main" id="send_message" value="Send Message">
+                        <div class="compnyotp-section">
+                            <div class="mb-3 otpinput-main">
+                                <input type="text" class="form-control cms-email-input num_only" maxlength="4" id="compnyotp" name="otp" aria-describedby="emailHelp" placeholder="OTP">
+                                <div id="compnyresend_text" class="text-white"><b>Resend OTP in <span id="compnytimer"></span> seconds</b></div>
+                            </div>
+                            <a href="javascript:void(0)" id="compnyresend_otp" class="btn send-otp-main">RESEND OTP </a>
+                        </div>
+                        <input type="hidden" id="compnyis_otp_verify" value="0">
+                        <a href="javascript:void(0)" class="btn send-otp-main" id="compnysend_otp">SEND OTP </a>
                     </form>
                 </div>
             </div>
@@ -164,17 +174,6 @@
                         <input type="text" class="form-control num_only" maxlength="10"  id="appointmentmobile" name="mobile" aria-describedby="emailHelp" placeholder="Enter Phone Number">
                     </div>
                 </div>
-                <div class="aptotp-section">
-                    <div class="mb-3 otpinput-main">
-                        <input type="text" class="form-control num_only" maxlength="4" id="appointmentotp" name="otp" aria-describedby="emailHelp" placeholder="OTP">
-                        <div id="appointmentresend_text"><b>Resend OTP in <span id="apttimer"></span> seconds</b></div>
-                    </div>
-                    <!--<a href="javascript:void(0)" id="verify_otp" class="btn verify-otpbtn">VERIFY OTP </a>-->
-                    <a href="javascript:void(0)" id="appointmentresend_otp" class="bookservice-resend-otp">RESEND OTP </a>
-                </div>
-                <input type="hidden" id="appointmentis_otp_verify" value="0">
-                <a href="javascript:void(0)" class="btn check-price-btn mt-3" id="appointmentsend_otp">SEND OTP </a>
-
             </div>
             <div class="modal-footer">
                 <a class="check-price-btn-main" id="check_price" href="javascript:void(0);"><button type="button"  class="check-price-btn" >Check Price For Free </button></a>
@@ -183,5 +182,126 @@
     </div>
 </div>
 <!-- Appointment Number modal -->
+@endsection
+@section('javascript')
+<script src="{{ asset('plugins/parsley/parsley.js') }}"></script>
+<script src="{{ asset('front/js/owl.carousel.min.js') }}"></script>
+<script>
+    $(document).ready(function(){
+        $('#compnyresend_otp').hide();
+        $('.compnyotp-section').hide();
+        $('#send_message').hide();
+        $(document).on('click', '#compnysend_otp', function(){
+            var validateMobNum= /[1-9]{1}[0-9]{9}/;
+            var mobile = $('#mobile').val();
+            if (validateMobNum.test(mobile) && mobile.length == 10) {
+                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                $.ajax({
+                    url : '{{ route('front_send-otp') }}',
+                    method : 'post',
+                    data : {_token: CSRF_TOKEN, mobile:mobile},
+                    success : function(result){
+                        var result = $.parseJSON(result);
+                        if(result.result == 'success'){
+                            $("#mobile").attr("readonly", "readonly");
+                            $('.compnyotp-section').show();
+                            $('#compnysend_otp').hide();
+                            timer(30);
+                        } else {
+                            toastr.error('Something went wrong. Please try again later!');
+                        }
+                    }
+                });
+            }
+            else {
+                toastr.error('Please Enter Valid Mobile No.');
+            }
+        });
 
+        $(document).on('keyup', '#compnyotp', function(){
+            var mobile = $('#mobile').val();
+            var otp = $('#compnyotp').val();
+            var olength = otp.toString().length;
+            if(parseInt(olength) > 3){
+                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                $.ajax({
+                    url : '{{ route('front_verify-otp') }}',
+                    method : 'post',
+                    data : {_token: CSRF_TOKEN, mobile:mobile, otp:otp},
+                    success : function(result){
+                        var result = $.parseJSON(result);
+                        if(result.result == 'success'){
+                            $('#compnyresend_text').hide();
+                            $('#compnyis_otp_verify').val('1');
+                            $('#send_message').show();
+                            $("#mobile").attr("readonly", "readonly"); 
+                            $('#compnyotp').hide();
+                        } else {
+                            toastr.error('Please Enter Valid OTP.');
+                        }
+                    }
+                });
+            }
+        });
+
+        $(document).on('click', '#compnyresend_otp', function(){
+            var validateMobNum= /[1-9]{1}[0-9]{9}/;
+            var mobile = $('#mobile').val();
+            if (validateMobNum.test(mobile) && mobile.length == 10) {
+                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                $.ajax({
+                    url : '{{ route('front_resend-otp') }}',
+                    method : 'post',
+                    data : {_token: CSRF_TOKEN, mobile:mobile},
+                    success : function(result){
+                        var result = $.parseJSON(result);
+                        if(result.result == 'success'){
+                            console.log('test');
+                            $('.compnyotp-section').show();
+                            $('#compnyresend_text').show();
+                            $('#compnyotp').val('');
+                            $('#compnyotp').show();
+                            $("#mobile").attr("readonly", "readonly");
+                            $('#compnyresend_otp').hide();
+                            timer(30);
+                        } else {
+                            toastr.error('Something went wrong. Please try again later!');
+                        }
+                    }
+                });
+            }
+            else {
+                toastr.error('Please Enter Valid Mobile No.');
+            }
+        });
+    });
+    let timerOn = true;
+            function timer(remaining) {
+                var m = Math.floor(remaining / 60);
+                var s = remaining % 60;
+                m = m < 10 ? '0' + m : m;
+                s = s < 10 ? '0' + s : s;
+                document.getElementById('compnytimer').innerHTML = m + ':' + s;
+                remaining -= 1;
+                if(remaining >= 0 && timerOn) {
+                setTimeout(function() {
+                    timer(remaining);
+                }, 1000);
+                return;
+                }
+
+                if(!timerOn) {
+                // Do validate stuff here
+                return;
+                }
+                // Do timeout stuff here
+                var is_otp_verify = $('#compnyis_otp_verify').val();
+                if(is_otp_verify == '0'){
+                    $('#compnyresend_otp').show();
+                    $("#mobile").removeAttr("readonly"); 
+                    $('#compnyresend_text').hide();
+                    $('#compnyotp').hide();
+                }
+            }
+    </script>
 @endsection
