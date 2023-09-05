@@ -236,20 +236,23 @@
 <!-- footer end  -->
 <div class="footer-whatappicon">
      <a href="https://wa.me/{{$whatsapp}}" target="_blank"><img src="{{ asset('front/img/whatsapp-acr-img.webp') }}" class="img-fluid" alt=""></a>
+     <a href="#" class=""> 
+        <img src="{{ asset('front/img/back-top.png') }}" class="home-back-totoptext" alt="">
+    </a>
 </div>
 <!-- footer down start -->
-    <div class="footet-down-bg">
+    <?php /*  <div class="footet-down-bg">
         <div class="footet-down-main">
             <div class="row m-0">
                 <div class="col-12 col-sm-6  col-md-4 main-soical-icon">
-                    <?php /* <p>Follow Us:  </p>
+                    <?php / * <p>Follow Us:  </p>
                     <div>
                         <a href="https://{{$facebook}}" target="blank"><i class="fa-brands fa-facebook-f"></i></a>
                         <a href="https://{{$twitter}}" target="blank"><i class="fa-brands fa-twitter"></i></a>
                         <a href="https://{{$linkedin}}" target="blank"><i class="fa-brands fa-linkedin-in"></i></a>
                         <a href="https://{{$instagram}}" target="blank"><i class="fa-brands fa-instagram"></i></a>
                         <a href="https://{{$youtube}}" target="blank"><i class="fa-brands fa-youtube"></i></a>
-                    </div> */?>
+                    </div> * /?>
                 </div> 
                 <div class="col-12 col-sm-6 col-md-5 copy-right-text-main">
                     <p>© {{$copyright_year}} - {{$site_name}} - All rights reserved</p>
@@ -261,7 +264,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> */ ?>
 <meta name="csrf-token" content="{{ csrf_token() }}" />
 <!-- footer down end -->
 <script src="{{ asset('front/js/jquery.min.js') }}"></script>

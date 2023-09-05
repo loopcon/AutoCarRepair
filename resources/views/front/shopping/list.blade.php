@@ -201,5 +201,7 @@
         $('.mobile-filter-iconmain').click(function(){
             $('.mobile-filter-mian').toggle();
         });
+
+
     </script>
 @endsection
