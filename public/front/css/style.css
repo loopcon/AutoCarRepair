@@ -726,3 +726,17 @@ button { color: #000; outline: none; }
  
 /* cms page css end  */
 
+.mobile-filter-iconmain svg{
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.mobile-filter-mian{
+    background-color: #eeeeee;
+    display: none;
+    margin-bottom: 20px;
+}
+.mobile-filter-mian ul{
+    list-style: none;
+    padding: 20px;
+}
