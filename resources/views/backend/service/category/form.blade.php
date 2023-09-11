@@ -35,7 +35,7 @@
                                     <textarea class="form-control" id="description" name="description" placeholder="{{__('Description')}}" >{{ isset($record->description) ? $record->description : old('description') }}</textarea>
                                 </div>
 
-                                <div class="mb-3 col-md-6">
+                                <?php /**<div class="mb-3 col-md-6">
                                     <label class="form-label" for="image">{{__('Image')}}<span class="text-danger">*</span></label>
                                     <input type="url" class="form-control" id="image" name="image" placeholder="{{__('Image')}}" required=""  data-parsley-required-message="{{ __("This value is required.")}}" value="{{ isset($record->image) ? $record->image : old('image') }}">
                                 </div>
@@ -46,9 +46,9 @@
                                 <div class="mb-3 col-md-6">
                                     <label class="form-label" for="icon_image">{{__('Icon Image')}}<span class="text-danger">*</span></label>
                                     <input type="url" class="form-control" id="icon_image" name="icon_image" placeholder="{{__('Icon Image')}}" required=""  data-parsley-required-message="{{ __("This value is required.")}}" value="{{ isset($record->icon_image) ? $record->icon_image : old('icon_image') }}">
-                                </div>
+                                </div>**/ ?>
 
-                                <?php /**<div class="mb-3 col-md-6">
+                                <div class="mb-3 col-md-6">
                                     <label class="form-label" for="image">{{__('Image')}}<span class="text-danger">*</span></label>
                                     <div class="profile-icon">
                                         @if(isset($record->image))
@@ -68,9 +68,9 @@
                                         <input type="file" id="uploadImage0" accept="image/x-png, image/gif, image/jpeg" class="btn btn-warning btn-block btn-sm"  name="image" {{$required}} data-parsley-required-message="{{ __("This value is required.")}}" onChange="this.parentNode.nextSibling.value = this.value; PreviewImage(0);" >
                                     </div> 
                                     <p class="image_errortext">For Best resolution please upload 250*250 size and in WebP file format.</p>
-                                </div>**/ ?>
+                                </div>
 
-                                <?php /**<div class="mb-3 col-md-6">
+                                <div class="mb-3 col-md-6">
                                     <label class="form-label" for="image_1">{{__('Second Image')}}</label>
                                     <div class="product_image">
                                         @if(isset($record->image_1))
@@ -90,9 +90,9 @@
                                         <input type="file" id="uploadImage1" accept="image/x-png, image/gif, image/jpeg" class="btn btn-warning btn-block btn-sm"  name="image_1" onChange="this.parentNode.nextSibling.value = this.value; PreviewImage(1);">
                                     </div>
                                     <p class="image_errortext">For Best resolution please upload 250*250 size and in WebP file format.</p> 
-                                </div>**/ ?>
+                                </div>
 
-                                <?php /**<div class="mb-3 col-md-6">
+                                <div class="mb-3 col-md-6">
                                     <label class="form-label" for="icon_image">{{__('Icon Image')}}<span class="text-danger">*</span></label>
                                     <div class="icon_image">
                                         @php($i=2)
@@ -112,7 +112,8 @@
                                     <div class="m-b-10">
                                         <input type="file" id="uploadImage{{$i}}" accept="image/x-png, image/gif, image/jpeg" class="btn btn-warning btn-block btn-sm"  name="icon_image" {{$required}} data-parsley-required-message="{{ __("This value is required.")}}" onChange="this.parentNode.nextSibling.value = this.value; PreviewImage({{$i}});">
                                     </div>
-                                </div>**/ ?>
+                                </div>
+                                
                                 <div class="col-md-12">
                                     <div class="mb-3 col-md-12">
                                         <label class="form-label" for="price_list">{{__('Price List')}}</label>

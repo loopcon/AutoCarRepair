@@ -67,18 +67,19 @@ class ServiceController extends MainController
         foreach($fields as $field){
             $scstegory->$field = isset($request->$field) && $request->$field ? $request->$field : NULL;
         }
-        // if($request->hasFile('image')) {
-        //     $newName = fileUpload($request, 'image', 'uploads/service/category');
-        //     $scstegory->image = $newName;
-        // }
-        // if($request->hasFile('image_1')) {
-        //     $newName = fileUpload($request, 'image_1', 'uploads/service/category');
-        //     $scstegory->image_1 = $newName;
-        // }
-        // if($request->hasFile('icon_image')) {
-        //     $newName = fileUpload($request, 'icon_image', 'uploads/service/category/icon');
-        //     $scstegory->icon_image = $newName;
-        // }
+        if($request->hasFile('image')) {
+            $newName = fileUpload($request, 'image', 'uploads/service/category');
+            $scstegory->image = $newName;
+        }
+        if($request->hasFile('image_1')) {
+            $newName = fileUpload($request, 'image_1', 'uploads/service/category');
+            $scstegory->image_1 = $newName;
+        }
+        if($request->hasFile('icon_image')) {
+            $newName = fileUpload($request, 'icon_image', 'uploads/service/category/icon');
+            $scstegory->icon_image = $newName;
+        }
+        $scstegory->order_by = 0;
         $scstegory->slug = $slug;
         $scstegory->created_by = Auth::guard('admin')->user()->id;
         $scstegory->save();
@@ -132,30 +133,30 @@ class ServiceController extends MainController
         foreach($fields as $field){
             $scategory->$field = isset($request->$field) && $request->$field ? $request->$field : NULL;
         }
-        // if($request->hasFile('image')) {
-        //     $old_image = $scategory->image;
-        //     if($old_image){
-        //         removeFile('uploads/service/category/'.$old_image);
-        //     }
-        //     $newName = fileUpload($request, 'image', 'uploads/service/category');
-        //     $scategory->image = $newName;
-        // }
-        // if($request->hasFile('image_1')) {
-        //     $old_image = $scategory->image_1;
-        //     if($old_image){
-        //         removeFile('uploads/service/category/'.$old_image);
-        //     }
-        //     $newName = fileUpload($request, 'image_1', 'uploads/service/category');
-        //     $scategory->image_1 = $newName;
-        // }
-        // if($request->hasFile('icon_image')) {
-        //     $old_image = $scategory->icon_image;
-        //     if($old_image){
-        //         removeFile('uploads/service/category/icon'.$old_image);
-        //     }
-        //     $newName = fileUpload($request, 'icon_image', 'uploads/service/category/icon');
-        //     $scategory->icon_image = $newName;
-        // }
+        if($request->hasFile('image')) {
+            $old_image = $scategory->image;
+            if($old_image){
+                removeFile('uploads/service/category/'.$old_image);
+            }
+            $newName = fileUpload($request, 'image', 'uploads/service/category');
+            $scategory->image = $newName;
+        }
+        if($request->hasFile('image_1')) {
+            $old_image = $scategory->image_1;
+            if($old_image){
+                removeFile('uploads/service/category/'.$old_image);
+            }
+            $newName = fileUpload($request, 'image_1', 'uploads/service/category');
+            $scategory->image_1 = $newName;
+        }
+        if($request->hasFile('icon_image')) {
+            $old_image = $scategory->icon_image;
+            if($old_image){
+                removeFile('uploads/service/category/icon'.$old_image);
+            }
+            $newName = fileUpload($request, 'icon_image', 'uploads/service/category/icon');
+            $scategory->icon_image = $newName;
+        }
         $scategory->slug = $slug;
         $scategory->updated_by = Auth::guard('admin')->user()->id;
         $scategory->save();
@@ -181,15 +182,15 @@ class ServiceController extends MainController
         );
         $is_delete = checkDeleteConstrainnt($constraint_array, $id);
         if($is_delete) {
-            // $scategory = ServiceCategory::where('id', $id)->first();
-            // $old_image = $scategory->image;
-            // $old_icon_img = $scategory->icon_image; 
-            // if($old_image){
-            //     removeFile('uploads/service/category/'.$old_image);
-            // }
-            // if($old_icon_img){
-            //     removeFile('uploads/service/category/icon/'.$old_icon_img);
-            // }
+            $scategory = ServiceCategory::where('id', $id)->first();
+            $old_image = $scategory->image;
+            $old_icon_img = $scategory->icon_image; 
+            if($old_image){
+                removeFile('uploads/service/category/'.$old_image);
+            }
+            if($old_icon_img){
+                removeFile('uploads/service/category/icon/'.$old_icon_img);
+            }
             $scategory = ServiceCategory::where('id', $id)->delete();
             if($scategory) {
                 return redirect()->back()->with('success', trans('Service Category Deleted Successfully!'));
@@ -212,7 +213,7 @@ class ServiceController extends MainController
                     return $html;
                 })
                 ->addColumn('image', function ($row) {
-                    $image = $row->image ? "<img src='".url($row->image)."' width='80px' height='80px'>" : '';
+                    $image = $row->image ? "<img src='".url('uploads/service/category/'.$row->image)."' width='80px' height='80px'>" : '';
                     return $image;
                 })
                 ->addColumn('status', function ($row) {
@@ -294,14 +295,14 @@ class ServiceController extends MainController
         foreach($fields as $field){
             $spackage->$field = isset($request->$field) && $request->$field != '' ? $request->$field : NULL;
         }
-        // if($request->hasFile('image')) {
-        //     $newName = fileUpload($request, 'image', 'uploads/service/package');
-        //     $spackage->image = $newName;
-        // }
-        // if($request->hasFile('image_other')) {
-        //     $newName = fileUpload($request, 'image_other', 'uploads/service/package');
-        //     $spackage->image_other = $newName;
-        // }
+        if($request->hasFile('image')) {
+            $newName = fileUpload($request, 'image', 'uploads/service/package');
+            $spackage->image = $newName;
+        }
+        if($request->hasFile('image_other')) {
+            $newName = fileUpload($request, 'image_other', 'uploads/service/package');
+            $spackage->image_other = $newName;
+        }
         $spackage->slug = $slug;
         $spackage->created_by = Auth::guard('admin')->user()->id;
         $spackage->save();
@@ -374,22 +375,22 @@ class ServiceController extends MainController
         foreach($fields as $field){
             $spackage->$field = isset($request->$field) && $request->$field != '' ? $request->$field : NULL;
         }
-        // if($request->hasFile('image')) {
-        //     $old_image = $spackage->image;
-        //     if($old_image){
-        //         removeFile('uploads/service/package/'.$old_image);
-        //     }
-        //     $newName = fileUpload($request, 'image', 'uploads/service/package');
-        //     $spackage->image = $newName;
-        // }
-        // if($request->hasFile('image_other')) {
-        //     $old_image = $spackage->image_other;
-        //     if($old_image){
-        //         removeFile('uploads/service/package/'.$old_image);
-        //     }
-        //     $newName = fileUpload($request, 'image_other', 'uploads/service/package');
-        //     $spackage->image_other = $newName;
-        // }
+        if($request->hasFile('image')) {
+            $old_image = $spackage->image;
+            if($old_image){
+                removeFile('uploads/service/package/'.$old_image);
+            }
+            $newName = fileUpload($request, 'image', 'uploads/service/package');
+            $spackage->image = $newName;
+        }
+        if($request->hasFile('image_other')) {
+            $old_image = $spackage->image_other;
+            if($old_image){
+                removeFile('uploads/service/package/'.$old_image);
+            }
+            $newName = fileUpload($request, 'image_other', 'uploads/service/package');
+            $spackage->image_other = $newName;
+        }
         $spackage->slug = $slug;
         $spackage->updated_by = Auth::guard('admin')->user()->id;
         $spackage->save();
@@ -426,15 +427,15 @@ class ServiceController extends MainController
     public function scheduledPackageDestroy($id)
     {
         $id = Crypt::decrypt($id);
-        // $service_img = ScheduledPackage::where('id', $id)->first();
-        // $old_image_other = $service_img->image_other;
-        // if($old_image_other){
-        //     removeFile('uploads/service/package/'.$old_image_other);
-        // }
-        // $old_image = $service_img->image;
-        // if($old_image){
-        //     removeFile('uploads/service/package/'.$old_image);
-        // }
+        $service_img = ScheduledPackage::where('id', $id)->first();
+        $old_image_other = $service_img->image_other;
+        if($old_image_other){
+            removeFile('uploads/service/package/'.$old_image_other);
+        }
+        $old_image = $service_img->image;
+        if($old_image){
+            removeFile('uploads/service/package/'.$old_image);
+        }
         $page = ScheduledPackage::where('id', $id)->delete();
         if($page) {
 
@@ -482,7 +483,7 @@ class ServiceController extends MainController
 
             return DataTables::of($list)
                 ->addColumn('image', function ($row) {
-                    $image = $row->image ? "<img src='".url($row->image)."' width='80px' height='80px'>" : '';
+                    $image = $row->image ? "<img src='".url('uploads/service/package/'.$row->image)."' width='80px' height='80px'>" : '';
                     return $image;
                 })
                 ->addColumn('category', function($row){

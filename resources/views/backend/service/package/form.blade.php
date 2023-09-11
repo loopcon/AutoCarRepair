@@ -98,7 +98,7 @@
                                     <input type="text" class="form-control" id="note" name="note" placeholder="{{__('Note')}}"  value="{{ isset($record->note) ? $record->note : old('note') }}">
                                     @if ($errors->has('note')) <div class="text-danger">{{ $errors->first('note') }}</div>@endif
                                 </div>
-                                <div class="mb-3 col-md-4">
+                                <?php /**<div class="mb-3 col-md-4">
                                     <label class="form-label" for="image">{{__('Image')}}</label>
                                     <input type="url" class="form-control" id="image" name="image" placeholder="{{__('Image')}}"  value="{{ isset($record->image) ? $record->image : old('image') }}" required="" data-parsley-required-message="{{ __("This value is required.")}}">
                                     @if ($errors->has('image')) <div class="text-danger">{{ $errors->first('image') }}</div>@endif
@@ -107,9 +107,9 @@
                                     <label class="form-label" for="image_other">{{__('Other Image')}}</label>
                                     <input type="url" class="form-control" id="image_other" name="image_other" placeholder="{{__('Image')}}"  value="{{ isset($record->image_other) ? $record->image_other : old('image_other') }}">
                                     @if ($errors->has('image_other')) <div class="text-danger">{{ $errors->first('image_other') }}</div>@endif
-                                </div>
+                                </div>**/ ?>
 
-                                <?php /**<div class="mb-3 col-md-4">
+                                <div class="mb-3 col-md-4">
                                     <label class="form-label" for="image">{{__('Image')}}</label>
                                     <div class="profile-icon">
                                         @php($i = 0)
@@ -146,7 +146,7 @@
                                         <input type="file" id="uploadImage{{$i}}" accept="image/x-png, image/gif, image/jpeg" class="btn btn-warning btn-block btn-sm"  name="image_other" data-parsley-required-message="{{ __("This value is required.")}}" onChange="this.parentNode.nextSibling.value = this.value; PreviewImage({{$i}});" >
                                         @if ($errors->has('image_other')) <div class="errors_msg">{{ $errors->first('image_other') }}</div>@endif
                                     </div>
-                                </div>**/ ?>
+                                </div>
 
                                 <div class="col-12 row" id="specifications">
                                     <div class="col-6">
