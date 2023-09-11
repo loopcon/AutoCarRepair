@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="{{isset($meta_description) ? $meta_description : ''}}">
     <meta name="keywords" content="{{isset($meta_keywords) ? $meta_keywords : ''}}">
+    <meta name="meta_title" content="{{isset($meta_title) ? $meta_title : ''}}">
+    <meta name="meta_tag" content="{{isset($extra_meta_tag) ? $extra_meta_tag : ''}}">
     <title>{{$site_title.' | '. $site_name}}</title>
     <link rel="icon"  href="{{ asset('public/favicon.ico') }}">
     <link rel="stylesheet" href="{{ asset('front/css/bootstrap.min.css') }}">
@@ -82,21 +84,6 @@
                     <?php /* <img data-bs-toggle="modal" data-bs-target="#searchbarModal"  src="{{ asset('front/img/navbar-search-icon.png') }}" alt=""> */ ?>
                      <span class="search-svg-main" data-bs-toggle="modal" data-bs-target="#searchbarModal" ><i class="fa-solid fa-magnifying-glass"></i></span>
                 </div>
-                <div class="modal fade" id="searchbarModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog searchbar-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="Search" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                              </div>
-                        </div>
-                    </div>
-                    </div>
-                </div>
-                
                 <div>
                     <a class="navbar-appointment-btn apt-btn" href="javascript:void(0)" >Book A Service</a>
                 </div>
@@ -173,13 +160,13 @@
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </div>
                     </div>
-                    <div class="row m-0" id="amodal_brands">
+                    <div class="row m-0 select-brand-imgmain" id="amodal_brands">
                         @php($brands = getbrands())
                         @if($brands->count())
                             @foreach($brands as $brand)
                                 @if($brand->image)
                                     <div class="col-4 brand-logo-center">
-                                        <a href="javascript:void(0);" class="amodal-brand" data-id="{{$brand->id}}"><img src="{{ asset('public/uploads/carbrand/'.$brand->image) }}" class="img-fluid" alt=""></a>
+                                        <a href="javascript:void(0);" class="amodal-brand" data-id="{{$brand->id}}"><img src="https://{{$brand->image}}" class="img-fluid" alt=""></a>
                                     </div>
                                 @endif
                             @endforeach
@@ -209,7 +196,10 @@
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </div>
                     </div>
-                    <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#appointmentselectModal">Change</a>
+                    <div class="changeandbackmainbtn">
+                        <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#appointmentselectModal">Change</a>    
+                        <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#appointmentselectModal">Back</a>
+                    </div>
                     <div class="row m-0 search-modal-box" id="amodal_models">
 
                     </div>
@@ -284,3 +274,17 @@
 </div>
 <!-- Appointment Number modal -->
 <!-- navbar end  -->
+<div class="modal fade" id="searchbarModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog searchbar-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control search_text" placeholder="Search" value="{{Request::get('search')}}" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

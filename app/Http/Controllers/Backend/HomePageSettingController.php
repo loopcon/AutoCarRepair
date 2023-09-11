@@ -25,14 +25,15 @@ class HomePageSettingController extends MainController
     public function update(request $request)
     {
         $content = HomePageSetting::find(1);
-        if($request->hasFile('section1_image')) {
-            $old_image = isset($content->section1_image) ? $content->section1_image : NULL;
-            if($old_image){
-                removeFile('uploads/content/'.$old_image);
-            }
-            $newName = fileUpload($request, 'section1_image', 'uploads/content');
-            $content->section1_image = $newName;
-        }
+        // if($request->hasFile('section1_image')) {
+        //     $old_image = isset($content->section1_image) ? $content->section1_image : NULL;
+        //     if($old_image){
+        //         removeFile('uploads/content/'.$old_image);
+        //     }
+        //     $newName = fileUpload($request, 'section1_image', 'uploads/content');
+        //     $content->section1_image = $newName;
+        // }
+        $content->section1_image = $request->section1_image;
         $content->section1_title1 = $request->section1_title1;
         $content->section1_title2 = $request->section1_title2;
         $content->footer_description = $request->footer_description;
@@ -81,16 +82,17 @@ class HomePageSettingController extends MainController
                         $brand_slider = new BrandLogoSlider();
                         $brand_slider->created_by = Auth::guard('admin')->user()->id;
                     }
-                    if($request->hasFile($image)) {
-                        if($request->$id){
-                            $old_image = $brand_slider->image;
-                            if($old_image){
-                                removeFile('uploads/brandlogoslider/'.$old_image);
-                            }
-                        }
-                        $newName = fileUpload($request, $image, 'uploads/brandlogoslider/');
-                        $brand_slider->image = $newName;
-                    }
+                    // if($request->hasFile($image)) {
+                    //     if($request->$id){
+                    //         $old_image = $brand_slider->image;
+                    //         if($old_image){
+                    //             removeFile('uploads/brandlogoslider/'.$old_image);
+                    //         }
+                    //     }
+                    //     $newName = fileUpload($request, $image, 'uploads/brandlogoslider/');
+                    //     $brand_slider->image = $newName;
+                    // }
+                    $brand_slider->image = $request->$image ? $request->$image : NULL;
                     $brand_slider->image_title = $request->$image_title ? $request->$image_title : NULL;
                     $brand_slider->save();
                 }
@@ -103,11 +105,11 @@ class HomePageSettingController extends MainController
 
     public function slideDelete(request $request)
     {
-        $brand_slider = BrandLogoSlider::where('id', $request->id)->first();
-        $old_image = $brand_slider->image;
-        if($old_image){
-            removeFile('uploads/brandlogoslider/'.$old_image);
-        }
+        // $brand_slider = BrandLogoSlider::where('id', $request->id)->first();
+        // $old_image = $brand_slider->image;
+        // if($old_image){
+        //     removeFile('uploads/brandlogoslider/'.$old_image);
+        // }
         BrandLogoSlider::where('id', $request->id)->delete();
     }
 }

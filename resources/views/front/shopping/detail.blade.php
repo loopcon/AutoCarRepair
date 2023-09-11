@@ -21,7 +21,7 @@
                         @foreach($record->images as $image)
                             <div class="item">
                                 <div class="product-inner-imgmain">
-                                    <img src="{{ asset('public/uploads/product/'.$record->id.'/'.$image->image) }}" class="img-fluid" alt="" title="{{isset($image->image_title) ? $image->image_title : NULL}}">
+                                    <img src="{{ url($image->image) }}" class="img-fluid" alt="" title="{{isset($image->image_title) ? $image->image_title : NULL}}">
                                 </div>
                             </div>
                         @endforeach
@@ -32,7 +32,7 @@
                         @foreach($record->images as $image)
                             <div class="item">
                                 <div class="product-inner-imgmain">
-                                    <img src="{{ asset('public/uploads/product/'.$record->id.'/'.$image->image) }}" class="img-fluid" alt="" title="{{isset($image->image_title) ? $image->image_title : NULL}}">
+                                    <img src="{{ url($image->image) }}" class="img-fluid" alt="" title="{{isset($image->image_title) ? $image->image_title : NULL}}">
                                 </div>
                             </div>
                         @endforeach

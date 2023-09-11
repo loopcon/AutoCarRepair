@@ -55,11 +55,23 @@ class CarBrandController extends MainController
         foreach($fields as $field){
             $carbrand->$field = isset($request->$field) && $request->$field ? $request->$field : NULL;
         }
-        if($request->hasFile('image')) {
-            $newName = fileUpload($request, 'image', 'uploads/carbrand');
-            $carbrand->image = $newName;
-        }
+        // if($request->hasFile('image')) {
+        //     $newName = fileUpload($request, 'image', 'uploads/carbrand');
+        //     $carbrand->image = $newName;
+        // }
         $carbrand->slug = $slug;
+        if ($request->has('image')) {
+            $originalImageLink = $request->image;
+            
+            if (preg_match('/\/d\/(.*?)\//', $originalImageLink, $matches)) {
+                $fileId = $matches[1];
+                $directImageLink = "https://drive.google.com/uc?export=download&id={$fileId}";
+                $carbrand->image = $directImageLink;
+            } else {
+                // If it's not a Google Drive link, use it as is
+                $carbrand->image = $originalImageLink;
+            }
+        }
         $carbrand->created_by = Auth::guard('admin')->user()->id;
         $carbrand->save();
         if($carbrand){
@@ -117,14 +129,26 @@ class CarBrandController extends MainController
         foreach($fields as $field){
             $carbrand->$field = isset($request->$field) && $request->$field ? $request->$field : NULL;
         }
-        if($request->hasFile('image')) {
-            $old_image = $carbrand->image;
-            if($old_image){
-                removeFile('uploads/carbrand/'.$old_image);
+        if ($request->has('image')) {
+            $originalImageLink = $request->image;
+            
+            if (preg_match('/\/d\/(.*?)\//', $originalImageLink, $matches)) {
+                $fileId = $matches[1];
+                $directImageLink = "https://drive.google.com/uc?export=download&id={$fileId}";
+                $carbrand->image = $directImageLink;
+            } else {
+                // If it's not a Google Drive link, use it as is
+                $carbrand->image = $originalImageLink;
             }
-            $newName = fileUpload($request, 'image', 'uploads/carbrand');
-            $carbrand->image = $newName;
         }
+        // if($request->hasFile('image')) {
+        //     $old_image = $carbrand->image;
+        //     if($old_image){
+        //         removeFile('uploads/carbrand/'.$old_image);
+        //     }
+        //     $newName = fileUpload($request, 'image', 'uploads/carbrand');
+        //     $carbrand->image = $newName;
+        // }
         $carbrand->slug = $slug;
         $carbrand->updated_by = Auth::guard('admin')->user()->id;
         $carbrand->save();
@@ -150,11 +174,11 @@ class CarBrandController extends MainController
        );
        $is_delete = checkDeleteConstrainnt($constraint_array, $id);
        if($is_delete) {
-            $image = CarBrand::where('id', $id)->first();
-            $old_image = $image->image;
-            if($old_image){
-                removeFile('uploads/carbrand/'.$old_image);
-            }
+            // $image = CarBrand::where('id', $id)->first();
+            // $old_image = $image->image;
+            // if($old_image){
+            //     removeFile('uploads/carbrand/'.$old_image);
+            // }
 
             $carbrand = CarBrand::where('id', $id)->delete();
             if($carbrand) {
@@ -174,7 +198,8 @@ class CarBrandController extends MainController
 
             return DataTables::of($list)
                 ->addColumn('image', function ($row) {
-                    $image = $row->image ? "<img src='".url('uploads/carbrand/'.$row->image)."' width='80px' height='80px'>" : '';
+                    $image = $row->image ? "<img src='".url($row->image)."' width='80px' height='80px'>" : '';
+                    // $image = $row->image ? $row->image : '';
                     return $image;
                 })
                 ->addColumn('status', function ($row) {

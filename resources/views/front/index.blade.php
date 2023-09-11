@@ -13,13 +13,13 @@
                         <h2>{{ isset($hsetting->section1_title1) ? $hsetting->section1_title1 : ''}} </h2>
                         <h5>{{ isset($hsetting->section1_title2) ? $hsetting->section1_title2 : ''}}</h5>
                         <p>{{ isset($hsetting->section1_description) ? $hsetting->section1_description : ''}}</p>
-                        <a class="get-service-btn apt-btn" href="javascript:void(0);">Get Service</a>
+                        <a class="get-service-btn apt-btn" href="javascript:void(0);">About Us</a>
                         <!-- <button>Get Service</button> -->
                     </div>
                 </div>
                 <div class="col-12 col-md-6">
                     <div>
-                        <img src="{{ isset($hsetting->section1_image) && $hsetting->section1_image ? asset('uploads/content/'.$hsetting->section1_image) : asset('front/img/slider-image.png') }}" class="img-fluid" alt="" title="{{ isset($hsetting->image_title) ? $hsetting->image_title : ''}}">
+                        <img src="{{ isset($hsetting->section1_image) && $hsetting->section1_image ? url($hsetting->section1_image) : asset('front/img/slider-image.png') }}" class="img-fluid" alt="" title="{{ isset($hsetting->image_title) ? $hsetting->image_title : ''}}">
                     </div>
                 </div>
             </div>
@@ -29,36 +29,39 @@
 <!-- slider section  end -->
 
 <!-- slider down service start  -->
+<style>
+    .our-service-section .servic-type-box h5{ color: #222; font-size: 18px; font-weight: bold;  text-align: center; margin-bottom: 0px; }
+    .our-service-section .servic-type-box {
+        background: #f1f1f1;
+    }
+    </style>
+<!-- slider down service start  -->
 <div class="container">
-    <div class="service-section">
-        <div>
-            <a href="{{url('our-services')}}" class="service-main-btn">Services</a>
-        </div>
-        <div class="always-service-text">
-            <p>We Always Ready to Serve You the Best Service</p>
+    <div class="our-service-section">
+        <div class="service-main-heading">
+            <h2>Our Services</h2>
         </div>
         <div class="row m-0">
             @if($scategories->count())
                 @php($key = 0)
                 @foreach($scategories as $sk => $service)
                     <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                        <a href="{{url($service->slug)}}">
-                            <div class="services-cate-main services-cate-common{{$key}}">
-                                <div class="car-service-img-main">
-                                    @if(isset($service->image) && $service->image)
-                                        <img src="{{ asset('uploads/service/category/'.$service->image) }}" class="img-fluid" alt="" title="{{$service->title}}" />
+                       
+                            <a class="servic-type-box-section" href="{{url($service->slug)}}">
+                                <div class="servic-type-box">
+                                    @if(!empty($service->icon_image) && isset($service->icon_image))
+                                        <img src="{{ url($service->icon_image) }}" class="servic-type-box-image" alt="" title="">
                                     @else
-                                        <img src="{{ asset('front/img/no_image.jpg') }}" class="img-fluid" alt="">
+                                        <img src="{{ asset('front/img/no_image.jpg') }}" class="img-fluid" alt="" title="{{ $service->title }}">
                                     @endif
+                                    <div class="service-type-head">
+                                        <h5>{{ $service->title }}</h5>
+                                    </div> 
+                                    
                                 </div>
-                                <div class="services-cate-item" >
-                                    <img src="{{ asset('uploads/service/category/icon/'.$service->icon_image) }}" class="service-cat-smallimg" alt="" title="{{$service->title}}">
-                                    <div class="home-service-main"> <h4> {{$service->title}} </h4> </div>
-                                    <?php /* <p >We are always help to make one of the best adjustment service </p>
-                                    <img src="{{ asset('front/img/ser-cat'.$img.'big.png') }}" class="se-cat-bigimage" alt="" title="{{$service->title}}"> */ ?>
-                                </div>
-                            </div>
-                        </a>
+                            </a>
+                       
+                    
                     </div>
                 @php($key++)
                 @if($key == 6)
@@ -70,52 +73,49 @@
     </div>       
 </div>
 <!-- slider down service end  -->
+<!-- slider down service end  -->
 
 <!-- why choose us start  -->
     <div class="why-choose-section">
         <div class="container">
-            <div class="row m-0 why-choose-box-main">
-                <div class="col-12 col-md-6">
-                    <div class="why-choose-img-main">
-                        <img src="{{ asset('front/img/advance-service-main.webp') }}" class="img-fluid" alt="" title="Why Choose Us">
-                    </div>
-                </div>
-                <div class="col-12 col-md-6">
+            <div class="row m-0 p-10 why-choose-box-main">
+               
+                <div class="col-12 col-md-12">
                     <div class="why-choose-main">
-                        <div class="why-choose-item">
+                        <div class="why-choose-item  text-center">
                             <h4>Why Choose Us?</h4>
                             <h5> Why Choose Auto Car Repair Service?</h5>
                             <p>Our goal is to ensure that every customer’s satisfaction is guaranteed. We 
                                 have a range of highly skilled technicians who can perform work on a 
                                 variety of makes and models.</p>    
                         </div>
-                        <div class="row m-0">
-                            <div class="col-12 col-sm-6"> 
+                        <div class="row m-0 why-choose-section-new">
+                            <div class="col-12 col-sm-3"> 
                                 <div class="why-choose-inner-item">
                                     <img src="{{ asset('front/img/why-mechanic.webp') }}" class="img-fluid" alt="" title="car repair service">
                                     <h4>Skilled Technicians</h4>
-                                    <p>We want to get you in and out quickly while providing you top notch auto repair service in Delhi.</p>
+                                    <p>We want to get you in and out quickly while providing you top notch auto repair service.</p>
                                 </div>
                             </div>
-                            <div class="col-12 col-sm-6">
+                            <div class="col-12 col-sm-3">
                                 <div class="why-choose-inner-item">
                                     <img src="{{ asset('front/img/why-qualservice.webp') }}" class="img-fluid" alt="" title="car repair service">
                                     <h4>Quality Services</h4>
                                     <p>We take pride in offering you the best services available and 100% Satisfaction Guarantee.</p>
                                 </div>
                             </div>
-                            <div class="col-12 col-sm-6">
+                            <div class="col-12 col-sm-3">
                                 <div class="why-choose-inner-item">
                                     <img src="{{ asset('front/img/why-car-insurance.webp') }}" class="img-fluid" alt="" title="">
-                                    <h4>Cashless Insurance Claims</h4>
+                                    <h4>Insurance Claims</h4>
                                     <p>We take pride in offering you the best services available and 100% Satisfaction Guarantee.</p>
                                 </div>
                             </div>
-                            <div class="col-12 col-sm-6">
+                            <div class="col-12 col-sm-3">
                                 <div class="why-choose-inner-item">
                                     <img src="{{ asset('front/img/why-car-parts.webp') }}" class="img-fluid" alt="" title="">
                                     <h4>100% OEM Genuien Parts</h4>
-                                    <p>We want to get you in and out quickly while providing you top notch auto repair service in Delhi.</p>
+                                    <p>We want to get you in and out quickly while providing you top notch auto repair service.</p>
                                 </div>
                             </div>
                         </div>
@@ -125,20 +125,60 @@
         </div>
     </div>
 <!-- why choose us end  -->
+<!--extra service-->
+<div class="container choose-service-centersection spc ">
+    <div class="newservice  text-center">
+        <h4>Popular Car services</h4>
+        <h5> Why Choose Auto Car Repair Service?</h5>
+       
+    </div>
+    <div id="choose-service-center" class="owl-carousel owl-theme">
+        @if($scategories->count())
+        @php($key = 0)
+        @foreach($scategories as $sk => $service)
+                <div class="item">
+                    <div class="extraservice">
+               
+                      
+                        <a class="servic-type-box-section" href="{{url($service->slug)}}">
+                            <div class="servic-type-box">
+                                <img src="{{asset('uploads/service/category/icon/'.$service->icon_image)}}" class="servic-type-box-image" alt="" title="">
+                                <div class="service-type-head">
+                                    <h5>{{ $service->title }}</h5>
+                                </div> 
+                                
+                            </div>
+                        </a>
+                  
+                   
+                </div>
+                </div>
+             
+                @php($key++)
+                @if($key == 6)
+                    @php($key = 0)
+                @endif
+                @endforeach
+            @endif   
+    </div>
+</div>
+<!--end extra service -->
 <!-- offer section  start  -->
 <div class="offeer-section">
-    <div>
+    <div class="container">
+        <h3>ACR Offers</h3>
+        <br>
         <div id="offer-carousel" class="owl-carousel ">
             @if($offer_slider->count())
                 @foreach($offer_slider as $slider)
                 <div class="item">
                     <div class="offer-section-main">
-                        <img class="img-fluid" src="{{ asset('uploads/offerslider/'.$slider->image) }}"  alt="" title="{{ isset($slider->image_title) ? $slider->image_title : ''}}">
+                        <img class="img-fluid" src="{{ url($slider->image) }}"  alt="" title="{{ isset($slider->image_title) ? $slider->image_title : ''}}">
                         <div class="offer-section-item">
                             <div class="container">
                                 <p>{{$slider->title1}}</p>
                                 <h4>{{$slider->title2}}</h4>
-                                <a href="{{url('our-services')}}" target="_blank" ><button class="explore-btn">{{$slider->btn_title}}</button></a>
+                                <?php /* <a href="{{url('our-services')}}" target="_blank" ><button class="explore-btn">{{$slider->btn_title}}</button></a> */ ?>
                             </div>
                         </div>
                     </div>
@@ -147,7 +187,7 @@
             @endif  
         </div>
     </div>
-</div> 
+</div>
 <!-- offer section  start  -->
 <!-- testimonial start  -->
 <div class="testimonial-section">
@@ -183,7 +223,7 @@
                             <div class="test-rating-sec-main">   
                                 <div>
                                     <div class="test-rating-main">
-                                        <img src="{{ asset('front/img/alon-musk-img.png') }}" class="img-fluid" alt="" title="Testimotionals">
+                                        <img src="{{ asset('front/img/alon-musk-img.png') }}" class="img-fluid" alt="" title="">
                                     </div>
                                 </div>  
                                 <div class="test-rating-sec-item">
@@ -282,7 +322,7 @@
                 @foreach($brand_logo_slider as $record)
                     <div class="item">
                         <div class="partner-brand-logo">
-                            <img src="{{ asset('uploads/brandlogoslider/'.$record->image) }}"  alt="" title="{{$record->image_title}}">
+                            <img src="{{ url($slider->image) }}"  alt="" title="{{$record->image_title}}">
                         </div>
                     </div>
                 @endforeach
@@ -292,7 +332,7 @@
 </div>
 <!-- brand logo  slider end -->
 <!-- save more start  -->
-<div class="save-more-section">
+<!-- <div class="save-more-section">
     <div class="container">
         <div class="row m-0">
             <div class="col-12 col-md-10 col-lg-6">
@@ -307,7 +347,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 <!-- save more end  -->
 <!-- form section start  -->
 <div class="form-section-bg">
@@ -383,7 +423,13 @@
         @if($service_center->count())
             @foreach($service_center as $detail)
                 <div class="item">
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#servicecenterModal-{{$detail->id}}"><img src="{{ asset('uploads/servicecenterdetail/'.$detail->image) }}" class="service-center-slider-img detail" alt="" title="{{$detail->image_title}}"></a>
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#servicecenterModal-{{$detail->id}}">
+                        @if(!empty($detail->image) && isset($detail->image))
+                            <img src="{{ url($detail->image) }}" class="service-center-slider-img detail" alt="" title="{{$detail->image_title}}">
+                        @else
+                            <img src="{{ asset('front/img/no_image.jpg') }}" class="img-fluid" alt="" title="{{ $detail->image_title }}">
+                        @endif
+                    </a>
                 </div>
             @endforeach
         @endif        
@@ -401,7 +447,11 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div>
-                                    <img src="{{ asset('uploads/servicecenterdetail/'.$detail->image) }}" class="service-center-popupimg" alt="" title="{{$detail->image_title}}"> 
+                                    @if(!empty($detail->image) && isset($detail->image))
+                                        <img src="{{ url($detail->image) }}" class="service-center-popupimg" alt="" title="{{$detail->image_title}}">
+                                    @else
+                                        <img src="{{ asset('front/img/no_image.jpg') }}" class="img-fluid" alt="" title="{{ $detail->image_title }}">
+                                    @endif
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -421,14 +471,16 @@
             </div>
         @endforeach
     @endif
-    @if(isset($hsetting->price_list) && $hsetting->price_list)
-        <div class="container">
-            <div class="col-12">
-                <h3>Car Services Price List in NCR, Delhi 2023</h3>
+    <div class="pricelist">
+        @if(isset($hsetting->price_list) && $hsetting->price_list)
+            <div class="container">
+                <div class="col-12">
+                    <h3>Car Services Price List in NCR, Delhi 2023</h3>
+                </div>
+                {!! $hsetting->price_list !!}
             </div>
-            {!! $hsetting->price_list !!}
-        </div>
-    @endif
+        @endif
+    </div>
 </div>
 <!--service center section end -->
 @endsection
@@ -442,7 +494,19 @@ $(document).ready(function(){
             margin: 30,
             dots: false,
             nav: true,
-            items: 1,
+            items: 3,
+            responsiveClass: true,
+            responsive: {
+                0: {
+                items: 1
+                },
+                450:{
+                items: 2
+                },
+                600: {
+                items: 3
+                }
+            }
         });
         $('#testiminoal-carousel').owlCarousel({
             loop: true,

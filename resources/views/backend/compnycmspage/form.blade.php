@@ -15,18 +15,27 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <form method="POST" action="@if(isset($record->id)){{ route('admin_page-update', array('id' => Crypt::encrypt($record->id))) }}@else{{route('admin_page-store')}}@endif" id="page-form" enctype="multipart/form-data" data-parsley-validate="">
+                        <form method="POST" action="@if(isset($record->id)){{ route('admin_compnycms-update', array('id' => Crypt::encrypt($record->id))) }}@else{{route('admin_compnycms-store')}}@endif" id="page-form" enctype="multipart/form-data" data-parsley-validate="">
                             <input type="hidden" name="id" value="{{ isset($record->id) ? Crypt::encrypt($record->id) : '' }}">
                             {{ csrf_field() }}
                             <div class="row">
-                                <div class="mb-3 col-md-6">
+                                <div class="mb-3 col-md-4">
+                                    <label class="form-label" for="section">{{__('Section')}}<span class="text-danger">*</span></label>
+                                    <select class="form-control" name="section" required="">
+                                        <option value="">-- select --</option>
+                                        <option value="0" @if(isset($record->section) && $record->section == '0'){{'selected'}}@endif>Second</option>
+                                        <option value="1" @if(isset($record->section) && $record->section == '1'){{'selected'}}@endif>Third</option>
+                                        <option value="2" @if(isset($record->section) && $record->section == '2'){{'selected'}}@endif>Forth</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3 col-md-4">
                                     <label class="form-label" for="name">{{__('Page Name')}}<span class="text-danger">*</span></label>
                                     <input type="text" class="form-control" id="name" name="name" placeholder="{{__('Page Name')}}" required=""  data-parsley-required-message="{{ __("This value is required.")}}" value="{{ isset($record->name) ? $record->name : old('name') }}">
 
                                     @if ($errors->has('name')) <div class="text-danger">{{ $errors->first('name') }}</div>@endif
                                 </div>
 
-                                <div class="mb-3 col-md-6">
+                                <div class="mb-3 col-md-4">
                                     <label class="form-label" for="slug">{{__('Slug')}}<span class="text-danger">*</span></label>
                                     <input type="text" class="form-control" id="slug" name="slug" placeholder="{{__('Slug')}}" required=""  data-parsley-required-message="{{ __("This value is required.")}}"  value="{{ isset($record->slug) ? $record->slug : old('slug') }}">
 
@@ -38,9 +47,40 @@
                                     <textarea class="form-control" id="description" name="description" placeholder="{{__('Description')}}">{{ isset($record->description) ? $record->description : old('description') }}</textarea>
                                     @if ($errors->has('description')) <div class="text-danger">{{ $errors->first('description') }}</div>@endif
                                 </div>
-                            </div>
+                                <div class="mb-3 col-md-6">
+                                    <label class="form-label" for="banner_image">{{__('Image')}}<span class="text-danger">*</span></label>
+                                    <div class="profile-icon">
+                                        @php($i = 0)
+                                        @if(isset($record->banner_image))
+                                            @if($record->banner_image !='')
+                                                @php($required = '')
+                                                <img style="width:15%;" class='img-responsive previewImage img-fluid' id="uploadPreview{{$i}}" src="{{url('uploads/compnycms/'.$record->banner_image)}}"  alt=''>
+                                            @else
+                                                @php($required = 'required')
+                                                <img style="width:15%;" class='img-responsive img-fluid' id="uploadPreview{{$i}}" src="{{url('public/no.jpg')}}"  alt=''>
+                                            @endif
+                                        @else
+                                            @php($required = 'required')
+                                            <img style="width:15%;" class='img-responsive img-fluid' id="uploadPreview{{$i}}" src="{{url('public/no.jpg')}}"  alt=''>
+                                        @endif
+                                    </div>
+                                    <div class="m-b-10">
+                                        <input type="file" id="uploadImage{{$i}}" accept="image/x-png, image/gif, image/jpeg" class="btn btn-warning btn-block btn-sm"  name="banner_image" {{$required}} data-parsley-required-message="{{ __("This value is required.")}}" onChange="this.parentNode.nextSibling.value = this.value; PreviewImage({{$i}});" >
+                                        @if ($errors->has('banner_image')) <div class="errors_msg">{{ $errors->first('banner_image') }}</div>@endif
+                                    </div>
+                                </div>
+                                <div class="mb-3 col-md-6">
+                                    <label class="form-label" for="image_title">{{__('Banner Image Title')}}<span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="image_title" name="image_title" placeholder="{{__('Image Title')}}" required=""  data-parsley-required-message="{{ __("This value is required.")}}"  value="{{ isset($record->image_title) ? $record->image_title : old('image_title') }}">
 
-                            <div class="form-row">
+                                    @if ($errors->has('image_title')) <div class="text-danger">{{ $errors->first('image_title') }}</div>@endif
+                                </div>
+                                <div class="mb-3 col-md-6">
+                                    <label class="form-label" for="banner_text">{{__('Banner Text')}}<span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="banner_text" name="banner_text" placeholder="{{__('Banner Text')}}" required=""  data-parsley-required-message="{{ __("This value is required.")}}"  value="{{ isset($record->banner_text) ? $record->banner_text : old('banner_text') }}">
+
+                                    @if ($errors->has('banner_text')) <div class="text-danger">{{ $errors->first('banner_text') }}</div>@endif
+                                </div>
                                 <div class="mb-3 col-md-6">
                                     <label class="form-label" for="meta_title">{{__('Meta Title')}}</label>
                                     <input type="text" class="form-control" id="meta_title" name="meta_title" placeholder="{{__('Meta Title')}}" value="{{ isset($record->meta_title) ? $record->meta_title : old('meta_title') }}">
@@ -52,9 +92,9 @@
                                     @if ($errors->has('extra_meta_tag')) <div class="text-danger">{{ $errors->first('extra_meta_tag') }}</div>@endif
                                 </div>
                                 <div class="mb-3 col-md-6">
-                                    <label class="form-label" for="meta_keyword">{{__('Meta Keyword')}}</label>
-                                    <input type="text" class="form-control" id="meta_keyword" name="meta_keyword" placeholder="{{__('Meta Keyword')}}" value="{{ isset($record->meta_keyword) ? $record->meta_keyword : old('meta_keyword') }}">
-                                    @if ($errors->has('meta_keyword')) <div class="text-danger">{{ $errors->first('meta_keyword') }}</div>@endif
+                                    <label class="form-label" for="meta_keywords">{{__('Meta Keyword')}}</label>
+                                    <input type="text" class="form-control" id="meta_keywords" name="meta_keywords" placeholder="{{__('Meta Keyword')}}" value="{{ isset($record->meta_keywords) ? $record->meta_keywords : old('meta_keywords') }}">
+                                    @if ($errors->has('meta_keywords')) <div class="text-danger">{{ $errors->first('meta_keywords') }}</div>@endif
                                 </div>
 
                                 <div class="mb-3 col-md-6">
@@ -65,7 +105,7 @@
                             </div>
 
                             <button type="submit" class="btn btn-primary">{{__('Submit')}}</button>
-                            <a href="{{route('admin_pages')}}" class="btn btn-danger">{{__('Cancel')}}</a>
+                            <a href="{{route('admin_compnycms')}}" class="btn btn-danger">{{__('Cancel')}}</a>
                         </form>
                     </div>
                 </div>
@@ -73,7 +113,6 @@
         </div>
     </div>
 </main>
-
 <meta name="csrf-token" content="{{ csrf_token() }}" />
 @endsection
 @section('javascript')

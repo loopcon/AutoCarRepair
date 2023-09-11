@@ -32,7 +32,7 @@
                                     @if ($errors->has('section1_title2')) <div class="text-danger">{{ $errors->first('section1_title2') }}</div>@endif
                                 </div>
 
-                                <div class="mt-2 col-md-6">
+                                <?PHP /**<div class="mt-2 col-md-6">
                                     <label for="section1_image">{{__('Section 1 Image')}}</label>
                                     <div class="product_image">
                                     @php($required = 'required')
@@ -52,6 +52,12 @@
                                     <div class="m-b-10">
                                         <input type="file" id="uploadImage1" accept="image/x-png, image/gif, image/jpeg" class="btn btn-warning btn-block btn-sm"  name="section1_image" onChange="this.parentNode.nextSibling.value = this.value; PreviewImage(1);">
                                     </div> 
+                                </div>**/ ?>
+                                 <div class="col-md-6">
+                                    <label class="form-label" for="section1_image">{{('Section 1 Image')}}</label>
+                                    <input type="text" class="form-control" id="section1_image" name="section1_image" placeholder="{{__('Section 1 Image')}}"  value="{{ isset($record->section1_image) ? $record->section1_image : old('section1_image') }}">
+
+                                    @if ($errors->has('image_title')) <div class="text-danger">{{ $errors->first('image_title') }}</div>@endif
                                 </div>
 
                                 <div class="col-md-6">

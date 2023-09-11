@@ -28,12 +28,13 @@
                 </ul>     
             </li>
 
-            <li class="sidebar-item {{ (request()->is('backend/page*') || request()->is('backend/faq*') || request()->is('backend/service-center-detail*'))? 'active' : '' }}">
+            <li class="sidebar-item {{ (request()->is('backend/page*') || request()->is('backend/faq*') || request()->is('backend/service-center-detail*') || request()->is('backend/compnycms*'))? 'active' : '' }}">
                 <a data-bs-target="#sidebar_pages" data-bs-toggle="collapse" class="sidebar-link collapsed">
                     <i class="align-middle" data-feather="slack"></i> <span class="align-middle">{{ __('Content Settings')}}</span>
                 </a>
-                <ul id="sidebar_pages" class="sidebar-dropdown list-unstyled collapse {{ (request()->is('backend/page*') || request()->is('backend/faq*') || request()->is('backend/service-center-detail*'))  ? 'show' : '' }}" data-parent="#sidebar">
+                <ul id="sidebar_pages" class="sidebar-dropdown list-unstyled collapse {{ (request()->is('backend/page*') || request()->is('backend/faq*') || request()->is('backend/service-center-detail*') || request()->is('backend/compnycms*'))  ? 'show' : '' }}" data-parent="#sidebar">
                     <li class="sidebar-item {{ (request()->is('backend/page*')) ? 'active' : '' }}"><a class="sidebar-link" href="{{ route('admin_pages')}}">{{ __('Page')}}</a></li>
+                    <li class="sidebar-item {{ (request()->is('backend/compnycms*')) ? 'active' : '' }}"><a class="sidebar-link" href="{{ route('admin_compnycms')}}">{{ __('Compny Cms Page')}}</a></li>
                     <li class="sidebar-item {{ (request()->is('backend/faq*')) ? 'active' : '' }}"><a class="sidebar-link" href="{{ route('admin_faq')}}">{{ __('Faq')}}</a></li>
                     <li class="sidebar-item {{ (request()->is('backend/service-center-detail*')) ? 'active' : '' }}"><a class="sidebar-link" href="{{ route('admin_service-center-detail')}}">{{ __('Service Center Detail')}}</a></li>
                 </ul> 

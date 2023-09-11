@@ -26,6 +26,7 @@
                         <table id="categories" class="table table-striped" style="width:100%">
                             <thead>
                                 <tr>
+                                    <th>{{__('Reorder')}}</th>
                                     <th>{{__('Id')}}</th>
                                     <th>{{__('Image')}}</th>
                                     <th>{{__('Title')}}</th> 
@@ -64,6 +65,7 @@
                 "pageLength": 100,
                 "lengthMenu": [[50, 100, 200, 400], [50, 100, 200, 400]],
                 "columns": [
+                    {data: 'order_by', name: 'order_by'},
                     {data: 'id', name: 'id'},
                     {data: 'image', name: 'image'},
                     {data: 'title', name: 'title'},
@@ -156,6 +158,20 @@
                 function(){
                     location.href = href;
                 });
+            });
+
+            $(document).on("change", ".order_by", function() {
+                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                var order_by = $(this).val();
+                var category_id = $(this).data('categoryid');
+                $.ajax({
+                    type : "POST",
+                    url  : "{{ route('admin_service-category-order-by') }}",
+                    data : { _token: CSRF_TOKEN, category_id: category_id, order_by: order_by },
+                    success : function(response) {
+
+                    }
+                })
             });
         });
 

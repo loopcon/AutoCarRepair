@@ -9,6 +9,27 @@ function getCmsPageName($id = ''){
     return $pageData;
 }
 
+function getCompnyCmsPages()
+{
+    $compnycmspages = App\Models\CompnyCmsPage::where([['is_archive','0']])->get();
+    foreach($compnycmspages as $compnycmspage)
+    {
+        if($compnycmspage->section == 0)
+        {
+            $data['second_section'][] = $compnycmspage;
+        }
+        if($compnycmspage->section == 1)
+        {
+            $data['third_section'][] = $compnycmspage;
+        }
+        if($compnycmspage->section == 2)
+        {
+            $data['forth_section'][] = $compnycmspage;
+        }
+    }
+    return $data;
+}
+
 function getSettingInfo($label){
     $sData = App\Models\Page::select('value')->where('label', $label)->first();
     $result = isset($sData->value) && $sData->value ? $sData->value : NULL;

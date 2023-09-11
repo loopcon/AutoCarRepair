@@ -69,6 +69,14 @@
         font-size: 18px;
     }
 }
+@media (min-width:768px){
+    .mobile-filter-mian{
+        display: none;
+    }
+    .mobile-filter-iconmain{
+        display: none;
+    }
+}
 @media (max-width:767px) {
     .slider-section-main h2{ font-size: 50px; }
     .slider-section-main h5{ font-size: 32px;}
@@ -106,6 +114,7 @@
     .shopping-section .shoping-main-product:hover{transform: scale(1);}
     .service-innersection-mian .service-inner-mainbg:hover{transform: scale(1);}
     .cms-page-section{ margin-top: 20px;}
+    .fliter-main{ display: none;}
 }
 @media (max-width:575px) {
     .slider-section-main h2{ font-size: 35px; }
@@ -218,4 +227,5 @@
     .btn-toggle-item svg{ font-size: 20px;}
     .acr-logo{ height: 60px;}
     .choose-service-centersection{ padding:40px !important;}
+    .fliter-main{ display: none;}
 }

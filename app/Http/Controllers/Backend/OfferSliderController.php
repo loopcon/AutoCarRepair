@@ -44,21 +44,22 @@ class OfferSliderController extends MainController
                         $offer_slider->created_by = Auth::guard('admin')->user()->id;
                     }
 
+                    $offer_slider->image = $request->$image ? $request->$image : NULL;
                     $offer_slider->image_title = $request->$image_title ? $request->$image_title : NULL;
                     $offer_slider->title1 = $request->$title1 ? $request->$title1 : NULL;
                     $offer_slider->title2 = $request->$title2 ? $request->$title2 : NULL;
                     $offer_slider->btn_title = $request->$btn_title ? $request->$btn_title : NULL;
                     $offer_slider->btn_link = $request->$btn_link ? $request->$btn_link : NULL;
-                    if($request->hasFile($image)) {
-                        if($request->$id){
-                            $old_image = $offer_slider->image;
-                            if($old_image){
-                                removeFile('uploads/offerslider/'.$old_image);
-                            }
-                        }
-                        $newName = fileUpload($request, $image, 'uploads/offerslider/');
-                        $offer_slider->image = $newName;
-                    }
+                    // if($request->hasFile($image)) {
+                    //     if($request->$id){
+                    //         $old_image = $offer_slider->image;
+                    //         if($old_image){
+                    //             removeFile('uploads/offerslider/'.$old_image);
+                    //         }
+                    //     }
+                    //     $newName = fileUpload($request, $image, 'uploads/offerslider/');
+                    //     $offer_slider->image = $newName;
+                    // }
                     $offer_slider->save();
                 }    
             }   
@@ -70,11 +71,11 @@ class OfferSliderController extends MainController
 
     public function offerSliderDelete(request $request)
     {
-        $offer_slider = OfferSlider::where('id', $request->id)->first();
-        $old_image = $offer_slider->image;
-        if($old_image){
-            removeFile('uploads/offerslider/'.$old_image);
-        }
+        // $offer_slider = OfferSlider::where('id', $request->id)->first();
+        // $old_image = $offer_slider->image;
+        // if($old_image){
+        //     removeFile('uploads/offerslider/'.$old_image);
+        // }
         OfferSlider::where('id', $request->id)->delete();
     }
 }

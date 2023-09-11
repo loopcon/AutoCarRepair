@@ -621,3 +621,39 @@ ALTER TABLE `scheduled_package_detail`
 -- Disha : 1-9-23 11:04 AM
 ALTER TABLE `service_categories` ADD `price_list` LONGTEXT NULL DEFAULT NULL AFTER `description`;
 
+-- Disha : 2-9-23 9:42 AM
+ALTER TABLE `pages` ADD `meta_title` VARCHAR(255) NULL DEFAULT NULL AFTER `is_archive`, ADD `extra_meta_tag` VARCHAR(255) NULL DEFAULT NULL AFTER `meta_title`;
+
+
+-- Disha : 2-9-23 11:16 AM
+-- Table structure for table `compny_cms_page`
+--
+CREATE TABLE `compny_cms_page` (
+  `id` int(11) NOT NULL,
+  `slug` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `description` text DEFAULT NULL,
+  `banner_image` varchar(255) DEFAULT NULL,
+  `image_title` varchar(255) DEFAULT NULL,
+  `banner_text` varchar(255) DEFAULT NULL,
+  `is_archive` tinyint(1) DEFAULT 0 COMMENT '	0=No;1=Yes	',
+  `meta_title` varchar(255) DEFAULT NULL,
+  `extra_meta_tag` varchar(255) DEFAULT NULL,
+  `meta_keywords` varchar(255) DEFAULT NULL,
+  `meta_description` varchar(255) DEFAULT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_by` int(11) DEFAULT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+ALTER TABLE `compny_cms_page`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `compny_cms_page`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+-- Disha : 5-9-23 11:15 AM
+ALTER TABLE `compny_cms_page` ADD `section` TINYINT(1) NULL DEFAULT NULL COMMENT '0=second;1=third;2=forth' AFTER `banner_text`;
+ALTER TABLE `service_categories` ADD `order_by` INT(11) NOT NULL AFTER `is_archive`;
+

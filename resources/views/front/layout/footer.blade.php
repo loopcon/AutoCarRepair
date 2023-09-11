@@ -34,48 +34,38 @@
         <div class="col-12 col-sm-6 col-md-3">
             <ul class="our-service-main">
                 <li class="our-section-head">LUXURY BRANDS</li>
-                <li><a href="#">Mercedes</a></li>
-                <li><a href="#">BMW</a></li>
-                <li><a href="#">Audi</a></li>
-                <li><a href="#">Volvo</a></li>
-                <li><a href="#">Mitsubishi</a></li>
-                <li><a href="#">Jaguar</a></li>
-                <li><a href="#">Porsche</a></li>
-                <li><a href="#">Rolls Royce</a></li>
-                <li><a href="#">Ferrari</a></li>
-                <li><a href="#">Land Rover</a></li>
+                @php($compnyInfo = getCompnyCmsPages())
+                @if(isset($compnyInfo['second_section']))
+                    @foreach($compnyInfo['second_section'] as $info)
+                        @if(isset($info->slug) && $info->slug)
+                            <li><a href="{{url($info->slug)}}">{{isset($info->name) ? ucwords($info->name) : ''}}</a></li>
+                        @endif
+                    @endforeach
+                @endif
             </ul>
         </div>
         <div class="col-12 col-sm-6 col-md-3">
             <ul class="our-service-main">
                 <li class="our-section-head">POPULAR BRANDS</li>
-                <li><a href="#">Maruti Suzuki</a></li>
-                <li><a href="#">Hyundai</a></li>
-                <li><a href="#">Honda</a></li>
-                <li><a href="#">Toyota</a></li>
-                <li><a href="#">Tata</a></li>
-                <li><a href="#">Mahindra</a></li>
-                <li><a href="#">Chevrolet</a></li>
-                <li><a href="#">Fiat</a></li>
-                <li><a href="#">Renault</a></li>
-                <li><a href="#">Kia</a></li>
-                <li><a href="#">Skoda</a></li>
-                <li><a href="#">Volkswagen</a></li>
+                @if(isset($compnyInfo['third_section']))
+                    @foreach($compnyInfo['third_section'] as $info)
+                        @if(isset($info->slug) && $info->slug)
+                            <li><a href="{{url($info->slug)}}">{{isset($info->name) ? ucwords($info->name) : ''}}</a></li>
+                        @endif
+                    @endforeach
+                @endif
             </ul>
         </div>
         <div class="col-12 col-sm-6 col-md-3">
             <ul class="our-service-main">
                 <li class="our-section-head">POPULAR AREAS NEAR YOU</li>
-                <li><a href="#">Garage near me in Andheri</a></li>
-                <li><a href="#">Garage near me in Mulund</a></li>
-                <li><a href="#">Garage near me in Powai</a></li>
-                <li><a href="#">Garage near me in Chembur</a></li>
-                <li><a href="#">Garage near me in Goregaon</a></li>
-                <li><a href="#">Garage near me in Ghatkoper</a></li>
-                <li><a href="#">Garage near me in Bandra</a></li>
-                <li><a href="#">Garage near me in Kurla</a></li>
-                <li><a href="#">Garage near me in Borivali</a></li>
-                <li><a href="#">Garage near me in Parel</a></li>
+                @if(isset($compnyInfo['forth_section']))
+                    @foreach($compnyInfo['forth_section'] as $info)
+                        @if(isset($info->slug) && $info->slug)
+                            <li><a href="{{url($info->slug)}}">{{isset($info->name) ? ucwords($info->name) : ''}}</a></li>
+                        @endif
+                    @endforeach
+                @endif
             </ul>
         </div>
     </div>
@@ -114,11 +104,11 @@
             <li><a href="#">Blogs</a></li>
             @php($cmsInfo = getCmsPageName('10'))
                 @if(isset($cmsInfo->slug) && $cmsInfo->slug)
-                    <li><a href="{{url($cmsInfo->slug)}}">Privacy Policy</a></li>
+                    <li><a href="{{url($cmsInfo->slug)}}">{{isset($cmsInfo->name) ? ucwords($cmsInfo->name) : ''}}</a></li>
                 @endif
             @php($cmsInfo = getCmsPageName('12'))
             @if(isset($cmsInfo->slug) && $cmsInfo->slug)
-                <li><a href="{{url($cmsInfo->slug)}}">Terms & Conditions </a></li>
+                <li><a href="{{url($cmsInfo->slug)}}">{{isset($cmsInfo->name) ? ucwords($cmsInfo->name) : ''}}</a></li>
             @endif
         </ul>
     </div>
@@ -206,20 +196,23 @@
 <!-- footer end  -->
 <div class="footer-whatappicon">
      <a href="https://wa.me/{{$whatsapp}}" target="_blank"><img src="{{ asset('front/img/whatsapp-acr-img.webp') }}" class="img-fluid" alt=""></a>
+     <a href="#" id="up-button-main" class=""> 
+        <img src="{{ asset('front/img/back-top.png') }}" class="home-back-totoptext" alt="">
+    </a>
 </div>
 <!-- footer down start -->
-    <div class="footet-down-bg">
+    <?php /*  <div class="footet-down-bg">
         <div class="footet-down-main">
             <div class="row m-0">
                 <div class="col-12 col-sm-6  col-md-4 main-soical-icon">
-                    <?php /* <p>Follow Us:  </p>
+                    <?php / * <p>Follow Us:  </p>
                     <div>
                         <a href="https://{{$facebook}}" target="blank"><i class="fa-brands fa-facebook-f"></i></a>
                         <a href="https://{{$twitter}}" target="blank"><i class="fa-brands fa-twitter"></i></a>
                         <a href="https://{{$linkedin}}" target="blank"><i class="fa-brands fa-linkedin-in"></i></a>
                         <a href="https://{{$instagram}}" target="blank"><i class="fa-brands fa-instagram"></i></a>
                         <a href="https://{{$youtube}}" target="blank"><i class="fa-brands fa-youtube"></i></a>
-                    </div> */?>
+                    </div> * /?>
                 </div> 
                 <div class="col-12 col-sm-6 col-md-5 copy-right-text-main">
                     <p>© {{$copyright_year}} - {{$site_name}} - All rights reserved</p>
@@ -231,7 +224,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> */ ?>
 <meta name="csrf-token" content="{{ csrf_token() }}" />
 <!-- footer down end -->
 <script src="{{ asset('front/js/jquery.min.js') }}"></script>
@@ -265,9 +258,13 @@ $(document).ready(function() {
         $(window).scroll(function () { 
             if ($(window).scrollTop() > 50) {
                 $('#header-sticky').addClass('sticky');
+                $('#up-button-main').addClass('up-btn-sticky');
+                $('#up-button-main').css('display','block');
             }
             if ($(window).scrollTop() < 51) {
                 $('#header-sticky').removeClass('sticky');
+                $('#up-button-main').removeClass('up-btn-sticky');
+                $('#up-button-main').css('display','none');
             }
         });
 
@@ -411,6 +408,18 @@ $(document).ready(function() {
             }
             else {
                 toastr.error('Please Enter Valid Mobile No.');
+            }
+        });
+
+        $(document).on('keypress', '.search_text',function(e) {
+            var $this = $(this);
+            if (e.keyCode === 13) {
+                var search = $this.val();
+                if(search){
+                    var href = "{{route('front_search')}}"+'?search='+search;
+                    console.log(href);
+                    window.location.href = href;
+                }
             }
         });
     //

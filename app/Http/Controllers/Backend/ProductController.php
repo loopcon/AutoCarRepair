@@ -81,9 +81,9 @@ class ProductController extends MainController
                     $name = 'image'.$i;
                     $image_title = 'image_title'.$i;
                     // if($request->hasFile($name)) {
-                        $newName = fileUpload($request, $name, 'uploads/product/'.$product->id);
+                        // $newName = fileUpload($request, $name, 'uploads/product/'.$product->id);
                         $product_img = new ProductImage();
-                        $product_img->image = $newName;
+                        $product_img->image = $request->$name ? $request->$name : NULL;
                         $product_img->is_primary = $is_primary == $i ? '1' : 0;
                         $product_img->product_id = $product->id;
                         $product_img->image_title = $request->$image_title ? $request->$image_title : NULL;
@@ -149,32 +149,37 @@ class ProductController extends MainController
             'updated_by' => Auth::guard('admin')->user()->id,
         ]);
         if($product){
-            $total_images = isset($request->last_id) && $request->last_id ? $request->last_id : NULL;
+            // $total_images = isset($request->last_id) && $request->last_id ? $request->last_id : NULL;
+            $total_images = isset($request->total) && $request->total ? $request->total : NULL;
             $is_primary = isset($request->is_primary) ? isset($request->is_primary) : NULL;
             // $image_title  = isset($request->image_title ) ? isset($request->image_title ) : NULL;
             if($total_images){
                 for($i = 0; $i < $total_images; $i++){
                     $name = 'image'.$i;
                     $image_title = 'image_title'.$i;
+                    $filename = pathinfo($request->$name, PATHINFO_BASENAME);
                     $pid = 'pid'.$i;
                     if($request->$pid){
                         $product_img = ProductImage::find($request->$pid);
                     } else {
                         $product_img = new ProductImage();
                     }
-                    $product_img->is_primary = $is_primary == $i ? '1' : 0;
+                    // $product_img->is_primary = $is_primary == $i ? '1' : 0;
+                    $primary_key = "is_primary".$i;
+                    $product_img->is_primary = isset($request->$primary_key) ? '1' : 0;
                     $product_img->product_id = $id;
                     $product_img->image_title = $request->$image_title ? $request->$image_title : NULL;
-                    if($request->hasFile($name)) {
-                        if($request->$pid){
-                            $old_image = $product_img->image;
-                            if($old_image){
-                                removeFile('uploads/product/'.$id.'/'.$old_image);
-                            }
-                        }
-                        $newName = fileUpload($request, $name, 'uploads/product/'.$id);
-                        $product_img->image = $newName;
-                    }
+                    $product_img->image = $request->$name ? "https://drive.google.com/uc?export=view&id=".$filename : NULL;
+                    // if($request->hasFile($name)) {
+                    //     if($request->$pid){
+                    //         $old_image = $product_img->image;
+                    //         if($old_image){
+                    //             removeFile('uploads/product/'.$id.'/'.$old_image);
+                    //         }
+                    //     }
+                    //     $newName = fileUpload($request, $name, 'uploads/product/'.$id);
+                    //     $product_img->image = $newName;
+                    // }
                     $product_img->save();
                 }
             }

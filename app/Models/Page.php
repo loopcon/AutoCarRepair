@@ -10,5 +10,5 @@ class Page extends Model
     use HasFactory;
 
     protected $table = 'pages';
-    protected $fillable = ['slug', 'name', 'description', 'meta_keyword', 'meta_description'];
+    protected $fillable = ['slug', 'name', 'description', 'meta_keyword','meta_title','extra_meta_tag', 'meta_description'];
 }

@@ -74,7 +74,7 @@ a.badge:hover{
 .appointmentsearch-dialog .brand-logo-center { display: flex; align-items: center; justify-content: center; margin-top: 15px; }
 .appointmentsearch-dialog .brand-logo-center a{ text-decoration: none;}
 .appointmentsearch-dialog .select-modal-name {  text-align: center; margin-bottom: 5px; color: #000000; }
-.appointmentsearch-dialog .search-modal-box{ margin: 15px 0px;}
+.appointmentsearch-dialog .search-modal-box{ margin: 15px 0px; height:380px; overflow:auto;}
 /* appointmentsearchModal end */
 /* Appointment fuel modal start  */
 .appointmentfuel-dialog{ height: 100%; display: flex; align-items: center; justify-content: center;}
@@ -293,11 +293,11 @@ a.badge:hover{
 .shopping-section .fliter-main ul li a {  text-decoration: none; color: #000000; display: block;}
 .shopping-section .fliter-main ul li a svg { color:#000000; float: right;  }
 .shopping-section .fliter-item1{  display: none;}
-.shopping-section .shoping-main-product{   min-height: 400px; margin-bottom:15px;background-color: #eeeeee;box-shadow: 1px 2px 4px 1px #0000001E; } 
+.shopping-section .shoping-main-product{   min-height: 400px; margin-bottom:25px;background-color: #eeeeee;box-shadow: 1px 2px 4px 1px #0000001E; padding-bottom:1px; } 
 .shopping-section .shoping-main-product:hover{ transform: scale(1.04); transition: all ease 0.2s;}
 .shopping-section .shoping-main-product img{ height:250px; width:100%; object-fit: contain; }
-.shopping-section .shoping-main-product h5{ font-size: 16px;  margin-right:15px; margin-left:15px; margin-bottom:0px; }
-.shopping-section .shoping-main-product h5 a{ text-decoration: none; color: #000; margin-top:0px; }
+.shopping-section .shoping-main-product h5{ font-size: 16px;  margin-right:15px; margin-left:15px; margin-bottom:10px; }
+.shopping-section .shoping-main-product h5 a{ text-decoration: none; color: #000; margin-top:0px; font-weight:bold;  display:inline-block; }
 .shopping-section .shoping-main-product .shoping-text-name{ margin-top:15px; } 
 .shopping-section .shoping-card-prise { margin: 0px 15px; display: flex; align-items: center; justify-content: space-between;  }
 .shopping-section .shoping-star-group{ color: #E56F31;}
@@ -445,8 +445,8 @@ button { color: #000; outline: none; }
 .call-main svg{ font-size: 60px; color: #164498; margin-bottom: 25px; }
 .call-main a{ display: block; color: #000; text-decoration: none; font-size: 25px;}
 /* shop  center css end  */
-
-.searchbar-dialog .modal-header {  border-bottom: 0px; }
+#searchbarModal .searchbar-dialog{ z-index: 9999 !important; position: relative !important;}
+#searchbarModal .searchbar-dialog .modal-header {  border-bottom: 0px; }
 /* mobile menu css start  */
 .mo-acr-navbar-main{ list-style: none;}
 .mobile-menu-main{ background-color: rgba(22,68,152, 0.2);}
@@ -488,7 +488,7 @@ button { color: #000; outline: none; }
 #plus-btn svg{ font-size: 20px;}
 .shoping-main-product-section{min-height: 450px;}
 .login-icon-main{ transform: translate(-50px, 35px) !important;  }
-.check-box-fliter{ float: right;}
+.check-box-fliter{ float: right;position: absolute;top: 0;right: 0;}
 #sync1 .product-inner-imgmain img{ height: 350px; object-fit: cover; }
 #sync2 .product-inner-imgmain img{ height: 125px; object-fit: cover; }
 .minus-btn{color:#000;}
@@ -545,9 +545,9 @@ button { color: #000; outline: none; }
 .service-center-slider-img{ margin-top: 25px;margin-bottom: 17px;height: 250px;width: 100% !important;object-fit: cover;}
 .serin-appointment-btn-maingroup{display:flex; justify-content:end;}
 .Scheduled-heading-seriner{ margin-top:25px; }
-.sticky{position: fixed;width: 100%;top: 0;z-index: 999;animation: b .9s ease-in-out;}
+.sticky{position: fixed;width: 100%;top: 0;z-index: 99;animation: b .9s ease-in-out;}
 .pagination {
-    display: inline-block;
+    /*display: inline-block;*/
 }
 .pagination a {
     color: #000000;
@@ -570,9 +570,9 @@ button { color: #000; outline: none; }
 }
 .pagination-main{ display: flex; justify-content: center; margin: 15px 0px;}
 .home-email-input{ height:40px !important;}
-.footer-whatappicon{position: fixed;bottom: 10%;right: 4%;z-index:9999;}
+.footer-whatappicon{position: fixed;bottom: 10%;right: 6%;z-index:9;}
 .footer-whatappicon img{ width: 50px;height: 50px;object-fit: cover; }
-.home-back-totoptext{color:#fff; text-decoration: none; font-weight: 600; }
+.home-back-totoptext{color:#fff; text-decoration: none; font-weight: 600;background-color: #000; height: 40px ;  height: 50px !important; width: 50px !important; padding: 8px; border-radius: 5px; }
 .home-back-totoptext:hover{color: #fff;}
 /* new footer  css start  */
 .footer-soical-icon{ display: flex;justify-content: end;margin-right: 35px;margin-bottom: 10px; margin-top: 10px; }
@@ -623,6 +623,7 @@ button { color: #000; outline: none; }
 .filter-click-main span{ float: right;
     position: absolute;
     right: 0;
+    top: 0;
     background-color: #f1f1f1;
     width: 25px;
     text-align: end;
@@ -636,7 +637,6 @@ button { color: #000; outline: none; }
 .cms-page-section{ 
     background-color: #164498;
     padding: 20px;
-
 }
 .cms-image-main{
     height: 450px;
@@ -725,4 +725,36 @@ button { color: #000; outline: none; }
 }
  
 /* cms page css end  */
-
+.mobile-filter-iconmain svg{
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+.mobile-filter-mian{
+    background-color: #eeeeee;
+    display: none;
+    margin-bottom: 20px;
+}
+.mobile-filter-mian ul{
+    list-style: none;
+    padding: 20px;
+}
+.login-drop-main{
+    margin-bottom: 0px;
+    list-style: none;
+    color: #fff;
+}
+#up-button-main{display:none;}
+.up-btn-sticky{
+   display:block;
+   position: fixed;
+   bottom: 10%;
+   right: 1%;
+}
+.select-brand-imgmain{height: 380px;overflow: auto;}
+.select-brand-imgmain::-webkit-scrollbar-track{-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);background-color: #F5F5F5;margin: 10px 0px;}
+.select-brand-imgmain::-webkit-scrollbar{width: 5px;}
+.select-brand-imgmain::-webkit-scrollbar-thumb{background-color: #000000;}
+.appointmentsearch-dialog .search-modal-box::-webkit-scrollbar-track{-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);background-color: #F5F5F5;margin: 10px 0px;}
+.appointmentsearch-dialog .search-modal-box::-webkit-scrollbar{width: 5px;}
+.appointmentsearch-dialog .search-modal-box::-webkit-scrollbar-thumb{background-color: #000000; }
+.changeandbackmainbtn{ display: flex;justify-content: space-between;margin-top: 6px;}
