@@ -11,7 +11,9 @@ use App\Models\ScheduledPackage;
 use App\Models\ScheduledPackageDetail;
 use App\Models\FuelType;
 use Session;
-
+use App\Models\Product;
+use App\Models\ServiceCategory;
+use DB;
 class SearchController extends MainController
 {
     public function brands(request $request)
@@ -180,30 +182,30 @@ class SearchController extends MainController
         if ($request->has('search')) {
             $search = $request->input('search');
             $search = strtolower(str_replace(' ', '', $search));
-            dd($search);
             
-            $query = ScheduledPackageDetail::with(['packageDetail', 'brandDetail', 'modelDetail', 'carTypeDetail', 'offerDetail'])->select('id', 'slug', 'image_alt_text', 'maker_id', 'model_id', 'fuel_type', 'price', 'transmission', 'location', 'image', 'year', 'car_type_id', 'car_status', 'offer_id')->where([['is_archive', Constant::NOT_ARCHIVE], ['status', Constant::ACTIVE]]);
-            $query->whereHas('makerDetail', function( $q ) use ( $search ){
-                $q->whereRaw("LOWER(REPLACE(title, ' ', '')) LIKE '%".$search."%'");
-            })->orWhereHas('modelDetail', function( $q ) use ( $search ){
-                $q->whereRaw("LOWER(REPLACE(title, ' ', '')) LIKE '%".$search."%'");
-            })->orWhereHas('carTypeDetail', function( $q ) use ( $search ){
-                $q->whereRaw("LOWER(REPLACE(title, ' ', '')) LIKE '%".$search."%'");
-            })->orWhereHas('variantDetail', function( $q ) use ( $search ){
-                $q->whereRaw("LOWER(REPLACE(title, ' ', '')) LIKE '%".$search."%'");
-            })->orWhereRaw("LOWER(REPLACE(fuel_type, ' ', '')) LIKE '%".$search."%'")
-            ->orWhereRaw("LOWER(REPLACE(transmission, ' ', '')) LIKE '%".$search."%'");;
-            $cardetails = $query->orderBy('id', 'desc')->paginate(18);
-//            $sql = $query->toSql(); 
-//            dd($sql);
+           $schedulepackage = ScheduledPackage::where('status', 1)
+                    ->where('is_archive', 1)
+                    ->where('title', 'LIKE', '%' . $search . '%')
+                    ->orderBy('id', 'DESC')
+                    ->get();
 
+            $product = Product::with('shopCategoryDetail', 'primaryImage')
+                                        ->where('status', 1)
+                                        ->where('is_archive', 1)
+                                        ->where('name', 'LIKE', '%' . $search . '%')
+                                        ->orderBy('id', 'DESC')
+                                        ->paginate(18);
+
+            $servicecategory=ServiceCategory::where('title', 'LIKE', '%' . $search . '%')
+                                             ->where('status', 1)
+                                             ->where('is_archive', 1)
+                                             ->orderBy('id', 'DESC')
+                                             ->paginate(18);
             $return_data = array();
             $return_data['settings'] = $this->data;
-            $return_data['car_details'] = $cardetails;
-            $return_data['makers'] = Maker::select('id', 'title')->where([['is_archive', Constant::NOT_ARCHIVE], ['status', Constant::ACTIVE]])->orderBy('id', 'DESC')->get();
-            $return_data['car_types'] = CarType::select('id', 'title')->where([['is_archive', Constant::NOT_ARCHIVE], ['status', Constant::ACTIVE]])->orderBy('id', 'DESC')->get();
+            $return_data['car_details'] = $product;
+            $return_data['products']=$product;
             $return_data['site_title'] = trans('Search');
-//            dd($return_data);
             return view('front/search/list',array_merge($this->data,$return_data));
         } else {
             return redirect('/');

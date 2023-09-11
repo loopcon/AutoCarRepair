@@ -10,7 +10,7 @@ class ScheduledPackage extends Model
     use HasFactory;
 
     protected $table = 'sceduled_packages';
-    protected $fillable = ['sc_id', 'slug', 'brand_id', 'model_id', 'fuel_type_id', 'title', 'image', 'image_other', 'warrenty_info', 'recommended_info', 'time_takes', 'price', 'is_archive', 'status', 'created_at', 'created_by', 'updated_at', 'updated_by'];
+    protected $fillable = ['sc_id', 'slug', 'brand_id', 'model_id', 'fuel_type_id', 'title', 'image', 'image_other', 'warrenty_info', 'recommended_info', 'time_takes', 'time_takes_day','price', 'is_archive', 'status', 'created_at', 'created_by', 'updated_at', 'updated_by'];
 
     public function categoryDetail(){
         return $this->belongsTo(ServiceCategory::class, 'sc_id');

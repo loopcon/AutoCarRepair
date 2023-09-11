@@ -20,12 +20,12 @@
                             <input type="hidden" name="id" value="{{ isset($record->id) ? Crypt::encrypt($record->id) : '' }}">
                             {{ csrf_field() }}
                             <div class="row">
-                                <div class="mb-3 col-md-6">
+                                <div class="mb-3 col-md-5">
                                     <label class="form-label" for="title">{{__('Title')}}<span class="text-danger">*</span></label>
                                     <input type="text" class="form-control" id="title" name="title" placeholder="{{__('Title')}}"  required=""  data-parsley-required-message="{{ __("This value is required.")}}" value="{{ isset($record->title) ? $record->title : old('title') }}">
                                     @if ($errors->has('title')) <div class="text-danger">{{ $errors->first('title') }}</div>@endif
                                 </div>
-                                <div class="mb-3 col-md-3">
+                                <div class="mb-3 col-md-2">
                                     <label class="form-label" for="sc_id">{{__('Category')}}<span class="text-danger">*</span></label>
                                     <select class="form-control select2" required="" name="sc_id" id="sc_id">
                                         <option value="">-- select --</option>
@@ -37,11 +37,22 @@
                                     </select>
                                     @if ($errors->has('sc_id')) <div class="text-danger">{{ $errors->first('sc_id') }}</div>@endif
                                 </div>
-                                <div class="mb-3 col-md-3">
-                                    <label class="form-label" for="time_takes">{{__('Time Takes')}}<span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control num_only" id="time_takes" name="time_takes" placeholder="{{__('Time Takes')}}" required="" data-parsley-required-message="{{ __("This value is required.")}}" value="{{ isset($record->time_takes) ? $record->time_takes : old('time_takes') }}">
-                                    @if ($errors->has('time_takes')) <div class="text-danger">{{ $errors->first('time_takes') }}</div>@endif
+                                <div class="mb-3 col-md-2">
+                                    <label class="form-label" for="time_takes">{{__('Time Takes in Hour')}}<span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control num_only" id="time_takes" name="time_takes" placeholder="{{__('Time Takes in Hour')}}" value="{{ isset($record->time_takes) ? $record->time_takes : old('time_takes') }}">
+                                    @if ($errors->has('time_takes'))
+                                        <div class="text-danger">{{ $errors->first('time_takes') }}</div>
+                                    @endif
                                 </div>
+
+                                <div class="mb-3 col-md-2">
+                                    <label class="form-label" for="time_takes_day">{{__('Time Takes in Days')}}<span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control num_only" id="time_takes_day" name="time_takes_day" placeholder="{{__('Time Takes in Days')}}" value="{{ isset($record->time_takes_day) ? $record->time_takes_day : old('time_takes_day') }}">
+                                    @if ($errors->has('time_takes_day'))
+                                        <div class="text-danger">{{ $errors->first('time_takes_day') }}</div>
+                                    @endif
+                                </div>
+
 
                                 <?php /**<div class="mb-3 col-md-4">
                                     <label class="form-label" for="brand_id">{{__('Brand')}}<span class="text-danger">*</span></label>
