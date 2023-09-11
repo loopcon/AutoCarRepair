@@ -2,14 +2,17 @@
     <div class="col-12">
         <hr/>
     </div>
-    <div class="col-md-4 pl-0">
-        <input type="hidden" name="pid{{$i}}" value="">
+    <input type="hidden" name="pid{{$i}}" value="">
+    <?php /**<div class="col-md-4 pl-0">
         <div class="profile-icon">
             <img class='img-responsive img-fluid' id="uploadPreview{{$i}}" src="{{url('public/no.jpg')}}"  alt=''>
         </div>
         <div class="m-b-10">
             <input type="file" id="uploadImage{{$i}}" accept="image/x-png, image/gif, image/jpeg" class="btn btn-warning btn-block btn-sm"  name="image{{$i}}" data-parsley-required-message="{{ __("This value is required.")}}" onChange="this.parentNode.nextSibling.value = this.value; PreviewImage({{$i}});" >
         </div>
+    </div>**/ ?> 
+    <div class="mt-3 col-md-3">
+        <input type="url" class="form-control"  name="image{{$i}}" placeholder="{{__('Image')}}">
     </div>
     <div class="mt-3 col-md-3">
         <input type="text" class="form-control"  name="image_title{{$i}}" placeholder="{{__('Image Title')}}">

@@ -25,14 +25,15 @@ class HomePageSettingController extends MainController
     public function update(request $request)
     {
         $content = HomePageSetting::find(1);
-        if($request->hasFile('section1_image')) {
-            $old_image = isset($content->section1_image) ? $content->section1_image : NULL;
-            if($old_image){
-                removeFile('uploads/content/'.$old_image);
-            }
-            $newName = fileUpload($request, 'section1_image', 'uploads/content');
-            $content->section1_image = $newName;
-        }
+        // if($request->hasFile('section1_image')) {
+        //     $old_image = isset($content->section1_image) ? $content->section1_image : NULL;
+        //     if($old_image){
+        //         removeFile('uploads/content/'.$old_image);
+        //     }
+        //     $newName = fileUpload($request, 'section1_image', 'uploads/content');
+        //     $content->section1_image = $newName;
+        // }
+        $content->section1_image = $request->section1_image;
         $content->section1_title1 = $request->section1_title1;
         $content->section1_title2 = $request->section1_title2;
         $content->footer_description = $request->footer_description;

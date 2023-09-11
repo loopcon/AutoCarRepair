@@ -653,3 +653,7 @@ ALTER TABLE `compny_cms_page`
 ALTER TABLE `compny_cms_page`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
+-- Disha : 5-9-23 11:15 AM
+ALTER TABLE `compny_cms_page` ADD `section` TINYINT(1) NULL DEFAULT NULL COMMENT '0=second;1=third;2=forth' AFTER `banner_text`;
+ALTER TABLE `service_categories` ADD `order_by` INT(11) NOT NULL AFTER `is_archive`;
+

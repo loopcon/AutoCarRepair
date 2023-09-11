@@ -34,78 +34,38 @@
         <div class="col-12 col-sm-6 col-md-3">
             <ul class="our-service-main">
                 <li class="our-section-head">LUXURY BRANDS</li>
-                @php($cmsInfo = getCompnyCmsPage('1'))
-                    @if(isset($cmsInfo->slug) && $cmsInfo->slug)
-                        <li><a href="{{url($cmsInfo->slug)}}">{{isset($cmsInfo->name) ? ucwords($cmsInfo->name) : ''}}</a></li>
-                    @endif
-                @php($cmsInfo = getCompnyCmsPage('2'))
-                    @if(isset($cmsInfo->slug) && $cmsInfo->slug)
-                        <li><a href="{{url($cmsInfo->slug)}}">{{isset($cmsInfo->name) ? ucwords($cmsInfo->name) : ''}}</a></li>
-                    @endif
-                @php($cmsInfo = getCompnyCmsPage('3'))
-                    @if(isset($cmsInfo->slug) && $cmsInfo->slug)
-                        <li><a href="{{url($cmsInfo->slug)}}">{{isset($cmsInfo->name) ? ucwords($cmsInfo->name) : ''}}</a></li>
-                    @endif
-                @php($cmsInfo = getCompnyCmsPage('4'))
-                    @if(isset($cmsInfo->slug) && $cmsInfo->slug)
-                        <li><a href="{{url($cmsInfo->slug)}}">{{isset($cmsInfo->name) ? ucwords($cmsInfo->name) : ''}}</a></li>
-                    @endif
-                @php($cmsInfo = getCompnyCmsPage('5'))
-                    @if(isset($cmsInfo->slug))
-                        <li><a href="{{url($cmsInfo->slug)}}">{{isset($cmsInfo->name) ? ucwords($cmsInfo->name) : ''}}</a></li>
-                    @endif
-                @php($cmsInfo = getCompnyCmsPage('6'))
-                    @if(isset($cmsInfo->slug) && $cmsInfo->slug)
-                        <li><a href="{{url($cmsInfo->slug)}}">{{isset($cmsInfo->name) ? ucwords($cmsInfo->name) : ''}}</a></li>
-                    @endif
-                @php($cmsInfo = getCompnyCmsPage('7'))
-                    @if(isset($cmsInfo->slug) && $cmsInfo->slug)
-                        <li><a href="{{url($cmsInfo->slug)}}">{{isset($cmsInfo->name) ? ucwords($cmsInfo->name) : ''}}</a></li>
-                    @endif
-                @php($cmsInfo = getCompnyCmsPage('8'))
-                    @if(isset($cmsInfo->slug) && $cmsInfo->slug) 
-                        <li><a href="{{url($cmsInfo->slug)}}">{{isset($cmsInfo->name) ? ucwords($cmsInfo->name) : ''}}</a></li>
-                    @endif
-                @php($cmsInfo = getCompnyCmsPage('9'))
-                    @if(isset($cmsInfo->slug) && $cmsInfo->slug) 
-                        <li><a href="{{url($cmsInfo->slug)}}">{{isset($cmsInfo->name) ? ucwords($cmsInfo->name) : ''}}</a></li>
-                    @endif
-                @php($cmsInfo = getCompnyCmsPage('10'))
-                    @if(isset($cmsInfo->slug) && $cmsInfo->slug) 
-                        <li><a href="{{url($cmsInfo->slug)}}">{{isset($cmsInfo->name) ? ucwords($cmsInfo->name) : ''}}</a></li>
-                    @endif
+                @php($compnyInfo = getCompnyCmsPages())
+                @if(isset($compnyInfo['second_section']))
+                    @foreach($compnyInfo['second_section'] as $info)
+                        @if(isset($info->slug) && $info->slug)
+                            <li><a href="{{url($info->slug)}}">{{isset($info->name) ? ucwords($info->name) : ''}}</a></li>
+                        @endif
+                    @endforeach
+                @endif
             </ul>
         </div>
         <div class="col-12 col-sm-6 col-md-3">
             <ul class="our-service-main">
                 <li class="our-section-head">POPULAR BRANDS</li>
-                <li><a href="#">Maruti Suzuki</a></li>
-                <li><a href="#">Hyundai</a></li>
-                <li><a href="#">Honda</a></li>
-                <li><a href="#">Toyota</a></li>
-                <li><a href="#">Tata</a></li>
-                <li><a href="#">Mahindra</a></li>
-                <li><a href="#">Chevrolet</a></li>
-                <li><a href="#">Fiat</a></li>
-                <li><a href="#">Renault</a></li>
-                <li><a href="#">Kia</a></li>
-                <li><a href="#">Skoda</a></li>
-                <li><a href="#">Volkswagen</a></li>
+                @if(isset($compnyInfo['third_section']))
+                    @foreach($compnyInfo['third_section'] as $info)
+                        @if(isset($info->slug) && $info->slug)
+                            <li><a href="{{url($info->slug)}}">{{isset($info->name) ? ucwords($info->name) : ''}}</a></li>
+                        @endif
+                    @endforeach
+                @endif
             </ul>
         </div>
         <div class="col-12 col-sm-6 col-md-3">
             <ul class="our-service-main">
                 <li class="our-section-head">POPULAR AREAS NEAR YOU</li>
-                <li><a href="#">Garage near me in Andheri</a></li>
-                <li><a href="#">Garage near me in Mulund</a></li>
-                <li><a href="#">Garage near me in Powai</a></li>
-                <li><a href="#">Garage near me in Chembur</a></li>
-                <li><a href="#">Garage near me in Goregaon</a></li>
-                <li><a href="#">Garage near me in Ghatkoper</a></li>
-                <li><a href="#">Garage near me in Bandra</a></li>
-                <li><a href="#">Garage near me in Kurla</a></li>
-                <li><a href="#">Garage near me in Borivali</a></li>
-                <li><a href="#">Garage near me in Parel</a></li>
+                @if(isset($compnyInfo['forth_section']))
+                    @foreach($compnyInfo['forth_section'] as $info)
+                        @if(isset($info->slug) && $info->slug)
+                            <li><a href="{{url($info->slug)}}">{{isset($info->name) ? ucwords($info->name) : ''}}</a></li>
+                        @endif
+                    @endforeach
+                @endif
             </ul>
         </div>
     </div>
@@ -236,7 +196,7 @@
 <!-- footer end  -->
 <div class="footer-whatappicon">
      <a href="https://wa.me/{{$whatsapp}}" target="_blank"><img src="{{ asset('front/img/whatsapp-acr-img.webp') }}" class="img-fluid" alt=""></a>
-     <a href="#" class=""> 
+     <a href="#" id="up-button-main" class=""> 
         <img src="{{ asset('front/img/back-top.png') }}" class="home-back-totoptext" alt="">
     </a>
 </div>
@@ -298,9 +258,13 @@ $(document).ready(function() {
         $(window).scroll(function () { 
             if ($(window).scrollTop() > 50) {
                 $('#header-sticky').addClass('sticky');
+                $('#up-button-main').addClass('up-btn-sticky');
+                $('#up-button-main').css('display','block');
             }
             if ($(window).scrollTop() < 51) {
                 $('#header-sticky').removeClass('sticky');
+                $('#up-button-main').removeClass('up-btn-sticky');
+                $('#up-button-main').css('display','none');
             }
         });
 

@@ -47,7 +47,7 @@ class CompnyCmsPageController extends MainController
     public function store(Request $request)
     {
         $cms = new CompnyCmsPage();
-        $fields = array('name', 'image_title', 'banner_text', 'description', 'meta_title', 'extra_meta_tag', 'meta_keywords', 'meta_description');
+        $fields = array('name', 'image_title','section', 'banner_text', 'description', 'meta_title', 'extra_meta_tag', 'meta_keywords', 'meta_description');
         foreach($fields as $field){
             $cms->$field = isset($request->$field) && $request->$field != '' ? $request->$field : NULL;
         }
@@ -104,7 +104,7 @@ class CompnyCmsPageController extends MainController
         $id = Crypt::decrypt($id);
         $cms = CompnyCmsPage::find($id);
         // print_r($cms);exit;
-        $fields = array('name', 'image_title', 'banner_text', 'description', 'meta_title', 'extra_meta_tag', 'meta_keywords', 'meta_description');
+        $fields = array('name', 'image_title','section', 'banner_text', 'description', 'meta_title', 'extra_meta_tag', 'meta_keywords', 'meta_description');
         foreach($fields as $field){
             $cms->$field = isset($request->$field) && $request->$field != '' ? $request->$field : NULL;
         }

@@ -19,14 +19,23 @@
                             <input type="hidden" name="id" value="{{ isset($record->id) ? Crypt::encrypt($record->id) : '' }}">
                             {{ csrf_field() }}
                             <div class="row">
-                                <div class="mb-3 col-md-6">
+                                <div class="mb-3 col-md-4">
+                                    <label class="form-label" for="section">{{__('Section')}}<span class="text-danger">*</span></label>
+                                    <select class="form-control" name="section" required="">
+                                        <option value="">-- select --</option>
+                                        <option value="0" @if(isset($record->section) && $record->section == '0'){{'selected'}}@endif>Second</option>
+                                        <option value="1" @if(isset($record->section) && $record->section == '1'){{'selected'}}@endif>Third</option>
+                                        <option value="2" @if(isset($record->section) && $record->section == '2'){{'selected'}}@endif>Forth</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3 col-md-4">
                                     <label class="form-label" for="name">{{__('Page Name')}}<span class="text-danger">*</span></label>
                                     <input type="text" class="form-control" id="name" name="name" placeholder="{{__('Page Name')}}" required=""  data-parsley-required-message="{{ __("This value is required.")}}" value="{{ isset($record->name) ? $record->name : old('name') }}">
 
                                     @if ($errors->has('name')) <div class="text-danger">{{ $errors->first('name') }}</div>@endif
                                 </div>
 
-                                <div class="mb-3 col-md-6">
+                                <div class="mb-3 col-md-4">
                                     <label class="form-label" for="slug">{{__('Slug')}}<span class="text-danger">*</span></label>
                                     <input type="text" class="form-control" id="slug" name="slug" placeholder="{{__('Slug')}}" required=""  data-parsley-required-message="{{ __("This value is required.")}}"  value="{{ isset($record->slug) ? $record->slug : old('slug') }}">
 

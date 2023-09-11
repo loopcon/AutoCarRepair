@@ -35,7 +35,7 @@ class FuelTypeController extends MainController
                     return $html;
                 })
                 ->addColumn('image', function ($row) {
-                    $image = $row->image ? $row->image : '';
+                    $image = $row->image ? "<img src='".url($row->image)."' width='80px' height='80px'>" : '';
                     return $image;
                 })
                 ->addColumn('status', function ($row) {

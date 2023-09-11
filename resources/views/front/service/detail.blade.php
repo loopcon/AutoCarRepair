@@ -34,7 +34,7 @@
                             </div>
                         @endif 
                             @if(isset($packageDetail->image) && $packageDetail->image)
-                                <img src="{{ $packageDetail->image }}" class="img-fluid" alt="" title="">
+                                <img src="{{ url($packageDetail->image )}}" class="img-fluid" alt="" title="">
                             @else
                                 <img src="{{ asset('front/img/inner-palish-service.png') }}" class="img-fluid" alt="" title="">
                             @endif

@@ -28,7 +28,7 @@
                                 </div>
                                 <div class="mb-3 col-md-6">
                                     <label class="form-label" for="image">{{__('Image')}}<span class="text-danger">*</span></label>
-                                    <input type="url" class="form-control" id="image" name="image" placeholder="{{__('image')}}" required=""  data-parsley-required-message="{{ __("This value is required.")}}" value="{{ isset($record->image) ? $record->image : old('image') }}">
+                                    <input type="url" class="form-control" id="image" name="image" placeholder="{{__('Image')}}" required=""  data-parsley-required-message="{{ __("This value is required.")}}" value="{{ isset($record->image) ? $record->image : old('image') }}">
 
                                     @if ($errors->has('image')) <div class="text-danger">{{ $errors->first('image') }}</div>@endif
                                 </div>
