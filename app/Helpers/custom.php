@@ -9,9 +9,25 @@ function getCmsPageName($id = ''){
     return $pageData;
 }
 
-function getCompnyCmsPage($id=''){
-    $compnypageData = App\Models\CompnyCmsPage::select('name', 'description', 'slug')->where([['id' , $id],['is_archive','0']])->first();
-    return $compnypageData;
+function getCompnyCmsPages()
+{
+    $compnycmspages = App\Models\CompnyCmsPage::where([['is_archive','0']])->get();
+    foreach($compnycmspages as $compnycmspage)
+    {
+        if($compnycmspage->section == 0)
+        {
+            $data['second_section'][] = $compnycmspage;
+        }
+        if($compnycmspage->section == 1)
+        {
+            $data['third_section'][] = $compnycmspage;
+        }
+        if($compnycmspage->section == 2)
+        {
+            $data['forth_section'][] = $compnycmspage;
+        }
+    }
+    return $data;
 }
 
 function getSettingInfo($label){

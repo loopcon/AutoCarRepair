@@ -109,6 +109,7 @@ Route::group(['prefix' => 'backend','as' => 'admin_'], function() {
         Route::get('booked-services', [App\Http\Controllers\Backend\ServiceController::class, 'bookedServices'])->name('booked-services');
         Route::post('booked-service-datatable', [App\Http\Controllers\Backend\ServiceController::class, 'bookedServicesDatatable'])->name('booked-service-datatable');
         Route::post('change-service-slot', [App\Http\Controllers\Backend\ServiceController::class, 'changeServiceSlot'])->name('change-service-slot');
+        Route::post('service-category-order-by', [App\Http\Controllers\Backend\ServiceController::class, 'serviceCategoryOrderBy'])->name('service-category-order-by');
 
         Route::get('products',[App\Http\Controllers\Backend\ProductController::class, 'index'])->name('products');
         Route::get('product-create',[App\Http\Controllers\Backend\ProductController::class, 'create'])->name('product-create');

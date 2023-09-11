@@ -10,6 +10,7 @@ use App\Models\CompnyCmsPage;
 use App\Models\Enquiry;
 use App\Models\ServiceCategory;
 use App\Models\EmailTemplates;
+use App\Models\BrandLogoSlider;
 use Auth;
 use DB;
 
@@ -43,6 +44,7 @@ class CmsPagesController extends MainController
     {
         $return_data = array();
         $return_data['site_title'] = trans('About Us');
+        $return_data['brand_logo_slider'] = BrandLogoSlider::select('id', 'image','image_title')->orderBy('id', 'ASC')->get();
         return view('front.cms.about_us', array_merge($this->data, $return_data));
     }
 

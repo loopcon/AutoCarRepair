@@ -203,12 +203,16 @@ class ServiceController extends MainController
     public function serviceCategoryDatatable(request $request)
     {
         if($request->ajax()){
-            $query = ServiceCategory::select('id', 'title', 'image', 'description', 'status')->where('is_archive', '=', Constant::NOT_ARCHIVE)->orderBy('id', 'DESC');
+            $query = ServiceCategory::select('id', 'title', 'image', 'description', 'order_by', 'status')->where('is_archive', '=', Constant::NOT_ARCHIVE)->orderBy('id', 'DESC');
             $list = $query->get();
 
             return DataTables::of($list)
+                ->addColumn('order_by', function($row) {
+                    $html = "<input type='number' name='order_by' class='order_by' data-categoryid='".$row->id."' value='".$row->order_by."' style='width:40%' />";
+                    return $html;
+                })
                 ->addColumn('image', function ($row) {
-                    $image = $row->image ? "<img src='".url('public/uploads/service/category/'.$row->image)."' width='80px' height='80px'>" : '';
+                    $image = $row->image ? "<img src='".url($row->image)."' width='80px' height='80px'>" : '';
                     return $image;
                 })
                 ->addColumn('status', function ($row) {
@@ -229,7 +233,7 @@ class ServiceController extends MainController
                     $html .= "</span>";
                     return $html;
                 })
-                ->rawColumns(['image','action','status'])
+                ->rawColumns(['order_by', 'image','action','status'])
                 ->make(true);
         } else {
             return redirect('backend/dashboard');
@@ -478,7 +482,7 @@ class ServiceController extends MainController
 
             return DataTables::of($list)
                 ->addColumn('image', function ($row) {
-                    $image = $row->image;
+                    $image = $row->image ? "<img src='".url($row->image)."' width='80px' height='80px'>" : '';
                     return $image;
                 })
                 ->addColumn('category', function($row){
@@ -810,5 +814,13 @@ class ServiceController extends MainController
             }
         }
         return redirect()->back()->with('success', trans('Scheduled Pacakge Detail Uploaded Successfully!'));
+    }
+
+    public function serviceCategoryOrderBy(Request $request)
+    {
+        $service_category_fields = array('order_by'=>$request->order_by);
+        ServiceCategory::where([['id', '=', $request->category_id]])->update($service_category_fields);
+        echo json_encode(array('success'=>true, 'message' => "Service Category order updated successfully."));
+        exit;
     }
 }

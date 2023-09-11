@@ -124,17 +124,21 @@
                                                     <div class="col-12">
                                                         <hr/>
                                                     </div>
-                                                    <div class="col-md-4 pl-0">
-                                                        <input type="hidden" name="pid{{$pkey}}" value="{{ $pval->id }}">
+                                                    <input type="hidden" name="pid{{$pkey}}" value="{{ $pval->id }}">
+                                                    <?php /**<div class="col-md-4 pl-0">
                                                         <div class="profile-icon">
                                                             <img class='img-responsive img-fluid' id="uploadPreview{{$pkey}}" src="{{url('public/uploads/product/'.$pval->product_id.'/'.$pval->image)}}"  alt=''>
                                                         </div>
                                                         <div class="m-b-10">
                                                             <input type="file" id="uploadImage{{$pkey}}" accept="image/x-png, image/gif, image/jpeg" class="btn btn-warning btn-block btn-sm"  name="image{{$pkey}}" data-parsley-required-message="{{ __("This value is required.")}}" onChange="this.parentNode.nextSibling.value = this.value; PreviewImage({{$pkey}});" >
                                                         </div>
+                                                    </div>**/ ?>
+                                                    <div class="mb-3 col-md-3">
+                                                        <label class="form-label" for="image">{{__('Image')}}</label>
+                                                        <input type="url" class="form-control"  value="{{ isset($pval->image) ? $pval->image : '' }}" name="image{{$pkey}}" placeholder="{{__('Image')}}">
                                                     </div>
                                                     <div class="col-md-2 pl-0 text-end">
-                                                        <br/><input type="radio" class="" value="{{$pkey}}" name="is_primary" @if($pval->is_primary == '1') checked="checked" @endif/>
+                                                        <br/><input type="radio" class="" value="1" name="is_primary{{$pkey}}" @if($pval->is_primary == '1') checked="checked" @endif/>
                                                     </div>
                                                     <div class="mb-3 col-md-3">
                                                         <label class="form-label" for="image_title">{{__('Image Title')}}</label>

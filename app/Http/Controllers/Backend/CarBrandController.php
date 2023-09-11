@@ -51,7 +51,7 @@ class CarBrandController extends MainController
         $slug = $request->title != '' ? slugify($request->title) : NULL;
 
         $carbrand = new CarBrand();
-        $fields = array('title','image');
+        $fields = array('title');
         foreach($fields as $field){
             $carbrand->$field = isset($request->$field) && $request->$field ? $request->$field : NULL;
         }
@@ -125,7 +125,7 @@ class CarBrandController extends MainController
         $slug = $request->title != '' ? slugify($request->title) : NULL;
 
         $carbrand = CarBrand::find($id);
-        $fields = array('title','image');
+        $fields = array('title');
         foreach($fields as $field){
             $carbrand->$field = isset($request->$field) && $request->$field ? $request->$field : NULL;
         }
@@ -199,7 +199,7 @@ class CarBrandController extends MainController
             return DataTables::of($list)
                 ->addColumn('image', function ($row) {
                     $image = $row->image ? "<img src='".url($row->image)."' width='80px' height='80px'>" : '';
-                    $image = $row->image ? $row->image : '';
+                    // $image = $row->image ? $row->image : '';
                     return $image;
                 })
                 ->addColumn('status', function ($row) {

@@ -22,32 +22,61 @@
     </div>
 </div>
 <!-- about brand logo  slider start  -->
-<div class="aboutus-logo-section">
-    <div class="container">
-        <div id="aboutus-brand-carousel" class="owl-carousel owl-theme">
-            <div class="item">
-                <div class="about-partner-brand-logo">
-                    <img src="img/livguard_logo.png"  alt="">
-                </div>
-            </div>
-            <div class="item">
-                <div class="about-partner-brand-logo">
-                    <img src="img/denso_logo.png"  alt="">
-                </div>
-            </div>
-            <div class="item">
-                <div class="about-partner-brand-logo">
-                    <img src="img/castrol_logo.png"  alt="">
-                </div>
-            </div>
-            <div class="item">
-                <div class="about-partner-brand-logo">
-                    <img src="img/Asianppg_logo.png"  alt="">
-                </div>
+@if($brand_logo_slider->count())
+    <div class="aboutus-logo-section">
+        <div class="container">
+            <div id="aboutus-brand-carousel" class="owl-carousel owl-theme">
+                @foreach($brand_logo_slider as $record)
+                    @if(isset($record->image) && $record->image)
+                        <div class="item">
+                            <div class="about-partner-brand-logo">
+                                <img src="{{ url($record->image) }}"  alt="">
+                            </div>
+                        </div>
+                    @endif
+                @endforeach
             </div>
         </div>
     </div>
-</div>
+@endif
 <!-- about brand logo  slider end -->
 <!-- about section  end -->
+@endsection
+@section('javascript')
+<script src="{{ asset('front/js/jquery.min.js') }}"></script>
+<script src="{{ asset('front/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('front/js/all.min.js') }}"></script>
+<script src="{{ asset('plugins/notification/toastr.min.js') }}"></script>
+<script src="{{asset('plugins/sweetalert/sweetalert.js')}}" type="text/javascript"></script>
+<script src="{{ asset('plugins/parsley/parsley.js') }}"></script>
+<script src="{{ asset('front/js/owl.carousel.min.js') }}"></script>
+<script>
+$(document).ready(function() {
+        $('#aboutus-brand-carousel').owlCarousel({
+            loop: true,
+            margin: 30,
+            dots: false,
+            nav: false,
+            items: 4,
+            autoplay:true,
+            autoplayTimeout:2000,
+            autoplayHoverPause:true,
+            responsiveClass: true,
+            responsive: {
+                0: {
+                items: 1
+                },
+                450:{
+                items: 2
+                },
+                600: {
+                items: 3
+                },
+                1024: {
+                items: 4
+                }
+            }
+        });
+});  
+</script>
 @endsection

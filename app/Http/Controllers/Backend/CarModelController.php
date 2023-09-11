@@ -185,7 +185,7 @@ class CarModelController extends MainController
             $list = $query->get();
             return DataTables::of($list)
                 ->addColumn('image', function ($row) {
-                    $image = $row->image ? $row->image : '';
+                    $image = $row->image ? "<img src='".url($row->image)."' width='80px' height='80px'>" : '';
                     return $image;
                 })
                 ->addColumn('maker', function ($row) {
