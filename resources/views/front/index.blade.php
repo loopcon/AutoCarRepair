@@ -49,7 +49,11 @@
                        
                             <a class="servic-type-box-section" href="{{url($service->slug)}}">
                                 <div class="servic-type-box">
-                                    <img src="{{url($service->icon_image)}}" class="servic-type-box-image" alt="" title="">
+                                    @if(!empty($service->icon_image) && isset($service->icon_image))
+                                        <img src="{{ url($service->icon_image) }}" class="servic-type-box-image" alt="" title="">
+                                    @else
+                                        <img src="{{ asset('front/img/no_image.jpg') }}" class="img-fluid" alt="" title="{{ $service->title }}">
+                                    @endif
                                     <div class="service-type-head">
                                         <h5>{{ $service->title }}</h5>
                                     </div> 
@@ -419,7 +423,13 @@
         @if($service_center->count())
             @foreach($service_center as $detail)
                 <div class="item">
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#servicecenterModal-{{$detail->id}}"><img src="{{ url($detail->image) }}" class="service-center-slider-img detail" alt="" title="{{$detail->image_title}}"></a>
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#servicecenterModal-{{$detail->id}}">
+                        @if(!empty($detail->image) && isset($detail->image))
+                            <img src="{{ url($detail->image) }}" class="service-center-slider-img detail" alt="" title="{{$detail->image_title}}">
+                        @else
+                            <img src="{{ asset('front/img/no_image.jpg') }}" class="img-fluid" alt="" title="{{ $detail->image_title }}">
+                        @endif
+                    </a>
                 </div>
             @endforeach
         @endif        
@@ -437,7 +447,11 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div>
-                                    <img src="{{ url($detail->image) }}" class="service-center-popupimg" alt="" title="{{$detail->image_title}}"> 
+                                    @if(!empty($detail->image) && isset($detail->image))
+                                        <img src="{{ url($detail->image) }}" class="service-center-popupimg" alt="" title="{{$detail->image_title}}">
+                                    @else
+                                        <img src="{{ asset('front/img/no_image.jpg') }}" class="img-fluid" alt="" title="{{ $detail->image_title }}">
+                                    @endif
                                 </div>
                             </div>
                             <div class="col-md-6">

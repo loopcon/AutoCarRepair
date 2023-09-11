@@ -757,3 +757,4 @@ button { color: #000; outline: none; }
 .appointmentsearch-dialog .search-modal-box::-webkit-scrollbar-track{-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);background-color: #F5F5F5;margin: 10px 0px;}
 .appointmentsearch-dialog .search-modal-box::-webkit-scrollbar{width: 5px;}
 .appointmentsearch-dialog .search-modal-box::-webkit-scrollbar-thumb{background-color: #000000; }
+.changeandbackmainbtn{ display: flex;justify-content: space-between;margin-top: 6px;}
