@@ -32,7 +32,7 @@
                                                 </div>
                                             @endif
                                             <input type="hidden" name="id_{{$key}}" value="{{ isset($record->id) ? Crypt::encrypt($record->id) : '' }}">
-                                            <?php /**<div class="mb-3 col-md-4">
+                                            <div class="mb-3 col-md-4">
                                                 <label class="form-label" for="image">{{__('Image')}}<span class="text-danger">*</span></label>
                                                 <div class="profile-icon">
                                                     @php($i = $key)
@@ -53,11 +53,11 @@
                                                     <input type="file" id="uploadImage{{$i}}" accept="image/x-png, image/gif, image/jpeg" class="btn btn-warning btn-block btn-sm"  name="image_{{$key}}" {{$required}} data-parsley-required-message="{{ __("This value is required.")}}" onChange="this.parentNode.nextSibling.value = this.value; PreviewImage({{$i}});" >
                                                 </div>
                                                 <p class="image_errortext">For Best resolution please upload 1280*444 size and in WebP file format.</p>
-                                            </div>**/ ?>
-                                            <div class="mb-3 col-md-4">
+                                            </div>
+                                            <?php /**<div class="mb-3 col-md-4">
                                                 <label class="form-label" for="image">{{__('Image')}}</label>
                                                 <input type="text" class="form-control" value="{{ isset($record->image) ? $record->image : old('image') }}" name="image_{{$key}}" placeholder="{{__('Image')}}" >
-                                            </div>
+                                            </div>**/ ?>
                                             <div class="mb-3 col-md-4">
                                                 <label class="form-label" for="image_title">{{__('Image Title')}}</label>
                                                 <input type="text" class="form-control" value="{{ isset($record->image_title) ? $record->image_title : old('image_title') }}" name="image_title_{{$key}}" placeholder="{{__('Image Title')}}" >
@@ -66,7 +66,7 @@
                                     @endforeach
                                     @php($total = $brandslider->count())
                                 @else
-                                <?php /**<div class="row" id="slider0">
+                               <div class="row" id="slider0">
                                     <input type="hidden" name="id_0" value="">
                                     <div class="mb-3 col-md-4">
                                         <label class="form-label" for="image">{{__('Image')}}<span class="text-danger">*</span></label>
@@ -79,11 +79,11 @@
                                             <input type="file" id="uploadImage{{$i}}" accept="image/x-png, image/gif, image/jpeg" class="btn btn-warning btn-block btn-sm"  name="image_0"  data-parsley-required-message="{{ __("This value is required.")}}" onChange="this.parentNode.nextSibling.value = this.value; PreviewImage({{$i}});" >
                                         </div>
                                     </div>
-                                </div>**/ ?>
-                                 <div class="mb-3 col-md-4">
+                                </div>
+                                 <?php /**<div class="mb-3 col-md-4">
                                     <label class="form-label" for="image">{{__('Image')}}</label>
                                     <input type="text" class="form-control" value="{{ isset($record->image) ? $record->image : old('image') }}" name="image_0" placeholder="{{__('Image')}}" >
-                                </div>
+                                </div>**/ ?>
                                 <div class="mb-3 col-md-4">
                                     <label class="form-label" for="image_title">{{__('Image Title')}}</label>
                                     <input type="text" class="form-control" value="{{ isset($record->image_title) ? $record->image_title : old('image_title') }}" name="image_title_0" placeholder="{{__('Image Title')}}" >
@@ -122,8 +122,13 @@ $(document).ready(function(){
                         </div>\n\
                         <input type="hidden" name="id_'+last_id+'" value="">\n\
                         <div class="mb-3 col-md-4">\n\
-                            <label class="form-label" for="image">Image</label>\n\
-                            <input type="text" class="form-control" name="image_'+last_id+'" placeholder="Image" value="">\n\
+                            <label class="form-label" for="image">Image<span class="text-danger">*</span></label>\n\
+                            <div class="profile-icon">\n\
+                                <img class="img-fluid" id="uploadPreview'+last_id+'" src="{{url("public/no.jpg")}}"  alt="">\n\
+                            </div>\n\
+                            <div class="m-b-10">\n\
+                                <input type="file" id="uploadImage'+last_id+'" accept="image/x-png, image/gif, image/jpeg" class="btn btn-warning btn-block btn-sm"  name="image_'+last_id+'" required data-parsley-required-message="This value is required." onChange="this.parentNode.nextSibling.value = this.value; PreviewImage('+last_id+');" >\n\
+                            </div>\n\
                         </div>\n\
                         <div class="mb-3 col-md-4">\n\
                             <label class="form-label" for="image_title">Image Title</label>\n\
