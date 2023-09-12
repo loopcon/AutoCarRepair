@@ -773,9 +773,6 @@ button { color: #000; outline: none; }
 .login-drop-main{
     margin-bottom: 0px;
     list-style: none;
-.login-drop-main{
-    margin-bottom: 0px;
-    list-style: none;
     color: #fff;
 }
 #up-button-main{display:none;}
@@ -793,3 +790,80 @@ button { color: #000; outline: none; }
 .appointmentsearch-dialog .search-modal-box::-webkit-scrollbar{width: 5px;}
 .appointmentsearch-dialog .search-modal-box::-webkit-scrollbar-thumb{background-color: #000000; }
 .changeandbackmainbtn{ display: flex;justify-content: space-between;margin-top: 6px;}
+.search-page-bg{
+    background-color: #eeeeee;
+    padding: 15px;
+}
+.search-page-bg .search-list-image{
+    height: 200px;
+    width: 100%;
+    object-fit: cover;
+    padding: 8px;
+}
+.search-page-bg .search-list-head{
+    font-weight: 600;
+}
+.search-page-bg .search-card-star{
+    margin-bottom: 15px;
+}
+.search-page-bg .search-list-main-dot{
+    margin-bottom: 15px;
+}
+.search-page-bg .search-list-main-dot span{
+    color: #000;
+    opacity: 0.5;
+}
+.search-page-bg .search-card-star svg{
+    color: #E56F31;
+}
+.search-page-bg .search-card-star span{
+    padding-left: 7px;
+}
+.search-page-bg .search-list-textmain{ 
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+ }
+.search-page-bg .prise-total{
+    font-size: 20px;
+    font-weight: 600;
+}
+.search-page-bg .prise-discount{
+    font-size: 16px;
+    text-decoration: line-through;
+    color: #E56F31;
+}
+.search-page-bg .free-shipping-text{
+    color: #187601;
+    font-weight: 600;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+.search-page-bg .detail-btn-main{
+    border: 0px;
+    width: 100%;
+    background-color: #E56F31;
+    color: #fff;
+    text-align: center;
+    height: 40px;
+    border-radius: 7px;
+    margin-bottom: 15px;
+}
+.search-page-bg .detail-btn-main:hover{
+    background-color: unset;
+    border: 1px solid #E56F31;
+    color: #E56F31;
+}
+.search-page-bg .add-to-wishlist-btn{
+    background-color: unset;
+    height: 40px;
+    width: 100%;
+    border-radius: 7px;
+    border: 1px solid  #164498;
+    color: #164498;
+}
+.search-page-bg .add-to-wishlist-btn:hover{
+    background-color: #164498;
+    color: #fff;
+    border: 1px solid #164498;
+}

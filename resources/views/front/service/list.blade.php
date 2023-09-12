@@ -15,7 +15,11 @@
                         @endif
                         <a class="servic-type-box-section" href="{{url($href)}}">
                             <div class="servic-type-box">
-                                <img src="{{url($service->icon_image)}}" class="servic-type-box-image" alt="" title="">
+                                @if(!empty($service->icon_image) && isset($service->icon_image))
+                                    <img src="{{url($service->icon_image)}}" class="servic-type-box-image" alt="" title="">
+                                @else
+                                    <img src="{{ asset('front/img/no_image.jpg') }}" class="img-fluid" alt="" title="{{ $service->icon_image }}">
+                                @endif
                                 <div class="service-type-head">
                                     <h4>{{ $service->title }}</h4>
                                 </div> 
