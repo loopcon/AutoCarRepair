@@ -47,22 +47,22 @@
                                 <div class="col-12 text-end">
                                     <span><i class="fa fa-clock"></i>&nbsp;{{$packageDetail->time_takes}} hrs Taken</span>
                                 </div>
-                                @if(isset($packageDetail->warrenty_info) && $packageDetail->warrenty_info != null)
                                 <div class="col-12 col-sm-6 basic-service-text-main">
                                     <ul>
+                                @if(isset($packageDetail->warrenty_info) && $packageDetail->warrenty_info != null)
                                         <li>{{$packageDetail->warrenty_info}}</li>
+                                @endif
                                     </ul>
                                 </div>
-                                @endif
-                                @if(isset($packageDetail->recommended_info) && $packageDetail->recommended_info != null)
                                 <div class="col-12 col-sm-6 basic-service-text-main">
                                     <ul>
+                                @if(isset($packageDetail->recommended_info) && $packageDetail->recommended_info != null)
                                         <li>{{$packageDetail->recommended_info}}</li>
+                                @endif
                                     </ul>
                                     <!-- <a href="#">View All</a> -->
                                     <!-- <a href="#" class="more"><span>View All</span></a>  -->
                                 </div>
-                                @endif
                                 @php($specifications = isset($packageDetail->specifications) && $packageDetail->specifications->count() ? $packageDetail->specifications : '')
                                 @if($specifications)
                                     @foreach($specifications as $skey => $srecord)
