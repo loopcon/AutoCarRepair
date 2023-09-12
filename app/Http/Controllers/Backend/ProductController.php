@@ -346,7 +346,7 @@ class ProductController extends MainController
             } else {
             $category_fields = array('name'=>$row[0], 'slug' => strtolower($row[0]), 'image' => NULL, 'is_archive' => 1, 'status' => 1,);
             $category_exists = ShopCategory::where([['name', 'LIKE', $row[0]]])->first();
-            $product_fields = array( 'shop_category_id' => $category_exists->id,'name'=>$row[1], 'description'=>$row[2],'specification'=>$row[3], 'amazon_link'=>$row[4], 'flipcart_link'=>$row[5], 'price'=>$row[6], 'sku'=>$row[7], 'slug'=>strtolower($row[8]), 'meta_title'=>$row[9], 'meta_keywords'=>$row[10], 'meta_description'=>$row[11],'image' => $row[12]);
+            $product_fields = array('shop_category_id' => $category_exists->id,'name'=>$row[1], 'description'=>$row[2],'specification'=>$row[3], 'amazon_link'=>$row[4], 'flipcart_link'=>$row[5], 'price'=>$row[6], 'sku'=>$row[7], 'slug'=>strtolower($row[8]), 'meta_title' => $row[9], 'meta_keywords'=> $row[10], 'meta_description'=>$row[11],'image' => $row[12]);
             if(!empty($category_exists)) {
                     $category_id = $category_exists->id;
                     } else {
