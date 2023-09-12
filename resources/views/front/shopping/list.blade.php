@@ -78,7 +78,7 @@
                                         @endif */ ?>
                                         <div class="shoping-text-name">
                                             <h5><a href="{{url('shopping/'.$product->slug)}}">{{$product->name}}</a></h5>
-                                            <h5>{{isset($product->shopCategoryDetail->name) ? $product->shopCategoryDetail->name : ''}}</h5>
+                                            <h5>category : {{isset($product->shopCategoryDetail->name) ? $product->shopCategoryDetail->name : ''}}</h5>
                                         </div>
                                         <div class="shoping-card-prise">
                                             <div class="shoping-card-text"><p>₹{{formatNumber($product->price)}}</p></div>
