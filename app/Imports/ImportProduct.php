@@ -18,11 +18,9 @@ class ImportProduct implements ToModel
     {
         $category = ShopCategory::select('id')->where('name','=',$row[0])->first();
         
-        if(!empty($category))
-        {
+        if(!empty($category)) {
             $category_id= $category->id;
-        }
-        else {
+        } else {
             $category = ShopCategory::create([
                 'name' => $row[0],
                 'slug' => strtolower($row[0]),
@@ -32,7 +30,6 @@ class ImportProduct implements ToModel
             ]);
             $category_id = $category->id;
         }
-
 
         // return new Product([
         //     'slug' => strtolower($row[8]),
@@ -50,7 +47,7 @@ class ImportProduct implements ToModel
         //     'is_archive' => 1,
         //     'status' => 1,
         // ]);
-
+        $product_id = Product::select('id')->where('name','=',$row[1])->first();
         $product = new Product([
             'slug' => strtolower($row[8]),
             'shop_category_id' => $category_id,
@@ -67,23 +64,21 @@ class ImportProduct implements ToModel
             'is_archive' => 1,
             'status' => 1,
         ]);
+
         if($product)
         {
-            $jsonobj = '{"is_primary":1,"image": "https://acr-mechanic.com/uploads/content/banner16930250321693031029.webp","image_title": ""gfgf},{"is_primary": 0,"image": "https://acr-mechanic.com/uploads/content/banner16930250321693031029.webp","image_title": "dff"},{"is_primary": 0,"image": "https://acr-mechanic.com/uploads/content/banner16930250321693031029.webp","image_title": "dssd"}';
-            $data = json_decode($jsonobj,true);
-            // foreach($data as $image){
-            //     // $image_data = new ProductImage([
-            //     //     'product_id' => $product->id,
-            //     //     'is_primary' => $image->is_primary,
-            //     //     'image'=> $image->image,
-            //     //     'image_title' => $image->image_title,
-            //     // ]);
-            //     print_r($image);
-            // }
-            // echo "<pre>";
-            // print_r($row);
-            print_r($data);
-            // print_r(json_decode($row[12],true));
+            $json_array = json_decode($row[12]);
+            foreach($json_array as $image){
+                    $image_data = new ProductImage([
+                    'product_id' => $product->id,
+                    'is_primary' => $image->is_primary,
+                    'image'=> $image->image,
+                    'image_title' => $image->image_title,
+                ]);
+                // echo "<pre>";
+                // print_r($image);
+                 print_r($product);
+            }
         }
         return $product;
     }
