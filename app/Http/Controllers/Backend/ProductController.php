@@ -217,7 +217,7 @@ class ProductController extends MainController
     public function productsDatatable(request $request)
     {
         if($request->ajax()){
-            $query = Product::with('shopCategoryDetail')->select('id','shop_category_id', 'name','sku', 'price','status')->where('is_archive', '=', Constant::NOT_ARCHIVE)->orderBy('id', 'DESC');
+            $query = Product::with('shopCategoryDetail','primaryImage')->select('id','shop_category_id', 'name','sku', 'price','status')->where('is_archive', '=', Constant::NOT_ARCHIVE)->orderBy('id', 'DESC');
 
             if($request->shopCategory!='all') {
                 if($request->shopCategory!='') {
@@ -229,17 +229,17 @@ class ProductController extends MainController
             $list = $query->get();
 
             return DataTables::of($list)
-                ->addColumn('shop_category_id', function ($row) {
-                    $shop_category = isset($row->shopCategoryDetail->name) ? $row->shopCategoryDetail->name : '';
-                    return $shop_category;
-                })
                 ->addColumn('name', function ($row) {
                     $name = $row->name;
                     return $name;
                 })
-                ->addColumn('sku', function ($row) {
-                    $sku = $row->sku;
-                    return $sku;
+                ->addColumn('shop_category_id', function ($row) {
+                    $shop_category = isset($row->shopCategoryDetail->name) ? $row->shopCategoryDetail->name : '';
+                    return $shop_category;
+                })
+                ->addColumn('image', function ($row) {
+                    $image = isset($row->primaryImage->image) ? "<img src='".url($row->primaryImage->image)."' width='80px' height='80px'>" : '';
+                    return $image;
                 })
                 ->addColumn('price', function ($row) {
                     $price = $row->price;
@@ -264,7 +264,7 @@ class ProductController extends MainController
                     $html .= "</span>";
                     return $html;
                 })
-                ->rawColumns(['id','shop_category_id','name', 'sku','price','action','status'])
+                ->rawColumns(['id','name','shop_category_id', 'image','price','action','status'])
                 ->make(true);
         } else {
             return redirect('backend/dashboard');
