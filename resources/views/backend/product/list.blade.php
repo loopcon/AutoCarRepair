@@ -39,9 +39,9 @@
                             <thead>
                                 <tr>
                                     <th>{{__('Id')}}</th>
-                                    <th>{{__('Shop Category')}}</th>
                                     <th>{{__('Name')}}</th>
-                                    <th>{{__('Sku')}}</th>
+                                    <th>{{__('Category')}}</th>
+                                    <th>{{__('Image')}}</th>
                                     <th>{{__('Price')}}</th>
                                     <th>{{__('Status')}}</th>
                                     <th>{{__('Action')}}</th>
@@ -107,9 +107,9 @@ $(document).ready(function() {
         "lengthMenu": [[50, 100, 200, 400], [50, 100, 200, 400]],
         "columns": [
             {data: 'id', name: 'id'},
-            {data: 'shop_category_id', name: 'shop_category_id'},
             {data: 'name', name: 'name'},
-            {data: 'sku', name: 'sku'},
+            {data: 'shop_category_id', name: 'shop_category_id'},
+            {data: 'image', name: 'image'},
             {data: 'price', name: 'price'},
             {data: 'status', name: 'status'},
             {data: 'action', name: 'action', orderable: false, searchable: false},
