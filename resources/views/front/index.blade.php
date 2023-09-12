@@ -19,7 +19,7 @@
                 </div>
                 <div class="col-12 col-md-6">
                     <div>
-                        <img src="{{ isset($hsetting->section1_image) && $hsetting->section1_image ? url($hsetting->section1_image) : asset('front/img/slider-image.png') }}" class="img-fluid" alt="" title="{{ isset($hsetting->image_title) ? $hsetting->image_title : ''}}">
+                        <img src="{{ isset($hsetting->section1_image) && $hsetting->section1_image ? asset('uploads/content/'.$hsetting->section1_image) : asset('front/img/slider-image.png') }}" class="img-fluid" alt="" title="{{ isset($hsetting->image_title) ? $hsetting->image_title : ''}}">
                     </div>
                 </div>
             </div>
@@ -173,7 +173,7 @@
                 @foreach($offer_slider as $slider)
                 <div class="item">
                     <div class="offer-section-main">
-                        <img class="img-fluid" src="{{ url($slider->image) }}"  alt="" title="{{ isset($slider->image_title) ? $slider->image_title : ''}}">
+                        <img class="img-fluid" src="{{ asset('uploads/offerslider/'.$slider->image) }}"  alt="" title="{{ isset($slider->image_title) ? $slider->image_title : ''}}">
                         <div class="offer-section-item">
                             <div class="container">
                                 <p>{{$slider->title1}}</p>
@@ -188,7 +188,7 @@
         </div>
     </div>
 </div>
-<!-- offer section  start  -->
+<!-- offer section  end  -->
 <!-- testimonial start  -->
 <div class="testimonial-section">
     <div class="container">
@@ -322,7 +322,7 @@
                 @foreach($brand_logo_slider as $record)
                     <div class="item">
                         <div class="partner-brand-logo">
-                            <img src="{{ url($slider->image) }}"  alt="" title="{{$record->image_title}}">
+                            <img src="{{ asset('uploads/brandlogoslider/'.$record->image) }}"  alt="" title="{{$record->image_title}}">
                         </div>
                     </div>
                 @endforeach
