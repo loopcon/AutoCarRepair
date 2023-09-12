@@ -336,10 +336,40 @@ class ProductController extends MainController
         $request->validate([
             'file' => 'required|max:10000',
         ]);
-
-        $path = $request->file('file')->store('files'); 
-
-        Excel::import(new ImportProduct,$path);
+        // $path = $request->file('file')->store('files'); 
+        // Excel::import(new ImportProduct,$path);
+        $header = null;
+        $handle = fopen($request->file->getPathName(), 'r');
+        while (($row = fgetcsv($handle, 1000, ",")) !== false) {
+            if(!$header) {
+                $header = $row;
+            } else {
+            $category_fields = array('name'=>$row[0], 'slug' => strtolower($row[0]), 'image' => NULL, 'is_archive' => 1, 'status' => 1,);
+            $category_exists = ShopCategory::where([['name', 'LIKE', $row[0]]])->first();
+            $product_fields = array('shop_category_id' => $category_exists->id,'name'=>$row[1], 'description'=>$row[2],'specification'=>$row[3], 'amazon_link'=>$row[4], 'flipcart_link'=>$row[5], 'price'=>$row[6], 'sku'=>$row[7], 'slug'=>strtolower($row[8]), 'meta_title' => $row[9], 'meta_keywords'=> $row[10], 'meta_description'=>$row[11],'image' => $row[12]);
+            if(!empty($category_exists)) {
+                    $category_id = $category_exists->id;
+                    } else {
+                    $category_new = ShopCategory::create($category_fields);
+                    $category_id = $category_new->id;
+                    }
+                $product = Product::create($product_fields);
+                $product->shop_category_id = $category_id;
+                $product_id = $product->id;
+                if($product){
+                    $json_array = json_decode($row[12]);
+                    foreach($json_array as $image){
+                        $image_data = new ProductImage([
+                            'product_id' => $product_id,
+                            'is_primary' => $image->is_primary,
+                            'image'=> $image->image,
+                            'image_title' => $image->image_title,
+                        ]);
+                        $image_data->save();
+                    }
+                }
+            }
+        }
         return redirect('backend/products')->with('success', trans('Procduct Imported successfully.'));
     }
 }

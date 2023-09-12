@@ -129,7 +129,9 @@ a.badge:hover{
 .home-service-main{ display: flex; align-items: center; height: 72px; overflow: hidden; margin-bottom: 10px;}
 /* service css end  */
 /* why choose us start */
-.why-choose-section{ padding: 20px 0;}
+.why-choose-section{ padding: 50px 0; background-color: #f1f1f1;}
+.why-choose-section-new{ padding: 25px 0;}
+.why-choose-section .why-choose-inner-item{box-shadow: 0px 8px 24px 0px rgba(140, 149, 159, 0.2);padding: 20px; background: #fff;}
 .why-choose-section .why-choose-item h4 {  font-size: 22px; font-weight: bold;  color: #F99500 ; }
 .why-choose-section .why-choose-item h5{ font-size: 50px; font-weight: bold; color: #000000;}
 .why-choose-section .why-choose-item p{ font-size: 16px;  color: #000000;}
@@ -139,9 +141,37 @@ a.badge:hover{
 .why-choose-section .why-choose-main{ padding: 0px 15px;}
 /* .why-choose-section .why-choose-box-main{  align-items: center; margin-bottom: 25px; } */
 /* why choose us end */
+/* extra service*/
+ .spc{  padding: 50px 0; }
+    .newservice h4{font-size: 50px; color: #222; font-weight: bold;}
+ .extraservice{box-shadow: 1px 2px 4px 1px #0000001E;padding: 25px;margin: 25px 10px;border-radius: 8px; }
+.extraservice .servic-type-box-image {width: 25% !important;display: block;margin: auto;}
+.extraservice .servic-type-box h5 { color: #E56F31; font-size: 18px; font-weight: bold; text-align: center; margin-bottom: 0px;}
+.extraservice .service-type-head { height: 68px; display: flex; align-items: center;justify-content: center;overflow: hidden;margin-bottom: 0px;}
+/* end extra service*/
+/* end Home page price*/
+ .pricelist{
+        padding: 35px 0px;
+
+    }
+    .pricelist h3{
+        padding: 20px 0px;
+        font-size: 40px;
+    color: #222;
+   
+    text-align: left;
+    }
+    
+/* end home page price*/
 /* offer slider  css start  */
+.offeer-section{padding:45px 0px;  background:#f1f1f1; }
+.offeer-section h3{padding: 00px 0px;
+        font-size: 40px;
+    color: #222;
+    font-weight: bold;
+    text-align: center;}
 .offeer-section .explore-btn{  background-color: #E56F31; color: #fff;border: none;width: 145px;height: 45px;font-size: 17px;border-radius: 10px;font-weight: bold; font-size:18px; }
-.offeer-section .offer-section-main img{ position: relative; height: 500px; object-fit: cover;}
+    .offeer-section .offer-section-main img{ position: relative;/*  height: 500px; object-fit: cover;*/}
 .offeer-section .offer-section-item{ position: absolute;top: 50%;left: 10%;transform: translateY(-50%);}
 .offeer-section .offer-section-item p { color: #fff; margin-bottom: 0px;font-size: 22px;font-weight: bold;}
 .offeer-section .offer-section-item h4 { color: #fff;font-size: 48px;width: 56%;font-weight: bold;margin: 35px 0px;}
@@ -150,6 +180,7 @@ a.badge:hover{
 .offeer-section .owl-carousel .owl-nav button.owl-prev{ position: absolute;left: 1%;top: 46%;background: #fff;transform: translateY(-50%); border-radius: 50%; }
 .offeer-section .owl-carousel .owl-nav button.owl-prev span { background: #fff;font-size:40px;height:40px;width:40px;display: block;line-height: 38px; border-radius: 50%;}
 /* offer slider  css end  */
+
 /* testimonial css start  */
 .testimonial-section { padding: 35px 0px;}
 .testimonial-section .testiminoal-img-main{  align-items: center; }
@@ -170,7 +201,7 @@ a.badge:hover{
 /* testimonial css end  */
 /* brand logo css start  */
 .brand-logo-section{ background-color: #F2F2F2; height: 368px; display: flex; align-items: center;}
-.brand-logo-section .partner-brand-logo{ background-color: #F6F5F5; height: 110px; width: auto; display: flex; box-shadow: 1px 2px 4px 1px #0000001E; margin-bottom:20px; margin-right:15px; }
+.brand-logo-section .partner-brand-logo{ background-color: #fff; height: 110px; width: auto; display: flex; box-shadow: 1px 2px 4px 1px #0000001E; margin-bottom:20px; margin-right:15px; }
 .brand-logo-section .partner-brand-logo img{  height: 70px; width: 100%; margin: auto auto; object-fit:contain; }
 .brand-logo-section .partner-brand-carousel .owl-stage-outer {width:101%  !important ;}
 /* brand logo css end */
@@ -572,7 +603,7 @@ button { color: #000; outline: none; }
 .home-email-input{ height:40px !important;}
 .footer-whatappicon{position: fixed;bottom: 10%;right: 6%;z-index:9;}
 .footer-whatappicon img{ width: 50px;height: 50px;object-fit: cover; }
-.home-back-totoptext{color:#fff; text-decoration: none; font-weight: 600;background-color: #000; height: 40px ;  height: 50px !important; width: 50px !important; padding: 8px; border-radius: 5px; }
+.home-back-totoptext{color:#fff; text-decoration: none; font-weight: 600;background-color: #000; height: 40px ;  height: 50px !important; width: 50px !important; padding: 8px; border-radius: 5px;}
 .home-back-totoptext:hover{color: #fff;}
 /* new footer  css start  */
 .footer-soical-icon{ display: flex;justify-content: end;margin-right: 35px;margin-bottom: 10px; margin-top: 10px; }
@@ -624,6 +655,7 @@ button { color: #000; outline: none; }
     position: absolute;
     right: 0;
     top: 0;
+    top:0;
     background-color: #f1f1f1;
     width: 25px;
     text-align: end;
@@ -758,3 +790,80 @@ button { color: #000; outline: none; }
 .appointmentsearch-dialog .search-modal-box::-webkit-scrollbar{width: 5px;}
 .appointmentsearch-dialog .search-modal-box::-webkit-scrollbar-thumb{background-color: #000000; }
 .changeandbackmainbtn{ display: flex;justify-content: space-between;margin-top: 6px;}
+.search-page-bg{
+    background-color: #eeeeee;
+    padding: 15px;
+}
+.search-page-bg .search-list-image{
+    height: 200px;
+    width: 100%;
+    object-fit: cover;
+    padding: 8px;
+}
+.search-page-bg .search-list-head{
+    font-weight: 600;
+}
+.search-page-bg .search-card-star{
+    margin-bottom: 15px;
+}
+.search-page-bg .search-list-main-dot{
+    margin-bottom: 15px;
+}
+.search-page-bg .search-list-main-dot span{
+    color: #000;
+    opacity: 0.5;
+}
+.search-page-bg .search-card-star svg{
+    color: #E56F31;
+}
+.search-page-bg .search-card-star span{
+    padding-left: 7px;
+}
+.search-page-bg .search-list-textmain{ 
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+ }
+.search-page-bg .prise-total{
+    font-size: 20px;
+    font-weight: 600;
+}
+.search-page-bg .prise-discount{
+    font-size: 16px;
+    text-decoration: line-through;
+    color: #E56F31;
+}
+.search-page-bg .free-shipping-text{
+    color: #187601;
+    font-weight: 600;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+.search-page-bg .detail-btn-main{
+    border: 0px;
+    width: 100%;
+    background-color: #E56F31;
+    color: #fff;
+    text-align: center;
+    height: 40px;
+    border-radius: 7px;
+    margin-bottom: 15px;
+}
+.search-page-bg .detail-btn-main:hover{
+    background-color: unset;
+    border: 1px solid #E56F31;
+    color: #E56F31;
+}
+.search-page-bg .add-to-wishlist-btn{
+    background-color: unset;
+    height: 40px;
+    width: 100%;
+    border-radius: 7px;
+    border: 1px solid  #164498;
+    color: #164498;
+}
+.search-page-bg .add-to-wishlist-btn:hover{
+    background-color: #164498;
+    color: #fff;
+    border: 1px solid #164498;
+}
