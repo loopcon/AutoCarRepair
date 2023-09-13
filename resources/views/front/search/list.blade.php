@@ -14,28 +14,6 @@
 <div class="shopping-section">
 <div class="container"> 
     <div class="search-page-bg">
-        <div class="row justify-content-center">
-            <div class="col-12 col-sm-6 col-lg-3">
-                <img src="{{ asset('front/img/no_image.jpg') }}" class="search-list-image" alt="" title="no_image">
-            </div>
-            <div class="col-12 col-sm-6 col-lg-6">
-                <div>
-                    <h4 class="search-list-head">Quant trident shirt</h4>
-                </div>
-                <div class="search-card-star">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <span>310</span>
-                </div>
-                <div class="search-list-main-dot">
-                    <div>
-                        <span>Unique design</span>
-                        <span class="text-primary"> • </span>
-                        <span>For men</span>
-                        <span class="text-primary"> • </span>
-                        <span>Casual<br /></span>
 
         <!-- start product -->
     @if($products)
@@ -70,23 +48,6 @@
                             <button class="shop-add-btn add_to_cart btn detail-btn-main" data-product_id="{{$product->id}}">Add to cart</button>
                         </div>
                     </div>
-                </div>
-                <div>
-                    <p class="search-list-textmain">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Soluta itaque ullam, possimus quo omnis et?</p>
-                </div>
-            </div>
-            <div class="col-12 col-sm-6 col-lg-3">
-                <div>
-                    <span class="prise-total">$13.99 </span>
-                    <span class="prise-discount">$20.99</span>
-                </div>
-                <div>
-                    <p class="free-shipping-text">Free shipping</p>
-                </div>
-                <div>
-                    <button class="detail-btn-main">DETAILS</button>
-                    <button class="add-to-wishlist-btn">ADD TO WISHLIST</button>
-                </div>
             </div>
         </div>
 
