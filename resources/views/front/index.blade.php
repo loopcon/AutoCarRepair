@@ -121,28 +121,28 @@
                                 variety of makes and models.</p>    
                         </div>
                         <div class="row m-0 why-choose-section-new">
-                            <div class="col-12 col-sm-3"> 
+                            <div class="col-12 col-sm-3 p-0"> 
                                 <div class="why-choose-inner-item">
                                     <img src="{{ asset('front/img/why-mechanic.webp') }}" class="img-fluid" alt="" title="car repair service">
                                     <h4>Skilled Technicians</h4>
                                     <p>We want to get you in and out quickly while providing you top notch auto repair service.</p>
                                 </div>
                             </div>
-                            <div class="col-12 col-sm-3">
+                            <div class="col-12 col-sm-3 p-0">
                                 <div class="why-choose-inner-item">
                                     <img src="{{ asset('front/img/why-qualservice.webp') }}" class="img-fluid" alt="" title="car repair service">
                                     <h4>Quality Services</h4>
                                     <p>We take pride in offering you the best services available and 100% Satisfaction Guarantee.</p>
                                 </div>
                             </div>
-                            <div class="col-12 col-sm-3">
+                            <div class="col-12 col-sm-3 p-0">
                                 <div class="why-choose-inner-item">
                                     <img src="{{ asset('front/img/why-car-insurance.webp') }}" class="img-fluid" alt="" title="">
                                     <h4>Insurance Claims</h4>
                                     <p>We take pride in offering you the best services available and 100% Satisfaction Guarantee.</p>
                                 </div>
                             </div>
-                            <div class="col-12 col-sm-3">
+                            <div class="col-12 col-sm-3 p-0">
                                 <div class="why-choose-inner-item">
                                     <img src="{{ asset('front/img/why-car-parts.webp') }}" class="img-fluid" alt="" title="">
                                     <h4>100% OEM Genuien Parts</h4>

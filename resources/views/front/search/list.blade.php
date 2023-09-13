@@ -14,28 +14,6 @@
 <div class="shopping-section">
 <div class="container"> 
     <div class="search-page-bg">
-        <div class="row justify-content-center">
-            <div class="col-12 col-sm-6 col-lg-3">
-                <img src="{{ asset('front/img/no_image.jpg') }}" class="search-list-image" alt="" title="no_image">
-            </div>
-            <div class="col-12 col-sm-6 col-lg-6">
-                <div>
-                    <h4 class="search-list-head">Quant trident shirt</h4>
-                </div>
-                <div class="search-card-star">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <span>310</span>
-                </div>
-                <div class="search-list-main-dot">
-                    <div>
-                        <span>Unique design</span>
-                        <span class="text-primary"> • </span>
-                        <span>For men</span>
-                        <span class="text-primary"> • </span>
-                        <span>Casual<br /></span>
 
         <!-- start product -->
     @if($products)
@@ -43,7 +21,7 @@
         <div class="card mb-3">
             <div class="row p-4">
                     
-                    <div class="col-3">
+                    <div class="col-12 col-sm-6 col-lg-3">
                          @if(!empty($product->primaryImage) && isset($product->primaryImage->image))
                          <img src="{{ $product->primaryImage->image }}"  alt="" title="{{ isset($product->primaryImage->image_title) ? $product->primaryImage->image_title : '' }}">
                          @else
@@ -51,7 +29,7 @@
                         @endif
                     </div>
 
-                    <div class="col-6">
+                    <div class="col-12 col-sm-6 col-lg-6">
                         <div>
                             <h4 class="search-list-head"><a href="{{url('shopping/'.$product->slug)}}" style="text-decoration: none;color: black;">{{$product->name}}</a></h4>
                         </div>
@@ -61,7 +39,7 @@
                         </div>
                     </div>
 
-                    <div class="col-3">
+                    <div class="col-12 col-sm-6 col-lg-3">
                         <div class="mb-3">
                             <span class="prise-total">₹{{formatNumber($product->price)}}</span>
                         </div>
@@ -70,23 +48,6 @@
                             <button class="shop-add-btn add_to_cart btn detail-btn-main" data-product_id="{{$product->id}}">Add to cart</button>
                         </div>
                     </div>
-                </div>
-                <div>
-                    <p class="search-list-textmain">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Soluta itaque ullam, possimus quo omnis et?</p>
-                </div>
-            </div>
-            <div class="col-12 col-sm-6 col-lg-3">
-                <div>
-                    <span class="prise-total">$13.99 </span>
-                    <span class="prise-discount">$20.99</span>
-                </div>
-                <div>
-                    <p class="free-shipping-text">Free shipping</p>
-                </div>
-                <div>
-                    <button class="detail-btn-main">DETAILS</button>
-                    <button class="add-to-wishlist-btn">ADD TO WISHLIST</button>
-                </div>
             </div>
         </div>
 
@@ -99,9 +60,9 @@
     @if(isset($schedulepackage) && $schedulepackage->count())
     @foreach($schedulepackage as $package)
         <div class="card mb-3">
-            <div class="row p-4">
+            <div class="row p-4 justify-content-center">
 
-                    <div class="col-3">
+                    <div class="col-12 col-sm-6 col-lg-3">
                         @if(isset($package->image) && $package->image)
                         <img src="{{ url($package->image )}}" class="search-list-image" alt="" title="no_image">
                         @else
@@ -109,7 +70,7 @@
                         @endif
                     </div>
 
-                    <div class="col-6">
+                    <div class="col-12 col-sm-6 col-lg-6">
                         <div>
                             <h4 class="search-list-head">{{$package->title}}</h4>
                         </div>
@@ -151,7 +112,7 @@
                         </div>
                         
                     </div>
-                            <div class="col-3">
+                            <div class="col-12 col-sm-6 col-lg-3">
                                 <div class="mb-3">
                                     @if($package->time_takes !==null)
                                     <span><i class="fa fa-clock"></i>&nbsp;{{$package->time_takes}} hrs Taken</span>
