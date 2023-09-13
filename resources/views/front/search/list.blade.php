@@ -64,11 +64,11 @@
 
 <div class="container"> 
     <div class="search-page-bg">
-        <div class="row">
-            <div class="col-3">
+        <div class="row justify-content-center">
+            <div class="col-12 col-sm-6 col-lg-3">
                 <img src="{{ asset('front/img/no_image.jpg') }}" class="search-list-image" alt="" title="no_image">
             </div>
-            <div class="col-6">
+            <div class="col-12 col-sm-6 col-lg-6">
                 <div>
                     <h4 class="search-list-head">Quant trident shirt</h4>
                 </div>
@@ -99,7 +99,7 @@
                     <p class="search-list-textmain">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Soluta itaque ullam, possimus quo omnis et?</p>
                 </div>
             </div>
-            <div class="col-3">
+            <div class="col-12 col-sm-6 col-lg-3">
                 <div>
                     <span class="prise-total">$13.99 </span>
                     <span class="prise-discount">$20.99</span>
