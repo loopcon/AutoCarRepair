@@ -37,7 +37,7 @@ class ImportCarModel implements ToModel
         $filename = pathinfo($url, PATHINFO_BASENAME);
 
         //get public path of you project
-        $dir = public_path().'\uploads\carmodel';
+        $dir = public_path().'/uploads/carmodel';
         // Combine the target folder and filename to get the full path
         $destinationPath = $dir . '/' . $filename;
         //print_r($destinationPath);exit;
@@ -52,7 +52,7 @@ class ImportCarModel implements ToModel
             'slug' => strtolower($row[1]),
             'carbrand_id' => $brand_id,
             'title' => $row[1],
-            'image' => $filename,
+            'image' => "https://drive.google.com/uc?export=view&id=".$filename,
             'is_archive' => 1,
             'status' => 1,
         ]);

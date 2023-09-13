@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="{{isset($meta_description) ? $meta_description : ''}}">
     <meta name="keywords" content="{{isset($meta_keywords) ? $meta_keywords : ''}}">
-    <meta name="meta_title" content="{{isset($meta_title) ? $meta_title : ''}}">
-    <meta name="meta_tag" content="{{isset($extra_meta_tag) ? $extra_meta_tag : ''}}">
     <title>{{$site_title.' | '. $site_name}}</title>
     <link rel="icon"  href="{{ asset('public/favicon.ico') }}">
     <link rel="stylesheet" href="{{ asset('front/css/bootstrap.min.css') }}">
@@ -62,6 +60,20 @@
                     <li><a  class="@if($page == 'service-center'){{'acr-active'}}@endif" href="{{url('service-center')}}">Service Center</a></li>
                     <li><a href="#">Blog</a></li>
                     <li><a class="@if($page == 'shopping'){{'acr-active'}}@endif" href="{{url('shopping')}}">Shopping</a></li>
+                    <li><a href="#">Offers</a></li>
+                </ul>
+            </div>
+            <div class="search-main-section">
+                <div class="search-icon-main">
+                    <?php /* <img data-bs-toggle="modal" data-bs-target="#searchbarModal"  src="{{ asset('front/img/navbar-search-icon.png') }}" alt=""> */ ?>
+                     <span class="search-svg-main" data-bs-toggle="modal" data-bs-target="#searchbarModal" ><i class="fa-solid fa-magnifying-glass"></i></span>
+                </div>
+                <div>
+                    <a class="navbar-appointment-btn apt-btn" href="javascript:void(0)" >Book A Service</a>
+                </div>
+            </div>
+            <div>
+                <ul class="login-drop-main">
                     <li class="dropdown ">
                         <a class="nav-link login-icon-text dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fa fa-user"></i>
@@ -78,15 +90,6 @@
                         </ul>
                     </li>
                 </ul>
-            </div>
-            <div class="search-main-section">
-                <div class="search-icon-main">
-                    <?php /* <img data-bs-toggle="modal" data-bs-target="#searchbarModal"  src="{{ asset('front/img/navbar-search-icon.png') }}" alt=""> */ ?>
-                     <span class="search-svg-main" data-bs-toggle="modal" data-bs-target="#searchbarModal" ><i class="fa-solid fa-magnifying-glass"></i></span>
-                </div>
-                <div>
-                    <a class="navbar-appointment-btn apt-btn" href="javascript:void(0)" >Book A Service</a>
-                </div>
             </div>
             <a href="{{url('checkout')}}" class="card-icon-main"><i class="fa fa-cart-plus"></i><span id="cart_header_total_item"></span></a>
         </div>
@@ -166,7 +169,7 @@
                             @foreach($brands as $brand)
                                 @if($brand->image)
                                     <div class="col-4 brand-logo-center">
-                                        <a href="javascript:void(0);" class="amodal-brand" data-id="{{$brand->id}}"><img src="https://{{$brand->image}}" class="img-fluid" alt=""></a>
+                                        <a href="javascript:void(0);" class="amodal-brand" data-id="{{$brand->id}}"><img src="{{ $brand->image }}" class="img-fluid" alt=""></a>
                                     </div>
                                 @endif
                             @endforeach
@@ -226,7 +229,10 @@
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </div>
                 </div>
-                <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#appointmentselectModal">Change</a>
+                <div class="changeandbackmainbtn">
+                    <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#appointmentselectModal">Change</a>    
+                    <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#appointmentsearchModal">Back</a>
+                </div>
                 <div class="row m-0 search-modal-box" id="amodal_fuels">
                 </div>
             </div>
@@ -246,7 +252,10 @@
             <div class="modal-body">
                 <div>
                     <h1>Get instant quotes for your car service </h1>
-                    <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#appointmentselectModal">Change</a>
+                    <div class="changeandbackmainbtn">
+                        <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#appointmentselectModal">Change</a>    
+                        <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#appointmentfuelModal">Back</a>
+                    </div>
                     <div class="row m-0 search-modal-box" id="search_info">
 
                     </div>
@@ -283,7 +292,7 @@
             <div class="modal-body">
                 <div class="input-group mb-3">
                     <input type="text" class="form-control search_text" placeholder="Search" value="{{Request::get('search')}}" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                </div>
+                  </div>
             </div>
         </div>
     </div>

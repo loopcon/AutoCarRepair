@@ -657,3 +657,20 @@ ALTER TABLE `compny_cms_page`
 ALTER TABLE `compny_cms_page` ADD `section` TINYINT(1) NULL DEFAULT NULL COMMENT '0=second;1=third;2=forth' AFTER `banner_text`;
 ALTER TABLE `service_categories` ADD `order_by` INT(11) NOT NULL AFTER `is_archive`;
 
+-- Dipak : 12-09-2023
+ALTER TABLE `sceduled_packages` ADD `time_takes_option` ENUM('Day','Hour') NOT NULL DEFAULT 'Hour' AFTER `time_takes_day`;
+ALTER TABLE `sceduled_packages` CHANGE `time_takes_day` `time_takes_day` INT(11) NULL;
+
+CREATE TABLE `model_fueltype_transaction` (
+  `id` int(11) NOT NULL,
+  `model_id` int(11) NOT NULL,
+  `fuel_type_id` int(11) NOT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_by` int(11) DEFAULT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+ALTER TABLE `model_fueltype_transaction` ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `model_fueltype_transaction` MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;

@@ -64,19 +64,19 @@
                                             </div>
                                             <div class="mb-3 col-md-4">
                                                 <label class="form-label" for="title1">{{__('Title 1')}}<span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control" id="title1" value="{{ isset($record->title1) ? $record->title1 : old('title1') }}" name="title1_{{$key}}" placeholder="{{__('Title1')}}" required=""  data-parsley-required-message="{{ __("This value is required.")}}" >
+                                                <input type="text" class="form-control" id="title1" value="{{ isset($record->title1) ? $record->title1 : old('title1') }}" name="title1_{{$key}}" placeholder="{{__('Title1')}}"   data-parsley-required-message="{{ __("This value is required.")}}" >
                                             </div>
                                             <div class="mb-3 col-md-4">
                                                 <label class="form-label" for="title2">{{__('Title 2')}}<span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control" id="title2" value="{{ isset($record->title2) ? $record->title2 : old('title2') }}" name="title2_{{$key}}" placeholder="{{__('Title2')}}" required=""  data-parsley-required-message="{{ __("This value is required.")}}">
+                                                <input type="text" class="form-control" id="title2" value="{{ isset($record->title2) ? $record->title2 : old('title2') }}" name="title2_{{$key}}" placeholder="{{__('Title2')}}"   data-parsley-required-message="{{ __("This value is required.")}}">
                                             </div>
                                             <div class="mb-3 col-md-4">
                                                 <label class="form-label" for="btn_title">{{__('Button Title')}}<span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control" id="btn_title" value="{{ isset($record->btn_title) ? $record->btn_title : old('btn_title') }}"  name="btn_title_{{$key}}" placeholder="{{__('Button Title')}}" required=""  data-parsley-required-message="{{ __("This value is required.")}}">
+                                                <input type="text" class="form-control" id="btn_title" value="{{ isset($record->btn_title) ? $record->btn_title : old('btn_title') }}"  name="btn_title_{{$key}}" placeholder="{{__('Button Title')}}"   data-parsley-required-message="{{ __("This value is required.")}}">
                                             </div>   
                                             <div class="mb-3 col-md-4">
                                                 <label class="form-label" for="btn_link">{{__('Button Link')}}<span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control" id="btn_link" value="{{ isset($record->btn_link) ? $record->btn_link : old('btn_link') }}"  name="btn_link_{{$key}}" placeholder="{{__('Button Link')}}" required=""  data-parsley-required-message="{{ __("This value is required.")}}" >
+                                                <input type="text" class="form-control" id="btn_link" value="{{ isset($record->btn_link) ? $record->btn_link : old('btn_link') }}"  name="btn_link_{{$key}}" placeholder="{{__('Button Link')}}"   data-parsley-required-message="{{ __("This value is required.")}}" >
                                             </div>   
                                         </div>
                                     @endforeach
