@@ -3,7 +3,6 @@
 namespace App\Imports;
 
 use App\Models\Product;
-use App\Models\ProductImage;
 use App\Models\ShopCategory;
 use Maatwebsite\Excel\Concerns\ToModel;
 
@@ -18,9 +17,11 @@ class ImportProduct implements ToModel
     {
         $category = ShopCategory::select('id')->where('name','=',$row[0])->first();
         
-        if(!empty($category)) {
+        if(!empty($category))
+        {
             $category_id= $category->id;
-        } else {
+        }
+        else {
             $category = ShopCategory::create([
                 'name' => $row[0],
                 'slug' => strtolower($row[0]),
@@ -31,24 +32,7 @@ class ImportProduct implements ToModel
             $category_id = $category->id;
         }
 
-        // return new Product([
-        //     'slug' => strtolower($row[8]),
-        //     'shop_category_id' => $category_id,
-        //     'name' => $row[1],
-        //     'sku' => $row[7],
-        //     'description' => $row[2],
-        //     'specification' => $row[3],
-        //     'price' => $row[6],
-        //     'amazon_link' => $row[4],
-        //     'flipcart_link' => $row[5],
-        //     'meta_title' => $row[9],
-        //     'meta_keywords' => $row[10],
-        //     'meta_description' => $row[11],
-        //     'is_archive' => 1,
-        //     'status' => 1,
-        // ]);
-        $product_id = Product::select('id')->where('name','=',$row[1])->first();
-        $product = new Product([
+        return new Product([
             'slug' => strtolower($row[8]),
             'shop_category_id' => $category_id,
             'name' => $row[1],
@@ -64,22 +48,5 @@ class ImportProduct implements ToModel
             'is_archive' => 1,
             'status' => 1,
         ]);
-
-        if($product)
-        {
-            $json_array = json_decode($row[12]);
-            foreach($json_array as $image){
-                    $image_data = new ProductImage([
-                    'product_id' => $product->id,
-                    'is_primary' => $image->is_primary,
-                    'image'=> $image->image,
-                    'image_title' => $image->image_title,
-                ]);
-                // echo "<pre>";
-                // print_r($image);
-                 print_r($product);
-            }
-        }
-        return $product;
     }
 }

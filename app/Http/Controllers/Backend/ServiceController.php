@@ -292,7 +292,7 @@ class ServiceController extends MainController
         $slug = $request->title != '' ? slugify($request->title) : NULL;
 
         $spackage = new ScheduledPackage();
-        $fields = array('sc_id', 'title', 'image', 'image_other', 'warrenty_info', 'note', 'recommended_info', 'time_takes','time_takes_day','meta_title','meta_keywords','meta_description');
+        $fields = array('sc_id', 'title', 'image', 'image_other', 'warrenty_info', 'note', 'recommended_info', 'time_takes','time_takes_day','time_takes_option','meta_title','meta_keywords','meta_description');
         foreach($fields as $field){
             $spackage->$field = isset($request->$field) && $request->$field != '' ? $request->$field : NULL;
         }
@@ -368,7 +368,7 @@ class ServiceController extends MainController
         $slug = $request->title != '' ? slugify($request->title) : NULL;
 
         $spackage = ScheduledPackage::find($id);
-        $fields = array('sc_id', 'title', 'image','image_other', 'warrenty_info', 'recommended_info', 'note', 'time_takes','time_takes_day','meta_title','meta_keywords','meta_description');
+        $fields = array('sc_id', 'title', 'image','image_other', 'warrenty_info', 'recommended_info', 'note', 'time_takes','time_takes_day','time_takes_option','meta_title','meta_keywords','meta_description');
         foreach($fields as $field){
             $spackage->$field = isset($request->$field) && $request->$field != '' ? $request->$field : NULL;
         }
@@ -390,6 +390,11 @@ class ServiceController extends MainController
         }
         $spackage->slug = $slug;
         $spackage->updated_by = Auth::guard('admin')->user()->id;
+        if($request->time_takes_option=="Hour") {
+            $spackage->time_takes_day = NULL;
+        } elseif($request->time_takes_option=="Day") {
+            $spackage->time_takes = NULL;
+        }
         $spackage->save();
         if($spackage) {
             $sp_id = $spackage->id;
@@ -445,7 +450,7 @@ class ServiceController extends MainController
     public function scheduledPackageDatatable(request $request)
     {
         if($request->ajax()){
-            $query = ScheduledPackage::with('categoryDetail', 'brandDetail', 'modelDetail', 'fuelTypeDetail')->select('id', 'sc_id', 'title', 'image', 'warrenty_info', 'recommended_info', 'note', 'time_takes')->where('is_archive', '=', Constant::NOT_ARCHIVE)->orderBy('id', 'DESC');
+            $query = ScheduledPackage::with('categoryDetail', 'brandDetail', 'modelDetail', 'fuelTypeDetail')->select('id', 'sc_id', 'title', 'image', 'warrenty_info', 'recommended_info', 'note', 'time_takes', 'time_takes_day', 'time_takes_option')->where('is_archive', '=', Constant::NOT_ARCHIVE)->orderBy('id', 'DESC');
 
             if($request->serviceCategory!='all') {
                 if($request->serviceCategory!='') {
@@ -494,7 +499,8 @@ class ServiceController extends MainController
                 //     return $brand.' - '.$model.' - '.$fuel_type;
                 // })
                 ->addColumn('time_takes', function($row){
-                    $time = isset($row->time_takes) && $row->time_takes ? $row->time_takes.' Hrs' : NULL;
+                    // $time = isset($row->time_takes) && $row->time_takes ? $row->time_takes.' Hrs' : NULL;
+                    $time = ($row->time_takes_option=="Hour") ? $row->time_takes." Hr(s)" : $row->time_takes_day." Day(s)";
                     return $time;
                 })
                 ->addColumn('action', function ($row) {
