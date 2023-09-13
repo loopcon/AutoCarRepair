@@ -13,6 +13,7 @@ use App\Models\FuelType;
 use Session;
 use App\Models\Product;
 use App\Models\ServiceCategory;
+use App\Models\ShopCategory;
 use DB;
 class SearchController extends MainController
 {
@@ -181,30 +182,68 @@ class SearchController extends MainController
         $search = '';
         if ($request->has('search')) {
             $search = $request->input('search');
-            $search = strtolower(str_replace(' ', '', $search));
-            
-           $schedulepackage = ScheduledPackage::where('status', 1)
-                    ->where('is_archive', 1)
-                    ->where('title', 'LIKE', '%' . $search . '%')
-                    ->orderBy('id', 'DESC')
-                    ->get();
+            // $search = strtolower(str_replace(' ', '', $search));
 
-            $product = Product::with('shopCategoryDetail', 'primaryImage')
+            $category= ShopCategory::where('status', 1)
+                                    ->where('is_archive', 1)
+                                    ->where('name', 'LIKE', '%' . $search . '%')
+                                    ->get();
+        
+            if($category)
+            {   
+                $categoryIds = $category->pluck('id')->toArray();
+                $product = Product::with('shopCategoryDetail', 'primaryImage')
+                                        ->where('status', 1)
+                                        ->where('is_archive', 1)
+                                        ->where('name', 'LIKE', '%' . $search . '%')
+                                        ->orWhere('shop_category_id' , $categoryIds)
+                                        ->orderBy('id', 'DESC')
+                                        ->get();
+            }
+            else
+            {
+              $product = Product::with('shopCategoryDetail', 'primaryImage')
                                         ->where('status', 1)
                                         ->where('is_archive', 1)
                                         ->where('name', 'LIKE', '%' . $search . '%')
                                         ->orderBy('id', 'DESC')
-                                        ->paginate(18);
-
-            $servicecategory=ServiceCategory::where('title', 'LIKE', '%' . $search . '%')
+                                        ->get();
+            }
+           
+           $servicecategory=ServiceCategory::where('title', 'LIKE', '%' . $search . '%')
                                              ->where('status', 1)
                                              ->where('is_archive', 1)
                                              ->orderBy('id', 'DESC')
-                                             ->paginate(18);
+                                             ->get();
+            
+            if($servicecategory)
+            {
+                $servicecategoryIds = $servicecategory->pluck('id')->toArray();
+                // dd($servicecategoryIds);
+                $schedulepackage = ScheduledPackage::where('status', 1)
+                    ->where('is_archive', 1)
+                    ->where('title', 'LIKE', '%' . $search . '%')
+                    ->orWhere('sc_id' , $servicecategoryIds)
+                    ->orderBy('id', 'DESC')
+                    ->get();
+            }
+            else
+            {
+                $schedulepackage = ScheduledPackage::with('categoryDetail','specifications')->where('status', 1)
+                    ->where('is_archive', 1)
+                    ->where('title', 'LIKE', '%' . $search . '%')
+                    ->orderBy('id', 'DESC')
+                    ->get();
+            }
+
+
+            
             $return_data = array();
             $return_data['settings'] = $this->data;
             $return_data['car_details'] = $product;
             $return_data['products']=$product;
+            $return_data['servicecategory']=$servicecategory;
+            $return_data['schedulepackage']=$schedulepackage;
             $return_data['site_title'] = trans('Search');
             return view('front/search/list',array_merge($this->data,$return_data));
         } else {

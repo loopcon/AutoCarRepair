@@ -49,12 +49,16 @@
                                 </div>
                                 <div class="col-12 col-sm-6 basic-service-text-main">
                                     <ul>
+                                @if(isset($packageDetail->warrenty_info) && $packageDetail->warrenty_info != null)
                                         <li>{{$packageDetail->warrenty_info}}</li>
+                                @endif
                                     </ul>
                                 </div>
                                 <div class="col-12 col-sm-6 basic-service-text-main">
                                     <ul>
+                                @if(isset($packageDetail->recommended_info) && $packageDetail->recommended_info != null)
                                         <li>{{$packageDetail->recommended_info}}</li>
+                                @endif
                                     </ul>
                                     <!-- <a href="#">View All</a> -->
                                     <!-- <a href="#" class="more"><span>View All</span></a>  -->

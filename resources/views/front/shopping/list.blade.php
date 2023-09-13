@@ -66,7 +66,7 @@
                             <div class="col-12 col-sm-6 col-md-6 col-lg-4">
                                 <a href="{{url('shopping/'.$product->slug)}}">
                                     <div class="shoping-main-product">
-                                        @if(!empty($product->primaryImage) && isset($product->primaryImage->image))
+                                        @if(!empty($product->primaryImage->image) && isset($product->primaryImage->image))
                                             <img src="{{ $product->primaryImage->image }}"  alt="" title="{{ isset($product->primaryImage->image_title) ? $product->primaryImage->image_title : '' }}">
                                         @else
                                             <img src="{{ asset('front/img/no_image.jpg') }}" class="img-fluid" alt="" title="no_image">
@@ -78,7 +78,7 @@
                                         @endif */ ?>
                                         <div class="shoping-text-name">
                                             <h5><a href="{{url('shopping/'.$product->slug)}}">{{$product->name}}</a></h5>
-                                            <h5>{{isset($product->shopCategoryDetail->name) ? $product->shopCategoryDetail->name : ''}}</h5>
+                                            <h5>category : {{isset($product->shopCategoryDetail->name) ? $product->shopCategoryDetail->name : ''}}</h5>
                                         </div>
                                         <div class="shoping-card-prise">
                                             <div class="shoping-card-text"><p>₹{{formatNumber($product->price)}}</p></div>

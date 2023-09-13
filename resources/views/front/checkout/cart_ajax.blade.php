@@ -71,7 +71,7 @@
     @endforeach
 @endif
 
-<div class="item-total-sec-main">
+<div class="item-total-sec-main item-total-sec-border">
     <p>Item Total</p>
     <p>₹{{formatNumber($subtotal)}}</p>
 </div>

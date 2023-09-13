@@ -37,7 +37,17 @@
                                     </select>
                                     @if ($errors->has('sc_id')) <div class="text-danger">{{ $errors->first('sc_id') }}</div>@endif
                                 </div>
-                                <div class="mb-3 col-md-2">
+                                
+                                <div class="mb-3 col-md-3">
+                                    <label class="form-label" for="time_takes_option">{{__('Service Time (Hour/Day)')}}<span class="text-danger">*</span></label>
+                                    <select class="form-control select2" required="" name="time_takes_option" id="time_takes_option">
+                                        <option value="" @if(isset($record->time_takes_option) && $record->time_takes_option == "") {{'selected'}} @endif>{{__('Select Service Time')}}</option>
+                                        <option value="Hour" @if(isset($record->time_takes_option) && $record->time_takes_option == "Hour") {{'selected'}} @endif>Hour</option>
+                                        <option value="Day" @if(isset($record->time_takes_option) && $record->time_takes_option == "Day") {{'selected'}} @endif>Day</option>
+                                    </select>
+                                    @if ($errors->has('time_takes_option')) <div class="text-danger">{{ $errors->first('time_takes_option') }}</div>@endif
+                                </div>
+                                <div class="mb-3 col-md-2 @if(isset($record->time_takes_option) && $record->time_takes_option == 'Day') d-none @endif time_takes_in_hour">
                                     <label class="form-label" for="time_takes">{{__('Time Takes in Hour')}}<span class="text-danger">*</span></label>
                                     <input type="text" class="form-control num_only" id="time_takes" name="time_takes" placeholder="{{__('Time Takes in Hour')}}" value="{{ isset($record->time_takes) ? $record->time_takes : old('time_takes') }}">
                                     @if ($errors->has('time_takes'))
@@ -45,7 +55,7 @@
                                     @endif
                                 </div>
 
-                                <div class="mb-3 col-md-2">
+                                <div class="mb-3 col-md-2 @if(isset($record->time_takes_option) && $record->time_takes_option == 'Hour') d-none @endif time_takes_in_day">
                                     <label class="form-label" for="time_takes_day">{{__('Time Takes in Days')}}<span class="text-danger">*</span></label>
                                     <input type="text" class="form-control num_only" id="time_takes_day" name="time_takes_day" placeholder="{{__('Time Takes in Days')}}" value="{{ isset($record->time_takes_day) ? $record->time_takes_day : old('time_takes_day') }}">
                                     @if ($errors->has('time_takes_day'))
@@ -137,6 +147,7 @@
                                         <input type="file" id="uploadImage{{$i}}" accept="image/x-png, image/gif, image/jpeg" class="btn btn-warning btn-block btn-sm"  name="image" data-parsley-required-message="{{ __("This value is required.")}}" onChange="this.parentNode.nextSibling.value = this.value; PreviewImage({{$i}});" >
                                         @if ($errors->has('image')) <div class="errors_msg">{{ $errors->first('image') }}</div>@endif
                                     </div>
+                                    <small class="text-danger">Please upload image size : 403*302 px</small>
                                 </div>
                                 <div class="mb-3 col-md-4">
                                     <label class="form-label" for="image2">{{__('Other Image')}}</label>
@@ -156,6 +167,7 @@
                                         <input type="file" id="uploadImage{{$i}}" accept="image/x-png, image/gif, image/jpeg" class="btn btn-warning btn-block btn-sm"  name="image_other" data-parsley-required-message="{{ __("This value is required.")}}" onChange="this.parentNode.nextSibling.value = this.value; PreviewImage({{$i}});" >
                                         @if ($errors->has('image_other')) <div class="errors_msg">{{ $errors->first('image_other') }}</div>@endif
                                     </div>
+                                    <small class="text-danger">Please upload image size : 403*302 px</small>
                                 </div>
 
                                 <div class="col-12 row" id="specifications">
@@ -320,8 +332,24 @@
                         });
                     }
                 });
-
-                
+            });
+            
+            $("#time_takes_option").change(function() {
+                var time_takes_option = $(this).val();
+                $(".time_takes_in_hour").addClass("d-none");
+                $(".time_takes_in_day").addClass("d-none");
+                $(".time_takes_in_hour #time_takes").attr("required", false);
+                $(".time_takes_in_day #time_takes_day").attr("required", false);
+                if(time_takes_option=="Hour") {
+                    $(".time_takes_in_hour").removeClass("d-none");
+                    $(".time_takes_in_day").addClass("d-none");
+                    $(".time_takes_in_hour #time_takes").attr("required", true);
+                }
+                if(time_takes_option=="Day") {
+                    $(".time_takes_in_hour").addClass("d-none");
+                    $(".time_takes_in_day").removeClass("d-none");
+                    $(".time_takes_in_day #time_takes_day").attr("required", true);
+                }
             });
 
             function getModelFromBrand(brand = '', cmodel = ''){
