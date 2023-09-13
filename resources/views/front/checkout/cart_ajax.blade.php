@@ -8,11 +8,12 @@
             <div class="service-name-text">
                 @if(isset($item->product_id) && $item->product_id)
                     @php($is_product_available = 1)
-                    @if(isset($item->productDetail->primaryImage->image) && $item->productDetail->primaryImage->image)
+                    <img src="{{ $item->productDetail->primaryImage->image }}"  class="add-to-cart-img" alt="">
+                    <?php /* @if(isset($item->productDetail->primaryImage->image) && $item->productDetail->primaryImage->image)
                         <img src="{{ asset('public/uploads/product/'.$item->product_id.'/'.$item->productDetail->primaryImage->image) }}"  class="add-to-cart-img" alt="">
                     @else
                         <img src="{{ asset('front/img/no_image.jpg') }}" class="img-fluid" alt="">
-                    @endif
+                    @endif */ ?>
                     <p>{{isset($item->productDetail->name) ? $item->productDetail->name : NULL}}</p>
                 @endif
                 @if(isset($item->service_id) && $item->service_id)
@@ -68,10 +69,21 @@
                 @endif
             </div>
         </div>
+        <div class="row">
+            <div class="col-2">
+                <p>{{isset($item->serviceDetail->brandDetail->title) ? $item->serviceDetail->brandDetail->title : NULL}}</p>
+            </div>
+            <div class="col-2">
+                <p>{{isset($item->serviceDetail->modelDetail->title) ? $item->serviceDetail->modelDetail->title : NULL}}</p>
+            </div>
+            <div class="col-2">
+                <p>{{isset($item->serviceDetail->fuelTypeDetail->title) ? $item->serviceDetail->fuelTypeDetail->title : NULL}}</p>
+            </div>
+        </div>
     @endforeach
 @endif
 
-<div class="item-total-sec-main">
+<div class="item-total-sec-main item-total-sec-border">
     <p>Item Total</p>
     <p>₹{{formatNumber($subtotal)}}</p>
 </div>

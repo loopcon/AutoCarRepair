@@ -30,7 +30,7 @@ class SearchController extends MainController
             if($brands->count()){
                 foreach($brands as $brand){
                     $html .= '<div class="col-4 brand-logo-center">
-                                <a href="javascript:void(0);" class="amodal-brand" data-id="'.$brand->id.'"><img src="'. $brand->image.'" class="img-fluid" alt=""></a>
+                                <a href="javascript:void(0);" class="amodal-brand" data-id="'.$brand->id.'"><img src="'. asset("public/uploads/carbrand/".$brand->image).'" class="img-fluid" alt=""></a>
                             </div>';
                 }
             } else {
@@ -65,7 +65,7 @@ class SearchController extends MainController
             if($models->count()){
                 foreach($models as $model){
                     $html .= '<div class="col-4 brand-logo-center">
-                                <a href="javascript:void(0);" class="amodal-model" data-id="'.$model->id.'"><img src="'. $model->image.'" class="img-fluid" alt="">
+                                <a href="javascript:void(0);" class="amodal-model" data-id="'.$model->id.'"><img src="'. asset("public/uploads/carmodel/".$model->image).'" class="img-fluid" alt="">
                                     <p class="select-modal-name">'.$model->title.'</p>
                                 </a>
                             </div>';
@@ -114,7 +114,7 @@ class SearchController extends MainController
             if($fuel_data->count()){
                 foreach($fuel_data as $fval){
                     $html .= '<div class="col-4 brand-logo-center">
-                                <a href="javascript:void(0);" class="amodal-fuel" data-id="'.$fval->id.'"><img src="'. asset("public/uploads/fueltype/".$fval->image).'" class="img-fluid" alt="">
+                                <a href="javascript:void(0);" class="amodal-fuel" data-id="'.$fval->id.'"><img src="'. asset("uploads/fueltype/".$fval->image).'" class="img-fluid" alt="">
                                     <p class="select-modal-name">'.$fval->title.'</p>
                                 </a>
                             </div>';
@@ -150,11 +150,11 @@ class SearchController extends MainController
             $html = '';
             if(isset($brandInfo->id) && $brandInfo->id && isset($modelInfo->id) && $modelInfo->id && isset($fuelInfo->id) && $fuelInfo->id){
                 $html .= '<div class="col-4 brand-logo-center">
-                           <a href="javascript:void(0);"><img src="'.$brandInfo->image.'" class="img-fluid" alt=""></a>
+                           <a href="javascript:void(0);"><img src="'.asset("public/uploads/carbrand/".$brandInfo->image) .'" class="img-fluid" alt=""></a>
                         </div>
                         <div class="col-4 brand-logo-center">
                             <a href="javascript:void(0);">
-                                <img src="'.$modelInfo->image.'" class="img-fluid" alt="">
+                                <img src="'.asset("public/uploads/carmodel/".$modelInfo->image) .'" class="img-fluid" alt="">
                                 <p class="select-modal-name">'.$modelInfo->title.'</p>
                             </a>
                         </div>
