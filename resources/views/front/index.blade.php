@@ -34,6 +34,39 @@
     .our-service-section .servic-type-box {
         background: #f1f1f1;
     }
+        .table-wrapper{
+        border-collapse: collapse;
+        margin: 25px 0;
+        font-size: 0.9em;
+        font-family: sans-serif;
+        min-width: 400px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+        font-family: 'Poppins', sans-serif;
+        }
+        .table-wrapper thead tr {
+        background-color: #222;
+        color: #ffffff;
+        text-align: left;
+    }
+    .table-wrapper th,
+    .table-wrapper td {
+        padding: 12px 15px;
+    }
+    .table-wrapper tbody tr {
+        border-bottom: 1px solid #dddddd;
+    }
+
+    .table-wrapper tbody tr:nth-of-type(even) {
+        background-color: #f3f3f3;
+    }
+
+    .table-wrapper tbody tr:last-of-type {
+        border-bottom: 2px solid #222;
+    }
+    .table-wrapper tbody tr.active-row {
+        font-weight: bold;
+        color: #009879;
+    }
     </style>
 <!-- slider down service start  -->
 <div class="container">
@@ -50,7 +83,7 @@
                             <a class="servic-type-box-section" href="{{url($service->slug)}}">
                                 <div class="servic-type-box">
                                     @if(!empty($service->icon_image) && isset($service->icon_image))
-                                        <img src="{{ url($service->icon_image) }}" class="servic-type-box-image" alt="" title="">
+                                        <img src="{{ url('uploads/service/category/icon/'.$service->icon_image) }}" class="servic-type-box-image" alt="" title="">
                                     @else
                                         <img src="{{ asset('front/img/no_image.jpg') }}" class="img-fluid" alt="" title="{{ $service->title }}">
                                     @endif
@@ -60,8 +93,6 @@
                                     
                                 </div>
                             </a>
-                       
-                    
                     </div>
                 @php($key++)
                 @if($key == 6)
@@ -90,28 +121,28 @@
                                 variety of makes and models.</p>    
                         </div>
                         <div class="row m-0 why-choose-section-new">
-                            <div class="col-12 col-sm-3"> 
+                            <div class="col-12 col-sm-3 p-0"> 
                                 <div class="why-choose-inner-item">
                                     <img src="{{ asset('front/img/why-mechanic.webp') }}" class="img-fluid" alt="" title="car repair service">
                                     <h4>Skilled Technicians</h4>
                                     <p>We want to get you in and out quickly while providing you top notch auto repair service.</p>
                                 </div>
                             </div>
-                            <div class="col-12 col-sm-3">
+                            <div class="col-12 col-sm-3 p-0">
                                 <div class="why-choose-inner-item">
                                     <img src="{{ asset('front/img/why-qualservice.webp') }}" class="img-fluid" alt="" title="car repair service">
                                     <h4>Quality Services</h4>
                                     <p>We take pride in offering you the best services available and 100% Satisfaction Guarantee.</p>
                                 </div>
                             </div>
-                            <div class="col-12 col-sm-3">
+                            <div class="col-12 col-sm-3 p-0">
                                 <div class="why-choose-inner-item">
                                     <img src="{{ asset('front/img/why-car-insurance.webp') }}" class="img-fluid" alt="" title="">
                                     <h4>Insurance Claims</h4>
                                     <p>We take pride in offering you the best services available and 100% Satisfaction Guarantee.</p>
                                 </div>
                             </div>
-                            <div class="col-12 col-sm-3">
+                            <div class="col-12 col-sm-3 p-0">
                                 <div class="why-choose-inner-item">
                                     <img src="{{ asset('front/img/why-car-parts.webp') }}" class="img-fluid" alt="" title="">
                                     <h4>100% OEM Genuien Parts</h4>
@@ -138,8 +169,6 @@
         @foreach($scategories as $sk => $service)
                 <div class="item">
                     <div class="extraservice">
-               
-                      
                         <a class="servic-type-box-section" href="{{url($service->slug)}}">
                             <div class="servic-type-box">
                                 <img src="{{asset('uploads/service/category/icon/'.$service->icon_image)}}" class="servic-type-box-image" alt="" title="">
@@ -149,9 +178,7 @@
                                 
                             </div>
                         </a>
-                  
-                   
-                </div>
+                    </div>
                 </div>
              
                 @php($key++)
@@ -423,13 +450,14 @@
         @if($service_center->count())
             @foreach($service_center as $detail)
                 <div class="item">
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#servicecenterModal-{{$detail->id}}">
+                    <?php /**<a href="#" data-bs-toggle="modal" data-bs-target="#servicecenterModal-{{$detail->id}}">
                         @if(!empty($detail->image) && isset($detail->image))
                             <img src="{{ url($detail->image) }}" class="service-center-slider-img detail" alt="" title="{{$detail->image_title}}">
                         @else
                             <img src="{{ asset('front/img/no_image.jpg') }}" class="img-fluid" alt="" title="{{ $detail->image_title }}">
                         @endif
-                    </a>
+                    </a>**/ ?>
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#servicecenterModal-{{$detail->id}}"><img src="{{ url($detail->image) }}" class="service-center-slider-img detail" alt="" title="{{$detail->image_title}}"></a>
                 </div>
             @endforeach
         @endif        

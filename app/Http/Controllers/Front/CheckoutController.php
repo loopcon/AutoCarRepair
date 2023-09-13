@@ -114,6 +114,8 @@ class CheckoutController extends MainController
             $order->zip = $request->zip;
             $order->city = $request->city;
             $order->subtotal = $request->subtotal;
+            // $order->service_gst_rate = isset($this->data['service_gst']) ? $this->data['service_gst'] : 0;
+            // $order->service_gst_rate = isset($this->data['service_gst']) ? $this->data['service_gst'] : 0;
             $order->product_gst_rate = isset($this->data['product_gst']) ? $this->data['product_gst'] : 0;
             $order->service_gst_rate = isset($this->data['service_gst']) ? $this->data['service_gst'] : 0;
             $order->product_gst = $request->product_gst;

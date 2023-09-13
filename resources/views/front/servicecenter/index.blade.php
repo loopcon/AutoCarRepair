@@ -19,7 +19,11 @@
                 <div class="shop-center-bg">
                     <div class="row">
                         <div class="col-12 col-md-6 ">
-                            <img src="{{url($record->image)}}" class="img-fluid service-center-image" alt="" title="{{$record->image_title}}">
+                            @if(!empty($record->image) && isset($record->image))
+                                <img src="{{url($record->image)}}" class="servic-type-box-image" alt="" title="">
+                            @else
+                                <img src="{{ asset('front/img/no_image.jpg') }}" class="img-fluid" alt="" title="{{ $record->image }}">
+                            @endif
                         </div>
                         <div class="col-12 col-md-6 shop-address-main">
                             <div class="row">
