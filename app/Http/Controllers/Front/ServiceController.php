@@ -32,7 +32,7 @@ class ServiceController extends MainController
         $fuelInfo = FuelType::select('id', 'slug')->where([['id', $fuel_id]])->first();
         if(isset($brandInfo->id) && $brandInfo->id && isset($modelInfo->id) && $modelInfo->id && isset($fuelInfo->id) && $fuelInfo->id){
             $squery = ScheduledPackageDetail::with('packageDetail')->select('id', 'sp_id')->where([['brand_id', $brand_id], ['model_id' , $model_id], ['fuel_type_id', $fuel_id]])->get();
-//            $squery = ScheduledPackage::select('sc_id')->where([['brand_id', $brand_id], ['model_id' , $model_id], ['fuel_type_id', $fuel_id]])->groupBy('sc_id')->get();
+            // $squery = ScheduledPackage::select('sc_id')->where([['brand_id', $brand_id], ['model_id' , $model_id], ['fuel_type_id', $fuel_id]])->groupBy('sc_id')->get();
             if($squery->count()){
                 foreach($squery as $record){
                     array_push($carray, $record->packageDetail->sc_id);
@@ -41,7 +41,8 @@ class ServiceController extends MainController
             $return_data['brand'] = isset($brandInfo->slug) && $brandInfo->slug ? $brandInfo->slug : NULL;
             $return_data['model'] = isset($modelInfo->slug) && $modelInfo->slug ? $modelInfo->slug : NULL;
             $return_data['fuel'] = isset($fuelInfo->slug) && $fuelInfo->slug ? $fuelInfo->slug : NULL;
-            $return_data['scategories'] = ServiceCategory::select('id', 'slug', 'title', 'image','icon_image', 'description')->where([['is_archive', Constant::NOT_ARCHIVE], ['status', Constant::ACTIVE]])->whereIn('id', $carray)->orderBy('order_by', 'asc')->get();
+            // $return_data['scategories'] = ServiceCategory::select('id', 'slug', 'title', 'image','icon_image', 'description')->where([['is_archive', Constant::NOT_ARCHIVE], ['status', Constant::ACTIVE]])->whereIn('id', $carray)->orderBy('order_by', 'asc')->get();
+            $return_data['scategories'] = ServiceCategory::select('id', 'slug', 'title', 'image', 'icon_image', 'description')->where([['is_archive', Constant::NOT_ARCHIVE], ['status', Constant::ACTIVE]])->orderBy('order_by', 'asc')->get();
         } else {
             $return_data['scategories'] = ServiceCategory::select('id', 'slug', 'title', 'image', 'icon_image', 'description')->where([['is_archive', Constant::NOT_ARCHIVE], ['status', Constant::ACTIVE]])->orderBy('order_by', 'asc')->get();
         }
@@ -58,8 +59,8 @@ class ServiceController extends MainController
         $model = $request->model;
         $fuel = $request->fuel;
 
-//        dd($fuel);
-        if($brand && $model && $fuel){
+        // dd($brand."----".$model."-------".$fuel);
+        if($brand && $model && $fuel) {
             $query = ScheduledPackageDetail::with('packageDetail', 'brandDetail', 'modelDetail', 'fuelTypeDetail')->select('*');
             //$query = ScheduledPackage::with('categoryDetail', 'brandDetail', 'modelDetail', 'fuelTypeDetail', 'specifications')->select('*');
             $query->whereHas('packageDetail', function($q) use($category) {
