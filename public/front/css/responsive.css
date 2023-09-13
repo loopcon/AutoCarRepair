@@ -228,6 +228,9 @@
     .cms-page-section{ margin-top: 20px;}
     .footer-whatappicon{ right:19%;}
     .up-btn-sticky{ right: 2%;}
+    .brand-logo-section .partner-brand-logo{ margin-right: 0px;}
+    .pricelist h3{font-size: 25px;}
+    .pricelist table{ width:100% !important; } 
 }
 @media (max-width:450px) {
     .mobile-menu-sectiondata{  flex-wrap: wrap; height: 80px; }

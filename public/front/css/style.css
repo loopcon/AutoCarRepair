@@ -131,7 +131,7 @@ a.badge:hover{
 /* why choose us start */
 .why-choose-section{ padding: 50px 0; background-color: #f1f1f1;}
 .why-choose-section-new{ padding: 25px 0;}
-.why-choose-section .why-choose-inner-item{box-shadow: 0px 8px 24px 0px rgba(140, 149, 159, 0.2);padding: 20px; background: #fff;}
+.why-choose-section .why-choose-inner-item{box-shadow: 0px 8px 24px 0px rgba(140, 149, 159, 0.2);padding: 20px; background: #fff; margin: 12px 6px; }
 .why-choose-section .why-choose-item h4 {  font-size: 22px; font-weight: bold;  color: #F99500 ; }
 .why-choose-section .why-choose-item h5{ font-size: 50px; font-weight: bold; color: #000000;}
 .why-choose-section .why-choose-item p{ font-size: 16px;  color: #000000;}
@@ -152,7 +152,7 @@ a.badge:hover{
 /* end Home page price*/
  .pricelist{
         padding: 35px 0px;
-
+        overflow-x: auto;
     }
     .pricelist h3{
         padding: 20px 0px;
