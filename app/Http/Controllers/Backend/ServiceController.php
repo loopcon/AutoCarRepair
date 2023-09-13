@@ -365,7 +365,6 @@ class ServiceController extends MainController
             'time_takes_day' => 'required_without:time_takes',
         ]);
 
-
         $slug = $request->title != '' ? slugify($request->title) : NULL;
 
         $spackage = ScheduledPackage::find($id);

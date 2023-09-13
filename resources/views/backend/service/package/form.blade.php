@@ -53,7 +53,6 @@
                                     @endif
                                 </div>
 
-
                                 <?php /**<div class="mb-3 col-md-4">
                                     <label class="form-label" for="brand_id">{{__('Brand')}}<span class="text-danger">*</span></label>
                                     <select class="select2 form-control" name="brand_id" required="" id="brand_id">
