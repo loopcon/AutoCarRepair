@@ -79,20 +79,19 @@
                 @php($key = 0)
                 @foreach($scategories as $sk => $service)
                     <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                       
-                            <a class="servic-type-box-section" href="{{url($service->slug)}}">
-                                <div class="servic-type-box">
-                                    @if(!empty($service->icon_image) && isset($service->icon_image))
-                                        <img src="{{ url('uploads/service/category/icon/'.$service->icon_image) }}" class="servic-type-box-image" alt="" title="">
-                                    @else
-                                        <img src="{{ asset('front/img/no_image.jpg') }}" class="img-fluid" alt="" title="{{ $service->title }}">
-                                    @endif
-                                    <div class="service-type-head">
-                                        <h5>{{ $service->title }}</h5>
-                                    </div> 
-                                    
-                                </div>
-                            </a>
+                        <a class="servic-type-box-section" href="{{url($service->slug)}}">
+                            <div class="servic-type-box">
+                                @if(!empty($service->icon_image) && isset($service->icon_image))
+                                    <img src="{{ url('uploads/service/category/icon/'.$service->icon_image) }}" class="servic-type-box-image" alt="" title="">
+                                @else
+                                    <img src="{{ asset('front/img/no_image.jpg') }}" class="img-fluid" alt="" title="{{ $service->title }}">
+                                @endif
+                                <div class="service-type-head">
+                                    <h5>{{ $service->title }}</h5>
+                                </div> 
+                                
+                            </div>
+                        </a>
                     </div>
                 @php($key++)
                 @if($key == 6)
@@ -110,7 +109,6 @@
     <div class="why-choose-section">
         <div class="container">
             <div class="row m-0 p-10 why-choose-box-main">
-               
                 <div class="col-12 col-md-12">
                     <div class="why-choose-main">
                         <div class="why-choose-item  text-center">
@@ -161,7 +159,6 @@
     <div class="newservice  text-center">
         <h4>Popular Car services</h4>
         <h5> Why Choose Auto Car Repair Service?</h5>
-       
     </div>
     <div id="choose-service-center" class="owl-carousel owl-theme">
         @if($scategories->count())
@@ -180,13 +177,12 @@
                         </a>
                     </div>
                 </div>
-             
                 @php($key++)
                 @if($key == 6)
                     @php($key = 0)
                 @endif
-                @endforeach
-            @endif   
+        @endforeach
+        @endif   
     </div>
 </div>
 <!--end extra service -->

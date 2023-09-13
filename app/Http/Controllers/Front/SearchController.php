@@ -30,7 +30,7 @@ class SearchController extends MainController
             if($brands->count()){
                 foreach($brands as $brand){
                     $html .= '<div class="col-4 brand-logo-center">
-                                <a href="javascript:void(0);" class="amodal-brand" data-id="'.$brand->id.'"><img src="'. $brand->image.'" class="img-fluid" alt=""></a>
+                                <a href="javascript:void(0);" class="amodal-brand" data-id="'.$brand->id.'"><img src="'. $brand->image.'" class="brand-name-image" alt=""></a>
                             </div>';
                 }
             } else {
@@ -65,7 +65,7 @@ class SearchController extends MainController
             if($models->count()){
                 foreach($models as $model){
                     $html .= '<div class="col-4 brand-logo-center">
-                                <a href="javascript:void(0);" class="amodal-model" data-id="'.$model->id.'"><img src="'. $model->image.'" class="img-fluid" alt="">
+                                <a href="javascript:void(0);" class="amodal-model" data-id="'.$model->id.'"><img src="'. $model->image.'" class="brand-name-image" alt="">
                                     <p class="select-modal-name">'.$model->title.'</p>
                                 </a>
                             </div>';
@@ -114,7 +114,7 @@ class SearchController extends MainController
             if($fuel_data->count()){
                 foreach($fuel_data as $fval){
                     $html .= '<div class="col-4 brand-logo-center">
-                                <a href="javascript:void(0);" class="amodal-fuel" data-id="'.$fval->id.'"><img src="'. asset("public/uploads/fueltype/".$fval->image).'" class="img-fluid" alt="">
+                                <a href="javascript:void(0);" class="amodal-fuel" data-id="'.$fval->id.'"><img src="'. asset("public/uploads/fueltype/".$fval->image).'" class="brand-name-image" alt="">
                                     <p class="select-modal-name">'.$fval->title.'</p>
                                 </a>
                             </div>';

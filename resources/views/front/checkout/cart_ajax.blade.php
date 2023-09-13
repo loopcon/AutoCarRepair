@@ -3,7 +3,10 @@
 @php($is_product_available = 0)
 @if($cart_data->count())
     @foreach($cart_data as $item)
-        
+
+        <div class="service-name-text">
+            <p>{{isset($item->serviceDetail->packageDetail->categoryDetail->title) ? $item->serviceDetail->packageDetail->categoryDetail->title : NULL}}</p>
+        </div>
         <div class="service-add-main">
             <div class="service-name-text">
                 @if(isset($item->product_id) && $item->product_id)

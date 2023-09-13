@@ -140,11 +140,12 @@ class OrderController extends MainController
                 })
                 ->addColumn('item', function($row) {
                     if($row->service_id){
+                        $service_category = isset($row->packageDetail->packageDetail->categoryDetail->title) ? $row->packageDetail->packageDetail->categoryDetail->title : NULL;
                         $scheduled_title = isset($row->packageDetail->packageDetail->title) ? $row->packageDetail->packageDetail->title : NULL;
                         $brand = isset($row->packageDetail->brandDetail->title) ? $row->packageDetail->brandDetail->title : NULL;
                         $model = isset($row->packageDetail->modelDetail->title) ? $row->packageDetail->modelDetail->title : NULL;
                         $fuel_type = isset($row->packageDetail->fuelTypeDetail->title) ? $row->packageDetail->fuelTypeDetail->title : NULL;
-                        $item = "<span class='text-nowrap'>".$scheduled_title."</br>".$brand.' - '.$model.' - '.$fuel_type."</span>";
+                        $item = "<span class='text-nowrap'>".$service_category.'/'.$scheduled_title."</br>".$brand.' - '.$model.' - '.$fuel_type."</span>";
                     } else {
                         $item = isset($row->productDetail->name) ? $row->productDetail->name : '';
                     }
