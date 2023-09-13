@@ -7,7 +7,7 @@
     .address-main{ height: 280px;}
     .call-main { height: 280px;}
     .why-choose-section .why-choose-item h5{ font-size: 45px;}
-    .acr-navbar-main li{ margin-right: 25px;}
+    .acr-navbar-main li{ margin-right: 15px;}
     .slider-section-main h2{ font-size: 60px;}
     .slider-section-main h5{ font-size: 40px;}
     .our-service-section .servic-type-box{ min-height: 270px;}
@@ -20,8 +20,9 @@
     .form-section-bg .request-text-main{ width:80%; }
     .footer-whatappicon{ right:9%;}
     .up-btn-sticky{ right: 2%;}
+    .acr-navbar-main li a{font-size: 1rem;}
 }
-@media (min-width:991px){ 
+@media (min-width:992px){ 
     .mobile-menu-sectiondata{ display: none;}
 }
 @media (max-width:991px) {
