@@ -55,6 +55,7 @@ a.badge:hover{color:white;}
 .appointmentselect-dialog .search-brand-input::placeholder{ color: #000000 !important; font-weight: bold !important;}
 .appointmentselect-dialog .search-icon svg { position: absolute ; left: 94%; top:30%;}
 .appointmentselect-dialog .brand-logo-center { display: flex; align-items: center; justify-content: center; margin-top: 15px;  }
+.brand-name-image{ width:auto; height:38px ; }
 .appointmentselect-dialog .brand-logo-center a{ text-decoration: none;}
 /* appointmentselectModal end */
 /* appointmentsearchModal start  */
