@@ -260,11 +260,8 @@
 
                     </div>
                     <div class="form-group">
-<<<<<<< Updated upstream
                         <input type="text" class="form-control num_only" maxlength="10"  id="appointmentmobile" name="mobile" aria-describedby="emailHelp" placeholder="Enter Phone Number" value="{{ request()->session()->get('phone') }}">
-=======
-                        <input type="text" class="form-control num_only" maxlength="10"  id="appointmentmobile" name="mobile" aria-describedby="emailHelp" placeholder="Enter Phone Number">
->>>>>>> Stashed changes
+                        <!-- <input type="text" class="form-control num_only" maxlength="10"  id="appointmentmobile" name="mobile" aria-describedby="emailHelp" placeholder="Enter Phone Number"> -->
                     </div>
                 </div>
                 <div class="aptotp-section">
