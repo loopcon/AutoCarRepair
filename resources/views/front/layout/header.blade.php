@@ -169,7 +169,7 @@
                             @foreach($brands as $brand)
                                 @if($brand->image)
                                     <div class="col-4 brand-logo-center">
-                                        <a href="javascript:void(0);" class="amodal-brand" data-id="{{$brand->id}}"><img src="{{ $brand->image }}" class="img-fluid" alt=""></a>
+                                        <a href="javascript:void(0);" class="amodal-brand" data-id="{{$brand->id}}"><img src="{{ $brand->image }}" class="img-fluid" alt="" style="width:80px"></a>
                                     </div>
                                 @endif
                             @endforeach

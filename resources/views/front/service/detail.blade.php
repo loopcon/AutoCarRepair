@@ -34,7 +34,7 @@
                             </div>
                         @endif 
                             @if(isset($packageDetail->image) && $packageDetail->image)
-                                <img src="{{ url($packageDetail->image )}}" class="img-fluid" alt="" title="">
+                                <img src="{{ url('public/uploads/service/package/'.$packageDetail->image )}}" class="img-fluid" alt="" title="">
                             @else
                                 <img src="{{ asset('front/img/inner-palish-service.png') }}" class="img-fluid" alt="" title="">
                             @endif
@@ -71,7 +71,7 @@
                                         </div>
                                     @endforeach
                                 @endif
-                                @if($specifications->count() > 5)
+                                @if($specifications && $specifications->count() > 5)
                                     <div class="col-12 col-sm-3" id="more{{$record->id}}">
                                         <a href="javascript:void(0)" data-id="{{$record->id}}" class="more"><small>+{{ $specifications->count() - 5 }} more View All</small></a> 
                                     </div>
