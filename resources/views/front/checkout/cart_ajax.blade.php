@@ -75,7 +75,7 @@
                 @endif
             </div>
         </div>
-        <div class="row">
+        <div class="row m-0">
             <div class="col-4">
                 <p>{{isset($item->serviceDetail->brandDetail->title) ? $item->serviceDetail->brandDetail->title : NULL}}</p>
             </div>

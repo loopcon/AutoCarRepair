@@ -3,15 +3,34 @@
 <!-- service inner page start  -->
 <div class="shoping-breadcrum-bg">
     <div class="container">
-        <ul class="shoping-breadcrum-main">
-            <li><a href="{{route('front_/')}}">Home</a></li>
-            <li><i class="fa-solid fa-chevron-right"></i></li>
-            <li><a href="{{route('front_our-services')}}">Car Service</a></li>
-            <li><i class="fa-solid fa-chevron-right"></i></li>
-            <li>{{isset($category->title) && $category->title ? $category->title : ''}}</li>
-        </ul>
+        <div class="row m-0 align-items-center">
+            <div class="col-12 col-sm-6">
+                <ul class="shoping-breadcrum-main">
+                    <li><a href="{{route('front_/')}}">Home</a></li>
+                    <li><i class="fa-solid fa-chevron-right"></i></li>
+                    <li><a href="{{route('front_our-services')}}">Car Service</a></li>
+                    <li><i class="fa-solid fa-chevron-right"></i></li>
+                    <li>{{isset($category->title) && $category->title ? $category->title : ''}}</li>
+                </ul>
+            </div>
+            <div class="col-12 col-sm-6">
+                <div class="row m-0">
+                    <div class="col-4">
+                        <p class="service-inner-modalname">{{isset($brandquery->title) ? $brandquery->title : NULL}}</p>
+                    </div>
+                    <div class="col-4">
+                        <p class="service-inner-modalname">{{isset($modelname->title) ? $modelname->title : NULL}}</p>
+                    </div>
+                    <div class="col-4">
+                        <p class="service-inner-modalname">{{isset($fuelname->title) ? $fuelname->title : NULL}}</p>
+                    </div>
+                </div>
+             </div>   
+        </div>
     </div>
 </div>
+
+
 
 <div class="service-innersection-mian">
     <div class="container">
