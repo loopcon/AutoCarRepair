@@ -47,10 +47,15 @@ dd($response);
         $return_data['meta_keywords'] =  isset($hsetting->meta_keywords) && $hsetting->meta_keywords ? $hsetting->meta_keywords : NULL;
         $return_data['meta_description'] =  isset($hsetting->meta_description) && $hsetting->meta_description ? $hsetting->meta_description : NULL;
         $return_data['site_title'] = $meta_title ? $meta_title : trans('Home');
+<<<<<<< Updated upstream
         $return_data['scategories'] = ServiceCategory::select('id', 'slug', 'title', 'image','image_1','icon_image')->where([['is_archive', Constant::NOT_ARCHIVE], ['status', Constant::ACTIVE]])->orderBy('order_by', 'asc')->get();
         $return_data['service_center'] = ServiceCenterDetail::orderBy('id','asc')->get();
         $popup_detail = ServiceCenterDetail::select('id','image','address','phone_number','image_title')->get();
         $return_data['popup_detail'] = $popup_detail;
+=======
+        $return_data['scategories'] = ServiceCategory::select('id', 'slug', 'title', 'image')->where([['is_archive', Constant::NOT_ARCHIVE], ['status', Constant::ACTIVE]])->orderBy('id', 'desc')->get();
+        $return_data['service_center_detail'] = ServiceCenterDetail::orderBy('id','asc')->get();
+>>>>>>> Stashed changes
         return view('front/index',array_merge($this->data,$return_data));
     }
     

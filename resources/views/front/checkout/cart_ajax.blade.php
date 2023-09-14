@@ -30,6 +30,9 @@
                     <p>{{isset($item->serviceDetail->packageDetail->title) ? $item->serviceDetail->packageDetail->title : NULL}}</p>
                 @endif
             </div>
+            <div class="service-name-text">
+                <p>{{isset($item->serviceDetail->brandDetail->title) ? $item->serviceDetail->brandDetail->title : NULL}}</p>
+            </div>
             <div class="service-add-sec-main">
                 @php($qty = $item->qty)
                 @if(isset($item->product_id) && $item->product_id)
