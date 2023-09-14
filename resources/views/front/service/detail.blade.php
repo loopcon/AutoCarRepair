@@ -71,7 +71,7 @@
                                         </div>
                                     @endforeach
                                 @endif
-                                @if($specifications->count() > 5)
+                                @if($specifications && $specifications->count() > 5)
                                     <div class="col-12 col-sm-3" id="more{{$record->id}}">
                                         <a href="javascript:void(0)" data-id="{{$record->id}}" class="more"><small>+{{ $specifications->count() - 5 }} more View All</small></a> 
                                     </div>

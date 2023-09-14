@@ -11,6 +11,7 @@ use App\Models\EmailTemplates;
 use App\Models\HomePageSetting;
 use App\Constant;
 use Cookie;
+use Session;
 
 class LoginController extends Controller
 {
@@ -47,7 +48,7 @@ class LoginController extends Controller
             if ($user_detail) {
                 Cookie::queue(Cookie::forget('email'));
                 Cookie::queue(Cookie::forget('password'));
-
+                Session::put('phone', $user_detail->phone);
                 session()->put('userInfo', $user_detail);
             } else {
                 Auth::guard('user')->logout();

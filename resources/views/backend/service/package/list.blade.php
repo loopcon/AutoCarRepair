@@ -28,7 +28,7 @@
                             </div>
                         </div>
                         <div class = "row">
-                            <div class="form-group col-md-2 select-parsley">
+                            <div class="form-group col-md-4 select-parsley">
                                 <label for="serviceCategory">Category</label>
                                 <select id="serviceCategory" class="form-control select2" name="serviceCategory">
                                     <option value="all" selected>--Select--</option>

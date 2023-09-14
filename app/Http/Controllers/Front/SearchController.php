@@ -17,6 +17,16 @@ use App\Models\ShopCategory;
 use DB;
 class SearchController extends MainController
 {
+    public function storePhoneInSession(Request $request)
+    {
+         $phone = $request->input('phone');
+        
+        // Store the 'phone' variable in the session
+        Session::put('phone', $phone);
+        
+        return response()->json(['message' => 'Phone number stored in session']);
+    }
+
     public function brands(request $request)
     {
         if($request->ajax()){
@@ -30,7 +40,7 @@ class SearchController extends MainController
             if($brands->count()){
                 foreach($brands as $brand){
                     $html .= '<div class="col-4 brand-logo-center">
-                                <a href="javascript:void(0);" class="amodal-brand" data-id="'.$brand->id.'"><img src="'. $brand->image.'" class="brand-name-image" alt=""></a>
+                                <a href="javascript:void(0);" class="amodal-brand" data-id="'.$brand->id.'"><img src="'. $brand->image.'" class="img-fluid" alt=""></a>
                             </div>';
                 }
             } else {
@@ -65,7 +75,7 @@ class SearchController extends MainController
             if($models->count()){
                 foreach($models as $model){
                     $html .= '<div class="col-4 brand-logo-center">
-                                <a href="javascript:void(0);" class="amodal-model" data-id="'.$model->id.'"><img src="'. $model->image.'" class="brand-name-image" alt="">
+                                <a href="javascript:void(0);" class="amodal-model" data-id="'.$model->id.'"><img src="'. $model->image.'" class="img-fluid" alt="">
                                     <p class="select-modal-name">'.$model->title.'</p>
                                 </a>
                             </div>';
@@ -114,7 +124,7 @@ class SearchController extends MainController
             if($fuel_data->count()){
                 foreach($fuel_data as $fval){
                     $html .= '<div class="col-4 brand-logo-center">
-                                <a href="javascript:void(0);" class="amodal-fuel" data-id="'.$fval->id.'"><img src="'. asset("public/uploads/fueltype/".$fval->image).'" class="brand-name-image" alt="">
+                                <a href="javascript:void(0);" class="amodal-fuel" data-id="'.$fval->id.'"><img src="'. asset("public/uploads/fueltype/".$fval->image).'" class="img-fluid" alt="">
                                     <p class="select-modal-name">'.$fval->title.'</p>
                                 </a>
                             </div>';
@@ -150,17 +160,17 @@ class SearchController extends MainController
             $html = '';
             if(isset($brandInfo->id) && $brandInfo->id && isset($modelInfo->id) && $modelInfo->id && isset($fuelInfo->id) && $fuelInfo->id){
                 $html .= '<div class="col-4 brand-logo-center">
-                           <a href="javascript:void(0);"><img src="'.$brandInfo->image.'" class="img-fluid" alt=""></a>
+                           <a href="javascript:void(0);"><img src="'.$brandInfo->image.'" class="brand-name-image" alt=""></a>
                         </div>
                         <div class="col-4 brand-logo-center">
                             <a href="javascript:void(0);">
-                                <img src="'.$modelInfo->image.'" class="img-fluid" alt="">
+                                <img src="'.$modelInfo->image.'" class="brand-name-image" alt="">
                                 <p class="select-modal-name">'.$modelInfo->title.'</p>
                             </a>
                         </div>
                         <div class="col-4 brand-logo-center">
                             <a href="javascript:void(0);">
-                                <img src="'.asset("public/uploads/fueltype/".$fuelInfo->image) .'" class="img-fluid" alt="">
+                                <img src="'.asset("public/uploads/fueltype/".$fuelInfo->image) .'" class="brand-name-image" alt="">
                                 <p class="select-modal-name">'.$fuelInfo->title.'</p>
                             </a>
                         </div>';

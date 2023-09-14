@@ -30,7 +30,7 @@
                     @if(isset($record->image) && $record->image)
                         <div class="item">
                             <div class="about-partner-brand-logo">
-                                <img src="{{ url($record->image) }}"  alt="">
+                                <img src="{{ asset('uploads/brandlogoslider/'.$record->image) }}"  alt="">
                             </div>
                         </div>
                     @endif

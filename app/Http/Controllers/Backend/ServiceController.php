@@ -787,14 +787,36 @@ class ServiceController extends MainController
             if($key != 0){
                 $brand_id = $model_id = $fuel_type_id = '';
                 foreach($value as $k => $v){
+                     //carbrand
                     if($k == 0){
+                        $carbrand = CarBrand::where('title', $v)->first();
+                        if ($carbrand) {
+                            $brand_id = $carbrand->id;
+
+                        } else {
                         $brand_id = $v;
+                        }
+
                     }
+                    //model
                     if($k == 1){
-                        $model_id = $v;
+                        $carmodel=CarModel::where('title',$v)->first();
+                        if($carmodel){
+                            $model_id = $carmodel->id;
+                        }else{
+                            $model_id = $v;
+                        }
+                       
                     }
+                    //fule type
                     if($k == 2){
-                        $fuel_type_id = $v;
+                        $fuletype=FuelType::where('title',$v)->first();
+                        if($fuletype){
+                            $fuel_type_id = $fuletype->id;
+                        }else{
+                            $fuel_type_id = $v;    
+                        }
+                         
                     }
                     if($k > 2 & $v != ""){
                         $sp_id = isset($header[$k]) ? $header[$k] : NULL;

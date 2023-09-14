@@ -169,7 +169,7 @@
                             @foreach($brands as $brand)
                                 @if($brand->image)
                                     <div class="col-4 brand-logo-center">
-                                        <a href="javascript:void(0);" class="amodal-brand" data-id="{{$brand->id}}"><img src="{{ $brand->image }}" class="img-fluid" alt=""></a>
+                                        <a href="javascript:void(0);" class="amodal-brand" data-id="{{$brand->id}}"><img src="{{ $brand->image }}" class="img-fluid" alt="" style="width:80px"></a>
                                     </div>
                                 @endif
                             @endforeach
@@ -260,7 +260,8 @@
 
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control num_only" maxlength="10"  id="appointmentmobile" name="mobile" aria-describedby="emailHelp" placeholder="Enter Phone Number">
+                        <input type="text" class="form-control num_only" maxlength="10"  id="appointmentmobile" name="mobile" aria-describedby="emailHelp" placeholder="Enter Phone Number" value="{{ request()->session()->get('phone') }}">
+                        <!-- <input type="text" class="form-control num_only" maxlength="10"  id="appointmentmobile" name="mobile" aria-describedby="emailHelp" placeholder="Enter Phone Number"> -->
                     </div>
                 </div>
                 <div class="aptotp-section">

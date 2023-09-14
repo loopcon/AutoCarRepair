@@ -16,12 +16,13 @@
     <div class="search-page-bg">
 
         <!-- start product -->
+   @if(count($products)>0 || count($schedulepackage)>0)
     @if($products)
     @foreach($products as $product)
         <div class="card mb-3">
             <div class="row p-4">
                     
-                    <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="col-3">
                          @if(!empty($product->primaryImage) && isset($product->primaryImage->image))
                          <img src="{{ $product->primaryImage->image }}"  alt="" title="{{ isset($product->primaryImage->image_title) ? $product->primaryImage->image_title : '' }}">
                          @else
@@ -29,7 +30,7 @@
                         @endif
                     </div>
 
-                    <div class="col-12 col-sm-6 col-lg-6">
+                    <div class="col-6">
                         <div>
                             <h4 class="search-list-head"><a href="{{url('shopping/'.$product->slug)}}" style="text-decoration: none;color: black;">{{$product->name}}</a></h4>
                         </div>
@@ -39,7 +40,7 @@
                         </div>
                     </div>
 
-                    <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="col-3">
                         <div class="mb-3">
                             <span class="prise-total">₹{{formatNumber($product->price)}}</span>
                         </div>
@@ -60,9 +61,9 @@
     @if(isset($schedulepackage) && $schedulepackage->count())
     @foreach($schedulepackage as $package)
         <div class="card mb-3">
-            <div class="row p-4 justify-content-center">
+            <div class="row p-4">
 
-                    <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="col-3">
                         @if(isset($package->image) && $package->image)
                         <img src="{{ url($package->image )}}" class="search-list-image" alt="" title="no_image">
                         @else
@@ -70,7 +71,7 @@
                         @endif
                     </div>
 
-                    <div class="col-12 col-sm-6 col-lg-6">
+                    <div class="col-6">
                         <div>
                             <h4 class="search-list-head">{{$package->title}}</h4>
                         </div>
@@ -112,7 +113,7 @@
                         </div>
                         
                     </div>
-                            <div class="col-12 col-sm-6 col-lg-3">
+                            <div class="col-3">
                                 <div class="mb-3">
                                     @if($package->time_takes !==null)
                                     <span><i class="fa fa-clock"></i>&nbsp;{{$package->time_takes}} hrs Taken</span>
@@ -131,7 +132,12 @@
 
         @endforeach
     @endif
-    </div>
+    @else
+    
+        <p style="text-align: center;font-weight: bold;font-size: 18px;">No Result found!</p>
+    
+    @endif
+</div>
 </div>
 
 
