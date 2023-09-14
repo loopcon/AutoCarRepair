@@ -190,7 +190,17 @@
     $(document).ready(function(){
         $('#compnyresend_otp').hide();
         $('.compnyotp-section').hide();
-        $('#send_message').hide();
+        var phone = "{{ request()->session()->get('phone') }}";
+        if(phone)
+        {
+            $('#send_message').show();
+            $('#compnysend_otp').hide();
+        }
+        else
+        {
+            $('#send_message').hide();
+            $('#compnysend_otp').show();
+        }
         $(document).on('click', '#compnysend_otp', function(){
             var validateMobNum= /[1-9]{1}[0-9]{9}/;
             var mobile = $('#mobile').val();

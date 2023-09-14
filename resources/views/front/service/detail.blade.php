@@ -81,12 +81,20 @@
                     </div>
                     @if($price_show)
                         <div class="payment-main">
-                            <div class="packeage-prise"> <p>₹ {{$record->price}}</p>  </div>
-                            <div> <button class="ser-inner-addtocart" id="add_to_cart_service" data-id="{{$record->id}}"> Add to Cart</button></div>
+                            @if($record->price > 0)
+                                <div class="packeage-prise"> <p>₹ {{$record->price}}</p>  </div>
+                                <div> <button class="ser-inner-addtocart" id="add_to_cart_service" data-id="{{$record->id}}"> Add to Cart</button></div>
+                            @else
+                                <div class="packeage-prise"> <p>N/A</p>  </div>
+                            @endif
                         </div>
                     @else
-                        <div class="serin-appointment-btn-maingroup ">
+                        <?php /* <div class="serin-appointment-btn-maingroup ">
                             <a class="apt-btn serin-appointment-btn" href="javascript:void(0)">Book A Service</a>
+                        </div> */ ?>
+                        <div class="payment-main">
+                            <div class="packeage-prise"> <p>N/A</p>  </div>
+                            <?php /* <a class="apt-btn serin-appointment-btn" href="javascript:void(0)">Book A Service</a> */ ?>
                         </div>
                     @endif
                 </div>

@@ -38,16 +38,35 @@
                     <a href="javascript:void(0)" class="btn verify-otpbtn" id="send_otp">SEND OTP</a>
             </div>
 
-            <div class="select-address">
+           <div class="select-address">
                 <h4>Add Address</h4>
                 <div>
+                     @if(isset($addresses) && $addresses->count())
+                     @foreach($addresses as $aval)
                     <div class="mb-3">
-                        <input type="text" class="form-control" id="address" required="" name="address" aria-describedby="emailHelp" placeholder="Enter Address">
+                        <input type="text" class="form-control" id="address" required="" name="address" aria-describedby="emailHelp" placeholder="Enter Address" value="{{$aval->address}}">
                     </div>
                     <div class="row ">
                         <div class="col-12 col-sm-6">
                             <div class="mb-3">
-                                <input type="text" class="form-control num_only" required="" id="zip" maxlength="6" name="zip" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Pincode">
+                                <input type="text" class="form-control num_only" required="" id="zip" maxlength="6" name="zip" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Pincode" value="{{$aval->zip}}">
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6">
+                            <div class="mb-3">
+                                <input type="text" class="form-control" name="city" required="" id="city" aria-describedby="emailHelp" placeholder="City" value="{{$aval->city}}">
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                    @else
+                    <div class="mb-3">
+                        <input type="text" class="form-control" id="address" required="" name="address" aria-describedby="emailHelp" placeholder="Enter Address" >
+                    </div>
+                    <div class="row ">
+                        <div class="col-12 col-sm-6">
+                            <div class="mb-3">
+                                <input type="text" class="form-control num_only" required="" id="zip" maxlength="6" name="zip" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Pincode" >
                             </div>
                         </div>
                         <div class="col-12 col-sm-6">
@@ -56,13 +75,18 @@
                             </div>
                         </div>
                     </div>
+                    @endif
                     <div class="row m-0">
                         @if(isset($addresses) && $addresses->count())
                             <div class="col-12">
                                 <p>Choose From Saved Addresses</p>
                                 @foreach($addresses as $aval)
                                     <div class="row m-0 choose-address-main mb-3">
+                                        @if(isset($addresses))
+                                        <input type="radio" name="address_radio" value="{{$aval->id}}" class="form-check-input address_radio" checked>
+                                        @else
                                         <input type="radio" name="address_radio" value="{{$aval->id}}" class="form-check-input address_radio">
+                                        @endif
                                         <input type="hidden" id='uaddress{{$aval->id}}' value="{{$aval->address}}">
                                         <input type="hidden" id='uzip{{$aval->id}}' value="{{$aval->zip}}">
                                         <input type="hidden" id='ucity{{$aval->id}}' value="{{$aval->city}}">

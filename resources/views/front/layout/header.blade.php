@@ -259,13 +259,15 @@
                     <div class="row m-0 search-modal-box" id="search_info">
 
                     </div>
-                    <div class="form-group">
-<<<<<<< Updated upstream
+                    @if (!empty(session()->get('phone')))
+                    <div class="form-group" style="visibility: hidden;">
                         <input type="text" class="form-control num_only" maxlength="10"  id="appointmentmobile" name="mobile" aria-describedby="emailHelp" placeholder="Enter Phone Number" value="{{ request()->session()->get('phone') }}">
-=======
-                        <input type="text" class="form-control num_only" maxlength="10"  id="appointmentmobile" name="mobile" aria-describedby="emailHelp" placeholder="Enter Phone Number">
->>>>>>> Stashed changes
                     </div>
+                    @else
+                    <div class="form-group">
+                        <input type="text" class="form-control num_only" maxlength="10"  id="appointmentmobile" name="mobile" aria-describedby="emailHelp" placeholder="Enter Phone Number" value="{{ request()->session()->get('phone') }}">
+                    </div>
+                    @endif
                 </div>
                 <div class="aptotp-section">
                     <div class="mb-3 otpinput-main">
