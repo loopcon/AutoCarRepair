@@ -34,7 +34,7 @@
                             </div>
                         @endif 
                             @if(isset($packageDetail->image) && $packageDetail->image)
-                                <img src="{{ url($packageDetail->image )}}" class="img-fluid" alt="" title="">
+                                <img src="{{ url('public/uploads/service/package/'.$packageDetail->image )}}" class="img-fluid" alt="" title="">
                             @else
                                 <img src="{{ asset('front/img/inner-palish-service.png') }}" class="img-fluid" alt="" title="">
                             @endif
@@ -81,8 +81,12 @@
                     </div>
                     @if($price_show)
                         <div class="payment-main">
-                            <div class="packeage-prise"> <p>₹ {{$record->price}}</p>  </div>
-                            <div> <button class="ser-inner-addtocart" id="add_to_cart_service" data-id="{{$record->id}}"> Add to Cart</button></div>
+                            @if($record->price > 0)
+                                <div class="packeage-prise"> <p>₹ {{$record->price}}</p>  </div>
+                                <div> <button class="ser-inner-addtocart" id="add_to_cart_service" data-id="{{$record->id}}"> Add to Cart</button></div>
+                            @else
+                                <div class="packeage-prise"> <p>N/A</p>  </div>
+                            @endif
                         </div>
                     @else
                         <?php /* <div class="serin-appointment-btn-maingroup ">
@@ -90,7 +94,7 @@
                         </div> */ ?>
                         <div class="payment-main">
                             <div class="packeage-prise"> <p>N/A</p>  </div>
-                            <a class="apt-btn serin-appointment-btn" href="javascript:void(0)">Book A Service</a>
+                            <?php /* <a class="apt-btn serin-appointment-btn" href="javascript:void(0)">Book A Service</a> */ ?>
                         </div>
                     @endif
                 </div>
