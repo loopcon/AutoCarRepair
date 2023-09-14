@@ -15,8 +15,12 @@
 
 <div class="service-innersection-mian">
     <div class="container">
+<<<<<<< Updated upstream
         <h2 class="Scheduled-heading-seriner">Scheduled Packages</h2>
         <!-- <h2>Scheduled Packages</h2> -->
+=======
+        <h2>Scheduled Packages</h2>
+>>>>>>> Stashed changes
         @if(isset($detail) && $detail->count())
             @foreach($detail as $record)
                 @if($price_show)
@@ -27,6 +31,7 @@
                 <div class="service-inner-mainbg">
                     <div class="row">
                         <div class="col-12 col-md-4">
+<<<<<<< Updated upstream
                         
                         @if(isset($packageDetail->note) && $packageDetail->note)
                             <div class="d-flex">
@@ -35,6 +40,13 @@
                         @endif 
                             @if(isset($packageDetail->image) && $packageDetail->image)
                                 <img src="{{ url($packageDetail->image )}}" class="img-fluid" alt="" title="">
+=======
+                            @if(isset($record->note) && $record->note)
+                                <h3 class="recommanded-heading">{{ $record->note }}</h3>
+                            @endif 
+                            @if(isset($record->image) && $record->image)
+                                <img src="{{ asset('public/uploads/service/package/'.$record->image) }}" class="img-fluid" alt="">
+>>>>>>> Stashed changes
                             @else
                                 <img src="{{ asset('front/img/inner-palish-service.png') }}" class="img-fluid" alt="" title="">
                             @endif
@@ -60,22 +72,36 @@
                                         <li>{{$packageDetail->recommended_info}}</li>
                                 @endif
                                     </ul>
+<<<<<<< Updated upstream
                                     <!-- <a href="#">View All</a> -->
+=======
+>>>>>>> Stashed changes
                                     <!-- <a href="#" class="more"><span>View All</span></a>  -->
                                 </div>
                                 @php($specifications = isset($packageDetail->specifications) && $packageDetail->specifications->count() ? $packageDetail->specifications : '')
                                 @if($specifications)
+<<<<<<< Updated upstream
                                     @foreach($specifications as $skey => $srecord)
                                         <div class="col-12 col-sm-6 basic-service-text-main spacification s{{$record->id}} @if($skey > 4) {{'d-none'}} @endif" >
+=======
+                                    @foreach($specifications as $srecord)
+                                        <div class="col-12 col-sm-6 basic-service-text-main spacification" >
+>>>>>>> Stashed changes
                                             <p><i class="fa-solid fa-circle-check"></i> {{$srecord->specification}} </p>
                                         </div>
                                     @endforeach
                                 @endif
+<<<<<<< Updated upstream
                                 @if($specifications->count() > 5)
                                     <div class="col-12 col-sm-3" id="more{{$record->id}}">
                                         <a href="javascript:void(0)" data-id="{{$record->id}}" class="more"><small>+{{ $specifications->count() - 5 }} more View All</small></a> 
                                     </div>
                                 @endif
+=======
+                                <div class="col-12 col-sm-6">
+                                    <a href="#" class="more"><small>+{{ $record->specifications->count()-5 }} more View All</small></a> 
+                                </div>
+>>>>>>> Stashed changes
                             </div>
                         </div>
                     </div>
@@ -85,12 +111,17 @@
                             <div> <button class="ser-inner-addtocart" id="add_to_cart_service" data-id="{{$record->id}}"> Add to Cart</button></div>
                         </div>
                     @else
+<<<<<<< Updated upstream
                         <?php /* <div class="serin-appointment-btn-maingroup ">
                             <a class="apt-btn serin-appointment-btn" href="javascript:void(0)">Book A Service</a>
                         </div> */ ?>
                         <div class="payment-main">
                             <div class="packeage-prise"> <p>N/A</p>  </div>
                             <a class="apt-btn serin-appointment-btn" href="javascript:void(0)">Book A Service</a>
+=======
+                        <div class="col-md-3">
+                            <a class="navbar-appointment-btn apt-btn " href="javascript:void(0)">Appointment Now</a>
+>>>>>>> Stashed changes
                         </div>
                     @endif
                 </div>
@@ -98,7 +129,11 @@
         @endif
         <div class="row mb-3 text-center"> <a href="{{url('our-services')}}"><button class="explore-more-btnseriner">Explore More Services</button></a></div>
     </div>
+<<<<<<< Updated upstream
     <!-- service inner page end -->
+=======
+    <div class="row mb-3 text-center"> <a href="{{url('our-services')}}"><button class="ser-inner-addtocart">Explore More Services</button></a></div>
+>>>>>>> Stashed changes
     <!-- testimonial start  -->
     <div class="testimonial-section">
         <div class="container">
@@ -106,7 +141,11 @@
                 <div class="col-12 col-md-6">
                     <div class="row  m-0 testiminoal-img-main">
                         <div class="col-12 col-sm-6 col-md-12 col-lg-6 testiminoal-img-item">
+<<<<<<< Updated upstream
                             <img src="{{ asset('front/img/testiminoal-img.png') }}" class="img-fluid" alt="" title="">
+=======
+                            <img src="{{ asset('front/img/testiminoal-img.png') }}" class="img-fluid" alt="">
+>>>>>>> Stashed changes
                         </div>
                         <div class="col-12 col-sm-6 col-md-12 col-lg-6">
                             <div class="testiminoal-img-main-text">
@@ -133,7 +172,11 @@
                                 <div class="test-rating-sec-main">   
                                     <div>
                                         <div class="test-rating-main">
+<<<<<<< Updated upstream
                                             <img src="{{ asset('front/img/alon-musk-img.png') }}" class="img-fluid" alt="" title="">
+=======
+                                            <img src="{{ asset('front/img/alon-musk-img.png') }}" class="img-fluid" alt="">
+>>>>>>> Stashed changes
                                         </div>
                                     </div>  
                                     <div class="test-rating-sec-item">
@@ -158,7 +201,11 @@
                                 <div class="test-rating-sec-main">   
                                     <div>
                                         <div class="test-rating-main">
+<<<<<<< Updated upstream
                                             <img src="{{ asset('front/img/alon-musk-img.png') }}" class="img-fluid" alt="" title="">
+=======
+                                            <img src="{{ asset('front/img/alon-musk-img.png') }}" class="img-fluid" alt="">
+>>>>>>> Stashed changes
                                         </div>
                                     </div>  
                                     <div class="test-rating-sec-item">
@@ -183,7 +230,11 @@
                                 <div class="test-rating-sec-main">   
                                     <div>
                                         <div class="test-rating-main">
+<<<<<<< Updated upstream
                                             <img src="{{ asset('front/img/alon-musk-img.png') }}" class="img-fluid" alt="" title="">
+=======
+                                            <img src="{{ asset('front/img/alon-musk-img.png') }}" class="img-fluid" alt="">
+>>>>>>> Stashed changes
                                         </div>
                                     </div>  
                                     <div class="test-rating-sec-item">
@@ -208,13 +259,21 @@
                                 <div class="test-rating-sec-main">   
                                     <div>
                                         <div class="test-rating-main">
+<<<<<<< Updated upstream
                                             <img src="{{ asset('front/img/alon-musk-img.png') }}" class="img-fluid" alt="" title="">
+=======
+                                            <img src="{{ asset('front/img/alon-musk-img.png') }}" class="img-fluid" alt="">
+>>>>>>> Stashed changes
                                         </div>
                                     </div>  
                                     <div class="test-rating-sec-item">
                                         <span>Elon Musk</span>
                                         <p>10 April 2023</p>
                                     </div>
+<<<<<<< Updated upstream
+                                </div>
+                            </div>
+=======
                                 </div>
                             </div>
                         </div>
@@ -222,6 +281,33 @@
                 </div>
             </div>
         </div>
+    </div>
+    <!-- testimonial end  -->
+
+    <!-- faq start -->
+    @if($faqs->count())
+        <div class="faq-section-main mb-2">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class=" col-lg-10">
+                        <div id="accordion" class="accordion">
+                            @foreach($faqs as $key => $faq)
+                                <div class="accordion-box faq-text-content">
+                                    <a href="#" class="accordion-header @if($key == 0) {{'active-accordion'}} @endif" data-target="acrd_1">{{ isset($faq->name) && $faq->name ? $faq->name : '' }}</a>
+                                    <div class="accordion-content" id="acrd_{{$key+1}}" style="@if($key == 0) {{'display:block'}} @endif">
+                                        <p class="accordion-text-content">
+                                            {!! isset($faq->description) && $faq->description ? $faq->description : '' !!}
+                                        </p>
+                                    </div>
+                                </div>
+                            @endforeach
+>>>>>>> Stashed changes
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+<<<<<<< Updated upstream
     </div>
     <!-- testimonial end  -->
 
@@ -312,6 +398,12 @@
             {!! $price_list->price_list !!}
         </div>
     @endif
+=======
+     @endif
+    <!-- faq end -->
+</div>
+<!-- service inner page end -->
+>>>>>>> Stashed changes
 @endsection
 @section('javascript')
 <script src="{{ asset('front/js/owl.carousel.min.js') }}"></script>
@@ -372,10 +464,32 @@ $(document).ready(function(){
         autoplayHoverPause:true
     });
 
+<<<<<<< Updated upstream
     $(document).on('click', '.more', function(){
         var id = $(this).data('id');
         $('.s'+id).removeClass('d-none');
         $('#more'+id).remove();
+=======
+    $(document).ready(function () {
+        $('.spacification').hide();
+        $('.spacification:lt(5)').show();
+        var spacificationcount = $('.spacification').length;
+        if (spacificationcount <= 5) 
+        { 
+        $('.more').hide();
+        }
+        else 
+        {
+        $('.more').click(function () {
+        $('.spacification:not(:visible):lt(5)').show();
+        if($('.spacification:not(:visible)').length<=0)
+        {
+        $('.more').hide();
+        }
+        return false;
+        });
+        } 
+>>>>>>> Stashed changes
     });
 });
 </script>
