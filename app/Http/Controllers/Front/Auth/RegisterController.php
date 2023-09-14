@@ -77,7 +77,8 @@ class RegisterController extends Controller
     public function register(Request $request)
     {
         $this->validate($request, [
-            'email' => 'required|email|unique:users'
+            'email' => 'required|email|unique:users',
+            'phone' => 'required|unique:users'
         ]);
 
         $setting_list = getSettingDetail();
@@ -97,7 +98,8 @@ class RegisterController extends Controller
         $ndata = EmailTemplates::select('template')->where('label', 'welcome')->first();
         $html = isset($ndata->template) ? $ndata->template : NULL;
         $mailHtml = str_replace($templateStr, $data, $html);
-//        \Mail::to($request->email)->send(new \App\Mail\CommonMail($mailHtml, 'Welcome '.$this->data['site_name']));
+       
+       \Mail::to($request->email)->send(new \App\Mail\CommonMail($mailHtml, 'Welcome '.$this->data['site_name']));
         // Send email for Welcome user - End
 
         if (Auth::guard('user')->attempt(['email' => $request->email, 'password' => $request->password])) {
