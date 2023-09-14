@@ -453,7 +453,13 @@
                             <img src="{{ asset('front/img/no_image.jpg') }}" class="img-fluid" alt="" title="{{ $detail->image_title }}">
                         @endif
                     </a>**/ ?>
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#servicecenterModal-{{$detail->id}}"><img src="{{ url($detail->image) }}" class="service-center-slider-img detail" alt="" title="{{$detail->image_title}}"></a>
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#servicecenterModal-{{$detail->id}}">
+                        @if(!empty($detail->image) && isset($detail->image))
+                            <img src="{{ url($detail->image) }}" class="service-center-slider-img detail" alt="" title="{{$detail->image_title}}">
+                        @else
+                            <img src="{{ asset('front/img/no_image.jpg') }}" class="img-fluid" alt="" title="{{ $detail->image_title }}">
+                        @endif
+                    </a>
                 </div>
             @endforeach
         @endif        
