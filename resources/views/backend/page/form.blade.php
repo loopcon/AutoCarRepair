@@ -46,10 +46,13 @@
                                     <input type="text" class="form-control" id="meta_title" name="meta_title" placeholder="{{__('Meta Title')}}" value="{{ isset($record->meta_title) ? $record->meta_title : old('meta_title') }}">
                                     @if ($errors->has('meta_title')) <div class="text-danger">{{ $errors->first('meta_title') }}</div>@endif
                                 </div>
-                                <div class="mb-3 col-md-6">
+                                <div class="mb-3 col-md-12">
                                     <label class="form-label" for="extra_meta_tag">{{__('Extra Meta Tag')}}</label>
-                                    <input type="text" class="form-control" id="extra_meta_tag" name="extra_meta_tag" placeholder="{{__('Extra Meta Tag')}}" value="{{ isset($record->extra_meta_tag) ? $record->extra_meta_tag : old('extra_meta_tag') }}">
+
+                                    <textarea class="form-control" id="editor" name="extra_meta_tag" placeholder="{{__('Extra Meta Tag')}}">{{ isset($record->extra_meta_tag) ? $record->extra_meta_tag : old('extra_meta_tag') }}</textarea>
                                     @if ($errors->has('extra_meta_tag')) <div class="text-danger">{{ $errors->first('extra_meta_tag') }}</div>@endif
+
+                                    
                                 </div>
                                 <div class="mb-3 col-md-6">
                                     <label class="form-label" for="meta_keyword">{{__('Meta Keyword')}}</label>
