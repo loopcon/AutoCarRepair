@@ -13,6 +13,7 @@ use App\Models\CarBrand;
 use App\Models\CarModel;
 use App\Models\Enquiry;
 use App\Models\FuelType;
+use App\Models\Cart;
 use Session;
 
 class ServiceController extends MainController
@@ -59,7 +60,7 @@ class ServiceController extends MainController
         $model = $request->model;
         $fuel = $request->fuel;
 
-        // dd($brand."----".$model."-------".$fuel);
+        //  dd($brand."----".$model."-------".$fuel);
         if($brand && $model && $fuel) {
             $query = ScheduledPackageDetail::with('packageDetail', 'brandDetail', 'modelDetail', 'fuelTypeDetail')->select('*');
             //$query = ScheduledPackage::with('categoryDetail', 'brandDetail', 'modelDetail', 'fuelTypeDetail', 'specifications')->select('*');
@@ -108,8 +109,18 @@ class ServiceController extends MainController
         }
         $faqs = Faq::select('id','service_category_id','name','description')->where('service_category_id',$categoryInfo->id)->where('is_archive','0')->get();
         $return_data['faqs'] = $faqs;
-        $price_list = ServiceCategory::select('id','price_list')->where('slug',$category)->first();
+        $price_list = ServiceCategory::select('id','price_list')->where
+        ('slug',$category)->first();
         $return_data['price_list'] = $price_list;
+
+        $brandquery = CarBrand::select('id', 'slug','title','image')->where([['slug', $brand]])->first();
+        $return_data['brandquery'] = $brandquery;
+
+        $modelname = CarModel::select('id', 'slug','title','image')->where([['slug', $model]])->first();
+        $return_data['modelname'] = $modelname;
+
+        $fuelname = FuelType::select('id', 'slug','title','image')->where([['slug', $fuel]])->first();
+        $return_data['fuelname'] = $fuelname;
         return view('front/service/detail',array_merge($this->data,$return_data));
     }
     // public function sendMassage(request $request)

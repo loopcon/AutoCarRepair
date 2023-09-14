@@ -3,13 +3,39 @@
 <!-- service inner page start  -->
 <div class="shoping-breadcrum-bg">
     <div class="container">
-        <ul class="shoping-breadcrum-main">
-            <li><a href="{{route('front_/')}}">Home</a></li>
-            <li><i class="fa-solid fa-chevron-right"></i></li>
-            <li><a href="{{route('front_our-services')}}">Car Service</a></li>
-            <li><i class="fa-solid fa-chevron-right"></i></li>
-            <li>{{isset($category->title) && $category->title ? $category->title : ''}}</li>
-        </ul>
+        <div class="row m-0 align-items-center">
+            <div class="col-12 col-sm-6">
+                <ul class="shoping-breadcrum-main">
+                    <li><a href="{{route('front_/')}}">Home</a></li>
+                    <li><i class="fa-solid fa-chevron-right"></i></li>
+                    <li><a href="{{route('front_our-services')}}">Car Service</a></li>
+                    <li><i class="fa-solid fa-chevron-right"></i></li>
+                    <li>{{isset($category->title) && $category->title ? $category->title : ''}}</li>
+                </ul>
+            </div>
+            <div class="col-12 col-sm-6">
+                <div class="row m-0">
+                    <div class="col-4">
+                        @if(isset($brandquery->image) && $brandquery->image)
+                                <img src="{{ url($brandquery->image )}}" class="img-fluid" alt="" title="">
+                        @endif
+                        <p class="service-inner-modalname">{{isset($brandquery->title) ? $brandquery->title : NULL}}</p>
+                    </div>
+                    <div class="col-4">
+                        @if(isset($modelname->image) && $modelname->image)
+                                <img src="{{ url($modelname->image )}}" class="img-fluid" alt="" title="">
+                        @endif
+                        <p class="service-inner-modalname">{{isset($modelname->title) ? $modelname->title : NULL}}</p>
+                    </div>
+                    <div class="col-4">
+                         @if(isset($fuelname->image) && $fuelname->image)
+                                <img src="{{ url('public/uploads/fueltype/'.$fuelname->image )}}" class="img-fluid" alt="" title="">
+                        @endif
+                        <p class="service-inner-modalname">{{isset($fuelname->title) ? $fuelname->title : NULL}}</p>
+                    </div>
+                </div>
+             </div>   
+        </div>
     </div>
 </div>
 
@@ -81,12 +107,20 @@
                     </div>
                     @if($price_show)
                         <div class="payment-main">
-                            <div class="packeage-prise"> <p>₹ {{$record->price}}</p>  </div>
-                            <div> <button class="ser-inner-addtocart" id="add_to_cart_service" data-id="{{$record->id}}"> Add to Cart</button></div>
+                            @if($record->price > 0)
+                                <div class="packeage-prise"> <p>₹ {{$record->price}}</p>  </div>
+                                <div> <button class="ser-inner-addtocart" id="add_to_cart_service" data-id="{{$record->id}}"> Add to Cart</button></div>
+                            @else
+                                <div class="packeage-prise"> <p>N/A</p>  </div>
+                            @endif
                         </div>
                     @else
-                        <div class="serin-appointment-btn-maingroup ">
+                        <?php /* <div class="serin-appointment-btn-maingroup ">
                             <a class="apt-btn serin-appointment-btn" href="javascript:void(0)">Book A Service</a>
+                        </div> */ ?>
+                        <div class="payment-main">
+                            <div class="packeage-prise"> <p>N/A</p>  </div>
+                            <?php /* <a class="apt-btn serin-appointment-btn" href="javascript:void(0)">Book A Service</a> */ ?>
                         </div>
                     @endif
                 </div>

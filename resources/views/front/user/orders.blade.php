@@ -49,10 +49,12 @@
                                                         @foreach($detail as $record)
                                                             @if($record->service_id)
                                                                 @php($is_service_in_order = $order->id)
+                                                                @php($service_category = isset($record->packageDetail->packageDetail->categoryDetail->title) ? $record->packageDetail->packageDetail->categoryDetail->title : NULL)
                                                                 @php($service = isset($record->packageDetail->packageDetail->title) ? $record->packageDetail->packageDetail->title : NULL)
                                                                 @php($brand = isset($record->packageDetail->brandDetail->title) ? $record->packageDetail->brandDetail->title : NULL)
                                                                 @php($model = isset($record->packageDetail->modelDetail->title) ? $record->packageDetail->modelDetail->title : NULL)
                                                                 @php($fuel = isset($record->packageDetail->fuelTypeDetail->title) ? $record->packageDetail->fuelTypeDetail->title : NULL)
+                                                                {{$service_category}}<br/>
                                                                 {{$service}}<br/>
                                                                 <small class="font-small">
                                                                     {{$brand.' - '.$model.' - '.$fuel}}<br/>

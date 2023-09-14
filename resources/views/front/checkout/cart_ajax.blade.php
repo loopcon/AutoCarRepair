@@ -11,12 +11,12 @@
             <div class="service-name-text">
                 @if(isset($item->product_id) && $item->product_id)
                     @php($is_product_available = 1)
-                    <img src="{{ $item->productDetail->primaryImage->image }}"  class="add-to-cart-img" alt="">
-                    <?php /* @if(isset($item->productDetail->primaryImage->image) && $item->productDetail->primaryImage->image)
+                   <?php /* <img src="{{ $item->productDetail->primaryImage->image }}"  class="add-to-cart-img" alt=""> */ ?>
+                    @if(isset($item->productDetail->primaryImage->image) && $item->productDetail->primaryImage->image)
                         <img src="{{ asset('public/uploads/product/'.$item->product_id.'/'.$item->productDetail->primaryImage->image) }}"  class="add-to-cart-img" alt="">
                     @else
                         <img src="{{ asset('front/img/no_image.jpg') }}" class="img-fluid" alt="">
-                    @endif */ ?>
+                    @endif 
                     <p>{{isset($item->productDetail->name) ? $item->productDetail->name : NULL}}</p>
                 @endif
                 @if(isset($item->service_id) && $item->service_id)
