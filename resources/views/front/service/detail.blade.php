@@ -17,19 +17,19 @@
                 <div class="row m-0">
                     <div class="col-4">
                         @if(isset($brandquery->image) && $brandquery->image)
-                                <img src="{{ url($brandquery->image )}}" class="img-fluid" alt="" title="">
+                                <img src="{{ url($brandquery->image )}}" class="brand-name-image" alt="" title="">
                         @endif
                         <p class="service-inner-modalname">{{isset($brandquery->title) ? $brandquery->title : NULL}}</p>
                     </div>
                     <div class="col-4">
                         @if(isset($modelname->image) && $modelname->image)
-                                <img src="{{ url($modelname->image )}}" class="img-fluid" alt="" title="">
+                                <img src="{{ url($modelname->image )}}" class="brand-name-image" alt="" title="">
                         @endif
                         <p class="service-inner-modalname">{{isset($modelname->title) ? $modelname->title : NULL}}</p>
                     </div>
                     <div class="col-4">
                          @if(isset($fuelname->image) && $fuelname->image)
-                                <img src="{{ url('public/uploads/fueltype/'.$fuelname->image )}}" class="img-fluid" alt="" title="">
+                                <img src="{{ url('public/uploads/fueltype/'.$fuelname->image )}}" class="brand-name-image" alt="" title="">
                         @endif
                         <p class="service-inner-modalname">{{isset($fuelname->title) ? $fuelname->title : NULL}}</p>
                     </div>
