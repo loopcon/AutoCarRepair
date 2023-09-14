@@ -75,14 +75,14 @@
                 @endif
             </div>
         </div>
-        <div class="row">
-            <div class="col-2">
+        <div class="row m-0">
+            <div class="col-4">
                 <p>{{isset($item->serviceDetail->brandDetail->title) ? $item->serviceDetail->brandDetail->title : NULL}}</p>
             </div>
-            <div class="col-2">
+            <div class="col-5">
                 <p>{{isset($item->serviceDetail->modelDetail->title) ? $item->serviceDetail->modelDetail->title : NULL}}</p>
             </div>
-            <div class="col-2">
+            <div class="col-3">
                 <p>{{isset($item->serviceDetail->fuelTypeDetail->title) ? $item->serviceDetail->fuelTypeDetail->title : NULL}}</p>
             </div>
         </div>

@@ -600,7 +600,17 @@ $(document).ready(function(){
 
     $('#resend_otp').hide();
     $('.otp-section').hide();
-    $('#send_message').hide();
+     var phone = "{{ request()->session()->get('phone') }}";
+    if(phone)
+    {
+        $('#send_message').show();
+        $('#send_otp').hide();
+    }
+    else
+    {
+        $('#send_message').hide();
+        $('#send_otp').show();
+    }
     $(document).on('click', '#send_otp', function(){
         var validateMobNum= /[1-9]{1}[0-9]{9}/;
         var mobile = $('#mobile').val();

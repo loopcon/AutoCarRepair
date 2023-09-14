@@ -641,3 +641,4 @@ button { color: #000; outline: none; }
 .search-page-bg .detail-btn-main:hover{background-color: unset;border: 1px solid #E56F31;color: #E56F31;}
 .search-page-bg .add-to-wishlist-btn{background-color: unset;height: 40px;width: 100%;border-radius: 7px;border: 1px solid  #164498;color: #164498;}
 .search-page-bg .add-to-wishlist-btn:hover{background-color: #164498;color: #fff;border: 1px solid #164498;}
+.service-inner-modalname{margin-bottom:0px; }
