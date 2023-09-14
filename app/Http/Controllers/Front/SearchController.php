@@ -17,6 +17,15 @@ use App\Models\ShopCategory;
 use DB;
 class SearchController extends MainController
 {
+     public function storePhoneInSession(Request $request)
+    {
+         $phone = $request->input('phone');
+        
+        // Store the 'phone' variable in the session
+        Session::put('phone', $phone);
+        
+        return response()->json(['message' => 'Phone number stored in session']);
+    }
     public function brands(request $request)
     {
         if($request->ajax()){

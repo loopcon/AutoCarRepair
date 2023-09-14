@@ -320,14 +320,38 @@ $(document).ready(function() {
             } else if(length != '10'){
                 toastr.error('Please enter valid phone number!');
             } else {
-                location.href = "{{url('our-services')}}";
+                var csrfToken = $('meta[name="csrf-token"]').attr('content');
+                 $.ajax({
+                    url: "{{ route('front_storePhoneInSession') }}", // Change to your route name
+                    type: "POST",
+                    data: {phone: phone, _token: csrfToken},
+                    dataType: "json",
+                    success: function(data) {
+                        // Redirect to the desired URL
+                        location.href = "{{url('our-services')}}";
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.error('AJAX Error: ' + textStatus, errorThrown);
+                    }
+                });
             }
         });
 
         //otp in popop
         $('#appointmentresend_otp').hide();
         $('.aptotp-section').hide();
-        $('#check_price').hide();
+        var phone = "{{ request()->session()->get('phone') }}";
+        if(phone)
+        {
+            $('#check_price').show();
+            $('#appointmentsend_otp').hide();
+        }
+        else
+        {
+            $('#check_price').hide();
+            $('#appointmentsend_otp').show();
+        }
+        
         $(document).on('click', '#appointmentsend_otp', function(){
             var validateMobNum= /[1-9]{1}[0-9]{9}/;
             var mobile = $('#appointmentmobile').val();

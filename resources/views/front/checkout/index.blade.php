@@ -28,13 +28,14 @@
                     <div class="otp-section">
                         <div class="mb-3 otpinput-main">
                             <input type="text" class="form-control num_only" id="otp" name="otp" aria-describedby="emailHelp" placeholder="OTP">
-                            <div id="resend_text"><b>Resend OTP in <span id="timer"></span> seconds</b></div>
+                            <div id="resend_text"><b>Resend OTP in<span id="timer"></span> seconds</b></div>
                         </div>
                         <!--<a href="javascript:void(0)" id="verify_otp" class="btn verify-otpbtn">VERIFY OTP </a>-->
-                        <a href="javascript:void(0)" id="resend_otp" class="btn verify-otpbtn">RESEND OTP </a>
+                        <a href="javascript:void(0)" id="resend_otp" class="btn verify-otpbtn">RESEND OTP</a>
                     </div>
+
                     <input type="hidden" id="is_otp_verify" value="0">
-                    <a href="javascript:void(0)" class="btn verify-otpbtn" id="send_otp">SEND OTP </a>
+                    <a href="javascript:void(0)" class="btn verify-otpbtn" id="send_otp">SEND OTP</a>
             </div>
 
             <div class="select-address">
@@ -268,7 +269,9 @@ $(document).ready(function(){
 
     $('#resend_otp').hide();
     $('.otp-section').hide();
-    $('#booking_confirm').hide();
+    $('#booking_confirm').show();
+
+
     $(document).on('click', '#send_otp', function(){
         var validateMobNum= /[1-9]{1}[0-9]{9}/;
         var mobile = $('#mobile').val();
@@ -379,7 +382,17 @@ $(document).ready(function(){
                     $('.card-detial-sec-main').html(result.html);
                     var is_verify_otp = $('#is_otp_verify').val();
                     if(is_verify_otp == '0'){
-                        $('#booking_confirm').hide();
+                        var phone = "{{ request()->session()->get('phone') }}";
+                        if(phone)
+                        {
+                            $('#booking_confirm').show();
+                            $('#send_otp').hide();
+                        }
+                        else
+                        {
+                            $('#booking_confirm').hide();
+                        }
+                        
                     }
                     setTimeout(function(){
                         var is_service_available = $('input[name="is_service_in_cart"]').val();
@@ -430,6 +443,7 @@ let timerOn = true;
             }
             // Do timeout stuff here
             var is_otp_verify = $('#is_otp_verify').val();
+
             if(is_otp_verify == '0'){
                 $('#resend_otp').show();
                 $("#mobile").removeAttr("readonly"); 

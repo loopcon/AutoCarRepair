@@ -260,7 +260,7 @@
 
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control num_only" maxlength="10"  id="appointmentmobile" name="mobile" aria-describedby="emailHelp" placeholder="Enter Phone Number">
+                        <input type="text" class="form-control num_only" maxlength="10"  id="appointmentmobile" name="mobile" aria-describedby="emailHelp" placeholder="Enter Phone Number" value="{{ request()->session()->get('phone') }}">
                     </div>
                 </div>
                 <div class="aptotp-section">
