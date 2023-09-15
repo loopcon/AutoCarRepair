@@ -151,25 +151,25 @@ class ProductController extends MainController
         if($product){
             // $total_images = isset($request->last_id) && $request->last_id ? $request->last_id : NULL;
             $total_images = isset($request->total) && $request->total ? $request->total : NULL;
-            $is_primary = isset($request->is_primary) ? isset($request->is_primary) : NULL;
+            $is_primary = isset($request->is_primary) ? $request->is_primary : NULL;
             // $image_title  = isset($request->image_title ) ? isset($request->image_title ) : NULL;
             if($total_images){
                 for($i = 0; $i < $total_images; $i++){
                     $name = 'image'.$i;
                     $image_title = 'image_title'.$i;
-                    $filename = pathinfo($request->$name, PATHINFO_BASENAME);
+                    // $filename = pathinfo($request->$name, PATHINFO_BASENAME);
                     $pid = 'pid'.$i;
                     if($request->$pid){
                         $product_img = ProductImage::find($request->$pid);
                     } else {
                         $product_img = new ProductImage();
                     }
-                    // $product_img->is_primary = $is_primary == $i ? '1' : 0;
+                    $product_img->is_primary = $is_primary == $i ? '1' : 0;
                     $primary_key = "is_primary".$i;
-                    $product_img->is_primary = isset($request->$primary_key) ? '1' : 0;
+                    // $product_img->is_primary = $is_primary;
                     $product_img->product_id = $id;
                     $product_img->image_title = $request->$image_title ? $request->$image_title : NULL;
-                    $product_img->image = $request->$name ? "https://drive.google.com/uc?export=view&id=".$filename : NULL;
+                    $product_img->image = $request->$name ? $request->$name : NULL;
                     // if($request->hasFile($name)) {
                     //     if($request->$pid){
                     //         $old_image = $product_img->image;
@@ -354,6 +354,15 @@ class ProductController extends MainController
                     $category_id = $category_new->id;
                     }
                 $product = Product::create($product_fields);
+                $replace = Product::select('id','name')->first();
+                $replace2 = Product::where('name',$replace->name)->first();
+                // Product::where('name',$replace->name)->update(array('status' => $request->status, 'updated_by' => Auth::guard('admin')->user()->id)); 
+                if ($replace2) {
+                    $product->update([
+                        'name' => $row[1],
+                    ]);
+                }
+                // print_r($replace2);exit;
                 $product->shop_category_id = $category_id;
                 $product_id = $product->id;
                 if($product){

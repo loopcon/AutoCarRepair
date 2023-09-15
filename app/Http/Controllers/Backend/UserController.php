@@ -31,17 +31,27 @@ class UserController extends MainController
             $list = $query->get();
 
             return DataTables::of($list)
+                ->addColumn('id', function($row) {
+                    $html = "";
+                    $html .= '<label class="form-check">
+                                <input class="form-check-input checkSingle" type="checkbox" value="'.$row->id.'">
+                                <span class="form-check-label">
+                                    '.$row->id.'
+                                </span>
+                            </label>';
+                    return $html;
+                })
                 ->addColumn('action', function ($row) {
                     $html = "";
                     $id = Crypt::encrypt($row->id);
                     $html .= "<span class='text-nowrap'>";
-                    //$html .= "<a href='javascript:void(0);' data-href='".route('admin_user-delete',array($id))."' rel='tooltip' title='".trans('Delete')."' class='btn btn-danger btn-sm mr-20 delete'><i class='fa fa-trash-alt'></i></a>&nbsp";
+                    $html .= "<a href='javascript:void(0);' data-href='".route('admin_user-delete',array($id))."' rel='tooltip' title='".trans('Delete')."' class='btn btn-danger btn-sm mr-20 delete'><i class='fa fa-trash-alt'></i></a>&nbsp";
                     $html .= "<a href='".route('admin_user-detail', array($id))."' class='btn btn-small btn-info'>Detail</a>";
                     
                     $html .= "</span>";
                     return $html;
                 })
-                ->rawColumns(['action'])
+                ->rawColumns(['action','id'])
                 ->make(true);
         } else {
             return redirect('backend/dashboard');

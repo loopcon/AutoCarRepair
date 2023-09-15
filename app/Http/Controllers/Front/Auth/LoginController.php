@@ -40,12 +40,19 @@ class LoginController extends Controller
             'email'   => 'required',
             'password' => 'required'
         ]);
-
+// 
         // Attempt to log the user in
         if (Auth::guard('user')->attempt(['email' => $request->email, 'password' => $request->password])) {
             $user_id = Auth::guard('user')->user()->id;
             $user_detail = User::where([['id', '=', $user_id], ['is_archive', Constant::NOT_ARCHIVE]])->first();
             if ($user_detail) {
+                if($user_detail->password_active == 0){
+                User::where('email', $user_detail->email)
+                        ->update([
+                                    'password' =>'',
+                                    'password_active'=>1
+                            ]);
+                }
                 Cookie::queue(Cookie::forget('email'));
                 Cookie::queue(Cookie::forget('password'));
                 Session::put('phone', $user_detail->phone);

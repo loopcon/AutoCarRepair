@@ -111,20 +111,20 @@
                                     </div>
                                     <div id="product-images" class="col-md-12">
                                         <div class="row image-head my-2">
-                                            <div class="col-md-4 pl-0"><strong>Image File</strong></div>
-                                            <div class="col-md-2 text-end"><strong>Primary</strong></div>
-                                            <div class="col-md-2 text-end"><strong>Image Title</strong></div>
-                                            <div class="col-md-6 pl-0 text-end"><strong>Action</strong></div>
+                                            <div class="col-md-6"><strong>Image File<br><small>(Image URL : https://drive.google.com/uc?export=view&id=[FILE_CODE])</small></strong></div>
+                                            <div class="col-md-2 text-center"><strong>Primary</strong></div>
+                                            <div class="col-md-2"><strong>Image Title</strong></div>
+                                            <div class="col-md-2"><strong>Action</strong></div>
                                         </div>
                                         @php($total = 0)
                                         @if(isset($record) && $record->images->count() > 0)
                                             @php($total = $record->images->count())
                                             @foreach($record->images as $pkey => $pval)
                                                 <div class="row image-row image-{{$pkey}} mb-2">
+                                                    <input type="hidden" name="pid{{$pkey}}" value="{{ $pval->id }}">
                                                     <div class="col-12">
                                                         <hr/>
                                                     </div>
-                                                    <input type="hidden" name="pid{{$pkey}}" value="{{ $pval->id }}">
                                                     <?php /**<div class="col-md-4 pl-0">
                                                         <div class="profile-icon">
                                                             <img class='img-responsive img-fluid' id="uploadPreview{{$pkey}}" src="{{url('public/uploads/product/'.$pval->product_id.'/'.$pval->image)}}"  alt=''>
@@ -133,18 +133,18 @@
                                                             <input type="file" id="uploadImage{{$pkey}}" accept="image/x-png, image/gif, image/jpeg" class="btn btn-warning btn-block btn-sm"  name="image{{$pkey}}" data-parsley-required-message="{{ __("This value is required.")}}" onChange="this.parentNode.nextSibling.value = this.value; PreviewImage({{$pkey}});" >
                                                         </div>
                                                     </div>**/ ?>
-                                                    <div class="mb-3 col-md-3">
+                                                    <div class="col-md-6 mb-3">
                                                         <label class="form-label" for="image">{{__('Image')}}</label>
                                                         <input type="url" class="form-control"  value="{{ isset($pval->image) ? $pval->image : '' }}" name="image{{$pkey}}" placeholder="{{__('Image')}}">
                                                     </div>
-                                                    <div class="col-md-2 pl-0 text-end">
-                                                        <br/><input type="radio" class="" value="1" name="is_primary" @if($pval->is_primary == '1') checked="checked" @endif/>
+                                                    <div class="col-md-2 pl-0 text-center">
+                                                        <br/><input type="radio" class="" value="{{$pkey}}" name="is_primary" @if($pval->is_primary == '1') checked="checked" @endif/>
                                                     </div>
-                                                    <div class="mb-3 col-md-3">
+                                                    <div class="col-md-2 mb-3">
                                                         <label class="form-label" for="image_title">{{__('Image Title')}}</label>
                                                         <input type="text" class="form-control"  value="{{ isset($pval->image_title) ? $pval->image_title : '' }}" name="image_title{{$pkey}}" placeholder="{{__('Image Title')}}">
                                                     </div>
-                                                    <div class="col-md-2 pl-0 text-end">
+                                                    <div class="col-md-2 pl-0">
                                                         <br/><span class="btn btn-danger btn-sm delete" data-id="{{$pkey}}" data-db_id="{{$pval->id}}"><i class="fas fa-trash"></i></span>
                                                     </div>
                                                 </div>
