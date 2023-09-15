@@ -15,7 +15,9 @@ use App\Models\ScheduledPackage;
 use Auth;
 use Session;
 use App\Models\EmailTemplates;
-
+use App\Models\User;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
 class CheckoutController extends MainController
 {
     public function index(request $request)
@@ -87,6 +89,7 @@ class CheckoutController extends MainController
 
     public function createOrder(request $request)
     {
+       // dd($request->all());
         $this->validate($request, [
             'city' => 'required|regex:/^[\pL\s\-]+$/u',
             
@@ -100,7 +103,43 @@ class CheckoutController extends MainController
 
         $payment_type = $request->payment_type;
         if($payment_type == Constant::OFFLINE){
-            $user_id = Auth::guard('user')->check() ? Auth::guard('user')->user()->id : NULL;
+
+            $usercheck=User::where('email',$request->email)->first();
+            if($usercheck !== null){
+                $user_id=$usercheck->id;
+            }
+            elseif (Auth::guard('user')->check()) {
+                $user_id = Auth::guard('user')->user()->id;
+            }
+            else{
+                $randomString = Str::random(8);
+                $randomString .= rand(0, 9);
+                $randomString .= Str::random(1, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ');
+                $randomString .= Str::random(1, 'abcdefghijklmnopqrstuvwxyz');
+                $specialChars = '!@#$%&*';
+                $randomString .= $specialChars[rand(0, strlen($specialChars) - 1)];
+                $genratepassword = str_shuffle($randomString);
+
+                // dd($genratepassword);
+                $user= new User();
+                $user->firstname=$request->input('name');
+                $user->phone=$request->input('mobile');
+                $user->email=$request->input('email');
+                $user->password = Hash::make($genratepassword);
+                $user->visible_password = $genratepassword;
+                $user->password_active=0;
+                $user->save();
+
+                $templateStr = array('[USER]' ,'[PASSWORD]');
+                $data = array($request->name , $genratepassword);
+                $ndata = EmailTemplates::select('template')->where('label', 'password')->first();
+                $html = isset($ndata->template) ? $ndata->template : NULL;
+                $mailHtml = str_replace($templateStr, $data, $html);
+                \Mail::to($request->email)->send(new \App\Mail\CommonMail($mailHtml, 'Welcome '.$this->data['site_name']));
+                $user_id=$user->id;
+
+            }
+            // $user_id = Auth::guard('user')->check() ? Auth::guard('user')->user()->id : NULL;
             $checkout_type = $user_id ? Constant::USER_CHECKOUT : Constant::GUEST_CHECKOUT;
 
             $order = new Order();

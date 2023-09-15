@@ -143,7 +143,7 @@ a.badge:hover{color:white;}
 .newservice h4{font-size: 50px; color: #222; font-weight: bold;}
 .extraservice{box-shadow: 1px 2px 4px 1px #0000001E;padding: 25px;margin: 25px 10px;border-radius: 8px; }
 .extraservice .servic-type-box-image {width: 25% !important;display: block;margin: auto;}
-.extraservice .servic-type-box h5 { color: #E56F31; font-size: 18px; font-weight: bold; text-align: center; margin-bottom: 0px;}
+.extraservice .servic-type-box h5 { color: #222; font-size: 18px; font-weight: bold; text-align: center; margin-bottom: 0px;}
 .extraservice .service-type-head { height: 68px; display: flex; align-items: center;justify-content: center;overflow: hidden;margin-bottom: 0px;}
 /* end extra service*/
 /* end Home page price*/
@@ -280,6 +280,8 @@ a.badge:hover{color:white;}
 /* service inner page css end  */
 /* shoping page start  */
 .shoping-breadcrum-bg { background-color:#f1f1f1;} 
+.shoping-breadcrum-bg .brand-name-image{ display:block; margin:auto; }
+.shoping-breadcrum-bg .car-modal-image{}
 .shoping-category-bg{background:unset !important; } 
 .shoping-breadcrum-bg .shoping-breadcrum-main { display: flex; align-items: center; list-style: none; margin-bottom: 0px; padding: 22px 0px;}
 .shoping-breadcrum-bg .shoping-breadcrum-main li { font-size: 18px; font-weight: bold; margin-bottom: 0px; } 
@@ -298,8 +300,8 @@ a.badge:hover{color:white;}
 .shopping-section .shoping-main-product h5{ font-size: 16px;  margin-right:15px; margin-left:15px; margin-bottom:10px; }
 .shopping-section .shoping-main-product h5 a{ text-decoration: none; color: #000; margin-top:0px; font-weight:bold;  display:inline-block; }
 .shopping-section #search_ajax_list a{ text-decoration: none; color: #000; }
-.shopping-section .product-title{display: block;font-weight: bold;font-size: 1rem;padding: 0px 16px;}
-.shopping-section .product-category-title{padding: 0px 15px;/* margin-bottom: 8px; */display: block;}
+.shopping-section .product-title{display: block;font-weight: bold;font-size: 1rem;padding: 0px 16px; margin-bottom:5px; height: 53px; overflow: hidden;}
+.shopping-section .product-category-title{padding: 0px 15px; margin-bottom: 5px;display: block;height: 53px;overflow: hidden;}
 .shopping-section .shoping-card-prise { margin: 0px 15px; display: flex; align-items: center; justify-content: space-between;  }
 .shopping-section .shoping-star-group{ color: #E56F31;}
 .shopping-section .shoping-card-text p{ margin-bottom: 0px; color: #E56F31; font-size: 16px; font-weight: bold; }
@@ -597,7 +599,7 @@ button { color: #000; outline: none; }
 .filter-click-main .form-check-input:focus{box-shadow: none !important;}
 /* cms page css start  */
 .cms-page-section{background-color: #164498;padding: 20px;}
-.cms-image-main{height: 450px;width: 100%;object-fit: cover;}
+.cms-image-main{height: 450px;width: 100%;object-fit: cover;filter: brightness(0.5);}
 .cms-section-main{ position: relative;}
 .cms-section-text{position: absolute;top: 50%;left: 9%;transform: translateY(-50%);width: 40%;}
 .cms-section-text h2{font-size: 2.7rem;font-weight: bold;color: #fff;margin-bottom: 25px;}
@@ -641,4 +643,4 @@ button { color: #000; outline: none; }
 .search-page-bg .detail-btn-main:hover{background-color: unset;border: 1px solid #E56F31;color: #E56F31;}
 .search-page-bg .add-to-wishlist-btn{background-color: unset;height: 40px;width: 100%;border-radius: 7px;border: 1px solid  #164498;color: #164498;}
 .search-page-bg .add-to-wishlist-btn:hover{background-color: #164498;color: #fff;border: 1px solid #164498;}
-.service-inner-modalname{margin-bottom:0px; }
+.service-inner-modalname{margin-bottom:0px;  text-align:center; }
