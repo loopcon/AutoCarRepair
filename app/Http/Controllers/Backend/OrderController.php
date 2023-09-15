@@ -44,6 +44,16 @@ class OrderController extends MainController
             $list = $query->get();
 
             return DataTables::of($list)
+                ->addColumn('id', function($row) {
+                    $html = "";
+                    $html .= '<label class="form-check">
+                                <input class="form-check-input checkSingle" type="checkbox" value="'.$row->id.'">
+                                <span class="form-check-label">
+                                    '.$row->id.'
+                                </span>
+                            </label>';
+                    return $html;
+                })
                 ->addColumn('invoice_no', function ($row) {
                     $html = "";
                     $html .= "<span class='text-nowrap'>";
@@ -82,7 +92,7 @@ class OrderController extends MainController
                     $html .= "</span>";
                     return $html;
                 })
-                ->rawColumns(['invoice_no','name','status','action','odate'])
+                ->rawColumns(['invoice_no','name','status','action','odate','id'])
                 ->make(true);
         } else {
             return redirect('backend/dashboard');
@@ -99,6 +109,28 @@ class OrderController extends MainController
     //         return redirect()->back()->with('error', trans('Something went wrong, please try again later!'));
     //     }
     // }
+
+    public function alldelete(Request $request)
+    {
+        if($request->ajax()){
+            $orderdelete = $request->orderdelete;
+            // print_r($admins);
+            $return = array();
+            $return['result'] = 'error';
+            if($orderdelete){
+                foreach($orderdelete as $order){
+                    $orders = Order::where('id',$order)->delete();
+                }
+                if(isset($orders)){
+                    $return['result'] = 'success';
+                }
+                echo json_encode($return);
+                exit;
+            } else {
+                return redirect('/');
+            }
+        }
+    }
 
     public function detail(request $request,$id)
     {

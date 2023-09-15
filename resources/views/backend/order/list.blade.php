@@ -27,13 +27,24 @@
                                     <option value="2">Cancelled</option>
                                 </select>
                             </div>
+                            <div class="col-md-12 text-end">
+                                <!-- <a href='javascript:void(0);' data-href="{{ route('admin_deleteall') }}" class='btn btn-danger btn-sm mr-20 delete_all'>Delete All</a> -->
+                                <button class="btn btn-danger selected_data">Delete Selected</button>
+                            </div>
                         </div>
                     </div>
                     <div class="card-body">
                         <table id="orders" class="table table-striped table-hover" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th>{{__('Id')}}</th>
+                                    <th>
+                                        <label class="form-check">
+                                            <input class="form-check-input" type="checkbox" id='checkAll' value="">
+                                            <span class="form-check-label">
+                                            {{__('id')}}
+                                            </span>
+                                        </label>
+                                    </th>
                                     <th>{{__('Invoice No.')}}</th>
                                     <th>{{__('User')}}</th>
                                     <th>{{__('Email')}}</th>
@@ -61,6 +72,17 @@
 <script src="{{ asset('plugins/select2/js/select2.min.js') }}"></script>
 <script>
 $(document).ready(function() {
+    $("#checkAll").change(function() {
+        if (this.checked) {
+            $(".checkSingle").each(function() {
+                this.checked=true;
+            });
+        } else {
+            $(".checkSingle").each(function() {
+                this.checked=false;
+            });
+        }
+    });
     $('#status').select2();
     var order = $("#orders").DataTable({
         "sScrollX": '100%',
@@ -71,7 +93,7 @@ $(document).ready(function() {
         "pageLength": 100,
         "lengthMenu": [[50, 100, 200, 400], [50, 100, 200, 400]],
         "columns": [
-            {data: 'id', name: 'id'},
+            {data: 'id', name: 'id',orderable: false, searchable: false},
             {data: 'invoice_no', name: 'invoice_no'},
             {data: 'name', name: 'name'},
             {data: 'email', name: 'email'},
@@ -153,7 +175,42 @@ $(document).ready(function() {
             });
         });
     });
+
+    $(document).on('click', '.selected_data', function(){
+        var group = $(this).val();
+        if(group != null || group != ''){
+            var orderdelete = [];
+            $('input.checkSingle:checkbox:checked').each(function () {
+                orderdelete.push($(this).val());
+            });
+            if(jQuery.isEmptyObject(orderdelete)){
+                swal("Please select data!");
+            } else {
+                swal({
+                    title: "",
+                    text: "Are you sure you want to Delete This Selected Data?",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonClass: "btn-danger",
+                    confirmButtonText: "Yes",
+                    closeOnConfirm: true
+                }, function() {
+                    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                    $.ajax({
+                        url : "{{ route('admin_delete-order-data') }}",
+                        method : 'post',
+                        data : {_token : CSRF_TOKEN, group : group, orderdelete : orderdelete},
+                        success : function(result){
+                            var result = $.parseJSON(result);
+                            order.ajax.reload();
+                        }
+                    });
+                });
+            }
+        }
+    });
 });
+
 </script>
 @endsection
 

@@ -19,7 +19,8 @@
                     <div class="card-header">
                         <div class="form-row">
                             <div class="col-md-12 text-end">
-                                <div class="col-md-12 text-end"><button class="btn btn-danger delete_all">Delete All</button></div>
+                                <!-- <a href='javascript:void(0);' data-href="{{ route('admin_deleteall') }}" class='btn btn-danger btn-sm mr-20 delete_all'>Delete All</a> -->
+                                <button class="btn btn-danger selected_data">Delete Selected</button>
                             </div>
                         </div>
                     </div>
@@ -76,7 +77,7 @@ $(document).ready(function() {
         "pageLength": 100,
         "lengthMenu": [[50, 100, 200, 400], [50, 100, 200, 400]],
         "columns": [
-            {data: 'id', name: 'id'},
+            { data: 'id', name: 'id', orderable: false, searchable: false },
             {data: 'firstname', name: 'firstname'},
             {data: 'lastname', name: 'lastname'},
             {data: 'email', name: 'email'},
@@ -108,7 +109,43 @@ $(document).ready(function() {
             location.href = href;
         });
     });
+
+    $(document).on('click', '.selected_data', function(){
+        var group = $(this).val();
+        if(group != null || group != ''){
+            var admin = [];
+            $('input.checkSingle:checkbox:checked').each(function () {
+                admin.push($(this).val());
+            });
+            if(jQuery.isEmptyObject(admin)){
+                swal("Please select data!");
+            } else {
+                swal({
+                    title: "",
+                    text: "Are you sure you want to Delete This Selected Data?",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonClass: "btn-danger",
+                    confirmButtonText: "OK",
+                    closeOnConfirm: true
+                }, function() {
+                    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                    $.ajax({
+                        url : "{{ route('admin_deletedata') }}",
+                        method : 'post',
+                        data : {_token : CSRF_TOKEN, group : group, admin : admin},
+                        success : function(result){
+                            var result = $.parseJSON(result);
+                            page.ajax.reload();
+                        }
+                    });
+                });
+            }
+        }
+    });
 });
+
+             
 </script>
 
 @endsection

@@ -69,6 +69,48 @@ class UserController extends MainController
         }
     }
 
+    public function alldelete(Request $request)
+    {
+        if($request->ajax()){
+            $admins = $request->admin;
+            // print_r($admins);
+            $return = array();
+            $return['result'] = 'error';
+            if($admins){
+                foreach($admins as $user){
+                    $admin = User::where('id',$user)->delete();
+                }
+                if(isset($admin)){
+                    $return['result'] = 'success';
+                }
+                echo json_encode($return);
+                exit;
+            } else {
+                return redirect('/');
+            }
+        }
+    }
+
+    public function deleteAll()
+    {
+        $user = User::select('*')->get();
+        // print_r($user);exit; 
+        if($user) {
+            return redirect('backend/user')->with('success', trans('User Deleted Successfully!'));
+        } else {
+            return redirect()->back()->with('error', trans('Something went wrong, please try again later!'));
+        }
+    }
+
+    // public function alldelete(Request $request)  
+    // {  
+    //     $id=isset($request->multiple_delete) ? $request->multiple_delete : array();
+    //     // $id=$request->id;  
+    //     User::whereIn('id',$id)->delete();  
+    //     return response()->json(['success'=>"Products Deleted successfully."]);  
+    // }  
+
+
     public function address(request $request,$id){
         $return_data = array();       
         $return_data['site_title'] = trans('User Address');
