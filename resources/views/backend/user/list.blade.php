@@ -16,18 +16,25 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    <!-- <div class="card-header">
+                    <div class="card-header">
                         <div class="form-row">
                             <div class="col-md-12 text-end">
-                                <div class="col-md-12 text-end"><a href="{{route('admin_faq-create')}}" class="btn btn-success"><i class="align-middle" data-feather="plus"></i>{{__('Add')}}</a></div>
+                                <div class="col-md-12 text-end"><button class="btn btn-danger delete_all">Delete All</button></div>
                             </div>
                         </div>
-                    </div> -->
+                    </div>
                     <div class="card-body">
                         <table id="user" class="table table-striped table-hover" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th>{{__('Id')}}</th>
+                                    <th>
+                                        <label class="form-check">
+                                            <input class="form-check-input" type="checkbox" id='checkAll' value="">
+                                            <span class="form-check-label">
+                                                All
+                                            </span>
+                                        </label>
+                                    </th>
                                     <th>{{__('Firstname')}}</th>
                                     <th>{{__('Lastname')}}</th>
                                     <th>{{__('Email')}}</th>
@@ -49,6 +56,17 @@
 <script src="{{ asset('plugins/select2/js/select2.min.js') }}"></script>
 <script>
 $(document).ready(function() {
+    $("#checkAll").change(function() {
+        if (this.checked) {
+            $(".checkSingle").each(function() {
+                this.checked=true;
+            });
+        } else {
+            $(".checkSingle").each(function() {
+                this.checked=false;
+            });
+        }
+    });
     var page = $("#user").DataTable({
         "sScrollX": '100%',
         "order": [], //Initial no order.

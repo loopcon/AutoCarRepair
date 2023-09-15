@@ -14,11 +14,11 @@
     <div class="mt-3 col-md-3">
         <input type="url" class="form-control"  name="image{{$i}}" placeholder="{{__('Image')}}">
     </div>
-    <div class="mt-3 col-md-3">
-        <input type="text" class="form-control"  name="image_title{{$i}}" placeholder="{{__('Image Title')}}">
-    </div>
     <div class="col-md-2 pl-0 text-end">
         <br/><input type="radio" class="" value="{{$i}}" name="is_primary" />
+    </div>
+    <div class="mt-3 col-md-3">
+        <input type="text" class="form-control"  name="image_title{{$i}}" placeholder="{{__('Image Title')}}">
     </div>
     <div class="col-md-2 pl-0 text-end">
         <br/><span class="btn btn-danger btn-sm delete" data-id="{{$i}}" data-db_id="0"><i class="fas fa-trash"></i></span>

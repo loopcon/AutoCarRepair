@@ -138,7 +138,7 @@
                                                         <input type="url" class="form-control"  value="{{ isset($pval->image) ? $pval->image : '' }}" name="image{{$pkey}}" placeholder="{{__('Image')}}">
                                                     </div>
                                                     <div class="col-md-2 pl-0 text-end">
-                                                        <br/><input type="radio" class="" value="1" name="is_primary" @if($pval->is_primary == '1') checked="checked" @endif/>
+                                                        <br/><input type="radio" class="" value="{{$pkey}}" name="is_primary" @if($pval->is_primary == '1') checked="checked" @endif/>
                                                     </div>
                                                     <div class="mb-3 col-md-3">
                                                         <label class="form-label" for="image_title">{{__('Image Title')}}</label>
