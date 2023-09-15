@@ -117,7 +117,6 @@ class ProductController extends MainController
      */
     public function update(Request $request,  $id)
     {
-        // print_r($request->all());exit;
         $id = Crypt::decrypt($id);
         $request->slug = isset($request->slug) && $request->slug ? $request->slug : NULL;
         $this->validate($request, [
@@ -158,7 +157,7 @@ class ProductController extends MainController
                 for($i = 0; $i < $total_images; $i++){
                     $name = 'image'.$i;
                     $image_title = 'image_title'.$i;
-                    $filename = pathinfo($request->$name, PATHINFO_BASENAME);
+                    // $filename = pathinfo($request->$name, PATHINFO_BASENAME);
                     $pid = 'pid'.$i;
                     if($request->$pid){
                         $product_img = ProductImage::find($request->$pid);
@@ -170,7 +169,7 @@ class ProductController extends MainController
                     // $product_img->is_primary = $is_primary;
                     $product_img->product_id = $id;
                     $product_img->image_title = $request->$image_title ? $request->$image_title : NULL;
-                    $product_img->image = $request->$name ? "https://drive.google.com/uc?export=view&id=".$filename : NULL;
+                    $product_img->image = $request->$name ? $request->$name : NULL;
                     // if($request->hasFile($name)) {
                     //     if($request->$pid){
                     //         $old_image = $product_img->image;
