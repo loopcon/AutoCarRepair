@@ -99,7 +99,9 @@
                                 @if($specifications)
                                     @foreach($specifications as $skey => $srecord)
                                         <div class="col-12 col-sm-6 basic-service-text-main spacification s{{$record->id}} @if($skey > 4) {{'d-none'}} @endif" >
-                                            <p><i class="fa-solid fa-circle-check"></i> {{$srecord->specification}} </p>
+                                            <div class="service-inner-textname">
+                                                <span><i class="fa-solid fa-circle-check"></i></span>  <p> {{$srecord->specification}} </p>
+                                            </div>
                                         </div>
                                     @endforeach
                                 @endif
