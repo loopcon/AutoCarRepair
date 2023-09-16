@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="{{isset($meta_description) ? $meta_description : ''}}">
     <meta name="keywords" content="{{isset($meta_keywords) ? $meta_keywords : ''}}">
+    <meta name="tag" content="{!!isset($extra_meta_tag) ? $extra_meta_tag : '' !!}">
     <title>{{$site_title.' | '. $site_name}}</title>
     <link rel="icon"  href="{{ asset('public/favicon.ico') }}">
     <link rel="stylesheet" href="{{ asset('front/css/bootstrap.min.css') }}">
@@ -79,7 +80,7 @@
                             <i class="fa fa-user"></i>
                         </a>
                         <ul class="dropdown-menu login-icon-main" aria-labelledby="navbarDropdown">
-                            @if(!Auth::guard('user')->check())
+                            @if (!empty(Cache::get('phone')))
                                 <li><a class="dropdown-item text-black" href="{{route('front_login')}}">Login</a></li>
                                 <li><a class="dropdown-item text-black" href="{{route('front_register')}}">Register</a></li>
                             @else

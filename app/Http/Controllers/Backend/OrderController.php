@@ -84,7 +84,7 @@ class OrderController extends MainController
                     $html = "";
                     $id = Crypt::encrypt($row->id);
                     $html .= "<span class='text-nowrap'>";
-                    // $html .= "<a href='javascript:void(0);' data-href='".route('admin_order-delete',array($id))."' rel='tooltip' title='".trans('Delete')."' class='btn btn-danger btn-sm mr-20 delete'><i class='fa fa-trash-alt'></i></a>&nbsp";
+                    $html .= "<a href='javascript:void(0);' data-href='".route('admin_order-delete',array($id))."' rel='tooltip' title='".trans('Delete')."' class='btn btn-danger btn-sm mr-20 delete'><i class='fa fa-trash-alt'></i></a>&nbsp";
                     $html .= "<a href='".route('admin_order-detail',array($id))."' rel='tooltip' title='Detail' class='btn btn-info btn-sm'>Detail</a><br><br>";
                     if($row->is_complete == Constant::NO) {
                         $html .= "<a href='javascript:void(0);' class='btn btn-warning btn-sm complete' data-status='".Constant::YES."' data-id='".$id."' rel='tooltip' title='complete'>Is omplete?</a>";
@@ -99,22 +99,21 @@ class OrderController extends MainController
         }
     }
 
-    // public function destroy($id)
-    // {
-    //     $id = Crypt::decrypt($id);
-    //     $order = Order::where('id', $id)->delete();
-    //     if($order) {
-    //         return redirect()->back()->with('success', trans('Order Deleted Successfully!'));
-    //     } else {
-    //         return redirect()->back()->with('error', trans('Something went wrong, please try again later!'));
-    //     }
-    // }
+    public function destroy($id)
+    {
+        $id = Crypt::decrypt($id);
+        $order = Order::where('id', $id)->delete();
+        if($order) {
+            return redirect()->back()->with('success', trans('Order Deleted Successfully!'));
+        } else {
+            return redirect()->back()->with('error', trans('Something went wrong, please try again later!'));
+        }
+    }
 
     public function alldelete(Request $request)
     {
         if($request->ajax()){
             $orderdelete = $request->orderdelete;
-            // print_r($admins);
             $return = array();
             $return['result'] = 'error';
             if($orderdelete){

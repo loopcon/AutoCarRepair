@@ -32,7 +32,7 @@
                                         <label class="form-check">
                                             <input class="form-check-input" type="checkbox" id='checkAll' value="">
                                             <span class="form-check-label">
-                                                All
+                                            {{__('id')}}
                                             </span>
                                         </label>
                                     </th>
@@ -126,7 +126,7 @@ $(document).ready(function() {
                     type: "warning",
                     showCancelButton: true,
                     confirmButtonClass: "btn-danger",
-                    confirmButtonText: "OK",
+                    confirmButtonText: "Yes",
                     closeOnConfirm: true
                 }, function() {
                     var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');

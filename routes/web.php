@@ -187,7 +187,6 @@ Route::group(['prefix' => 'backend','as' => 'admin_'], function() {
         Route::get('user-address-delete/{id}', [App\Http\Controllers\Backend\UserController::class, 'addressDestroy'])->name('user-address-delete');
         Route::post('deletedata', [App\Http\Controllers\Backend\UserController::class, 'alldelete'])->name('deletedata');
         Route::get('deleteall', [App\Http\Controllers\Backend\UserController::class, 'deleteAll'])->name('deleteall');
-        // Route::get('/deletedata',[BrandController::class,'alldelete']);
 
         Route::get('order',[App\Http\Controllers\Backend\OrderController::class, 'index'])->name('order')->middleware('XSS');
         Route::post('order-datatable', [App\Http\Controllers\Backend\OrderController::class, 'orderDatatable'])->name('order-datatable');
@@ -197,6 +196,8 @@ Route::group(['prefix' => 'backend','as' => 'admin_'], function() {
         Route::get('order-detail-delete/{id}', [App\Http\Controllers\Backend\OrderController::class, 'detailDestroy'])->name('order-detail-delete');
         Route::post('order-complete', [App\Http\Controllers\Backend\OrderController::class, 'orderComplete'])->name('order-complete')->middleware('XSS');
         Route::post('delete-order-data', [App\Http\Controllers\Backend\OrderController::class, 'alldelete'])->name('delete-order-data');
+        
+        Route::get('our-service',[App\Http\Controllers\Backend\OrderController::class, 'index'])->name('order')->middleware('XSS');
     });
 });
 Route::group(['as' => 'front_', 'middleware' => 'XSS'], function() {

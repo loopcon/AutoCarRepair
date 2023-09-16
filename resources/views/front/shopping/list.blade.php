@@ -77,8 +77,8 @@
                                             <img src="{{ asset('front/img/no_image.jpg') }}" class="img-fluid" alt="" title="no_image">
                                         @endif */ ?>
                                         <div class="shoping-text-name">
-                                            <h5><a href="{{url('shopping/'.$product->slug)}}">{{$product->name}}</a></h5>
-                                            <h5>category : {{isset($product->shopCategoryDetail->name) ? $product->shopCategoryDetail->name : ''}}</h5>
+                                            <span class="product-title">{{$product->name}}</span>
+                                            <span class="product-category-title">category : {{isset($product->shopCategoryDetail->name) ? $product->shopCategoryDetail->name : ''}}</span>
                                         </div>
                                         <div class="shoping-card-prise">
                                             <div class="shoping-card-text"><p>₹{{formatNumber($product->price)}}</p></div>

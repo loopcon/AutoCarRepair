@@ -7,8 +7,8 @@
                 @else
                     <img src="{{ asset('front/img/no_image.jpg') }}" class="img-fluid" alt="" title="">
                 @endif
-                <h5>{{$product->name}}</h5>
-                <h5>{{isset($product->shopCategoryDetail->name) ? $product->shopCategoryDetail->name : ''}}</h5>
+                <span class="product-title">{{$product->name}}</span>
+                <span class="product-category-title">Category : {{isset($product->shopCategoryDetail->name) ? $product->shopCategoryDetail->name : ''}}</span>
                 <div class="shoping-card-prise">
                     <div class="shoping-card-text"><p>₹{{$product->price}}</p></div>
                      <?php /*<div class="shoping-star-group">

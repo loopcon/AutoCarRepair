@@ -353,19 +353,29 @@ class ProductController extends MainController
                     $category_new = ShopCategory::create($category_fields);
                     $category_id = $category_new->id;
                     }
-                $product = Product::create($product_fields);
-                $product->shop_category_id = $category_id;
-                $product_id = $product->id;
-                if($product){
-                    $json_array = json_decode($row[12]);
-                    foreach($json_array as $image){
-                        $image_data = new ProductImage([
-                            'product_id' => $product_id,
-                            'is_primary' => $image->is_primary,
-                            'image'=> $image->image,
-                            'image_title' => $image->image_title,
-                        ]);
-                        $image_data->save();
+                $product_name = Product::select('id','name')->where('name','=',$row[1])->first();
+                if(!empty($product_name))
+                {
+                    $product_id= $product_name->id;
+                }else{
+                    $product_fields['price'] = $row[6] ? $row[6] : 0 ;
+                    $product = Product::create($product_fields);
+                    $product->shop_category_id = $category_id;
+                    $product_id = $product->id;
+                    if($product){
+                        $json_array = json_decode($row[12]);
+                        if($json_array)
+                        {
+                            foreach($json_array as $image){
+                                $image_data = new ProductImage([
+                                    'product_id' => $product_id,
+                                    'is_primary' => $image->is_primary,
+                                    'image'=> $image->image,
+                                    'image_title' => $image->image_title,
+                                ]);
+                                $image_data->save();
+                            }
+                        }
                     }
                 }
             }

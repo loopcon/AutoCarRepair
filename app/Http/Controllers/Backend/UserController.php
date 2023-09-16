@@ -73,7 +73,6 @@ class UserController extends MainController
     {
         if($request->ajax()){
             $admins = $request->admin;
-            // print_r($admins);
             $return = array();
             $return['result'] = 'error';
             if($admins){
@@ -90,26 +89,6 @@ class UserController extends MainController
             }
         }
     }
-
-    public function deleteAll()
-    {
-        $user = User::select('*')->get();
-        // print_r($user);exit; 
-        if($user) {
-            return redirect('backend/user')->with('success', trans('User Deleted Successfully!'));
-        } else {
-            return redirect()->back()->with('error', trans('Something went wrong, please try again later!'));
-        }
-    }
-
-    // public function alldelete(Request $request)  
-    // {  
-    //     $id=isset($request->multiple_delete) ? $request->multiple_delete : array();
-    //     // $id=$request->id;  
-    //     User::whereIn('id',$id)->delete();  
-    //     return response()->json(['success'=>"Products Deleted successfully."]);  
-    // }  
-
 
     public function address(request $request,$id){
         $return_data = array();       
