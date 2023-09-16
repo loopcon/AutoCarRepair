@@ -674,3 +674,9 @@ CREATE TABLE `model_fueltype_transaction` (
 ALTER TABLE `model_fueltype_transaction` ADD PRIMARY KEY (`id`);
 
 ALTER TABLE `model_fueltype_transaction` MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+-- Riddhi: 16-09-2023
+
+ALTER TABLE `users` ADD `password_active` INT(11) NOT NULL DEFAULT '1' AFTER `is_archive`;
+
+ALTER TABLE `home_page_setting` ADD `extra_meta_tag` LONGTEXT NOT NULL AFTER `meta_description`;

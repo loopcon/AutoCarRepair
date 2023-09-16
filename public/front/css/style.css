@@ -266,10 +266,11 @@ a.badge:hover{color:white;}
 .service-innersection-mian .service-inner-mainbg {  background-color:#eeeeee; padding: 20px; margin: 25px auto;position: relative; box-shadow: 1px 2px 4px 1px #0000001E;}
 .service-innersection-mian .service-inner-mainbg:hover{ transform: scale(1.04); transition: all ease 0.2s;}
 .service-innersection-mian .service-inner-basic-heading h2{ color: #E56F31; font-size: 24px; font-weight: bold; }
-.service-innersection-mian .basic-service-text-main p{ margin-bottom: 4px; font-size: 16px; }
-.service-innersection-mian .basic-service-text-main p svg{ color: #000851; margin-right: 5px;}
 .service-innersection-mian .basic-service-text-main a{ color: #187601; font-size: 16px;}
 .service-innersection-mian .basic-service-text-main ul {padding-left: 20px; }
+.service-innersection-mian .service-inner-textname {display:flex; }
+.service-innersection-mian .service-inner-textname span svg { color: #000851; margin-right: 5px;}
+.service-innersection-mian .service-inner-textname p{ margin-bottom: 4px; font-size: 16px; }
 .service-innersection-mian .payment-main{ display: flex; justify-content: space-between; align-items: center; }
 .service-innersection-mian .ser-inner-addtocart{ background-color: #E56F31;  color: #fff; border: 0px; border-radius: 6px; width: 150px; height: 45px; font-size: 20px; font-weight: bold; }
 .service-innersection-mian .packeage-prise p{ color: #E56F31; font-size: 24px; font-weight: bold; margin-bottom: 0px;}

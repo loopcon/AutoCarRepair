@@ -126,6 +126,14 @@
                                         @if ($errors->has('meta_description')) <div class="text-danger">{{ $errors->first('meta_description') }}</div>@endif
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="mb-3 col-md-12">
+                                    <label class="form-label" for="extra_meta_tag">{{__('Extra Meta Tag')}}</label>
+
+                                    <textarea class="form-control" id="editor" name="extra_meta_tag" placeholder="{{__('Extra Meta Tag')}}">{{ isset($record->extra_meta_tag) ? $record->extra_meta_tag : old('extra_meta_tag') }}</textarea>
+                                    @if ($errors->has('extra_meta_tag')) <div class="text-danger">{{ $errors->first('extra_meta_tag') }}</div>@endif
+                                    </div>
+                                </div>
                             </div>
                             <button type="submit" class="btn btn-primary mt-2">{{__('Submit')}}</button>
                         </form>
