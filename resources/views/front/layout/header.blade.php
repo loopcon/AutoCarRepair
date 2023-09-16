@@ -260,13 +260,13 @@
                     <div class="row m-0 search-modal-box" id="search_info">
 
                     </div>
-                    @if (!empty(session()->get('phone')))
+                    @if (!empty(Cache::get('phone')))
                     <div class="form-group" style="visibility: hidden;">
-                        <input type="text" class="form-control num_only" maxlength="10"  id="appointmentmobile" name="mobile" aria-describedby="emailHelp" placeholder="Enter Phone Number" value="{{ request()->session()->get('phone') }}">
+                        <input type="text" class="form-control num_only" maxlength="10"  id="appointmentmobile" name="mobile" aria-describedby="emailHelp" placeholder="Enter Phone Number" value="{{ Cache::get('phone') }}">
                     </div>
                     @else
                     <div class="form-group">
-                        <input type="text" class="form-control num_only" maxlength="10"  id="appointmentmobile" name="mobile" aria-describedby="emailHelp" placeholder="Enter Phone Number" value="{{ request()->session()->get('phone') }}">
+                        <input type="text" class="form-control num_only" maxlength="10"  id="appointmentmobile" name="mobile" aria-describedby="emailHelp" placeholder="Enter Phone Number" value="{{ Cache::get('phone') }}">
                     </div>
                     @endif
                 </div>

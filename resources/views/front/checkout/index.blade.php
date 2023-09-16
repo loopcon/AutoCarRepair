@@ -406,7 +406,7 @@ $(document).ready(function(){
                     $('.card-detial-sec-main').html(result.html);
                     var is_verify_otp = $('#is_otp_verify').val();
                     if(is_verify_otp == '0'){
-                        var phone = "{{ request()->session()->get('phone') }}";
+                        var phone = "{{ Cache::get('phone') }}";
                         if(phone)
                         {
                             $('#booking_confirm').show();

@@ -190,7 +190,7 @@
     $(document).ready(function(){
         $('#compnyresend_otp').hide();
         $('.compnyotp-section').hide();
-        var phone = "{{ request()->session()->get('phone') }}";
+        var phone = "{{ Cache::get('phone') }}";
         if(phone)
         {
             $('#send_message').show();

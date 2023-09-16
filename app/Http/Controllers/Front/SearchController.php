@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Front;
-
+use Illuminate\Support\Facades\Cache;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Constant;
@@ -19,11 +19,8 @@ class SearchController extends MainController
 {
     public function storePhoneInSession(Request $request)
     {
-         $phone = $request->input('phone');
-        
-        // Store the 'phone' variable in the session
-        Session::put('phone', $phone);
-        
+        $phone = $request->input('phone');
+        Cache::put('phone', $phone);    
         return response()->json(['message' => 'Phone number stored in session']);
     }
 

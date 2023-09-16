@@ -340,7 +340,7 @@ $(document).ready(function() {
         //otp in popop
         $('#appointmentresend_otp').hide();
         $('.aptotp-section').hide();
-        var phone = "{{ request()->session()->get('phone') }}";
+        var phone = "{{ Cache::get('phone') }}";
         if(phone)
         {
             $('#check_price').show();
