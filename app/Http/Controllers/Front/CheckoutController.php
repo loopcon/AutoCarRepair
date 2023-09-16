@@ -127,7 +127,7 @@ class CheckoutController extends MainController
                 $user->email=$request->input('email');
                 $user->password = Hash::make($genratepassword);
                 $user->visible_password = $genratepassword;
-                $user->password_active=0;
+                $user->password_active=1;
                 $user->save();
 
                 $templateStr = array('[USER]' ,'[PASSWORD]');

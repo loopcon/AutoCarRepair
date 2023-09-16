@@ -45,6 +45,7 @@ class HomePageSettingController extends MainController
         $content->image_title = $request->image_title;
         $content->meta_keywords = $request->meta_keywords;
         $content->meta_description = $request->meta_description;
+        $content->extra_meta_tag = $request->extra_meta_tag;
         $content->updated_by = Auth::guard('admin')->user()->id;
         $content->save();
         if($content) {
