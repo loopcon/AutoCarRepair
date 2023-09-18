@@ -15,8 +15,13 @@ use Session;
 
 class LoginController extends Controller
 {
+    protected $data;
+
     public function __construct()
     {
+        $this->data = [
+            'site_name' => 'AUTOGINIE-SERVICES-PRIVATE-LIMITED',
+        ];
         $this->middleware('guest:user', ['except' => ['logout']]);
     }
 
@@ -107,7 +112,7 @@ class LoginController extends Controller
                 $ndata = EmailTemplates::select('template')->where('label', 'forgot_password')->first();
                 $html = isset($ndata->template) ? $ndata->template : NULL;
                 $mailHtml = str_replace($templateStr, $data, $html);
-//                \Mail::to($request->email)->send(new \App\Mail\CommonMail($mailHtml, 'Forgot Password ' . $this->data['site_name']));
+               \Mail::to($request->email)->send(new \App\Mail\CommonMail($mailHtml, 'Forgot Password ' . $this->data['site_name']));
                 return redirect()->back()->with('success', trans('Reset link has been sent to your email address.'));
             }
         }
