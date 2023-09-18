@@ -17,6 +17,10 @@ class ProductController extends MainController
         $return_data['site_title'] = trans('Shopping');
         $return_data['scategories'] = ShopCategory::with('products')->select('id', 'slug', 'name')->where([['is_archive', Constant::NOT_ARCHIVE], ['status', Constant::ACTIVE]])->orderBy('id', 'desc')->get();
         $return_data['products'] = Product::with('shopCategoryDetail', 'primaryImage')->select('id', 'slug', 'name', 'sku', 'shop_category_id', 'price')->where([['is_archive', Constant::NOT_ARCHIVE], ['status', Constant::ACTIVE]])->orderBy('id', 'desc')->paginate(12);
+        $shopping = Seo::select('meta_title','meta_keyword','meta_description','extra_meta_description')->where('id', Constant::shopping_SEO_ID)->first();
+        $return_data['meta_keywords'] =  isset($shopping->meta_keyword) && $shopping->meta_keyword ? $shopping->meta_keyword : NULL;
+        $return_data['meta_description'] = isset($shopping->meta_description) && $shopping->meta_description ? $shopping->meta_description : NULL;
+        $return_data['extra_meta_description'] =  isset($shopping->extra_meta_description) && $shopping->extra_meta_description ? $shopping->extra_meta_description : NULL;
         // print_r($return_data['products']);exit;
         return view('front/shopping/list',array_merge($this->data,$return_data));
     }

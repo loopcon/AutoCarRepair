@@ -680,3 +680,30 @@ ALTER TABLE `model_fueltype_transaction` MODIFY `id` int(11) NOT NULL AUTO_INCRE
 ALTER TABLE `users` ADD `password_active` INT(11) NOT NULL DEFAULT '1' AFTER `is_archive`;
 
 ALTER TABLE `home_page_setting` ADD `extra_meta_tag` LONGTEXT NOT NULL AFTER `meta_description`;
+
+-- Disha : 16-09-23 11:33 AM
+
+-- Table structure for table `seo`
+--
+CREATE TABLE `seo` (
+  `id` int(11) NOT NULL,
+  `meta_title` varchar(255) DEFAULT NULL,
+  `meta_keyword` text DEFAULT NULL,
+  `meta_description` text DEFAULT NULL,
+  `extra_meta_description` text NOT NULL,
+  `is_archive` tinyint(1) DEFAULT 1 COMMENT '	0=Yes;1=No',
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO `seo` (`id`, `meta_title`, `meta_keyword`, `meta_description`, `extra_meta_description`, `is_archive`, `created_at`, `updated_at`) VALUES
+(1, NULL, NULL, NULL, '', 1, '2023-09-16 06:01:06', '2023-09-16 06:01:06'),
+(2, NULL, NULL, NULL, '', 1, '2023-09-16 06:01:24', '2023-09-16 06:01:24'),
+(3, NULL, NULL, NULL, '', 1, '2023-09-16 06:01:32', '2023-09-16 06:01:32'),
+(4, NULL, NULL, NULL, '', 1, '2023-09-16 06:01:36', '2023-09-16 06:01:36');
+
+ALTER TABLE `seo`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `seo`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;

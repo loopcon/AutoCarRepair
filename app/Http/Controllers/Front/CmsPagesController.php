@@ -11,6 +11,7 @@ use App\Models\Enquiry;
 use App\Models\ServiceCategory;
 use App\Models\EmailTemplates;
 use App\Models\BrandLogoSlider;
+use App\Models\Seo;
 use Auth;
 use DB;
 
@@ -45,6 +46,10 @@ class CmsPagesController extends MainController
         $return_data = array();
         $return_data['site_title'] = trans('About Us');
         $return_data['brand_logo_slider'] = BrandLogoSlider::select('id', 'image','image_title')->orderBy('id', 'ASC')->get();
+        $about_us = Seo::select('meta_title','meta_keyword','meta_description','extra_meta_description')->where('id', Constant::ABOUT_US_SEO_ID)->first();
+        $return_data['meta_keywords'] =  isset($about_us->meta_keyword) && $about_us->meta_keyword ? $about_us->meta_keyword : NULL;
+        $return_data['meta_description'] = isset($about_us->meta_description) && $about_us->meta_description ? $about_us->meta_description : NULL;
+        $return_data['extra_meta_description'] =  isset($about_us->extra_meta_description) && $about_us->extra_meta_description ? $about_us->extra_meta_description : NULL;
         return view('front.cms.about_us', array_merge($this->data, $return_data));
     }
 

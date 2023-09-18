@@ -14,6 +14,7 @@ use App\Models\CarModel;
 use App\Models\Enquiry;
 use App\Models\FuelType;
 use App\Models\Cart;
+use App\Models\Seo;
 use Session;
 
 class ServiceController extends MainController
@@ -49,7 +50,10 @@ class ServiceController extends MainController
         }
         
         $return_data['carray'] = $carray;
-
+        $our_service = Seo::select('meta_title','meta_keyword','meta_description','extra_meta_description')->where('id', Constant::OUR_SERVICE_SEO_ID)->first();
+        $return_data['meta_keywords'] =  isset($our_service->meta_keyword) && $our_service->meta_keyword ? $our_service->meta_keyword : NULL;
+        $return_data['meta_description'] = isset($our_service->meta_description) && $our_service->meta_description ? $our_service->meta_description : NULL;
+        $return_data['extra_meta_description'] =  isset($our_service->extra_meta_description) && $our_service->extra_meta_description ? $our_service->extra_meta_description : NULL;
         return view('front/service/list',array_merge($this->data,$return_data));
     }
 

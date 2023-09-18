@@ -27,4 +27,9 @@ class Constant {
     const NO = '0';
     const YES = '1';
     const CANCEL = '2';
+
+    const OUR_SERVICE_SEO_ID = '1';
+    const SERVICE_CENTER_SEO_ID = '2';
+    const SHOPPING_SEO_ID = '3';
+    const ABOUT_US_SEO_ID = '4';
 }

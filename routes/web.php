@@ -197,7 +197,14 @@ Route::group(['prefix' => 'backend','as' => 'admin_'], function() {
         Route::post('order-complete', [App\Http\Controllers\Backend\OrderController::class, 'orderComplete'])->name('order-complete')->middleware('XSS');
         Route::post('delete-order-data', [App\Http\Controllers\Backend\OrderController::class, 'alldelete'])->name('delete-order-data');
         
-        Route::get('our-service',[App\Http\Controllers\Backend\OrderController::class, 'index'])->name('order')->middleware('XSS');
+        Route::get('our-service', [\App\Http\Controllers\Backend\SeoController::class, 'ourServiceIndex'])->name('our-service');
+        Route::post('our-service-update', [\App\Http\Controllers\Backend\SeoController::class, 'ourserviceUpdate'])->name('our-service-update');
+        Route::get('service-center',[App\Http\Controllers\Backend\SeoController::class, 'serviceCenterIndex'])->name('service-center');
+        Route::post('service-center-update',[App\Http\Controllers\Backend\SeoController::class, 'serviceCenterUpdate'])->name('service-center-update');
+        Route::get('shopping',[App\Http\Controllers\Backend\SeoController::class, 'shoppingIndex'])->name('shopping');
+        Route::post('shopping-update', [App\Http\Controllers\Backend\SeoController::class, 'shoppingUpdate'])->name('shopping-update');
+        Route::get('about-us',[App\Http\Controllers\Backend\SeoController::class, 'aboutUsIndex'])->name('about-us');
+        Route::post('about-us-update', [App\Http\Controllers\Backend\SeoController::class, 'aboutUsUpdate'])->name('about-us-update');
     });
 });
 Route::group(['as' => 'front_', 'middleware' => 'XSS'], function() {
@@ -264,11 +271,11 @@ Route::group(['as' => 'front_', 'middleware' => 'XSS'], function() {
     Route::post('verify-otp', [\App\Http\Controllers\Front\OtpController::class, 'verify'])->name('verify-otp');
     Route::post('resend-otp', [\App\Http\Controllers\Front\OtpController::class, 'resend'])->name('resend-otp');
 
-    Route::get('our-services', [App\Http\Controllers\Front\ServiceController::class, 'services'])->name('our-services');
+    Route::get('our-services', [App\Http\Controllers\Front\ServiceController::class, 'services'])->name('our-services')->middleware('XSS');
     Route::get('contact-us', [App\Http\Controllers\Front\ContactController::class, 'index'])->name('contact-us');
-    Route::get('service-center', [App\Http\Controllers\Front\ServiceCenterConroller::class, 'index'])->name('service-center');
+    Route::get('service-center', [App\Http\Controllers\Front\ServiceCenterConroller::class, 'index'])->name('service-center')->middleware('XSS');
     Route::get('faqs', [App\Http\Controllers\Front\FaqController::class, 'index'])->name('faqs');
-    Route::get('about-us', [App\Http\Controllers\Front\CmsPagesController::class, 'aboutUs'])->name('about-us');
+    Route::get('about-us', [App\Http\Controllers\Front\CmsPagesController::class, 'aboutUs'])->name('about-us')->middleware('XSS');
 
     /** cms pages route start **/
     $pages = Cache::remember('pages', 10, function() { 

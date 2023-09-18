@@ -100,6 +100,18 @@
                     <li class="sidebar-item {{ (request()->is('backend/brand-logo-slider*')) ? 'active' : '' }}"><a class="sidebar-link" href="{{ route('admin_brand-logo-slider')}}">{{ __('Brand Logo Slider')}}</a></li>
                 </ul> 
             </li>
+
+            <li class="sidebar-item">
+                <a data-bs-target="#sidebar_seo" data-bs-toggle="collapse" class="sidebar-link collapsed">
+                    <i class="align-middle" data-feather="aperture"></i><span class="align-middle">{{ __('Seo')}}</span>
+                </a>
+                <ul id="sidebar_seo" class="sidebar-dropdown list-unstyled collapse {{ request()->is('backend/our-service*') || request()->is('backend/service-center*') || request()->is('backend/shopping*') || request()->is('backend/about-us*') ? 'show' : '' }}" data-parent="#sidebar">
+                    <li class="sidebar-item {{ (request()->is('backend/our-service*')) ? 'active' : '' }}"><a class="sidebar-link" href="{{ route('admin_our-service')}}">{{ __('Our Service')}}</a></li>
+                    <li class="sidebar-item {{ (request()->is('backend/service-center*')) ? 'active' : '' }}"><a class="sidebar-link" href="{{ route('admin_service-center')}}">{{ __('Service Center')}}</a></li>
+                    <li class="sidebar-item {{ (request()->is('backend/shopping*')) ? 'active' : '' }}"><a class="sidebar-link" href="{{ route('admin_shopping')}}">{{ __('Shopping')}}</a></li>
+                    <li class="sidebar-item {{ (request()->is('backend/about-us*')) ? 'active' : '' }}"><a class="sidebar-link" href="{{ route('admin_about-us')}}">{{ __('About Us')}}</a></li>
+                </ul> 
+            </li>
         </ul>
     </div>
 </nav>
