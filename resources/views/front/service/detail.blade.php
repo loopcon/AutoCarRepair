@@ -77,7 +77,11 @@
                                     <h2>{{$packageDetail->title}}</h2>
                                 </div>
                                 <div class="col-12 text-end">
-                                    <span><i class="fa fa-clock"></i>&nbsp;{{$packageDetail->time_takes}} hrs Taken</span>
+                                    @if($packageDetail->time_takes_option=="Hour")
+                                        <span><i class="fa fa-clock"></i>&nbsp;{{$packageDetail->time_takes}} Hour(s) Taken</span>
+                                    @else
+                                        <span><i class="fa fa-clock"></i>&nbsp;{{$packageDetail->time_takes_day}} Day(s) Taken</span>
+                                    @endif
                                 </div>
                                 <div class="col-12 col-sm-6 basic-service-text-main">
                                     <ul>
