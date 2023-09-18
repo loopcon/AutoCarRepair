@@ -47,14 +47,29 @@ class ImportCarModel implements ToModel
         file_put_contents($destinationPath, $fileContent);
        // print_r($filename);exit;
 
-
-        return new CarModel([
-            'slug' => strtolower($row[1]),
-            'carbrand_id' => $brand_id,
-            'title' => $row[1],
-            'image' => "https://drive.google.com/uc?export=view&id=".$filename,
-            'is_archive' => 1,
-            'status' => 1,
-        ]);
+        $model = CarModel::where('title','=',$row[1])->first();
+        if(!empty($model))
+        {
+            $model->update([
+                'slug' => strtolower($row[1]),
+                'carbrand_id' => $brand_id,
+                'title' => $row[1],
+                'image' => "https://drive.google.com/uc?export=view&id=".$filename,
+                'is_archive' => 1,
+                'status' => 1,
+            ]);
+        }
+        else 
+        {
+            return new CarModel([
+                'slug' => strtolower($row[1]),
+                'carbrand_id' => $brand_id,
+                'title' => $row[1],
+                'image' => "https://drive.google.com/uc?export=view&id=".$filename,
+                'is_archive' => 1,
+                'status' => 1,
+            ]);
+        }
+        
     }
 }

@@ -30,12 +30,26 @@ class ImportCarBrand implements ToModel
         file_put_contents($destinationPath, $fileContent);
         //print_r($fileContent);exit;
 
-        return new CarBrand([
-            'title' => $row[0],
-            'image' => "https://drive.google.com/uc?export=view&id=".$filename ,
-            'slug' => strtolower($row[0]),
-            'is_archive' => 1,
-            'status' => 1,
-        ]);
+        $brand = CarBrand::where('title','=',$row[0])->first();
+
+        if(!empty($brand))
+        {
+            $brand->update([
+                'title' => $row[0],
+                'image' => "https://drive.google.com/uc?export=view&id=".$filename ,
+                'slug' => strtolower($row[0]),
+                'is_archive' => 1,
+                'status' => 1,
+            ]);
+        }
+        else {
+            return new CarBrand([
+                'title' => $row[0],
+                'image' => "https://drive.google.com/uc?export=view&id=".$filename ,
+                'slug' => strtolower($row[0]),
+                'is_archive' => 1,
+                'status' => 1,
+            ]);
+        }
     }
 }
