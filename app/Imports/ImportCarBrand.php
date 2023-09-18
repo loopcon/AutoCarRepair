@@ -19,15 +19,15 @@ class ImportCarBrand implements ToModel
         $filename = pathinfo($url, PATHINFO_BASENAME);
 
         //get public path of you project
-        $dir = public_path().'/uploads/carbrand';
+        // $dir = public_path().'/uploads/carbrand';
         // Combine the target folder and filename to get the full path
-        $destinationPath = $dir . '/' . $filename;
+        // $destinationPath = $dir . '/' . $filename;
         //print_r($destinationPath);exit;
 
         
         // Download the file from the URL and save it to the destination folder
-        $fileContent = file_get_contents($url);
-        file_put_contents($destinationPath, $fileContent);
+        // $fileContent = file_get_contents($url);
+        // file_put_contents($destinationPath, $fileContent);
         //print_r($fileContent);exit;
 
         $brand = CarBrand::where('title','=',$row[0])->first();
