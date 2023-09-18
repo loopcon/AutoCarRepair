@@ -276,6 +276,7 @@ Route::group(['as' => 'front_', 'middleware' => 'XSS'], function() {
     Route::get('service-center', [App\Http\Controllers\Front\ServiceCenterConroller::class, 'index'])->name('service-center')->middleware('XSS');
     Route::get('faqs', [App\Http\Controllers\Front\FaqController::class, 'index'])->name('faqs');
     Route::get('about-us', [App\Http\Controllers\Front\CmsPagesController::class, 'aboutUs'])->name('about-us')->middleware('XSS');
+    Route::get('auto-car-repair-gurgaon', [App\Http\Controllers\Front\ServiceCenterConroller::class, 'locations'])->name('auto-car-repair-gurgaon')->middleware('XSS');
 
     /** cms pages route start **/
     $pages = Cache::remember('pages', 10, function() { 
