@@ -39,18 +39,26 @@
                                     @endif
                                 </select>
                             </div>
-                            <div class="form-group col-md-2 select-parsley">
+                            <?php /**<div class="form-group col-md-2 select-parsley">
                                 <label for="carModel">Car Model</label>
                                 <select id="carModel" class="form-control select2" name="carModel">
-                                    <option value="all" selected>--Select--</option>
+                                    <option value="all"selected>--Select--</option>
                                     @if($models->count())
                                         @foreach($models as $value)
                                             <option value="{{$value->id}}">{{$value->title}}</option>
                                         @endforeach
                                     @endif
                                 </select>
-                            </div>
+                            </div>**/ ?>
+
                             <div class="form-group col-md-2 select-parsley">
+                                <label for="carModel">Car Model</label>
+                                <select class="select2 form-control" name="model_id" id="model_id">
+                                    <option value="">--select--</option>
+                                </select>
+                            </div>
+
+                            <?php /* <div class="form-group col-md-2 select-parsley">
                                 <label for="fuelType">Fuel Type</label>
                                 <select id="fuelType" class="form-control select2" name="fuelType">
                                     <option value="all" selected>--Select--</option>
@@ -59,6 +67,13 @@
                                             <option value="{{$value->id}}">{{$value->title}}</option>
                                         @endforeach
                                     @endif
+                                </select>
+                            </div> */ ?>
+
+                            <div class="form-group col-md-2 select-parsley">
+                                <label for="fuel_type_id">Fuel Type</label>
+                                <select class="select2 form-control" name="fuel_type_id" id="fuel_type_id">
+                                    <option value="">--select--</option>
                                 </select>
                             </div>
                         </div>
@@ -194,13 +209,28 @@ $(document).ready(function() {
                 d.package = $('#package').val(),
                 d.brand = $('#brand').val(),
                 d.model_id = $('#carModel').val(),
+                d.model = $('#model_id').val(),
                 d.fuel_type = $('#fuelType').val(),
+                d.fuel_type_id = $('#fuel_type_id').val(),
                 d.od_id = "{{isset($od_id) ? $od_id : ''}}"
             }
         }
     });
 
-    $(document).on('change', '#package, #brand, #carModel, #fuelType', function(){
+    $(document).on('change', '#brand', function(){
+        var maker = $(this).val();
+        var model = $('#model_id').val();
+        getModelFromMaker(maker);
+        getFuelFromModel(maker,model);
+    });
+
+    $(document).on('change', '#model_id', function(){
+        var maker = $(this).val();
+        var model = $('#brand').val();
+        getFuelFromModel(maker, model);
+    });
+
+    $(document).on('change', '#package,#brand,#carModel,#model_id,#fuel_type_id,#fuelType', function(){
         bservices.ajax.reload();
     });
 
@@ -273,6 +303,39 @@ $(document).ready(function() {
         }
    });
 });
+
+function getModelFromMaker(maker = ''){
+    if(maker != '' || maker != null){
+        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({
+            url : '{{ route('admin_get-model-from-maker') }}',
+            method : 'post',
+            data : {_token: CSRF_TOKEN, brand : maker},
+            success : function(result){
+                var result = $.parseJSON(result);
+                $('#model_id').html(result.html).trigger('change');
+            }
+        });
+    }
+}
+
+function getFuelFromModel(maker = '', model = ''){
+    if(maker != '' || model != null){
+        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({
+            url : '{{ route('admin_get-fuel-from-model') }}',
+            method : 'post',
+            data : {_token: CSRF_TOKEN, brand : maker,model_id : model},
+            success : function(result){
+                var result = $.parseJSON(result);
+                $('#fuel_type_id').html(result.html).trigger('change');
+            }
+        });
+    }
+    else {
+        $('#fuel_type_id').html('<option value="">--select--</option>').trigger('change');
+    }
+}
 </script>
 @endsection
 

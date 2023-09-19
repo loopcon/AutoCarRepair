@@ -332,7 +332,8 @@ class ProductController extends MainController
     //     return view('backend.product.import', array_merge($this->data, $return_data));
     // }
 
-    public function import(Request $request){
+    public function import(Request $request)
+    {
         $request->validate([
             'file' => 'required|max:10000',
         ]);
@@ -341,32 +342,31 @@ class ProductController extends MainController
         $header = null;
         $handle = fopen($request->file->getPathName(), 'r');
         while (($row = fgetcsv($handle, 1000, ",")) !== false) {
-            if(!$header) {
-                $header = $row;
-            } else {
-            $category_fields = array('name'=>$row[0], 'slug' => strtolower($row[0]), 'image' => NULL, 'is_archive' => 1, 'status' => 1,);
-            $category_exists = ShopCategory::where([['name', 'LIKE', $row[0]]])->first();
-            $product_fields = array('shop_category_id' => $category_exists->id,'name'=>$row[1], 'description'=>$row[2],'specification'=>$row[3], 'amazon_link'=>$row[4], 'flipcart_link'=>$row[5], 'price'=>$row[6], 'sku'=>$row[7], 'slug'=>strtolower($row[8]), 'meta_title' => $row[9], 'meta_keywords'=> $row[10], 'meta_description'=>$row[11],'image' => $row[12]);
-            if(!empty($category_exists)) {
+            // if(!$header) {
+            //     $header = $row;
+            // } else {
+                $category_fields = array('name'=>$row[0], 'slug' => strtolower($row[0]), 'image' => NULL, 'is_archive' => 1, 'status' => 1,);
+                $category_exists = ShopCategory::where([['name', '=', $row[0]]])->first();
+                if(!empty($category_exists)) {
                     $category_id = $category_exists->id;
-                    } else {
+                } else {
                     $category_new = ShopCategory::create($category_fields);
                     $category_id = $category_new->id;
-                    }
-                $product_name = Product::select('id','name')->where('name','=',$row[1])->first();
-                if(!empty($product_name))
-                {
-                    $product_id= $product_name->id;
-                }else{
-                    $product_fields['price'] = $row[6] ? $row[6] : 0 ;
-                    $product = Product::create($product_fields);
-                    $product->shop_category_id = $category_id;
-                    $product_id = $product->id;
-                    if($product){
+                }
+                $product_fields = array('shop_category_id'=>$category_id, 'name'=>$row[1], 'description'=>$row[2], 'specification'=>$row[3], 'amazon_link'=>$row[4], 'flipcart_link'=>$row[5], 'price'=>$row[6], 'sku'=>$row[7], 'slug'=>strtolower($row[8]), 'meta_title' => $row[9], 'meta_keywords'=> $row[10], 'meta_description'=>$row[11]);
+                $product_name = Product::select('id','name')->where([['name', '=', $row[1]], ['is_archive', '=', 1]])->first();
+                if(!empty($product_name)) {
+                    $product_id = $product_name->id;
+                    Product::where([['id', '=', $product_id]])->update($product_fields);
+                    if(isset($row[12]) && !empty($row[12])) {
+                        ProductImage::where('product_id', $product_id)->delete();
                         $json_array = json_decode($row[12]);
-                        if($json_array)
-                        {
-                            foreach($json_array as $image){
+                        if($json_array) {
+                            foreach($json_array as $image) {
+                                if($image->is_primary==1) {
+                                    ProductImage::where('product_id', $product_id)->update(['is_primary'=>0]);
+                                }
+                                // $filename = pathinfo($image->image, PATHINFO_BASENAME);
                                 $image_data = new ProductImage([
                                     'product_id' => $product_id,
                                     'is_primary' => $image->is_primary,
@@ -377,8 +377,30 @@ class ProductController extends MainController
                             }
                         }
                     }
+                } else {
+                    $product_fields['price'] = $row[6] ? $row[6] : 0 ;
+                    $product = Product::create($product_fields);
+                    $product->shop_category_id = $category_id;
+                    $product_id = $product->id;
+                    if($product) {
+                        if(isset($row[12]) && !empty($row[12])) {
+                            $json_array = json_decode($row[12]);
+                            if($json_array) {
+                                foreach($json_array as $image) {
+                                    // $filename = pathinfo($image->image, PATHINFO_BASENAME);
+                                    $image_data = new ProductImage([
+                                        'product_id' => $product_id,
+                                        'is_primary' => $image->is_primary,
+                                        'image'=> $image->image,
+                                        'image_title' => $image->image_title,
+                                    ]);
+                                    $image_data->save();
+                                }
+                            }
+                        }
+                    }
                 }
-            }
+            // }
         }
         return redirect('backend/products')->with('success', trans('Procduct Imported successfully.'));
     }

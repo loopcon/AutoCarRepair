@@ -580,6 +580,7 @@ class ServiceController extends MainController
         if($request->ajax()){
             $brand_id = $request->brand_id;
             $models = CarModel::where([['carbrand_id', $brand_id], ['is_archive', '=', Constant::NOT_ARCHIVE], ['status', Constant::ACTIVE]])->get();
+            // print_r($brand_id);
             $return_data = array();
             $html = '<option value="">--select--</option>';
             if($models->count()){
@@ -594,11 +595,54 @@ class ServiceController extends MainController
         }
     }
 
+    public function getModelFromMaker(request $request){
+        if($request->ajax()){
+            $maker_id = $request->brand;
+            $models = CarModel::where([['carbrand_id', $maker_id], ['is_archive', '=', Constant::NOT_ARCHIVE], ['status', Constant::ACTIVE]])->get();
+            $return_data = array();
+            $html = '<option value="">--select--</option>';
+            if($models->count()){
+                foreach($models as $value){
+                    $html .= '<option value="'.$value->id.'">'.$value->title.'</option>';
+                }
+            }
+            $return_data['html'] = $html;
+            echo json_encode($return_data);exit;
+        } else {
+            return redirect('backend/dashboard');
+        }
+    }
+
+    public function getFuelFromModel(request $request){
+        if($request->ajax()){
+            $maker_id = $request->brand;
+            $model_id = $request->model_id;
+            $fuel = ScheduledPackageDetail::with('fuelTypeDetail')->where([['brand_id', $maker_id],['model_id', $model_id]])->orderBy('id')->get();
+            // print_r($fuel);
+            $return_data = array();
+            $html = '<option value="">--select--</option>';
+            if($fuel->count()){
+                $arr = array();
+                if(!in_array($fuel,$arr)){
+                    foreach($fuel as $value){
+                        $html .= '<option value="'.$value->id.'">'.$value->fuelTypeDetail->title.'</option>';
+                    }
+                }
+                array_push($arr,$fuel);
+            }
+            $return_data['html'] = $html;
+            echo json_encode($return_data);exit;
+        } else {
+            return redirect('backend/dashboard');
+        }
+    }
+
     public function bookedServices(request $request){
         $return_data = array();       
         $return_data['site_title'] = trans('Booked Services');
         $return_data['packages'] = ScheduledPackage::select('id', 'title')->where([['is_archive', Constant::NOT_ARCHIVE], ['status', Constant::ACTIVE]])->get();
         $return_data['brands'] = CarBrand::select('id', 'title')->where([['is_archive', Constant::NOT_ARCHIVE], ['status', Constant::ACTIVE]])->get();
+        // $brand = CarBrand::select('id', 'title')->where([['is_archive', Constant::NOT_ARCHIVE], ['status', Constant::ACTIVE]])->first();
         $return_data['models'] = CarModel::select('id', 'title')->where([['is_archive', Constant::NOT_ARCHIVE], ['status', Constant::ACTIVE]])->get();
         $return_data['fuel_type'] = FuelType::select('id', 'title')->where([['is_archive', Constant::NOT_ARCHIVE], ['status', Constant::ACTIVE]])->get();
         $return_data['od_id'] = $request->get('od_id') ? Crypt::decrypt($request->get('od_id')) : NULL;
@@ -637,20 +681,36 @@ class ServiceController extends MainController
                     });
                 });
             }
-            if($request->model_id != 'all'){
+            // if($request->model_id != 'all'){
+            //     $query->whereHas('packageDetail', function($q) use ($request) {
+            //         $q->whereHas('modelDetail', function($qq) use ($request) {
+            //             $qq->where([['id', '=', $request->model_id]]);
+            //         });
+            //     });
+            // }
+
+            if($request->model){
                 $query->whereHas('packageDetail', function($q) use ($request) {
                     $q->whereHas('modelDetail', function($qq) use ($request) {
-                        $qq->where([['id', '=', $request->model_id]]);
+                        $qq->where([['id', '=', $request->model]]);
                     });
                 });
             }
-            if($request->fuel_type != 'all'){
-                $query->whereHas('packageDetail', function($q) use ($request) {
-                    $q->whereHas('fuelTypeDetail', function($qq) use ($request) {
-                        $qq->where([['id', '=', $request->fuel_type]]);
-                    });
-                });
-            }
+
+            // if($request->fuel_type != 'all'){
+            //     $query->whereHas('packageDetail', function($q) use ($request) {
+            //         $q->whereHas('fuelTypeDetail', function($qq) use ($request) {
+            //             $qq->where([['id', '=', $request->fuel_type]]);
+            //         });
+            //     });
+            // }
+                // if($request->variant_id){
+                //         $query->whereHas('packageDetail', function($q) use ($request) {
+                //             $q->whereHas('fuelTypeDetail', function($qq) use ($request) {
+                //                 $qq->where([['id', '=', $request->fuel_type]]);
+                //             });
+                //         });
+                //     }
             $list = $query->get();
 
             return DataTables::of($list)

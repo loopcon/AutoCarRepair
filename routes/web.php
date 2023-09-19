@@ -147,7 +147,9 @@ Route::group(['prefix' => 'backend','as' => 'admin_'], function() {
         Route::post('specification-delete', [App\Http\Controllers\Backend\ServiceController::class, 'specificationDelete'])->name('specification-delete')->middleware('XSS');
         Route::post('get-model-from-brand', [App\Http\Controllers\Backend\ServiceController::class, 'getModelFromBrand'])->name('get-model-from-brand')->middleware('XSS');
         Route::post('import-schedule-package', [App\Http\Controllers\Backend\ServiceController::class, 'importSchedulePackage'])->name('import-schedule-package')->middleware('XSS');
-
+        Route::post('get-model-from-maker', [App\Http\Controllers\Backend\ServiceController::class, 'getModelFromMaker'])->name('get-model-from-maker');
+        Route::post('get-fuel-from-model', [App\Http\Controllers\Backend\ServiceController::class, 'getFuelFromModel'])->name('get-fuel-from-model');
+        
         Route::get('scheduled-package-detail/{id?}',[App\Http\Controllers\Backend\ServiceController::class, 'priceDetailList'])->name('scheduled-package-detail');
         Route::post('scheduled-package-pricedatatable', [App\Http\Controllers\Backend\ServiceController::class, 'priceDetailDataTable'])->name('scheduled-package-pricedatatable');
 
@@ -232,8 +234,9 @@ Route::group(['as' => 'front_', 'middleware' => 'XSS'], function() {
             
     if(!empty($products)) {
         foreach ($products as $product) {
-            Route::get('shopping/'.$product->slug, [App\Http\Controllers\Front\ProductController::class, 'detail'])->name('shopping/'.$product->slug)->middleware('XSS');
+            // Route::get('shopping/'.$product->slug, [App\Http\Controllers\Front\ProductController::class, 'detail'])->name('shopping/'.$product->slug)->middleware('XSS');
         }
+        Route::get('shopping/{slug}', [App\Http\Controllers\Front\ProductController::class, 'detail'])->name('shopping/'.$product->slug)->middleware('XSS');
     }
     /** product detail route end **/
 
