@@ -816,4 +816,5 @@ location css
 
   }
 .search-inner-text{ display:flex;}
-  
+.service-prise-listmain{overflow-x: auto;}
+.service-prise-heading{ padding:20px 0px; }

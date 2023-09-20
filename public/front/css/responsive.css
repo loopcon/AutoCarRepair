@@ -49,6 +49,7 @@
     .footet-down-bg .main-soical-icon svg{ padding: 5px;}
     .footet-down-bg .copy-right-text-main p{ font-size: 15px;}
     .shop-center-text{ width: 100%;}
+
     .shop-center-text h2{ text-align: center; font-size: 45px; }
     .offeer-section .offer-section-main img{ height: 400px; object-fit: cover;}
     .our-service-section .servic-type-box{ min-height: 265px;}
@@ -233,6 +234,7 @@
     .pricelist table{ width:100% !important; } 
     .newservice h4{ font-size: 35px;}
     .offeer-section h3{font-size: 35px;}
+    #tab li.active{ padding:15px ;}
 }
 @media (max-width:450px) {
     .mobile-menu-sectiondata{  flex-wrap: wrap; height: 80px; }
