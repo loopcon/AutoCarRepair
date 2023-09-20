@@ -11,7 +11,7 @@
             <div class="service-name-text">
                 @if(isset($item->product_id) && $item->product_id)
                     @php($is_product_available = 1)
-                   <?php /* <img src="{{ $item->productDetail->primaryImage->image }}"  class="add-to-cart-img" alt=""> */ ?>
+                    <?php /* <img src="{{ $item->productDetail->primaryImage->image }}"  class="add-to-cart-img" alt=""> */ ?>
                     @if(isset($item->productDetail->primaryImage->image) && $item->productDetail->primaryImage->image)
                         <img src="{{ asset('public/uploads/product/'.$item->product_id.'/'.$item->productDetail->primaryImage->image) }}"  class="add-to-cart-img" alt="">
                     @else
@@ -23,15 +23,12 @@
                     @php($is_service_available = 1)
 
                     @if(isset($item->serviceDetail->packageDetail->image) && $item->serviceDetail->packageDetail->image)
-                        <img src="{{ $item->serviceDetail->packageDetail->image }}"  class="add-to-cart-img" alt="">
+                    <img src="{{ asset('public/uploads/service/package/'.$item->serviceDetail->packageDetail->image )}}"  class="add-to-cart-img" alt="">
                     @else
                         <img src="{{ asset('front/img/no_image.jpg') }}" class="img-fluid" alt="">
                     @endif
                     <p>{{isset($item->serviceDetail->packageDetail->title) ? $item->serviceDetail->packageDetail->title : NULL}}</p>
                 @endif
-            </div>
-            <div class="service-name-text">
-                <p>{{isset($item->serviceDetail->brandDetail->title) ? $item->serviceDetail->brandDetail->title : NULL}}</p>
             </div>
             <div class="service-add-sec-main">
                 @php($qty = $item->qty)
@@ -75,7 +72,7 @@
                 @endif
             </div>
         </div>
-        <div class="row m-0">
+        <div class="row">
             <div class="col-4">
                 <p>{{isset($item->serviceDetail->brandDetail->title) ? $item->serviceDetail->brandDetail->title : NULL}}</p>
             </div>

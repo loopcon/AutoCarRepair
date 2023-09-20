@@ -202,7 +202,8 @@
     $(document).ready(function(){
         $('#ordertable').DataTable({
             "ordering": false,
-            "bInfo" : false
+            "bInfo" : false,
+            "searching" : false
         });
 
         $(document).on('click', '.cancel', function(){

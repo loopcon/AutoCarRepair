@@ -111,6 +111,9 @@ Route::group(['prefix' => 'backend','as' => 'admin_'], function() {
         Route::post('change-service-slot', [App\Http\Controllers\Backend\ServiceController::class, 'changeServiceSlot'])->name('change-service-slot');
         Route::post('service-category-order-by', [App\Http\Controllers\Backend\ServiceController::class, 'serviceCategoryOrderBy'])->name('service-category-order-by');
 
+        Route::post('get-model-from-brand', [App\Http\Controllers\Backend\ServiceController::class, 'getModelFromBrand'])->name('get-model-from-brand');
+        Route::post('get-fuel-from-model', [App\Http\Controllers\Backend\ServiceController::class, 'getFuelFromModel'])->name('get-fuel-from-model');
+
         Route::get('products',[App\Http\Controllers\Backend\ProductController::class, 'index'])->name('products');
         Route::get('product-create',[App\Http\Controllers\Backend\ProductController::class, 'create'])->name('product-create');
         Route::post('product-store',[App\Http\Controllers\Backend\ProductController::class, 'store'])->name('product-store');
@@ -147,8 +150,6 @@ Route::group(['prefix' => 'backend','as' => 'admin_'], function() {
         Route::post('specification-delete', [App\Http\Controllers\Backend\ServiceController::class, 'specificationDelete'])->name('specification-delete')->middleware('XSS');
         Route::post('get-model-from-brand', [App\Http\Controllers\Backend\ServiceController::class, 'getModelFromBrand'])->name('get-model-from-brand')->middleware('XSS');
         Route::post('import-schedule-package', [App\Http\Controllers\Backend\ServiceController::class, 'importSchedulePackage'])->name('import-schedule-package')->middleware('XSS');
-        Route::post('get-model-from-maker', [App\Http\Controllers\Backend\ServiceController::class, 'getModelFromMaker'])->name('get-model-from-maker');
-        Route::post('get-fuel-from-model', [App\Http\Controllers\Backend\ServiceController::class, 'getFuelFromModel'])->name('get-fuel-from-model');
         
         Route::get('scheduled-package-detail/{id?}',[App\Http\Controllers\Backend\ServiceController::class, 'priceDetailList'])->name('scheduled-package-detail');
         Route::post('scheduled-package-pricedatatable', [App\Http\Controllers\Backend\ServiceController::class, 'priceDetailDataTable'])->name('scheduled-package-pricedatatable');

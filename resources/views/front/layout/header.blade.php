@@ -81,7 +81,7 @@
                             <i class="fa fa-user"></i>
                         </a>
                         <ul class="dropdown-menu login-icon-main" aria-labelledby="navbarDropdown">
-                            @if (!empty(Cache::get('phone')))
+                            @if(!Auth::guard('user')->check())
                                 <li><a class="dropdown-item text-black" href="{{route('front_login')}}">Login</a></li>
                                 <li><a class="dropdown-item text-black" href="{{route('front_register')}}">Register</a></li>
                             @else

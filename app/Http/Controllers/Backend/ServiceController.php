@@ -576,29 +576,29 @@ class ServiceController extends MainController
         }
     }
 
+    // public function getModelFromBrand(request $request){
+    //     if($request->ajax()){
+    //         $brand_id = $request->brand_id;
+    //         $models = CarModel::where([['carbrand_id', $brand_id], ['is_archive', '=', Constant::NOT_ARCHIVE], ['status', Constant::ACTIVE]])->get();
+    //         // print_r($brand_id);
+    //         $return_data = array();
+    //         $html = '<option value="">--select--</option>';
+    //         if($models->count()){
+    //             foreach($models as $value){
+    //                 $html .= '<option value="'.$value->id.'">'.$value->title.'</option>';
+    //             }
+    //         }
+    //         $return_data['html'] = $html;
+    //         echo json_encode($return_data);exit;
+    //     } else {
+    //         return redirect('backend/dashboard');
+    //     }
+    // }
+
     public function getModelFromBrand(request $request){
         if($request->ajax()){
-            $brand_id = $request->brand_id;
+            $brand_id = $request->brand;
             $models = CarModel::where([['carbrand_id', $brand_id], ['is_archive', '=', Constant::NOT_ARCHIVE], ['status', Constant::ACTIVE]])->get();
-            // print_r($brand_id);
-            $return_data = array();
-            $html = '<option value="">--select--</option>';
-            if($models->count()){
-                foreach($models as $value){
-                    $html .= '<option value="'.$value->id.'">'.$value->title.'</option>';
-                }
-            }
-            $return_data['html'] = $html;
-            echo json_encode($return_data);exit;
-        } else {
-            return redirect('backend/dashboard');
-        }
-    }
-
-    public function getModelFromMaker(request $request){
-        if($request->ajax()){
-            $maker_id = $request->brand;
-            $models = CarModel::where([['carbrand_id', $maker_id], ['is_archive', '=', Constant::NOT_ARCHIVE], ['status', Constant::ACTIVE]])->get();
             $return_data = array();
             $html = '<option value="">--select--</option>';
             if($models->count()){
@@ -615,10 +615,9 @@ class ServiceController extends MainController
 
     public function getFuelFromModel(request $request){
         if($request->ajax()){
-            $maker_id = $request->brand;
+            $brand_id = $request->brand;
             $model_id = $request->model_id;
-            $fuel = ScheduledPackageDetail::select('fuel_type_id','brand_id','model_id')->with('fuelTypeDetail')->where([['brand_id', $maker_id],['model_id', $model_id]])->orderBy('id')->get();
-            // print_r($fuel);
+            $fuel = ScheduledPackageDetail::select('fuel_type_id','brand_id','model_id')->with('fuelTypeDetail')->where([['brand_id', $brand_id],['model_id', $model_id]])->orderBy('id')->get();
             $return_data = array();
             $html = '<option value="">--select--</option>';
             if($fuel->count()){
@@ -688,7 +687,7 @@ class ServiceController extends MainController
             if($request->model_id){
                 $query->whereHas('packageDetail', function($q) use ($request) {
                     $q->whereHas('modelDetail', function($qq) use ($request) {
-                        $qq->where([['id', '=', $request->model]]);
+                        $qq->where([['id', '=', $request->model_id]]);
                     });
                 });
             }
@@ -703,7 +702,7 @@ class ServiceController extends MainController
                 if($request->fuel_type_id){
                     $query->whereHas('packageDetail', function($q) use ($request) {
                         $q->whereHas('fuelTypeDetail', function($qq) use ($request) {
-                            $qq->where([['id', '=', $request->fuel_type]]);
+                            $qq->where([['id', '=', $request->fuel_type_id]]);
                         });
                     });
                 }

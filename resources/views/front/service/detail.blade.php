@@ -340,7 +340,7 @@
             </div>
         </div>
     </div>
-<!-- why choose us end  -->
+    <!-- why choose us end  -->
     @if(isset($price_list->price_list) && $price_list->price_list)
         <div class="container">
             <div class="col-12">

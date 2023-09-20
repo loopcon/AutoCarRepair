@@ -218,16 +218,16 @@ $(document).ready(function() {
     });
 
     $(document).on('change', '#brand', function(){
-        var maker = $(this).val();
+        var brand = $(this).val();
         var model = $('#model_id').val();
-        getModelFromMaker(maker);
-        getFuelFromModel(maker,model);
+        getModelFromBrand(brand);
+        getFuelFromModel(brand,model);
     });
 
     $(document).on('change', '#model_id', function(){
         var model = $(this).val();
-        var maker = $('#brand').val();
-        getFuelFromModel(maker, model);
+        var brand = $('#brand').val();
+        getFuelFromModel(brand, model);
     });
 
     $(document).on('change', '#package,#brand,#carModel,#model_id,#fuel_type_id,#fuelType', function(){
@@ -304,13 +304,13 @@ $(document).ready(function() {
    });
 });
 
-function getModelFromMaker(maker = ''){
-    if(maker != '' || maker != null){
+function getModelFromBrand(brand = ''){
+    if(brand != '' || brand != null){
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
         $.ajax({
-            url : '{{ route('admin_get-model-from-maker') }}',
+            url : '{{ route('admin_get-model-from-brand') }}',
             method : 'post',
-            data : {_token: CSRF_TOKEN, brand : maker},
+            data : {_token: CSRF_TOKEN, brand : brand},
             success : function(result){
                 var result = $.parseJSON(result);
                 $('#model_id').html(result.html).trigger('change');
@@ -319,13 +319,13 @@ function getModelFromMaker(maker = ''){
     }
 }
 
-function getFuelFromModel(maker = '', model = ''){
-    if((maker != '') && (model != '' )){
+function getFuelFromModel(brand = '', model = ''){
+    if((brand != '') && (model != '' )){
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
         $.ajax({
             url : '{{ route('admin_get-fuel-from-model') }}',
             method : 'post',
-            data : {_token: CSRF_TOKEN, brand : maker,model_id : model},
+            data : {_token: CSRF_TOKEN, brand : brand,model_id : model},
             success : function(result){
                 var result = $.parseJSON(result);
                 $('#fuel_type_id').html(result.html).trigger('change');
