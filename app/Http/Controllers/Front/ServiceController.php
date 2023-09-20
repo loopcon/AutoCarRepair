@@ -37,7 +37,9 @@ class ServiceController extends MainController
             // $squery = ScheduledPackage::select('sc_id')->where([['brand_id', $brand_id], ['model_id' , $model_id], ['fuel_type_id', $fuel_id]])->groupBy('sc_id')->get();
             if($squery->count()){
                 foreach($squery as $record){
-                    array_push($carray, $record->packageDetail->sc_id);
+                    if(isset($record->packageDetail->sc_id)){
+                        array_push($carray, $record->packageDetail->sc_id);
+                    }
                 }
             }
             $return_data['brand'] = isset($brandInfo->slug) && $brandInfo->slug ? $brandInfo->slug : NULL;

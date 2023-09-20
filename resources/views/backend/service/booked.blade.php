@@ -52,7 +52,7 @@
                             </div>**/ ?>
 
                             <div class="form-group col-md-2 select-parsley">
-                                <label for="carModel">Car Model</label>
+                                <label for="model_id">Car Model</label>
                                 <select class="select2 form-control" name="model_id" id="model_id">
                                     <option value="">--select--</option>
                                 </select>
@@ -225,8 +225,8 @@ $(document).ready(function() {
     });
 
     $(document).on('change', '#model_id', function(){
-        var maker = $(this).val();
-        var model = $('#brand').val();
+        var model = $(this).val();
+        var maker = $('#brand').val();
         getFuelFromModel(maker, model);
     });
 
@@ -320,7 +320,7 @@ function getModelFromMaker(maker = ''){
 }
 
 function getFuelFromModel(maker = '', model = ''){
-    if(maker != '' || model != null){
+    if((maker != '') && (model != '' )){
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
         $.ajax({
             url : '{{ route('admin_get-fuel-from-model') }}',

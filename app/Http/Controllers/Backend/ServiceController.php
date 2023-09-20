@@ -617,18 +617,14 @@ class ServiceController extends MainController
         if($request->ajax()){
             $maker_id = $request->brand;
             $model_id = $request->model_id;
-            $fuel = ScheduledPackageDetail::with('fuelTypeDetail')->where([['brand_id', $maker_id],['model_id', $model_id]])->orderBy('id')->get();
+            $fuel = ScheduledPackageDetail::select('fuel_type_id','brand_id','model_id')->with('fuelTypeDetail')->where([['brand_id', $maker_id],['model_id', $model_id]])->orderBy('id')->get();
             // print_r($fuel);
             $return_data = array();
             $html = '<option value="">--select--</option>';
             if($fuel->count()){
-                $arr = array();
-                if(!in_array($fuel,$arr)){
-                    foreach($fuel as $value){
-                        $html .= '<option value="'.$value->id.'">'.$value->fuelTypeDetail->title.'</option>';
-                    }
+                foreach($fuel->unique('fuel_type_id') as $value){
+                    $html .= '<option value="'.$value->fuel_type_id.'">'.$value->fuelTypeDetail->title.'</option>';
                 }
-                array_push($arr,$fuel);
             }
             $return_data['html'] = $html;
             echo json_encode($return_data);exit;
@@ -689,7 +685,7 @@ class ServiceController extends MainController
             //     });
             // }
 
-            if($request->model){
+            if($request->model_id){
                 $query->whereHas('packageDetail', function($q) use ($request) {
                     $q->whereHas('modelDetail', function($qq) use ($request) {
                         $qq->where([['id', '=', $request->model]]);
@@ -704,13 +700,13 @@ class ServiceController extends MainController
             //         });
             //     });
             // }
-                // if($request->variant_id){
-                //         $query->whereHas('packageDetail', function($q) use ($request) {
-                //             $q->whereHas('fuelTypeDetail', function($qq) use ($request) {
-                //                 $qq->where([['id', '=', $request->fuel_type]]);
-                //             });
-                //         });
-                //     }
+                if($request->fuel_type_id){
+                    $query->whereHas('packageDetail', function($q) use ($request) {
+                        $q->whereHas('fuelTypeDetail', function($qq) use ($request) {
+                            $qq->where([['id', '=', $request->fuel_type]]);
+                        });
+                    });
+                }
             $list = $query->get();
 
             return DataTables::of($list)
