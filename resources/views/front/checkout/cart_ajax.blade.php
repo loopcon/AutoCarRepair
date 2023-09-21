@@ -3,7 +3,6 @@
 @php($is_product_available = 0)
 @if($cart_data->count())
     @foreach($cart_data as $item)
-
         <div class="service-name-text">
             <p>{{isset($item->serviceDetail->packageDetail->categoryDetail->title) ? $item->serviceDetail->packageDetail->categoryDetail->title : NULL}}</p>
         </div>
@@ -23,7 +22,7 @@
                     @php($is_service_available = 1)
 
                     @if(isset($item->serviceDetail->packageDetail->image) && $item->serviceDetail->packageDetail->image)
-                    <img src="{{ asset('public/uploads/service/package/'.$item->serviceDetail->packageDetail->image )}}"  class="add-to-cart-img" alt="">
+                        <img src="{{ asset('public/uploads/service/package/'.$item->serviceDetail->packageDetail->image )}}"  class="add-to-cart-img" alt="">
                     @else
                         <img src="{{ asset('front/img/no_image.jpg') }}" class="img-fluid" alt="">
                     @endif

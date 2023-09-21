@@ -38,7 +38,7 @@
                     <a href="javascript:void(0)" class="btn verify-otpbtn" id="send_otp">SEND OTP</a>
             </div>
 
-           <div class="select-address">
+            <div class="select-address">
                 <h4>Add Address</h4>
                 <div>
                      @if(isset($addresses) && $addresses->count())

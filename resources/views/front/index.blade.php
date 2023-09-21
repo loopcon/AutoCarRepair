@@ -13,7 +13,7 @@
                         <h2>{{ isset($hsetting->section1_title1) ? $hsetting->section1_title1 : ''}} </h2>
                         <h5>{{ isset($hsetting->section1_title2) ? $hsetting->section1_title2 : ''}}</h5>
                         <p>{{ isset($hsetting->section1_description) ? $hsetting->section1_description : ''}}</p>
-                        <a class="get-service-btn apt-btn" href="javascript:void(0);">About Us</a>
+                        <a class="get-service-btn apt-btn" href="{{url('about-us')}}">About Us</a>
                         <!-- <button>Get Service</button> -->
                     </div>
                 </div>
@@ -120,29 +120,29 @@
                             <div class="col-12 col-sm-3"> 
                                 <div class="why-choose-inner-item">
                                     <img src="{{ asset('front/img/skilled technicians.webp') }}" class="img-fluid" alt="" title="car repair service">
-                                    <h4>Skilled Technicians</h4>
-                                    <p>We want to get you in and out quickly while providing you top notch auto repair service.</p>
+                                    <h4>Pre-Owned Workshop</h4>
+                                    <p>We strive to meet the industry standards by operating through our state-of-the-art workshop.</p>
                                 </div>
                             </div>
                             <div class="col-12 col-sm-3">
                                 <div class="why-choose-inner-item">
                                     <img src="{{ asset('front/img/why-qualservice.webp') }}" class="img-fluid" alt="" title="car repair service">
-                                    <h4>Quality Services</h4>
-                                    <p>We take pride in offering you the best services available and 100% Satisfaction Guarantee.</p>
+                                    <h4>High-Quality Services</h4>
+                                    <p>We are committed to providing top-notch services ensuring reliability and safety.</p>
                                 </div>
                             </div>
                             <div class="col-12 col-sm-3">
                                 <div class="why-choose-inner-item">
                                     <img src="{{ asset('front/img/why-car-insurance.webp') }}" class="img-fluid" alt="" title="">
-                                    <h4>Insurance Claims</h4>
-                                    <p>We take pride in offering you the best services available and 100% Satisfaction Guarantee.</p>
+                                    <h4>Experienced Technicians</h4>
+                                    <p>Our Experienced and Certified technicians have the expertise to deliver quality services.</p>
                                 </div>
                             </div>
                             <div class="col-12 col-sm-3">
                                 <div class="why-choose-inner-item">
                                     <img src="{{ asset('front/img/why-car-parts.webp') }}" class="img-fluid" alt="" title="">
-                                    <h4>100% OEM Genuien Parts</h4>
-                                    <p>We want to get you in and out quickly while providing you top notch auto repair service.</p>
+                                    <h4>Genuine Products</h4>
+                                    <p>We use 100% authentic parts and products to maintain the quality and efficiency of your car.</p>
                                 </div>
                             </div>
                         </div>
