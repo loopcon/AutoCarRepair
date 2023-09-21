@@ -317,5 +317,7 @@ Route::group(['as' => 'front_', 'middleware' => 'XSS'], function() {
         Route::get('my-orders', [App\Http\Controllers\Front\OrderController::class, 'list'])->name('my-orders')->middleware('XSS');
         Route::get('cancel-order/{id?}', [App\Http\Controllers\Front\OrderController::class, 'cancel'])->name('cancel-order');
         Route::post('change-service-slot', [App\Http\Controllers\Front\OrderController::class, 'changeSlot'])->name('change-service-slot');
+
+        Route::get('invoice/{id}', [App\Http\Controllers\Front\PdfController::class, 'pdfInvoice'])->name('invoice');
     });
 });

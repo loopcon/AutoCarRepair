@@ -198,6 +198,11 @@ return [
         'Msg91' => Craftsys\Msg91\Facade\Msg91::class,
         // 'Google' => PulkitJalan\Google\Facades\Google::class
         // 'Example' => App\Facades\Example::class,
+        'providers' => [
+            Barryvdh\DomPDF\ServiceProvider::class,
+          ],
+          'aliases' => [
+            'PDF' => Barryvdh\DomPDF\Facade::class,
+          ]
     ])->toArray(),
-
 ];

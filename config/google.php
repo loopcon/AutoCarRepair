@@ -19,7 +19,7 @@ return [
     */
     'client_id' => '247653983687-r6gjbc6du9074qu9f76e6er2adrvbmjn.apps.googleusercontent.com',
     'client_secret' => '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',
-    'redirect_uri' => url('reviews'),
+    'redirect_uri' => "",
     'scopes' => ['https://www.googleapis.com/auth/plus.business.manage'],
     'access_type' => 'offline',
     'approval_prompt' => 'auto',

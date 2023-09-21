@@ -97,7 +97,7 @@
                                                         @if($is_service_in_order != 0 && $order->is_complete == '0')
                                                             <a href='javascript:void(0)' class='badge bg-warning change_slot' data-id='{{$is_service_in_order}}'>Change Slot</a><br/>
                                                         @endif
-                                                        <a href='#' class='badge bg-success'>View Invoice</a><br/>
+                                                        <a href="{{url('invoice/'.$order->invoice_no)}}" target="_blank" class='badge bg-success'>View Invoice</a><br/>
                                                     </td>
                                                 </tr>
                                             @endif
