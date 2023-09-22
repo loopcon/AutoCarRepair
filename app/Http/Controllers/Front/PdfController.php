@@ -15,7 +15,6 @@ use Auth;
 use Crypt;
 use DB;
 use PDF;
-use Mpdf\Mpdf;
 
 class PdfController extends MainController
 {
@@ -32,6 +31,6 @@ class PdfController extends MainController
         $return_data['eslots'] = $eslots;
         $return_data['mslots'] = $mslots;
         $pdf = PDF::loadView('front.user.pdf',$return_data);
-        return $pdf->download('Invoice.pdf');
+        return $pdf->stream('Order.pdf');
     }
 }
