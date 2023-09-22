@@ -3,6 +3,7 @@
 @php($is_product_available = 0)
 @if($cart_data->count())
     @foreach($cart_data as $item)
+        
         <div class="service-name-text">
             <p>{{isset($item->serviceDetail->packageDetail->categoryDetail->title) ? $item->serviceDetail->packageDetail->categoryDetail->title : NULL}}</p>
         </div>
@@ -131,5 +132,5 @@
         <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
         Loading...
     </a>
-    <button class="confirm-booking-btn" id="booking_confirm" type="submit"> Confirm Booking</button>
+    <button class="confirm-booking-btn" id="booking_confirm" type="submit">CONFIRM BOOKING</button>
 </div>

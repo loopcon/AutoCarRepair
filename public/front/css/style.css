@@ -369,7 +369,7 @@ ul#tabs li.specification-btn.active { background: #E56F31;color: #fff;border: 1p
 .otpinput-main a{ position: absolute; top:22%; right: 2%; font-size: 16px; color: #000; text-decoration: none;} 
 .date-sec-main{ display: flex;}
 .date-main {  text-decoration: none; border: 1px solid #000; padding: 8px 15px; border-radius: 10px; color: #000; margin-right:10px; }
-.date-main:hover{ color: #000000;}
+.date-main:hover{ color: #E56F31; border: 1px solid #E56F31; }
 .date-main p { margin-bottom: 0px; text-align: center; font-size: 12px;}
 a.select-date{ border: 1px solid #E56F31; color: #E56F31; }
 .Choose-service-date-main{ background-color: #F2F2F2; padding: 20px; margin-top: 25px; margin-bottom: 20px; }
@@ -377,13 +377,13 @@ a.select-date{ border: 1px solid #E56F31; color: #E56F31; }
 .pick-slot-main h4{ color: #164498; font-size: 24px; margin: 20px 0px; }
 .pick-slot-main h4 span{ color: #ccc; font-size: 15px;}
 .afternoon-slot-btn{ background-color: unset;  border: 1px solid #000; width: 100%; height: 45px; color: #000; font-weight: bold; line-height:35px; }
-.afternoon-slot-btn:hover{ border:1px solid #000; }
+.afternoon-slot-btn:hover{ border:1px solid #E56F31; background-color: rgba(229,  111, 49, 0.3);  color:#E56F31;  }
 .afternoon-slot-active{background-color: rgba(229,  111, 49, 0.3);  border: 1px solid #E56F31; width: 100%; height: 45px; color: #E56F31; font-weight: bold; }
 .afternoon-slot-sec-main{ margin: 25px 0px; border-bottom: 2px dashed rgba(0, 0, 0, 0.4); padding-bottom: 25px; }
 .afternoon-slot-sec-main h4{ padding-bottom: 20px;}
 .afternoon-slot-sec-main h4 span{ color: #000; background-color:rgba(229,  111, 49, 0.3); font-size: 15px; padding: 3px 0px 3px 3px; margin-right: 5px;}
 .evening-slot-btn{ background-color: unset;  border: 1px solid #000; width: 100%; height: 45px; color: #000; font-weight: bold; line-height:35px;  }
-.evening-slot-btn:hover{ border:1px solid #000; }
+.evening-slot-btn:hover{ border:1px solid #E56F31; background-color: rgba(229,  111, 49, 0.3);color: #E56F31; }
 .evening-slot-active{background-color: rgba(229,  111, 49, 0.3);  border: 1px solid #E56F31; width: 100%; height: 45px; color: #E56F31; font-weight: bold; }
 .evening-slot-sec-main{ margin: 25px 0px; border-bottom: 2px dashed rgba(0, 0, 0, 0.4); padding-bottom: 25px; }
 .evening-slot-sec-main h4{ padding-bottom: 20px;}
@@ -425,7 +425,7 @@ button { color: #000; outline: none; }
 .item-total-sec-border{ border-top: 1px solid #ccc; margin-top: 7px;padding-top: 15px;}
 .you-pay-sec-main{ display: flex; justify-content: space-between; border: 1px solid #ccc;}
 .you-pay-sec-main p { margin-bottom: 0px; padding: 7px 10px;}
-.confirm-booking-btn{ background-color: #E56F31; color: #fff;font-size: 17px;border: 0px;width: 165px;height: 45px; line-height: 30px; border-radius: 8px; margin: 20px auto; }
+.confirm-booking-btn{ background-color: #E56F31; color: #fff;font-size: 17px;border: 0px;width: 200px;height: 45px; line-height: 30px; border-radius: 8px; margin: 20px auto; }
 .card-detial-sec-main{ background: #F2F2F2; padding: 20px; margin: 25px 0px;}
 /* add to cart css end  */
 /* thank you  page css start  */
@@ -590,7 +590,7 @@ button { color: #000; outline: none; }
 .about-main-sec h2{ text-align: center; font-weight: 600; font-size: 23px; margin-top: 25px;}
 .about-text{ text-align: center; margin-bottom: 0px;}
 .aboutus-logo-section{ background-color: #164498; height: 190px; display: flex; align-items: center;}
-.about-image-text-main{ padding: 30px 0px;}
+.about-image-text-main{ padding: 10px 0px;}
 .about-partner-brand-logo{background-color: #F6F5F5; height: 110px; width: auto; display: flex;box-shadow: 6px 6px 11px 1px #0000005E;margin-right: 15px;}
 .about-partner-brand-logo img{height: 70px;width: 100%;margin:  auto;object-fit: contain;}
 /* about us css end  */
