@@ -369,9 +369,9 @@ ul#tabs li.specification-btn.active { background: #E56F31;color: #fff;border: 1p
 .otpinput-main a{ position: absolute; top:22%; right: 2%; font-size: 16px; color: #000; text-decoration: none;} 
 .date-sec-main{ display: flex;}
 .date-main {  text-decoration: none; border: 1px solid #000; padding: 8px 15px; border-radius: 10px; color: #000; margin-right:10px; }
-.date-main:hover{ color: #E56F31; border: 1px solid #E56F31; }
+.date-main:hover{ color: #E56F31; border: 1px solid #E56F31; background-color: rgba(229,  111, 49, 0.3);  }
 .date-main p { margin-bottom: 0px; text-align: center; font-size: 12px;}
-a.select-date{ border: 1px solid #E56F31; color: #E56F31; }
+a.select-date{ border: 1px solid #E56F31; color: #E56F31; background-color: rgba(229,  111, 49, 0.3); }
 .Choose-service-date-main{ background-color: #F2F2F2; padding: 20px; margin-top: 25px; margin-bottom: 20px; }
 .Choose-service-date-main h4{ color: #164498; font-size: 24px; font-weight: bold; }
 .pick-slot-main h4{ color: #164498; font-size: 24px; margin: 20px 0px; }
@@ -818,3 +818,19 @@ location css
 .search-inner-text{ display:flex;}
 .service-prise-listmain{overflow-x: auto;}
 .service-prise-heading{ padding:20px 0px; }
+.page-content{ overflow-x:auto;}
+.page-content::-webkit-scrollbar-track{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #F5F5F5;
+}
+
+.page-content::-webkit-scrollbar{
+	width: 5px;
+	height:5px;
+	background-color: #F5F5F5;
+}
+
+.page-content::-webkit-scrollbar-thumb{
+	background-color: #000000;
+	border: 2px solid #555555;
+}

@@ -109,7 +109,7 @@
         @php($sgst_val = $service_gst && $servicetotal ? ($servicetotal*$service_gst)/100 : 0)
         <p>
             @if($is_service_available == 1 && $is_service_available == 1) 
-                Service Gst({{$service_gst}} %)
+                Service GST({{$service_gst}} %)
             @else
                 Gst({{$service_gst}} %)
             @endif
