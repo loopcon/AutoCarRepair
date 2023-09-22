@@ -13,6 +13,7 @@ use Auth;
 use Session;
 use DataTables;
 use DB;
+use PDF;
 
 class OrderController extends MainController
 {
@@ -86,6 +87,7 @@ class OrderController extends MainController
                     $html .= "<span class='text-nowrap'>";
                     $html .= "<a href='javascript:void(0);' data-href='".route('admin_order-delete',array($id))."' rel='tooltip' title='".trans('Delete')."' class='btn btn-danger btn-sm mr-20 delete'><i class='fa fa-trash-alt'></i></a>&nbsp";
                     $html .= "<a href='".route('admin_order-detail',array($id))."' rel='tooltip' title='Detail' class='btn btn-info btn-sm'>Detail</a><br><br>";
+                    $html .= "<a href='".url('invoice/'.$row->invoice_no)."' title='View Invoice' class='badge bg-success' target='blank'>View Invoice</a><br>";
                     if($row->is_complete == Constant::NO) {
                         $html .= "<a href='javascript:void(0);' class='btn btn-warning btn-sm complete' data-status='".Constant::YES."' data-id='".$id."' rel='tooltip' title='complete'>Is omplete?</a>";
                     } 
@@ -222,5 +224,22 @@ class OrderController extends MainController
         } else {
             return redirect('backend/dashboard');
         }
+    }
+
+    public function invoice(request $request,$id){
+        $return_data = array();       
+        $return_data['site_title'] = trans('Invoice');
+        $user_id = auth()->user()->id;
+        $invoice = $request->id;
+        $return_data['order'] = Order::with('detail', 'slotDetail')->where('invoice_no', $invoice)->orderBy('id', 'desc')->first();
+        $aslots = PickUpSlotSetting::select('id', 'time', 'slot')->where('slot', Constant::AFTERNOON)->orderBy('id')->get();
+        $eslots = PickUpSlotSetting::select('id', 'time', 'slot')->where('slot', Constant::EVENING)->orderBy('id')->get();
+        $mslots = PickUpSlotSetting::select('id', 'time', 'slot')->where('slot', Constant::MORNING)->orderBy('id')->get();
+        $return_data['aslots'] = $aslots;
+        $return_data['eslots'] = $eslots;
+        $return_data['mslots'] = $mslots;
+        $filename = $invoice.'.pdf';
+        $pdf = PDF::loadView('front.user.pdf',array_merge($this->data, $return_data));
+        return $pdf->stream($filename);
     }
 }

@@ -199,6 +199,7 @@ Route::group(['prefix' => 'backend','as' => 'admin_'], function() {
         Route::get('order-detail-delete/{id}', [App\Http\Controllers\Backend\OrderController::class, 'detailDestroy'])->name('order-detail-delete');
         Route::post('order-complete', [App\Http\Controllers\Backend\OrderController::class, 'orderComplete'])->name('order-complete')->middleware('XSS');
         Route::post('delete-order-data', [App\Http\Controllers\Backend\OrderController::class, 'alldelete'])->name('delete-order-data');
+        Route::get('invoice/{id}', [App\Http\Controllers\Backend\OrderController::class, 'invoice'])->name('invoice');
         
         Route::get('our-service', [\App\Http\Controllers\Backend\SeoController::class, 'ourServiceIndex'])->name('our-service');
         Route::post('our-service-update', [\App\Http\Controllers\Backend\SeoController::class, 'ourserviceUpdate'])->name('our-service-update');
