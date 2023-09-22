@@ -90,7 +90,7 @@
                                                 <i class="fa-solid fa-star"></i>
                                             </div> */ ?>
                                         </div>
-                                        <button class="shop-add-btn add_to_cart" data-product_id="{{$product->id}}">Add to cart</button>
+                                        <button class="shop-add-btn add_to_cart" type="button" data-product_id="{{$product->id}}">Add to cart</button>
                                     </div>
                                 </a>
                             </div>
@@ -136,7 +136,8 @@
                 getSearchVals();
             });
 
-            $(document).on('click', '.add_to_cart', function(){
+            $(document).on('click', '.add_to_cart', function(e){
+                e.preventDefault();
                 var product_id = $(this).data('product_id');
                 /*swal({
                     title: "",

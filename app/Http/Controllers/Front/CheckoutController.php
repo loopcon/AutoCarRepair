@@ -135,7 +135,7 @@ class CheckoutController extends MainController
                 $ndata = EmailTemplates::select('template')->where('label', 'password')->first();
                 $html = isset($ndata->template) ? $ndata->template : NULL;
                 $mailHtml = str_replace($templateStr, $data, $html);
-                \Mail::to($request->email)->send(new \App\Mail\CommonMail($mailHtml, 'Welcome '.$this->data['site_name']));
+//                \Mail::to($request->email)->send(new \App\Mail\CommonMail($mailHtml, 'Welcome '.$this->data['site_name']));
                 $user_id=$user->id;
 
             }

@@ -23,14 +23,15 @@ class PdfController extends MainController
         $return_data['site_title'] = trans('Invoice');
         $user_id = auth()->user()->id;
         $invoice = $request->id;
-        $return_data['orders'] = Order::with('detail', 'slotDetail')->where('invoice_no', $invoice)->orderBy('id', 'desc')->get();
+        $return_data['order'] = Order::with('detail', 'slotDetail')->where('invoice_no', $invoice)->orderBy('id', 'desc')->first();
         $aslots = PickUpSlotSetting::select('id', 'time', 'slot')->where('slot', Constant::AFTERNOON)->orderBy('id')->get();
         $eslots = PickUpSlotSetting::select('id', 'time', 'slot')->where('slot', Constant::EVENING)->orderBy('id')->get();
         $mslots = PickUpSlotSetting::select('id', 'time', 'slot')->where('slot', Constant::MORNING)->orderBy('id')->get();
         $return_data['aslots'] = $aslots;
         $return_data['eslots'] = $eslots;
         $return_data['mslots'] = $mslots;
-        $pdf = PDF::loadView('front.user.pdf',$return_data);
-        return $pdf->stream('Order.pdf');
+        $filename = $invoice.'.pdf';
+        $pdf = PDF::loadView('front.user.pdf',array_merge($this->data, $return_data));
+        return $pdf->stream($filename);
     }
 }

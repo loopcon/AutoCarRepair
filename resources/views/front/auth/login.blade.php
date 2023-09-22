@@ -44,7 +44,7 @@
                             </div>
                             <div class="mb-4">
                                  <label class="form-label email-text-heading">Password<span class="text-light">*</span></label>  
-                                <input type="password" name="password" id="password" placeholder="PASSWORD" class="form-control input-login-main" required="" data-parsley-minlength="8" data-parsley-pattern="(?=.*[a-z])(?=.*[0-9])(?=.*[A-Z]).*" data-parsley-pattern-message="Your password must be a minimum of 8 characters long and include at least 1 lowercase and 1 uppercase letter and 1 number.">
+                                <input type="password" name="password" id="password" placeholder="PASSWORD" class="form-control input-login-main" required="">
                                 <a class="forget_msg forgetmsg" href="{{route('front_forgot-password')}}">Forget Password?</a>
                             </div>
                             <div class="text-center mt-3">
