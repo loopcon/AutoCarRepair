@@ -49,7 +49,7 @@
                                 </div>**/ ?>
 
                                 <div class="mb-3 col-md-6">
-                                    <label class="form-label" for="image">{{__('Image')}}<span class="text-danger">*</span></label>
+                                    <label class="form-label" for="image">{{__('Image')}}</label>
                                     <div class="profile-icon">
                                         @if(isset($record->image))
                                             @if($record->image !='')
@@ -65,7 +65,7 @@
                                         @endif
                                     </div>
                                     <div class="m-b-10">
-                                        <input type="file" id="uploadImage0" accept="image/x-png, image/gif, image/jpeg" class="btn btn-warning btn-block btn-sm"  name="image" {{$required}} data-parsley-required-message="{{ __("This value is required.")}}" onChange="this.parentNode.nextSibling.value = this.value; PreviewImage(0);" >
+                                        <input type="file" id="uploadImage0" accept="image/x-png, image/gif, image/jpeg" class="btn btn-warning btn-block btn-sm"  name="image"  onChange="this.parentNode.nextSibling.value = this.value; PreviewImage(0);" >
                                     </div> 
                                     <p class="image_errortext">For Best resolution please upload 250*250 size and in WebP file format.</p>
                                 </div>
@@ -110,7 +110,7 @@
                                         @endif
                                     </div>
                                     <div class="m-b-10">
-                                        <input type="file" id="uploadImage{{$i}}" accept="image/x-png, image/gif, image/jpeg" class="btn btn-warning btn-block btn-sm"  name="icon_image" {{$required}} data-parsley-required-message="{{ __("This value is required.")}}" onChange="this.parentNode.nextSibling.value = this.value; PreviewImage({{$i}});">
+                                        <input type="file" id="uploadImage{{$i}}" accept="image/x-png, image/gif, image/jpeg" class="btn btn-warning btn-block btn-sm"  name="icon_image"  onChange="this.parentNode.nextSibling.value = this.value; PreviewImage({{$i}});">
                                     </div>
                                 </div>
                                 

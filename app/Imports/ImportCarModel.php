@@ -65,7 +65,8 @@ class ImportCarModel implements ToModel
                 'slug' => strtolower($row[1]),
                 'carbrand_id' => $brand_id,
                 'title' => $row[1],
-                'image' => "https://drive.google.com/uc?export=view&id=".$filename,
+                // 'image' => "https://drive.google.com/uc?export=view&id=".$filename,
+                'image' => $url,
                 'is_archive' => 1,
                 'status' => 1,
             ]);

@@ -707,3 +707,10 @@ ALTER TABLE `seo`
 
 ALTER TABLE `seo`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+-- Disha : 22-09-23 02:07 PM
+ALTER TABLE `orders` ADD `vehicle_number` VARCHAR(255) NULL DEFAULT NULL AFTER `service_gst`;
+
+-- Disha : 22-09-23 06:07 PM
+INSERT INTO `settings` (`id`, `name`, `label`, `value`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES (NULL, 'Authorized Signatory', 'authorized_signatory', NULL, NULL, CURRENT_TIMESTAMP, NULL, CURRENT_TIMESTAMP), (NULL, 'Pan Card', 'pan_card', NULL, NULL, CURRENT_TIMESTAMP, NULL, CURRENT_TIMESTAMP);
+INSERT INTO `settings` (`id`, `name`, `label`, `value`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES (NULL, 'Gst Number', 'gst_number', NULL, NULL, CURRENT_TIMESTAMP, NULL, CURRENT_TIMESTAMP);

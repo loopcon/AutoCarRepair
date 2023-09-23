@@ -25,6 +25,7 @@
             </div>
             <div class="mb-3 col-md-6">
                 <label class="form-label" for="image">{{__('Image')}}<span class="text-danger">*</span></label>
+                <small>(Image URL : https://drive.google.com/uc?export=view&id=[FILE_CODE])</small>
                 <input type="url" class="form-control" id="image" name="image" placeholder="{{__('image')}}" required=""  data-parsley-required-message="{{ __("This value is required.")}}" value="{{ isset($record->image) ? $record->image : old('image') }}">
             </div>
 

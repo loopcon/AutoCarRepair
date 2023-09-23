@@ -110,7 +110,7 @@ class CarModelController extends MainController
                 'title' => [
                     'required',
                     Rule::unique('model')->where(function ($query) use($request, $id) {
-                        return $query->where([['is_archive', Constant::NOT_ARCHIVE],['id', '!=', $id],['carbrand_id','=',$request->carbrand_id]]);
+                        return $query->where([['is_archive', '=', Constant::NOT_ARCHIVE],['id', '!=', $id],['carbrand_id','=',$request->carbrand_id]]);
                     }),
                 ],
             ]

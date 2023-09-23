@@ -40,12 +40,14 @@
         background: #dddddd;
       }
       .col-md-6{
-        margin-left:10px;
+        margin-left:20px;
+        margin-top:20px;
         text-align: left;
       }
       .col-md-5{
-        margin-right:10px;
+        margin-right:20px;
         text-align: right;
+        margin-bottom:30px;
       }
       table {
             caption-side: bottom;
@@ -70,6 +72,9 @@
         .detail{
             text-align: right;
         }
+        .detail b{
+            margin-right:20px;
+        }
     </style>
 </head>
 <body>
@@ -86,69 +91,69 @@
                     {{$order->zip}},<br/>
                 </div>
                 <div class="col-md-5">
-                    Invoice
-                    {{isset($order->invoice_no) ? '#'.$order->invoice_no : ''}}
+                    <p>Invoice<br/>
+                        {{isset($order->invoice_no) ? '#'.$order->invoice_no : ''}}
+                    </p>
                 </div>
             </div>
         </div>
-<div>
-    <table style="width:70">
-        <thead>
-            <tr>
-                <th>Product</th>
-                <th>Qty</th>
-                <th>Price</th>
-                <th>Gst(%)</th>
-            </tr>
-        </thead>
-        <tbody>
-        @php($detail = isset($order->detail) && $order->detail->count() ? $order->detail : array())
-        @if($detail)
-            <tr>
-                <td>  @php($is_service_in_order = 0)
-                    @foreach($detail as $record)
-                        @if($record->service_id)
-                            @php($is_service_in_order = $order->id)
-                            @php($service_category = isset($record->packageDetail->packageDetail->categoryDetail->title) ? $record->packageDetail->packageDetail->categoryDetail->title : NULL)
-                            @php($service = isset($record->packageDetail->packageDetail->title) ? $record->packageDetail->packageDetail->title : NULL)
-                            @php($brand = isset($record->packageDetail->brandDetail->title) ? $record->packageDetail->brandDetail->title : NULL)
-                            @php($model = isset($record->packageDetail->modelDetail->title) ? $record->packageDetail->modelDetail->title : NULL)
-                            @php($fuel = isset($record->packageDetail->fuelTypeDetail->title) ? $record->packageDetail->fuelTypeDetail->title : NULL)
-                            {{$service_category}}<br/>
-                            {{$service}}<br/>
-                            <small class="font-small">
-                                {{$brand.' - '.$model.' - '.$fuel}}<br/>
-                            </small>
-                            <small class="font-small text-danger">
-                                <b>Pick Up Details : 
-                                    {{isset($order->slotDetail->slot_date) && $order->slotDetail->slot_date ? date('d/m/Y', strtotime($order->slotDetail->slot_date)) : '' }}
-                                    {{isset($order->slotDetail->id) ? " ".$order->slotDetail->pick_up_time1.'-'.$order->slotDetail->pick_up_time2 : ''}}
-                                    {{isset($order->slotDetail->time_type) && $order->slotDetail->time_type == '1' ? " PM" : ' AM'}}
-                                    {{isset($order->slotDetail->time_takes) && $order->slotDetail->time_takes ? ', time takes '.$order->slotDetail->time_takes. ' hrs' : ''}}
-                                </b>
-                            </small>
-                            <hr/>
-                        @endif
-                        @if($record->product_id)
-                            {{isset($record->productDetail->name) ? $record->productDetail->name : NULL}}<br/>
-                            <hr/>
-                        @endif
-                    @endforeach
-                </td>
-                <td>{{isset($record->qty) ? $record->qty : ''}}</td>
-                <td>{{isset($record->price) ? $record->price : ''}}</td>
-                <td>{{isset($order->service_gst_rate) ? $order->service_gst_rate : ''}}</td>
-            </tr>
-        @endif
-        </tbody>
-    </table>
-    <div class="detail">
-        Sub Total:<br/>
-        Tax:{{isset($order->service_gst_rate) ? $order->service_gst_rate : ''}}<br/>
-        Total:₹{{formatNumber($order->total)}}<br/>
-    </div>
-</div>
-@endforeach
+        <div>
+            <table style="width:70">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Qty</th>
+                        <th>Price</th>
+                        <th>Gst(%)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @php($detail = isset($order->detail) && $order->detail->count() ? $order->detail : array())
+                @if($detail)
+                    <tr>
+                        <td>  
+                            @php($is_service_in_order = 0)
+                            @foreach($detail as $record)
+                                @if($record->service_id)
+                                    @php($is_service_in_order = $order->id)
+                                    @php($service_category = isset($record->packageDetail->packageDetail->categoryDetail->title) ? $record->packageDetail->packageDetail->categoryDetail->title : NULL)
+                                    @php($service = isset($record->packageDetail->packageDetail->title) ? $record->packageDetail->packageDetail->title : NULL)
+                                    @php($brand = isset($record->packageDetail->brandDetail->title) ? $record->packageDetail->brandDetail->title : NULL)
+                                    @php($model = isset($record->packageDetail->modelDetail->title) ? $record->packageDetail->modelDetail->title : NULL)
+                                    @php($fuel = isset($record->packageDetail->fuelTypeDetail->title) ? $record->packageDetail->fuelTypeDetail->title : NULL)
+                                    {{$service_category}}<br/>
+                                    {{$service}}<br/>
+                                    <small class="font-small">
+                                        {{$brand.' - '.$model.' - '.$fuel}}<br/>
+                                    </small>
+                                    <small class="font-small text-danger">
+                                        <b>Pick Up Details : 
+                                            {{isset($order->slotDetail->slot_date) && $order->slotDetail->slot_date ? date('d/m/Y', strtotime($order->slotDetail->slot_date)) : '' }}
+                                            {{isset($order->slotDetail->id) ? " ".$order->slotDetail->pick_up_time1.'-'.$order->slotDetail->pick_up_time2 : ''}}
+                                            {{isset($order->slotDetail->time_type) && $order->slotDetail->time_type == '1' ? " PM" : ' AM'}}
+                                            {{isset($order->slotDetail->time_takes) && $order->slotDetail->time_takes ? ', time takes '.$order->slotDetail->time_takes. ' hrs' : ''}}
+                                        </b>
+                                    </small>
+                                @endif
+                                @if($record->product_id)
+                                    {{isset($record->productDetail->name) ? $record->productDetail->name : NULL}}<br/>
+                                @endif
+                            @endforeach
+                        </td>
+                        <td>{{isset($record->qty) ? $record->qty : ''}}</td>
+                        <td>{{isset($record->price) ? $record->price : ''}}</td>
+                        <td>{{isset($order->service_gst_rate) ? $order->service_gst_rate : ''}}</td>
+                    </tr>
+                @endif
+                </tbody>
+            </table>
+            <div class="detail">
+                <b>Sub Total:</b><br/>
+                <b>Tax:</b>{{isset($order->service_gst_rate) ? $order->service_gst_rate : ''}}<br/>
+                <b>Total:</b>₹{{formatNumber($order->total)}}<br/>
+            </div>
+        </div>
+    @endforeach
 @endif
 </body>
 </html>

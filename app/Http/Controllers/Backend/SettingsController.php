@@ -22,19 +22,46 @@ class SettingsController extends MainController
     {
         $return_data = array();
         $return_data['settings'] = Setting::orderBy('id', 'asc')->get();
+        // echo "<pre>";print_r($return_data['settings']);exit;
         $return_data['site_title'] = trans('General Settings');
         return view('backend.setting.general', array_merge($this->data, $return_data));
     }
 
     public function update(Request $request)
     {
-        $settings = Setting::orderBy('id', 'asc')->get();
+        $settings = Setting::orderBy('id','asc')->get();
         if($settings->count()){
             foreach ($settings as $value) {
+                $setting = Setting::find($value->id);
                 $name = $value->id;
-                DB::table('settings')
-                    ->where('id', $value->id)
-                    ->update(['value' => $request->$name, 'updated_by' => Auth::guard('admin')->user()->_id]);
+                $label = $setting->label;
+                if($label == 'authorized_signatory'){
+                    if($request->hasFile($name)) {
+                        $old_logo = isset($setting->value) ? $setting->value : NULL;
+                        $newName = fileUpload($request, $name, 'uploads/setting');
+                        $setting->value = $newName;
+                        if($old_logo){
+                            removeFile('uploads/setting/'.$old_logo);
+                        }
+                    }
+                }else {
+                    $setting->value = $request->$name;
+                }
+                $setting->save();
+                //     $name = $value->id;
+                //         if($request->hasFile($name)) {
+                //             $old_logo = isset($value->id) ? $value->id : NULL;
+                //             $field_value = fileUpload($request,$name, 'uploads/setting');
+                //             if($old_logo){
+                //                 removeFile('uploads/setting/'.$old_logo);
+                //             }
+                //         } 
+                //         else {
+                //             $field_value = $request->$name;
+                //         }
+                //     DB::table('settings')
+                //         ->where('id', $value->id)
+                //         ->update(['value' => $field_value, 'updated_by' => Auth::guard('admin')->user()->_id]);
             }
         }
         return redirect('backend/site-settings')->with('success', trans('General settings updated successfully!'));

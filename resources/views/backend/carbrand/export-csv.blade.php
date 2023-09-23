@@ -1,16 +1,12 @@
 <table border=".5pt">
     <thead>
         <tr>
-             <th>Car Brand</th>
-             <th>Image Url(Set Proper image url with jpg/png/svg/webp extension)</th>
-        </tr>
-        <tr>
             <th>Brand 1</th>
-            <th>https://drive.google.com/file/d/1TBORPYWhk53QNi5ja2JYInCgdw9pK1C9</th>
+            <th>https://drive.google.com/uc?export=view&amp;id=1TBORPYWhk53QNi5ja2JYInCgdw9pK1C9</th>
         </tr>
         <tr>
             <th>Brand 2</th>
-            <th>https://drive.google.com/file/d/1CkKsWN3bYTfqnrPY0Vd4KhEWwSnNfTZc</th>
+            <th>https://drive.google.com/uc?export=view&amp;id=1CkKsWN3bYTfqnrPY0Vd4KhEWwSnNfTZc</th>
         </tr>
     </thead>
 </table>

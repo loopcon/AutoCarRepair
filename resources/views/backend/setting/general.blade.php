@@ -16,7 +16,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <form method="post" action="{{route('admin_site-settings')}}" data-parsley-validate>
+                        <form method="post" action="{{route('admin_site-settings')}}" enctype="multipart/form-data" data-parsley-validate>
                             {{ csrf_field() }}
                             @if(isset($settings))
                                 <div class="row">
@@ -48,8 +48,22 @@
                                                     <input type="text" class="form-control" value="{{$item->value}}" name="{{$item->id}}" id="{{ $item->label }}" data-parsley-pattern="^(?:(?:\+|0{0,2})91(\s*[\-]\s*)?|[0]?)?[6789]\d{9}$" required="">
                                                 @elseif($item->label == 'product_gst' || $item->label == 'service_gst')
                                                     <input type="text" class="form-control numeric" value="{{$item->value}}" name="{{$item->id}}" id="{{ $item->label }}"  required="">
+                                                @elseif($item->label == 'authorized_signatory')
+                                                   <div class="profile-icon">
+                                                        @php($i = 0)
+                                                        @if(isset($item->value))
+                                                            @if($item->value !='')
+                                                                <img class='img-fluid previewImage' id="uploadPreview{{$i}}" src="{{url('uploads/setting/'.$item->value)}}"  alt=''>
+                                                            @endif
+                                                        @endif
+                                                    </div>
+                                                    <input type="file" accept="image/x-png, image/gif, image/jpeg" id="uploadImage{{$i}}" class="btn btn-warning btn-block btn-sm"  name="{{$item->id}}" onChange="this.parentNode.nextSibling.value = this.value; PreviewImage({{$i}});" >
+                                                @elseif($item->label == 'pan_card')
+                                                    <input type="text" class="form-control numeric" value="{{$item->value}}" name="{{$item->id}}" id="{{ $item->label }}"  required="">
+                                                @elseif($item->label == 'gst_number')
+                                                    <input type="text" class="form-control numeric" value="{{$item->value}}" name="{{$item->id}}" id="{{ $item->label }}"  required="">
                                                 @else
-                                                    <input type="text" class="form-control" value="{{$item->value}}" name="{{$item->id}}" id="{{ $item->label }}">
+                                                <input type="text" class="form-control numeric" value="{{$item->value}}" name="{{$item->id}}" id="{{ $item->label }}"  required="">
                                                 @endif
                                             </div>
                                         </div>

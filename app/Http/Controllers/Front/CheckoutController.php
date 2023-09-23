@@ -161,6 +161,7 @@ class CheckoutController extends MainController
             $order->service_gst = $request->service_gst;
             $order->total = $request->order_total;
             $order->order_date = date('Y-m-d');
+            $order->vehicle_number = $request->vehicle_number;
             $order->save();
 
             $cart_ids = array();

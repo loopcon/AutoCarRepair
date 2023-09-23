@@ -25,6 +25,9 @@
                     <div class="mb-3">
                         <input type="email" class="form-control" id="email" name="email" required="" aria-describedby="emailHelp" placeholder="Email" value="{{ Auth::guard('user')->check() ? Auth::guard('user')->user()->email : ''}}">
                     </div>
+                    <div class="mb-3">
+                        <input type="text" class="form-control" id="vehicle_number" name="vehicle_number" required="" aria-describedby="emailHelp" placeholder="Vehicle Number" value="{{ Auth::guard('user')->check() ? Auth::guard('user')->user()->vehicle_number : ''}}">
+                    </div>
                     <div class="otp-section">
                         <div class="mb-3 otpinput-main">
                             <input type="text" class="form-control num_only" id="otp" name="otp" aria-describedby="emailHelp" placeholder="OTP">
