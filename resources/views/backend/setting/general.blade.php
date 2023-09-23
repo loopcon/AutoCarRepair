@@ -59,9 +59,9 @@
                                                     </div>
                                                     <input type="file" accept="image/x-png, image/gif, image/jpeg" id="uploadImage{{$i}}" class="btn btn-warning btn-block btn-sm"  name="{{$item->id}}" onChange="this.parentNode.nextSibling.value = this.value; PreviewImage({{$i}});" >
                                                 @elseif($item->label == 'pan_card')
-                                                    <input type="text" class="form-control numeric" value="{{$item->value}}" name="{{$item->id}}" id="{{ $item->label }}"  required="">
+                                                    <input type="text" class="form-control numeric" value="{{$item->value}}" name="{{$item->id}}" id="{{ $item->label }}">
                                                 @elseif($item->label == 'gst_number')
-                                                    <input type="text" class="form-control numeric" value="{{$item->value}}" name="{{$item->id}}" id="{{ $item->label }}"  required="">
+                                                    <input type="text" class="form-control numeric" value="{{$item->value}}" name="{{$item->id}}" id="{{ $item->label }}">
                                                 @else
                                                 <input type="text" class="form-control numeric" value="{{$item->value}}" name="{{$item->id}}" id="{{ $item->label }}"  required="">
                                                 @endif

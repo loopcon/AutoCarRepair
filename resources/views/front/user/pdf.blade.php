@@ -139,6 +139,9 @@
                         @if($brand && $model && $fuel)
                             <tr><td><b>{{$brand.' - '.$model.' - '.$fuel}}</b></td></tr>
                         @endif
+                        <tr>
+                            <td><strong>Vehicle Number :</strong> {{$order->vehicle_number}}</td>
+                        </tr>
                     </table>
                 </td>
                 <td width="60%" style="text-align: right; font-size: 20px;">
@@ -155,6 +158,16 @@
                         <tr>
                             <td><strong>Invoice Date:</strong> {{$order->order_date ? date('d/m/Y', strtotime($order->order_date)) : ''}}</td>
                         </tr>
+                        @if($pan_card)
+                            <tr>
+                                <td><strong>Pan Card : </strong></span><span>{{$pan_card}}</td>
+                            </tr>
+                        @endif
+                        @if($gst_number)
+                            <tr>
+                                <td><strong>Gst Number : </strong></span><span>{{$gst_number}}</td>
+                            </tr>
+                        @endif
                     </table>
                 </td>
             </tr>
@@ -186,6 +199,7 @@
                                 {{$service}}<br/>
                                 <small class="font-small">
                                     {{$brand.' - '.$model.' - '.$fuel}}<br/>
+                                    {{'Vehicle Number : '.$order->vehicle_number}}<br/>
                                 </small>
                                 <small class="font-small text-danger" style="font-size: 10px;">
                                     <b>Pick Up Details : 

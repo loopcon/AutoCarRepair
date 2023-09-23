@@ -58,8 +58,8 @@
                                                                 {{$service}}<br/>
                                                                 <small class="font-small">
                                                                     {{$brand.' - '.$model.' - '.$fuel}}<br/>
-                                                                    {{'Price : '.$record->price.', Gst(%) : '.$order->service_gst_rate}}<br/>
                                                                     {{'Vehicle Number : '.$order->vehicle_number}}<br/>
+                                                                    {{'Price : '.$record->price.', Gst(%) : '.$order->service_gst_rate}}<br/>
                                                                 </small>
                                                                 <small class="font-small text-danger">
                                                                     <b>Pick Up Details : 
@@ -84,7 +84,7 @@
                                                         {{$order->phone}},<br/>
                                                         {{$order->address}},<br/>
                                                         {{$order->city}},<br/>
-                                                        {{$order->zip}},<br/>
+                                                        {{$order->zip}}<br/>
                                                     </td>
                                                     <td>₹{{formatNumber($order->total)}}</td>
                                                     <td>
