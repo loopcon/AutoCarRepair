@@ -320,7 +320,8 @@ $(document).ready(function() {
             } else if(length != '10'){
                 toastr.error('Please enter valid phone number!');
             } else {
-                var csrfToken = $('meta[name="csrf-token"]').attr('content');
+                location.href = "{{url('our-services')}}";
+                <?php /*var csrfToken = $('meta[name="csrf-token"]').attr('content');
                  $.ajax({
                     url: "{{ route('front_storePhoneInSession') }}", // Change to your route name
                     type: "POST",
@@ -333,14 +334,14 @@ $(document).ready(function() {
                     error: function(jqXHR, textStatus, errorThrown) {
                         console.error('AJAX Error: ' + textStatus, errorThrown);
                     }
-                });
+                });*/ ?>
             }
         });
 
         //otp in popop
         $('#appointmentresend_otp').hide();
         $('.aptotp-section').hide();
-        var phone = "{{ Cache::get('phone') }}";
+        /*var phone = "{{ Cache::get('phone') }}";
         if(phone)
         {
             $('#check_price').show();
@@ -350,8 +351,7 @@ $(document).ready(function() {
         {
             $('#check_price').hide();
             $('#appointmentsend_otp').show();
-        }
-        
+        }*/
         $(document).on('click', '#appointmentsend_otp', function(){
             var validateMobNum= /[1-9]{1}[0-9]{9}/;
             var mobile = $('#appointmentmobile').val();
@@ -392,6 +392,7 @@ $(document).ready(function() {
                     success : function(result){
                         var result = $.parseJSON(result);
                         if(result.result == 'success'){
+                            localStorage.setItem("phone", mobile);
                             $('#appointmentresend_text').hide();
                             $('#appointmentis_otp_verify').val('1');
                             $('#check_price').show();
@@ -564,6 +565,21 @@ $(document).ready(function() {
                     modelFromBrandSearch();
                 } else {
                     $('#appointmentselectModal').modal('show');
+                }
+                var localstorage_phone = localStorage.getItem("phone");
+                console.log(localstorage_phone);
+                if(localstorage_phone != null) {
+                    $("#appointmentmobile").val(localstorage_phone);
+                    $("#appointmentmobile").parent().css({"visibility":"hidden"});
+                    $('#appointmentresend_text').hide();
+                    $('#appointmentis_otp_verify').val('1');
+                    $('#check_price').show();
+                    $("#appointmentmobile").attr("readonly", "readonly"); 
+                    $('#appointmentotp').hide();
+                    $('#appointmentsend_otp').hide();
+                } else {
+                    $('#appointmentsend_otp').show();
+                    $('#check_price').hide();
                 }
             }
         });

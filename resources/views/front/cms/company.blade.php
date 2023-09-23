@@ -190,17 +190,31 @@
     $(document).ready(function(){
         $('#compnyresend_otp').hide();
         $('.compnyotp-section').hide();
-        var phone = "{{ Cache::get('phone') }}";
-        if(phone)
-        {
+        var phone = localStorage.getItem("phone");
+        $('#mobile').val(phone);
+        if(phone) {            
             $('#send_message').show();
             $('#compnysend_otp').hide();
         }
-        else
-        {
+        else {
             $('#send_message').hide();
             $('#compnysend_otp').show();
         }
+
+        $(document).on('keyup', '#mobile', function(){
+            var validateMobNum= /[1-9]{1}[0-9]{9}/;
+            var mobile = $('#mobile').val();
+            if (validateMobNum.test(mobile) && mobile.length == 10) {
+                var verified_mobile = localStorage.getItem("phone");
+                if(verified_mobile != mobile){
+                    $('#send_message').hide();
+                    $('#compnysend_otp').show();
+                } else {
+                    $('#send_message').show();
+                    $('#compnysend_otp').hide();
+                }
+            }
+        });
         $(document).on('click', '#compnysend_otp', function(){
             var validateMobNum= /[1-9]{1}[0-9]{9}/;
             var mobile = $('#mobile').val();

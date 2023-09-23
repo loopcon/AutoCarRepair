@@ -390,7 +390,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">YOUR PHONE</label>
-                            <input type="text" class="form-control num_only home-email-input" id="mobile" maxlength="10" name="phone" placeholder="Enter Your Phone Number" aria-describedby="nae">
+                            <input type="text" class="form-control num_only home-email-input" id="mobile" maxlength="10" name="phone" laceholder="Enter Your Phone Number" aria-describedby="nae">
                         </div>
                     </div>
                     <div class="col-12 col-sm-6">
@@ -599,9 +599,10 @@ $(document).ready(function(){
 
     $('#resend_otp').hide();
     $('.otp-section').hide();
-    var phone = "{{ Cache::get('phone') }}";
+    var phone = localStorage.getItem("phone");
     if(phone)
     {
+        $('#mobile').val(phone);
         $('#send_message').show();
         $('#send_otp').hide();
     }
@@ -610,6 +611,20 @@ $(document).ready(function(){
         $('#send_message').hide();
         $('#send_otp').show();
     }
+    $(document).on('keyup', '#mobile', function(){
+        var validateMobNum= /[1-9]{1}[0-9]{9}/;
+        var mobile = $('#mobile').val();
+        if (validateMobNum.test(mobile) && mobile.length == 10) {
+            var verified_mobile = localStorage.getItem("phone");
+            if(verified_mobile != mobile){
+                $('#send_message').hide();
+                $('#send_otp').show();
+            } else {
+                $('#send_message').show();
+                $('#send_otp').hide();
+            }
+        }
+    });
     $(document).on('click', '#send_otp', function(){
         var validateMobNum= /[1-9]{1}[0-9]{9}/;
         var mobile = $('#mobile').val();
