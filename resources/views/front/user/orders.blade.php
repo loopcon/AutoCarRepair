@@ -59,6 +59,7 @@
                                                                 <small class="font-small">
                                                                     {{$brand.' - '.$model.' - '.$fuel}}<br/>
                                                                     {{'Price : '.$record->price.', Gst(%) : '.$order->service_gst_rate}}<br/>
+                                                                    {{'Vehicle Number : '.$order->vehicle_number}}<br/>
                                                                 </small>
                                                                 <small class="font-small text-danger">
                                                                     <b>Pick Up Details : 
