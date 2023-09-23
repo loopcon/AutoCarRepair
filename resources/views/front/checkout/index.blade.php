@@ -384,6 +384,24 @@ $(document).ready(function(){
             toastr.error('Please Enter Valid Mobile No.');
         }
     });
+
+    $(document).on('keyup', '#mobile', function(){
+        var validateMobNum= /[1-9]{1}[0-9]{9}/;
+        var mobile = $('#mobile').val();
+        if (validateMobNum.test(mobile) && mobile.length == 10) {
+            var verified_mobile = localStorage.getItem("phone");
+            console.log(verified_mobile);
+            console.log(mobile);
+            if(verified_mobile != mobile){
+                $('#booking_confirm').hide();
+                $('#send_otp').show();
+            } else {
+                $('#booking_confirm').show();
+                $('#send_otp').hide();
+            }
+        }
+    });
+    
     function updateCart(cart_id){
         var qty = $('#qty'+cart_id).html();
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
@@ -399,6 +417,7 @@ $(document).ready(function(){
 
     function getCartAjaxHtml(){
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+        var loggedin_user_mobile = "{{ Auth::guard('user')->check() ? Auth::guard('user')->user()->phone : ''}}";
         $.ajax({
             url : '{{ route('front_cart-ajax-html') }}',
             method : 'post',
@@ -407,17 +426,20 @@ $(document).ready(function(){
                 var result = $.parseJSON(result);
                 if(result.status == 'success'){
                     $('.card-detial-sec-main').html(result.html);
+                    var phone = localStorage.getItem("phone");
+                    if(loggedin_user_mobile == ''){
+                        $('#mobile').val(phone);
+                    }
                     var is_verify_otp = $('#is_otp_verify').val();
                     if(is_verify_otp == '0'){
-                        var phone = "{{ Cache::get('phone') }}";
-                        if(phone)
-                        {
+                        var mobile = $('#mobile').val();
+                        if(phone == mobile) {
                             $('#booking_confirm').show();
                             $('#send_otp').hide();
                         }
-                        else
-                        {
+                        else {
                             $('#booking_confirm').hide();
+                            $('#send_otp').show();
                         }
                         
                     }

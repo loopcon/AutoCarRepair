@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers\Front;
-use Illuminate\Support\Facades\Cache;
+
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Http\Request;
 use App\Constant;
 use App\Models\CarBrand;
@@ -20,10 +21,10 @@ class SearchController extends MainController
     public function storePhoneInSession(Request $request)
     {
         $phone = $request->input('phone');
-        Cache::put('phone', $phone);    
+        // Cache::put('phone', $phone);
         return response()->json(['message' => 'Phone number stored in session']);
     }
-
+    
     public function brands(request $request)
     {
         if($request->ajax()){
