@@ -3,6 +3,7 @@
 @php($is_product_available = 0)
 @if($cart_data->count())
     @foreach($cart_data as $item)
+        
         <div class="service-name-text">
             <p>{{isset($item->serviceDetail->packageDetail->categoryDetail->title) ? $item->serviceDetail->packageDetail->categoryDetail->title : NULL}}</p>
         </div>
@@ -108,7 +109,7 @@
         @php($sgst_val = $service_gst && $servicetotal ? ($servicetotal*$service_gst)/100 : 0)
         <p>
             @if($is_service_available == 1 && $is_service_available == 1) 
-                Service Gst({{$service_gst}} %)
+                Service GST({{$service_gst}} %)
             @else
                 Gst({{$service_gst}} %)
             @endif
@@ -131,5 +132,5 @@
         <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
         Loading...
     </a>
-    <button class="confirm-booking-btn" id="booking_confirm" type="submit"> Confirm Booking</button>
+    <button class="confirm-booking-btn" id="booking_confirm" type="submit">CONFIRM BOOKING</button>
 </div>
