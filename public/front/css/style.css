@@ -494,8 +494,8 @@ button { color: #000; outline: none; }
 .shoping-main-product-section{min-height: 450px;}
 .login-icon-main{ transform: translate(-50px, 35px) !important;  }
 .check-box-fliter{ float: right;position: absolute;top: 0;right: 0;}
-#sync1 .product-inner-imgmain img{ height: 350px; object-fit: cover; }
-#sync2 .product-inner-imgmain img{ height: 125px; object-fit: cover; }
+#sync1 .product-inner-imgmain img{ height: 350px; object-fit: contain; }
+#sync2 .product-inner-imgmain img{ height: 125px; object-fit: contain; }
 .minus-btn{color:#000; font-size: 15px;opacity: 0.7;}
 .plus-btn{color:#000; font-size: 15px;opacity: 0.7;}
 .minus-btn:hover{color:#000;}
@@ -518,7 +518,7 @@ button { color: #000; outline: none; }
 .forget-section-main{ background-color: #164498;  }
 /* forget css start  */
 .login-form-main{ padding:13px 60px; width:100%; }
-.login-img-main img{height:560px; object-fit: cover; width: 100%;}
+.login-img-main img{height:560px; object-fit: contain; width: 100%;}
 .loging-breadcrum-bg{ background-color: #164498; }
 .login-breadcrum-main { list-style: none; padding: 0;margin-bottom: 0px;display: flex; align-items: center;}
 .login-breadcrum-main li{ color:#fff; font-size:18px; font-weight:bold; padding-bottom:15px;}
@@ -547,7 +547,7 @@ button { color: #000; outline: none; }
 .servicecenter-call-main{ display:flex; padding: 15px; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; background-color: #fff; text-align: left; height: auto; align-items:center; }
 .servicecenter-call-main svg{font-size:45px; margin-right:10px; color:#164498; }
 .servicecenter-call-main a{color:#000; margin-bottom: 0px;text-decoration: none;font-size: 23px;}
-.service-center-slider-img{ margin-top: 25px;margin-bottom: 17px;height: 250px;width: 100% !important;object-fit: cover;}
+.service-center-slider-img{ margin-top: 25px;margin-bottom: 17px;height: 250px;width: 100% !important;object-fit: contain;}
 .serin-appointment-btn-maingroup{display:flex; justify-content:end;}
 .Scheduled-heading-seriner{ margin-top:25px; }
 .sticky{position: fixed;width: 100%;top: 0;z-index: 99;animation: b .9s ease-in-out;}
@@ -558,7 +558,7 @@ button { color: #000; outline: none; }
 .pagination-main{ display: flex; justify-content: center; margin: 15px 0px;}
 .home-email-input{ height:40px !important;}
 .footer-whatappicon{position: fixed;bottom: 10%;right: 6%;z-index:9;}
-.footer-whatappicon img{ width: 50px;height: 50px;object-fit: cover; }
+.footer-whatappicon img{ width: 50px;height: 50px;object-fit: contain; }
 .home-back-totoptext{color:#fff; text-decoration: none; font-weight: 600;background-color: #000; height: 40px ;  height: 50px !important; width: 50px !important; padding: 8px; border-radius: 5px;}
 .home-back-totoptext:hover{color: #fff;}
 /* new footer  css start  */
@@ -600,7 +600,7 @@ button { color: #000; outline: none; }
 .filter-click-main .form-check-input:focus{box-shadow: none !important;}
 /* cms page css start  */
 .cms-page-section{background-color: #164498;padding: 20px;}
-.cms-image-main{height: 450px;width: 100%;object-fit: cover;filter: brightness(0.5);}
+.cms-image-main{height: 450px;width: 100%;object-fit: contain;filter: brightness(0.5);}
 .cms-section-main{ position: relative;}
 .cms-section-text{position: absolute;top: 50%;left: 9%;transform: translateY(-50%);width: 40%;}
 .cms-section-text h2{font-size: 2.7rem;font-weight: bold;color: #fff;margin-bottom: 25px;}
@@ -629,7 +629,7 @@ button { color: #000; outline: none; }
 .appointmentsearch-dialog .search-modal-box::-webkit-scrollbar-thumb{background-color: #000000; }
 .changeandbackmainbtn{ display: flex;justify-content: space-between;margin-top: 6px;}
 .search-page-bg{background-color: #eeeeee;padding: 15px;}
-.search-page-bg .search-list-image{height: 200px;width: 100%;object-fit: cover;padding: 8px;}
+.search-page-bg .search-list-image{height: 200px;width: 100%;object-fit:contain;padding: 8px;}
 .search-page-bg .search-list-head{font-weight: 600;}
 .search-page-bg .search-card-star{margin-bottom: 15px;}
 .search-page-bg .search-list-main-dot{margin-bottom: 15px;}

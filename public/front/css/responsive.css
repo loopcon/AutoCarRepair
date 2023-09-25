@@ -234,6 +234,11 @@
     .newservice h4{ font-size: 35px;}
     .offeer-section h3{font-size: 35px;}
     #tab li.active{ padding:15px;}
+    .mobile-login-main{ padding-left:0px;}
+    .login-icon-text:hover, .login-icon-text:focus{ color:#000;}
+    .login-icon-text{ text-align:start !important;}
+    .login-form-main{padding:10px 20px;}
+    .login-img-main img{ height:250px;}
 }
 @media (max-width:450px) {
     .mobile-menu-sectiondata{  flex-wrap: wrap; height: 80px; }

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="{{isset($meta_description) ? $meta_description : ''}}">
     <meta name="keywords" content="{{isset($meta_keywords) ? $meta_keywords : ''}}">
-    <meta name="tag" content="{!!isset($extra_meta_tag) ? $extra_meta_tag : '' !!}">
+    {!! isset($extra_meta_tag) ? $extra_meta_tag : '' !!}
     <meta name="extra_meta_description" content="{!! isset($extra_meta_description) ? strip_tags($extra_meta_description) : '' !!}">
     <title>{{$site_title.' | '. $site_name}}</title>
     <link rel="icon"  href="{{ asset('public/favicon.ico') }}">
@@ -110,20 +110,7 @@
                         <?php /*<img data-bs-toggle="modal" data-bs-target="#mosearchbarModal"  src="{{ asset('front/img/navbar-search-icon.png') }}" alt=""> */ ?>
                         <span class="search-svg-main" data-bs-toggle="modal" data-bs-target="#mosearchbarModal" ><i class="fa-solid fa-magnifying-glass"></i></span>
                     </div>
-                    <div class="modal fade" id="mosearchbarModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog mosearchbar-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="Search" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                                  </div>
-                            </div>
-                        </div>
-                        </div>
-                    </div>
+                    
                     <div>
                         <a class="navbar-appointment-btn apt-btn" href="javascript:void(0);" >Book A Service</a>
                     </div>
@@ -140,8 +127,31 @@
                         <li><a class="@if($page == 'service-center'){{'acr-active'}}@endif" href="{{url('service-center')}}">Service Center</a></li>
                         <li><a href="#">Blog</a></li>
                         <li><a class="@if($page == 'shopping'){{'acr-active'}}@endif" href="{{url('shopping')}}">Shopping</a></li>
+                        @if(!Auth::guard('user')->check())
+                            <li><a class="text-black" href="{{route('front_login')}}">Login</a></li>
+                            <li><a class="text-black" href="{{route('front_register')}}">Register</a></li>
+                        @else
+                            <li><a class="text-black" href="{{route('front_my-profile')}}">My Profile</a></li>
+                            <li><a class="text-black" href="{{route('front_my-orders')}}">My Orders</a></li>
+                            <li><a class="text-black" href="{{route('front_logout')}}">Logout</a></li>
+                        @endif
                         <li><a href="{{url('checkout')}}" class="card-icon-main"><i class="fa fa-cart-plus"></i><span id="cart_header_total_item"></span></a></li>
                     </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal fade" id="mosearchbarModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog mosearchbar-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control search_text" placeholder="Search" value="{{Request::get('search')}}"  aria-label="Recipient's username" aria-describedby="basic-addon2">
+                    </div>
                 </div>
             </div>
         </div>
