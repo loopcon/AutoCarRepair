@@ -60,7 +60,7 @@
                     <li><a class="@if($page == ''){{'acr-active'}}@endif" href="{{route('front_/')}}">Home</a></li>
                     <li><a class="@if($page == 'our-services'){{'acr-active'}}@endif" href="{{url('our-services')}}">Car Service</a></li>
                     <li><a  class="@if($page == 'service-center'){{'acr-active'}}@endif" href="{{url('service-center')}}">Service Center</a></li>
-                    <li><a href="https://autocarrepair.in/blogs/">Blog</a></li>
+                    <li><a href="https://autocarrepair.in/blogs/" target="_blank">Blog</a></li>
                     <li><a class="@if($page == 'shopping'){{'acr-active'}}@endif" href="{{url('shopping')}}">Shopping</a></li>
                     <li><a href="{{url('/')}}#acr-offers-section">Offers</a></li>
                 </ul>
@@ -125,7 +125,7 @@
                         <li><a class="@if($page == ''){{'acr-active'}}@endif" href="{{route('front_/')}}">Home</a></li>
                         <li><a class="@if($page == 'our-services'){{'acr-active'}}@endif" href="{{url('our-services')}}">Car Service</a></li>
                         <li><a class="@if($page == 'service-center'){{'acr-active'}}@endif" href="{{url('service-center')}}">Service Center</a></li>
-                        <li><a href="https://autocarrepair.in/blogs/">Blog</a></li>
+                        <li><a href="https://autocarrepair.in/blogs/" target="_blank">Blog</a></li>
                         <li><a class="@if($page == 'shopping'){{'acr-active'}}@endif" href="{{url('shopping')}}">Shopping</a></li>
                         @if(!Auth::guard('user')->check())
                             <li><a class="text-black" href="{{route('front_login')}}">Login</a></li>

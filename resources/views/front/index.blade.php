@@ -195,7 +195,7 @@
                 @foreach($offer_slider as $slider)
                 <div class="item">
                     <div class="offer-section-main">
-                        <img class="img-fluid" src="{{ asset('uploads/offerslider/'.$slider->image) }}"  alt="" title="{{ isset($slider->image_title) ? $slider->image_title : ''}}">
+                        <a href="https://autocarrepair.in/acr/" target="_blank"><img class="img-fluid" src="{{ asset('uploads/offerslider/'.$slider->image) }}"  alt="" title="{{ isset($slider->image_title) ? $slider->image_title : ''}}"></a>
                         <div class="offer-section-item">
                             <div class="container">
                                 <p>{{$slider->title1}}</p>
