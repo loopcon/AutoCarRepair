@@ -49,9 +49,8 @@
     .footet-down-bg .main-soical-icon svg{ padding: 5px;}
     .footet-down-bg .copy-right-text-main p{ font-size: 15px;}
     .shop-center-text{ width: 100%;}
-
     .shop-center-text h2{ text-align: center; font-size: 45px; }
-    .offeer-section .offer-section-main img{ height: 400px; object-fit: cover;}
+    .offeer-section .offer-section-main img{ height: 260px; object-fit: cover;}
     .our-service-section .servic-type-box{ min-height: 265px;}
     .search-svg-main{ margin-right: 30px; font-size: 25px; color: #000;}
     .mobile-menu-main{ height: 100px;}
@@ -184,7 +183,7 @@
     .offeer-section .owl-carousel .owl-nav button.owl-prev span{ width: 30px; height: 30px; line-height: 26px;}
     .offeer-section .owl-carousel .owl-nav button.owl-next span{ width: 30px; height: 30px; line-height: 26px;}
     .footet-down-bg .copy-right-text-main{ justify-content: center;}
-    .offeer-section .offer-section-main img{ height: 300px; object-fit: cover;}
+    .offeer-section .offer-section-main img{ height: 300px; object-fit: cover; margin:auto;}
     .mobile-toggle-data{ top: 82px;}
     .mobile-menu-main{ height: 80px; }
     .our-service-section .servic-type-box{margin: 12px 6px;}
