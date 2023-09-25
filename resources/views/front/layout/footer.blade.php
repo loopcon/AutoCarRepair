@@ -101,7 +101,7 @@
             <li><a href="{{url('about-us')}}">About Us</a></li>
             <li><a href="{{url('faqs')}}">FAQs</a></li>
             <li><a href="{{url('contact-us')}}">Contact Us</a></li>
-            <li><a href="#">Blogs</a></li>
+            <li><a href="https://autocarrepair.in/blogs/" target="_blank">Blogs</a></li>
             @php($cmsInfo = getCmsPageName('10'))
                 @if(isset($cmsInfo->slug) && $cmsInfo->slug)
                     <li><a href="{{url($cmsInfo->slug)}}">{{isset($cmsInfo->name) ? ucwords($cmsInfo->name) : ''}}</a></li>
