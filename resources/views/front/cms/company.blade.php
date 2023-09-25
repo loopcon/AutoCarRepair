@@ -255,6 +255,7 @@
                     success : function(result){
                         var result = $.parseJSON(result);
                         if(result.result == 'success'){
+                            localStorage.setItem("phone", mobile);
                             $('#compnyresend_text').hide();
                             $('#compnyis_otp_verify').val('1');
                             $('#send_message').show();

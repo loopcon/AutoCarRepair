@@ -341,6 +341,7 @@ $(document).ready(function(){
                 success : function(result){
                     var result = $.parseJSON(result);
                     if(result.result == 'success'){
+                        localStorage.setItem("phone", mobile);
 //                        $('#verify_otp').hide();
                         $('#resend_text').hide();
                         $('#is_otp_verify').val('1');

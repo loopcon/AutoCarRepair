@@ -230,7 +230,7 @@ class CheckoutController extends MainController
                         $slot->save();
 
                         // Send email for Booked Service - Start
-                        $package_data = ScheduledPackageDetail::with('modelDetail', 'brandDetail', 'fuelTypeDetail', 'packageDetail')->Select('id','brand_id', 'model_id', 'fuel_type_id', 'title')->where('id', $cdata->service_id)->first();
+                        $package_data = ScheduledPackageDetail::with('modelDetail', 'brandDetail', 'fuelTypeDetail', 'packageDetail')->Select('id','brand_id', 'model_id', 'fuel_type_id', 'sp_id')->where('id', $cdata->service_id)->first();
                         $package = isset($package_data->packageDetail->title) && $package_data->packageDetail->title ? $package_data->packageDetail->title : NULL;
                         $model = isset($package_data->modelDetail->title) ? $package_data->modelDetail->title : NULL;
                         $brand = isset($package_data->brandDetail->title) ? $package_data->brandDetail->title : NULL;

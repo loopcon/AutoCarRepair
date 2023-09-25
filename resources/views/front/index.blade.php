@@ -663,6 +663,7 @@ $(document).ready(function(){
                 method : 'post',
                 data : {_token: CSRF_TOKEN, mobile:mobile, otp:otp},
                 success : function(result){
+                    localStorage.setItem("phone", mobile);
                     var result = $.parseJSON(result);
                     if(result.result == 'success'){
 //                        $('#verify_otp').hide();
