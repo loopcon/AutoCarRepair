@@ -13,7 +13,7 @@
                     @php($is_product_available = 1)
                     <?php /* <img src="{{ $item->productDetail->primaryImage->image }}"  class="add-to-cart-img" alt=""> */ ?>
                     @if(isset($item->productDetail->primaryImage->image) && $item->productDetail->primaryImage->image)
-                        <img src="{{ $item->productDetail->primaryImage->image }}"  class="add-to-cart-img" alt="">
+                        <img src="{{ $item->productDetail->primaryImage->image }}"  alt="" class="add-to-cart-img" title="{{ isset($item->productDetail->primaryImage->image_title) ? $item->productDetail->primaryImage->image_title : '' }}">
                     @else
                         <img src="{{ asset('front/img/no_image.jpg') }}" class="img-fluid" alt="">
                     @endif 

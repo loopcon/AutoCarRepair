@@ -58,7 +58,9 @@
                                                                 {{$service}}<br/>
                                                                 <small class="font-small">
                                                                     {{$brand.' - '.$model.' - '.$fuel}}<br/>
-                                                                    {{'Vehicle Number : '.$order->vehicle_number}}<br/>
+                                                                    @if(isset($order->vehicle_number) && $order->vehicle_number)
+                                                                        {{'Vehicle Number : '.$order->vehicle_number}}<br/>
+                                                                    @endif
                                                                     {{'Price : '.$record->price.', Gst(%) : '.$order->service_gst_rate}}<br/>
                                                                 </small>
                                                                 <small class="font-small text-danger">
