@@ -10,7 +10,7 @@
     .acr-navbar-main li{ margin-right: 15px;}
     .slider-section-main h2{ font-size: 60px;}
     .slider-section-main h5{ font-size: 40px;}
-    .our-service-section .servic-type-box{ min-height: 270px;}
+    .our-service-section .servic-type-box{ min-height: 180px;}
     .login-icon-main{transform: translate3d(-52px, 36px, 0px) !important;}
     #sync1 .product-inner-imgmain img{ height: auto;}
     #sync2 .product-inner-imgmain img{ height: auto; }
@@ -51,7 +51,7 @@
     .shop-center-text{ width: 100%;}
     .shop-center-text h2{ text-align: center; font-size: 45px; }
     .offeer-section .offer-section-main img{ height: 260px; object-fit: cover;}
-    .our-service-section .servic-type-box{ min-height: 265px;}
+    .our-service-section .servic-type-box{ min-height: 170px;}
     .search-svg-main{ margin-right: 30px; font-size: 25px; color: #000;}
     .mobile-menu-main{ height: 100px;}
     .mobile-toggle-data{ top: 102px;}
@@ -73,6 +73,8 @@
     }
     .footer-whatappicon{ right:11%;}
     .up-btn-sticky{ right: 2%;}
+    #choose-service-center .owl-nav button.owl-prev{left: -25px;}
+    #choose-service-center .owl-nav button.owl-next{right:-25px;}
 }
 @media (min-width:768px){
     .mobile-filter-mian{
