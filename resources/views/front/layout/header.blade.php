@@ -62,7 +62,7 @@
                     <li><a  class="@if($page == 'service-center'){{'acr-active'}}@endif" href="{{url('service-center')}}">Service Center</a></li>
                     <li><a href="#">Blog</a></li>
                     <li><a class="@if($page == 'shopping'){{'acr-active'}}@endif" href="{{url('shopping')}}">Shopping</a></li>
-                    <li><a href="#">Offers</a></li>
+                    <li><a href="{{url('/')}}#acr-offers-section">Offers</a></li>
                 </ul>
             </div>
             <div class="search-main-section">

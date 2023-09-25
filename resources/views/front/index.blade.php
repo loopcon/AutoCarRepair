@@ -186,7 +186,7 @@
 <!--end extra service -->
 
 <!-- offer section  start  -->
-<div class="offeer-section">
+<div class="offeer-section" id="acr-offers-section">
     <div class="container">
         <h3>ACR Offers</h3>
         <br>
