@@ -28,7 +28,6 @@
                                 </select>
                             </div>
                             <div class="col-md-12 text-end">
-                                <!-- <a href='javascript:void(0);' data-href="{{ route('admin_deleteall') }}" class='btn btn-danger btn-sm mr-20 delete_all'>Delete All</a> -->
                                 <button class="btn btn-danger selected_data">Delete Selected</button>
                             </div>
                         </div>
@@ -202,7 +201,12 @@ $(document).ready(function() {
                         data : {_token : CSRF_TOKEN, group : group, orderdelete : orderdelete},
                         success : function(result){
                             var result = $.parseJSON(result);
-                            order.ajax.reload();
+                            if(result.result == 'success'){
+                                swal(" ", "Order Deleted Successfully");
+                                order.ajax.reload();
+                            }else{
+                                swal(" ", "Something went wrong, please try again later!");
+                            }
                         }
                     });
                 });

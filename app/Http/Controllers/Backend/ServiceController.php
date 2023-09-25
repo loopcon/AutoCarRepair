@@ -63,7 +63,7 @@ class ServiceController extends MainController
         $slug = $request->title != '' ? slugify($request->title) : NULL;
 
         $scstegory = new ServiceCategory();
-        $fields = array('title','image','image_1','icon_image', 'price_list','description','meta_title','meta_keywords','meta_description');
+        $fields = array('title', 'price_list','description','meta_title','meta_keywords','meta_description');
         foreach($fields as $field){
             $scstegory->$field = isset($request->$field) && $request->$field ? $request->$field : NULL;
         }
@@ -115,7 +115,6 @@ class ServiceController extends MainController
      */
     public function serviceCategoryUpdate(Request $request, $id)
     {
-
         $id = Crypt::decrypt($id);
         $this->validate($request, [
                 'title' => [
@@ -129,7 +128,7 @@ class ServiceController extends MainController
         $slug = $request->title != '' ? slugify($request->title) : NULL;
 
         $scategory = ServiceCategory::find($id);
-        $fields = array('title','image','image_1','icon_image', 'price_list','description','meta_title','meta_keywords','meta_description');
+        $fields = array('title', 'price_list','description','meta_title','meta_keywords','meta_description');
         foreach($fields as $field){
             $scategory->$field = isset($request->$field) && $request->$field ? $request->$field : NULL;
         }
@@ -292,7 +291,7 @@ class ServiceController extends MainController
         $slug = $request->title != '' ? slugify($request->title) : NULL;
 
         $spackage = new ScheduledPackage();
-        $fields = array('sc_id', 'title', 'image', 'image_other', 'warrenty_info', 'note', 'recommended_info', 'time_takes','time_takes_day','time_takes_option','meta_title','meta_keywords','meta_description');
+        $fields = array('sc_id', 'title','warrenty_info', 'note', 'recommended_info', 'time_takes','time_takes_day','time_takes_option','meta_title','meta_keywords','meta_description');
         foreach($fields as $field){
             $spackage->$field = isset($request->$field) && $request->$field != '' ? $request->$field : NULL;
         }
@@ -368,7 +367,7 @@ class ServiceController extends MainController
         $slug = $request->title != '' ? slugify($request->title) : NULL;
 
         $spackage = ScheduledPackage::find($id);
-        $fields = array('sc_id', 'title', 'image','image_other', 'warrenty_info', 'recommended_info', 'note', 'time_takes','time_takes_day','time_takes_option','meta_title','meta_keywords','meta_description');
+        $fields = array('sc_id', 'title', 'warrenty_info', 'recommended_info', 'note', 'time_takes','time_takes_day','time_takes_option','meta_title','meta_keywords','meta_description');
         foreach($fields as $field){
             $spackage->$field = isset($request->$field) && $request->$field != '' ? $request->$field : NULL;
         }

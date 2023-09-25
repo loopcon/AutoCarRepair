@@ -15,30 +15,6 @@
                     <!--<span class="badge badge-sidebar-primary">5</span>-->
                 </a>
             </li>
-            <li class="sidebar-item {{ (request()->is('backend/general-settings') || request()->is('backend/email-templates') || request()->is('backend/platform-charges*') || request()->is('backend/delete-all-data*') || request()->is('backend/pick-up-slot-settings*'))? 'active' : '' }}">
-                <a data-bs-target="#sidebar_settings" data-bs-toggle="collapse" class="sidebar-link collapsed">
-                    <i class="align-middle" data-feather="settings"></i> <span class="align-middle">{{ __('Site Settings')}}</span>
-                </a>
-                <ul id="sidebar_settings" class="sidebar-dropdown list-unstyled collapse {{ (request()->is('backend/site-settings') || request()->is('backend/email-templates') || request()->is('backend/page*') || request()->is('backend/platform-charges*') || request()->is('backend/smtp*') || request()->is('backend/delete-all-data*') || request()->is('backend/pick-up-slot-settings*'))  ? 'show' : '' }}" data-parent="#sidebar">
-                    <li class="sidebar-item {{ (request()->is('backend/site-settings')) ? 'active' : '' }}"><a class="sidebar-link" href="{{route('admin_site-settings')}}">{{ __('General Settings')}}</a></li>
-                    <li class="sidebar-item {{ (request()->is('backend/email-templates')) ? 'active' : '' }}"><a class="sidebar-link" href="{{route('admin_email-templates')}}">{{ __('Email Templates')}}</a></li>
-                    <!--<li class="sidebar-item {{ (request()->is('backend/page*')) ? 'active' : '' }}"><a class="sidebar-link" href="{{ route('admin_pages')}}">{{ __('Page')}}</a></li>-->
-                    <li class="sidebar-item {{ (request()->is('backend/smtp*')) ? 'active' : '' }}"><a class="sidebar-link" href="{{ route('admin_smtp')}}">{{ __('SMTP Mail Settings')}}</a></li>
-                    <li class="sidebar-item {{ (request()->is('backend/pick-up-slot-settings*')) ? 'active' : '' }}"><a class="sidebar-link" href="{{ route('admin_pick-up-slot-settings')}}">{{ __('Pick Up Slot Settings')}}</a></li>
-                </ul>     
-            </li>
-
-            <li class="sidebar-item {{ (request()->is('backend/page*') || request()->is('backend/faq*') || request()->is('backend/service-center-detail*') || request()->is('backend/compnycms*'))? 'active' : '' }}">
-                <a data-bs-target="#sidebar_pages" data-bs-toggle="collapse" class="sidebar-link collapsed">
-                    <i class="align-middle" data-feather="slack"></i> <span class="align-middle">{{ __('Content Settings')}}</span>
-                </a>
-                <ul id="sidebar_pages" class="sidebar-dropdown list-unstyled collapse {{ (request()->is('backend/page*') || request()->is('backend/faq*') || request()->is('backend/service-center-detail*') || request()->is('backend/compnycms*'))  ? 'show' : '' }}" data-parent="#sidebar">
-                    <li class="sidebar-item {{ (request()->is('backend/page*')) ? 'active' : '' }}"><a class="sidebar-link" href="{{ route('admin_pages')}}">{{ __('Page')}}</a></li>
-                    <li class="sidebar-item {{ (request()->is('backend/compnycms*')) ? 'active' : '' }}"><a class="sidebar-link" href="{{ route('admin_compnycms')}}">{{ __('Compny Cms Page')}}</a></li>
-                    <li class="sidebar-item {{ (request()->is('backend/faq*')) ? 'active' : '' }}"><a class="sidebar-link" href="{{ route('admin_faq')}}">{{ __('Faq')}}</a></li>
-                    <li class="sidebar-item {{ (request()->is('backend/service-center-detail*')) ? 'active' : '' }}"><a class="sidebar-link" href="{{ route('admin_service-center-detail')}}">{{ __('Service Center Detail')}}</a></li>
-                </ul> 
-            </li>
 
             <li class="sidebar-item {{ (request()->is('backend/car-brand*') || request()->is('backend/car-model*') || request()->is('backend/fuel-type*'))? 'active' : '' }}">
                 <a data-bs-target="#sidebar_car_settings" data-bs-toggle="collapse" class="sidebar-link collapsed">
@@ -72,24 +48,39 @@
                 </ul> 
             </li>
 
-            <li class="sidebar-item {{ (request()->is('backend/enquiry')) ? 'active' : '' }}">
-                <a href="{{route('admin_enquiry')}}" class="sidebar-link">
-                    <i class="align-middle" data-feather="edit"></i> <span class="align-middle">{{ __('Enquires') }}</span>
-                    <!--<span class="badge badge-sidebar-primary">5</span>-->
-                </a>
-            </li>
-             <li class="sidebar-item {{ (request()->is('backend/user*')) ? 'active' : '' }}">
+            <li class="sidebar-item {{ (request()->is('backend/user*')) ? 'active' : '' }}">
                 <a href="{{route('admin_user')}}" class="sidebar-link">
                     <i class="align-middle" data-feather="user"></i> <span class="align-middle">{{ __('Users') }}</span>
                     <!--<span class="badge badge-sidebar-primary">5</span>-->
                 </a>
             </li>
+
             <li class="sidebar-item {{ (request()->is('backend/order*')) ? 'active' : '' }}">
                 <a href="{{route('admin_order')}}" class="sidebar-link">
                     <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">{{ __('Orders') }}</span>
                     <!--<span class="badge badge-sidebar-primary">5</span>-->
                 </a>
             </li>
+
+            <li class="sidebar-item {{ (request()->is('backend/enquiry')) ? 'active' : '' }}">
+                <a href="{{route('admin_enquiry')}}" class="sidebar-link">
+                    <i class="align-middle" data-feather="edit"></i> <span class="align-middle">{{ __('Enquires') }}</span>
+                    <!--<span class="badge badge-sidebar-primary">5</span>-->
+                </a>
+            </li>
+
+            <li class="sidebar-item {{ (request()->is('backend/page*') || request()->is('backend/faq*') || request()->is('backend/service-center-detail*') || request()->is('backend/compnycms*'))? 'active' : '' }}">
+                <a data-bs-target="#sidebar_pages" data-bs-toggle="collapse" class="sidebar-link collapsed">
+                    <i class="align-middle" data-feather="slack"></i> <span class="align-middle">{{ __('Content Settings')}}</span>
+                </a>
+                <ul id="sidebar_pages" class="sidebar-dropdown list-unstyled collapse {{ (request()->is('backend/page*') || request()->is('backend/faq*') || request()->is('backend/service-center-detail*') || request()->is('backend/compnycms*'))  ? 'show' : '' }}" data-parent="#sidebar">
+                    <li class="sidebar-item {{ (request()->is('backend/page*')) ? 'active' : '' }}"><a class="sidebar-link" href="{{ route('admin_pages')}}">{{ __('Page')}}</a></li>
+                    <li class="sidebar-item {{ (request()->is('backend/compnycms*')) ? 'active' : '' }}"><a class="sidebar-link" href="{{ route('admin_compnycms')}}">{{ __('Compny Cms Page')}}</a></li>
+                    <li class="sidebar-item {{ (request()->is('backend/faq*')) ? 'active' : '' }}"><a class="sidebar-link" href="{{ route('admin_faq')}}">{{ __('Faq')}}</a></li>
+                    <li class="sidebar-item {{ (request()->is('backend/service-center-detail*')) ? 'active' : '' }}"><a class="sidebar-link" href="{{ route('admin_service-center-detail')}}">{{ __('Service Center Detail')}}</a></li>
+                </ul> 
+            </li>
+
             <li class="sidebar-item">
                 <a data-bs-target="#sidebar_content" data-bs-toggle="collapse" class="sidebar-link collapsed">
                     <i class="align-middle" data-feather="aperture"></i><span class="align-middle">{{ __('Home Page Settings')}}</span>
@@ -111,6 +102,19 @@
                     <li class="sidebar-item {{ (request()->is('backend/shopping*')) ? 'active' : '' }}"><a class="sidebar-link" href="{{ route('admin_shopping')}}">{{ __('Shopping')}}</a></li>
                     <li class="sidebar-item {{ (request()->is('backend/about-us*')) ? 'active' : '' }}"><a class="sidebar-link" href="{{ route('admin_about-us')}}">{{ __('About Us')}}</a></li>
                 </ul> 
+            </li>
+
+            <li class="sidebar-item {{ (request()->is('backend/general-settings') || request()->is('backend/email-templates') || request()->is('backend/platform-charges*') || request()->is('backend/delete-all-data*') || request()->is('backend/pick-up-slot-settings*'))? 'active' : '' }}">
+                <a data-bs-target="#sidebar_settings" data-bs-toggle="collapse" class="sidebar-link collapsed">
+                    <i class="align-middle" data-feather="settings"></i> <span class="align-middle">{{ __('Site Settings')}}</span>
+                </a>
+                <ul id="sidebar_settings" class="sidebar-dropdown list-unstyled collapse {{ (request()->is('backend/site-settings') || request()->is('backend/email-templates') || request()->is('backend/page*') || request()->is('backend/platform-charges*') || request()->is('backend/smtp*') || request()->is('backend/delete-all-data*') || request()->is('backend/pick-up-slot-settings*'))  ? 'show' : '' }}" data-parent="#sidebar">
+                    <li class="sidebar-item {{ (request()->is('backend/site-settings')) ? 'active' : '' }}"><a class="sidebar-link" href="{{route('admin_site-settings')}}">{{ __('General Settings')}}</a></li>
+                    <li class="sidebar-item {{ (request()->is('backend/email-templates')) ? 'active' : '' }}"><a class="sidebar-link" href="{{route('admin_email-templates')}}">{{ __('Email Templates')}}</a></li>
+                    <!--<li class="sidebar-item {{ (request()->is('backend/page*')) ? 'active' : '' }}"><a class="sidebar-link" href="{{ route('admin_pages')}}">{{ __('Page')}}</a></li>-->
+                    <li class="sidebar-item {{ (request()->is('backend/smtp*')) ? 'active' : '' }}"><a class="sidebar-link" href="{{ route('admin_smtp')}}">{{ __('SMTP Mail Settings')}}</a></li>
+                    <li class="sidebar-item {{ (request()->is('backend/pick-up-slot-settings*')) ? 'active' : '' }}"><a class="sidebar-link" href="{{ route('admin_pick-up-slot-settings')}}">{{ __('Pick Up Slot Settings')}}</a></li>
+                </ul>     
             </li>
         </ul>
     </div>

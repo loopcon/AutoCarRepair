@@ -19,7 +19,6 @@
                     <div class="card-header">
                         <div class="form-row">
                             <div class="col-md-12 text-end">
-                                <!-- <a href='javascript:void(0);' data-href="{{ route('admin_deleteall') }}" class='btn btn-danger btn-sm mr-20 delete_all'>Delete All</a> -->
                                 <button class="btn btn-danger selected_data">Delete Selected</button>
                             </div>
                         </div>
@@ -136,7 +135,12 @@ $(document).ready(function() {
                         data : {_token : CSRF_TOKEN, group : group, admin : admin},
                         success : function(result){
                             var result = $.parseJSON(result);
-                            page.ajax.reload();
+                            if(result.result == 'success'){
+                                swal(" ", "User Deleted Successfully");
+                                page.ajax.reload();
+                            }else{
+                                swal(" ", "Something went wrong, please try again later!");
+                            }
                         }
                     });
                 });

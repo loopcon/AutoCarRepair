@@ -33,23 +33,54 @@ class EnquiryController extends MainController
             $list = $query->get();
 
             return DataTables::of($list)
+                ->addColumn('id', function($row) {
+                    $html = "";
+                    $html .= '<label class="form-check">
+                                <input class="form-check-input checkSingle" type="checkbox" value="'.$row->id.'">
+                                <span class="form-check-label">
+                                    '.$row->id.'
+                                </span>
+                            </label>';
+                    return $html;
+                })
                 ->addColumn('service', function ($row) {
                     $service = isset($row->serviceCategory->title) && $row->serviceCategory->title ? $row->serviceCategory->title :NULL;
                     return $service;
                 })
-                ->addColumn('action', function ($row) {
-                    $roles = Session::get('roles');
-                    $html = "";
-                    $id = Crypt::encrypt($row->id);
-                    $html .= "<span class='text-nowrap'>";
-                    $html .= "<a href='javascript:void(0);' data-href='".route('admin_enquiry-delete',array($id))."' rel='tooltip' title='".trans('Delete')."' class='btn btn-danger btn-sm delete'><i class='fa fa-trash-alt'></i></a>";
-                    $html .= "</span>";
-                    return $html;
-                })
-                ->rawColumns(['service','action'])
+                // ->addColumn('action', function ($row) {
+                //     $roles = Session::get('roles');
+                //     $html = "";
+                //     $id = Crypt::encrypt($row->id);
+                //     $html .= "<span class='text-nowrap'>";
+                //     $html .= "<a href='javascript:void(0);' data-href='".route('admin_enquiry-delete',array($id))."' rel='tooltip' title='".trans('Delete')."' class='btn btn-danger btn-sm delete'><i class='fa fa-trash-alt'></i></a>";
+                //     $html .= "</span>";
+                //     return $html;
+                // })
+                ->rawColumns(['service','action','id'])
                 ->make(true);
         } else {
             return redirect('backend/dashboard');
+        }
+    }
+
+    public function selectedDelete(Request $request)
+    {
+        if($request->ajax()){
+            $enquirydelete = $request->enquirydelete;
+            $return = array();
+            $return['result'] = 'error';
+            if($enquirydelete){
+                foreach($enquirydelete as $enquiry){
+                    $enquirys = Enquiry::where('id',$enquiry)->delete();
+                }
+                if(isset($enquirys)){
+                    $return['result'] = 'success';
+                }
+                echo json_encode($return);
+                exit;
+            } else {
+                return redirect('/');
+            }
         }
     }
 
@@ -98,7 +129,7 @@ class EnquiryController extends MainController
      */
     public function destroy(string $id)
     {
-         $id = Crypt::decrypt($id);
+        $id = Crypt::decrypt($id);
         $enquiry = Enquiry::where('id', $id)->delete();
         if($enquiry) {
             return redirect('backend/enquiry')->with('success', trans('Enquiry Deleted Successfully!'));

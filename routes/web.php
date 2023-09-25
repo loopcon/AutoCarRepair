@@ -180,6 +180,7 @@ Route::group(['prefix' => 'backend','as' => 'admin_'], function() {
         Route::get('enquiry',[App\Http\Controllers\Backend\EnquiryController::class, 'index'])->name('enquiry')->middleware('XSS');
         Route::post('enquiry-datatable', [App\Http\Controllers\Backend\EnquiryController::class, 'enquiryDatatable'])->name('enquiry-datatable');
         Route::get('enquiry-delete/{id}', [App\Http\Controllers\Backend\EnquiryController::class, 'destroy'])->name('enquiry-delete');
+        Route::post('delete-enquiry-data', [App\Http\Controllers\Backend\EnquiryController::class, 'selectedDelete'])->name('delete-enquiry-data');
 
         Route::get('user',[App\Http\Controllers\Backend\UserController::class, 'index'])->name('user')->middleware('XSS');
         Route::post('user-datatable', [App\Http\Controllers\Backend\UserController::class, 'userDatatable'])->name('user-datatable');
@@ -189,7 +190,7 @@ Route::group(['prefix' => 'backend','as' => 'admin_'], function() {
         Route::post('user-address-datatable', [App\Http\Controllers\Backend\UserController::class, 'userAddressDatatable'])->name('user-address-datatable');
         Route::get('user-address-delete/{id}', [App\Http\Controllers\Backend\UserController::class, 'addressDestroy'])->name('user-address-delete');
         Route::post('deletedata', [App\Http\Controllers\Backend\UserController::class, 'alldelete'])->name('deletedata');
-        Route::get('deleteall', [App\Http\Controllers\Backend\UserController::class, 'deleteAll'])->name('deleteall');
+        // Route::get('deleteall', [App\Http\Controllers\Backend\UserController::class, 'deleteAll'])->name('deleteall');
 
         Route::get('order',[App\Http\Controllers\Backend\OrderController::class, 'index'])->name('order')->middleware('XSS');
         Route::post('order-datatable', [App\Http\Controllers\Backend\OrderController::class, 'orderDatatable'])->name('order-datatable');

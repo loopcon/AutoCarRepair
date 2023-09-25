@@ -381,7 +381,7 @@ $(document).ready(function(){
             method : 'post',
             data : {_token: CSRF_TOKEN, service_id : service_id, qty : qty},
             success : function(result){
-                toastr.success('','Item successfully added to cart!',{timeOut: 1000});
+                toastr.success('','Item successfully added to cart!',{timeOut: 1});
                 setCartItemCount();                                          
             }
         });

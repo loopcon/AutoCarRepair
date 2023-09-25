@@ -16,24 +16,30 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    <!-- <div class="card-header">
+                    <div class="card-header">
                         <div class="form-row">
                             <div class="col-md-12 text-end">
-                                <div class="col-md-12 text-end"><a href="{{route('admin_faq-create')}}" class="btn btn-success"><i class="align-middle" data-feather="plus"></i>{{__('Add')}}</a></div>
+                                <button class="btn btn-danger selected_data">Delete Selected</button>
                             </div>
                         </div>
-                    </div> -->
+                    </div> 
                     <div class="card-body">
                         <table id="enquiry" class="table table-striped table-hover" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th>{{__('Id')}}</th>
+                                    <th>
+                                        <label class="form-check">
+                                            <input class="form-check-input" type="checkbox" id='checkAll' value="">
+                                            <span class="form-check-label">
+                                            {{__('id')}}
+                                            </span>
+                                        </label>
+                                    </th>
                                     <th>{{__('Name')}}</th>
                                     <th>{{__('Email')}}</th>
                                     <th>{{__('Phone')}}</th>
                                     <th>{{__('Service')}}</th>
                                     <th>{{__('Message')}}</th>
-                                    <th>{{__('Action')}}</th>
                                 </tr>
                             </thead>
                         </table>
@@ -50,7 +56,18 @@
 <script src="{{ asset('plugins/select2/js/select2.min.js') }}"></script>
 <script>
 $(document).ready(function() {
-    var page = $("#enquiry").DataTable({
+    $("#checkAll").change(function() {
+        if (this.checked) {
+            $(".checkSingle").each(function() {
+                this.checked=true;
+            });
+        } else {
+            $(".checkSingle").each(function() {
+                this.checked=false;
+            });
+        }
+    });
+    var enquiry = $("#enquiry").DataTable({
         "sScrollX": '100%',
         "order": [], //Initial no order.
         "aaSorting": [],
@@ -59,13 +76,12 @@ $(document).ready(function() {
         "pageLength": 100,
         "lengthMenu": [[50, 100, 200, 400], [50, 100, 200, 400]],
         "columns": [
-            {data: 'id', name: 'id'},
+            {data: 'id', name: 'id', orderable: false, searchable: false},
             {data: 'name', name: 'name'},
             {data: 'email', name: 'email'},
             {data: 'phone', name: 'phone'},
             {data: 'service', name: 'service'},
             {data: 'message', name: 'message'},
-            {data: 'action', name: 'action', orderable: false, searchable: false},
         ],
         "ajax" : {
             url : "{{ route('admin_enquiry-datatable') }}",
@@ -91,6 +107,45 @@ $(document).ready(function() {
         function(){
             location.href = href;
         });
+    });
+
+    $(document).on('click', '.selected_data', function(){
+        var group = $(this).val();
+        if(group != null || group != ''){
+            var enquirydelete = [];
+            $('input.checkSingle:checkbox:checked').each(function () {
+                enquirydelete.push($(this).val());
+            });
+            if(jQuery.isEmptyObject(enquirydelete)){
+                swal("Please select data!");
+            } else {
+                swal({
+                    title: "",
+                    text: "Are you sure you want to Delete This Selected Data?",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonClass: "btn-danger",
+                    confirmButtonText: "Yes",
+                    closeOnConfirm: true
+                }, function() {
+                    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                    $.ajax({
+                        url : "{{ route('admin_delete-enquiry-data') }}",
+                        method : 'post',
+                        data : {_token : CSRF_TOKEN, group : group, enquirydelete : enquirydelete},
+                        success : function(result){
+                            var result = $.parseJSON(result);
+                            if(result.result == 'success'){
+                                swal(" ", "Inquiry Deleted Successfully");
+                                enquiry.ajax.reload();
+                            }else{
+                                swal(" ", "Something went wrong, please try again later!");
+                            }
+                        }
+                    });
+                });
+            }
+        }
     });
 });
 </script>
