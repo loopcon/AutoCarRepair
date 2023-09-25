@@ -196,7 +196,7 @@
                 method : 'post',
                 data : {_token: CSRF_TOKEN, product_id : product_id, qty : qty},
                 success : function(result){
-                    toastr.success('Item successfully added to cart!');
+                    toastr.success('', 'Item successfully added to cart!', { timeOut: 1000 });
                     setCartItemCount();
                 }
             });
