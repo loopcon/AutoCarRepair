@@ -284,7 +284,7 @@ a.badge:hover{color:white;}
 .shoping-breadcrum-bg .brand-name-image{ display:block; margin:auto; }
 .shoping-breadcrum-bg .car-modal-image{}
 .shoping-category-bg{background:unset !important; } 
-.shoping-breadcrum-bg .shoping-breadcrum-main { display: flex; align-items: center; list-style: none; margin-bottom: 0px; padding: 22px 0px;}
+.shoping-breadcrum-bg .shoping-breadcrum-main { display: flex; align-items: center; list-style: none; margin-bottom: 0px; padding: 22px 0px; flex-wrap:wrap;}
 .shoping-breadcrum-bg .shoping-breadcrum-main li { font-size: 18px; font-weight: bold; margin-bottom: 0px; } 
 .shoping-breadcrum-bg .shoping-breadcrum-main li svg { margin: 0px 10px;  font-size: 16px; margin-bottom: 0px; }
 .shoping-breadcrum-bg .shoping-breadcrum-main li a { text-decoration: none;  color: #000000; font-size: 18px; }
