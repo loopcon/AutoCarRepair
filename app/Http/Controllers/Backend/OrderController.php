@@ -178,7 +178,8 @@ class OrderController extends MainController
                         $brand = isset($row->packageDetail->brandDetail->title) ? $row->packageDetail->brandDetail->title : NULL;
                         $model = isset($row->packageDetail->modelDetail->title) ? $row->packageDetail->modelDetail->title : NULL;
                         $fuel_type = isset($row->packageDetail->fuelTypeDetail->title) ? $row->packageDetail->fuelTypeDetail->title : NULL;
-                        $item = "<span class='text-nowrap'>".$service_category.'/'.$scheduled_title."</br>".$brand.' - '.$model.' - '.$fuel_type."</span>";
+                        $vehicle_number = isset($row->orderDetail->vehicle_number) ? $row->orderDetail->vehicle_number : NULL;
+                        $item = "<span class='text-nowrap'>".$service_category.'/'.$scheduled_title."</br>".$brand.' - '.$model.' - '.$fuel_type."</br>".$vehicle_number."</span>";
                     } else {
                         $item = isset($row->productDetail->name) ? $row->productDetail->name : '';
                     }

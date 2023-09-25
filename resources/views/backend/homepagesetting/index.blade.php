@@ -130,7 +130,7 @@
                                     <div class="mb-3 col-md-12">
                                     <label class="form-label" for="extra_meta_tag">{{__('Extra Meta Tag')}}</label>
 
-                                    <textarea class="form-control" id="editor" name="extra_meta_tag" placeholder="{{__('Extra Meta Tag')}}">{{ isset($record->extra_meta_tag) ? $record->extra_meta_tag : old('extra_meta_tag') }}</textarea>
+                                    <textarea class="form-control"  name="extra_meta_tag" placeholder="{{__('Extra Meta Tag')}}">{{ isset($record->extra_meta_tag) ? $record->extra_meta_tag : old('extra_meta_tag') }}</textarea>
                                     @if ($errors->has('extra_meta_tag')) <div class="text-danger">{{ $errors->first('extra_meta_tag') }}</div>@endif
                                     </div>
                                 </div>
