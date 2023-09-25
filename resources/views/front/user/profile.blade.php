@@ -63,26 +63,26 @@
                                     <h4>User Addresses</h4>
                                 </div>
                                 @if($addresses->count())
-                                    @foreach($addresses as $address)
+                                    @foreach($addresses as $address_val)
                                     <div class="row" id="address">
                                         <div class="col-md-12 text-end">
-                                            <div class="col-md-12 text-end"><a href="javascript:void(0)" data-db_id="{{$address->id}}" data-id="" class="btn btn-danger delete">Delete Below Address</a></div>
+                                            <div class="col-md-12 text-end"><a href="javascript:void(0)" data-db_id="{{$address_val->id}}" data-id="" class="btn btn-danger delete">Delete Below Address</a></div>
                                         </div>
                                         <div class="col-12">
                                             <hr>
                                         </div>
-                                        <input  type="hidden" name="aid[]" value="{{($address->id)}}" >
+                                        <input  type="hidden" name="aid[]" value="{{($address_val->id)}}" >
                                         <div class="col-md-12">
                                             <label class="form-label">Address<span class="text-danger">*</span></label>
-                                            <textarea name="address[]" value="{{($address->address)}}" placeholder="Address" required="" class="form-control ">{{$address->address}}</textarea>
+                                            <textarea name="address[]" value="{{($address_val->address)}}" placeholder="Address" required="" class="form-control ">{{$address_val->address}}</textarea>
                                         </div>
                                         <div class="col-md-4">
                                             <label class="form-label">City<span class="text-danger">*</span></label>
-                                            <input type="text" name="city[]" value="{{ $address->city}}" placeholder="CITY" required="" class="form-control">
+                                            <input type="text" name="city[]" value="{{ $address_val->city}}" placeholder="CITY" required="" class="form-control">
                                         </div> 
                                         <div class="col-md-4">
                                             <label class="form-label">Zip Code<span class="text-danger">*</span></label>
-                                            <input type="text" name="zip[]" value="{{ $address->zip}}" placeholder="ZIP CODE" required="" class="form-control num_only" maxlength="6">
+                                            <input type="text" name="zip[]" value="{{ $address_val->zip}}" placeholder="ZIP CODE" required="" class="form-control num_only" maxlength="6">
                                         </div>
 
                                         <div class="col-md-4 select-parsley">
@@ -90,7 +90,7 @@
                                             <select class="form-control state_selection " name="state[]"  required="">
                                                 <option value="all">--select--</option>
                                                 @foreach($states as $state)
-                                                    <option value="{{$state->name}}" @if(isset($address->state) && $address->state == $state->name){{'selected'}}@endif>{{$state->name}}</option>
+                                                    <option value="{{$state->name}}" @if(isset($address_val->state) && $address_val->state == $state->name){{'selected'}}@endif>{{$state->name}}</option>
                                                 @endforeach
                                             </select>
                                             @if ($errors->has('state')) <div class="text-danger">{{ $errors->first('state') }}</div>@endif

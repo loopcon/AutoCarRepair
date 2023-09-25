@@ -12,12 +12,15 @@ use App\Models\UserAddress;
 use App\Models\PickUpSlotSetting;
 use App\Models\BookedSlot;
 use App\Models\ScheduledPackage;
+use App\Models\ScheduledPackageDetail;
 use Auth;
 use Session;
 use App\Models\EmailTemplates;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
+use PDF;
+
 class CheckoutController extends MainController
 {
     public function index(request $request)
@@ -130,12 +133,12 @@ class CheckoutController extends MainController
                 $user->password_active=1;
                 $user->save();
 
-                $templateStr = array('[USER]' ,'[PASSWORD]');
-                $data = array($request->name , $genratepassword);
+                $templateStr = array('[USER]', '[Your Company Name]' ,'[PASSWORD]');
+                $data = array($request->name, $this->data['site_name'] , $genratepassword);
                 $ndata = EmailTemplates::select('template')->where('label', 'password')->first();
                 $html = isset($ndata->template) ? $ndata->template : NULL;
                 $mailHtml = str_replace($templateStr, $data, $html);
-//                \Mail::to($request->email)->send(new \App\Mail\CommonMail($mailHtml, 'Welcome '.$this->data['site_name']));
+                \Mail::to($request->email)->send(new \App\Mail\CommonMail($mailHtml, 'Welcome '.$this->data['site_name']));
                 $user_id=$user->id;
 
             }
@@ -180,8 +183,8 @@ class CheckoutController extends MainController
                 $order_id = $order->id;
                 $id_length = strlen((string)$order_id);
                 $iorder_id = $id_length == 1 ? '0'.$order_id : $order_id;
-                $inovice_no = 'ACR'.date('y').$iorder_id;
-                Order::where('id', $order_id)->update(array('invoice_no' => $inovice_no));
+                $invoice_no = 'ACR'.date('y').$iorder_id;
+                Order::where('id', $order_id)->update(array('invoice_no' => $invoice_no));
                 foreach($cart_data as $cdata){
                     $price = 0;
                     if($cdata->product_id){
@@ -227,8 +230,8 @@ class CheckoutController extends MainController
                         $slot->save();
 
                         // Send email for Booked Service - Start
-                        $package_data = ScheduledPackage::with('modelDetail', 'brandDetail', 'fuelTypeDetail')->Select('id','brand_id', 'model_id', 'fuel_type_id', 'title')->where('id', $cdata->service_id)->first();
-                        $package = isset($package_data->title) && $package_data->title ? $package_data->title : NULL;
+                        $package_data = ScheduledPackageDetail::with('modelDetail', 'brandDetail', 'fuelTypeDetail', 'packageDetail')->Select('id','brand_id', 'model_id', 'fuel_type_id', 'title')->where('id', $cdata->service_id)->first();
+                        $package = isset($package_data->packageDetail->title) && $package_data->packageDetail->title ? $package_data->packageDetail->title : NULL;
                         $model = isset($package_data->modelDetail->title) ? $package_data->modelDetail->title : NULL;
                         $brand = isset($package_data->brandDetail->title) ? $package_data->brandDetail->title : NULL;
                         $fuelType = isset($package_data->fuelTypeDetail->title) ? $package_data->fuelTypeDetail->title : NULL;
@@ -241,11 +244,33 @@ class CheckoutController extends MainController
                         $html = isset($ndata->template) ? $ndata->template : NULL;
                         $mailHtml = str_replace($templateStr, $data, $html);
 //                        print_r($mailHtml);exit;
-//                        \Mail::to($request->email)->send(new \App\Mail\CommonMail($mailHtml, 'Service Booked - '.$this->data['site_name']));
+                        \Mail::to([$request->email, $this->data['email']])->send(new \App\Mail\CommonMail($mailHtml, 'Service Booked - '.$this->data['site_name']));
                         // Send email for Booked Service - End
                     }
                     Cart::where('id', $cdata->id)->delete();
                 }
+                /** order mail start **/
+                /** invoice pdf start **/
+                $pdf_data = array();
+                $pdf_data['order'] = Order::with('detail', 'slotDetail')->where('invoice_no', $invoice_no)->orderBy('id', 'desc')->first();
+                $aslots = PickUpSlotSetting::select('id', 'time', 'slot')->where('slot', Constant::AFTERNOON)->orderBy('id')->get();
+                $eslots = PickUpSlotSetting::select('id', 'time', 'slot')->where('slot', Constant::EVENING)->orderBy('id')->get();
+                $mslots = PickUpSlotSetting::select('id', 'time', 'slot')->where('slot', Constant::MORNING)->orderBy('id')->get();
+                $pdf_data['aslots'] = $aslots;
+                $pdf_data['eslots'] = $eslots;
+                $pdf_data['mslots'] = $mslots;
+                $filename = $invoice_no.'.pdf';
+                $pdf = PDF::loadView('front.user.pdf',array_merge($this->data, $pdf_data));
+                /** invoice pdf end **/
+
+                $templateStr = array('[USER]', '[Company Name]', '[INVOICE]');
+                $data = array($request->name, $this->data['site_name'], $invoice_no);
+                $ndata = EmailTemplates::select('template')->where('label', 'create_order')->first();
+                $html = isset($ndata->template) ? $ndata->template : NULL;
+                $mailHtml = str_replace($templateStr, $data, $html);
+                \Mail::to([$request->email, $this->data['email']])->send(new \App\Mail\CommonMail($mailHtml, 'Order - '.$this->data['site_name'],array(), $pdf->output(), $filename)); 
+                /** order mail end **/
+
                 Session::put('scart', array());
                 Session::put('pcart', array());
 

@@ -48,7 +48,7 @@ class OrderController extends MainController
             $html = isset($ndata->template) ? $ndata->template : NULL;
             $mailHtml = str_replace($templateStr, $data, $html);
 //            print_r($mailHtml);exit;
-//            \Mail::to(auth()->user()->email)->send(new \App\Mail\CommonMail($mailHtml, 'Service Booked - '.$this->data['site_name']));
+            \Mail::to([auth()->user()->email, $this->data['email']])->send(new \App\Mail\CommonMail($mailHtml, 'Service Booked - '.$this->data['site_name']));
             // Send email for Cancel Order - End
             return redirect()->back()->with('success', trans('Order cancelled successfully.'));
         } else {
@@ -81,19 +81,19 @@ class OrderController extends MainController
             if($slot){
 
                 // Send email for Time Rearrange - Start
-                $serviceInfo = BookedSlot::with('order')->select('*')->where('id', $request->booking_id)->first();
+                $serviceInfo = BookedSlot::with('order')->select('*')->where('id', $booking_id)->first();
                 $user = isset($serviceInfo->order->name) && $serviceInfo->order->name ? $serviceInfo->order->name : NULL;
                 $invoice_no = isset($serviceInfo->order->invoice_no) && $serviceInfo->order->invoice_no ? $serviceInfo->order->invoice_no : NULL;
                 $email = isset($serviceInfo->order->email) && $serviceInfo->order->email ? $serviceInfo->order->email : NULL;
                 $date = $request->slot_date ? date('d/m/Y', strtotime($request->slot_date)) : NULL;
 
-                $templateStr = array('[USER]', '[INVOICE-NO]', '[DATE]', '[TIME]');
-                $data = array($user, $invoice_no, $date, $request->slot_time);
+                $templateStr = array('[USER]', '[Your Company Name]', '[INVOICE-NO]', '[DATE]', '[TIME]');
+                $data = array($user, $this->data['site_name'], $invoice_no, $date, $request->slot_time);
                 $ndata = EmailTemplates::select('template')->where('label', 'time_rearrange')->first();
                 $html = isset($ndata->template) ? $ndata->template : NULL;
                 $mailHtml = str_replace($templateStr, $data, $html);
                 //print_r($mailHtml);exit;
-//                \Mail::to($email)->send(new \App\Mail\CommonMail($mailHtml, 'Time Rearrange - '.$this->data['site_name']));
+                \Mail::to([$email,$this->data['email']])->send(new \App\Mail\CommonMail($mailHtml, 'Time Rearrange - '.$this->data['site_name']));
                 // Send email for Time Rearrange - End
                 return redirect()->back()->with('success', 'Slot Information updated successfully!');
             } else {

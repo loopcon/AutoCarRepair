@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
@@ -39,7 +38,7 @@ dd($response);
 //        $google_client->setClientSecret('SECRET');*/
         $return_data = array();
         $return_data['settings'] = $this->data;
-        $hsetting = HomePageSetting::select('section1_title1', 'section1_title2', 'section1_image', 'section1_description','image_title', 'meta_title', 'meta_keywords', 'meta_description', 'price_list','extra_meta_tag')->where('id', 1)->first();
+        $hsetting = HomePageSetting::select('section1_title1', 'section1_title2', 'section1_image', 'section1_description','image_title', 'meta_title', 'meta_keywords', 'meta_description', 'extra_meta_tag','price_list')->where('id', 1)->first();
         $return_data['hsetting'] = $hsetting;
         $return_data['offer_slider'] = OfferSlider::select('id', 'title1', 'title2', 'image','image_title', 'btn_link', 'btn_title')->orderBy('id', 'ASC')->get();
         $return_data['brand_logo_slider'] = BrandLogoSlider::select('id', 'image','image_title')->orderBy('id', 'ASC')->get();
@@ -50,10 +49,10 @@ dd($response);
         $return_data['site_title'] = $meta_title ? $meta_title : trans('Home');
         $return_data['scategories'] = ServiceCategory::select('id', 'slug', 'title', 'image','image_1','icon_image')->where([['is_archive', Constant::NOT_ARCHIVE], ['status', Constant::ACTIVE]])->orderBy('order_by', 'asc')->get();
         $return_data['service_center'] = ServiceCenterDetail::orderBy('id','asc')->get();
+        
+
         $popup_detail = ServiceCenterDetail::select('id','image','address','phone_number','image_title')->get();
         $return_data['popup_detail'] = $popup_detail;
-        $return_data['scategories'] = ServiceCategory::select('id', 'slug', 'title', 'image')->where([['is_archive', Constant::NOT_ARCHIVE], ['status', Constant::ACTIVE]])->orderBy('id', 'desc')->get();
-        $return_data['service_center_detail'] = ServiceCenterDetail::orderBy('id','asc')->get();
         return view('front/index',array_merge($this->data,$return_data));
     }
     
@@ -84,12 +83,12 @@ dd($response);
             // $service = isset($scategories->title) ? $scategories->title : NULL;
             $message = $request->message;
 
-            $templateStr = array('[NAME]','[EMAIL]','[PHONE]','[Message]');
-            $data = array($name, $email,$phone, $message);
+            $templateStr = array('[NAME]','[EMAIL]','[PHONE]','[Message]', '[Service]');
+            $data = array($name, $email,$phone, $message, '');
             $ndata = EmailTemplates::select('template')->where('label', 'request_appointment')->first();
             $html = isset($ndata->template) ? $ndata->template : NULL;
             $mailHtml = str_replace($templateStr, $data, $html);
-            // \Mail::to($request->email)->send(new \App\Mail\CommonMail($mailHtml, 'Request An Appointment - ' . $this->data['site_name']));
+            \Mail::to([$request->email, $this->data['email']])->send(new \App\Mail\CommonMail($mailHtml, 'Request An Appointment - ' . $this->data['site_name']));
             return redirect('/')->with('success', trans('Your Request Sent Successfully!'));
         } else {
             return redirect()->back()->with('error', trans('Something went wrong, please try again later!'));
