@@ -248,7 +248,7 @@
                     <span style='font-weight: normal;'>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</span>
                 </th>
                 <th style="text-align: right;font-size: 13px;">SubTotal</th>
-                <th style="text-align: right;font-size: 13px;">{{$order->total}}</th>
+                <th style="text-align: right;font-size: 13px;">{{formatNumber($subtotal)}}</th>
             </tr>
             <tr>
                 @php($gst_total = $order->product_gst + $order->service_gst)
