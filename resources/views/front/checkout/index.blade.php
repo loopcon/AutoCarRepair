@@ -85,15 +85,17 @@
                                 <p>Choose From Saved Addresses</p>
                                 @foreach($addresses as $aval)
                                     <div class="row m-0 choose-address-main mb-3">
-                                        @if(isset($addresses))
-                                        <input type="radio" name="address_radio" value="{{$aval->id}}" class="form-check-input address_radio" checked>
-                                        @else
-                                        <input type="radio" name="address_radio" value="{{$aval->id}}" class="form-check-input address_radio">
-                                        @endif
+                                        <div class="col-1">
+                                            @if(isset($addresses))
+                                            <input type="radio" name="address_radio" value="{{$aval->id}}" class="form-check-input address_radio" checked>
+                                            @else
+                                            <input type="radio" name="address_radio" value="{{$aval->id}}" class="form-check-input address_radio">
+                                            @endif
+                                        </div>
                                         <input type="hidden" id='uaddress{{$aval->id}}' value="{{$aval->address}}">
                                         <input type="hidden" id='uzip{{$aval->id}}' value="{{$aval->zip}}">
                                         <input type="hidden" id='ucity{{$aval->id}}' value="{{$aval->city}}">
-                                        <div class="col-3">
+                                        <div class="col-2">
                                             <i class="fa-solid fa-location-dot"></i>
                                         </div>
                                         <div class="col-9">
