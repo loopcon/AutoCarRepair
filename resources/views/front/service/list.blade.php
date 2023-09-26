@@ -15,9 +15,9 @@
                         @endif
                         <a class="servic-type-box-section" href="{{url($href)}}">
                                 <div class="servic-type-box">
-                                @if(!empty($service->icon_image) && isset($service->icon_image))
+                                <?php /**@if(!empty($service->icon_image) && isset($service->icon_image))
                                     <img src="{{url('uploads/service/category/icon/'.$service->icon_image)}}" class="servic-type-box-image" alt="" title="">
-                                @endif   
+                                @endif**/ ?>  
                                 <div class="service-type-head">
                                     <h4>{{ $service->title }}</h4>
                                 </div> 
@@ -49,7 +49,7 @@
             </div>
             <div class="col-12 col-md-6 testiminoal-carousel-sec-main">
                 <div id="testiminoal-carousel" class="owl-carousel owl-theme">
-                <div class="item">
+                    <div class="item">
                        <div>
                             <div class="star-group-icon">
                                 <i class="fa-solid fa-star"></i>
@@ -77,7 +77,7 @@
                             <div class="test-rating-sec-main">   
                                 <div>
                                     <div class="test-rating-main">
-                                        <img src="{{ asset('front/img/alon-musk-img.png') }}" class="img-fluid" alt="" title="">
+                                        <img src="{{ asset('front/img/r2.png') }}" class="img-fluid" alt="" title="">
                                     </div>
                                 </div>  
                                 <div class="test-rating-sec-item">
@@ -104,7 +104,7 @@
                             <div class="test-rating-sec-main">   
                                 <div>
                                     <div class="test-rating-main">
-                                        <img src="{{ asset('front/img/alon-musk-img.png') }}" class="img-fluid" alt="" title="">
+                                        <img src="{{ asset('front/img/m.png') }}" class="img-fluid" alt="" title="">
                                     </div>
                                 </div>  
                                 <div class="test-rating-sec-item">
@@ -130,7 +130,7 @@
                             <div class="test-rating-sec-main">   
                                 <div>
                                     <div class="test-rating-main">
-                                        <img src="{{ asset('front/img/alon-musk-img.png') }}" class="img-fluid" alt="" title="">
+                                        <img src="{{ asset('front/img/s.png') }}" class="img-fluid" alt="" title="">
                                     </div>
                                 </div>  
                                 <div class="test-rating-sec-item">
@@ -154,7 +154,7 @@
                             <div class="test-rating-sec-main">   
                                 <div>
                                     <div class="test-rating-main">
-                                        <img src="{{ asset('front/img/alon-musk-img.png') }}" class="img-fluid" alt="" title="">
+                                        <img src="{{ asset('front/img/m2.png') }}" class="img-fluid" alt="" title="">
                                     </div>
                                 </div>  
                                 <div class="test-rating-sec-item">
@@ -182,7 +182,7 @@
                             <div class="test-rating-sec-main">   
                                 <div>
                                     <div class="test-rating-main">
-                                        <img src="{{ asset('front/img/alon-musk-img.png') }}" class="img-fluid" alt="" title="">
+                                        <img src="{{ asset('front/img/s2.png') }}" class="img-fluid" alt="" title="">
                                     </div>
                                 </div>  
                                 <div class="test-rating-sec-item">
@@ -210,7 +210,7 @@
                             <div class="test-rating-sec-main">   
                                 <div>
                                     <div class="test-rating-main">
-                                        <img src="{{ asset('front/img/alon-musk-img.png') }}" class="img-fluid" alt="" title="">
+                                        <img src="{{ asset('front/img/r.png') }}" class="img-fluid" alt="" title="">
                                     </div>
                                 </div>  
                                 <div class="test-rating-sec-item">
@@ -234,7 +234,7 @@
                             <div class="test-rating-sec-main">   
                                 <div>
                                     <div class="test-rating-main">
-                                        <img src="{{ asset('front/img/alon-musk-img.png') }}" class="img-fluid" alt="" title="">
+                                        <img src="{{ asset('front/img/u.png') }}" class="img-fluid" alt="" title="">
                                     </div>
                                 </div>  
                                 <div class="test-rating-sec-item">

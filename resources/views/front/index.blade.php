@@ -258,7 +258,7 @@
                             <div class="test-rating-sec-main">   
                                 <div>
                                     <div class="test-rating-main">
-                                        <img src="{{ asset('front/img/alon-musk-img.png') }}" class="img-fluid" alt="" title="">
+                                        <img src="{{ asset('front/img/r2.png') }}" class="img-fluid" alt="" title="">
                                     </div>
                                 </div>  
                                 <div class="test-rating-sec-item">
@@ -285,7 +285,7 @@
                             <div class="test-rating-sec-main">   
                                 <div>
                                     <div class="test-rating-main">
-                                        <img src="{{ asset('front/img/alon-musk-img.png') }}" class="img-fluid" alt="" title="">
+                                        <img src="{{ asset('front/img/m.png') }}" class="img-fluid" alt="" title="">
                                     </div>
                                 </div>  
                                 <div class="test-rating-sec-item">
@@ -311,7 +311,7 @@
                             <div class="test-rating-sec-main">   
                                 <div>
                                     <div class="test-rating-main">
-                                        <img src="{{ asset('front/img/alon-musk-img.png') }}" class="img-fluid" alt="" title="">
+                                        <img src="{{ asset('front/img/s.png') }}" class="img-fluid" alt="" title="">
                                     </div>
                                 </div>  
                                 <div class="test-rating-sec-item">
@@ -335,7 +335,7 @@
                             <div class="test-rating-sec-main">   
                                 <div>
                                     <div class="test-rating-main">
-                                        <img src="{{ asset('front/img/alon-musk-img.png') }}" class="img-fluid" alt="" title="">
+                                        <img src="{{ asset('front/img/m2.png') }}" class="img-fluid" alt="" title="">
                                     </div>
                                 </div>  
                                 <div class="test-rating-sec-item">
@@ -363,7 +363,7 @@
                             <div class="test-rating-sec-main">   
                                 <div>
                                     <div class="test-rating-main">
-                                        <img src="{{ asset('front/img/alon-musk-img.png') }}" class="img-fluid" alt="" title="">
+                                        <img src="{{ asset('front/img/s2.png') }}" class="img-fluid" alt="" title="">
                                     </div>
                                 </div>  
                                 <div class="test-rating-sec-item">
@@ -391,7 +391,7 @@
                             <div class="test-rating-sec-main">   
                                 <div>
                                     <div class="test-rating-main">
-                                        <img src="{{ asset('front/img/alon-musk-img.png') }}" class="img-fluid" alt="" title="">
+                                        <img src="{{ asset('front/img/r.png') }}" class="img-fluid" alt="" title="">
                                     </div>
                                 </div>  
                                 <div class="test-rating-sec-item">
@@ -415,7 +415,7 @@
                             <div class="test-rating-sec-main">   
                                 <div>
                                     <div class="test-rating-main">
-                                        <img src="{{ asset('front/img/alon-musk-img.png') }}" class="img-fluid" alt="" title="">
+                                        <img src="{{ asset('front/img/u.png') }}" class="img-fluid" alt="" title="">
                                     </div>
                                 </div>  
                                 <div class="test-rating-sec-item">

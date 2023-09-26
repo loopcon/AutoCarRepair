@@ -161,7 +161,7 @@
                 <div class="col-12 col-md-6 testiminoal-carousel-sec-main">
                     <div id="testiminoal-carousel" class="owl-carousel owl-theme">
                         <div class="item">
-                        <div>
+                            <div>
                                 <div class="star-group-icon">
                                     <i class="fa-solid fa-star"></i>
                                     <i class="fa-solid fa-star"></i>
@@ -188,17 +188,17 @@
                                 <div class="test-rating-sec-main">   
                                     <div>
                                         <div class="test-rating-main">
-                                            <img src="{{ asset('front/img/alon-musk-img.png') }}" class="img-fluid" alt="" title="">
+                                            <img src="{{ asset('front/img/r2.png') }}" class="img-fluid" alt="" title="">
                                         </div>
                                     </div>  
                                     <div class="test-rating-sec-item">
                                         <span>Rajinder Takhar</span>
                                     </div>
                                 </div>
-                        </div>
+                            </div>
                         </div>
                         <div class="item">
-                            <div >
+                            <div>
                                 <div class="star-group-icon">
                                     <i class="fa-solid fa-star"></i>
                                     <i class="fa-solid fa-star"></i>
@@ -215,17 +215,17 @@
                                 <div class="test-rating-sec-main">   
                                     <div>
                                         <div class="test-rating-main">
-                                            <img src="{{ asset('front/img/alon-musk-img.png') }}" class="img-fluid" alt="" title="">
+                                            <img src="{{ asset('front/img/m.png') }}" class="img-fluid" alt="" title="">
                                         </div>
                                     </div>  
                                     <div class="test-rating-sec-item">
                                         <span>Mohit Parashar</span>
                                     </div>
                                 </div>
-                        </div>
+                            </div>
                         </div>
                         <div class="item">
-                            <div >
+                            <div>
                                 <div class="star-group-icon">
                                     <i class="fa-solid fa-star"></i>
                                     <i class="fa-solid fa-star"></i>
@@ -241,14 +241,14 @@
                                 <div class="test-rating-sec-main">   
                                     <div>
                                         <div class="test-rating-main">
-                                            <img src="{{ asset('front/img/alon-musk-img.png') }}" class="img-fluid" alt="" title="">
+                                            <img src="{{ asset('front/img/s.png') }}" class="img-fluid" alt="" title="">
                                         </div>
                                     </div>  
                                     <div class="test-rating-sec-item">
                                         <span>Southern Atsara</span>
                                     </div>
                                 </div>
-                        </div>
+                            </div>
                         </div>
                         <div class="item">
                             <div >
@@ -265,14 +265,14 @@
                                 <div class="test-rating-sec-main">   
                                     <div>
                                         <div class="test-rating-main">
-                                            <img src="{{ asset('front/img/alon-musk-img.png') }}" class="img-fluid" alt="" title="">
+                                            <img src="{{ asset('front/img/m2.png') }}" class="img-fluid" alt="" title="">
                                         </div>
                                     </div>  
                                     <div class="test-rating-sec-item">
                                         <span>mahesh joshi</span>
                                     </div>
                                 </div>
-                        </div>
+                            </div>
                         </div>
                         <div class="item">
                             <div >
@@ -293,14 +293,14 @@
                                 <div class="test-rating-sec-main">   
                                     <div>
                                         <div class="test-rating-main">
-                                            <img src="{{ asset('front/img/alon-musk-img.png') }}" class="img-fluid" alt="" title="">
+                                            <img src="{{ asset('front/img/s2.png') }}" class="img-fluid" alt="" title="">
                                         </div>
                                     </div>  
                                     <div class="test-rating-sec-item">
                                         <span>Sagar Saini</span>
                                     </div>
                                 </div>
-                        </div>
+                            </div>
                         </div>
                         <div class="item">
                             <div >
@@ -321,14 +321,14 @@
                                 <div class="test-rating-sec-main">   
                                     <div>
                                         <div class="test-rating-main">
-                                            <img src="{{ asset('front/img/alon-musk-img.png') }}" class="img-fluid" alt="" title="">
+                                            <img src="{{ asset('front/img/r.png') }}" class="img-fluid" alt="" title="">
                                         </div>
                                     </div>  
                                     <div class="test-rating-sec-item">
                                         <span>Rohit Tanwar</span>
                                     </div>
                                 </div>
-                        </div>
+                            </div>
                         </div>
                         <div class="item">
                             <div >
@@ -345,7 +345,7 @@
                                 <div class="test-rating-sec-main">   
                                     <div>
                                         <div class="test-rating-main">
-                                            <img src="{{ asset('front/img/alon-musk-img.png') }}" class="img-fluid" alt="" title="">
+                                            <img src="{{ asset('front/img/u.png') }}" class="img-fluid" alt="" title="">
                                         </div>
                                     </div>  
                                     <div class="test-rating-sec-item">
