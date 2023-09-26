@@ -49,8 +49,8 @@
             </div>
             <div class="col-12 col-md-6 testiminoal-carousel-sec-main">
                 <div id="testiminoal-carousel" class="owl-carousel owl-theme">
-                    <div class="item">
-                       <div >
+                <div class="item">
+                       <div>
                             <div class="star-group-icon">
                                 <i class="fa-solid fa-star"></i>
                                 <i class="fa-solid fa-star"></i>
@@ -59,8 +59,21 @@
                                 <i class="fa-solid fa-star"></i>
                             </div>
                             <div class="test-slider-text">
-                                <p>“The people at ACR are AMAZING. Their prices are more than fair and they work quickly. I had an instance…”</p>
+                                <p class="review-with-ellipsis">“Got my Jeep Compass serviced from them about 4 days ago.
+                                    My experience,right from the first call with Vishal(incharge of the call center) to the point i got my Jeep back,was very smooth.
+                                    My Vehicle was picked up by them on the dot of the shedule time-very punctua! Got a call from Vikas(service supervisor) to understand any spacific needs of mine.
+                                    Vishal and Vikas both were in regular tuch to inform the progress.i will give the center 5 stars in all aspects, vehicle is performing well,very courteous and efficient professinals.
+                                    Have no hesitation of recommending the service center as a multibrand service center for high end as well as other cars/SUVs.Good people and reasonable costs.Keep it up Vishal and Vikas and all othe team members.”
+                                </p>
+                                
+                               <?php /* <p class="review-without-ellipsis">“Got my Jeep Compass serviced from them about 4 days ago.
+                                    My experience,right from the first call with Vishal(incharge of the call center) to the point i got my Jeep back,was very smooth.
+                                    My Vehicle was picked up by them on the dot of the shedule time-very punctua! Got a call from Vikas(service supervisor) to understand any spacific needs of mine.
+                                    Vishal and Vikas both were in regular tuch to inform the progress.i will give the center 5 stars in all aspects, vehicle is performing well,very courteous and efficient professinals.
+                                    Have no hesitation of recommending the service center as a multibrand service center for high end as well as other cars/SUVs.Good people and reasonable costs.Keep it up Vishal and Vikas and all othe team members.”
+                                </p> */ ?>
                             </div>
+                            <?php /* <button class="review-with-readmore" href="">Read more</button> */ ?>
                             <div class="test-rating-sec-main">   
                                 <div>
                                     <div class="test-rating-main">
@@ -68,8 +81,7 @@
                                     </div>
                                 </div>  
                                 <div class="test-rating-sec-item">
-                                    <span>Elon Musk</span>
-                                    <p>10 April 2023</p>
+                                    <span>Rajinder Takhar</span>
                                 </div>
                             </div>
                        </div>
@@ -84,7 +96,10 @@
                                 <i class="fa-solid fa-star"></i>
                             </div>
                             <div class="test-slider-text">
-                                <p>“The people at ACR are AMAZING. Their prices are more than fair and they work quickly. I had an instance…”</p>
+                                <p>“I got my car serviced here. They picked up and dropped my car at my home.
+                                    it was hard to trust first but it was good decision I made.
+                                    I,m fully satisfied with service and quite impressed with Vishal as he tracks end to end progress and make it done on time.”
+                                </p>
                             </div>
                             <div class="test-rating-sec-main">   
                                 <div>
@@ -93,8 +108,7 @@
                                     </div>
                                 </div>  
                                 <div class="test-rating-sec-item">
-                                    <span>Elon Musk</span>
-                                    <p>10 April 2023</p>
+                                    <span>Mohit Parashar</span>
                                 </div>
                             </div>
                        </div>
@@ -109,7 +123,9 @@
                                 <i class="fa-solid fa-star"></i>
                             </div>
                             <div class="test-slider-text">
-                                <p>“The people at ACR are AMAZING. Their prices are more than fair and they work quickly. I had an instance…”</p>
+                                <p>“Much appreciation to Vikas Ji Who Worked on my car. Not only did he have extensive Knowledge and expertise, but olso displayed exceptional professionalism throughout the process.
+                                    The efficiency with wich he completed the repairs was remarkable. Despite the workshop being rather busy, he managed to promptly diagnose and fix the problem. In conclusion, if you are in need of any vehicle repairs, this is the place to go. They exceeded my expectations, and I have complete confidence that they will do the same for anyone else seeking their services.”
+                                </p>
                             </div>
                             <div class="test-rating-sec-main">   
                                 <div>
@@ -118,8 +134,7 @@
                                     </div>
                                 </div>  
                                 <div class="test-rating-sec-item">
-                                    <span>Elon Musk</span>
-                                    <p>10 April 2023</p>
+                                    <span>Southern Atsara</span>
                                 </div>
                             </div>
                        </div>
@@ -134,7 +149,7 @@
                                 <i class="fa-solid fa-star"></i>
                             </div>
                             <div class="test-slider-text">
-                                <p>“The people at ACR are AMAZING. Their prices are more than fair and they work quickly. I had an instance…”</p>
+                                <p>“it was a plesant experience to wath CCR Service doing the service of nmy i10 car. The car was picked from my residence at the appointmented time and the service was done with clockwise precision n returned back to me. i am fully satisfied and am impressed by Mr Vishal for handling the entire process professionally and in an efficient manner. I wish all the success to ACR Service Center.”</p>
                             </div>
                             <div class="test-rating-sec-main">   
                                 <div>
@@ -143,11 +158,90 @@
                                     </div>
                                 </div>  
                                 <div class="test-rating-sec-item">
-                                    <span>Elon Musk</span>
-                                    <p>10 April 2023</p>
+                                    <span>mahesh joshi</span>
                                 </div>
                             </div>
                        </div>
+                    </div>
+                    <div class="item">
+                        <div >
+                            <div class="star-group-icon">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <div class="test-slider-text">
+                                <p>“Best stopper for car service, had a great experience, got my job done before time, staff is polite.
+                                    Would recommend to everyone who are looking for hassle free service.
+
+                                    Services: Transmission, A/Cservices, Air & cabin filter replacement, Tire air pump, Tire pressure testing, Vehicle Inspection.”
+                                </p>
+                            </div>
+                            <div class="test-rating-sec-main">   
+                                <div>
+                                    <div class="test-rating-main">
+                                        <img src="{{ asset('front/img/alon-musk-img.png') }}" class="img-fluid" alt="" title="">
+                                    </div>
+                                </div>  
+                                <div class="test-rating-sec-item">
+                                    <span>Sagar Saini</span>
+                                </div>
+                            </div>
+                       </div>
+                    </div>
+                    <div class="item">
+                        <div >
+                            <div class="star-group-icon">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <div class="test-slider-text">
+                                <p>“Had Great experience With ACR. In terms of work, Staff Behaviour, expenses, Everything.
+                                    Things were fully organised. To be honest i have saved almost 10 to 12k on my complete work if i compare With Hyundai showroom, They gave me the Estimation of Approx 10k just the simple service, but In ACR i got the same things done in just 3800.
+                                    My car is Running So smooth.
+                                    Special thanks to Vishal Biswas and Vikas. Keep it up guys."
+                                </p>
+                            </div>
+                            <div class="test-rating-sec-main">   
+                                <div>
+                                    <div class="test-rating-main">
+                                        <img src="{{ asset('front/img/alon-musk-img.png') }}" class="img-fluid" alt="" title="">
+                                    </div>
+                                </div>  
+                                <div class="test-rating-sec-item">
+                                    <span>Rohit Tanwar</span>
+                                </div>
+                            </div>
+                       </div>
+                    </div>
+                    <div class="item">
+                        <div >
+                            <div class="star-group-icon">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <div class="test-slider-text">
+                                <p>“I had service my car from ACR. Experience is very nice Mr.Vishal is folloeing with me from Last 2 months very nice person And advice is Mr.Sandeep thanks for your service."</p>
+                            </div>
+                            <div class="test-rating-sec-main">   
+                                <div>
+                                    <div class="test-rating-main">
+                                        <img src="{{ asset('front/img/alon-musk-img.png') }}" class="img-fluid" alt="" title="">
+                                    </div>
+                                </div>  
+                                <div class="test-rating-sec-item">
+                                    <span>udaibhan yadav</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
