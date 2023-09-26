@@ -87,7 +87,7 @@
                        </div>
                     </div>
                     <div class="item">
-                        <div >
+                        <div>
                             <div class="star-group-icon">
                                 <i class="fa-solid fa-star"></i>
                                 <i class="fa-solid fa-star"></i>
@@ -114,7 +114,7 @@
                        </div>
                     </div>
                     <div class="item">
-                        <div >
+                        <div>
                             <div class="star-group-icon">
                                 <i class="fa-solid fa-star"></i>
                                 <i class="fa-solid fa-star"></i>
@@ -140,7 +140,7 @@
                        </div>
                     </div>
                     <div class="item">
-                        <div >
+                        <div>
                             <div class="star-group-icon">
                                 <i class="fa-solid fa-star"></i>
                                 <i class="fa-solid fa-star"></i>
@@ -164,7 +164,7 @@
                        </div>
                     </div>
                     <div class="item">
-                        <div >
+                        <div>
                             <div class="star-group-icon">
                                 <i class="fa-solid fa-star"></i>
                                 <i class="fa-solid fa-star"></i>
@@ -192,7 +192,7 @@
                        </div>
                     </div>
                     <div class="item">
-                        <div >
+                        <div>
                             <div class="star-group-icon">
                                 <i class="fa-solid fa-star"></i>
                                 <i class="fa-solid fa-star"></i>
@@ -220,7 +220,7 @@
                        </div>
                     </div>
                     <div class="item">
-                        <div >
+                        <div>
                             <div class="star-group-icon">
                                 <i class="fa-solid fa-star"></i>
                                 <i class="fa-solid fa-star"></i>
