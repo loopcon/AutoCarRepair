@@ -171,8 +171,8 @@ a.badge:hover{color:white;}
 .testimonial-section .star-group-icon{ margin-bottom: 10px;}
 .testimonial-section .star-group-icon svg{ color: #fec42d; font-size: 20px; margin-right: 5px; }
 .testimonial-section .test-slider-text{ font-size: 26px; color: #000000; font-weight: bold;}
-.testimonial-section .test-rating-sec-main{ display: flex; align-items: center; }
-.testimonial-section .test-rating-main { height: 80px; width: 80px; border-radius: 50%;  }
+.testimonial-section .test-rating-sec-main{ display: flex; align-items: center; margin-top:15px; }
+.testimonial-section .test-rating-main { height: 50px; width: 50px; border-radius: 50%;  }
 .testimonial-section .test-rating-sec-item{ margin-left: 15px; }
 .testimonial-section .test-rating-sec-item p { margin-bottom: 0px;  font-size: 21px; color: #000000;  }
 .testimonial-section .test-rating-sec-item span{  font-weight: bold; font-size: 26px; color: #000000; }
@@ -600,7 +600,7 @@ button { color: #000; outline: none; }
 .filter-click-main .form-check-input:focus{box-shadow: none !important;}
 /* cms page css start  */
 .cms-page-section{background-color: #164498;padding: 20px;}
-.cms-image-main{height: 450px;width: 100%;object-fit: contain;filter: brightness(0.5);}
+.cms-image-main{height: 450px;width: 100%;object-fit: cover;filter: brightness(0.5);}
 .cms-section-main{ position: relative;}
 .cms-section-text{position: absolute;top: 50%;left: 9%;transform: translateY(-50%);width: 40%;}
 .cms-section-text h2{font-size: 2.7rem;font-weight: bold;color: #fff;margin-bottom: 25px;}
@@ -834,3 +834,16 @@ location css
 	background-color: #000000;
 	border: 2px solid #555555;
 }
+.test-slider-text p { font-size:15px; font-weight:500; margin-bottom:0px;}
+.review-with-ellipsis{ 
+    overflow: hidden;
+   display: -webkit-box;
+   -webkit-line-clamp: 4; /* number of lines to show */
+           line-clamp: 4; 
+   -webkit-box-orient: vertical;
+}
+.review-without-ellipsis{
+    display:none;
+}
+.readmore{border: 0px; background: unset; color: #164498; font-size:16px; }
+.readless{border: 0px; background: unset; color: #164498; font-size:16px; }
