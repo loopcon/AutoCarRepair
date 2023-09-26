@@ -212,8 +212,8 @@ class ServiceController extends MainController
                     return $html;
                 })
                 ->addColumn('image', function ($row) {
-                    $image = $row->image ? "<img src='".url('uploads/service/category/'.$row->image)."' width='80px' height='80px'>" : '';
-                    return $image;
+                    $icon_image = $row->icon_image ? "<img src='".url('uploads/service/category/icon/'.$row->icon_image)."' width='80px' height='80px'>" : '';
+                    return $icon_image;
                 })
                 ->addColumn('status', function ($row) {
                     $html = $row->status == Constant::ACTIVE ? '<span class="badge bg-success">Active</span>' : '<span class="badge bg-danger">Inactive</span>';
