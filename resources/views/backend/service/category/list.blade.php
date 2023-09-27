@@ -28,7 +28,7 @@
                                 <tr>
                                     <th>{{__('Reorder')}}</th>
                                     <th>{{__('Id')}}</th>
-                                    <th>{{__('Image')}}</th>
+                                    <th>{{__('Icon')}}</th>
                                     <th>{{__('Title')}}</th> 
                                     <th>{{__('Description')}}</th> 
                                     <th>{{__('Status')}}</th>

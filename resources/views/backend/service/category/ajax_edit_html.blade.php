@@ -19,8 +19,8 @@
                 <input type="text" class="form-control" id="title" name="title" placeholder="{{__('Title')}}" required=""  data-parsley-required-message="{{ __("This value is required.")}}" value="{{ isset($record->title) ? $record->title : old('title') }}">
             </div>
             <div class="mb-3 col-md-6">
-                <label class="form-label" for="image">{{__('Image')}}<span class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="image" name="image" placeholder="{{__('Image')}}" required=""  data-parsley-required-message="{{ __("This value is required.")}}" value="{{ isset($record->image) ? $record->image : old('image') }}">
+                <label class="form-label" for="image">{{__('Image')}}</label>
+                <input type="text" class="form-control" id="image" name="image" placeholder="{{__('Image')}}" value="{{ isset($record->image) ? $record->image : old('image') }}">
             </div>
             <?php /**<div class="mb-3 col-md-12">
                 <label class="form-label" for="image">{{__('Image')}}<span class="text-danger">*</span></label>

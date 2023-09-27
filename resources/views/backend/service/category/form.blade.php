@@ -93,7 +93,7 @@
                                 </div>
 
                                 <div class="mb-3 col-md-6">
-                                    <label class="form-label" for="icon_image">{{__('Icon Image')}}<span class="text-danger">*</span></label>
+                                    <label class="form-label" for="icon_image">{{__('Icon Image')}}</label>
                                     <div class="icon_image">
                                         @php($i=2)
                                         @if(isset($record->icon_image))

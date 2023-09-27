@@ -203,7 +203,7 @@ class ServiceController extends MainController
     public function serviceCategoryDatatable(request $request)
     {
         if($request->ajax()){
-            $query = ServiceCategory::select('id', 'title', 'image', 'description', 'order_by', 'status')->where('is_archive', '=', Constant::NOT_ARCHIVE)->orderBy('id', 'DESC');
+            $query = ServiceCategory::select('id', 'title', 'image','icon_image', 'description', 'order_by', 'status')->where('is_archive', '=', Constant::NOT_ARCHIVE)->orderBy('id', 'DESC');
             $list = $query->get();
 
             return DataTables::of($list)
