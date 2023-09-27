@@ -567,8 +567,16 @@ $(document).ready(function() {
                     $('#appointmentselectModal').modal('show');
                 }
                 var localstorage_phone = localStorage.getItem("phone");
+                $("#appointmentmobile").val(localstorage_phone);
+                //$("#appointmentmobile").parent().css({"visibility":"hidden"});
+                $('#appointmentresend_text').hide();
+                $('#appointmentis_otp_verify').val('1');
+                $('#check_price').show();
+                //$("#appointmentmobile").attr("readonly", "readonly"); 
+                $('#appointmentotp').hide();
+                $('#appointmentsend_otp').hide();
                 console.log(localstorage_phone);
-                if(localstorage_phone != null) {
+                /*if(localstorage_phone != null) {
                     $("#appointmentmobile").val(localstorage_phone);
                     $("#appointmentmobile").parent().css({"visibility":"hidden"});
                     $('#appointmentresend_text').hide();
@@ -580,7 +588,7 @@ $(document).ready(function() {
                 } else {
                     $('#appointmentsend_otp').show();
                     $('#check_price').hide();
-                }
+                }*/
             }
         });
 

@@ -13,34 +13,39 @@
                     <li>{{isset($category->title) && $category->title ? $category->title : ''}}</li>
                 </ul>
             </div>
-            <div class="col-12 col-sm-6 p-0">
-                <div class="row m-0">
-                    <div class="col-4 d-flex justify-content-end">
-                        <div class="car-modal-name">
-                            @if(isset($brandquery->image) && $brandquery->image)
+            @php($sbrand_id = Session::get('brand_id'))
+            @php($smodel_id = Session::get('model_id'))
+            @php($sfuel_id = Session::get('fuel_id'))
+            @if($sbrand_id && $smodel_id && $sfuel_id)
+                <div class="col-12 col-sm-6 p-0">
+                    <div class="row m-0">
+                        <div class="col-4 d-flex justify-content-end">
+                            <div class="car-modal-name">
+                                @if(isset($brandquery->image) && $brandquery->image)
                                     <img src="{{ url($brandquery->image )}}" class="brand-name-image" alt="" title="">
-                            @endif
-                            <p class="service-inner-modalname">{{isset($brandquery->title) ? $brandquery->title : NULL}}</p>
+                                @endif
+                                <p class="service-inner-modalname">{{isset($brandquery->title) ? $brandquery->title : NULL}}</p>
+                            </div>
+                        </div>
+                        <div class="col-4 d-flex justify-content-end">
+                            <div class="car-modal-image">
+                                @if(isset($modelname->image) && $modelname->image)
+                                        <img src="{{ url($modelname->image )}}" class="brand-name-image" alt="" title="">
+                                @endif
+                                <p class="service-inner-modalname">{{isset($modelname->title) ? $modelname->title : NULL}}</p>
+                            </div>
+                        </div>
+                        <div class="col-4 d-flex justify-content-end">
+                            <div class="car-modal-cng">
+                                @if(isset($fuelname->image) && $fuelname->image)
+                                        <img src="{{ url('public/uploads/fueltype/'.$fuelname->image )}}" class="brand-name-image" alt="" title="">
+                                @endif
+                                <p class="service-inner-modalname">{{isset($fuelname->title) ? $fuelname->title : NULL}}</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-4 d-flex justify-content-end">
-                        <div class="car-modal-image">
-                            @if(isset($modelname->image) && $modelname->image)
-                                    <img src="{{ url($modelname->image )}}" class="brand-name-image" alt="" title="">
-                            @endif
-                            <p class="service-inner-modalname">{{isset($modelname->title) ? $modelname->title : NULL}}</p>
-                        </div>
-                    </div>
-                    <div class="col-4 d-flex justify-content-end">
-                        <div class="car-modal-cng">
-                             @if(isset($fuelname->image) && $fuelname->image)
-                                    <img src="{{ url('public/uploads/fueltype/'.$fuelname->image )}}" class="brand-name-image" alt="" title="">
-                            @endif
-                            <p class="service-inner-modalname">{{isset($fuelname->title) ? $fuelname->title : NULL}}</p>
-                        </div>
-                    </div>
-                </div>
-             </div>   
+                 </div>
+            @endif
         </div>
     </div>
 </div>
@@ -51,11 +56,7 @@
         <!-- <h2>Scheduled Packages</h2> -->
         @if(isset($detail) && $detail->count())
             @foreach($detail as $record)
-                @if($price_show)
-                    @php($packageDetail = $record->packageDetail)
-                @else
-                    @php($packageDetail = $record)
-                @endif
+                @php($packageDetail = $record)
                 <div class="service-inner-mainbg">
                     <div class="row">
                         <div class="col-12 col-md-4">
@@ -119,9 +120,17 @@
                     </div>
                     @if($price_show)
                         <div class="payment-main">
-                            @if($record->price > 0)
-                                <div class="packeage-prise"> <p>₹ {{$record->price}}</p>  </div>
-                                <div> <button class="ser-inner-addtocart" id="add_to_cart_service" data-id="{{$record->id}}"> Add to Cart</button></div>
+                            @php($brand_id = isset($brandquery->id) && $brandquery->id ? $brandquery->id : NULL)
+                            @php($model_id = isset($modelname->id) && $modelname->id ? $modelname->id : NULL)
+                            @php($fuel_id = isset($fuelname->id) && $fuelname->id ? $fuelname->id : NULL)
+                            @php($priceInfo = getServicePrice($brand_id, $model_id, $fuel_id, $record->id))
+                            @if(isset($priceInfo->price) && $priceInfo->price > 0)
+                                <div class="packeage-prise"> <p>₹ {{$priceInfo->price}}</p>  </div>
+                                @if($sbrand_id && $smodel_id && $sfuel_id)
+                                    <div> <button class="ser-inner-addtocart" id="add_to_cart_service" data-id="{{$priceInfo->id}}"> Add to Cart</button></div>
+                                @else
+                                    <div> <button class="ser-inner-addtocart apt-btn"> Book A Service</button></div>
+                                @endif
                             @else
                                 <div class="packeage-prise"> <p>N/A</p>  </div>
                             @endif

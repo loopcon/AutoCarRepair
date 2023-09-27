@@ -10,7 +10,7 @@
                 @foreach($scategories as $service)
                     <div class="col-12 col-sm-6 col-lg-4">
                     @php($href = $service->slug)
-                        @if(in_array($service->id, $carray) && isset($brand) && isset($model) && isset($fuel))
+                        @if(isset($brand) && isset($model) && isset($fuel))
                             @php($href = $service->slug.'/'.$brand.'/'.$model.'/'.$fuel)
                         @endif
                         <a class="servic-type-box-section" href="{{url($href)}}">

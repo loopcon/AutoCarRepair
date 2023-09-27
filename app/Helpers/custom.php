@@ -253,3 +253,8 @@ function getFuelSlugFromFuelId($fuel_id = ''){
     $slug = isset($qinfo->slug) ? $qinfo->slug : NULL;
     return $slug;
 }
+
+function getServicePrice($brand = '',$model = '', $fuel = '', $sp_id = ''){
+    $priceInfo = App\Models\ScheduledPackageDetail::select('id','price')->where([['sp_id', $sp_id],['brand_id', $brand], ['model_id', $model], ['fuel_type_id', $fuel]])->first();
+    return $priceInfo;
+}
