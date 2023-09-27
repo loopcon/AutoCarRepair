@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\OrderDetails;
+use App\Models\PickUpSlotSetting;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Crypt;
 use App\Constant;
@@ -87,7 +88,7 @@ class OrderController extends MainController
                     $html .= "<span class='text-nowrap'>";
                     // $html .= "<a href='javascript:void(0);' data-href='".route('admin_order-delete',array($id))."' rel='tooltip' title='".trans('Delete')."' class='btn btn-danger btn-sm mr-20 delete'><i class='fa fa-trash-alt'></i></a>&nbsp";
                     $html .= "<a href='".route('admin_order-detail',array($id))."' rel='tooltip' title='Detail' class='btn btn-info btn-sm'>Detail</a><br><br>";
-                    $html .= "<a href='".url('invoice/'.$row->invoice_no)."' title='View Invoice' class='badge bg-success' target='blank'>View Invoice</a><br>";
+                    $html .= "<a href='".url('backend/invoice/'.$row->invoice_no)."' title='View Invoice' class='badge bg-success' target='blank'>View Invoice</a><br>";
                     if($row->is_complete == Constant::NO) {
                         $html .= "<a href='javascript:void(0);' class='btn btn-warning btn-sm complete' data-status='".Constant::YES."' data-id='".$id."' rel='tooltip' title='complete'>Is omplete?</a>";
                     } 

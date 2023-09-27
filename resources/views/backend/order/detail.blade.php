@@ -20,7 +20,7 @@
                         <h5 class="card-title mb-0">Basic Details</h5>
                     </div> 
                     <div class="card-body">
-                        <span><b>Invoice No: </b>#{{$detail->invoice_no}}</span> <a class="badge bg-success" href="{{url('invoice/'.$detail->invoice_no)}}">View Invoice</a><br/>
+                        <span><b>Invoice No: </b>#{{$detail->invoice_no}}</span> <a class="badge bg-success" href="{{url('backend/invoice/'.$detail->invoice_no)}}" target="_blank">View Invoice</a><br/>
                         <span><b>Name: </b>{{$detail->name}}</span><br/>
                         <span><b>Email: </b>{{$detail->email}}</span><br/>
                         <span><b>Phone: </b>{{$detail->phone}}</span><br/>
