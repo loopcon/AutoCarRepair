@@ -111,36 +111,34 @@
                     <div class="why-choose-main">
                         <div class="why-choose-item  text-center">
                             <h4>Why Choose Us?</h4>
-                            <h5> Why Choose Auto Car Repair Service?</h5>
-                            <p>Our goal is to ensure that every customer’s satisfaction is guaranteed. We 
-                                have a range of highly skilled technicians who can perform work on a 
-                                variety of makes and models.</p>    
+                            <h5>Choose Our Multibrand Car Service Center for Unparalleled Excellence</h5>
+                            <p>Our skilled technicians ensure your vehicle's peak performance, safety, and longevity through meticulous maintenance, advanced diagnostics, and genuine parts, providing a seamless driving experience you can trust.</p>    
                         </div>
                         <div class="row m-0 why-choose-section-new">
                             <div class="col-12 col-sm-6 col-lg-3"> 
                                 <div class="why-choose-inner-item">
-                                    <img src="{{ asset('front/img/skilled technicians.webp') }}" class="img-fluid" alt="" title="car repair service">
+                                    <img src="{{ asset('front/img/Pre-Owned Workshop.webp') }}" class="img-fluid" alt="" title="car repair service">
                                     <h4>Pre-Owned Workshop</h4>
-                                    <p>We strive to meet the industry standards by operating through our state-of-the-art workshop.</p>
+                                    <p>The pricing and quality of automotive services are directly under our control.</p>
                                 </div>
                             </div>
                             <div class="col-12 col-sm-6 col-lg-3">
                                 <div class="why-choose-inner-item">
-                                    <img src="{{ asset('front/img/why-qualservice.webp') }}" class="img-fluid" alt="" title="car repair service">
+                                    <img src="{{ asset('front/img/High-Quality Services.webp') }}" class="img-fluid" alt="" title="car repair service">
                                     <h4>High-Quality Services</h4>
                                     <p>We are committed to providing top-notch services ensuring reliability and safety.</p>
                                 </div>
                             </div>
                             <div class="col-12 col-sm-6 col-lg-3">
                                 <div class="why-choose-inner-item">
-                                    <img src="{{ asset('front/img/why-car-insurance.webp') }}" class="img-fluid" alt="" title="">
+                                    <img src="{{ asset('front/img/Experienced Technicians.webp') }}" class="img-fluid" alt="" title="">
                                     <h4>Experienced Technicians</h4>
                                     <p>Our Experienced and Certified technicians have the expertise to deliver quality services.</p>
                                 </div>
                             </div>
                             <div class="col-12 col-sm-6 col-lg-3">
                                 <div class="why-choose-inner-item">
-                                    <img src="{{ asset('front/img/why-car-parts.webp') }}" class="img-fluid" alt="" title="">
+                                    <img src="{{ asset('front/img/Genuine Products.webp') }}" class="img-fluid" alt="" title="">
                                     <h4>Genuine Products</h4>
                                     <p>We use 100% authentic parts and products to maintain the quality and efficiency of your car.</p>
                                 </div>
@@ -170,7 +168,6 @@
                                     <div class="service-type-head">
                                         <h5>{{ $service->title }}</h5>
                                     </div> 
-                                    
                                 </div>
                             </a>
                         </div>
@@ -246,7 +243,7 @@
                                     Vishal and Vikas both were in regular tuch to inform the progress.i will give the center 5 stars in all aspects, vehicle is performing well,very courteous and efficient professinals.
                                     Have no hesitation of recommending the service center as a multibrand service center for high end as well as other cars/SUVs.Good people and reasonable costs.Keep it up Vishal and Vikas and all othe team members.”
                                 </p>
-                                
+
                                 <p class="review-without-ellipsis">“Got my Jeep Compass serviced from them about 4 days ago.
                                     My experience,right from the first call with Vishal(incharge of the call center) to the point i got my Jeep back,was very smooth.
                                     My Vehicle was picked up by them on the dot of the shedule time-very punctua! Got a call from Vikas(service supervisor) to understand any spacific needs of mine.
@@ -281,9 +278,7 @@
                                     it was hard to trust first but it was good decision I made.
                                     I,m fully satisfied with service and quite impressed with Vishal as he tracks end to end progress and make it done on time.”
                                 </p>
-                                 
                             </div>
-                             
                             <div class="test-rating-sec-main">   
                                 <div>
                                     <div class="test-rating-main">
