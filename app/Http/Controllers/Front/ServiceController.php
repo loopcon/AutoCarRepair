@@ -28,9 +28,14 @@ class ServiceController extends MainController
         $fuel_id = Session::get('fuel_id');
         
         if($brand_id && $model_id && $fuel_id){} else{
-            $brand_id = 20;
-            $model_id = 128;
-            $fuel_id = 5;
+            $brandInfo = CarBrand::select('id')->where([['title', 'MARUTI SUZUKI']])->first();
+            $brand_id = isset($brandInfo->id) ? $brandInfo->id  : NULL;
+
+            $modelInfo = CarModel::select('id')->where([['title', 'SWIFT']])->first();
+            $model_id = isset($modelInfo->id) ? $modelInfo->id  : NULL;
+
+            $fuelInfo = FuelType::select('id')->where([['title', 'Petrol']])->first();
+            $fuel_id =  isset($fuelInfo->id) ? $fuelInfo->id  : NULL;
         }
 //        dd($brand_id."----".$model_id."-------".$fuel_id);
         $carray = array();

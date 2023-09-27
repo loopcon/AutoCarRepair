@@ -129,7 +129,7 @@
                                 @if($sbrand_id && $smodel_id && $sfuel_id)
                                     <div> <button class="ser-inner-addtocart" id="add_to_cart_service" data-id="{{$priceInfo->id}}"> Add to Cart</button></div>
                                 @else
-                                    <div> <button class="ser-inner-addtocart apt-btn"> Book A Service</button></div>
+                                    <div> <button class="ser-inner-addtocart apt-btn"> Select Your Car</button></div>
                                 @endif
                             @else
                                 <div class="packeage-prise"> <p>N/A</p>  </div>
