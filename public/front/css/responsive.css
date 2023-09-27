@@ -11,7 +11,7 @@
     .slider-section-main h2{ font-size: 60px;}
     .slider-section-main h5{ font-size: 40px;}
     .our-service-section .servic-type-box{ min-height: 180px;}
-    .login-icon-main{transform: translate3d(-52px, 36px, 0px) !important;}
+    .login-icon-main{transform: translate3d(52px, 36px, 0px) !important;}
     #sync1 .product-inner-imgmain img{ height: auto;}
     #sync2 .product-inner-imgmain img{ height: auto; }
     .save-more-section .save-more-text{ font-size: 34px;}
@@ -21,6 +21,8 @@
     .footer-whatappicon{ right:9%;}
     .up-btn-sticky{ right: 2%;}
     .acr-navbar-main li a{font-size: 1rem;}
+    #choose-service-center .owl-nav button.owl-next{right:-30px;}
+    #choose-service-center .owl-nav button.owl-prev{left:-30px;}
 }
 @media (min-width:992px){ 
     .mobile-menu-sectiondata{ display: none;}
