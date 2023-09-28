@@ -92,6 +92,7 @@ class RegisterController extends Controller
         $user->password = Hash::make($request->password);
         $user->save();
 
+        $this->sendDataToFreshFork($request);
         // Send email for Welcome user - Start
         $templateStr = array('[USER]');
         $data = array($request->firstname);
@@ -120,5 +121,131 @@ class RegisterController extends Controller
             return redirect('/')->with('success', trans('Your Account Registration Successfully!'));
         }
         return redirect()->back()->withInput()->withErrors(['register_error' => 'Email address has already been taken.']);
+    }
+
+    public function sendDataToFreshFork($request){
+        $name = isset($request->firstname) ? $request->firstname : '' ;
+        $email = isset($request->email) ? $request->email : "";
+        $mobile = isset($request->phone) ? $request->phone : (isset($request->mobile) ? $request->mobile : '');
+        $visit_date = date('Y-m-d');
+        $model = isset($request->model) ? $request->model : "";
+
+        $location = "";
+        $enquiry_type = "ACR Service";
+        $timestamp = time();
+        $formname = "ACR Landing ";
+        
+        $sources = isset($request->utm_source) ? $request->utm_source : "";
+        $medium = isset($request->utm_medium) ? $request->utm_medium : "";
+        $campaign = isset($request->utm_campaign) ? $request->utm_campaign : "";
+        $term = isset($request->utm_term) ? $request->utm_term : "";
+        $content = isset($request->utm_content) ? $request->utm_content : "";
+        $sourceid = "70001109499";
+
+        if($location==""){
+            $location = isset($request->location) ? $request->location : "";
+        }
+
+        $jsonobj=array("contact"=>array("first_name"=>$name."-".$timestamp,"last_name"=>".","email"=>$email,"mobile_number"=>$mobile,"lead_source_id"=>$sourceid,"custom_field"=>array("cf_enquiry_type"=>$enquiry_type,"cf_ford_showroom_location"=>$location,"lead_source_id"=>$sourceid,"cf_acr_service_model"=>$model,"cf_utm_source"=>$sources,"cf_utm_medium"=>$medium,"cf_utm_campaign"=>$campaign,"cf_utm_term"=>$term,"cf_utm_content"=>$content,"cf_form_name"=>$formname)));
+        $objPass=json_encode($jsonobj);
+
+        try{
+            $curl = curl_init();
+            curl_setopt_array($curl, [
+                CURLOPT_URL => "https://harpreet-ford.myfreshworks.com/crm/sales/api/search.json?include=contact&q=".$mobile."&qf=mobile",
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_ENCODING => "",
+                CURLOPT_MAXREDIRS => 10,
+                CURLOPT_TIMEOUT => 30,
+                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                CURLOPT_CUSTOMREQUEST => "GET",
+                CURLOPT_POSTFIELDS => $objPass,
+                CURLOPT_HTTPHEADER => [
+                    "Authorization: Token token=eAYC1H05AnUO6D_w-W2Fbg",
+                    "Content-Type: application/json"
+                ],
+            ]);
+            
+            $response = curl_exec($curl);
+            
+            $err = curl_error($curl);
+            
+            curl_close($curl);
+
+            $result = json_decode($response);
+
+            if(!empty($result)){
+    
+                $jsonobj1=array("contact"=>array("first_name"=>$name."-".$timestamp,"last_name"=>".","email"=>$email,"custom_field"=>array("cf_enquiry_type"=>$enquiry_type,"cf_ford_showroom_location"=>$location,"lead_source_id"=>$sourceid,"cf_acr_service_model"=>$model,"cf_utm_source"=>$sources,"cf_utm_medium"=>$medium,"cf_utm_campaign"=>$campaign,"cf_utm_term"=>$term,"cf_utm_content"=>$content,"cf_form_name"=>$formname)));
+                $objPass1=json_encode($jsonobj1);
+
+                $result = json_decode($response);
+                $responseid= $result[0]->id;  
+                $curl = curl_init();
+
+                curl_setopt_array($curl, [
+                    CURLOPT_URL => "https://harpreet-ford.myfreshworks.com/crm/sales/api/contacts/".$responseid,
+                    CURLOPT_RETURNTRANSFER => true,
+                    CURLOPT_ENCODING => "",
+                    CURLOPT_MAXREDIRS => 10,
+                    CURLOPT_TIMEOUT => 30,
+                    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                    CURLOPT_CUSTOMREQUEST => "PUT",
+                    CURLOPT_POSTFIELDS => $objPass1,
+                    CURLOPT_HTTPHEADER => [
+                        "Authorization: Token token=eAYC1H05AnUO6D_w-W2Fbg",
+                        "Content-Type: application/json"
+                    ],
+                ]);
+
+                $response = curl_exec($curl);
+                $err = curl_error($curl);
+                
+                curl_close($curl);
+
+                if ($err) {
+                    // echo "cURL Error #:" . $err;
+                } else {
+//                    echo 'search api';
+//                    echo $response;
+//                    exit;
+                    // echo $response;
+                }
+
+            } else {
+    
+                $curl = curl_init();
+                
+                curl_setopt_array($curl, [
+                    CURLOPT_URL => "https://harpreet-ford.myfreshworks.com/crm/sales/api/contacts",
+                    CURLOPT_RETURNTRANSFER => true,
+                    CURLOPT_ENCODING => "",
+                    CURLOPT_MAXREDIRS => 10,
+                    CURLOPT_TIMEOUT => 30,
+                    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                    CURLOPT_CUSTOMREQUEST => "POST",
+                    CURLOPT_POSTFIELDS => $objPass,
+                    CURLOPT_HTTPHEADER => [
+                        "Authorization: Token token=eAYC1H05AnUO6D_w-W2Fbg",
+                        "Content-Type: application/json"
+                    ],
+                ]);
+    
+                $response = curl_exec($curl);
+                $err = curl_error($curl);
+                
+                curl_close($curl);
+    
+                if ($err) {
+                    // echo "cURL Error #:" . $err;
+                } else {
+//                     echo "ee";
+//                     echo $response;
+//                     exit;
+                }
+            }
+        } catch (Exception $ex) {
+            curl_close($curl);
+        }
     }
 }
