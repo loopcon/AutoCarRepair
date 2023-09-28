@@ -167,6 +167,7 @@ class CheckoutController extends MainController
             $order->vehicle_number = $request->vehicle_number;
             $order->save();
 
+            HomeController::sendDataToFreshFork($request);
             $cart_ids = array();
             if(isset($scart['cart_id']) && $scart['cart_id']){
                 array_push($cart_ids, $scart['cart_id']);

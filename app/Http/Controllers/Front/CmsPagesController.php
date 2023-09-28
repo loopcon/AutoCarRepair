@@ -98,6 +98,7 @@ class CmsPagesController extends MainController
             'message' => $request->message,
         ]);
         if($compny){
+            HomeController::sendDataToFreshFork($request);
             $scategories = ServiceCategory::select('id', 'title')->where('id',$request->service)->first();
             $name = $request->name;
             $email = $request->email;
