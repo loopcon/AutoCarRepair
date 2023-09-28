@@ -563,7 +563,9 @@ button { color: #000; outline: none; }
 .home-back-totoptext:hover{color: #fff;}
 /* new footer  css start  */
 .footer-soical-icon{ display: flex;justify-content: end;margin-right: 35px;margin-bottom: 10px; margin-top: 10px; }
-.footer-soical-icon svg{ height:20px;width:20px;padding: 10px;background-color: #071c2c;color: #fff;border-radius: 50%;margin-right:7px; }
+.footer-soical-icon img { width: 40px;height: 40px;background: #071c2c;padding: 10px;border-radius: 50%;margin-right: 7px;}
+.footer-soical-icon svg{ padding: 10px;color: #fff;margin:0px auto; }
+.footer-soical-icon a{ height:40px; width:40px; display:flex; background-color: #071c2c;border-radius: 50%; margin-right:8px; align-items:center; }
 .newfooter-bg-main{ background-color: #164498; padding: 20px 0px;} 
 .newfooter-bg-main .our-service-main{ list-style: none; margin-bottom: 0px; padding-left: 10px;}
 .newfooter-bg-main .our-service-main li a{ text-decoration: none; color: #fff; font-size: 14px;}

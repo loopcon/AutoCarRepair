@@ -3,7 +3,7 @@
 <div class="footer-soical-icon">
     <a href="https://{{$facebook}}" target="blank"><i class="fa-brands fa-facebook-f"></i></a>
     <a href="https://{{$instagram}}" target="blank"><i class="fa-brands fa-instagram"></i></a>
-    <a href="https://{{$twitter}}" target="blank"><i class="fa-brands fa-twitter"></i></a>
+    <a href="https://{{$twitter}}" target="blank"><img src="{{ asset('front/img/twitter.png') }}"  alt=""></a>
     <a href="https://{{$linkedin}}" target="blank"><i class="fa-brands fa-linkedin"></i></a>
     <a href="https://{{$youtube}}" target="blank"><i class="fa-brands fa-youtube"></i></a>
     <a href="https://wa.me/{{$whatsapp}}" target="blank"><i class="fa-brands fa-whatsapp"></i></a>
