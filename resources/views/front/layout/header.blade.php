@@ -34,7 +34,7 @@
                         <img src="{{ asset('front/img/top-email.webp') }}" alt="">
                     </div>
                     <div class="top-email-text">
-                        <p >Mail</p>
+                        <!-- <p >Mail</p> -->
                         <a href="mailto:{{$email}}">{{$email}}</a>
                     </div>
                 </div>
@@ -43,7 +43,7 @@
                         <img src="{{ asset('front/img/top-call.webp') }}" alt="">
                     </div>
                     <div class="top-call-text">
-                        <p>Call US</p>
+                        <!-- <p>Call US</p> -->
                         <a href="tel:{{$phone}}"> {{$phone}} </a>
                     </div>
                 </div>
