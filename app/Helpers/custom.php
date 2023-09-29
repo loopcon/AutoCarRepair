@@ -258,3 +258,28 @@ function getServicePrice($brand = '',$model = '', $fuel = '', $sp_id = ''){
     $priceInfo = App\Models\ScheduledPackageDetail::select('id','price')->where([['sp_id', $sp_id],['brand_id', $brand], ['model_id', $model], ['fuel_type_id', $fuel]])->first();
     return $priceInfo;
 }
+
+function getDefualtServiceSlug(){
+    $brand_id = Session::get('brand_id');
+    $model_id = Session::get('model_id');
+    $fuel_id = Session::get('fuel_id');
+
+    if($brand_id && $model_id && $fuel_id){} else{
+        $brandInfo = App\Models\CarBrand::select('id')->where([['title', 'MARUTI SUZUKI']])->first();
+        $brand_id = isset($brandInfo->id) ? $brandInfo->id  : NULL;
+
+        $modelInfo = \App\Models\CarModel::select('id')->where([['title', 'SWIFT']])->first();
+        $model_id = isset($modelInfo->id) ? $modelInfo->id  : NULL;
+
+        $fuelInfo = App\Models\FuelType::select('id')->where([['title', 'Petrol']])->first();
+        $fuel_id =  isset($fuelInfo->id) ? $fuelInfo->id  : NULL;
+    }
+    $brandInfo = App\Models\CarBrand::select('id', 'slug')->where([['id', $brand_id]])->first();
+    $brand = isset($brandInfo->slug) ? $brandInfo->slug : NULL;
+    $modelInfo = \App\Models\CarModel::select('id', 'slug')->where([['id', $model_id]])->first();
+    $model = isset($modelInfo->slug) ? $modelInfo->slug : NULL;
+    $fuelInfo = App\Models\FuelType::select('id', 'slug')->where([['id', $fuel_id]])->first();
+    $fuel = isset($fuelInfo->slug) ? $fuelInfo->slug : NULL;
+
+    return $brand.'/'.$model.'/'.$fuel;
+}
