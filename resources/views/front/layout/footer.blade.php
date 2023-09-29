@@ -16,17 +16,8 @@
                 @php($services = getServiceCategory())
                 @if($services->count())
                     @foreach($services as $service)
-                        @php($brand_id = Session::get('brand_id'))
-                        @php($model_id = Session::get('model_id'))
-                        @php($fuel_id = Session::get('fuel_id'))
-                        @if($brand_id && $model_id && $fuel_id)
-                            @php($brand = getBrandSlugFromBrandId($brand_id))
-                            @php($model = getModelSlugFromModelId($model_id))
-                            @php($fuel = getFuelSlugFromFuelId($fuel_id))
-                            <li><a href="{{url($service->slug.'/'.$brand.'/'.$model.'/'.$fuel)}}">{{$service->title}}</a></li>
-                        @else
-                            <li><a href="{{url($service->slug)}}">{{$service->title}}</a></li>
-                        @endif
+                        @php($sslug = getDefualtServiceSlug())
+                        <li><a href="{{url($service->slug.'/'.$sslug)}}">{{$service->title}}</a></li>
                     @endforeach
                 @endif
             </ul>
