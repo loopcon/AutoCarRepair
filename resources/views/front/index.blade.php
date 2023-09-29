@@ -79,7 +79,8 @@
                 @php($key = 0)
                 @foreach($scategories as $sk => $service)
                     <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                        <a class="servic-type-box-section" href="{{url($service->slug)}}">
+                        @php($sslug = getDefualtServiceSlug())
+                        <a class="servic-type-box-section" href="{{url($service->slug.'/'.$sslug)}}">
                             <div class="servic-type-box">
                                 @if(!empty($service->icon_image) && isset($service->icon_image))
                                     <img src="{{ url('uploads/service/category/icon/'.$service->icon_image) }}" class="servic-type-box-image" alt="" title="">
@@ -162,7 +163,8 @@
             @foreach($scategories as $sk => $service)
                     <div class="item">
                         <div class="extraservice">
-                            <a class="servic-type-box-section" href="{{url($service->slug)}}">
+                            @php($sslug = getDefualtServiceSlug())
+                            <a class="servic-type-box-section" href="{{url($service->slug.'/'.$sslug)}}">
                                 <div class="servic-type-box">
                                     <img src="{{asset('uploads/service/category/icon/'.$service->icon_image)}}" class="servic-type-box-image" alt="" title="">
                                     <div class="service-type-head">
