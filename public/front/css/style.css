@@ -38,7 +38,7 @@ a.badge:hover{color:white;}
 /* appointment modal  css start  */
 .appointment-dialog .modal-header {  border-bottom: 0px !important;}
 .appointment-dialog{ height: 100%; display: flex; align-items: center; justify-content: center;}
-.appointment-dialog .appointment-contet-modal h1{ font-weight: bold; }
+.appointment-dialog .appointment-contet-modal h2{ font-weight: bold; }
 .appointment-dialog .check-price-btn{ background-color: #E56F31;  width: 100%; color:#fff; font-size: 22px; border: 0px; height:50px; margin-bottom:40px; }
 .appointment-dialog .modal-footer{ border-top: 0px; padding: 0px 12px;}
 .appointment-dialog .form-select{ height: 45px;}
@@ -49,7 +49,7 @@ a.badge:hover{color:white;}
 .appointmentselect-dialog .modal-header {  border-bottom: 0px !important; padding:0px;}
 .appointmentselect-dialog .modal-header button{ position: absolute;top: 5%;right: 3%; z-index:1; }
 .appointmentselect-dialog .modal-body{ margin: 0px 20px;}
-.appointmentselect-dialog .modal-body h1{ font-weight: bold; margin-bottom: 15px;}
+.appointmentselect-dialog .modal-body h2{ font-weight: bold; margin-bottom: 15px;font-size:2.5rem;}
 .appointmentselect-dialog .modal-footer{ border-top: 0px; padding: 0px 12px;}
 .appointmentselect-dialog .search-brand-input{ border-radius: 0px !important; height: 45px; }
 .appointmentselect-dialog .search-brand-input::placeholder{ color: #000000 !important; font-weight: bold !important;}
@@ -63,7 +63,7 @@ a.badge:hover{color:white;}
 .appointmentsearch-dialog .modal-header {  border-bottom: 0px !important; padding:0px;}
 .appointmentsearch-dialog .modal-header button{position: absolute;top: 5%;right: 4%; z-index:1;}
 .appointmentsearch-dialog .modal-body{ margin: 0px 20px;}
-.appointmentsearch-dialog .modal-body h1{ font-weight: bold; margin-bottom: 15px;}
+.appointmentsearch-dialog .modal-body h2{ font-weight: bold; margin-bottom: 15px;font-size: 2.5rem;}
 .appointmentsearch-dialog .modal-footer{ border-top: 0px; padding: 0px 12px;}
 .appointmentsearch-dialog .search-brand-input{ border-radius: 0px !important; height: 45px; }
 .appointmentsearch-dialog .search-brand-input::placeholder{ color: #000000 !important; font-weight: bold !important;}
@@ -78,7 +78,7 @@ a.badge:hover{color:white;}
 .appointmentfuel-dialog .modal-header {  border-bottom: 0px !important; padding:0px;}
 .appointmentfuel-dialog .modal-header button{position: absolute;top: 5%;right: 4%; z-index:1;}
 .appointmentfuel-dialog .modal-body{ margin: 0px 20px;}
-.appointmentfuel-dialog .modal-body h1{ font-weight: bold; margin-bottom: 15px;}
+.appointmentfuel-dialog .modal-body h2{ font-weight: bold; margin-bottom: 15px;font-size: 2.5rem;}
 .appointmentfuel-dialog .modal-footer{ border-top: 0px; padding: 0px 12px;}
 .appointmentfuel-dialog .search-brand-input{ border-radius: 0px !important; height: 45px; }
 .appointmentfuel-dialog .search-brand-input::placeholder{ color: #000000 !important; font-weight: bold !important;}
@@ -93,7 +93,7 @@ a.badge:hover{color:white;}
 .appointmentnumber-dialog .modal-header {  border-bottom: 0px !important; padding:0px; }
 .appointmentnumber-dialog .modal-header button{position: absolute;top: 5%;right: 4%; z-index:1;}
 .appointmentnumber-dialog .modal-body{ margin: 0px 20px;}
-.appointmentnumber-dialog .modal-body h1{ font-weight: bold; margin-bottom: 15px;}
+.appointmentnumber-dialog .modal-body h2{ font-weight: bold; margin-bottom: 15px; font-size: 2.5rem;}
 .appointmentnumber-dialog .modal-footer{ border-top: 0px; padding: 0px 33px;}
 .appointmentnumber-dialog .brand-logo-center { display: flex; align-items: center; justify-content: center; margin-top: 15px; }
 .appointmentnumber-dialog .brand-logo-center a{ text-decoration: none;}
@@ -325,6 +325,7 @@ a.badge:hover{color:white;}
 .shopping-innerbg{background-color: #f1f1f1; padding: 25px; padding: 25px 0px; }
 .shopping-innerbg .product-content-main{ color: #164498; font-size: 24px; font-weight:bold ;}
 .shopping-innerbg .share-image{  display: flex; align-items: center; margin-top: 20px; margin-bottom: 8px;}
+.shopping-innerbg .share-image p svg{margin-right: 5px; }
 .shopping-innerbg .share-image p{ margin-bottom: 0px; color:#164498 ; font-size:15px; margin-right: 10px;}
 .shopping-innerbg .share-image img{ height: 20px; margin-right: 10px;}
 .shopping-innerbg .write-text { color: #FF0000;  font-size: 15px; text-decoration: none;}
@@ -338,7 +339,7 @@ a.badge:hover{color:white;}
 .shopping-innerbg .addtocard-shopinner:hover{ background-color:unset; color: #E56F31; border: 1px solid #E56F31;}
 .shopping-innerbg .buyfrom-shopinner{ color: #164498; border: 1px solid #164498; width: 100%; font-size: 20px; height: 45px; background-color: unset;} 
 .shopping-innerbg .buyfrom-shopinner:hover{ background-color: #164498; color: #fff; }
-.description-main { background-color: #f1f1f1; padding-bottom:30px; height: auto; }
+.description-main { background-color: #f1f1f1; padding-bottom:30px; height: auto; border:1px solid #000; }
 .description-btn { display: inline-block; text-align: center; line-height: 45px; text-decoration: none; border:1px solid #000;  width: 160px; height: 45px;  color: #000; font-size: 20px; margin-right: 5px; }
 .specification-btn { display: inline-block; text-decoration: none; line-height: 45px; text-align: center; border:1px solid #000; width: 160px; height: 45px;  color: #000; font-size: 20px; }
 .description-main p { margin-top: 30px; margin-bottom: 25px; font-size: 20px;}
@@ -408,7 +409,7 @@ input[type='radio'] {accent-color: #E56F31;  }
 .minus-btn-col-1 {width: 45%; }
 .plus-btn-col-1 { width: 25%;}
 .plus-col > button, .number { width: 100%; border: 0px; text-align: center; background: unset;}
-.frame .number h1 { font-size: 16px; margin-bottom: 0px; font-weight: bold; color:#000; }
+.frame .number p { font-size: 16px; margin-bottom: 0px; font-weight: bold; color:#000; }
 button { color: #000; outline: none; }
 #minus-btn svg{  font-size: 20px; }
 .count { font-size: 17px; color: #fff;}
@@ -529,8 +530,8 @@ button { color: #000; outline: none; }
 .request-select-box{display: block;width: 100%;background: unset;color: #fff;border-bottom: 1px solid #fff;border-top: 0px;border-right: 0px;border-left: 0px}
 .request-select-box option{color:#000;}
 .request-select-box:focus-visible{ border-bottom: 1px solid #fff; border-top: 0px;border-right: 0px;border-left: 0px;  outline:0px;}
-#tabs{padding-left:0px; margin-bottom:0px; cursor: pointer;}
-#tab{padding-left:30px; margin-bottom:0px; border:1px solid #000;}
+#tabs{padding-left:30px; margin-bottom:0px; cursor: pointer;padding-top:30px;}
+#tab{padding-left:30px; margin-bottom:0px; }
 .owText{color: #164498;font-size: 70px;text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;margin-bottom: -41px;font-weight: bold;opacity: 0.5; }
 #choose-service-center .owl-nav button.owl-next{position:absolute;top: 45%;right: -35px;height: 35px;width: 35px;line-height: 35px;font-size: 50px;z-index:1;}
 #choose-service-center .owl-nav button.owl-next:hover{background:#fff !important;color:#000 !important;}

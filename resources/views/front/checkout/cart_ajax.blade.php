@@ -44,7 +44,7 @@
                                 <a class="minus-btn" href="javascript:void(0);" data-id="{{$item->id}}" data-product_id="{{$item->product_id}}"><i class="fa-solid fa-trash-can"></i></a>
                             </div>
                             <div class="number plus-col text-btn-col-2">
-                                <h1 class="count" id="qty{{$item->id}}">{{$qty}}</h1>
+                                <p class="count" id="qty{{$item->id}}">{{$qty}}</p>
                             </div>
                             <div class="button plus-col plus-btn-col-1">
                                 <a class="plus-btn" href="javascript:void(0);" data-id="{{$item->id}}" data-product_id="{{$item->product_id}}"><i class="fa-solid fa-plus"></i></a>
@@ -64,7 +64,7 @@
                                 <a href="javascript:void(0);" class="minus-btn" data-id="{{$item->id}}" data-service_id="{{$item->service_id}}"><i class="fa-solid fa-trash-can"></i></a>
                             </div>
                             <div class="number plus-col text-btn-col-2">
-                                <h1 class="count" id="qty{{$item->id}}">{{$qty}}</h1>
+                                <p class="count" id="qty{{$item->id}}">{{$qty}}</p>
                             </div>
                         </div>
                     </div>

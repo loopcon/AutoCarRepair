@@ -52,7 +52,7 @@
                             </div>
                             <div class="col-12 col-md-7">
                                 <div class="maxfilcontent">
-                                    <h1>{{ $product->productCategory->title }}</h1>
+                                    <h2>{{ $product->productCategory->title }}</h2>
                                     <h2>{{ $product->product_name }}</h2>
                                     <h6>AWS: SFA {{ $product->sfa }} {{ $product->aws_code }} </h6>
                                     <h6>EN ISO CODE: {{ $product->en_iso_code }} </h6>

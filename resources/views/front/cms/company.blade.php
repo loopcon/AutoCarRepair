@@ -76,7 +76,7 @@
             </div>
             <div class="modal-body">
                 <div>
-                    <h1>Select Brand</h1>
+                    <h2>Select Brand</h2>
                     <div class="input-group">
                         <input type="text" class="form-control search-brand-input" id="search_brand" placeholder="Search Brand"  aria-label="Amount (to the nearest dollar)">
                         <div class="search-icon">
@@ -112,7 +112,7 @@
             </div>
             <div class="modal-body">
                 <div>
-                    <h1>Select Model</h1>
+                    <h2>Select Model</h2>
                     <div class="input-group">
                         <input type="text" class="form-control search-brand-input" id="search_model" placeholder="Search Model"  aria-label="Amount (to the nearest dollar)">
                         <div class="search-icon">
@@ -139,7 +139,7 @@
         </div>
         <div class="modal-body">
             <div>
-                <h1>Select Fuel Type </h1>
+                <h2>Select Fuel Type </h2>
                 <div class="input-group">
                     <input type="text" class="form-control search-brand-input" id="search_fuel" placeholder="Search Fuel"  aria-label="Amount (to the nearest dollar)">
                     <div class="search-icon">
@@ -165,7 +165,7 @@
             </div>
             <div class="modal-body">
                 <div>
-                    <h1>Get instant quotes for your car service </h1>
+                    <h2>Get instant quotes for your car service </h2>
                     <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#appointmentselectModal">Change</a>
                     <div class="row m-0 search-modal-box" id="search_info">
 

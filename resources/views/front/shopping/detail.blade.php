@@ -43,7 +43,7 @@
                 <div class="product-content-main">
                     <h2>{{$record->name}}</h2>
                     <div class="share-image">
-                        <p>Share</p>
+                        <p><i class="fa-solid fa-share"></i> Share</p>
                     <?php /*   <a href="https://web.whatsapp.com/send?text={{url('shopping/'.$record->slug)}}" data-action="share/whatsapp/share" target="blank">
                             <img src="{{ asset('front/img/shop-whatsapp.png') }}"  alt="">
                         </a> */ ?>
@@ -67,7 +67,7 @@
                                           <button id="minus-btn"><i class="fa-solid fa-minus"></i></button>
                                       </div>
                                       <div class="number plus-col text-btn-col-2">
-                                          <h1 id="count">1</h1>
+                                          <p id="count">1</p>
                                       </div>
                                       <div class="button plus-col plus-btn-col-1">
                                           <button id="plus-btn"><i class="fa-solid fa-plus"></i></button>
