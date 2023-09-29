@@ -74,13 +74,13 @@
     <div class="row m-0 align-items-center">
         <div class="col-12 col-sm-6 col-md-2">
             <div>
-                <img src="{{ asset('front/img/acr-my-tvs.png') }}" class="acr-my-tvsimage"  alt="">
+                <img src="{{ asset('front/img/acr-my-tvs.webp') }}" class="acr-my-tvsimage"  alt="">
             </div>
         </div>
         <div class="col-12 col-sm-6 col-md-4">
             <div class="contact-number-main">
                 <p>
-                    <img src="{{ asset('front/img/call-image.png') }}" class="call-image-main" alt="">
+                    <img src="{{ asset('front/img/call-image.webp') }}" class="call-image-main" alt="">
                    <a href="tel:{{$phone}}" class="footer-number-main">{{$phone}}</a>
                 </p>
             </div>
