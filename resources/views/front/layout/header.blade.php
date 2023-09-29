@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="{{isset($meta_description) ? $meta_description : ''}}">
+@if(isset($meta_keywords) && ($meta_keywords))
     <meta name="keywords" content="{{isset($meta_keywords) ? $meta_keywords : ''}}">
+@endif
     {!! isset($extra_meta_tag) ? $extra_meta_tag : '' !!}
     <meta name="extra_meta_description" content="{!! isset($extra_meta_description) ? strip_tags($extra_meta_description) : '' !!}">
     <title>{{$site_title.' | '. $site_name}}</title>
@@ -16,7 +18,7 @@
     <link rel="stylesheet" href="{{ asset('front/css/responsive.css') }}">
     <link rel="stylesheet" href="{{asset('plugins/notification/toastr.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('public/plugins/sweetalert/sweetalert.css')}}">
-    @yield('css')
+@yield('css')
 </head>
 <body>
 <!-- topbar html start  -->
