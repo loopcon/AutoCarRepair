@@ -49,7 +49,19 @@
         </div>
     </div>
 </div>
-
+<!--css start -->
+<style>
+.our-service-section .servic-type-box h5{ color: #222; font-size: 18px; font-weight: bold;  text-align: center; margin-bottom: 0px; }
+.our-service-section .servic-type-box {background: #f1f1f1;}
+.table-wrapper{border-collapse: collapse;margin: 25px 0;font-size: 0.9em;font-family: sans-serif;min-width: 400px;box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);}
+.table-wrapper thead tr {background-color: #222;color: #ffffff;text-align: left;}
+.table-wrapper th, .table-wrapper td { padding: 12px 15px; }
+.table-wrapper tbody tr {border-bottom: 1px solid #dddddd;}
+.table-wrapper tbody tr:nth-of-type(even) {background-color: #f3f3f3;}
+.table-wrapper tbody tr:last-of-type {border-bottom: 2px solid #222;}
+.table-wrapper tbody tr.active-row {font-weight: bold;color: #009879;}
+</style>
+<!--css end-->
 <div class="service-innersection-mian">
     <div class="container">
         <h2 class="Scheduled-heading-seriner">Scheduled Packages</h2>
