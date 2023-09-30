@@ -311,21 +311,29 @@ $(document).ready(function() {
             } else if(length != '10'){
                 toastr.error('Please enter valid phone number!');
             } else {
-                location.href = "{{url('our-services')}}";
-                <?php /*var csrfToken = $('meta[name="csrf-token"]').attr('content');
-                 $.ajax({
-                    url: "{{ route('front_storePhoneInSession') }}", // Change to your route name
-                    type: "POST",
-                    data: {phone: phone, _token: csrfToken},
-                    dataType: "json",
-                    success: function(data) {
-                        // Redirect to the desired URL
-                        location.href = "{{url('our-services')}}";
-                    },
-                    error: function(jqXHR, textStatus, errorThrown) {
-                        console.error('AJAX Error: ' + textStatus, errorThrown);
-                    }
-                });*/ ?>
+                //location.href = "{{url('our-services')}}";
+                var is_service_page = $('#is_service_page').val();
+                if(is_service_page == 1){
+                    var category_slug = $('#current_service_slug').val();
+                    var csrfToken = $('meta[name="csrf-token"]').attr('content');
+                    $.ajax({
+                       url: "{{ route('front_get-current-model') }}", // Change to your route name
+                       type: "POST",
+                       data: {category_slug: category_slug, _token: csrfToken},
+                       success: function(data) {
+                            var result = $.parseJSON(data);
+                            var model_slug = result.slug;
+                            var href = "{{url('/')}}"+"/"+category_slug+"/"+model_slug;
+                            location.href = href;
+                       },
+                       error: function(jqXHR, textStatus, errorThrown) {
+                           console.error('AJAX Error: ' + textStatus, errorThrown);
+                       }
+                   });
+                } else {
+                    window.location.reload();
+                }
+                
             }
         });
 
@@ -433,7 +441,6 @@ $(document).ready(function() {
                 var search = $this.val();
                 if(search){
                     var href = "{{route('front_search')}}"+'?search='+search;
-                    console.log(href);
                     window.location.href = href;
                 }
             }
@@ -459,6 +466,14 @@ $(document).ready(function() {
         });
         $(document).on('keypress', '.alphabetic', function (event) {
             var regex = new RegExp("^[a-zA-Z ]+$");
+            var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+            if (!regex.test(key)) {
+                event.preventDefault();
+                return false;
+            }
+        });
+        $(document).on('keypress', '.alphanumeric', function (event) {
+            var regex = new RegExp("^[a-zA-Z0-9 ]+$");
             var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
             if (!regex.test(key)) {
                 event.preventDefault();

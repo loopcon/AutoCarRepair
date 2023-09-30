@@ -69,8 +69,15 @@ class CheckoutController extends MainController
                 $status = 'error';
             }
             $cart_ids = array();
-            if(isset($scart['cart_id']) && $scart['cart_id']){
+            /*if(isset($scart['cart_id']) && $scart['cart_id']){
                 array_push($cart_ids, $scart['cart_id']);
+            }*/
+            if($scart && is_array($scart)){
+                foreach($scart as $pval){
+                    if(isset($pval['cart_id']) && $pval['cart_id']){
+                        array_push($cart_ids, $pval['cart_id']);
+                    }
+                }
             }
             if($pcart && is_array($pcart)){
                 foreach($pcart as $pval){
@@ -169,8 +176,15 @@ class CheckoutController extends MainController
 
             HomeController::sendDataToFreshFork($request);
             $cart_ids = array();
-            if(isset($scart['cart_id']) && $scart['cart_id']){
-                array_push($cart_ids, $scart['cart_id']);
+//            if(isset($scart['cart_id']) && $scart['cart_id']){
+//                array_push($cart_ids, $scart['cart_id']);
+//            }
+            if($scart && is_array($scart)){
+                foreach($scart as $pval){
+                    if(isset($pval['cart_id']) && $pval['cart_id']){
+                        array_push($cart_ids, $pval['cart_id']);
+                    }
+                }
             }
             if($pcart && is_array($pcart)){
                 foreach($pcart as $pval){
@@ -274,6 +288,7 @@ class CheckoutController extends MainController
 
                 Session::put('scart', array());
                 Session::put('pcart', array());
+                Session::put('cart_service_info', array());
 
                 $address_radio = $request->address_radio;
                 if(empty($address_radio) && $user_id){

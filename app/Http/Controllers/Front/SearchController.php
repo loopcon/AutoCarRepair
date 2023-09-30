@@ -24,6 +24,17 @@ class SearchController extends MainController
         // Cache::put('phone', $phone);
         return response()->json(['message' => 'Phone number stored in session']);
     }
+
+    public function getCurrentModel(request $request)
+    {
+        if($request->ajax()){
+            $slug = getDefualtServiceSlug();
+            echo json_encode(array('slug' => $slug));
+            exit;
+        } else {
+            return redirect('/');
+        }
+    }
     
     public function brands(request $request)
     {

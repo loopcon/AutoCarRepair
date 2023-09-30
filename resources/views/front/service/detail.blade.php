@@ -1,5 +1,7 @@
 @extends('front.layout.main')
 @section('content')
+<input type="hidden" id="is_service_page" value="1">
+<input type="hidden" id="current_service_slug" value="{{isset($category->slug) && $category->slug ? $category->slug : ''}}">
 <!-- service inner page start  -->
 <div class="shoping-breadcrum-bg">
     <div class="container">
@@ -513,8 +515,13 @@ $(document).ready(function(){
             method : 'post',
             data : {_token: CSRF_TOKEN, service_id : service_id, qty : qty},
             success : function(result){
-                toastr.success('','Item successfully added to cart!',{timeOut: 1});
-                setCartItemCount();                                          
+                var data = $.parseJSON(result);
+                if(data.result == 'error'){
+                    toastr.error(data.message);
+                } else {
+                    toastr.success('','Item successfully added to cart!',{timeOut: 1});
+                    setCartItemCount();
+                }
             }
         });
     }

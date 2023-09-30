@@ -249,6 +249,7 @@ Route::group(['as' => 'front_', 'middleware' => 'XSS'], function() {
     Route::post('appoitment-number-modal', [\App\Http\Controllers\Front\SearchController::class, 'appoitmentNumberModel'])->name('appoitment-number-modal');
     Route::get('search', [\App\Http\Controllers\Front\SearchController::class, 'search'])->name('search');
     Route::post('storePhoneInSession', [\App\Http\Controllers\Front\SearchController::class, 'storePhoneInSession'])->name('storePhoneInSession');
+    Route::post('get-current-model', [App\Http\Controllers\Front\SearchController::class, 'getCurrentModel'])->name('get-current-model');
     
     /** product-detail route start **/
     $scategories = Cache::remember('service_categories', 10, function() { 
