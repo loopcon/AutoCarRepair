@@ -504,7 +504,7 @@ $(document).ready(function() {
             success : function(result){
                 var result = $.parseJSON(result);
                 if(result.total){
-                    $('#cart_header_total_item').html('('+result.total+')');
+                    $('.cart_header_total_item').html('('+result.total+')');
                 }
             }
         });

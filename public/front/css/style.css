@@ -97,7 +97,7 @@ a.badge:hover{color:white;}
 .appointmentnumber-dialog .modal-footer{ border-top: 0px; padding: 0px 33px;}
 .appointmentnumber-dialog .brand-logo-center { display: flex; align-items: center; justify-content: center; margin-top: 15px; }
 .appointmentnumber-dialog .brand-logo-center a{ text-decoration: none;}
-.appointmentnumber-dialog .select-modal-name {  text-align: center; margin-bottom: 5px; color: #000000; }
+.appointmentnumber-dialog .select-modal-name {  text-align: center; margin-bottom: 5px; color: #000000; word-break: break-all; }
 .appointmentnumber-dialog .check-price-btn{ background-color: #E56F31;  width: 100%; color:#fff; font-size: 22px; border: 0px; height:50px; margin-bottom:40px; }
 .appointmentnumber-dialog .form-control{ height: 45px; }
 .appointmentnumber-dialog .check-price-btn-main{ width: 100%; }
@@ -271,7 +271,7 @@ a.badge:hover{color:white;}
 .service-innersection-mian .service-inner-textname {display:flex; }
 .service-innersection-mian .service-inner-textname span svg { color: #000851; margin-right: 5px;}
 .service-innersection-mian .service-inner-textname p{ margin-bottom: 4px; font-size: 16px; }
-.service-innersection-mian .payment-main{ display: flex; justify-content: space-between; align-items: center; }
+.service-innersection-mian .payment-main{ display: flex; justify-content: space-between; align-items: center; flex-wrap:wrap; }
 .service-innersection-mian .ser-inner-addtocart{ background-color: #E56F31;  color: #fff; border: 0px; border-radius: 6px; width: 190px; height: 45px; font-size: 20px; font-weight: bold; }
 .service-innersection-mian .packeage-prise p{ color: #E56F31; font-size: 24px; font-weight: bold; margin-bottom: 0px;}
 /*.service-innersection-mian { padding: 40px 0px;}*/
@@ -647,7 +647,7 @@ button { color: #000; outline: none; }
 .search-page-bg .detail-btn-main:hover{background-color: unset;border: 1px solid #E56F31;color: #E56F31;}
 .search-page-bg .add-to-wishlist-btn{background-color: unset;height: 40px;width: 100%;border-radius: 7px;border: 1px solid  #164498;color: #164498;}
 .search-page-bg .add-to-wishlist-btn:hover{background-color: #164498;color: #fff;border: 1px solid #164498;}
-.service-inner-modalname{margin-bottom:0px;  text-align:center; }
+.service-inner-modalname{margin-bottom:0px;  text-align:center; word-break: break-all; }
 
 
 
@@ -850,3 +850,5 @@ location css
 }
 .readmore{border: 0px; background: unset; color: #164498; font-size:16px; }
 .readless{border: 0px; background: unset; color: #164498; font-size:16px; }
+.cart-car-brandname{word-break: break-all;}
+.cart-car-modalname{word-break: break-all;}

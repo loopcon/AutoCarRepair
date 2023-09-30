@@ -74,13 +74,13 @@
         </div>
         <div class="row">
             <div class="col-4">
-                <p>{{isset($item->serviceDetail->brandDetail->title) ? $item->serviceDetail->brandDetail->title : NULL}}</p>
+                <p class="cart-car-brandname">{{isset($item->serviceDetail->brandDetail->title) ? $item->serviceDetail->brandDetail->title : NULL}}</p>
             </div>
             <div class="col-5">
-                <p>{{isset($item->serviceDetail->modelDetail->title) ? $item->serviceDetail->modelDetail->title : NULL}}</p>
+                <p class="cart-car-modalname">{{isset($item->serviceDetail->modelDetail->title) ? $item->serviceDetail->modelDetail->title : NULL}}</p>
             </div>
             <div class="col-3">
-                <p>{{isset($item->serviceDetail->fuelTypeDetail->title) ? $item->serviceDetail->fuelTypeDetail->title : NULL}}</p>
+                <p class="cart-car-brandname">{{isset($item->serviceDetail->fuelTypeDetail->title) ? $item->serviceDetail->fuelTypeDetail->title : NULL}}</p>
             </div>
         </div>
     @endforeach

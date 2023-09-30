@@ -102,7 +102,7 @@
                     </li>
                 </ul>
             </div>
-            <a href="{{url('checkout')}}" class="card-icon-main"><i class="fa fa-cart-plus"></i><span id="cart_header_total_item"></span></a>
+            <a href="{{url('checkout')}}" class="card-icon-main"><i class="fa fa-cart-plus"></i><span class="cart_header_total_item"></span></a>
         </div>
     </div>
 </div>
@@ -144,7 +144,7 @@
                             <li><a class="text-black" href="{{route('front_my-orders')}}">My Orders</a></li>
                             <li><a class="text-black" href="{{route('front_logout')}}">Logout</a></li>
                         @endif
-                        <li><a href="{{url('checkout')}}" class="card-icon-main"><i class="fa fa-cart-plus"></i><span id="cart_header_total_item"></span></a></li>
+                        <li><a href="{{url('checkout')}}" class="card-icon-main"><i class="fa fa-cart-plus"></i><span class="cart_header_total_item"></span></a></li>
                     </ul>
                 </div>
             </div>
