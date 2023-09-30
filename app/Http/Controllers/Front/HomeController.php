@@ -10,6 +10,7 @@ use App\Models\BrandLogoSlider;
 use App\Models\ServiceCategory;
 use App\Models\ServiceCenterDetail;
 use App\Models\Enquiry;
+use App\Models\Page;
 use App\Models\EmailTemplates;
 use Auth;
 use DB;
