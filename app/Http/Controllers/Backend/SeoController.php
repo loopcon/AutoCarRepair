@@ -34,6 +34,7 @@ class SeoController extends MainController
             'meta_title' => $request->meta_title,
             'meta_keyword' => $request->meta_keyword,
             'meta_description' => $request->meta_description,
+            'canonical_tag' => $request->canonical_tag,
             'extra_meta_description' => $request->extra_meta_description,
         ]);
         if($seo){
@@ -57,6 +58,7 @@ class SeoController extends MainController
             'meta_title' => $request->meta_title,
             'meta_keyword' => $request->meta_keyword,
             'meta_description' => $request->meta_description,
+            'canonical_tag' => $request->canonical_tag,
             'extra_meta_description' => $request->extra_meta_description,
         ]);
         if($seo){
@@ -80,6 +82,7 @@ class SeoController extends MainController
             'meta_title' => $request->meta_title,
             'meta_keyword' => $request->meta_keyword,
             'meta_description' => $request->meta_description,
+            'canonical_tag' => $request->canonical_tag,
             'extra_meta_description' => $request->extra_meta_description,
         ]);
         if($seo){
@@ -103,6 +106,7 @@ class SeoController extends MainController
             'meta_title' => $request->meta_title,
             'meta_keyword' => $request->meta_keyword,
             'meta_description' => $request->meta_description,
+            'canonical_tag' => $request->canonical_tag,
             'extra_meta_description' => $request->extra_meta_description,
         ]);
         if($seo){

@@ -36,6 +36,11 @@
                                     <textarea class="form-control" id="meta_description" name="meta_description" placeholder="{{__('Meta Description')}}">{{ isset($record->meta_description) ? $record->meta_description : old('meta_description') }}</textarea>
                                     @if ($errors->has('meta_description')) <div class="text-danger">{{ $errors->first('meta_description') }}</div>@endif
                                 </div>
+                                <div class="mb-3 col-md-4">
+                                    <label class="form-label" for="canonical_tag">{{__('Canonical Tag')}}</label>
+                                    <input type="text" class="form-control" id="canonical_tag" name="canonical_tag" placeholder="{{__('Canonical Tag')}}" value="{{ isset($record->canonical_tag) ? $record->canonical_tag : old('canonical_tag') }}">
+                                    @if ($errors->has('canonical_tag')) <div class="text-danger">{{ $errors->first('canonical_tag') }}</div>@endif
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="mb-3 col-md-12">
@@ -73,17 +78,17 @@
                 filebrowserImageUploadUrl : '<?php echo url("public/plugins/kcfinder/upload.php?opener=ckeditor&type=images") ?>',
                 filebrowserFlashUploadUrl : '<?php echo url("public/plugins/kcfinder/upload.php?opener=ckeditor&type=flash") ?>',
             });
-            CKEDITOR.on('instanceReady', function () {
-                $('#extra_meta_description').attr('required', '');
-                $.each(CKEDITOR.instances, function (instance) {
-                    CKEDITOR.instances[instance].on("change", function (e) {
-                        for (instance in CKEDITOR.instances) {
-                            CKEDITOR.instances[instance].updateElement();
-                            //$('form').parsley().validate();
-                        }
-                    });
-                });
-            });
+            // CKEDITOR.on('instanceReady', function () {
+            //     $('#extra_meta_description').attr('required', '');
+            //     $.each(CKEDITOR.instances, function (instance) {
+            //         CKEDITOR.instances[instance].on("change", function (e) {
+            //             for (instance in CKEDITOR.instances) {
+            //                 CKEDITOR.instances[instance].updateElement();
+            //                 //$('form').parsley().validate();
+            //             }
+            //         });
+            //     });
+            // });
         });
     </script>
 @endsection

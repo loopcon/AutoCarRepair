@@ -40,7 +40,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-row">
+                            <div class="row">
                                 <div class="mb-3 col-md-6">
                                     <label class="form-label" for="meta_title">{{__('Meta Title')}}</label>
                                     <input type="text" class="form-control" id="meta_title" name="meta_title" placeholder="{{__('Meta Title')}}" value="{{ isset($record->meta_title) ? $record->meta_title : old('meta_title') }}">
@@ -51,19 +51,22 @@
 
                                     <textarea class="form-control" id="editor" name="extra_meta_tag" placeholder="{{__('Extra Meta Tag')}}">{{ isset($record->extra_meta_tag) ? $record->extra_meta_tag : old('extra_meta_tag') }}</textarea>
                                     @if ($errors->has('extra_meta_tag')) <div class="text-danger">{{ $errors->first('extra_meta_tag') }}</div>@endif
-
-                                    
                                 </div>
-                                <div class="mb-3 col-md-6">
+                                <div class="mb-3 col-md-4">
                                     <label class="form-label" for="meta_keyword">{{__('Meta Keyword')}}</label>
                                     <input type="text" class="form-control" id="meta_keyword" name="meta_keyword" placeholder="{{__('Meta Keyword')}}" value="{{ isset($record->meta_keyword) ? $record->meta_keyword : old('meta_keyword') }}">
                                     @if ($errors->has('meta_keyword')) <div class="text-danger">{{ $errors->first('meta_keyword') }}</div>@endif
                                 </div>
 
-                                <div class="mb-3 col-md-6">
+                                <div class="mb-3 col-md-4">
                                     <label class="form-label" for="meta_description">{{__('Meta Description')}}</label>
-                                    <input type="text" class="form-control" id="meta_description" name="meta_description" placeholder="{{__('Meta Description')}}" value="{{ isset($record->meta_description) ? $record->meta_description : old('meta_description') }}">
+                                    <textarea class="form-control" id="meta_description" name="meta_description" placeholder="{{__('Meta Description')}}">{{ isset($record->meta_description) ? $record->meta_description : old('meta_description') }}</textarea>
                                     @if ($errors->has('meta_description')) <div class="text-danger">{{ $errors->first('meta_description') }}</div>@endif
+                                </div>
+                                <div class="mb-3 col-md-4">
+                                    <label class="form-label" for="canonical_tag">{{__('Canonical Tag')}}</label>
+                                    <input type="text" class="form-control" id="canonical_tag" name="canonical_tag" placeholder="{{__('Canonical Tag')}}" value="{{ isset($record->canonical_tag) ? $record->canonical_tag : old('canonical_tag') }}">
+                                    @if ($errors->has('canonical_tag')) <div class="text-danger">{{ $errors->first('canonical_tag') }}</div>@endif
                                 </div>
                             </div>
 
@@ -85,7 +88,7 @@
     <script>
         $(document).ready(function(){
             CKEDITOR.replace('description', {
-                height:1000,
+                height:200,
                 removePlugins : 'resize',
                 filebrowserBrowseUrl : '<?php echo url("public/plugins/kcfinder/browse.php?opener=ckeditor&type=files") ?>',
                 filebrowserImageBrowseUrl : '<?php echo url("public/plugins/kcfinder/browse.php?opener=ckeditor&type=images") ?>',

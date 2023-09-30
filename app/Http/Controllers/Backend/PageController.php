@@ -63,6 +63,7 @@ class PageController extends MainController
             'extra_meta_tag' => $request->extra_meta_tag ? strip_tags($request->extra_meta_tag) : NULL,
             'meta_keyword' => $request->meta_keyword ? strip_tags($request->meta_keyword) : NULL,
             'meta_description' => $request->meta_description ? strip_tags($request->meta_description) : NULL,
+            'canonical_tag' => $request->canonical_tag ? strip_tags($request->canonical_tag) : NULL,
             'is_archive' => Constant::NOT_ARCHIVE,
             'created_by' => Auth::guard('admin')->user()->id,
             'updated_by' => NULL,
@@ -131,6 +132,7 @@ class PageController extends MainController
                 'extra_meta_tag' => $request->extra_meta_tag ? strip_tags($request->extra_meta_tag) : NULL,
                 'meta_keyword' => $request->meta_keyword ? strip_tags($request->meta_keyword) : NULL,
                 'meta_description' => $request->meta_description ? strip_tags($request->meta_description) : NULL,
+                'canonical_tag' => $request->canonical_tag ? strip_tags($request->canonical_tag) : NULL,
                 'updated_by' => Auth::guard('admin')->user()->id,
             ]);
         if($page) {

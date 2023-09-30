@@ -3,12 +3,19 @@
 <head>                                  
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+@if(isset($meta_description) && ($meta_description))
     <meta name="description" content="{{isset($meta_description) ? $meta_description : ''}}">
+@endif
+@if(isset($canonical_tag) && ($canonical_tag))
+    <meta name="canonical_tag" content="{{isset($canonical_tag) ? $canonical_tag : ''}}">
+@endif
 @if(isset($meta_keywords) && ($meta_keywords))
     <meta name="keywords" content="{{isset($meta_keywords) ? $meta_keywords : ''}}">
 @endif
     {!! isset($extra_meta_tag) ? $extra_meta_tag : '' !!}
+@if(isset($extra_meta_description) && ($extra_meta_description))
     <meta name="extra_meta_description" content="{!! isset($extra_meta_description) ? strip_tags($extra_meta_description) : '' !!}">
+@endif
     <title>{{$site_title.' | '. $site_name}}</title>
     <link rel="icon"  href="{{ asset('public/favicon.ico') }}">
     <link rel="stylesheet" href="{{ asset('front/css/bootstrap.min.css') }}">
