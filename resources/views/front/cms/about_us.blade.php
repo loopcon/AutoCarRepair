@@ -9,7 +9,7 @@
 <div class="container">
     <div class="about-main-sec">
         <!-- <h1>{{ strtoupper($site_title) }}</h1> -->
-        <h2>AUTO CAR REPAIR</h2>
+        <h1>AUTO CAR REPAIR</h1>
         <p class="about-text">Auto Car Repair, incorporated in April 2022, is a proud addition to The Sachdev Group, a trusted provider of automotive solutions in Delhi (NCR) for decades. Leveraging our extensive experience and expertise in the automotive industry, we aim to elevate the standards of automotive solutions through Auto Car Repair, our multi-brand car service center.</p>
     </div>
     <div class="row align-items-center about-image-text-main">

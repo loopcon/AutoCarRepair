@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="service-main-heading">
-                <h2>Our Services</h2>
+                <h1>Our Services</h1>
             </div>
             @if(isset($scategories) && $scategories->count())
                 @foreach($scategories as $service)
@@ -36,10 +36,10 @@
         <div class="row m-0">
             <div class="col-12 col-md-6">
                 <div class="row  m-0 testiminoal-img-main">
-                    <div class="col-12 col-sm-6 col-md-12 col-lg-6 testiminoal-img-item">
+                    <div class="col-12 col-sm-6 col-md-6 testiminoal-img-item">
                         <img src="{{ asset('front/img/testiminoal-img.png') }}" class="img-fluid" alt="" title="">
                     </div>
-                    <div class="col-12 col-sm-6 col-md-12 col-lg-6">
+                    <div class="col-12 col-sm-6 col-md-6">
                         <div class="testiminoal-img-main-text">
                             <p>Testimonials</p>
                             <h4>What our customers are saying</h4>
@@ -281,28 +281,28 @@
                             variety of makes and models.</p>    
                     </div>
                     <div class="row m-0 why-choose-section-new">
-                        <div class="col-12 col-sm-3"> 
+                        <div class="col-12 col-sm-6 col-lg-3 p-0"> 
                             <div class="why-choose-inner-item">
                                 <img src="{{ asset('front/img/why-mechanic.webp') }}" class="img-fluid" alt="" title="car repair service">
                                 <h4>Skilled Technicians</h4>
                                 <p>We want to get you in and out quickly while providing you top notch auto repair service.</p>
                             </div>
                         </div>
-                        <div class="col-12 col-sm-3">
+                        <div class="col-12 col-sm-6 col-lg-3 p-0">
                             <div class="why-choose-inner-item">
                                 <img src="{{ asset('front/img/why-qualservice.webp') }}" class="img-fluid" alt="" title="car repair service">
                                 <h4>Quality Services</h4>
                                 <p>We take pride in offering you the best services available and 100% Satisfaction Guarantee.</p>
                             </div>
                         </div>
-                        <div class="col-12 col-sm-3">
+                        <div class="col-12 col-sm-6 col-lg-3 p-0">
                             <div class="why-choose-inner-item">
                                 <img src="{{ asset('front/img/why-car-insurance.webp') }}" class="img-fluid" alt="" title="">
                                 <h4>Insurance Claims</h4>
                                 <p>We take pride in offering you the best services available and 100% Satisfaction Guarantee.</p>
                             </div>
                         </div>
-                        <div class="col-12 col-sm-3">
+                        <div class="col-12 col-sm-6 col-lg-3 p-0">
                             <div class="why-choose-inner-item">
                                 <img src="{{ asset('front/img/why-car-parts.webp') }}" class="img-fluid" alt="" title="">
                                 <h4>100% OEM Genuien Parts</h4>

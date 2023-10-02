@@ -19,7 +19,7 @@
         <img src="{{url('uploads/compnycms/'.$compnypageInfo->banner_image)}}" class="cms-image-main" alt="" title="{{isset($compnypageInfo->image_title) ? $compnypageInfo->image_title : ''}}">
     @endif
     <div class="cms-section-text">
-        <h2>{{ isset($compnypageInfo->banner_text) ? $compnypageInfo->banner_text : '' }}</h2>
+        <h1>{{ isset($compnypageInfo->banner_text) ? $compnypageInfo->banner_text : '' }}</h1>
         <a class="Request-appointmentbtn apt-btn" href="javascript:void(0)">Book A Service</a>
     </div>
 </div>

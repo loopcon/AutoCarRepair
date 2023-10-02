@@ -10,7 +10,7 @@
             <div class="row m-0">
                 <div class="col-12 col-md-6 slider-section-box">
                     <div class="slider-section-main">
-                        <h2>{{ isset($hsetting->section1_title1) ? $hsetting->section1_title1 : ''}} </h2>
+                        <h1>{{ isset($hsetting->section1_title1) ? $hsetting->section1_title1 : ''}} </h1>
                         <h5>{{ isset($hsetting->section1_title2) ? $hsetting->section1_title2 : ''}}</h5>
                         <p>{{ isset($hsetting->section1_description) ? $hsetting->section1_description : ''}}</p>
                         <a class="get-service-btn apt-btn" href="{{url('about-us')}}">About Us</a>
@@ -116,28 +116,28 @@
                             <p>Our skilled technicians ensure your vehicle's peak performance, safety, and longevity through meticulous maintenance, advanced diagnostics, and genuine parts, providing a seamless driving experience you can trust.</p>    
                         </div>
                         <div class="row m-0 why-choose-section-new">
-                            <div class="col-12 col-sm-6 col-lg-3"> 
+                            <div class="col-12 col-sm-6 col-lg-3 p-0"> 
                                 <div class="why-choose-inner-item">
                                     <img src="{{ asset('front/img/Pre-Owned Workshop.webp') }}" class="img-fluid" alt="" title="car repair service">
                                     <h4>Pre-Owned Workshop</h4>
                                     <p>The pricing and quality of automotive services are directly under our control.</p>
                                 </div>
                             </div>
-                            <div class="col-12 col-sm-6 col-lg-3">
+                            <div class="col-12 col-sm-6 col-lg-3 p-0">
                                 <div class="why-choose-inner-item">
                                     <img src="{{ asset('front/img/High-Quality Services.webp') }}" class="img-fluid" alt="" title="car repair service">
                                     <h4>High-Quality Services</h4>
                                     <p>We are committed to providing top-notch services ensuring reliability and safety.</p>
                                 </div>
                             </div>
-                            <div class="col-12 col-sm-6 col-lg-3">
+                            <div class="col-12 col-sm-6 col-lg-3 p-0">
                                 <div class="why-choose-inner-item">
                                     <img src="{{ asset('front/img/Experienced Technicians.webp') }}" class="img-fluid" alt="" title="">
                                     <h4>Experienced Technicians</h4>
                                     <p>Our Experienced and Certified technicians have the expertise to deliver quality services.</p>
                                 </div>
                             </div>
-                            <div class="col-12 col-sm-6 col-lg-3">
+                            <div class="col-12 col-sm-6 col-lg-3 p-0">
                                 <div class="why-choose-inner-item">
                                     <img src="{{ asset('front/img/Genuine Products.webp') }}" class="img-fluid" alt="" title="">
                                     <h4>Genuine Products</h4>
@@ -643,7 +643,7 @@ $(document).ready(function(){
                 450:{
                 items: 2
                 },
-                600: {
+                768: {
                 items: 3
                 }
             }
@@ -693,9 +693,11 @@ $(document).ready(function(){
             items: 2
             },
             600: {
+            items: 2
+            },
+            767:{
             items: 3
             },
-
             1024: {
             items: 4
             }
@@ -717,6 +719,9 @@ $(document).ready(function(){
                 items: 2
                 },
                 600: {
+                items: 2
+                },
+                768: {
                 items: 3
                 },
                 1024: {

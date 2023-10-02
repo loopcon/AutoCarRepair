@@ -105,7 +105,7 @@ a.badge:hover{color:white;}
 /* navbar css end  */
 /* slider css start  */
 .acr-slider-section-main{ background: #fff; padding: 15px 0px;}
-.slider-section-main h2{ color: #000000; font-size: 70px; font-weight: bold; text-shadow: 0px 4px 3px rgba(0,0,0,0.3); margin-bottom: 0px;}
+.slider-section-main h1{ color: #000000; font-size: 70px; font-weight: bold; text-shadow: 0px 4px 3px rgba(0,0,0,0.3); margin-bottom: 0px;}
 .slider-section-main h5{ color: #E56F31; font-size: 49px; font-weight: bold; text-shadow:0px 4px 3px  rgba(249, 149, 0, 0.5); margin-bottom: 0px;}
 .slider-section-main p{ color: #000000; font-size: 20px; margin-bottom: 0px; padding: 30px 0px;}
 .slider-section-main .get-service-btn{ background-color: #E56F31; width: 180px; height:45px; text-align: center; border-radius: 10px; border: 0px; color: #fff; font-weight: bold; font-size: 18px; display: block;text-decoration: none;line-height: 45px; margin-bottom:20px; }
@@ -128,7 +128,7 @@ a.badge:hover{color:white;}
 /* why choose us start */
 .why-choose-section{ padding: 50px 0; background-color: #f1f1f1;}
 .why-choose-section-new{ padding: 25px 0;}
-.why-choose-section .why-choose-inner-item{box-shadow: 0px 8px 24px 0px rgba(140, 149, 159, 0.2);padding: 20px; background: #fff; margin: 12px 6px; }
+.why-choose-section .why-choose-inner-item{box-shadow: 0px 8px 24px 0px rgba(140, 149, 159, 0.2);padding: 20px; background: #fff; margin: 12px 6px; min-height:250px; }
 .why-choose-section .why-choose-item h4 {  font-size: 22px; font-weight: bold;  color: #F99500 ; }
 .why-choose-section .why-choose-item h5{ font-size: 50px; font-weight: bold; color: #000000;}
 .why-choose-section .why-choose-item p{ font-size: 16px;  color: #000000;}
@@ -245,7 +245,8 @@ a.badge:hover{color:white;}
 /* footer down css end  */
 /* service page css start  */
 .our-service-section {  padding-top: 30px; padding-bottom: 35px;}
-.our-service-section .service-main-heading h2{  font-size: 44px; font-weight: bold; text-align: center; margin-top: 20px; margin-bottom: 20px;}
+.our-service-section .service-main-heading h1{  font-size: 44px; font-weight: bold; text-align: center; margin-top: 20px; margin-bottom: 20px;}
+.our-service-section .service-main-heading h2{  font-size: 38px; font-weight: bold; text-align: center; margin-top: 20px; margin-bottom: 20px;}
 .our-service-section .servic-type-box {box-shadow: 1px 2px 4px 1px #0000001E; padding: 25px; margin:25px 10px; border-radius: 8px; }
 .our-service-section .servic-type-box:hover{transform: scale(1.04); transition: all ease 0.2s;}
 .our-service-section .servic-type-box h4{ color: #E56F31; font-size: 28px; font-weight: bold;  text-align: center; margin-bottom: 0px; }
@@ -258,7 +259,7 @@ a.badge:hover{color:white;}
 /* service inner page css start  */
 .service-inner-tophead{ position: relative;}
 .service-inner-tophead-text{  position: absolute; top: 50%; left: 50%; transform: translate(-50% , -50%); }
-.service-inner-tophead h2{ color: #fff; font-size: 60px; font-weight: bold;}
+.service-inner-tophead h1{ color: #fff; font-size: 60px; font-weight: bold; text-align:center;}
 .ser-inner-breadcum{ display: flex; list-style: none; align-items: center; justify-content: center; padding-left: 0px; margin-bottom: 0px; text-align: center;}
 .ser-inner-breadcum li a { color: #fff; text-decoration: none;  margin-bottom: 0px; font-size: 25px; }
 .ser-inner-breadcum li  { color: #fff;  font-size: 25px; }
@@ -310,7 +311,7 @@ a.badge:hover{color:white;}
 /* shoping page end  */
 /* contact us css start  */
 .contact-section-main { margin-top: 30px; margin-bottom: 30px; }
-.contact-section-main .contact-main-heading h2{  color: #164498; font-size: 40px; font-weight: bold; text-align: center; }
+.contact-section-main .contact-main-heading h1{  color: #164498; font-size: 40px; font-weight: bold; text-align: center; }
 .contact-section-main .address-main-contact{ box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px; border-radius: 10px; padding: 25px 25px 0px 25px; margin: 25px 0px; }
 .contact-section-main .address-main-contact h2{ color:  #E56F31; font-size: 24px; font-weight: bold;}
 .contact-section-main .address-main-contact p{ width: 40%; font-size: 16px;}
@@ -438,7 +439,7 @@ button { color: #000; outline: none; }
 /* shop  center css start  */
 .shop-center-tophead{ position: relative;}
 .shop-center-text{  position: absolute; top: 50%; left: 50%; transform: translate(-50% , -50%); }
-.shop-center-text h2{ color: #fff; font-size: 60px; font-weight: bold;} 
+.shop-center-text h1{ color: #fff; font-size: 60px; font-weight: bold;} 
 .shop-center-breadcum{ display: flex; list-style: none; align-items: center; justify-content: center; padding-left: 0px; margin-bottom: 0px; text-align: center;}
 .shop-center-breadcum li a { color: #fff; text-decoration: none;  margin-bottom: 0px; font-size: 25px; }
 .shop-center-breadcum li  { color: #fff;  font-size: 25px; }
@@ -493,7 +494,7 @@ button { color: #000; outline: none; }
 .login-icon-main li a:active{ background-color: #fff; }
 #plus-btn svg{ font-size: 20px;}
 .shoping-main-product-section{min-height: 450px;}
-.login-icon-main{ transform: translate(55px, 35px) !important;  }
+.login-icon-main{ /*transform: translate(-70px, 35px) !important;*/ transform: translate3d(50px, 35px, 0px) !important; }
 .check-box-fliter{ float: right;position: absolute;top: 0;right: 0;}
 #sync1 .product-inner-imgmain img{ height: 350px; object-fit: contain; }
 #sync2 .product-inner-imgmain img{ height: 125px; object-fit: contain; }
@@ -530,8 +531,8 @@ button { color: #000; outline: none; }
 .request-select-box{display: block;width: 100%;background: unset;color: #fff;border-bottom: 1px solid #fff;border-top: 0px;border-right: 0px;border-left: 0px}
 .request-select-box option{color:#000;}
 .request-select-box:focus-visible{ border-bottom: 1px solid #fff; border-top: 0px;border-right: 0px;border-left: 0px;  outline:0px;}
-#tabs{padding-left:30px; margin-bottom:0px; cursor: pointer;padding-top:30px;}
-#tab{padding-left:30px; margin-bottom:0px; }
+#tabs{padding-left:20px; margin-bottom:0px; cursor: pointer;padding-top:20px;}
+#tab{padding-left:20px; margin-bottom:0px; }
 .owText{color: #164498;font-size: 70px;text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;margin-bottom: -41px;font-weight: bold;opacity: 0.5; }
 #choose-service-center .owl-nav button.owl-next{position:absolute;top: 45%;right: -35px;height: 35px;width: 35px;line-height: 35px;font-size: 50px;z-index:1;}
 #choose-service-center .owl-nav button.owl-next:hover{background:#fff !important;color:#000 !important;}
@@ -590,7 +591,7 @@ button { color: #000; outline: none; }
 .footer-address{ padding: 7px 0px;}
 /* new footer  css end  */
 /* about us css start  */
-.about-main-sec h2{ text-align: center; font-weight: 600; font-size: 23px; margin-top: 25px;}
+.about-main-sec h1{ text-align: center; font-weight: 600; font-size: 23px; margin-top: 25px;}
 .about-text{ text-align: center; margin-bottom: 0px;}
 .aboutus-logo-section{ background-color: #164498; height: 190px; display: flex; align-items: center;}
 .about-image-text-main{ padding: 10px 0px;}
@@ -606,7 +607,7 @@ button { color: #000; outline: none; }
 .cms-image-main{height: 450px;width: 100%;object-fit: cover;filter: brightness(0.5);}
 .cms-section-main{ position: relative;}
 .cms-section-text{position: absolute;top: 50%;left: 9%;transform: translateY(-50%);width: 40%;}
-.cms-section-text h2{font-size: 2.7rem;font-weight: bold;color: #fff;margin-bottom: 25px;}
+.cms-section-text h1{font-size: 2.7rem;font-weight: bold;color: #fff;margin-bottom: 25px;}
 .cms-section-main .Request-appointmentbtn{background-color: #E56F31;color: #fff;height: 45px;width: 270px;line-height: 40px;display: block;text-align: center;text-decoration: none;font-size: 20px;border-radius: 5px;}
 .cms-email-input{height: 45px;background: unset !important;border-bottom: 1px solid #fff !important;border-top: 0px !important;border-left: 0px !important;border-right: 0px !important;border-radius: 0px !important;padding: 0px !important;color: #fff;}
 .cms-email-input:focus{box-shadow: none;color: #fff;}

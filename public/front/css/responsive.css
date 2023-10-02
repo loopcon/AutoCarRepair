@@ -1,6 +1,6 @@
 @media (max-width:1199px) {
     .testimonial-section .testiminoal-img-main-text h4{ font-size: 37px;}
-    .service-inner-tophead h2{text-align: center;}
+    .service-inner-tophead h1{text-align: center;}
     .service-inner-tophead-text{ width: 100%;  }
     .date-sec-main{ flex-wrap: wrap; justify-content: center;}
     .date-main{ margin-bottom: 10px;}
@@ -8,7 +8,7 @@
     .call-main { height: 280px;}
     .why-choose-section .why-choose-item h5{ font-size: 45px;}
     .acr-navbar-main li{ margin-right: 15px;}
-    .slider-section-main h2{ font-size: 60px;}
+    .slider-section-main h1{ font-size: 60px;}
     .slider-section-main h5{ font-size: 40px;}
     .our-service-section .servic-type-box{ min-height: 180px;}
     .login-icon-main{transform: translate3d(52px, 36px, 0px) !important;}
@@ -23,6 +23,8 @@
     .acr-navbar-main li a{font-size: 1rem;}
     #choose-service-center .owl-nav button.owl-next{right:-30px;}
     #choose-service-center .owl-nav button.owl-prev{left:-30px;}
+    .why-choose-section .why-choose-inner-item{min-height:293px;}
+    .our-service-section .service-type-head{height:100px;}
 }
 @media (min-width:992px){ 
     .mobile-menu-sectiondata{ display: none;}
@@ -33,10 +35,10 @@
     .offeer-section .offer-section-item p { font-size: 20px;}
     .offeer-section .offer-section-item h4{ font-size: 35px; width: 60%; margin: 25px 0px;}
     /*.save-more-section .save-more-img::before{ display: none;}*/
-    .slider-section-main h2{ font-size: 50px;}
+    .slider-section-main h1{ font-size: 50px;}
     .slider-section-main h5{ font-size: 35px;}
     .why-choose-section .why-choose-item h5{ font-size: 30px;}
-    .service-inner-tophead h2{ font-size: 50px; text-align: center;}
+    .service-inner-tophead h1{ font-size: 50px; text-align: center;}
     .service-inner-tophead-text{ width: 100%;  }
     .ser-inner-breadcum li a { font-size: 20px;}
     .ser-inner-breadcum li svg{ font-size: 20px;}
@@ -51,7 +53,7 @@
     .footet-down-bg .main-soical-icon svg{ padding: 5px;}
     .footet-down-bg .copy-right-text-main p{ font-size: 15px;}
     .shop-center-text{ width: 100%;}
-    .shop-center-text h2{ text-align: center; font-size: 45px; }
+    .shop-center-text h1{ text-align: center; font-size: 45px; }
     .offeer-section .offer-section-main img{ height: 260px; object-fit: cover;}
     .our-service-section .servic-type-box{ min-height: 170px;}
     .search-svg-main{ margin-right: 30px; font-size: 25px; color: #000;}
@@ -68,7 +70,7 @@
     .form-section-bg .request-text-main{ width:80%; }
     .service-center-popupimg{ margin-bottom:15px;}
     .footer-bg-main .footer-img-main{border:0px;}
-    .cms-section-text h2{ font-size: 2rem;}
+    .cms-section-text h1{ font-size: 2rem;}
     .cms-section-main .Request-appointmentbtn{
         width: 200px;
         font-size: 18px;
@@ -77,6 +79,11 @@
     .up-btn-sticky{ right: 2%;}
     #choose-service-center .owl-nav button.owl-prev{left: -25px;}
     #choose-service-center .owl-nav button.owl-next{right:-25px;}
+    .why-choose-section .why-choose-inner-item{min-height:230px;}
+    .our-service-section .servic-type-box h4{font-size:24px;}
+    .testimonial-section .testiminoal-img-main-text p{font-size:22px;}
+    .testimonial-section .testiminoal-img-main-text h4{font-size:30px;}
+    .login-form-main{ padding:10px 10px;}
 }
 @media (min-width:768px){
     .mobile-filter-mian{
@@ -87,7 +94,7 @@
     }
 }
 @media (max-width:767px) {
-    .slider-section-main h2{ font-size: 50px; }
+    .slider-section-main h1{ font-size: 50px; }
     .slider-section-main h5{ font-size: 32px;}
     .slider-section-main p { font-size: 14px;}
     .slider-section-main button{ height: 40px; width: 150px; margin-bottom: 15px;}
@@ -95,7 +102,7 @@
     .offeer-section .offer-section-item h4{ font-size: 28px; width: 60%; margin: 25px 0px;}
     .save-more-section .save-more-img::before{ display: none;}
     .service-section .always-service-text p{ width: 80%;}
-    .service-inner-tophead h2{ font-size: 40px; text-align: center;}
+    .service-inner-tophead h1{ font-size: 40px; text-align: center;}
     .service-inner-tophead-text{ width: 100%;  }
     .ser-inner-breadcum li a { font-size: 18px;}
     .ser-inner-breadcum li svg{ font-size: 18px;}
@@ -107,7 +114,7 @@
     .call-main { margin-top: 10px;}
     .shoping-breadcrum-bg .shoping-breadcrum-main{ flex-wrap: wrap; justify-content: start;}
     .thank-you-sec-main h2{ font-size: 50px;}
-    .offeer-section .offer-section-main img{ height: 380px; object-fit: cover;}
+    .offeer-section .offer-section-main img{ height: 260px; object-fit: cover;}
     .search-svg-main{ margin-right: 30px; font-size: 25px; color: #000;}
     .mobile-menu-main{ height: 100px;}
     .mobile-toggle-data{ top: 102px;}
@@ -126,9 +133,20 @@
     .fliter-main{ display: none;}
     .footer-whatappicon{ right:11%;}
     .up-btn-sticky{ right: 2%;}
+    .why-choose-section .why-choose-inner-item{min-height:275px;}
+    .newservice h4{font-size:40px;}
+    .our-service-section .service-main-heading h1{font-size:40px;}
+    .our-service-section .service-main-heading h2{font-size:40px;}
+    .offeer-section h3{font-size:40px;}
+    .our-service-section .service-type-head{ height:100px;}
+    .our-service-section .servic-type-box h4{font-size:24px;}
+    .why-choose-section{padding-top:25px; padding-bottom:25px;}
+    .why-choose-section-new{padding-top:15px;padding-bottom:15px;}
+    .testiminoal-carousel-sec-main{margin-top:20px;}
+    #sync1 .product-inner-imgmain img{height:450px; }
 }
 @media (max-width:575px) {
-    .slider-section-main h2{ font-size: 35px; }
+    .slider-section-main h1{ font-size: 35px; }
     .slider-section-main h5{ font-size: 25px;}
     .slider-section-main p { font-size: 14px;}
     .slider-section-main button{ height: 40px; width: 150px; margin-bottom: 15px;}
@@ -142,7 +160,7 @@
     .offeer-section .offer-section-item p { font-size: 15px;}
     .offeer-section .offer-section-item h4{ font-size: 20px; width: 100%; margin: 25px 0px;}
     .offer-section-main img{ height: 300px; width: auto !important; overflow: hidden; }
-    .testimonial-section .testiminoal-img-main-text h4{ font-size: 32px;}
+    .testimonial-section .testiminoal-img-main-text h4{ font-size: 35px;}
     .testimonial-section .test-slider-text{ font-size: 18px;}
     .save-more-section .save-more-text{ font-size: 30px;}
     .form-section-bg .request-text-main h2{ font-size: 22px;}
@@ -151,7 +169,7 @@
     .save-more-section .save-more-img::before{ width: 200px; display: none;}
     .form-section-bg .request-text-main h3::before{ width: 200px;}
     .ser-inner-banner { height: 250px;  width: auto !important; overflow: hidden; object-fit: cover; }
-    .service-inner-tophead h2{ font-size: 30px; text-align: center;}
+    .service-inner-tophead h1{ font-size: 30px; text-align: center;}
     .ser-inner-breadcum{ flex-wrap: wrap;}
     .service-inner-tophead-text{ width: 100%;  }
     .ser-inner-breadcum li a { font-size: 15px;}
@@ -168,7 +186,7 @@
     .service-name-text{ margin: 5px 0px;}
     .address-main{ margin-bottom: 10px; margin-top: 10px;}
     .shop-center-tophead img{ height: 250px; width: auto !important; object-fit:cover ; }
-    .shop-center-text h2{ font-size: 35px; text-align: center; }
+    .shop-center-text h1{ font-size: 35px; text-align: center; }
     .shop-center-text{ width: 100%;}
     .shop-center-breadcum li a{ font-size: 17px;}
     .shop-center-breadcum li svg{ font-size: 15px;}
@@ -176,22 +194,23 @@
     .shopping-innerbg .addtocard-shopinner{ width: 100%; font-size: 15px; margin-right: 5px;}
     .shopping-innerbg .buyfrom-shopinner{ width: 100%; font-size: 15px; margin-bottom: 5px; }
     .shopping-innerbg .product-content-main h2 { font-size: 1.3rem;}
-    .description-btn{ height: 35px; font-size: 15px; width: 100px; line-height: 32px;}
-    .specification-btn{ height: 35px; font-size: 15px; width: 100px; line-height: 32px; }
+    .description-btn{ height: 35px; font-size: 15px; width: 110px; line-height: 32px;}
+    .specification-btn{ height: 35px; font-size: 15px; width: 110px; line-height: 32px; }
     .description-main p{ font-size: 16px;}
     ul.specification-tab-text li{ font-size: 16px;}
-    #tabs{ padding-left: 0px;}
+    #tabs{ padding-left: 15px;}
     #tab{ padding-left: 0px;}
     .shopping-section .shoping-main-product img{ display: block; margin: auto; }
     .thank-you-sec-main h2{ font-size: 40px;}
     .offeer-section .owl-carousel .owl-nav button.owl-prev span{ width: 30px; height: 30px; line-height: 26px;}
     .offeer-section .owl-carousel .owl-nav button.owl-next span{ width: 30px; height: 30px; line-height: 26px;}
     .footet-down-bg .copy-right-text-main{ justify-content: center;}
-    .offeer-section .offer-section-main img{ height: 300px; object-fit: cover; margin:auto;}
+    .offeer-section .offer-section-main img{ height: 260px; object-fit: cover; margin:auto;}
     .mobile-toggle-data{ top: 82px;}
     .mobile-menu-main{ height: 80px; }
     .our-service-section .servic-type-box{margin: 12px 6px;}
-    .our-service-section .service-main-heading h2{ margin-top: 10px; margin-bottom: 10px;}
+    .our-service-section .service-main-heading h1{ margin-top: 10px; margin-bottom: 10px; font-size:35px; }
+    .our-service-section .service-main-heading h2{ margin-top: 10px; margin-bottom: 10px; font-size:35px; }
     .our-service-section .servic-type-box{ min-height: 200px;}
     .faq-section-main{ padding: 17px 0px;}
     .search-svg-main{ margin-right: 10px; font-size: 20px; color: #000;}
@@ -227,7 +246,7 @@
     .service-innersection-mian .service-inner-mainbg:hover{transform: scale(1);}
     .cms-image-main{ height: 250px;}
     .cms-section-text{ width: 80%;}
-    .cms-section-text h2 { font-size: 1.5rem;}
+    .cms-section-text h1 { font-size: 1.5rem;}
     .cms-section-main .Request-appointmentbtn{ height: 40px;}
     .cms-page-section{ margin-top: 20px;}
     .footer-whatappicon{ right:19%;}
@@ -243,6 +262,12 @@
     .login-icon-text{ text-align:start !important;}
     .login-form-main{padding:10px 20px;}
     .login-img-main img{ height:250px;}
+    .why-choose-section .why-choose-inner-item{min-height:230px;}
+    .why-choose-section{padding-top:25px; padding-bottom:25px;}
+    .why-choose-section-new{padding-top:15px;padding-bottom:15px;}
+    .testiminoal-carousel-sec-main{margin-top:20px;}
+    .service-inner-tophead img{ height:250px; object-fit:cover;}
+    .faq-section-main a.accordion-header{font-size:16px;}
 }
 @media (max-width:450px) {
     .mobile-menu-sectiondata{  flex-wrap: wrap; height: 80px; }

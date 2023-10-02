@@ -4,7 +4,7 @@
 <div class="contact-section-main">
     <div class="container">
         <div class="contact-main-heading">
-            <h2>Leave us a message!</h2>
+            <h1>Leave us a message!</h1>
         </div>
         <div class="row">
             <div class="col-12 col-md-6">
