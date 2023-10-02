@@ -144,6 +144,12 @@
                                         <textarea class="form-control" id="meta_description" name="meta_description" placeholder="{{__('Meta Description')}}">{{ isset($record->meta_description) ? $record->meta_description : old('meta_description') }}</textarea>
                                         @if ($errors->has('meta_description')) <div class="text-danger">{{ $errors->first('meta_description') }}</div>@endif
                                     </div>
+
+                                    <div class="mb-3 col-md-4">
+                                        <label class="form-label" for="canonical_tag">{{__('Canonical Tag')}}</label>
+                                        <input type="text" class="form-control" id="canonical_tag" name="canonical_tag" placeholder="{{__('Canonical Tag')}}" value="{{ isset($record->canonical_tag) ? $record->canonical_tag : old('canonical_tag') }}">
+                                        @if ($errors->has('canonical_tag')) <div class="text-danger">{{ $errors->first('canonical_tag') }}</div>@endif
+                                    </div>
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-primary">{{__('Submit')}}</button>

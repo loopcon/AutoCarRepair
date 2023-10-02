@@ -63,7 +63,7 @@ class ServiceController extends MainController
         $slug = $request->title != '' ? slugify($request->title) : NULL;
 
         $scstegory = new ServiceCategory();
-        $fields = array('title', 'price_list','description','meta_title','meta_keywords','meta_description');
+        $fields = array('title', 'price_list','description','meta_title','meta_keywords','meta_description','canonical_tag');
         foreach($fields as $field){
             $scstegory->$field = isset($request->$field) && $request->$field ? $request->$field : NULL;
         }
@@ -128,7 +128,7 @@ class ServiceController extends MainController
         $slug = $request->title != '' ? slugify($request->title) : NULL;
 
         $scategory = ServiceCategory::find($id);
-        $fields = array('title', 'price_list','description','meta_title','meta_keywords','meta_description');
+        $fields = array('title', 'price_list','description','meta_title','meta_keywords','meta_description','canonical_tag');
         foreach($fields as $field){
             $scategory->$field = isset($request->$field) && $request->$field ? $request->$field : NULL;
         }

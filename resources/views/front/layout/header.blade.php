@@ -252,7 +252,7 @@
                 </div>
                 <div class="changeandbackmainbtn">
                     <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#appointmentselectModal">Change</a>    
-                    <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#appointmentsearchModal">Back</a>
+                    <a href="javascript:void(0)" data-bs-toggle="modal" id="back-from-fuel-popup" data-brand_id="">Back</a>
                 </div>
                 <div class="row m-0 search-modal-box" id="amodal_fuels">
                 </div>
@@ -272,7 +272,7 @@
                     <h2>Get instant quotes for your car service </h2>
                     <div class="changeandbackmainbtn">
                         <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#appointmentselectModal">Change</a>    
-                        <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#appointmentfuelModal">Back</a>
+                        <a href="javascript:void(0)" data-bs-toggle="modal" id="back-from-number-popup" data-model_id="">Back</a>
                     </div>
                     <div class="row m-0 search-modal-box" id="search_info">
                     </div>

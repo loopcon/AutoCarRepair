@@ -56,6 +56,7 @@ class ProductController extends MainController
                 $return_data['site_title'] = $record->name;
                 $return_data['meta_keywords'] = $record->meta_keywords;
                 $return_data['meta_description'] = $record->meta_description;
+                $return_data['canonical_tag'] = $record->canonical_tag;
                 $return_data['record'] = $record;
 
                 return view('front/shopping/detail',array_merge($this->data,$return_data));

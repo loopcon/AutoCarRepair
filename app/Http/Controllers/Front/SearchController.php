@@ -142,7 +142,7 @@ class SearchController extends MainController
                 $html = '<div class="col-12 p-5"></div>';
             }
 
-            echo json_encode(array('html' => $html));
+            echo json_encode(array('brand_id'=>$brand_id, 'html' => $html));
             exit;
         } else {
             return redirect('/');
@@ -183,7 +183,7 @@ class SearchController extends MainController
                                 <p class="select-modal-name">'.$fuelInfo->title.'</p>
                             </a>
                         </div>';
-                $return = array('result' => 'success', 'type' => 'number', 'html' => $html);
+                $return = array('result' => 'success', 'type' => 'number', 'html' => $html, 'brand_id' => $brandInfo->id, 'model_id' => $modelInfo->id);
             } elseif( isset($brandInfo->id) && $brandInfo->id && isset($modelInfo->id) && $modelInfo->id){
                 $return = array('result' => 'success', 'type' => 'fuel');
             } elseif( isset($brandInfo->id) && $brandInfo->id){

@@ -726,3 +726,9 @@ ALTER TABLE `seo` ADD `canonical_tag` VARCHAR(255) NULL DEFAULT NULL AFTER `meta
 ALTER TABLE `pages` ADD `canonical_tag` VARCHAR(255) NULL DEFAULT NULL AFTER `meta_description`;
 
 ALTER TABLE `compny_cms_page` ADD `canonical_tag` VARCHAR(255) NULL DEFAULT NULL AFTER `meta_description`;
+
+-- Disha : 2-10-23 10:47 AM
+ALTER TABLE `products` ADD `canonical_tag` VARCHAR(255) NULL DEFAULT NULL AFTER `meta_description`;
+
+-- Disha : 2-10-23 12:06 AM
+ALTER TABLE `service_categories` ADD `canonical_tag` VARCHAR(255) NULL DEFAULT NULL AFTER `meta_description`;

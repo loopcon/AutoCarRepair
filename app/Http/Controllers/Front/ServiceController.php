@@ -90,6 +90,7 @@ class ServiceController extends MainController
         $meta_title = isset($categoryInfo->meta_title) && $categoryInfo->meta_title ? $categoryInfo->meta_title : NULL;
         $return_data['meta_keywords'] =  isset($categoryInfo->meta_keywords) && $categoryInfo->meta_keywords ? $categoryInfo->meta_keywords : NULL;
         $return_data['meta_description'] =  isset($categoryInfo->meta_description) && $categoryInfo->meta_description ? $categoryInfo->meta_description : NULL;
+        $return_data['canonical_tag'] =  isset($categoryInfo->canonical_tag) && $categoryInfo->canonical_tag ? $categoryInfo->canonical_tag : NULL;
         $return_data['site_title'] = $meta_title ? $meta_title : trans('Service Detail');
         $return_data['category'] = $categoryInfo;
         $return_data['detail'] = $services;

@@ -63,12 +63,12 @@
 </div>
 <div class="footer-address">
     <div class="row m-0 align-items-center">
-        <div class="col-12 col-sm-6 col-md-2">
+        <div class="col-12 col-sm-2">
             <div>
                 <img src="{{ asset('front/img/acr-my-tvs.webp') }}" class="acr-my-tvsimage"  alt="">
             </div>
         </div>
-        <div class="col-12 col-sm-6 col-md-4">
+        <div class="col-12 col-sm-4">
             <div class="contact-number-main">
                 <p>
                     <img src="{{ asset('front/img/call-image.webp') }}" class="call-image-main" alt="">
@@ -76,7 +76,7 @@
                 </p>
             </div>
         </div>
-        <div class="col-12 col-sm-12 col-md-6">
+        <div class="col-12 col-sm-6">
             <div class="address-text-main">
                 <div class="address-main-imagesec">
                     <img src="{{ asset('front/img/location-icon-footer.png') }}" class="addres-image-main" alt="">
@@ -301,6 +301,16 @@ $(document).ready(function() {
         });
         $('#appointmentfuelModal').on('hidden.bs.modal', function() {
             $('#search_fuel').val('');
+        });
+        $('#back-from-fuel-popup').click(function() {
+            var brand_id = $(this).attr('data-brand_id');
+            $('#appointmentfuelModal').hide();
+            modelFromBrandSearch(brand_id);
+        });
+        $('#back-from-number-popup').click(function() {
+            var model_id = $(this).attr('data-model_id');
+            $('#appointmentnumberModal').hide();
+            fuelFromModelSearch(model_id);
         });
 
         $(document).on('click', '#check_price', function(){
@@ -549,6 +559,7 @@ $(document).ready(function() {
                 $('#amodal_fuels').html(result.html);
                 $('#appointmentfuelModal').modal('show');
                 $('#appointmentsearchModal').modal('hide');
+                $('#back-from-fuel-popup').attr('data-brand_id', result.brand_id);
             }
         });
     }
@@ -565,6 +576,7 @@ $(document).ready(function() {
                 if(result.result == 'success' && result.type == 'number'){
                     $('#search_info').html(result.html);
                     $('#appointmentnumberModal').modal('show');
+                    $('#back-from-number-popup').attr('data-model_id', result.model_id);
                 } else if(result.result == 'success' && result.type == 'fuel'){
                     fuelFromModelSearch();
                 } else if(result.result == 'success' && result.type == 'model'){
