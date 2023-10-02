@@ -66,7 +66,7 @@
 <!--css end-->
 <div class="service-innersection-mian">
     <div class="container">
-        <h2 class="Scheduled-heading-seriner">Scheduled Packages</h2>
+        <h1 class="Scheduled-heading-seriner">Scheduled Packages</h1>
         <!-- <h2>Scheduled Packages</h2> -->
         @if(isset($detail) && $detail->count())
             @foreach($detail as $record)
@@ -125,7 +125,7 @@
                                     @endforeach
                                 @endif
                                 @if($specifications && $specifications->count() > 5)
-                                    <div class="col-12 col-sm-3" id="more{{$record->id}}">
+                                    <div class="col-12 col-sm-6" id="more{{$record->id}}">
                                         <a href="javascript:void(0)" data-id="{{$record->id}}" class="more"><small>+{{ $specifications->count() - 5 }} more View All</small></a> 
                                     </div>
                                 @endif
@@ -170,10 +170,10 @@
             <div class="row m-0">
                 <div class="col-12 col-md-6">
                     <div class="row  m-0 testiminoal-img-main">
-                        <div class="col-12 col-sm-6 col-md-12 col-lg-6 testiminoal-img-item">
+                        <div class="col-12 col-sm-6 col-md-6 testiminoal-img-item">
                             <img src="{{ asset('front/img/testiminoal-img.png') }}" class="img-fluid" alt="" title="">
                         </div>
-                        <div class="col-12 col-sm-6 col-md-12 col-lg-6">
+                        <div class="col-12 col-sm-6 col-md-6">
                             <div class="testiminoal-img-main-text">
                                 <p>Testimonials</p>
                                 <h4>What our customers are saying</h4>

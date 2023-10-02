@@ -18,12 +18,12 @@
 <div class="forget-section-main">
     <div >
         <div class="row justify-content-center">
-            <div class="col-lg-6 p-0">
+            <div class="col-md-6 p-0">
                <div class="login-img-main">
                     <img src="{{ asset('front/img/advance-service-main.webp') }}" class="img-fluid" alt="">
                 </div>
             </div>
-            <div class=" col-lg-6 align-items-center d-flex">
+            <div class=" col-md-6 align-items-center d-flex">
                 <div class="login-form-main">
                     <form method="post" action="{{route('front_set-new-password')}}" id="login-form" enctype="multipart/form-data" data-parsley-validate=''>
                         {{ csrf_field() }} 
