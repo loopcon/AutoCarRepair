@@ -98,7 +98,7 @@
                         @endif
                         @if($record->flipcart_link)
                             <div class="col-12 col-sm-6">
-                                <button class="buyfrom-shopinner" onclick="window.open('https://{{$record->flipcart_link}}', '_blank')">Buy From Flipcart</button>
+                                <button class="buyfrom-shopinner" onclick="window.open('https://{{$record->flipcart_link}}', '_blank')">Buy From Flipkart</button>
                             </div>
                         @endif
                     </div>
