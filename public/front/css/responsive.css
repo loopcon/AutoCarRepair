@@ -30,6 +30,9 @@
     .mobile-menu-sectiondata{ display: none;}
 }
 @media (max-width:991px) {
+    .cart-iconmobile{margin-right:20px;}
+    .card-icon-main svg{color:#000;}
+    .cart_header_total_item{color:#000;}
     .navbar-bg{ display: none;}
     .top-navbar-main{ display: none;}
     .offeer-section .offer-section-item p { font-size: 20px;}
@@ -144,6 +147,7 @@
     .why-choose-section-new{padding-top:15px;padding-bottom:15px;}
     .testiminoal-carousel-sec-main{margin-top:20px;}
     #sync1 .product-inner-imgmain img{height:450px; }
+    .cart-iconmobile{margin-right:20px;}
 }
 @media (max-width:575px) {
     .slider-section-main h1{ font-size: 35px; }
@@ -268,12 +272,15 @@
     .testiminoal-carousel-sec-main{margin-top:20px;}
     .service-inner-tophead img{ height:250px; object-fit:cover;}
     .faq-section-main a.accordion-header{font-size:16px;}
+    .cart-iconmobile{margin-right:15px;}
 }
 @media (max-width:450px) {
     .mobile-menu-sectiondata{  flex-wrap: wrap; height: 80px; }
-    .btn-toggle-item{ margin-left: 5px; padding: 5px 9px;}
+    .btn-toggle-item{ margin-left: 5px; padding: 2px 5px;}
     .btn-toggle-item svg{ font-size: 20px;}
-    .acr-logo{ height: 60px;}
+    .acr-logo{ height: 50px;}
     .choose-service-centersection{ padding:40px !important;}
     .fliter-main{ display: none;}
+    .navbar-appointment-btn{ width:100px; padding:0px;}
+    .cart-iconmobile{margin-right:5px;}
 }

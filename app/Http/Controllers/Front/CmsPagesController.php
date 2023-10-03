@@ -114,7 +114,7 @@ class CmsPagesController extends MainController
             $html = isset($ndata->template) ? $ndata->template : NULL;
             $mailHtml = str_replace($templateStr, $data, $html);
             // \Mail::to($request->email)->send(new \App\Mail\CommonMail($mailHtml, 'Request An Appointment - ' . $this->data['site_name']));
-            return redirect()->back()->with('success', trans('Your Request Sent Successfully!'));
+            return redirect()->back()->with('success', trans('Our executive will contact you shortly'));
         } else {
             return redirect()->back()->with('error', trans('Something went wrong, please try again later!'));
         }

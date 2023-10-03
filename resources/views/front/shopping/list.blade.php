@@ -134,6 +134,7 @@
 
             $(document).on('click', '.filter_category', function(){
                 getSearchVals();
+                $(this).siblings('span').find('svg').toggleClass("fa-plus fa-minus");
             });
 
             $(document).on('click', '.add_to_cart', function(e){

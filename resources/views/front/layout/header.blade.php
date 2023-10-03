@@ -126,6 +126,9 @@
                 </div>
             </div>
             <div class="toggle-btnmobile">
+                <div class="cart-iconmobile">
+                    <a href="{{url('checkout')}}" class="card-icon-main"><i class="fa fa-cart-plus"></i><span class="cart_header_total_item"></span></a>        
+                </div>
                 <div class="toggle-btn">
                     <button class="btn-toggle-item"><i class="fa-solid fa-bars"></i></button>
                 </div>
@@ -145,7 +148,6 @@
                             <li><a class="text-black" href="{{route('front_my-orders')}}">My Orders</a></li>
                             <li><a class="text-black" href="{{route('front_logout')}}">Logout</a></li>
                         @endif
-                        <li><a href="{{url('checkout')}}" class="card-icon-main"><i class="fa fa-cart-plus"></i><span class="cart_header_total_item"></span></a></li>
                     </ul>
                 </div>
             </div>

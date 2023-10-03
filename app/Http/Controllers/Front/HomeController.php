@@ -92,7 +92,7 @@ dd($response);
             $html = isset($ndata->template) ? $ndata->template : NULL;
             $mailHtml = str_replace($templateStr, $data, $html);
             \Mail::to([$request->email, $this->data['email']])->send(new \App\Mail\CommonMail($mailHtml, 'Request An Appointment - ' . $this->data['site_name']));
-            return redirect('/')->with('success', trans('Your Request Sent Successfully!'));
+            return redirect('/')->with('success', trans('Our executive will contact you shortly'));
         } else {
             return redirect()->back()->with('error', trans('Something went wrong, please try again later!'));
         }

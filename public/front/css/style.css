@@ -494,7 +494,7 @@ button { color: #000; outline: none; }
 .login-icon-main li a:active{ background-color: #fff; }
 #plus-btn svg{ font-size: 20px;}
 .shoping-main-product-section{min-height: 450px;}
-.login-icon-main{ /*transform: translate(-70px, 35px) !important;*/ transform: translate3d(50px, 35px, 0px) !important; }
+.login-icon-main{ transform: translate(-70px, 35px) !important; /*transform: translate3d(50px, 35px, 0px) !important;*/ }
 .check-box-fliter{ float: right;position: absolute;top: 0;right: 0;}
 #sync1 .product-inner-imgmain img{ height: 350px; object-fit: contain; }
 #sync2 .product-inner-imgmain img{ height: 125px; object-fit: contain; }
@@ -853,3 +853,4 @@ location css
 .readless{border: 0px; background: unset; color: #164498; font-size:16px; }
 .cart-car-brandname{word-break: break-all;}
 .cart-car-modalname{word-break: break-all;}
+.toggle-btnmobile{display:flex; align-items:center;}
