@@ -53,10 +53,10 @@ class CartController extends MainController
                 }
             }
             if(isset($request->service_id) && $request->service_id){
-                $cart_id = $this->isSameCategoryService($request->service_id);
-//                if(isset($service_cart[$request->service_id]) && $service_cart[$request->service_id]){
-//                    $cart_id = isset($service_cart[$request->service_id]['cart_id']) && $service_cart[$request->service_id]['cart_id'] ? $service_cart[$request->service_id]['cart_id'] : NULL;
-//                }
+//                $cart_id = $this->isSameCategoryService($request->service_id);
+                if(isset($service_cart[$request->service_id]) && $service_cart[$request->service_id]){
+                    $cart_id = isset($service_cart[$request->service_id]['cart_id']) && $service_cart[$request->service_id]['cart_id'] ? $service_cart[$request->service_id]['cart_id'] : NULL;
+                }
                 /*if(isset($service_cart['service']) && $service_cart['service']){
 //                   dd($service_cart);
                     $cart_id = isset($service_cart['cart_id']) && $service_cart['cart_id'] ? $service_cart['cart_id'] : NULL;
