@@ -268,6 +268,9 @@
 <div class="modal fade" id="appointmentnumberModal" data-bs-keyboard="false" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog appointmentnumber-dialog">
         <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
             <div class="modal-body">
                 <div>
                     <h2>Get instant quotes for your car service </h2>
