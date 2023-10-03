@@ -38,7 +38,7 @@ class ImportCarBrand implements ToModel
                 'title' => $row[0],
                 // 'image' => "https://drive.google.com/uc?export=view&id=".$filename ,
                 'image' => $url,
-                'slug' => strtolower($row[0]),
+                'slug' => slugify($row[0]),
                 'is_archive' => 1,
                 'status' => 1,
             ]);
@@ -48,7 +48,7 @@ class ImportCarBrand implements ToModel
                 'title' => $row[0],
                 // 'image' => "https://drive.google.com/uc?export=view&id=".$filename ,
                 'image' => $url,
-                'slug' => strtolower($row[0]),
+                'slug' => slugify($row[0]),
                 'is_archive' => 1,
                 'status' => 1,
             ]);

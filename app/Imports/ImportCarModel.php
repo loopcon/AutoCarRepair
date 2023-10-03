@@ -51,7 +51,7 @@ class ImportCarModel implements ToModel
         if(!empty($model))
         {
             $model->update([
-                'slug' => strtolower($row[1]),
+                'slug' => slugify($row[1]),
                 'carbrand_id' => $brand_id,
                 'title' => $row[1],
                 'image' => "https://drive.google.com/uc?export=view&id=".$filename,
@@ -62,7 +62,7 @@ class ImportCarModel implements ToModel
         else 
         {
             return new CarModel([
-                'slug' => strtolower($row[1]),
+                'slug' => slugify($row[1]),
                 'carbrand_id' => $brand_id,
                 'title' => $row[1],
                 // 'image' => "https://drive.google.com/uc?export=view&id=".$filename,
