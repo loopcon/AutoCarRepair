@@ -35,19 +35,19 @@
                     </ul>
                 </div>
 
-               <?php /**<div>
+               <div>
                     <span class="mobile-filter-iconmain"><i class="fa-solid fa-filter"></i></span>
                     <div class="mobile-filter-mian">
                         <h4 class="shop-category-heading">Shop by Categories</h4>
                         <ul>
                             @if($scategories->count())
                                 @foreach($scategories as $category)
-                                    <li>**/ ?>
+                                    <li>
                                         <?php /*<a for="pcategory{{$category->id}}" href="javascript:void(0);">
                                             {{$category->name}}
                                             <input class="form-check-input filter_category check-box-fliter" type="checkbox" value="{{$category->id}}" id="pcategory{{$category->id}}">
                                         </a> */ ?>
-                                        <?php /**<label class="filter-click-main" for="pcategory{{$category->id}}">
+                                        <label class="filter-click-main" for="pcategory{{$category->id}}">
                                             {{$category->name}}
                                              <input class="form-check-input filter_category check-box-fliter" type="checkbox" value="{{$category->id}}" id="pcategory{{$category->id}}"> 
                                             <span><i class="fa-solid fa-plus"></i></span>
@@ -57,7 +57,7 @@
                             @endif
                         </ul>
                     </div>
-                </div>**/ ?>
+                </div>
             </div> 
             <div class=" col-12  col-md-8 col-lg-9">
                 <div class="row" id="search_ajax_list">
@@ -207,6 +207,9 @@
             $('.mobile-filter-mian').toggle();
         });
 
-
+        $('.filter-click-main').click(function(){
+            $(this).find('svg').toggleClass("fa-plus fa-minus");
+        });
+        
     </script>
 @endsection
