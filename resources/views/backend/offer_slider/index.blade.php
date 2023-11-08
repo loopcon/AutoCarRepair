@@ -77,6 +77,10 @@
                                             <div class="mb-3 col-md-4">
                                                 <label class="form-label" for="btn_link">{{__('Button Link')}}<span class="text-danger">*</span></label>
                                                 <input type="text" class="form-control" id="btn_link" value="{{ isset($record->btn_link) ? $record->btn_link : old('btn_link') }}"  name="btn_link_{{$key}}" placeholder="{{__('Button Link')}}"   data-parsley-required-message="{{ __("This value is required.")}}" >
+                                            </div>
+                                            <div class="mb-3 col-md-4">
+                                                <label class="form-label" for="reorder">{{__('Reorder')}}</label>
+                                                <input type="number" class="form-control" id="reorder" value="{{ isset($record->reorder) ? $record->reorder : old('reorder') }}"  name="reorder_{{$key}}" placeholder="{{__('Reorder')}}" >
                                             </div>   
                                         </div>
                                     @endforeach
@@ -118,6 +122,10 @@
                                     <div class="mb-3 col-md-4">
                                         <label class="form-label" for="btn_link">{{__('Button Link')}}<span class="text-danger">*</span></label>
                                         <input type="text" class="form-control"  value=""  name="btn_link_0" placeholder="{{__('Button Link')}}"  required=""  data-parsley-required-message="{{ __("This value is required.")}}" >
+                                    </div>
+                                    <div class="mb-3 col-md-4">
+                                        <label class="form-label" for="reorder">{{__('Reorder')}}</label>
+                                        <input type="number" class="form-control"  value=""  name="reorder_0" placeholder="{{__('Reorder')}}" >
                                     </div>   
                                 </div>
                                     @php($total = 1)
@@ -181,6 +189,10 @@ $(document).ready(function(){
                         <div class="mb-3 col-md-4">\n\
                             <label class="form-label" for="btn_link">Button Link<span class="text-danger">*</span></label>\n\
                             <input type="text" class="form-control" name="btn_link_'+last_id+'" placeholder="Button Link"  required=""  data-parsley-required-message="{{ __("This value is required.")}}" value="">\n\
+                        </div>\n\
+                        <div class="mb-3 col-md-4">\n\
+                            <label class="form-label" for="reorder">Reorder</label>\n\
+                            <input type="number" class="form-control" name="reorder_'+last_id+'" placeholder="Reorder" value="">\n\
                         </div>\n\
                     </div>';
         $('#sliders').append(html);

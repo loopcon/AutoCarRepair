@@ -9,5 +9,5 @@ class OfferSlider extends Model
 {
     use HasFactory;
     protected $table = 'offer_slider';
-    protected $fill = ['image', 'title1', 'title2', 'btn_title', 'btn_link', 'is_archive'];
+    protected $fill = ['image', 'title1', 'title2', 'btn_title', 'btn_link', 'is_archive','reorder'];
 }

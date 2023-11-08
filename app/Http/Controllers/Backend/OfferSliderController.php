@@ -35,6 +35,7 @@ class OfferSliderController extends MainController
                     $title2 = 'title2_'.$i;
                     $btn_title = 'btn_title_'.$i;
                     $btn_link = 'btn_link_'.$i;
+                    $reorder = 'reorder_'.$i;
                     if($request->$id){
                         $id_val = Crypt::decrypt($request->$id);
                         $offer_slider = OfferSlider::find($id_val);
@@ -50,6 +51,7 @@ class OfferSliderController extends MainController
                     $offer_slider->title2 = $request->$title2 ? $request->$title2 : NULL;
                     $offer_slider->btn_title = $request->$btn_title ? $request->$btn_title : NULL;
                     $offer_slider->btn_link = $request->$btn_link ? $request->$btn_link : NULL;
+                    $offer_slider->reorder = $request->$reorder ? $request->$reorder : 0;
                     if($request->hasFile($image)) {
                         if($request->$id){
                             $old_image = $offer_slider->image;
