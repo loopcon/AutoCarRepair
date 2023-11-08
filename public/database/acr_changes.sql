@@ -735,3 +735,4 @@ ALTER TABLE `service_categories` ADD `canonical_tag` VARCHAR(255) NULL DEFAULT N
 
 -- Nirali : 8-11-23 3:32 PM
 ALTER TABLE `offer_slider` ADD `reorder` INT(11) NOT NULL DEFAULT '0' AFTER `is_archive`;
+ALTER TABLE `offer_slider` CHANGE `reorder` `reorder` INT(11) NOT NULL DEFAULT '1';

@@ -51,7 +51,7 @@ class OfferSliderController extends MainController
                     $offer_slider->title2 = $request->$title2 ? $request->$title2 : NULL;
                     $offer_slider->btn_title = $request->$btn_title ? $request->$btn_title : NULL;
                     $offer_slider->btn_link = $request->$btn_link ? $request->$btn_link : NULL;
-                    $offer_slider->reorder = $request->$reorder ? $request->$reorder : 0;
+                    $offer_slider->reorder = $request->$reorder ? $request->$reorder : 1;
                     if($request->hasFile($image)) {
                         if($request->$id){
                             $old_image = $offer_slider->image;
